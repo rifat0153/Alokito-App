@@ -20,14 +20,14 @@ class UserNavbar extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {},
-          child: Icon(Icons.home, color: Colors.white, size: height * 0.06),
+          child: Icon(Icons.home, color: Colors.white, size: height * 0.05),
         ),
         GestureDetector(
           onTap: () {
             Get.find<AuthController>().authService.value.signOut();
           },
           child:
-              Icon(FontAwesome.bell, color: Colors.white, size: height * 0.05),
+              Icon(FontAwesome.bell, color: Colors.white, size: height * 0.04),
         ),
         GestureDetector(
           onTap: () {
@@ -40,12 +40,12 @@ class UserNavbar extends StatelessWidget {
           onTap: () {
             Get.toNamed(MyMapView.route);
           },
-          child: Icon(Icons.message, color: Colors.white, size: height * 0.05),
+          child: Icon(Icons.message, color: Colors.white, size: height * 0.045),
         ),
         GestureDetector(
           onTap: () => Get.toNamed(GeoMapView.route),
           child:
-              Icon(FontAwesome.map, color: Colors.white, size: height * 0.04),
+              Icon(FontAwesome.map, color: Colors.white, size: height * 0.035),
         ),
       ],
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
-class NotificationWidget extends StatelessWidget {
+class NotificationIconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
