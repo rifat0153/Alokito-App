@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 
-import '../../controller/map/geo_controller.dart';
 import '../../views/map/geo_locations.dart';
 import '../../views/map/geo_map_view.dart';
 import '../../views/map/my_map_view.dart';
