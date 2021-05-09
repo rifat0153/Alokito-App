@@ -12,3 +12,14 @@ which is useful if you don't want to accidentally overwrite someone else's commi
  and you just want to overwrite your own:
 
 git push <remote> <branch> --force-with-lease
+
+
+## new remote add
+
+echo "# q" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/rifat0153/q.git
+git push -u origin main
