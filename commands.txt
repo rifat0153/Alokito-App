@@ -1,2 +1,14 @@
 flutter pub run build_runner build --delete-conflicting-outputs
 flutter pub run build_runner watch
+
+
+GIT
+
+# Force pushing more safely with --force-with-lease
+
+Force pushing with a "lease" allows the force push to fail if there are new commits on the remote that you didn't expect (technically,
+ if you haven't fetched them into your remote-tracking branch yet), 
+which is useful if you don't want to accidentally overwrite someone else's commits that you didn't even know about yet,
+ and you just want to overwrite your own:
+
+git push <remote> <branch> --force-with-lease
