@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "856281683111",
+    "project_id": "alokito-a80e9",
+    "storage_bucket": "alokito-a80e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856281683111:android:3140fafae99daead7ef782",
+        "android_client_info": {
+          "package_name": "com.example.alokito_new"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856281683111-4mbd5g4oabdbs6hjk2a264f01pcvhdl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEWqkd4uHE5tpnj1Tg-CzmYoyo8J9cSa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856281683111-4mbd5g4oabdbs6hjk2a264f01pcvhdl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856281683111:android:894ba3d4a32fe8807ef782",
+        "android_client_info": {
+          "package_name": "com.rifat.alokito"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856281683111-4mbd5g4oabdbs6hjk2a264f01pcvhdl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEWqkd4uHE5tpnj1Tg-CzmYoyo8J9cSa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856281683111-4mbd5g4oabdbs6hjk2a264f01pcvhdl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
