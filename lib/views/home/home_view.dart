@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              // SizedBox(height: media.height * 0.035, width: 0),
+              SizedBox(height: media.height * 0.035, width: 0),
               Row(
                 children: <Widget>[
                   SizedBox(width: media.width * 0.03),
@@ -43,9 +43,9 @@ class HomeView extends StatelessWidget {
                   SizedBox(width: media.width * 0.03),
                 ],
               ),
-              SizedBox(height: media.height * 0.07),
+              SizedBox(height: media.height * 0.03),
               Flexible(
-                flex: 5,
+                flex: 6,
                 fit: FlexFit.loose,
                 child: Padding(
                   padding: EdgeInsets.only(top: 35),
@@ -62,7 +62,7 @@ class HomeView extends StatelessWidget {
               ),
               // SizedBox(height: media.height * 0.005, width: 0),
               Padding(
-                padding: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsets.only(top: 1),
                 child: UserNameWidget(
                     localUser: authController.currentUser.value,
                     context: context),
