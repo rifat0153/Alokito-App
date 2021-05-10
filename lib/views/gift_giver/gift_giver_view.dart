@@ -1,14 +1,16 @@
-import 'package:alokito_new/widgets/gift/notification_icon_widget.dart';
+import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/widgets/gift_giver/notification_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
 class GiftGiverView extends StatelessWidget {
   static const route = '/giftgiver';
-
+  final media = Get.size;
+  final double menuHeight = Get.size.height * 0.15;
+  final double menuWidth = Get.size.width * 0.7;
   @override
   Widget build(BuildContext context) {
-    final media = Get.size;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -40,12 +42,140 @@ class GiftGiverView extends StatelessWidget {
                   SizedBox(width: media.width * 0.03),
                 ],
               ),
-              SizedBox(height: media.height * 0.04),
+              SizedBox(height: media.height * 0.05),
               _BannerWidget(size: media),
+              _MyButtonRowWidget(),
+              _AnyRetailItemMenu(
+                height: menuHeight,
+                width: menuWidth,
+              ),
+              _Package3DaysMenu(
+                height: menuHeight,
+                width: menuWidth,
+              ),
+              _Package7DaysMenu(
+                height: menuHeight,
+                width: menuWidth,
+              ),
+              _PackageCustomMenu(
+                height: menuHeight,
+                width: menuWidth,
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _AnyRetailItemMenu extends StatelessWidget {
+  final double height;
+  final double width;
+
+  _AnyRetailItemMenu({required this.height, required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      child: Image.asset(
+        'assets/images/any-retail-item.png',
+        fit: BoxFit.fill,
+      ),
+    );
+  }
+}
+
+class _Package3DaysMenu extends StatelessWidget {
+  final double height;
+  final double width;
+
+  _Package3DaysMenu({required this.height, required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      child: Image.asset(
+        'assets/images/package-for-3days.png',
+        fit: BoxFit.fill,
+      ),
+    );
+  }
+}
+
+class _Package7DaysMenu extends StatelessWidget {
+  final double height;
+  final double width;
+
+  _Package7DaysMenu({required this.height, required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      child: Image.asset(
+        'assets/images/package-for-7days.png',
+        fit: BoxFit.fill,
+      ),
+    );
+  }
+}
+
+class _PackageCustomMenu extends StatelessWidget {
+  final double height;
+  final double width;
+
+  _PackageCustomMenu({required this.height, required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      child: Image.asset(
+        'assets/images/package-you-decide.png',
+        fit: BoxFit.fill,
+      ),
+    );
+  }
+}
+
+class _MyButtonRowWidget extends StatelessWidget {
+  const _MyButtonRowWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        ElevatedButton(
+          onPressed: () {},
+          child: Text('My Gift'),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.resolveWith(
+                (states) => GIFT_GIVER_BUTTON_COLOR),
+            foregroundColor:
+                MaterialStateProperty.resolveWith((states) => Colors.black),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: Text('Gift Request'),
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.resolveWith((states) => Colors.grey),
+            foregroundColor:
+                MaterialStateProperty.resolveWith((states) => Colors.black),
+          ),
+        ),
+      ],
     );
   }
 }
