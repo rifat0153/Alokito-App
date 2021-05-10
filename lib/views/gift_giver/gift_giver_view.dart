@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 class GiftGiverView extends StatelessWidget {
   static const route = '/giftgivermainmenu';
   final media = Get.size;
-  final double menuHeight = Get.size.height * 0.12;
-  final double menuWidth = Get.size.width * 0.5;
-  final bannerHeight = Get.size.height * 0.15;
+  final double menuHeight = Get.size.height * 0.15;
+  final double menuWidth = Get.size.width * 0.6;
+  final bannerHeight = Get.size.height * 0.12;
   final bannerWidth = Get.size.width;
 
   @override
@@ -86,7 +86,7 @@ class _ThankYouBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
+      // height: height,
       width: width,
       decoration: BoxDecoration(color: Colors.grey[100], boxShadow: [
         BoxShadow(
@@ -98,20 +98,22 @@ class _ThankYouBannerWidget extends StatelessWidget {
         children: [
           Text(
             'Thank You',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 20, color: Colors.cyan),
           ),
+          SizedBox(height: 8),
           Text(
             'for supporting lives',
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(fontSize: 10),
           ),
           Text(
             'Your time and services are precious but...',
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(fontSize: 10),
           ),
           Text(
             'But it can also put a smile on the face of many people which will give you a feeling of heaven',
+            textAlign: TextAlign.center,
             maxLines: 5,
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(fontSize: 10),
           ),
         ],
       ),
