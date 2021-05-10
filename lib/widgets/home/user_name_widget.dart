@@ -16,12 +16,12 @@ class UserNameWidget extends StatelessWidget {
     return localUser.when(
         data: (user) => Text(
               user.userName,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
               ),
             ),
-        loading: () => Center(child: CircularProgressIndicator()),
-        error: (e, s) => Center(child: CircularProgressIndicator()));
+        loading: () => CircularProgressIndicator(),
+        error: (e, s) => CircularProgressIndicator());
   }
 }

@@ -23,7 +23,7 @@ class UserEmailWidget extends StatelessWidget {
                 fontSize: 15,
               ),
             ),
-        loading: () => Center(child: CircularProgressIndicator()),
-        error: (e, s) => Center(child: CircularProgressIndicator()));
+        loading: () => CircularProgressIndicator(),
+        error: (e, s) => CircularProgressIndicator());
   }
 }
