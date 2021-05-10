@@ -26,6 +26,8 @@ class AuthService implements BaseAuthService {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
 
+      EasyLoading.dismiss();
+
       return _firebaseAuth.currentUser!.uid;
     } on FirebaseAuthException catch (e) {
       EasyLoading.dismiss();

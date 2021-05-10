@@ -133,7 +133,7 @@ class _AnyRetailItemMenu extends StatelessWidget {
       height: height,
       width: width,
       child: Image.asset(
-        'assets/images/any-retail-item_min.png',
+        'assets/images/any-retail-item_md.png',
         fit: BoxFit.fill,
       ),
     );
