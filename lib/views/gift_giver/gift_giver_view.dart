@@ -5,10 +5,13 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
 class GiftGiverView extends StatelessWidget {
-  static const route = '/giftgiver';
+  static const route = '/giftgivermainmenu';
   final media = Get.size;
-  final double menuHeight = Get.size.height * 0.15;
-  final double menuWidth = Get.size.width * 0.7;
+  final double menuHeight = Get.size.height * 0.12;
+  final double menuWidth = Get.size.width * 0.5;
+  final bannerHeight = Get.size.height * 0.15;
+  final bannerWidth = Get.size.width;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,9 +64,56 @@ class GiftGiverView extends StatelessWidget {
                 height: menuHeight,
                 width: menuWidth,
               ),
+              Spacer(),
+              _ThankYouBannerWidget(
+                height: bannerHeight,
+                width: bannerWidth,
+              )
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ThankYouBannerWidget extends StatelessWidget {
+  final double height;
+  final double width;
+
+  _ThankYouBannerWidget({required this.height, required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(color: Colors.grey[100], boxShadow: [
+        BoxShadow(
+          color: Colors.grey,
+          blurRadius: 5,
+        ),
+      ]),
+      child: Column(
+        children: [
+          Text(
+            'Thank You',
+            style: TextStyle(fontSize: 30),
+          ),
+          Text(
+            'for supporting lives',
+            style: TextStyle(fontSize: 15),
+          ),
+          Text(
+            'Your time and services are precious but...',
+            style: TextStyle(fontSize: 15),
+          ),
+          Text(
+            'But it can also put a smile on the face of many people which will give you a feeling of heaven',
+            maxLines: 5,
+            style: TextStyle(fontSize: 15),
+          ),
+        ],
       ),
     );
   }

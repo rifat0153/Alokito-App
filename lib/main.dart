@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    giftGiverImage = AssetImage('assets/images/background.png');
+    giftGiverImage = AssetImage('assets/images/rsz_background.png');
   }
 
   @override
