@@ -18,7 +18,7 @@ class GiftGiverView extends StatelessWidget {
           width: Get.size.width,
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/background.png'),
+                image: AssetImage('assets/images/rsz_background.png'),
                 fit: BoxFit.fill),
           ),
           child: Column(
@@ -81,7 +81,7 @@ class _AnyRetailItemMenu extends StatelessWidget {
       height: height,
       width: width,
       child: Image.asset(
-        'assets/images/any-retail-item.png',
+        'assets/images/any-retail-item_min.png',
         fit: BoxFit.fill,
       ),
     );
@@ -100,7 +100,7 @@ class _Package3DaysMenu extends StatelessWidget {
       height: height,
       width: width,
       child: Image.asset(
-        'assets/images/package-for-3days.png',
+        'assets/images/rsz_package-for-3days.png',
         fit: BoxFit.fill,
       ),
     );
