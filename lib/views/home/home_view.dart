@@ -19,27 +19,26 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/rsz_registration.png'),
                 fit: BoxFit.fill),
           ),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: media.height * 0.035, width: 0),
               Row(
                 children: <Widget>[
                   SizedBox(width: media.width * 0.03),
-                  Icon(Icons.menu, color: Colors.white),
-                  Expanded(
+                  const Icon(Icons.menu, color: Colors.white),
+                  const Expanded(
                     child: Text(
                       'USER',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 30),
                     ),
                   ),
-                  Icon(Icons.settings, color: Colors.white),
+                  const Icon(Icons.settings, color: Colors.white),
                   SizedBox(width: media.width * 0.03),
                 ],
               ),
@@ -48,13 +47,13 @@ class HomeView extends StatelessWidget {
                 flex: 6,
                 fit: FlexFit.loose,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 35),
+                  padding: const EdgeInsets.only(top: 35),
                   child: authController.currentUser.value.when(
                     data: (user) => CircleAvatar(
                       radius: 75,
                       backgroundImage: NetworkImage(user.imageUrl!),
                     ),
-                    loading: () => Center(
+                    loading: () => const Center(
                         child: Expanded(child: CircularProgressIndicator())),
                     error: (e, s) => Center(child: CircularProgressIndicator()),
                   ),
@@ -78,7 +77,7 @@ class HomeView extends StatelessWidget {
                 child: Row(
                   children: [
                     SizedBox(width: media.width * 0.18, height: 0),
-                    Text(
+                    const Text(
                       'and you are a...',
                       style: TextStyle(fontSize: 17),
                     ),
@@ -109,10 +108,10 @@ class HomeView extends StatelessWidget {
 }
 
 class _GiftGiverMenu extends StatelessWidget {
+  _GiftGiverMenu({required this.height, required this.width});
+
   final double height;
   final double width;
-
-  _GiftGiverMenu({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -131,10 +130,10 @@ class _GiftGiverMenu extends StatelessWidget {
 }
 
 class _GiftRecieverMenu extends StatelessWidget {
+  _GiftRecieverMenu({required this.height, required this.width});
+
   final double height;
   final double width;
-
-  _GiftRecieverMenu({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -153,10 +152,10 @@ class _GiftRecieverMenu extends StatelessWidget {
 }
 
 class _CommunityHeroMenu extends StatelessWidget {
+  _CommunityHeroMenu({required this.height, required this.width});
+
   final double height;
   final double width;
-
-  _CommunityHeroMenu({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -175,10 +174,10 @@ class _CommunityHeroMenu extends StatelessWidget {
 }
 
 class _TeamPlayerMenu extends StatelessWidget {
+  _TeamPlayerMenu({required this.height, required this.width});
+
   final double height;
   final double width;
-
-  _TeamPlayerMenu({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {

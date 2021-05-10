@@ -19,7 +19,7 @@ class GiftGiverView extends StatelessWidget {
         child: Container(
           height: Get.size.height,
           width: Get.size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/rsz_background.png'),
                 fit: BoxFit.fill),
@@ -30,9 +30,9 @@ class GiftGiverView extends StatelessWidget {
               Row(
                 children: <Widget>[
                   SizedBox(width: media.width * 0.03),
-                  Icon(Icons.menu, color: Colors.white),
-                  SizedBox(width: 10),
-                  Expanded(
+                  const Icon(Icons.menu, color: Colors.white),
+                  const SizedBox(width: 10),
+                  const Expanded(
                     child: Text(
                       'Gift Giver',
                       textAlign: TextAlign.center,
@@ -40,14 +40,14 @@ class GiftGiverView extends StatelessWidget {
                     ),
                   ),
                   NotificationIconWidget(),
-                  SizedBox(width: 10),
-                  Icon(Icons.settings, color: Colors.white),
+                  const SizedBox(width: 10),
+                  const Icon(Icons.settings, color: Colors.white),
                   SizedBox(width: media.width * 0.03),
                 ],
               ),
               SizedBox(height: media.height * 0.05),
               _BannerWidget(size: media),
-              _MyButtonRowWidget(),
+              const _MyButtonRowWidget(),
               _AnyRetailItemMenu(
                 height: menuHeight,
                 width: menuWidth,
@@ -64,7 +64,7 @@ class GiftGiverView extends StatelessWidget {
                 height: menuHeight,
                 width: menuWidth,
               ),
-              Spacer(),
+              const Spacer(),
               _ThankYouBannerWidget(
                 height: bannerHeight,
                 width: bannerWidth,
@@ -78,10 +78,10 @@ class GiftGiverView extends StatelessWidget {
 }
 
 class _ThankYouBannerWidget extends StatelessWidget {
+  _ThankYouBannerWidget({required this.height, required this.width});
+
   final double height;
   final double width;
-
-  _ThankYouBannerWidget({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -96,20 +96,20 @@ class _ThankYouBannerWidget extends StatelessWidget {
       ]),
       child: Column(
         children: [
-          Text(
+          const Text(
             'Thank You',
             style: TextStyle(fontSize: 20, color: Colors.cyan),
           ),
-          SizedBox(height: 8),
-          Text(
+          const SizedBox(height: 8),
+          const Text(
             'for supporting lives',
             style: TextStyle(fontSize: 10),
           ),
-          Text(
+          const Text(
             'Your time and services are precious but...',
             style: TextStyle(fontSize: 10),
           ),
-          Text(
+          const Text(
             'But it can also put a smile on the face of many people which will give you a feeling of heaven',
             textAlign: TextAlign.center,
             maxLines: 5,
@@ -122,10 +122,9 @@ class _ThankYouBannerWidget extends StatelessWidget {
 }
 
 class _AnyRetailItemMenu extends StatelessWidget {
+  _AnyRetailItemMenu({required this.height, required this.width});
   final double height;
   final double width;
-
-  _AnyRetailItemMenu({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -141,10 +140,9 @@ class _AnyRetailItemMenu extends StatelessWidget {
 }
 
 class _Package3DaysMenu extends StatelessWidget {
+  _Package3DaysMenu({required this.height, required this.width});
   final double height;
   final double width;
-
-  _Package3DaysMenu({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -160,10 +158,10 @@ class _Package3DaysMenu extends StatelessWidget {
 }
 
 class _Package7DaysMenu extends StatelessWidget {
+  _Package7DaysMenu({required this.height, required this.width});
+
   final double height;
   final double width;
-
-  _Package7DaysMenu({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -179,10 +177,10 @@ class _Package7DaysMenu extends StatelessWidget {
 }
 
 class _PackageCustomMenu extends StatelessWidget {
+  _PackageCustomMenu({required this.height, required this.width});
+
   final double height;
   final double width;
-
-  _PackageCustomMenu({required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -209,23 +207,23 @@ class _MyButtonRowWidget extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {},
-          child: Text('My Gift'),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith(
                 (states) => GIFT_GIVER_BUTTON_COLOR),
             foregroundColor:
                 MaterialStateProperty.resolveWith((states) => Colors.black),
           ),
+          child: const Text('My Gift'),
         ),
         ElevatedButton(
           onPressed: () {},
-          child: Text('Gift Request'),
           style: ButtonStyle(
             backgroundColor:
                 MaterialStateProperty.resolveWith((states) => Colors.grey),
             foregroundColor:
                 MaterialStateProperty.resolveWith((states) => Colors.black),
           ),
+          child: const Text('Gift Request'),
         ),
       ],
     );
@@ -233,9 +231,9 @@ class _MyButtonRowWidget extends StatelessWidget {
 }
 
 class _BannerWidget extends StatelessWidget {
-  final Size size;
-
   _BannerWidget({required this.size});
+
+  final Size size;
 
   @override
   Widget build(BuildContext context) {
@@ -250,7 +248,7 @@ class _BannerWidget extends StatelessWidget {
             FlutterIcons.alert_triangle_fea,
             color: Colors.yellow,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 8),
             child: Text(
               'Covid - 19 Sharing & Safety Guidelines',

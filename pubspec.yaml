@@ -40,10 +40,10 @@ dependencies:
   google_maps_flutter: ^2.0.3
   image_picker: ^0.7.4
   intl: ^0.17.0
-  lint: ^1.5.3
   location: ^4.1.1
   path: ^1.8.0
   uuid: ^3.0.4
+  very_good_analysis: ^2.0.3
 
 dev_dependencies:
   flutter_test:
