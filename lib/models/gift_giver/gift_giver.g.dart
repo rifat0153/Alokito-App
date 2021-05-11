@@ -9,17 +9,14 @@ part of 'gift_giver.dart';
 _$_GiftGiver _$_$_GiftGiverFromJson(Map<String, dynamic> json) {
   return _$_GiftGiver(
     id: json['id'] as String?,
-    uid: json['uid'] as String?,
-    imageUrl: json['imageUrl'] as String?,
-    giftDetails: json['giftDetails'] as String?,
-    listingDate: json['listingDate'] as String?,
+    uid: json['uid'] as String,
+    imageUrl: json['imageUrl'] as String,
+    giftDetails: json['giftDetails'] as String,
+    listingDate: json['listingDate'] as String,
     listingFor: json['listingFor'] as int? ?? 5,
-    pickUpTime: json['pickUpTime'] as String?,
-    role: json['role'] as String? ?? 'user',
-    canLeaveOutside: json['canLeaveOutside'] ?? false,
-    position: json['position'] == null
-        ? null
-        : GiftGiverPosition.fromJson(json['position'] as Map<String, dynamic>),
+    pickUpTime: json['pickUpTime'] as Timestamp,
+    canLeaveOutside: json['canLeaveOutside'] as bool? ?? false,
+    position: json['position'] as Position,
   );
 }
 
@@ -32,7 +29,6 @@ Map<String, dynamic> _$_$_GiftGiverToJson(_$_GiftGiver instance) =>
       'listingDate': instance.listingDate,
       'listingFor': instance.listingFor,
       'pickUpTime': instance.pickUpTime,
-      'role': instance.role,
       'canLeaveOutside': instance.canLeaveOutside,
       'position': instance.position,
     };

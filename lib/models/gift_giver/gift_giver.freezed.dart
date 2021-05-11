@@ -22,15 +22,14 @@ class _$GiftGiverTearOff {
 
   _GiftGiver call(
       {String? id,
-      String? uid,
-      String? imageUrl,
-      String? giftDetails,
-      String? listingDate,
+      required String uid,
+      required String imageUrl,
+      required String giftDetails,
+      required String listingDate,
       int listingFor = 5,
-      String? pickUpTime,
-      String role = 'user',
-      dynamic canLeaveOutside = false,
-      GiftGiverPosition? position}) {
+      required Timestamp pickUpTime,
+      bool canLeaveOutside = false,
+      required Position position}) {
     return _GiftGiver(
       id: id,
       uid: uid,
@@ -39,7 +38,6 @@ class _$GiftGiverTearOff {
       listingDate: listingDate,
       listingFor: listingFor,
       pickUpTime: pickUpTime,
-      role: role,
       canLeaveOutside: canLeaveOutside,
       position: position,
     );
@@ -56,15 +54,14 @@ const $GiftGiver = _$GiftGiverTearOff();
 /// @nodoc
 mixin _$GiftGiver {
   String? get id => throw _privateConstructorUsedError;
-  String? get uid => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
-  String? get giftDetails => throw _privateConstructorUsedError;
-  String? get listingDate => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String get giftDetails => throw _privateConstructorUsedError;
+  String get listingDate => throw _privateConstructorUsedError;
   int get listingFor => throw _privateConstructorUsedError;
-  String? get pickUpTime => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
-  dynamic get canLeaveOutside => throw _privateConstructorUsedError;
-  GiftGiverPosition? get position => throw _privateConstructorUsedError;
+  Timestamp get pickUpTime => throw _privateConstructorUsedError;
+  bool get canLeaveOutside => throw _privateConstructorUsedError;
+  Position get position => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -78,17 +75,14 @@ abstract class $GiftGiverCopyWith<$Res> {
       _$GiftGiverCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      String? uid,
-      String? imageUrl,
-      String? giftDetails,
-      String? listingDate,
+      String uid,
+      String imageUrl,
+      String giftDetails,
+      String listingDate,
       int listingFor,
-      String? pickUpTime,
-      String role,
-      dynamic canLeaveOutside,
-      GiftGiverPosition? position});
-
-  $GiftGiverPositionCopyWith<$Res>? get position;
+      Timestamp pickUpTime,
+      bool canLeaveOutside,
+      Position position});
 }
 
 /// @nodoc
@@ -108,7 +102,6 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? listingDate = freezed,
     Object? listingFor = freezed,
     Object? pickUpTime = freezed,
-    Object? role = freezed,
     Object? canLeaveOutside = freezed,
     Object? position = freezed,
   }) {
@@ -120,19 +113,19 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       giftDetails: giftDetails == freezed
           ? _value.giftDetails
           : giftDetails // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       listingDate: listingDate == freezed
           ? _value.listingDate
           : listingDate // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       listingFor: listingFor == freezed
           ? _value.listingFor
           : listingFor // ignore: cast_nullable_to_non_nullable
@@ -140,31 +133,16 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
       pickUpTime: pickUpTime == freezed
           ? _value.pickUpTime
           : pickUpTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: role == freezed
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Timestamp,
       canLeaveOutside: canLeaveOutside == freezed
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as bool,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
-              as GiftGiverPosition?,
+              as Position,
     ));
-  }
-
-  @override
-  $GiftGiverPositionCopyWith<$Res>? get position {
-    if (_value.position == null) {
-      return null;
-    }
-
-    return $GiftGiverPositionCopyWith<$Res>(_value.position!, (value) {
-      return _then(_value.copyWith(position: value));
-    });
   }
 }
 
@@ -176,18 +154,14 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
-      String? uid,
-      String? imageUrl,
-      String? giftDetails,
-      String? listingDate,
+      String uid,
+      String imageUrl,
+      String giftDetails,
+      String listingDate,
       int listingFor,
-      String? pickUpTime,
-      String role,
-      dynamic canLeaveOutside,
-      GiftGiverPosition? position});
-
-  @override
-  $GiftGiverPositionCopyWith<$Res>? get position;
+      Timestamp pickUpTime,
+      bool canLeaveOutside,
+      Position position});
 }
 
 /// @nodoc
@@ -208,7 +182,6 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? listingDate = freezed,
     Object? listingFor = freezed,
     Object? pickUpTime = freezed,
-    Object? role = freezed,
     Object? canLeaveOutside = freezed,
     Object? position = freezed,
   }) {
@@ -220,19 +193,19 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       giftDetails: giftDetails == freezed
           ? _value.giftDetails
           : giftDetails // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       listingDate: listingDate == freezed
           ? _value.listingDate
           : listingDate // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       listingFor: listingFor == freezed
           ? _value.listingFor
           : listingFor // ignore: cast_nullable_to_non_nullable
@@ -240,17 +213,15 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
       pickUpTime: pickUpTime == freezed
           ? _value.pickUpTime
           : pickUpTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: role == freezed
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      canLeaveOutside:
-          canLeaveOutside == freezed ? _value.canLeaveOutside : canLeaveOutside,
+              as Timestamp,
+      canLeaveOutside: canLeaveOutside == freezed
+          ? _value.canLeaveOutside
+          : canLeaveOutside // ignore: cast_nullable_to_non_nullable
+              as bool,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
-              as GiftGiverPosition?,
+              as Position,
     ));
   }
 }
@@ -260,15 +231,14 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
 class _$_GiftGiver implements _GiftGiver {
   const _$_GiftGiver(
       {this.id,
-      this.uid,
-      this.imageUrl,
-      this.giftDetails,
-      this.listingDate,
+      required this.uid,
+      required this.imageUrl,
+      required this.giftDetails,
+      required this.listingDate,
       this.listingFor = 5,
-      this.pickUpTime,
-      this.role = 'user',
+      required this.pickUpTime,
       this.canLeaveOutside = false,
-      this.position});
+      required this.position});
 
   factory _$_GiftGiver.fromJson(Map<String, dynamic> json) =>
       _$_$_GiftGiverFromJson(json);
@@ -276,30 +246,27 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final String? id;
   @override
-  final String? uid;
+  final String uid;
   @override
-  final String? imageUrl;
+  final String imageUrl;
   @override
-  final String? giftDetails;
+  final String giftDetails;
   @override
-  final String? listingDate;
+  final String listingDate;
   @JsonKey(defaultValue: 5)
   @override
   final int listingFor;
   @override
-  final String? pickUpTime;
-  @JsonKey(defaultValue: 'user')
-  @override
-  final String role;
+  final Timestamp pickUpTime;
   @JsonKey(defaultValue: false)
   @override
-  final dynamic canLeaveOutside;
+  final bool canLeaveOutside;
   @override
-  final GiftGiverPosition? position;
+  final Position position;
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, uid: $uid, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingFor: $listingFor, pickUpTime: $pickUpTime, role: $role, canLeaveOutside: $canLeaveOutside, position: $position)';
+    return 'GiftGiver(id: $id, uid: $uid, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingFor: $listingFor, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
   }
 
   @override
@@ -325,8 +292,6 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.pickUpTime, pickUpTime) ||
                 const DeepCollectionEquality()
                     .equals(other.pickUpTime, pickUpTime)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
             (identical(other.canLeaveOutside, canLeaveOutside) ||
                 const DeepCollectionEquality()
                     .equals(other.canLeaveOutside, canLeaveOutside)) &&
@@ -345,7 +310,6 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(listingDate) ^
       const DeepCollectionEquality().hash(listingFor) ^
       const DeepCollectionEquality().hash(pickUpTime) ^
-      const DeepCollectionEquality().hash(role) ^
       const DeepCollectionEquality().hash(canLeaveOutside) ^
       const DeepCollectionEquality().hash(position);
 
@@ -363,15 +327,14 @@ class _$_GiftGiver implements _GiftGiver {
 abstract class _GiftGiver implements GiftGiver {
   const factory _GiftGiver(
       {String? id,
-      String? uid,
-      String? imageUrl,
-      String? giftDetails,
-      String? listingDate,
+      required String uid,
+      required String imageUrl,
+      required String giftDetails,
+      required String listingDate,
       int listingFor,
-      String? pickUpTime,
-      String role,
-      dynamic canLeaveOutside,
-      GiftGiverPosition? position}) = _$_GiftGiver;
+      required Timestamp pickUpTime,
+      bool canLeaveOutside,
+      required Position position}) = _$_GiftGiver;
 
   factory _GiftGiver.fromJson(Map<String, dynamic> json) =
       _$_GiftGiver.fromJson;
@@ -379,23 +342,21 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   String? get id => throw _privateConstructorUsedError;
   @override
-  String? get uid => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
   @override
-  String? get imageUrl => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
   @override
-  String? get giftDetails => throw _privateConstructorUsedError;
+  String get giftDetails => throw _privateConstructorUsedError;
   @override
-  String? get listingDate => throw _privateConstructorUsedError;
+  String get listingDate => throw _privateConstructorUsedError;
   @override
   int get listingFor => throw _privateConstructorUsedError;
   @override
-  String? get pickUpTime => throw _privateConstructorUsedError;
+  Timestamp get pickUpTime => throw _privateConstructorUsedError;
   @override
-  String get role => throw _privateConstructorUsedError;
+  bool get canLeaveOutside => throw _privateConstructorUsedError;
   @override
-  dynamic get canLeaveOutside => throw _privateConstructorUsedError;
-  @override
-  GiftGiverPosition? get position => throw _privateConstructorUsedError;
+  Position get position => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GiftGiverCopyWith<_GiftGiver> get copyWith =>
