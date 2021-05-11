@@ -7,23 +7,28 @@ part 'gift_giver.freezed.dart';
 part 'gift_giver.g.dart';
 
 @freezed
-class Gift with _$Gift {
-  const factory Gift({
+class GiftGiver with _$GiftGiver {
+  const factory GiftGiver({
     String? id,
     required String uid,
     required String imageUrl,
     required String giftDetails,
     required String listingDate,
     required int listingFor,
-    @JsonKey(fromJson: _addressFromJson, toJson: _addressToJson)
+    @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
         required Timestamp pickUpTime,
     required bool canLeaveOutside,
-    // required Position position,
-  }) = _Gift;
+    @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
+        required Position position,
+  }) = _GiftGiver;
 
-  factory Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
+  factory GiftGiver.fromJson(Map<String, dynamic> json) =>
+      _$GiftGiverFromJson(json);
 }
 
-Map<String, Timestamp> _addressToJson(Timestamp address) =>
+Map<String, Timestamp> _pickedTimeToJson(Timestamp address) =>
     {'pickedTime': address};
-Timestamp _addressFromJson(String json) => json as Timestamp;
+Timestamp _pickedTimeFromJson(String json) => json as Timestamp;
+
+Map<String, dynamic> _positionToJson(Position position) => position.toMap();
+Position _positionFromJson(String json) => json as Position;

@@ -33,6 +33,7 @@ class UserNavbar extends StatelessWidget {
         GestureDetector(
           onTap: () {
             GiftGiverService().addGift(lat: 23.7590, lng: 90.4119);
+
             // geoController.bindGeoStream();
             // Get.to(() => GeoLocation());
           },

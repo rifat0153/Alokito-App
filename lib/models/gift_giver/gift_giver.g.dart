@@ -6,26 +6,29 @@ part of 'gift_giver.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Gift _$_$_GiftFromJson(Map<String, dynamic> json) {
-  return _$_Gift(
+_$_GiftGiver _$_$_GiftGiverFromJson(Map<String, dynamic> json) {
+  return _$_GiftGiver(
     id: json['id'] as String?,
     uid: json['uid'] as String,
     imageUrl: json['imageUrl'] as String,
     giftDetails: json['giftDetails'] as String,
     listingDate: json['listingDate'] as String,
     listingFor: json['listingFor'] as int,
-    pickUpTime: _addressFromJson(json['pickUpTime'] as String),
+    pickUpTime: _pickedTimeFromJson(json['pickUpTime'] as String),
     canLeaveOutside: json['canLeaveOutside'] as bool,
+    position: _positionFromJson(json['position'] as String),
   );
 }
 
-Map<String, dynamic> _$_$_GiftToJson(_$_Gift instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_GiftGiverToJson(_$_GiftGiver instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'uid': instance.uid,
       'imageUrl': instance.imageUrl,
       'giftDetails': instance.giftDetails,
       'listingDate': instance.listingDate,
       'listingFor': instance.listingFor,
-      'pickUpTime': _addressToJson(instance.pickUpTime),
+      'pickUpTime': _pickedTimeToJson(instance.pickUpTime),
       'canLeaveOutside': instance.canLeaveOutside,
+      'position': _positionToJson(instance.position),
     };

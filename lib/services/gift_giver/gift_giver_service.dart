@@ -18,21 +18,24 @@ class GiftGiverService implements BaseGiftGiverService {
     // GeoFirePoint center = geo.point(latitude: 23.7590, longitude: 90.4119);
 
     var rand = Random();
-    var nmb = rand.nextInt(10000);
 
     var docRef = _firestore.collection('gifts').doc();
 
-    var gift = Gift(
-        uid: _auth.currentUser!.uid,
-        imageUrl: 'imageUrl',
-        giftDetails: 'giftDetails',
-        listingDate: 'listingDate',
-        listingFor: 5,
-        pickUpTime: Timestamp.now(),
-        canLeaveOutside: false
-        // position: Position.fromMap(myLocation.data as Map<String, dynamic>),
-        );
+    var gift = GiftGiver(
+      uid: _auth.currentUser!.uid,
+      imageUrl: 'imageUrl',
+      giftDetails: 'giftDetails',
+      listingDate: 'listingDate',
+      listingFor: 5,
+      pickUpTime: Timestamp.now(),
+      canLeaveOutside: false,
+      position: Position.fromMap(myLocation.data as Map<String, dynamic>),
+      // position: MyPosition.fromJson(myLocation.data as Map<String, dynamic>),
+    );
 
     await docRef.set(gift.toJson());
+    print('Added gift');
   }
+
+
 }
