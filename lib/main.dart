@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    giftGiverImage = AssetImage('assets/images/rsz_background.png');
+    giftGiverImage = const AssetImage('assets/images/rsz_background.png');
   }
 
   @override
@@ -85,7 +85,7 @@ class GetPages {
     ),
     GetPage(
       name: MyMapView.route,
-      transitionDuration: Duration(milliseconds: 500),
+      transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.fadeIn,
       page: () => MyMapView(),
       binding: BindingsBuilder(() {
