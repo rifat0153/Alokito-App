@@ -28,7 +28,7 @@ class GeoService {
 
     myGeo.position = Position.fromMap(myLocation.data as Map<String, dynamic>);
 
-    docRef.set(myGeo.toMap());
+    await docRef.set(myGeo.toMap());
   }
 
   Stream<List<Geo>> locationStream() {
@@ -79,24 +79,3 @@ class GeoService {
   }
 }
 
-// map((geoList) => geoList.map((DocumentSnapshot document) {
-//               print('AAA');
-//               //Adding each marker to the markers var
-//               final GeoPoint point = document.data()!['position']['geopoint'];
-//               final double distance = document.data()!['distance'];
-//               final id = MarkerId(rand.nextInt(1000).toString());
-//               final _marker = Marker(
-//                 markerId: id,
-//                 position: LatLng(point.latitude, point.longitude),
-//                 icon: BitmapDescriptor.defaultMarkerWithHue(
-//                     BitmapDescriptor.hueViolet),
-//                 infoWindow:
-//                     InfoWindow(title: 'latLng', snippet: 'distance $distance'),
-//               );
-
-//               markers[id] = _marker;
-
-//               print(_marker);
-
-//               print('In getMarkers:  ' + markers.values.toString());
-//             }));

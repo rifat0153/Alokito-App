@@ -77,8 +77,8 @@ class GetPages {
     GetPage(
       name: GiftGiverView.route,
       page: () => GiftGiverView(),
-      // transitionDuration: Duration(milliseconds: 500),
-      // transition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 500),
+      transition: Transition.noTransition,
       binding: BindingsBuilder(() {
         //
       }),
@@ -86,7 +86,7 @@ class GetPages {
     GetPage(
       name: MyMapView.route,
       transitionDuration: const Duration(milliseconds: 500),
-      transition: Transition.fadeIn,
+      transition: Transition.cupertino,
       page: () => MyMapView(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GeoController());
