@@ -1,35 +1,29 @@
 import 'package:alokito_new/models/geo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-// part 'gift_giver.g.dart';
+part 'gift_giver.freezed.dart';
+part 'gift_giver.g.dart';
 
-@JsonSerializable()
-class GiftGiver {
-  GiftGiver({
-    this.id,
-    required this.uid,
-    required this.imageUrl,
-    required this.giftDetails,
-    required this.listingDate,
-    required this.listingFor,
-    required this.pickUpTime,
-    this.canLeaveOutside = false,
-    // required this.position,
-  });
+@freezed
+class Gift with _$Gift {
+  const factory Gift({
+    String? id,
+    required String uid,
+    required String imageUrl,
+    required String giftDetails,
+    required String listingDate,
+    required int listingFor,
+    @JsonKey(fromJson: _addressFromJson, toJson: _addressToJson)
+        required Timestamp pickUpTime,
+    required bool canLeaveOutside,
+    // required Position position,
+  }) = _Gift;
 
-  factory GiftGiver.fromJson(Map<String, dynamic> data) =>
-      _$GiftGiverFromJson(data);
-
-  Map<String, dynamic> toJson() => _$UserToJson(this);
-
-  String? id;
-  String uid;
-  String imageUrl;
-  String giftDetails;
-  String listingDate;
-  int listingFor;
-  Timestamp pickUpTime;
-  bool canLeaveOutside;
-  // Position position;
+  factory Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
 }
+
+Map<String, Timestamp> _addressToJson(Timestamp address) =>
+    {'pickedTime': address};
+Timestamp _addressFromJson(String json) => json as Timestamp;

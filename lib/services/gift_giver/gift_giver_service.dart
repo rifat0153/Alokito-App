@@ -22,14 +22,17 @@ class GiftGiverService implements BaseGiftGiverService {
 
     var docRef = _firestore.collection('gifts').doc();
 
-    // var giftGiver = GiftGiver(
-    //     uid: _auth.currentUser!.uid,
-    //     imageUrl: 'imageUrl',
-    //     giftDetails: 'giftDetails',
-    //     listingDate: 'listingDate',
-    //     pickUpTime: Timestamp.now(),
-    //     position: Position.fromMap(myLocation.data as Map<String, dynamic>));
+    var gift = Gift(
+        uid: _auth.currentUser!.uid,
+        imageUrl: 'imageUrl',
+        giftDetails: 'giftDetails',
+        listingDate: 'listingDate',
+        listingFor: 5,
+        pickUpTime: Timestamp.now(),
+        canLeaveOutside: false
+        // position: Position.fromMap(myLocation.data as Map<String, dynamic>),
+        );
 
-    // await docRef.set(giftGiver.toJson());
+    await docRef.set(gift.toJson());
   }
 }
