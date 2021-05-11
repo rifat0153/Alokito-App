@@ -6,12 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'gift_giver.freezed.dart';
 part 'gift_giver.g.dart';
 
-// class GiftGiverPosition {
-//   GiftGiverPosition();
 
-//   String? geoHash;
-//   GeoPoint? geoPoint;
-// }
 
 @freezed
 abstract class GiftGiver with _$GiftGiver {
@@ -28,8 +23,7 @@ abstract class GiftGiver with _$GiftGiver {
     GiftGiverPosition? position,
   }) = _GiftGiver;
 
-  factory GiftGiver.fromJson(Map<String, dynamic> json) =>
-      _$GiftGiverFromJson(json);
+  
 
 factory GiftGiver.fromJson(Map<String, dynamic> json) => _$GiftGiverFromJson(json);
 }
