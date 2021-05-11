@@ -2,7 +2,7 @@ import 'package:alokito_new/models/geo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'gift_giver.g.dart';
+// part 'gift_giver.g.dart';
 
 @JsonSerializable()
 class GiftGiver {
