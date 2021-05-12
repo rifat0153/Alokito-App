@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
 class NotificationIconWidget extends StatelessWidget {
@@ -13,7 +13,7 @@ class NotificationIconWidget extends StatelessWidget {
           Align(
               alignment: Alignment.center,
               child: Icon(
-                FontAwesome.bell,
+                Icons.ac_unit,
                 color: Colors.yellow,
                 size: 30,
               )),

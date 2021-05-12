@@ -38,6 +38,8 @@ class GiftGiverService implements BaseGiftGiverService {
     MyPosition myPosition = MyPosition(
         geohash: pos['geohash'] as String,
         geopoint: pos['geopoint'] as GeoPoint);
+    //  same thing as above
+    //  MyPosition myPosition = MyPosition.fromJson(pos as Map<String, dynamic>);
 
     var docRef = _firestore.collection('gifts').doc();
 
@@ -50,7 +52,6 @@ class GiftGiverService implements BaseGiftGiverService {
       pickUpTime: Timestamp.now(),
       canLeaveOutside: false,
       position: myPosition,
-      // position: MyPosition.fromJson(myLocation.data as Map<String, dynamic>),
     );
 
     print(gift.toJson());
@@ -64,7 +65,7 @@ class GiftGiverService implements BaseGiftGiverService {
     List<GiftGiver> retVal = [];
     return _firestore
         .collection('gifts')
-        .where('listingFor', isEqualTo: 2)
+        // .where('listingFor', isEqualTo: 3)
         .snapshots()
         .map((QuerySnapshot querySnapshot) {
       retVal = [];

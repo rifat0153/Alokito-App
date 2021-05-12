@@ -7,7 +7,7 @@ import '../../views/map/geo_locations.dart';
 import '../../views/map/geo_map_view.dart';
 import '../../views/map/my_map_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
 class UserNavbar extends StatelessWidget {
@@ -27,8 +27,7 @@ class UserNavbar extends StatelessWidget {
           onTap: () {
             Get.find<AuthController>().authService.value.signOut();
           },
-          child:
-              Icon(FontAwesome.bell, color: Colors.white, size: height * 0.04),
+          child: Icon(Icons.ballot, color: Colors.white, size: height * 0.04),
         ),
         GestureDetector(
           onTap: () {
@@ -47,8 +46,7 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () => Get.toNamed(GeoMapView.route),
-          child:
-              Icon(FontAwesome.map, color: Colors.white, size: height * 0.035),
+          child: Icon(Icons.map, color: Colors.white, size: height * 0.035),
         ),
       ],
     );

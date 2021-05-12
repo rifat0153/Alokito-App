@@ -1,7 +1,8 @@
 import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/widgets/gift_giver/notification_icon_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
 import '../gift_giver/my_gift_view.dart';
@@ -51,7 +52,7 @@ class GiftGiverView extends StatelessWidget {
               _BannerWidget(size: media),
               const _MyButtonRowWidget(),
               GestureDetector(
-                onTap: () => Get.to(() => MyGiftView()),
+                onTap: () => Get.toNamed(GiftAddView.route),
                 child: _AnyRetailItemMenu(
                   height: menuHeight,
                   width: menuWidth,
@@ -250,7 +251,7 @@ class _BannerWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            FlutterIcons.alert_triangle_fea,
+            Icons.dangerous,
             color: Colors.yellow,
           ),
           const Padding(

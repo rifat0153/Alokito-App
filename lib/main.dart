@@ -3,6 +3,7 @@
 import 'package:alokito_new/bindings/auth_binding.dart';
 import 'package:alokito_new/controller/map/geo_controller.dart';
 import 'package:alokito_new/views/auth/auth_wrapper.dart';
+import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_giver/gift_giver_view.dart';
 import 'package:alokito_new/views/map/geo_map_view.dart';
 import 'package:alokito_new/views/map/my_map_view.dart';
@@ -12,9 +13,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'views/auth/role_wrapper.dart';
 import 'controller/auth/auth_controller.dart';
-import 'views/auth/login_view.dart';
+import './views/gift_giver/my_gift_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,12 +66,22 @@ class _MyAppState extends State<MyApp> {
 }
 
 class GetPages {
-  List<GetPage<dynamic>> getPages = [
+  List<GetPage> getPages = [
     GetPage(
       name: '/',
       page: () => AuthenticationWrapper(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => AuthController());
+      }),
+    ),
+    //  Gift Giver Routes
+    GetPage(
+      name: GiftAddView.route,
+      page: () => GiftAddView(),
+      transitionDuration: const Duration(milliseconds: 500),
+      transition: Transition.noTransition,
+      binding: BindingsBuilder(() {
+        //
       }),
     ),
     GetPage(
