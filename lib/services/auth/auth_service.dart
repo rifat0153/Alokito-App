@@ -21,16 +21,16 @@ class AuthService implements BaseAuthService {
   Future<String> signIn(
       {required String email, required String password}) async {
     try {
-      EasyLoading.show(status: 'loading...');
+      await EasyLoading.show(status: 'loading...');
 
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      EasyLoading.dismiss();
+      await EasyLoading.dismiss();
 
       return _firebaseAuth.currentUser!.uid;
     } on FirebaseAuthException catch (e) {
-      EasyLoading.dismiss();
+      await EasyLoading.dismiss();
       print(e.message);
       return '';
     }
@@ -39,7 +39,7 @@ class AuthService implements BaseAuthService {
   // For finding out if user is admin or not
   Stream<LocalUserInfo> loggedInUserStream() {
     return _firestore
-        .collection("users")
+        .collection('users')
         .doc(_firebaseAuth.currentUser?.uid)
         .snapshots()
         .map((DocumentSnapshot documentSnapshot) {

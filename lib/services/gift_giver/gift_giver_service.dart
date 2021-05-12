@@ -57,4 +57,35 @@ class GiftGiverService implements BaseGiftGiverService {
     await docRef.set(gift.toJson());
     print('Added gift');
   }
+
+  @override
+  Stream<List<GiftGiver>> giftStream() {
+    print('In stream');
+    List<GiftGiver> retVal = [];
+    return _firestore
+        .collection('gifts')
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        retVal.add(GiftGiver.fromJson(doc.data()));
+      });
+      print(retVal.length);
+      return retVal;
+    });
+
+    // return _firestore
+    //     .collection('gifts')
+    //     .snapshots()
+    //     .map((QuerySnapshot querySnapshot) {
+    //   List<GiftGiver> retVal = [];
+
+    //   querySnapshot.docs.forEach((element) {
+    //     GiftGiver giftGiver = GiftGiver.fromJson(element.data());
+
+    //     retVal.add(giftGiver);
+    //   });
+
+    //   return retVal;
+    // });
+  }
 }

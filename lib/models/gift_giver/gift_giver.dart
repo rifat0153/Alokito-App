@@ -29,10 +29,10 @@ class GiftGiver with _$GiftGiver {
 }
 
 Map<String, dynamic> _toJson(MyPosition myPosition) => myPosition.toJson();
-MyPosition _fromJson(String json) => json as MyPosition;
+MyPosition _fromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);
 
 Timestamp _pickedTimeToJson(Timestamp address) => address;
-Timestamp _pickedTimeFromJson(String json) => json as Timestamp;
+Timestamp _pickedTimeFromJson(Timestamp json) => json;
 
 Map<String, dynamic> _positionToJson(Position position) => position.toMap();
 Position _positionFromJson(Position json) => json;

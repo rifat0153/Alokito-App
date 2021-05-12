@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
+import '../gift_giver/my_gift_view.dart';
+
 class GiftGiverView extends StatelessWidget {
   static const route = '/giftgivermainmenu';
   final media = Get.size;
@@ -48,9 +50,12 @@ class GiftGiverView extends StatelessWidget {
               SizedBox(height: media.height * 0.05),
               _BannerWidget(size: media),
               const _MyButtonRowWidget(),
-              _AnyRetailItemMenu(
-                height: menuHeight,
-                width: menuWidth,
+              GestureDetector(
+                onTap: () => Get.to(() => MyGiftView()),
+                child: _AnyRetailItemMenu(
+                  height: menuHeight,
+                  width: menuWidth,
+                ),
               ),
               _Package3DaysMenu(
                 height: menuHeight,

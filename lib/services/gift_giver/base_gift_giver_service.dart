@@ -4,4 +4,6 @@ abstract class BaseGiftGiverService {
   // Future<void>
 
   Future<void> addGift({required double lat, required double lng});
+
+  Stream<List<GiftGiver>> giftStream();
 }
