@@ -28,10 +28,7 @@ class MyGiftView extends StatelessWidget {
                 GiftGiver.fromJson(docSnap.data() as Map<String, dynamic>);
 
             return Center(
-                child: Text(docSnap
-                    .data()?['position']['geopoint']
-                    .latitude
-                    .toString() as String));
+                child: Text(doc.position.geopoint.latitude.toString()));
           }),
     );
   }
