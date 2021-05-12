@@ -33,8 +33,11 @@ class GiftGiverService implements BaseGiftGiverService {
   Future<void> addGift({required double lat, required double lng}) async {
     var myLocation = geo.point(latitude: lat, longitude: lng);
     // GeoFirePoint center = geo.point(latitude: 23.7590, longitude: 90.4119);
+    var pos = myLocation.data as Map<dynamic, dynamic>;
 
-    var rand = Random();
+    MyPosition myPosition = MyPosition(
+        geohash: pos['geohash'] as String,
+        geopoint: pos['geopoint'] as GeoPoint);
 
     var docRef = _firestore.collection('gifts').doc();
 
@@ -46,10 +49,11 @@ class GiftGiverService implements BaseGiftGiverService {
       listingFor: 5,
       pickUpTime: Timestamp.now(),
       canLeaveOutside: false,
-      position: Position.fromMap(myLocation.data as Map<String, dynamic>),
+      position: myPosition,
       // position: MyPosition.fromJson(myLocation.data as Map<String, dynamic>),
     );
 
+    print(gift.toJson());
     await docRef.set(gift.toJson());
     print('Added gift');
   }

@@ -30,8 +30,8 @@ class _$GiftGiverTearOff {
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
           required Timestamp pickUpTime,
       required bool canLeaveOutside,
-      @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-          required Position position}) {
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          required MyPosition position}) {
     return _GiftGiver(
       id: id,
       uid: uid,
@@ -63,9 +63,11 @@ mixin _$GiftGiver {
   int get listingFor => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
   Timestamp get pickUpTime => throw _privateConstructorUsedError;
-  bool get canLeaveOutside => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-  Position get position => throw _privateConstructorUsedError;
+  bool get canLeaveOutside =>
+      throw _privateConstructorUsedError; // @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
+//     required Position position,
+  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  MyPosition get position => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -87,8 +89,10 @@ abstract class $GiftGiverCopyWith<$Res> {
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
           Timestamp pickUpTime,
       bool canLeaveOutside,
-      @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-          Position position});
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          MyPosition position});
+
+  $MyPositionCopyWith<$Res> get position;
 }
 
 /// @nodoc
@@ -147,8 +151,15 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
-              as Position,
+              as MyPosition,
     ));
+  }
+
+  @override
+  $MyPositionCopyWith<$Res> get position {
+    return $MyPositionCopyWith<$Res>(_value.position, (value) {
+      return _then(_value.copyWith(position: value));
+    });
   }
 }
 
@@ -168,8 +179,11 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
           Timestamp pickUpTime,
       bool canLeaveOutside,
-      @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-          Position position});
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          MyPosition position});
+
+  @override
+  $MyPositionCopyWith<$Res> get position;
 }
 
 /// @nodoc
@@ -229,7 +243,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
-              as Position,
+              as MyPosition,
     ));
   }
 }
@@ -247,7 +261,7 @@ class _$_GiftGiver implements _GiftGiver {
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
           required this.pickUpTime,
       required this.canLeaveOutside,
-      @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required this.position});
 
   factory _$_GiftGiver.fromJson(Map<String, dynamic> json) =>
@@ -270,9 +284,10 @@ class _$_GiftGiver implements _GiftGiver {
   final Timestamp pickUpTime;
   @override
   final bool canLeaveOutside;
-  @override
-  @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-  final Position position;
+  @override // @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
+//     required Position position,
+  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  final MyPosition position;
 
   @override
   String toString() {
@@ -345,8 +360,8 @@ abstract class _GiftGiver implements GiftGiver {
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
           required Timestamp pickUpTime,
       required bool canLeaveOutside,
-      @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-          required Position position}) = _$_GiftGiver;
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          required MyPosition position}) = _$_GiftGiver;
 
   factory _GiftGiver.fromJson(Map<String, dynamic> json) =
       _$_GiftGiver.fromJson;
@@ -368,9 +383,10 @@ abstract class _GiftGiver implements GiftGiver {
   Timestamp get pickUpTime => throw _privateConstructorUsedError;
   @override
   bool get canLeaveOutside => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-  Position get position => throw _privateConstructorUsedError;
+  @override // @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
+//     required Position position,
+  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  MyPosition get position => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GiftGiverCopyWith<_GiftGiver> get copyWith =>
