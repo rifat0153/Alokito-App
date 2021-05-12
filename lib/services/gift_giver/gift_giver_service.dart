@@ -6,11 +6,28 @@ import 'package:alokito_new/services/gift_giver/base_gift_giver_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
+import '../../models/gift_giver/my_position.dart';
 
 class GiftGiverService implements BaseGiftGiverService {
   final geo = Geoflutterfire();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
+
+  Future<void> addPosition() async {
+    var myLocation = geo.point(latitude: 23.7590, longitude: 90.4119);
+
+    var docRef = _firestore.collection('positions').doc();
+
+    var pos = myLocation.data as Map<dynamic, dynamic>;
+
+    MyPosition myPosition = MyPosition(
+        geohash: pos['geohash'] as String,
+        geopoint: pos['geopoint'] as GeoPoint);
+
+    await docRef.set(myPosition.toJson());
+
+    print('Position added');
+  }
 
   @override
   Future<void> addGift({required double lat, required double lng}) async {
@@ -36,6 +53,4 @@ class GiftGiverService implements BaseGiftGiverService {
     await docRef.set(gift.toJson());
     print('Added gift');
   }
-
-
 }
