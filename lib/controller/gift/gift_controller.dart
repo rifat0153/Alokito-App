@@ -12,7 +12,7 @@ class GiftController extends GetxController {
     super.onInit();
   }
 
-  void bindStream() {
+  void bindGiftStream() {
     giftList.bindStream(clubService.giftStream());
   }
 }

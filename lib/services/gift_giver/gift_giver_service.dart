@@ -66,26 +66,13 @@ class GiftGiverService implements BaseGiftGiverService {
         .collection('gifts')
         .snapshots()
         .map((QuerySnapshot querySnapshot) {
+      retVal = [];
       querySnapshot.docs.forEach((doc) {
         retVal.add(GiftGiver.fromJson(doc.data()));
       });
-      print(retVal.length);
+
+      print('IN service:   ' + retVal.length.toString());
       return retVal;
     });
-
-    // return _firestore
-    //     .collection('gifts')
-    //     .snapshots()
-    //     .map((QuerySnapshot querySnapshot) {
-    //   List<GiftGiver> retVal = [];
-
-    //   querySnapshot.docs.forEach((element) {
-    //     GiftGiver giftGiver = GiftGiver.fromJson(element.data());
-
-    //     retVal.add(giftGiver);
-    //   });
-
-    //   return retVal;
-    // });
   }
 }

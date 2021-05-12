@@ -19,8 +19,6 @@ class GiftGiver with _$GiftGiver {
     @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
         required Timestamp pickUpTime,
     required bool canLeaveOutside,
-    // @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-    //     required Position position,
     @JsonKey(fromJson: _fromJson, toJson: _toJson) required MyPosition position,
   }) = _GiftGiver;
 
@@ -31,7 +29,7 @@ class GiftGiver with _$GiftGiver {
 Map<String, dynamic> _toJson(MyPosition myPosition) => myPosition.toJson();
 MyPosition _fromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);
 
-Timestamp _pickedTimeToJson(Timestamp address) => address;
+Timestamp _pickedTimeToJson(Timestamp pickUpTime) => pickUpTime;
 Timestamp _pickedTimeFromJson(Timestamp json) => json;
 
 Map<String, dynamic> _positionToJson(Position position) => position.toMap();

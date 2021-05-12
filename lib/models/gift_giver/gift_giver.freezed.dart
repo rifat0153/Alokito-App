@@ -63,9 +63,7 @@ mixin _$GiftGiver {
   int get listingFor => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
   Timestamp get pickUpTime => throw _privateConstructorUsedError;
-  bool get canLeaveOutside =>
-      throw _privateConstructorUsedError; // @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-//     required Position position,
+  bool get canLeaveOutside => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   MyPosition get position => throw _privateConstructorUsedError;
 
@@ -284,8 +282,7 @@ class _$_GiftGiver implements _GiftGiver {
   final Timestamp pickUpTime;
   @override
   final bool canLeaveOutside;
-  @override // @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-//     required Position position,
+  @override
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   final MyPosition position;
 
@@ -383,8 +380,7 @@ abstract class _GiftGiver implements GiftGiver {
   Timestamp get pickUpTime => throw _privateConstructorUsedError;
   @override
   bool get canLeaveOutside => throw _privateConstructorUsedError;
-  @override // @JsonKey(fromJson: _positionFromJson, toJson: _positionToJson)
-//     required Position position,
+  @override
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   MyPosition get position => throw _privateConstructorUsedError;
   @override
