@@ -26,9 +26,8 @@ class GiftGiver with _$GiftGiver {
       _$GiftGiverFromJson(json);
 }
 
-Map<String, Timestamp> _pickedTimeToJson(Timestamp address) =>
-    {'pickedTime': address};
+Timestamp _pickedTimeToJson(Timestamp address) => address;
 Timestamp _pickedTimeFromJson(String json) => json as Timestamp;
 
 Map<String, dynamic> _positionToJson(Position position) => position.toMap();
-Position _positionFromJson(String json) => json as Position;
+Position _positionFromJson(Position json) => json;

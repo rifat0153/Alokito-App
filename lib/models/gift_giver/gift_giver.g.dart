@@ -16,7 +16,7 @@ _$_GiftGiver _$_$_GiftGiverFromJson(Map<String, dynamic> json) {
     listingFor: json['listingFor'] as int,
     pickUpTime: _pickedTimeFromJson(json['pickUpTime'] as String),
     canLeaveOutside: json['canLeaveOutside'] as bool,
-    position: _positionFromJson(json['position'] as String),
+    position: _positionFromJson(json['position'] as Position),
   );
 }
 
