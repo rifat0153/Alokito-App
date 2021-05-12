@@ -64,6 +64,7 @@ class GiftGiverService implements BaseGiftGiverService {
     List<GiftGiver> retVal = [];
     return _firestore
         .collection('gifts')
+        .where('listingFor', isEqualTo: 2)
         .snapshots()
         .map((QuerySnapshot querySnapshot) {
       retVal = [];
