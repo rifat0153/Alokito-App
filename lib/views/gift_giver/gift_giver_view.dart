@@ -52,7 +52,7 @@ class GiftGiverView extends StatelessWidget {
               _BannerWidget(size: media),
               const _MyButtonRowWidget(),
               GestureDetector(
-                onTap: () => Get.toNamed(GiftAddView.route),
+                onTap: () => Get.toNamed(GiftAddView.route, arguments: 'Any retail item' ),
                 child: _AnyRetailItemMenu(
                   height: menuHeight,
                   width: menuWidth,
