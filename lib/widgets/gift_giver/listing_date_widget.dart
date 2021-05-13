@@ -1,9 +1,11 @@
+import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ListingDateWidget extends StatelessWidget {
+  GiftAddFormController controller = Get.find();
   var date = DateFormat.yMd().format(DateTime.now());
 
   @override
@@ -36,7 +38,8 @@ class ListingDateWidget extends StatelessWidget {
               child: Text(date),
             ),
             const Spacer(),
-            const Text('* List for 5 days. '),
+            Obx(() =>
+                Text('* List for ${controller.listingFor.toInt()} days. ')),
             TextButton(
               onPressed: _listingForBottomSheet,
               child: const Text('Change'),
@@ -56,16 +59,19 @@ class ListingDateWidget extends StatelessWidget {
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16), topRight: Radius.circular(16)),
       ),
-      child: Column(
-        children: [
-          const Text('Listing For'),
-          Slider(
-            min: 3,
-            max: 10,
-            value: 5,
-            onChanged: (value) {},
-          ),
-        ],
+      child: Obx(
+        () => Column(
+          children: [
+            Text('Listing For ${controller.listingFor.toInt()} days'),
+            Slider(
+              min: 3,
+              max: 10,
+              divisions: 7,
+              value: controller.listingFor.value,
+              onChanged: (value) => controller.listingFor.value = value,
+            ),
+          ],
+        ),
       ),
     ));
   }
