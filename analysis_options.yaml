@@ -17,3 +17,4 @@ linter:
     lines_longer_than_80_chars: false
     Don't type annotate initializing formals: false
     omit_local_variable_types: false
+    use_key_in_widget_constructors: false

@@ -3,23 +3,32 @@ import 'package:flutter/material.dart';
 class DistanceListRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Distance',
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _ButtonWidget(text: '1km'),
-            _ButtonWidget(text: '2km'),
-            _ButtonWidget(text: '5km'),
-            _ButtonWidget(text: '10km'),
-            _ButtonWidget(text: '15km'),
-          ],
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const SizedBox(width: 16),
+              const Text(
+                'Distance',
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _ButtonWidget(text: '1km'),
+              _ButtonWidget(text: '2km'),
+              _ButtonWidget(text: '5km'),
+              _ButtonWidget(text: '10km'),
+              _ButtonWidget(text: '15km'),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

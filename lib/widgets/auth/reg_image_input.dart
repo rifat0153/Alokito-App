@@ -10,8 +10,8 @@ class RegImageInput extends StatelessWidget {
   final AuthController authController = Get.find();
   final LoginController loginController = Get.find();
 
-  _getLocalImage() async {
-    ImagePicker _picker = new ImagePicker();
+  void _getLocalImage() async {
+    ImagePicker _picker = ImagePicker();
     var pickedFile = await _picker.getImage(
         source: ImageSource.gallery, imageQuality: 50, maxWidth: 400);
 
