@@ -53,11 +53,46 @@ class GiftAddView extends StatelessWidget {
                 ImageInputWidget(),
                 _GiftDetailWidget(),
                 ListingDateWidget(),
+                _PickUpTimeWidget(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _PickUpTimeWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const SizedBox(width: 30),
+            const Text('Pick up time'),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: TextField(
+            decoration: InputDecoration(
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(width: 0, style: BorderStyle.none),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+                fillColor: Colors.grey[300],
+                hoverColor: Colors.grey,
+                filled: true,
+                hintText: 'e.g. today from 10.30 am to 4.30 pm'),
+            maxLines: 1,
+            onChanged: (value) {},
+          ),
+        ),
+      ],
     );
   }
 }
