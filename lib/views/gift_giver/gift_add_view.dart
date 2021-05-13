@@ -22,9 +22,7 @@ class GiftAddView extends StatelessWidget {
                 Icons.cancel,
                 color: Colors.black,
               ),
-              onPressed: () {
-                Get.back();
-              })
+              onPressed: () => Get.back())
         ],
         title: Text(
           'My Gift - $giftType',

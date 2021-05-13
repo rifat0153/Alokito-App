@@ -1,4 +1,7 @@
+import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DistanceListRow extends StatelessWidget {
   @override
@@ -20,11 +23,11 @@ class DistanceListRow extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _ButtonWidget(text: '1km'),
-              _ButtonWidget(text: '2km'),
-              _ButtonWidget(text: '5km'),
-              _ButtonWidget(text: '10km'),
-              _ButtonWidget(text: '15km'),
+              _ButtonWidget(distance: 1),
+              _ButtonWidget(distance: 2),
+              _ButtonWidget(distance: 5),
+              _ButtonWidget(distance: 10),
+              _ButtonWidget(distance: 15),
             ],
           )
         ],
@@ -34,21 +37,31 @@ class DistanceListRow extends StatelessWidget {
 }
 
 class _ButtonWidget extends StatelessWidget {
-  _ButtonWidget({Key? key, required this.text}) : super(key: key);
+  _ButtonWidget({Key? key, required this.distance}) : super(key: key);
 
-  final String text;
+  GiftAddFormController controller = Get.find();
+  final int distance;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 25,
-      width: 60,
-      decoration: BoxDecoration(
-        color: Colors.grey[400],
-        borderRadius: BorderRadius.circular(5),
+    return GestureDetector(
+      onTap: () {
+        controller.distance.value = distance;
+      },
+      child: Obx(
+        () => Container(
+          height: 25,
+          width: 60,
+          decoration: BoxDecoration(
+            color: controller.distance.value == distance
+                ? Colors.cyan
+                : GIFT_ADD_FORM_COLOR,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          alignment: Alignment.center,
+          child: Text('${distance}km'),
+        ),
       ),
-      alignment: Alignment.center,
-      child: Text(text),
     );
   }
 }

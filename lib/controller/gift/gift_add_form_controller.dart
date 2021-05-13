@@ -6,5 +6,6 @@ class GiftAddFormController extends GetxController {
   var distance = 1.obs;
   var giftDetails = ''.obs;
   var listingFor = 5.0.obs;
+  var canLeaveOutside = false.obs;
   Rx<File> imageFile = File('').obs;
 }
