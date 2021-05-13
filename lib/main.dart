@@ -80,7 +80,7 @@ class GetPages {
       name: GiftAddView.route,
       page: () => GiftAddView(),
       transitionDuration: const Duration(milliseconds: 500),
-      transition: Transition.noTransition,
+      transition: Transition.downToUp,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftAddFormController());
       }),

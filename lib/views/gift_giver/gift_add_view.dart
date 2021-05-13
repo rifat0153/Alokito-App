@@ -1,3 +1,4 @@
+import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/widgets/gift_giver/distance_row_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/image_input_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/listing_date_widget.dart';
@@ -15,6 +16,16 @@ class GiftAddView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              icon: const Icon(
+                Icons.cancel,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Get.back();
+              })
+        ],
         title: Text(
           'My Gift - $giftType',
           style: TextStyle(
@@ -42,7 +53,7 @@ class GiftAddView extends StatelessWidget {
               children: <Widget>[
                 DistanceListRow(),
                 ImageInputWidget(),
-                const _GiftDetailWidget(),
+                _GiftDetailWidget(),
                 ListingDateWidget(),
               ],
             ),
@@ -54,9 +65,11 @@ class GiftAddView extends StatelessWidget {
 }
 
 class _GiftDetailWidget extends StatelessWidget {
-  const _GiftDetailWidget({
+  _GiftDetailWidget({
     Key? key,
   }) : super(key: key);
+
+  GiftAddFormController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +97,7 @@ class _GiftDetailWidget extends StatelessWidget {
                 hintText:
                     'e.g. Food or Medicine name, quality, quantity, any other information'),
             maxLines: 3,
-            onChanged: (value) {},
+            onChanged: (value) => controller.giftDetails.value = value,
           ),
         ),
       ],
