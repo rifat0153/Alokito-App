@@ -38,13 +38,23 @@ class ImageInputWidget extends StatelessWidget {
           color: Colors.blue,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text('Take a photo'),
+            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+            child: Text(
+              'Take a photo',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
         TextButton(
           onPressed: () => _getLocalImage(true),
-          child: const Text('upload from gallery'),
+          child: const Text(
+            'upload from gallery',
+            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+          ),
         )
       ],
     );
