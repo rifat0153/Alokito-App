@@ -1,5 +1,6 @@
 import 'package:alokito_new/widgets/gift_giver/distance_row_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/image_input_widget.dart';
+import 'package:alokito_new/widgets/gift_giver/listing_date_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -42,6 +43,7 @@ class GiftAddView extends StatelessWidget {
                 DistanceListRow(),
                 ImageInputWidget(),
                 const _GiftDetailWidget(),
+                ListingDateWidget(),
               ],
             ),
           ),
