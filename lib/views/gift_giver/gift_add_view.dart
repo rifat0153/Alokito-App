@@ -1,10 +1,12 @@
-import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
-import 'package:alokito_new/widgets/gift_giver/distance_row_widget.dart';
-import 'package:alokito_new/widgets/gift_giver/image_input_widget.dart';
-import 'package:alokito_new/widgets/gift_giver/listing_date_widget.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../controller/gift/gift_add_form_controller.dart';
+import '../../widgets/gift_giver/distance_row_widget.dart';
+import '../../widgets/gift_giver/gift_location_widget.dart';
+import '../../widgets/gift_giver/image_input_widget.dart';
+import '../../widgets/gift_giver/listing_date_widget.dart';
 
 class GiftAddView extends StatelessWidget {
   static const route = 'giftaddview';
@@ -54,6 +56,20 @@ class GiftAddView extends StatelessWidget {
                 _GiftDetailWidget(),
                 ListingDateWidget(),
                 _PickUpTimeWidget(),
+                GiftLocationWidget(),
+                MaterialButton(
+                  onPressed: () {},
+                  color: GIFT_ADD_FORM_SUBMIT,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -102,7 +118,7 @@ class _GiftDetailWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  GiftAddFormController controller = Get.find();
+  final GiftAddFormController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {

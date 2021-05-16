@@ -7,12 +7,11 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GeoMapView extends StatefulWidget {
-  static const route = 'geomapview';
-  final LatLng initialLocation;
-
   GeoMapView({
     this.initialLocation = const LatLng(23.7590, 90.4119),
   });
+  static const route = 'geomapview';
+  final LatLng initialLocation;
 
   @override
   _GeoMapViewState createState() => _GeoMapViewState();
