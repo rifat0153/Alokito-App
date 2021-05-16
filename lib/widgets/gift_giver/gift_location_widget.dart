@@ -5,6 +5,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:uuid/uuid.dart';
 
 class GiftLocationWidget extends StatelessWidget {
   final GiftAddFormController controller = Get.find();
@@ -85,14 +86,8 @@ class _GiftMapWidgetState extends State<_GiftMapWidget> {
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(23.7590, 90.4119),
-    zoom: 14.4746,
+    zoom: 16,
   );
-
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
 
   var markers = [
     Marker(
@@ -121,21 +116,11 @@ class _GiftMapWidgetState extends State<_GiftMapWidget> {
             controller.markers.value = [];
             controller.markers.value = markers = [
               Marker(
-                markerId: MarkerId('1'),
+                markerId: MarkerId(const Uuid().v4()),
                 position: LatLng(postion.latitude, postion.longitude),
               ),
             ];
-            final GoogleMapController mapController = await _controller.future;
-
-            await mapController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                CameraPosition(
-                    bearing: 192.8334901395799,
-                    target: LatLng(postion.latitude, postion.longitude),
-                    tilt: 59.440717697143555,
-                    zoom: 19.151926040649414),
-              ),
-            );
+            print(controller.markers.first.position);
           },
         ),
       ),
