@@ -48,7 +48,7 @@ class GiftLocationWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.focusScope?.dispose();
+                // Get.focusScope?.dispose();
                 Get.to(() => _GiftMapWidget());
               },
               child: Container(

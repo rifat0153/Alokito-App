@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftAddFormController extends GetxController {
+  var isUploading = false.obs;
   Rx<GiftType> giftType = GiftType.packageFor3Days.obs;
   var distance = 1.obs;
   var giftDetails = ''.obs;

@@ -75,20 +75,24 @@ class GiftAddView extends StatelessWidget {
                 ListingDateWidget(),
                 _PickUpTimeWidget(),
                 GiftLocationWidget(),
-                MaterialButton(
-                  onPressed: () {
-                    controller.addGift();
-                  },
-                  color: GIFT_ADD_FORM_SUBMIT,
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 100),
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                Obx(
+                  () => controller.isUploading.value
+                      ? CircularProgressIndicator()
+                      : MaterialButton(
+                          onPressed: () {
+                            controller.addGift();
+                          },
+                          color: GIFT_ADD_FORM_SUBMIT,
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 100),
+                            child: Text(
+                              'Submit',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
                 ),
               ],
             ),

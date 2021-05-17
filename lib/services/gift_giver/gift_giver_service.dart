@@ -38,6 +38,8 @@ class GiftGiverService implements BaseGiftGiverService {
   @override
   Future<void> addGift() async {
     GiftAddFormController controller = Get.find();
+    controller.isUploading.value = true;
+
     LatLng giftPosition = controller.markers.first.position;
     var myLocation = geo.point(
         latitude: giftPosition.latitude, longitude: giftPosition.longitude);
@@ -89,6 +91,7 @@ class GiftGiverService implements BaseGiftGiverService {
     print(gift.toJson());
     await docRef.set(gift.toJson());
     print('Added gift');
+    controller.isUploading.value = false;
   }
 
   @override
