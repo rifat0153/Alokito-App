@@ -76,7 +76,9 @@ class GiftAddView extends StatelessWidget {
                 _PickUpTimeWidget(),
                 GiftLocationWidget(),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.addGift();
+                  },
                   color: GIFT_ADD_FORM_SUBMIT,
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 100),

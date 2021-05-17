@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -21,5 +22,9 @@ class GiftAddFormController extends GetxController {
       position: LatLng(23.7590, 90.4119),
     ));
     super.onInit();
+  }
+
+  void addGift() {
+    GiftGiverService().addGift();
   }
 }

@@ -1,11 +1,19 @@
 import 'dart:math';
 
+import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/models/geo.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/services/gift_giver/base_gift_giver_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:get/get.dart';
+import 'package:path/path.dart' as path;
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:path/path.dart';
+import 'package:uuid/uuid.dart';
 import '../../models/gift_giver/my_position.dart';
 
 class GiftGiverService implements BaseGiftGiverService {
@@ -15,9 +23,7 @@ class GiftGiverService implements BaseGiftGiverService {
 
   Future<void> addPosition() async {
     var myLocation = geo.point(latitude: 23.7590, longitude: 90.4119);
-
     var docRef = _firestore.collection('positions').doc();
-
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
     MyPosition myPosition = MyPosition(
@@ -30,9 +36,11 @@ class GiftGiverService implements BaseGiftGiverService {
   }
 
   @override
-  Future<void> addGift({required double lat, required double lng}) async {
-    var myLocation = geo.point(latitude: lat, longitude: lng);
-    // GeoFirePoint center = geo.point(latitude: 23.7590, longitude: 90.4119);
+  Future<void> addGift() async {
+    GiftAddFormController controller = Get.find();
+    LatLng giftPosition = controller.markers.first.position;
+    var myLocation = geo.point(
+        latitude: giftPosition.latitude, longitude: giftPosition.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
     MyPosition myPosition = MyPosition(
@@ -41,16 +49,40 @@ class GiftGiverService implements BaseGiftGiverService {
     //  same thing as above
     //  MyPosition myPosition = MyPosition.fromJson(pos as Map<String, dynamic>);
 
+    print('Uploading Image');
+
+    var fileExtension = path.extension(controller.imageFile.value.path);
+    print('FileExtension: ' + fileExtension);
+
+    var uuid = const Uuid().v4();
+
+    var firebaseStorageRef = firebase_storage.FirebaseStorage.instance
+        .ref()
+        .child('gifts/images/$uuid$fileExtension');
+
+    try {
+      await firebaseStorageRef.putFile(controller.imageFile.value);
+    } on firebase_core.FirebaseException catch (e) {
+      print('User ImageFile Upload Error: ' + e.message!);
+    }
+
+    String url = await firebaseStorageRef.getDownloadURL();
+
     var docRef = _firestore.collection('gifts').doc();
 
+    print('doc id:  ' + docRef.id);
+
     var gift = GiftGiver(
+      id: docRef.id,
+      distance: controller.distance.value,
+      giftType: controller.giftType.value,
       uid: _auth.currentUser!.uid,
-      imageUrl: 'imageUrl',
-      giftDetails: 'giftDetails',
-      listingDate: 'listingDate',
-      listingFor: 5,
+      imageUrl: url,
+      giftDetails: controller.giftDetails.value,
+      listingDate: FieldValue.serverTimestamp().toString(),
+      listingFor: controller.listingFor.value.toInt(),
       pickUpTime: Timestamp.now(),
-      canLeaveOutside: false,
+      canLeaveOutside: controller.canLeaveOutside.value,
       position: myPosition,
     );
 
