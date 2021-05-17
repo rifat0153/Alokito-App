@@ -1,3 +1,4 @@
+import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/widgets/gift_giver/notification_icon_widget.dart';
@@ -14,6 +15,8 @@ class GiftGiverView extends StatelessWidget {
   final double menuWidth = Get.size.width * 0.6;
   final bannerHeight = Get.size.height * 0.12;
   final bannerWidth = Get.size.width;
+
+  final GiftAddFormController giftAddFormController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -52,23 +55,47 @@ class GiftGiverView extends StatelessWidget {
               _BannerWidget(size: media),
               const _MyButtonRowWidget(),
               GestureDetector(
-                onTap: () => Get.toNamed(GiftAddView.route, arguments: 'Any retail item' ),
+                onTap: () {
+                  giftAddFormController.giftType.value = GiftType.anyRetailItem;
+                  Get.toNamed(GiftAddView.route);
+                },
                 child: _AnyRetailItemMenu(
                   height: menuHeight,
                   width: menuWidth,
                 ),
               ),
-              _Package3DaysMenu(
-                height: menuHeight,
-                width: menuWidth,
+              GestureDetector(
+                onTap: () {
+                  giftAddFormController.giftType.value =
+                      GiftType.packageFor3Days;
+                  Get.toNamed(GiftAddView.route);
+                },
+                child: _Package3DaysMenu(
+                  height: menuHeight,
+                  width: menuWidth,
+                ),
               ),
-              _Package7DaysMenu(
-                height: menuHeight,
-                width: menuWidth,
+              GestureDetector(
+                onTap: () {
+                  giftAddFormController.giftType.value =
+                      GiftType.packageFor7Days;
+                  Get.toNamed(GiftAddView.route);
+                },
+                child: _Package7DaysMenu(
+                  height: menuHeight,
+                  width: menuWidth,
+                ),
               ),
-              _PackageCustomMenu(
-                height: menuHeight,
-                width: menuWidth,
+              GestureDetector(
+                onTap: () {
+                  giftAddFormController.giftType.value =
+                      GiftType.customizedPackage;
+                  Get.toNamed(GiftAddView.route);
+                },
+                child: _PackageCustomMenu(
+                  height: menuHeight,
+                  width: menuWidth,
+                ),
               ),
               const Spacer(),
               _ThankYouBannerWidget(

@@ -75,6 +75,7 @@ class GetPages {
         Get.lazyPut(() => AuthController());
       }),
     ),
+
     //  Gift Giver Routes
     GetPage(
       name: GiftAddView.route,
@@ -91,9 +92,11 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.noTransition,
       binding: BindingsBuilder(() {
-        //
+        Get.lazyPut(() => GiftAddFormController());
       }),
     ),
+
+    //Map
     GetPage(
       name: MyMapView.route,
       transitionDuration: const Duration(milliseconds: 500),

@@ -10,11 +10,29 @@ import '../../widgets/gift_giver/listing_date_widget.dart';
 
 class GiftAddView extends StatelessWidget {
   static const route = 'giftaddview';
+  final GiftAddFormController controller = Get.find();
 
-  String giftType = Get.arguments.toString();
+  // String giftType = Get.arguments.toString();
 
   @override
   Widget build(BuildContext context) {
+    String giftType;
+
+    switch (controller.giftType.value) {
+      case GiftType.anyRetailItem:
+        giftType = 'Any retail item';
+        break;
+      case GiftType.packageFor3Days:
+        giftType = 'Package for 3 days';
+        break;
+      case GiftType.packageFor7Days:
+        giftType = 'Package for 7 days';
+        break;
+      case GiftType.customizedPackage:
+        giftType = 'Customized Package';
+        break;
+    }
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -60,8 +78,8 @@ class GiftAddView extends StatelessWidget {
                 MaterialButton(
                   onPressed: () {},
                   color: GIFT_ADD_FORM_SUBMIT,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 100),
                     child: Text(
                       'Submit',
                       style: TextStyle(
