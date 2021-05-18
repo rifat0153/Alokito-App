@@ -27,12 +27,12 @@ class _$GiftGiverTearOff {
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required GiftType giftType,
       required String uid,
+      required int givingGiftInDays,
       required String imageUrl,
       required String giftDetails,
       required String listingDate,
-      required int listingFor,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-          required Timestamp pickUpTime,
+      required int listingForDays,
+      required String pickUpTime,
       required bool canLeaveOutside,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required MyPosition position}) {
@@ -42,10 +42,11 @@ class _$GiftGiverTearOff {
       distance: distance,
       giftType: giftType,
       uid: uid,
+      givingGiftInDays: givingGiftInDays,
       imageUrl: imageUrl,
       giftDetails: giftDetails,
       listingDate: listingDate,
-      listingFor: listingFor,
+      listingForDays: listingForDays,
       pickUpTime: pickUpTime,
       canLeaveOutside: canLeaveOutside,
       position: position,
@@ -68,12 +69,13 @@ mixin _$GiftGiver {
   @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
+  int get givingGiftInDays => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   String get giftDetails => throw _privateConstructorUsedError;
   String get listingDate => throw _privateConstructorUsedError;
-  int get listingFor => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-  Timestamp get pickUpTime => throw _privateConstructorUsedError;
+  int get listingForDays =>
+      throw _privateConstructorUsedError; // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  String get pickUpTime => throw _privateConstructorUsedError;
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   MyPosition get position => throw _privateConstructorUsedError;
@@ -95,12 +97,12 @@ abstract class $GiftGiverCopyWith<$Res> {
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           GiftType giftType,
       String uid,
+      int givingGiftInDays,
       String imageUrl,
       String giftDetails,
       String listingDate,
-      int listingFor,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-          Timestamp pickUpTime,
+      int listingForDays,
+      String pickUpTime,
       bool canLeaveOutside,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           MyPosition position});
@@ -123,10 +125,11 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? distance = freezed,
     Object? giftType = freezed,
     Object? uid = freezed,
+    Object? givingGiftInDays = freezed,
     Object? imageUrl = freezed,
     Object? giftDetails = freezed,
     Object? listingDate = freezed,
-    Object? listingFor = freezed,
+    Object? listingForDays = freezed,
     Object? pickUpTime = freezed,
     Object? canLeaveOutside = freezed,
     Object? position = freezed,
@@ -152,6 +155,10 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      givingGiftInDays: givingGiftInDays == freezed
+          ? _value.givingGiftInDays
+          : givingGiftInDays // ignore: cast_nullable_to_non_nullable
+              as int,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -164,14 +171,14 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.listingDate
           : listingDate // ignore: cast_nullable_to_non_nullable
               as String,
-      listingFor: listingFor == freezed
-          ? _value.listingFor
-          : listingFor // ignore: cast_nullable_to_non_nullable
+      listingForDays: listingForDays == freezed
+          ? _value.listingForDays
+          : listingForDays // ignore: cast_nullable_to_non_nullable
               as int,
       pickUpTime: pickUpTime == freezed
           ? _value.pickUpTime
           : pickUpTime // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as String,
       canLeaveOutside: canLeaveOutside == freezed
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
@@ -204,12 +211,12 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           GiftType giftType,
       String uid,
+      int givingGiftInDays,
       String imageUrl,
       String giftDetails,
       String listingDate,
-      int listingFor,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-          Timestamp pickUpTime,
+      int listingForDays,
+      String pickUpTime,
       bool canLeaveOutside,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           MyPosition position});
@@ -234,10 +241,11 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? distance = freezed,
     Object? giftType = freezed,
     Object? uid = freezed,
+    Object? givingGiftInDays = freezed,
     Object? imageUrl = freezed,
     Object? giftDetails = freezed,
     Object? listingDate = freezed,
-    Object? listingFor = freezed,
+    Object? listingForDays = freezed,
     Object? pickUpTime = freezed,
     Object? canLeaveOutside = freezed,
     Object? position = freezed,
@@ -263,6 +271,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      givingGiftInDays: givingGiftInDays == freezed
+          ? _value.givingGiftInDays
+          : givingGiftInDays // ignore: cast_nullable_to_non_nullable
+              as int,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -275,14 +287,14 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.listingDate
           : listingDate // ignore: cast_nullable_to_non_nullable
               as String,
-      listingFor: listingFor == freezed
-          ? _value.listingFor
-          : listingFor // ignore: cast_nullable_to_non_nullable
+      listingForDays: listingForDays == freezed
+          ? _value.listingForDays
+          : listingForDays // ignore: cast_nullable_to_non_nullable
               as int,
       pickUpTime: pickUpTime == freezed
           ? _value.pickUpTime
           : pickUpTime // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as String,
       canLeaveOutside: canLeaveOutside == freezed
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
@@ -305,12 +317,12 @@ class _$_GiftGiver implements _GiftGiver {
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required this.giftType,
       required this.uid,
+      required this.givingGiftInDays,
       required this.imageUrl,
       required this.giftDetails,
       required this.listingDate,
-      required this.listingFor,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-          required this.pickUpTime,
+      required this.listingForDays,
+      required this.pickUpTime,
       required this.canLeaveOutside,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required this.position});
@@ -331,16 +343,17 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final String uid;
   @override
+  final int givingGiftInDays;
+  @override
   final String imageUrl;
   @override
   final String giftDetails;
   @override
   final String listingDate;
   @override
-  final int listingFor;
-  @override
-  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-  final Timestamp pickUpTime;
+  final int listingForDays;
+  @override // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  final String pickUpTime;
   @override
   final bool canLeaveOutside;
   @override
@@ -349,7 +362,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, distance: $distance, giftType: $giftType, uid: $uid, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingFor: $listingFor, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
   }
 
   @override
@@ -369,6 +382,9 @@ class _$_GiftGiver implements _GiftGiver {
                     .equals(other.giftType, giftType)) &&
             (identical(other.uid, uid) ||
                 const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.givingGiftInDays, givingGiftInDays) ||
+                const DeepCollectionEquality()
+                    .equals(other.givingGiftInDays, givingGiftInDays)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)) &&
@@ -378,9 +394,9 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.listingDate, listingDate) ||
                 const DeepCollectionEquality()
                     .equals(other.listingDate, listingDate)) &&
-            (identical(other.listingFor, listingFor) ||
+            (identical(other.listingForDays, listingForDays) ||
                 const DeepCollectionEquality()
-                    .equals(other.listingFor, listingFor)) &&
+                    .equals(other.listingForDays, listingForDays)) &&
             (identical(other.pickUpTime, pickUpTime) ||
                 const DeepCollectionEquality()
                     .equals(other.pickUpTime, pickUpTime)) &&
@@ -400,10 +416,11 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(distance) ^
       const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(givingGiftInDays) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(giftDetails) ^
       const DeepCollectionEquality().hash(listingDate) ^
-      const DeepCollectionEquality().hash(listingFor) ^
+      const DeepCollectionEquality().hash(listingForDays) ^
       const DeepCollectionEquality().hash(pickUpTime) ^
       const DeepCollectionEquality().hash(canLeaveOutside) ^
       const DeepCollectionEquality().hash(position);
@@ -427,12 +444,12 @@ abstract class _GiftGiver implements GiftGiver {
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required GiftType giftType,
       required String uid,
+      required int givingGiftInDays,
       required String imageUrl,
       required String giftDetails,
       required String listingDate,
-      required int listingFor,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-          required Timestamp pickUpTime,
+      required int listingForDays,
+      required String pickUpTime,
       required bool canLeaveOutside,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required MyPosition position}) = _$_GiftGiver;
@@ -452,16 +469,17 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   String get uid => throw _privateConstructorUsedError;
   @override
+  int get givingGiftInDays => throw _privateConstructorUsedError;
+  @override
   String get imageUrl => throw _privateConstructorUsedError;
   @override
   String get giftDetails => throw _privateConstructorUsedError;
   @override
   String get listingDate => throw _privateConstructorUsedError;
   @override
-  int get listingFor => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-  Timestamp get pickUpTime => throw _privateConstructorUsedError;
+  int get listingForDays => throw _privateConstructorUsedError;
+  @override // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  String get pickUpTime => throw _privateConstructorUsedError;
   @override
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @override

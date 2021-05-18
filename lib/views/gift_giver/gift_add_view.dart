@@ -1,4 +1,5 @@
 import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/widgets/gift_giver/custom_gift_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/family_option_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -70,7 +71,10 @@ class GiftAddView extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                FamilyOptionWidget(),
+                controller.giftType.value == GiftType.anyRetailItem
+                    ? Container()
+                    : FamilyOptionWidget(),
+                CustomGiftOptionWidget(),
                 DistanceListRow(),
                 ImageInputWidget(),
                 _GiftDetailWidget(),
@@ -106,6 +110,8 @@ class GiftAddView extends StatelessWidget {
 }
 
 class _PickUpTimeWidget extends StatelessWidget {
+  final GiftAddFormController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -131,7 +137,9 @@ class _PickUpTimeWidget extends StatelessWidget {
                 filled: true,
                 hintText: 'e.g. today from 10.30 am to 4.30 pm'),
             maxLines: 1,
-            onChanged: (value) {},
+            onChanged: (value) {
+              controller.pickUpTime.value = value;
+            },
           ),
         ),
       ],

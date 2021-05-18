@@ -17,12 +17,13 @@ class GiftGiver with _$GiftGiver {
     @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
         required GiftType giftType,
     required String uid,
+    required int givingGiftInDays,
     required String imageUrl,
     required String giftDetails,
     required String listingDate,
-    required int listingFor,
-    @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-        required Timestamp pickUpTime,
+    required int listingForDays,
+    // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+    required String pickUpTime,
     required bool canLeaveOutside,
     @JsonKey(fromJson: _fromJson, toJson: _toJson) required MyPosition position,
   }) = _GiftGiver;

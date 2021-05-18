@@ -11,6 +11,8 @@ class GiftAddFormController extends GetxController {
   Rx<GiftType> giftType = GiftType.packageFor3Days.obs;
   var distance = 1.obs;
   var giftDetails = ''.obs;
+  var givingGiftInDays = 0.obs;
+  var pickUpTime = ''.obs;
   var listingFor = 5.0.obs;
   var canLeaveOutside = false.obs;
   var isLocationSelected = false.obs;
