@@ -55,7 +55,7 @@ class GiftGiverView extends StatelessWidget {
               top: media.height * 0.2,
               left: 0,
               child: Container(
-                height: media.height * 0.6,
+                height: media.height * 0.65,
                 width: media.width,
                 child: ListView(
                   children: <Widget>[
@@ -111,6 +111,7 @@ class GiftGiverView extends StatelessWidget {
                             height: menuHeight, width: menuWidth),
                       ),
                     ),
+                    SizedBox(height: 30)
                   ],
                 ),
               ),

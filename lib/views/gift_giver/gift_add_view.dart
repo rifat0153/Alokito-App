@@ -74,7 +74,9 @@ class GiftAddView extends StatelessWidget {
                 controller.giftType.value == GiftType.anyRetailItem
                     ? Container()
                     : FamilyOptionWidget(),
-                CustomGiftOptionWidget(),
+                controller.giftType.value == GiftType.customizedPackage
+                    ? CustomGiftOptionWidget()
+                    : Container(),
                 DistanceListRow(),
                 ImageInputWidget(),
                 _GiftDetailWidget(),

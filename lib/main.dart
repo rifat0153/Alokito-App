@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         fontFamily: GoogleFonts.montserrat().fontFamily,
         primarySwatch: Colors.teal,
-        accentColor: Colors.blue,
+        accentColor: Color(0xff1b2e59),
       ),
       initialRoute: '/',
       builder: EasyLoading.init(),
