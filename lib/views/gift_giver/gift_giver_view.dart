@@ -62,26 +62,54 @@ class GiftGiverView extends StatelessWidget {
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: media.width * 0.1),
-                      child: _AnyRetailItemMenu(
-                          height: menuHeight, width: menuWidth),
+                      child: GestureDetector(
+                        onTap: () {
+                          giftAddFormController.giftType.value =
+                              GiftType.anyRetailItem;
+                          Get.toNamed(GiftAddView.route);
+                        },
+                        child: _AnyRetailItemMenu(
+                            height: menuHeight, width: menuWidth),
+                      ),
                     ),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: media.width * 0.1),
-                      child: _Package3DaysMenu(
-                          height: menuHeight, width: menuWidth),
+                      child: GestureDetector(
+                        onTap: () {
+                          giftAddFormController.giftType.value =
+                              GiftType.packageFor3Days;
+                          Get.toNamed(GiftAddView.route);
+                        },
+                        child: _Package3DaysMenu(
+                            height: menuHeight, width: menuWidth),
+                      ),
                     ),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: media.width * 0.1),
-                      child: _Package7DaysMenu(
-                          height: menuHeight, width: menuWidth),
+                      child: GestureDetector(
+                        onTap: () {
+                          giftAddFormController.giftType.value =
+                              GiftType.packageFor7Days;
+                          Get.toNamed(GiftAddView.route);
+                        },
+                        child: _Package7DaysMenu(
+                            height: menuHeight, width: menuWidth),
+                      ),
                     ),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: media.width * 0.1),
-                      child: _PackageCustomMenu(
-                          height: menuHeight, width: menuWidth),
+                      child: GestureDetector(
+                        onTap: () {
+                          giftAddFormController.giftType.value =
+                              GiftType.customizedPackage;
+                          Get.toNamed(GiftAddView.route);
+                        },
+                        child: _PackageCustomMenu(
+                            height: menuHeight, width: menuWidth),
+                      ),
                     ),
                   ],
                 ),
