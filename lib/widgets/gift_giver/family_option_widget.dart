@@ -58,7 +58,7 @@ class _Option extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: controller.giftFor.value == giftFor
-                  ? Colors.red
+                  ? Colors.lightBlue
                   : Colors.grey,
             ),
           ),

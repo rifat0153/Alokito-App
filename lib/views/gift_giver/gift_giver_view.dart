@@ -11,8 +11,8 @@ import '../gift_giver/my_gift_view.dart';
 class GiftGiverView extends StatelessWidget {
   static const route = '/giftgivermainmenu';
   final media = Get.size;
-  final double menuHeight = Get.size.height * 0.15;
-  final double menuWidth = Get.size.width * 0.6;
+  final double menuHeight = Get.size.height * 0.16;
+  final double menuWidth = Get.size.width * 0.8;
   final bannerHeight = Get.size.height * 0.12;
   final bannerWidth = Get.size.width;
 

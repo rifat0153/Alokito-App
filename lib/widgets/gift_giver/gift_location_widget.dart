@@ -5,6 +5,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 import 'package:uuid/uuid.dart';
 
 class GiftLocationWidget extends StatelessWidget {
@@ -83,6 +84,7 @@ class _GiftMapWidget extends StatefulWidget {
 class _GiftMapWidgetState extends State<_GiftMapWidget> {
   final GiftAddFormController controller = Get.find();
   final Completer<GoogleMapController> _controller = Completer();
+  late LatLng myLocation;
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(23.7590, 90.4119),
@@ -96,8 +98,14 @@ class _GiftMapWidgetState extends State<_GiftMapWidget> {
     )
   ];
 
+  // @override
+
   @override
   Widget build(BuildContext context) {
+    print(controller.userLocation.value);
+  
+
+
     return Scaffold(
       // height: Get.size.height,
       // width: Get.size.width,
@@ -108,7 +116,8 @@ class _GiftMapWidgetState extends State<_GiftMapWidget> {
         () => GoogleMap(
           mapType: MapType.normal,
           markers: controller.markers.toSet(),
-          initialCameraPosition: _kGooglePlex,
+          initialCameraPosition:
+              CameraPosition(target: controller.userLocation.value, zoom: 16),
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
           },
