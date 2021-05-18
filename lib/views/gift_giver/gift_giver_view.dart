@@ -11,8 +11,8 @@ import '../gift_giver/my_gift_view.dart';
 class GiftGiverView extends StatelessWidget {
   static const route = '/giftgivermainmenu';
   final media = Get.size;
-  final double menuHeight = Get.size.height * 0.16;
-  final double menuWidth = Get.size.width * 0.8;
+  final double menuHeight = Get.size.height * 0.18;
+  final double menuWidth = Get.size.width * 0.6;
   final bannerHeight = Get.size.height * 0.12;
   final bannerWidth = Get.size.width;
 
@@ -22,93 +22,109 @@ class GiftGiverView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            height: Get.size.height,
-            width: Get.size.width,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/rsz_background.png'),
-                  fit: BoxFit.fill),
+        child: Stack(
+          children: [
+            Container(
+              height: Get.size.height,
+              width: Get.size.width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/rsz_background.png'),
+                    fit: BoxFit.fill),
+              ),
             ),
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: media.height * 0.045, width: 0),
-                Row(
+            Positioned(
+              top: media.height * 0.02,
+              left: 0,
+              child: Container(
+                // height: media.height,
+                width: media.width,
+                child: _Header(media: media),
+              ),
+            ),
+            Positioned(
+              top: media.height * 0.14,
+              left: 0,
+              child: Container(
+                // height: media.height,
+                width: media.width,
+                child: _BannerWidget(size: media),
+              ),
+            ),
+            Positioned(
+              top: media.height * 0.2,
+              left: 0,
+              child: Container(
+                height: media.height * 0.6,
+                width: media.width,
+                child: ListView(
                   children: <Widget>[
-                    SizedBox(width: media.width * 0.03),
-                    const Icon(Icons.menu, color: Colors.white),
-                    const SizedBox(width: 10),
-                    const Expanded(
-                      child: Text(
-                        'Gift Giver',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                      ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                      child: _AnyRetailItemMenu(
+                          height: menuHeight, width: menuWidth),
                     ),
-                    NotificationIconWidget(),
-                    const SizedBox(width: 10),
-                    const Icon(Icons.settings, color: Colors.white),
-                    SizedBox(width: media.width * 0.03),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                      child: _Package3DaysMenu(
+                          height: menuHeight, width: menuWidth),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                      child: _Package7DaysMenu(
+                          height: menuHeight, width: menuWidth),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                      child: _PackageCustomMenu(
+                          height: menuHeight, width: menuWidth),
+                    ),
                   ],
                 ),
-                SizedBox(height: media.height * 0.05),
-                _BannerWidget(size: media),
-                const _MyButtonRowWidget(),
-                GestureDetector(
-                  onTap: () {
-                    giftAddFormController.giftType.value =
-                        GiftType.anyRetailItem;
-                    Get.toNamed(GiftAddView.route);
-                  },
-                  child: _AnyRetailItemMenu(
-                    height: menuHeight,
-                    width: menuWidth,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    giftAddFormController.giftType.value =
-                        GiftType.packageFor3Days;
-                    Get.toNamed(GiftAddView.route);
-                  },
-                  child: _Package3DaysMenu(
-                    height: menuHeight,
-                    width: menuWidth,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    giftAddFormController.giftType.value =
-                        GiftType.packageFor7Days;
-                    Get.toNamed(GiftAddView.route);
-                  },
-                  child: _Package7DaysMenu(
-                    height: menuHeight,
-                    width: menuWidth,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    giftAddFormController.giftType.value =
-                        GiftType.customizedPackage;
-                    Get.toNamed(GiftAddView.route);
-                  },
-                  child: _PackageCustomMenu(
-                    height: menuHeight,
-                    width: menuWidth,
-                  ),
-                ),
-                const Spacer(),
-                _ThankYouBannerWidget(
-                  height: bannerHeight,
-                  width: bannerWidth,
-                )
-              ],
+              ),
             ),
-          ),
+            Positioned(
+              bottom: 0,
+              child: _ThankYouBannerWidget(height: 30, width: media.width),
+            )
+          ],
         ),
       ),
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header({
+    Key? key,
+    required this.media,
+  }) : super(key: key);
+
+  final Size media;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        SizedBox(width: media.width * 0.03),
+        const Icon(Icons.menu, color: Colors.white),
+        const SizedBox(width: 10),
+        const Expanded(
+          child: Text(
+            'Gift Giver',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 30),
+          ),
+        ),
+        NotificationIconWidget(),
+        const SizedBox(width: 10),
+        const Icon(Icons.settings, color: Colors.white),
+        SizedBox(width: media.width * 0.03),
+      ],
     );
   }
 }
