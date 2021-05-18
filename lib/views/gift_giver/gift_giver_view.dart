@@ -22,87 +22,90 @@ class GiftGiverView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          height: Get.size.height,
-          width: Get.size.width,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/rsz_background.png'),
-                fit: BoxFit.fill),
-          ),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: media.height * 0.045, width: 0),
-              Row(
-                children: <Widget>[
-                  SizedBox(width: media.width * 0.03),
-                  const Icon(Icons.menu, color: Colors.white),
-                  const SizedBox(width: 10),
-                  const Expanded(
-                    child: Text(
-                      'Gift Giver',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 30),
+        child: SingleChildScrollView(
+          child: Container(
+            height: Get.size.height,
+            width: Get.size.width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/rsz_background.png'),
+                  fit: BoxFit.fill),
+            ),
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: media.height * 0.045, width: 0),
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: media.width * 0.03),
+                    const Icon(Icons.menu, color: Colors.white),
+                    const SizedBox(width: 10),
+                    const Expanded(
+                      child: Text(
+                        'Gift Giver',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      ),
                     ),
+                    NotificationIconWidget(),
+                    const SizedBox(width: 10),
+                    const Icon(Icons.settings, color: Colors.white),
+                    SizedBox(width: media.width * 0.03),
+                  ],
+                ),
+                SizedBox(height: media.height * 0.05),
+                _BannerWidget(size: media),
+                const _MyButtonRowWidget(),
+                GestureDetector(
+                  onTap: () {
+                    giftAddFormController.giftType.value =
+                        GiftType.anyRetailItem;
+                    Get.toNamed(GiftAddView.route);
+                  },
+                  child: _AnyRetailItemMenu(
+                    height: menuHeight,
+                    width: menuWidth,
                   ),
-                  NotificationIconWidget(),
-                  const SizedBox(width: 10),
-                  const Icon(Icons.settings, color: Colors.white),
-                  SizedBox(width: media.width * 0.03),
-                ],
-              ),
-              SizedBox(height: media.height * 0.05),
-              _BannerWidget(size: media),
-              const _MyButtonRowWidget(),
-              GestureDetector(
-                onTap: () {
-                  giftAddFormController.giftType.value = GiftType.anyRetailItem;
-                  Get.toNamed(GiftAddView.route);
-                },
-                child: _AnyRetailItemMenu(
-                  height: menuHeight,
-                  width: menuWidth,
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  giftAddFormController.giftType.value =
-                      GiftType.packageFor3Days;
-                  Get.toNamed(GiftAddView.route);
-                },
-                child: _Package3DaysMenu(
-                  height: menuHeight,
-                  width: menuWidth,
+                GestureDetector(
+                  onTap: () {
+                    giftAddFormController.giftType.value =
+                        GiftType.packageFor3Days;
+                    Get.toNamed(GiftAddView.route);
+                  },
+                  child: _Package3DaysMenu(
+                    height: menuHeight,
+                    width: menuWidth,
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  giftAddFormController.giftType.value =
-                      GiftType.packageFor7Days;
-                  Get.toNamed(GiftAddView.route);
-                },
-                child: _Package7DaysMenu(
-                  height: menuHeight,
-                  width: menuWidth,
+                GestureDetector(
+                  onTap: () {
+                    giftAddFormController.giftType.value =
+                        GiftType.packageFor7Days;
+                    Get.toNamed(GiftAddView.route);
+                  },
+                  child: _Package7DaysMenu(
+                    height: menuHeight,
+                    width: menuWidth,
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  giftAddFormController.giftType.value =
-                      GiftType.customizedPackage;
-                  Get.toNamed(GiftAddView.route);
-                },
-                child: _PackageCustomMenu(
-                  height: menuHeight,
-                  width: menuWidth,
+                GestureDetector(
+                  onTap: () {
+                    giftAddFormController.giftType.value =
+                        GiftType.customizedPackage;
+                    Get.toNamed(GiftAddView.route);
+                  },
+                  child: _PackageCustomMenu(
+                    height: menuHeight,
+                    width: menuWidth,
+                  ),
                 ),
-              ),
-              const Spacer(),
-              _ThankYouBannerWidget(
-                height: bannerHeight,
-                width: bannerWidth,
-              )
-            ],
+                const Spacer(),
+                _ThankYouBannerWidget(
+                  height: bannerHeight,
+                  width: bannerWidth,
+                )
+              ],
+            ),
           ),
         ),
       ),

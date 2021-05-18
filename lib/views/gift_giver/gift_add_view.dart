@@ -1,4 +1,5 @@
 import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/widgets/gift_giver/family_option_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -69,6 +70,7 @@ class GiftAddView extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                FamilyOptionWidget(),
                 DistanceListRow(),
                 ImageInputWidget(),
                 _GiftDetailWidget(),
