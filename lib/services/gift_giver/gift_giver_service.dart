@@ -76,6 +76,7 @@ class GiftGiverService implements BaseGiftGiverService {
 
     var gift = GiftGiver(
       id: docRef.id,
+      giftFor: controller.giftFor.value,
       distance: controller.distance.value,
       giftType: controller.giftType.value,
       uid: _auth.currentUser!.uid,

@@ -1,4 +1,6 @@
+import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FamilyOptionWidget extends StatelessWidget {
   @override
@@ -21,9 +23,15 @@ class FamilyOptionWidget extends StatelessWidget {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const SizedBox(width: 30),
-            _Option('Small Family'),
+            GestureDetector(
+                onTap: () =>
+                    Get.find<GiftAddFormController>().giftFor.value = 0,
+                child: _Option('Small Family', 0)),
             const Spacer(),
-            _Option('Large Family'),
+            GestureDetector(
+                onTap: () =>
+                    Get.find<GiftAddFormController>().giftFor.value = 1,
+                child: _Option('Large Family', 1)),
             const SizedBox(width: 30)
           ],
         ),
@@ -33,19 +41,26 @@ class FamilyOptionWidget extends StatelessWidget {
 }
 
 class _Option extends StatelessWidget {
-  _Option(this.text);
+  _Option(this.text, this.giftFor);
   String text;
+  int giftFor;
+
+  final GiftAddFormController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          height: 9,
-          width: 9,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.grey,
+        Obx(
+          () => Container(
+            height: 9,
+            width: 9,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: controller.giftFor.value == giftFor
+                  ? Colors.red
+                  : Colors.grey,
+            ),
           ),
         ),
         SizedBox(width: 6),

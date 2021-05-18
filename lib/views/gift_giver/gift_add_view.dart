@@ -55,16 +55,16 @@ class GiftAddView extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         shadowColor: Colors.white,
       ),
-      persistentFooterButtons: [
-        const Icon(Icons.ac_unit_outlined),
-      ],
+      // persistentFooterButtons: [
+      //   const Icon(Icons.ac_unit_outlined),
+      // ],
       body: SafeArea(
         child: Container(
           height: Get.size.height,
           width: Get.size.width,
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/gift_add_background.png'),
+                image: AssetImage('assets/images/gift_add_form.png'),
                 fit: BoxFit.fill),
           ),
           child: SingleChildScrollView(

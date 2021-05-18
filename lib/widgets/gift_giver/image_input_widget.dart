@@ -17,10 +17,8 @@ class ImageInputWidget extends StatelessWidget {
           child: Obx(
             () => Container(
               height: 200,
-              // width: double.infinity,
-              color: Colors.green,
               child: controller.imageFile.value.path.length == 0
-                  ? Image.asset('assets/images/profile-placeholder.png')
+                  ? Image.asset('assets/images/image-place.png')
                   : Image.file(controller.imageFile.value),
             ),
           ),

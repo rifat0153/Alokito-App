@@ -12,6 +12,7 @@ part 'gift_giver.g.dart';
 class GiftGiver with _$GiftGiver {
   const factory GiftGiver({
     String? id,
+    @Default(0) int giftFor,
     required int distance,
     @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
         required GiftType giftType,
