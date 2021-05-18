@@ -5,12 +5,26 @@ class FamilyOptionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Package For'),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            children: [
+              const SizedBox(width: 30),
+              const Text(
+                'Package For',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            const SizedBox(width: 30),
             _Option('Small Family'),
+            const Spacer(),
             _Option('Large Family'),
+            const SizedBox(width: 30)
           ],
         ),
       ],

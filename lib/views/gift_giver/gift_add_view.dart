@@ -62,11 +62,11 @@ class GiftAddView extends StatelessWidget {
         child: Container(
           height: Get.size.height,
           width: Get.size.width,
-          // decoration: const BoxDecoration(
-          //   image: DecorationImage(
-          //       image: AssetImage('assets/images/rsz_background.png'),
-          //       fit: BoxFit.fill),
-          // ),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/gift_add_background.png'),
+                fit: BoxFit.fill),
+          ),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
