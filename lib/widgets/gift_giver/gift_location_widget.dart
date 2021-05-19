@@ -103,8 +103,6 @@ class _GiftMapWidgetState extends State<_GiftMapWidget> {
   @override
   Widget build(BuildContext context) {
     print(controller.userLocation.value);
-  
-
 
     return Scaffold(
       // height: Get.size.height,
@@ -136,16 +134,16 @@ class _GiftMapWidgetState extends State<_GiftMapWidget> {
     );
   }
 
-  Future<void> _goSelectedPosition(LatLng postion) async {
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-            bearing: 192.8334901395799,
-            target: LatLng(postion.latitude, postion.longitude),
-            tilt: 59.440717697143555,
-            zoom: 19.151926040649414),
-      ),
-    );
-  }
+  // Future<void> _goSelectedPosition(LatLng postion) async {
+  //   final GoogleMapController controller = await _controller.future;
+  //   await controller.animateCamera(
+  //     CameraUpdate.newCameraPosition(
+  //       CameraPosition(
+  //           bearing: 192.8334901395799,
+  //           target: LatLng(postion.latitude, postion.longitude),
+  //           tilt: 59.440717697143555,
+  //           zoom: 19.151926040649414),
+  //     ),
+  //   );
+  // }
 }

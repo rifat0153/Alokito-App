@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:alokito_new/controller/auth/auth_controller.dart';
+import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:get/get.dart';
@@ -26,7 +28,7 @@ class GiftAddFormController extends GetxController {
   void onInit() {
     markers.add(Marker(
       markerId: MarkerId('1'),
-      position: LatLng(23.7590, 90.4119),
+      position: Get.find<GiftController>().currentUserLocation.value,
     ));
     getCurrentLocation();
     super.onInit();

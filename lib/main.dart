@@ -111,6 +111,7 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.noTransition,
       binding: BindingsBuilder(() {
+        Get.lazyPut(() => GiftController());
         Get.lazyPut(() => GiftAddFormController());
       }),
     ),
