@@ -2,10 +2,12 @@
 // above line is used to disabel sound null safety
 import 'package:alokito_new/bindings/auth_binding.dart';
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
+import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/controller/map/geo_controller.dart';
 import 'package:alokito_new/views/auth/auth_wrapper.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_giver/gift_giver_view.dart';
+import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/views/map/geo_map_view.dart';
 import 'package:alokito_new/views/map/my_map_view.dart';
@@ -83,7 +85,7 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => GiftAddFormController());
+        Get.lazyPut(() => GiftController());
       }),
     ),
 
@@ -96,6 +98,12 @@ class GetPages {
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftAddFormController());
       }),
+    ),
+    GetPage(
+      name: GiftOfferView.route,
+      page: () => GiftOfferView(),
+      transitionDuration: const Duration(milliseconds: 500),
+      transition: Transition.downToUp,
     ),
     GetPage(
       name: GiftGiverView.route,

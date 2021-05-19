@@ -1,6 +1,7 @@
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
+import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/widgets/gift_giver/notification_icon_widget.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
@@ -16,20 +17,22 @@ class GiftReceiverView extends StatelessWidget {
   final bannerHeight = Get.size.height * 0.12;
   final bannerWidth = Get.size.width;
 
-  final GiftAddFormController giftAddFormController = Get.find();
+  // final GiftAddFormController giftAddFormController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
           children: [
             Container(
               height: Get.size.height,
               width: Get.size.width,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/rsz_background.png'),
+                    // image: AssetImage(
+                    //     'assets/images/gift_receiver_background.png'),
+                    image: AssetImage('assets/images/rsz_1gift_receiver.png'),
                     fit: BoxFit.fill),
               ),
             ),
@@ -154,7 +157,9 @@ class _MyButtonRowWidget extends StatelessWidget {
           child: const Text('Gift Request'),
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => GiftOfferView());
+          },
           style: ButtonStyle(
             backgroundColor:
                 MaterialStateProperty.resolveWith((states) => Colors.grey),

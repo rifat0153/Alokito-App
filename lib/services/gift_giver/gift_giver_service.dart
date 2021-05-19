@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
+import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/geo.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/services/gift_giver/base_gift_giver_service.dart';
@@ -94,6 +95,25 @@ class GiftGiverService implements BaseGiftGiverService {
     await docRef.set(gift.toJson());
     print('Added gift');
     controller.isUploading.value = false;
+  }
+
+  Stream<List<GiftGiver>> giftStreamByLocation() {
+// Create a geoFirePoint
+    GeoFirePoint center = geo.point(latitude: 23.7590, longitude: 90.4119);
+    GiftController giftController = Get.find();
+
+    var collectionReference = _firestore.collection('gifts');
+    var stream = geo
+        .collection(collectionRef: collectionReference)
+        .within(
+            center: center,
+            radius: giftController.searchRadius.value,
+            field: 'position',
+            strictMode: true)
+        .map((event) =>
+            event.map((e) => GiftGiver.fromJson(e.data() ?? {})).toList());
+
+    return stream;
   }
 
   @override
