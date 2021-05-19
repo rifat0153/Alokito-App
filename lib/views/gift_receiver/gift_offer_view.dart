@@ -62,49 +62,32 @@ class _GiftListTile extends StatelessWidget {
 
   String giftType = '';
 
-  void getGiftType() {
-    switch (giftController.giftList.value[index].giftType) {
-      case GiftType.anyRetailItem:
-        giftType = 'Any Retail Item';
-        break;
-      case GiftType.packageFor3Days:
-        giftType = 'Package for 3 days';
-        break;
-      case GiftType.packageFor7Days:
-        giftType = 'Any RetaPackage for 7 days';
-        break;
-      case GiftType.customizedPackage:
-        giftType = 'Custom Package';
-        break;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    getGiftType();
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
       child: Row(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: GIFT_ADD_FORM_COLOR,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
+          Obx(
+            () => Container(
+              decoration: BoxDecoration(
+                color: GIFT_ADD_FORM_COLOR,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                ),
               ),
-            ),
-            width: Get.size.width * 0.2,
-            height: 70,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-              ),
-              child: Image.network(
-                giftController.giftList.value[index].imageUrl,
-                fit: BoxFit.cover,
+              width: Get.size.width * 0.2,
+              height: 70,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                ),
+                child: Image.network(
+                  giftController.giftList.value[index].imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -121,16 +104,29 @@ class _GiftListTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  children: [
-                    Text(giftType),
-                    Text('USer name'),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Obx(
+                        () => Text(
+                          giftController.getGiftType(
+                              giftController.giftList.value[index].giftType),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text('USer name'),
+                    ],
+                  ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text('Location'),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Location'),
+                    ),
                   ],
                 )
               ],

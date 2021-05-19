@@ -23,6 +23,7 @@ class _$GiftGiverTearOff {
   _GiftGiver call(
       {String? id,
       int giftFor = 0,
+      required String userName,
       required int distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required GiftType giftType,
@@ -39,6 +40,7 @@ class _$GiftGiverTearOff {
     return _GiftGiver(
       id: id,
       giftFor: giftFor,
+      userName: userName,
       distance: distance,
       giftType: giftType,
       uid: uid,
@@ -65,6 +67,7 @@ const $GiftGiver = _$GiftGiverTearOff();
 mixin _$GiftGiver {
   String? get id => throw _privateConstructorUsedError;
   int get giftFor => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
   int get distance => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
@@ -93,6 +96,7 @@ abstract class $GiftGiverCopyWith<$Res> {
   $Res call(
       {String? id,
       int giftFor,
+      String userName,
       int distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           GiftType giftType,
@@ -122,6 +126,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? giftFor = freezed,
+    Object? userName = freezed,
     Object? distance = freezed,
     Object? giftType = freezed,
     Object? uid = freezed,
@@ -143,6 +148,10 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.giftFor
           : giftFor // ignore: cast_nullable_to_non_nullable
               as int,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -207,6 +216,7 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
   $Res call(
       {String? id,
       int giftFor,
+      String userName,
       int distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           GiftType giftType,
@@ -238,6 +248,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftFor = freezed,
+    Object? userName = freezed,
     Object? distance = freezed,
     Object? giftType = freezed,
     Object? uid = freezed,
@@ -259,6 +270,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.giftFor
           : giftFor // ignore: cast_nullable_to_non_nullable
               as int,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -313,6 +328,7 @@ class _$_GiftGiver implements _GiftGiver {
   const _$_GiftGiver(
       {this.id,
       this.giftFor = 0,
+      required this.userName,
       required this.distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required this.giftType,
@@ -335,6 +351,8 @@ class _$_GiftGiver implements _GiftGiver {
   @JsonKey(defaultValue: 0)
   @override
   final int giftFor;
+  @override
+  final String userName;
   @override
   final int distance;
   @override
@@ -362,7 +380,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
   }
 
   @override
@@ -374,6 +392,9 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.giftFor, giftFor) ||
                 const DeepCollectionEquality()
                     .equals(other.giftFor, giftFor)) &&
+            (identical(other.userName, userName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userName, userName)) &&
             (identical(other.distance, distance) ||
                 const DeepCollectionEquality()
                     .equals(other.distance, distance)) &&
@@ -413,6 +434,7 @@ class _$_GiftGiver implements _GiftGiver {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftFor) ^
+      const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(distance) ^
       const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(uid) ^
@@ -440,6 +462,7 @@ abstract class _GiftGiver implements GiftGiver {
   const factory _GiftGiver(
       {String? id,
       int giftFor,
+      required String userName,
       required int distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required GiftType giftType,
@@ -461,6 +484,8 @@ abstract class _GiftGiver implements GiftGiver {
   String? get id => throw _privateConstructorUsedError;
   @override
   int get giftFor => throw _privateConstructorUsedError;
+  @override
+  String get userName => throw _privateConstructorUsedError;
   @override
   int get distance => throw _privateConstructorUsedError;
   @override

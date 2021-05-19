@@ -13,6 +13,7 @@ class GiftGiver with _$GiftGiver {
   const factory GiftGiver({
     String? id,
     @Default(0) int giftFor,
+    required String userName,
     required int distance,
     @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
         required GiftType giftType,

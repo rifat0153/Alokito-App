@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -29,5 +30,18 @@ class GiftController extends GetxController {
 
   void bindGiftStream() {
     giftList.bindStream(clubService.giftStreamByLocation());
+  }
+
+  String getGiftType(GiftType giftType) {
+    switch (giftType) {
+      case GiftType.anyRetailItem:
+        return 'Any Retail Item';
+      case GiftType.packageFor3Days:
+        return 'Package for 3 days';
+      case GiftType.packageFor7Days:
+        return 'Package for 7 days';
+      case GiftType.customizedPackage:
+        return 'Custom Package';
+    }
   }
 }

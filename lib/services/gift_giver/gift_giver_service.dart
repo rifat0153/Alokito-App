@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/geo.dart';
@@ -75,8 +76,12 @@ class GiftGiverService implements BaseGiftGiverService {
 
     print('doc id:  ' + docRef.id);
 
+    AuthController authController = Get.find();
+
     var gift = GiftGiver(
       id: docRef.id,
+      userName: authController.currentUser.value
+          .maybeWhen(data: (data) => data.userName, orElse: () => ''),
       giftFor: controller.giftFor.value,
       distance: controller.distance.value,
       giftType: controller.giftType.value,
