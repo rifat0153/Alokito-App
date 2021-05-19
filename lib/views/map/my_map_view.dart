@@ -59,115 +59,96 @@ class _MyMapViewState extends State<MyMapView> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('MyMapView'),
-        actions: <Widget>[
-          IconButton(
-            onPressed: _mapController == null
-                ? null
-                : () {
-                    _showHome();
-                  },
-            icon: Icon(Icons.home),
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: Card(
+              elevation: 4,
+              margin: EdgeInsets.symmetric(vertical: 8),
+              child: SizedBox(
+                width: mediaQuery.size.width - 30,
+                height: mediaQuery.size.height * (1 / 3),
+                child: GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: const CameraPosition(
+                    target: LatLng(23.7590, 90.4119),
+                    zoom: 12.0,
+                  ),
+                  markers: Set<Marker>.of(markers.values),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Slider(
+              min: 1,
+              max: 20,
+              divisions: 19,
+              value: _value,
+              label: _label,
+              activeColor: Colors.blue,
+              inactiveColor: Colors.blue.withOpacity(0.2),
+              onChanged: (double value) => changed(value),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: 100,
+                child: TextField(
+                  controller: _latitudeController,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                      labelText: 'lat',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                ),
+              ),
+              Container(
+                width: 100,
+                child: TextField(
+                  controller: _longitudeController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                      labelText: 'lng',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                ),
+              ),
+              MaterialButton(
+                color: Colors.blue,
+                onPressed: () {
+                  final lat = double.parse(_latitudeController.text);
+                  final lng = double.parse(_longitudeController.text);
+                  _addPoint(lat, lng);
+                },
+                child: const Text(
+                  'ADD',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
+          ),
+          MaterialButton(
+            color: Colors.amber,
+            child: const Text(
+              'Add nested ',
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () {
+              final lat = double.parse(_latitudeController.text);
+              final lng = double.parse(_longitudeController.text);
+              _addNestedPoint(lat, lng);
+            },
           )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.navigate_next),
-      ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: Card(
-                elevation: 4,
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: SizedBox(
-                  width: mediaQuery.size.width - 30,
-                  height: mediaQuery.size.height * (1 / 3),
-                  child: GoogleMap(
-                    onMapCreated: _onMapCreated,
-                    initialCameraPosition: const CameraPosition(
-                      target: LatLng(23.7590, 90.4119),
-                      zoom: 12.0,
-                    ),
-                    markers: Set<Marker>.of(markers.values),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Slider(
-                min: 1,
-                max: 20,
-                divisions: 19,
-                value: _value,
-                label: _label,
-                activeColor: Colors.blue,
-                inactiveColor: Colors.blue.withOpacity(0.2),
-                onChanged: (double value) => changed(value),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                  width: 100,
-                  child: TextField(
-                    controller: _latitudeController,
-                    keyboardType: TextInputType.number,
-                    textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                        labelText: 'lat',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                  ),
-                ),
-                Container(
-                  width: 100,
-                  child: TextField(
-                    controller: _longitudeController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: 'lng',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                  ),
-                ),
-                MaterialButton(
-                  color: Colors.blue,
-                  onPressed: () {
-                    final lat = double.parse(_latitudeController.text);
-                    final lng = double.parse(_longitudeController.text);
-                    _addPoint(lat, lng);
-                  },
-                  child: const Text(
-                    'ADD',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                )
-              ],
-            ),
-            MaterialButton(
-              color: Colors.amber,
-              child: const Text(
-                'Add nested ',
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {
-                final lat = double.parse(_latitudeController.text);
-                final lng = double.parse(_longitudeController.text);
-                _addNestedPoint(lat, lng);
-              },
-            )
-          ],
-        ),
       ),
     );
   }
@@ -214,13 +195,13 @@ class _MyMapViewState extends State<MyMapView> {
     });
   }
 
-  void _addMarker(double lat, double lng, double distance) {
+  void _addMarker(double lat, double lng) {
     final id = MarkerId(lat.toString() + lng.toString());
     final _marker = Marker(
       markerId: id,
       position: LatLng(lat, lng),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
-      infoWindow: InfoWindow(title: 'latLng', snippet: '$distance km'),
+      infoWindow: InfoWindow(title: 'latLng'),
     );
     setState(() {
       markers[id] = _marker;
@@ -231,8 +212,7 @@ class _MyMapViewState extends State<MyMapView> {
     documentList.forEach((DocumentSnapshot document) {
       final GeoPoint point =
           document.data()!['position']['geopoint'] as GeoPoint;
-      _addMarker(point.latitude, point.longitude,
-          document.data()!['distance'] as double);
+      _addMarker(point.latitude, point.longitude);
     });
   }
 

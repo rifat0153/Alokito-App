@@ -17,8 +17,7 @@ class MyGiftView extends StatelessWidget {
         () => ListView.builder(
           itemCount: giftController.giftList.value.length,
           itemBuilder: (_, i) => ListTile(
-            title: Text(
-                giftController.giftList.value[i].listingForDays.toString()),
+            title: Text(giftController.giftList.value[i].uid.toString()),
           ),
         ),
       ),

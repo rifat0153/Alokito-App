@@ -107,7 +107,7 @@ class GiftGiverService implements BaseGiftGiverService {
         .collection(collectionRef: collectionReference)
         .within(
             center: center,
-            radius: giftController.searchRadius.value,
+            radius: giftController.searchRadius,
             field: 'position',
             strictMode: true)
         .map((event) =>

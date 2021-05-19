@@ -5,5 +5,7 @@ abstract class BaseGiftGiverService {
 
   Future<void> addGift();
 
+  Stream<List<GiftGiver>> giftStreamByLocation();
+
   Stream<List<GiftGiver>> giftStream();
 }

@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import '../gift_giver/my_gift_view.dart';
 
 class GiftReceiverView extends StatelessWidget {
-  static const route = '/giftreceivermainmenu';
+  static const route = '/giftreceiverview';
   final media = Get.size;
   final double menuHeight = Get.size.height * 0.18;
   final double menuWidth = Get.size.width * 0.6;
@@ -158,7 +158,8 @@ class _MyButtonRowWidget extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            Get.to(() => GiftOfferView());
+            Get.toNamed(GiftOfferView.route);
+            // Get.to(() => MyGiftView());
           },
           style: ButtonStyle(
             backgroundColor:
