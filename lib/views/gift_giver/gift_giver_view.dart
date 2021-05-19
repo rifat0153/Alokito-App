@@ -52,10 +52,14 @@ class GiftGiverView extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: media.height * 0.2,
+              top: media.height * 0.18,
+              child: Container(width: media.width, child: _MyButtonRowWidget()),
+            ),
+            Positioned(
+              top: media.height * 0.24,
               left: 0,
               child: Container(
-                height: media.height * 0.65,
+                height: media.height * 0.6,
                 width: media.width,
                 child: ListView(
                   children: <Widget>[
@@ -111,7 +115,7 @@ class GiftGiverView extends StatelessWidget {
                             height: menuHeight, width: menuWidth),
                       ),
                     ),
-                    SizedBox(height: 30)
+                    const SizedBox(height: 40)
                   ],
                 ),
               ),
