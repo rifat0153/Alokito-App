@@ -88,7 +88,7 @@ class _MyMapViewState extends State<MyMapView> {
               elevation: 4,
               margin: EdgeInsets.symmetric(vertical: 8),
               child: SizedBox(
-                width: mediaQuery.size.width - 30,
+                width: mediaQuery.size.width,
                 height: mediaQuery.size.height * (1 / 3),
                 child: GoogleMap(
                   onMapCreated: _onMapCreated,
