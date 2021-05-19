@@ -31,7 +31,7 @@ class _MyMapViewState extends State<MyMapView> {
     geo = Geoflutterfire();
     GeoFirePoint center = geo.point(latitude: 23.7590, longitude: 90.4119);
     stream = radius.switchMap((rad) {
-      var collectionReference = _firestore.collection('locations');
+      var collectionReference = _firestore.collection('gifts');
 //          .where('name', isEqualTo: 'darshan');
       return geo.collection(collectionRef: collectionReference).within(
           center: center, radius: rad, field: 'position', strictMode: true);
@@ -85,8 +85,8 @@ class _MyMapViewState extends State<MyMapView> {
             padding: const EdgeInsets.only(top: 8.0),
             child: Slider(
               min: 1,
-              max: 20,
-              divisions: 19,
+              max: 200,
+              divisions: 199,
               value: _value,
               label: _label,
               activeColor: Colors.blue,
