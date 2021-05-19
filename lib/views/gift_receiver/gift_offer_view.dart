@@ -3,7 +3,6 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/map/my_map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class GiftOfferView extends StatelessWidget {
   static const route = 'giftoffer';
@@ -27,7 +26,7 @@ class GiftOfferView extends StatelessWidget {
             _TextWidget(),
             Container(
               // color: Colors.blue,
-              height: Get.size.height * 0.35,
+              height: Get.size.height * 0.3,
               width: Get.size.width,
               child: Obx(
                 () => ListView.builder(
@@ -41,7 +40,7 @@ class GiftOfferView extends StatelessWidget {
                 label: giftController.searchRadius.toInt().toString(),
                 divisions: 199,
                 min: 1.0,
-                max: 200,
+                max: 200.0,
                 value: giftController.searchRadius,
                 onChanged: (value) {
                   giftController.setSearchRadius(value);
