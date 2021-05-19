@@ -6,6 +6,7 @@ import 'package:alokito_new/controller/map/geo_controller.dart';
 import 'package:alokito_new/views/auth/auth_wrapper.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_giver/gift_giver_view.dart';
+import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/views/map/geo_map_view.dart';
 import 'package:alokito_new/views/map/my_map_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -73,6 +74,16 @@ class GetPages {
       page: () => AuthenticationWrapper(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => AuthController());
+      }),
+    ),
+    // Gift Receiver Routes
+    GetPage(
+      name: GiftReceiverView.route,
+      page: () => GiftReceiverView(),
+      transitionDuration: const Duration(milliseconds: 500),
+      transition: Transition.cupertino,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => GiftAddFormController());
       }),
     ),
 

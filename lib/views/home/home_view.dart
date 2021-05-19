@@ -1,6 +1,7 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
 import 'package:alokito_new/views/gift_giver/gift_giver_view.dart';
+import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/widgets/home/user_email_widget.dart';
 import 'package:alokito_new/widgets/home/user_name_widget.dart';
 import 'package:alokito_new/widgets/home/user_navbar.dart';
@@ -91,7 +92,7 @@ class HomeView extends StatelessWidget {
                     height: media.height * 0.1, width: media.width * 0.7),
               ),
               GestureDetector(
-                onTap: () => GiftGiverService().addPosition(),
+                onTap: () => Get.toNamed(GiftReceiverView.route),
                 child: _GiftRecieverMenu(
                     height: media.height * 0.1, width: media.width * 0.7),
               ),
