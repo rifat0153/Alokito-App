@@ -113,10 +113,11 @@ class _GiftListTile extends StatelessWidget {
                         () => Text(
                           giftController.getGiftType(
                               giftController.giftList.value[index].giftType),
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Text('USer name'),
+                      const SizedBox(height: 5),
+                      Text(giftController.giftList.value[index].userName),
                     ],
                   ),
                 ),

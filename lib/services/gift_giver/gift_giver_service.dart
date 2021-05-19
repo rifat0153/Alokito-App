@@ -78,10 +78,16 @@ class GiftGiverService implements BaseGiftGiverService {
 
     AuthController authController = Get.find();
 
+    var userDoc =
+        await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
+
+    var name = userDoc.data()!['userName'] as String;
+
     var gift = GiftGiver(
       id: docRef.id,
-      userName: authController.currentUser.value
-          .maybeWhen(data: (data) => data.userName, orElse: () => ''),
+      userName: name,
+      // userName: authController.currentUser.value
+      //     .maybeWhen(data: (data) => data.userName, orElse: () => ''),
       giftFor: controller.giftFor.value,
       distance: controller.distance.value,
       giftType: controller.giftType.value,
