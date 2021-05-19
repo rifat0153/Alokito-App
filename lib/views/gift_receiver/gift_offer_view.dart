@@ -24,7 +24,7 @@ class GiftOfferView extends StatelessWidget {
             MyMapView(),
             Container(
               color: Colors.blue,
-              height: Get.size.height * 0.25,
+              height: Get.size.height * 0.4,
               width: Get.size.width,
               child: Obx(
                 () => ListView.builder(

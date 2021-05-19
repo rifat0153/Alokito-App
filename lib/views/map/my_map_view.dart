@@ -1,18 +1,22 @@
+import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class MyMapView extends StatefulWidget {
   static const route = '/mymapview';
+
   @override
   _MyMapViewState createState() => _MyMapViewState();
 }
 
 class _MyMapViewState extends State<MyMapView> {
   GoogleMapController? _mapController;
+  final GiftController giftController = Get.find();
   late TextEditingController _latitudeController, _longitudeController;
 
   // firestore init
@@ -94,60 +98,6 @@ class _MyMapViewState extends State<MyMapView> {
               onChanged: (double value) => changed(value),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 100,
-                child: TextField(
-                  controller: _latitudeController,
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                      labelText: 'lat',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      )),
-                ),
-              ),
-              Container(
-                width: 100,
-                child: TextField(
-                  controller: _longitudeController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      labelText: 'lng',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      )),
-                ),
-              ),
-              MaterialButton(
-                color: Colors.blue,
-                onPressed: () {
-                  final lat = double.parse(_latitudeController.text);
-                  final lng = double.parse(_longitudeController.text);
-                  _addPoint(lat, lng);
-                },
-                child: const Text(
-                  'ADD',
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
-            ],
-          ),
-          MaterialButton(
-            color: Colors.amber,
-            child: const Text(
-              'Add nested ',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () {
-              final lat = double.parse(_latitudeController.text);
-              final lng = double.parse(_longitudeController.text);
-              _addNestedPoint(lat, lng);
-            },
-          )
         ],
       ),
     );
@@ -195,13 +145,13 @@ class _MyMapViewState extends State<MyMapView> {
     });
   }
 
-  void _addMarker(double lat, double lng) {
+  void _addMarker(double lat, double lng, double distance) {
     final id = MarkerId(lat.toString() + lng.toString());
     final _marker = Marker(
       markerId: id,
       position: LatLng(lat, lng),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
-      infoWindow: InfoWindow(title: 'latLng'),
+      infoWindow: InfoWindow(title: 'latLng', snippet: '$distance km'),
     );
     setState(() {
       markers[id] = _marker;
@@ -212,7 +162,14 @@ class _MyMapViewState extends State<MyMapView> {
     documentList.forEach((DocumentSnapshot document) {
       final GeoPoint point =
           document.data()!['position']['geopoint'] as GeoPoint;
-      _addMarker(point.latitude, point.longitude);
+
+      var userPoint = geo.point(
+          latitude: giftController.currentUserLocation.value.latitude,
+          longitude: giftController.currentUserLocation.value.longitude);
+
+      var distance =
+          userPoint.distance(lat: point.latitude, lng: point.longitude);
+      _addMarker(point.latitude, point.longitude, distance);
     });
   }
 
