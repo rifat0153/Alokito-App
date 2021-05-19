@@ -1,4 +1,5 @@
 import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -33,7 +34,17 @@ class _MyMapViewState extends State<MyMapView> {
     _longitudeController = TextEditingController();
 
     geo = Geoflutterfire();
-    GeoFirePoint center = geo.point(latitude: 23.7590, longitude: 90.4119);
+    GeoFirePoint center = geo.point(latitude: 23, longitude: 90);
+    // GeoFirePoint center = geo.point(
+    //     latitude: giftController.currentUserLocation.value.latitude,
+    //     longitude: giftController.currentUserLocation.value.longitude);
+
+    print('center lat: ' + center.latitude.toString());
+    print('center long: ' + center.longitude.toString());
+    print('user lat: ' +
+        giftController.currentUserLocation.value.latitude.toString());
+    print('user lat: ' +
+        giftController.currentUserLocation.value.longitude.toString());
     stream = radius.switchMap((rad) {
       var collectionReference = _firestore.collection('gifts');
 //          .where('name', isEqualTo: 'darshan');
@@ -62,6 +73,11 @@ class _MyMapViewState extends State<MyMapView> {
 
   @override
   Widget build(BuildContext context) {
+    print('user lat: ' +
+        giftController.currentUserLocation.value.latitude.toString());
+    print('user lat: ' +
+        giftController.currentUserLocation.value.longitude.toString());
+
     final mediaQuery = MediaQuery.of(context);
     return Container(
       child: Column(
@@ -160,8 +176,11 @@ class _MyMapViewState extends State<MyMapView> {
 
   void _updateMarkers(List<DocumentSnapshot> documentList) {
     documentList.forEach((DocumentSnapshot document) {
-      final GeoPoint point =
-          document.data()!['position']['geopoint'] as GeoPoint;
+      // final GeoPoint point =
+      // document.data()!['position']['geopoint'] as GeoPoint;
+
+      final GiftGiver giftGiver = GiftGiver.fromJson(document.data()!);
+      final GeoPoint point = giftGiver.position.geopoint;
 
       var userPoint = geo.point(
           latitude: giftController.currentUserLocation.value.latitude,
