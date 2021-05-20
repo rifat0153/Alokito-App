@@ -14,6 +14,10 @@ class GiftGiver with _$GiftGiver {
     String? id,
     @Default(0) int giftFor,
     required String userName,
+    required int userRating,
+    required String userImageUrl,
+    @JsonKey(fromJson: _fromJson, toJson: _toJson)
+        required MyPosition userPosition,
     required int distance,
     @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
         required GiftType giftType,
@@ -22,7 +26,7 @@ class GiftGiver with _$GiftGiver {
     required String imageUrl,
     required String giftDetails,
     // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
-        required String listingDate,
+    required String listingDate,
     required int listingForDays,
     // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
     required String pickUpTime,

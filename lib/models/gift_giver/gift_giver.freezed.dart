@@ -24,6 +24,10 @@ class _$GiftGiverTearOff {
       {String? id,
       int giftFor = 0,
       required String userName,
+      required int userRating,
+      required String userImageUrl,
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          required MyPosition userPosition,
       required int distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required GiftType giftType,
@@ -41,6 +45,9 @@ class _$GiftGiverTearOff {
       id: id,
       giftFor: giftFor,
       userName: userName,
+      userRating: userRating,
+      userImageUrl: userImageUrl,
+      userPosition: userPosition,
       distance: distance,
       giftType: giftType,
       uid: uid,
@@ -68,6 +75,10 @@ mixin _$GiftGiver {
   String? get id => throw _privateConstructorUsedError;
   int get giftFor => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
+  int get userRating => throw _privateConstructorUsedError;
+  String get userImageUrl => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  MyPosition get userPosition => throw _privateConstructorUsedError;
   int get distance => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
@@ -98,6 +109,10 @@ abstract class $GiftGiverCopyWith<$Res> {
       {String? id,
       int giftFor,
       String userName,
+      int userRating,
+      String userImageUrl,
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          MyPosition userPosition,
       int distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           GiftType giftType,
@@ -112,6 +127,7 @@ abstract class $GiftGiverCopyWith<$Res> {
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           MyPosition position});
 
+  $MyPositionCopyWith<$Res> get userPosition;
   $MyPositionCopyWith<$Res> get position;
 }
 
@@ -128,6 +144,9 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? id = freezed,
     Object? giftFor = freezed,
     Object? userName = freezed,
+    Object? userRating = freezed,
+    Object? userImageUrl = freezed,
+    Object? userPosition = freezed,
     Object? distance = freezed,
     Object? giftType = freezed,
     Object? uid = freezed,
@@ -153,6 +172,18 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      userRating: userRating == freezed
+          ? _value.userRating
+          : userRating // ignore: cast_nullable_to_non_nullable
+              as int,
+      userImageUrl: userImageUrl == freezed
+          ? _value.userImageUrl
+          : userImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      userPosition: userPosition == freezed
+          ? _value.userPosition
+          : userPosition // ignore: cast_nullable_to_non_nullable
+              as MyPosition,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -201,6 +232,13 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
   }
 
   @override
+  $MyPositionCopyWith<$Res> get userPosition {
+    return $MyPositionCopyWith<$Res>(_value.userPosition, (value) {
+      return _then(_value.copyWith(userPosition: value));
+    });
+  }
+
+  @override
   $MyPositionCopyWith<$Res> get position {
     return $MyPositionCopyWith<$Res>(_value.position, (value) {
       return _then(_value.copyWith(position: value));
@@ -218,6 +256,10 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       {String? id,
       int giftFor,
       String userName,
+      int userRating,
+      String userImageUrl,
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          MyPosition userPosition,
       int distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           GiftType giftType,
@@ -232,6 +274,8 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           MyPosition position});
 
+  @override
+  $MyPositionCopyWith<$Res> get userPosition;
   @override
   $MyPositionCopyWith<$Res> get position;
 }
@@ -250,6 +294,9 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? id = freezed,
     Object? giftFor = freezed,
     Object? userName = freezed,
+    Object? userRating = freezed,
+    Object? userImageUrl = freezed,
+    Object? userPosition = freezed,
     Object? distance = freezed,
     Object? giftType = freezed,
     Object? uid = freezed,
@@ -275,6 +322,18 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      userRating: userRating == freezed
+          ? _value.userRating
+          : userRating // ignore: cast_nullable_to_non_nullable
+              as int,
+      userImageUrl: userImageUrl == freezed
+          ? _value.userImageUrl
+          : userImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      userPosition: userPosition == freezed
+          ? _value.userPosition
+          : userPosition // ignore: cast_nullable_to_non_nullable
+              as MyPosition,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -330,6 +389,10 @@ class _$_GiftGiver implements _GiftGiver {
       {this.id,
       this.giftFor = 0,
       required this.userName,
+      required this.userRating,
+      required this.userImageUrl,
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          required this.userPosition,
       required this.distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required this.giftType,
@@ -354,6 +417,13 @@ class _$_GiftGiver implements _GiftGiver {
   final int giftFor;
   @override
   final String userName;
+  @override
+  final int userRating;
+  @override
+  final String userImageUrl;
+  @override
+  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  final MyPosition userPosition;
   @override
   final int distance;
   @override
@@ -381,7 +451,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userRating: $userRating, userImageUrl: $userImageUrl, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
   }
 
   @override
@@ -396,6 +466,15 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.userName, userName) ||
                 const DeepCollectionEquality()
                     .equals(other.userName, userName)) &&
+            (identical(other.userRating, userRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.userRating, userRating)) &&
+            (identical(other.userImageUrl, userImageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.userImageUrl, userImageUrl)) &&
+            (identical(other.userPosition, userPosition) ||
+                const DeepCollectionEquality()
+                    .equals(other.userPosition, userPosition)) &&
             (identical(other.distance, distance) ||
                 const DeepCollectionEquality()
                     .equals(other.distance, distance)) &&
@@ -436,6 +515,9 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftFor) ^
       const DeepCollectionEquality().hash(userName) ^
+      const DeepCollectionEquality().hash(userRating) ^
+      const DeepCollectionEquality().hash(userImageUrl) ^
+      const DeepCollectionEquality().hash(userPosition) ^
       const DeepCollectionEquality().hash(distance) ^
       const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(uid) ^
@@ -464,6 +546,10 @@ abstract class _GiftGiver implements GiftGiver {
       {String? id,
       int giftFor,
       required String userName,
+      required int userRating,
+      required String userImageUrl,
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          required MyPosition userPosition,
       required int distance,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required GiftType giftType,
@@ -487,6 +573,13 @@ abstract class _GiftGiver implements GiftGiver {
   int get giftFor => throw _privateConstructorUsedError;
   @override
   String get userName => throw _privateConstructorUsedError;
+  @override
+  int get userRating => throw _privateConstructorUsedError;
+  @override
+  String get userImageUrl => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  MyPosition get userPosition => throw _privateConstructorUsedError;
   @override
   int get distance => throw _privateConstructorUsedError;
   @override

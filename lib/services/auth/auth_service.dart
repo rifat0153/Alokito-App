@@ -74,7 +74,7 @@ class AuthService implements BaseAuthService {
 
       var loc = await Location().getLocation();
 
-      LatLng userPosition = LatLng(loc.latitude!, loc.latitude!);
+      LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
       var myLocation = geo.point(
           latitude: userPosition.latitude, longitude: userPosition.longitude);
       var pos = myLocation.data as Map<dynamic, dynamic>;

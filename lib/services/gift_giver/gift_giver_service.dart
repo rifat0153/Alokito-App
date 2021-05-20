@@ -86,10 +86,17 @@ class GiftGiverService implements BaseGiftGiverService {
         userDoc.data() == null ? '' : userDoc.data()!['userName'] as String;
     var giverImageUrl =
         userDoc.data() == null ? '' : userDoc.data()!['imageUrl'] as String;
+    int giverRating =
+        userDoc.data() == null ? 1 : userDoc.data()!['reviewInStar'] as int;
+    MyPosition userPosition = MyPosition.fromJson(
+        userDoc.data()!['position'] as Map<String, dynamic>);
 
     var gift = GiftGiver(
       id: docRef.id,
       userName: name,
+      userImageUrl: giverImageUrl,
+      userRating: giverRating,
+      userPosition: userPosition,
       giftFor: controller.giftFor.value,
       distance: controller.distance.value,
       giftType: controller.giftType.value,
