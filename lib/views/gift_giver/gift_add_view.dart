@@ -35,32 +35,33 @@ class GiftAddView extends StatelessWidget {
         break;
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              icon: const Icon(
-                Icons.cancel,
-                color: Colors.black,
-              ),
-              onPressed: () => Get.back())
-        ],
-        title: Text(
-          'My Gift - $giftType',
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: GoogleFonts.aclonica().fontFamily,
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                icon: const Icon(
+                  Icons.cancel,
+                  color: Colors.black,
+                ),
+                onPressed: () => Get.back())
+          ],
+          title: Text(
+            'My Gift - $giftType',
+            style: TextStyle(
+              color: Colors.black,
+              fontFamily: GoogleFonts.aclonica().fontFamily,
+            ),
           ),
+          backgroundColor: Colors.grey[200],
+          shadowColor: Colors.white,
         ),
-        backgroundColor: Colors.grey[200],
-        shadowColor: Colors.white,
-      ),
-      // persistentFooterButtons: [
-      //   const Icon(Icons.ac_unit_outlined),
-      // ],
-      body: SafeArea(
-        child: Container(
+        // persistentFooterButtons: [
+        //   const Icon(Icons.ac_unit_outlined),
+        // ],
+        body: Container(
           height: Get.size.height,
           width: Get.size.width,
           decoration: const BoxDecoration(
@@ -134,7 +135,7 @@ class _PickUpTimeWidget extends StatelessWidget {
                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                fillColor: Colors.grey[300],
+                fillColor: GIFT_ADD_FORM_COLOR,
                 hoverColor: Colors.grey,
                 filled: true,
                 hintText: 'e.g. today from 10.30 am to 4.30 pm'),
@@ -176,8 +177,8 @@ class _GiftDetailWidget extends StatelessWidget {
                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                fillColor: Colors.grey[300],
-                hoverColor: Colors.grey,
+                fillColor: GIFT_ADD_FORM_COLOR,
+                // hoverColor: Colors.grey,
                 filled: true,
                 hintText:
                     'e.g. Food or Medicine name, quality, quantity, any other information'),
