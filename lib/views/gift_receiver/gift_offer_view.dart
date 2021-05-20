@@ -1,5 +1,6 @@
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/views/gift_receiver/gift_details_view.dart';
 import 'package:alokito_new/views/map/my_map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,32 +20,37 @@ class GiftOfferView extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: Column(
+        body: Stack(
           children: [
-            MyMapView(),
-            _SearchWidget(),
-            _TextWidget(),
-            Container(
-              // color: Colors.blue,
-              height: Get.size.height * 0.3,
-              width: Get.size.width,
-              child: Obx(
-                () => ListView.builder(
-                  itemCount: giftController.giftList.value.length,
-                  itemBuilder: (_, i) =>
-                      _GiftListTile(giftController: giftController, index: i),
+            Container(color: Colors.grey[300]),
+            Column(
+              children: [
+                MyMapView(),
+                _SearchWidget(),
+                _TextWidget(),
+                Container(
+                  // color: Colors.blue,
+                  height: Get.size.height * 0.3,
+                  width: Get.size.width,
+                  child: Obx(
+                    () => ListView.builder(
+                      itemCount: giftController.giftList.value.length,
+                      itemBuilder: (_, i) => _GiftListTile(
+                          giftController: giftController, index: i),
+                    ),
+                  ),
                 ),
-              ),
+                Obx(() => Slider(
+                    label: giftController.searchRadius.toInt().toString(),
+                    divisions: 199,
+                    min: 1.0,
+                    max: 200.0,
+                    value: giftController.searchRadius,
+                    onChanged: (value) {
+                      giftController.setSearchRadius(value);
+                    }))
+              ],
             ),
-            Obx(() => Slider(
-                label: giftController.searchRadius.toInt().toString(),
-                divisions: 199,
-                min: 1.0,
-                max: 200.0,
-                value: giftController.searchRadius,
-                onChanged: (value) {
-                  giftController.setSearchRadius(value);
-                }))
           ],
         ),
       ),
@@ -65,74 +71,78 @@ class _GiftListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
-      child: Row(
-        children: [
-          Obx(
-            () => Container(
+      child: GestureDetector(
+        onTap: () => Get.to(
+            GiftDetailsView(giftGiver: giftController.giftList.value[index])),
+        child: Row(
+          children: [
+            Obx(
+              () => Container(
+                decoration: BoxDecoration(
+                  color: GIFT_ADD_FORM_COLOR,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                  ),
+                ),
+                width: Get.size.width * 0.2,
+                height: 70,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                  ),
+                  child: Image.network(
+                    giftController.giftList.value[index].imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            Container(
               decoration: BoxDecoration(
                 color: GIFT_ADD_FORM_COLOR,
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
                 ),
               ),
-              width: Get.size.width * 0.2,
               height: 70,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                ),
-                child: Image.network(
-                  giftController.giftList.value[index].imageUrl,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: GIFT_ADD_FORM_COLOR,
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-            ),
-            height: 70,
-            width: Get.size.width * 0.63,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Obx(
-                        () => Text(
-                          giftController.getGiftType(
-                              giftController.giftList.value[index].giftType),
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+              width: Get.size.width * 0.63,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Obx(
+                          () => Text(
+                            giftController.getGiftType(
+                                giftController.giftList.value[index].giftType),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(giftController.giftList.value[index].userName),
-                    ],
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Location'),
+                        const SizedBox(height: 5),
+                        Text(giftController.giftList.value[index].userName),
+                      ],
                     ),
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Location'),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

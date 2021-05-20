@@ -16,6 +16,8 @@ class MyMapView extends StatefulWidget {
 }
 
 class _MyMapViewState extends State<MyMapView> {
+// make sure to initialize before map loading
+
   GoogleMapController? _mapController;
   final GiftController giftController = Get.find();
   late TextEditingController _latitudeController, _longitudeController;
@@ -27,9 +29,16 @@ class _MyMapViewState extends State<MyMapView> {
   final radius = BehaviorSubject<double>.seeded(10.0);
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
+  late BitmapDescriptor customIcon;
+
   @override
   void initState() {
     super.initState();
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(2, 2)),
+            'assets/images/community-hero.png')
+        .then((d) {
+      customIcon = d;
+    });
     _latitudeController = TextEditingController();
     _longitudeController = TextEditingController();
 
@@ -166,7 +175,7 @@ class _MyMapViewState extends State<MyMapView> {
     final _marker = Marker(
       markerId: id,
       position: LatLng(lat, lng),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
+      icon: customIcon,
       infoWindow: InfoWindow(title: 'latLng', snippet: '$distance km'),
     );
     setState(() {
