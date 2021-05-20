@@ -1,5 +1,6 @@
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -34,11 +35,7 @@ class _MyMapViewState extends State<MyMapView> {
   @override
   void initState() {
     super.initState();
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(), 'assets/images/map-dot.png')
-        .then((d) {
-      customIcon = d;
-    });
+    setMarker();
     _latitudeController = TextEditingController();
     _longitudeController = TextEditingController();
 
@@ -54,6 +51,12 @@ class _MyMapViewState extends State<MyMapView> {
       return geo.collection(collectionRef: collectionReference).within(
           center: center, radius: rad, field: 'position', strictMode: true);
     });
+  }
+
+  void setMarker() async {
+    customIcon = await BitmapDescriptor.fromAssetImage(
+        ImageConfiguration(size: Size(10, 10)),
+        'assets/images/map-dot (1).png');
   }
 
   @override
