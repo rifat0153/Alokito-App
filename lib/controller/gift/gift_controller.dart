@@ -34,7 +34,7 @@ class GiftController extends GetxController {
   }
 
   void bindGiftStream() {
-    giftList.bindStream(clubService.giftStream());
+    giftList.bindStream(clubService.giftStreamByLocation());
 
     filteredGiftList.value = List<GiftGiver>.empty();
 

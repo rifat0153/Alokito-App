@@ -35,7 +35,7 @@ class _MyMapViewState extends State<MyMapView> {
   void initState() {
     super.initState();
     BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(size: Size(10, 10)), 'assets/images/map-dot.png')
+            ImageConfiguration(), 'assets/images/map-dot.png')
         .then((d) {
       customIcon = d;
     });

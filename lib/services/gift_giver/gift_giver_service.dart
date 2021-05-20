@@ -7,6 +7,7 @@ import 'package:alokito_new/models/geo.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/services/gift_giver/base_gift_giver_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
@@ -155,20 +156,23 @@ class GiftGiverService implements BaseGiftGiverService {
 
     var collectionReference = _firestore.collection('gifts');
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
-    var stream = geo
+
+    List<GiftGiver> list = [];
+    geo
         .collection(collectionRef: collectionReference)
         .within(
             center: center,
             radius: giftController.searchRadius,
             field: 'position',
             strictMode: true)
-        .map((event) => event.map(
-              (e) {
-                var gift = GiftGiver.fromJson(e.data() ?? {});
-                return gift;
-              },
-            ).toList());
+        .forEach((element) {
+      element.forEach((doc) {
+        list = [...list, GiftGiver.fromJson(doc.data() ?? {})];
+      });
+    });
 
-    return stream;
+    print(list);
+
+    return Stream.value(list);
   }
 }
