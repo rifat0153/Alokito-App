@@ -48,27 +48,11 @@ class _MyMapViewState extends State<MyMapView> {
         latitude: giftController.currentUserLocation.value.latitude,
         longitude: giftController.currentUserLocation.value.longitude);
 
-    print('center lat: ' + center.latitude.toString());
-    print('center long: ' + center.longitude.toString());
-    print('user lat: ' +
-        giftController.currentUserLocation.value.latitude.toString());
-    print('user lat: ' +
-        giftController.currentUserLocation.value.longitude.toString());
     stream = radius.switchMap((rad) {
       var collectionReference = _firestore.collection('gifts');
 //          .where('name', isEqualTo: 'darshan');
       return geo.collection(collectionRef: collectionReference).within(
           center: center, radius: rad, field: 'position', strictMode: true);
-
-      /*
-      ****Example to specify nested object****
-
-      var collectionReference = _firestore.collection('nestedLocations');
-//          .where('name', isEqualTo: 'darshan');
-      return geo.collection(collectionRef: collectionReference).within(
-          center: center, radius: rad, field: 'address.location.position');
-
-      */
     });
   }
 

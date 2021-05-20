@@ -22,34 +22,42 @@ class GiftOfferView extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(color: Colors.grey[300]),
-            Column(
-              children: [
-                MyMapView(),
-                _SearchWidget(),
-                _TextWidget(),
-                Container(
-                  // color: Colors.blue,
-                  height: Get.size.height * 0.3,
-                  width: Get.size.width,
-                  child: Obx(
-                    () => ListView.builder(
-                      itemCount: giftController.giftList.value.length,
-                      itemBuilder: (_, i) => _GiftListTile(
-                          giftController: giftController, index: i),
+            Container(
+              height: Get.size.height + 500,
+              width: Get.size.width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/gift_offer.png'),
+                    fit: BoxFit.fill),
+              ),
+              child: Column(
+                children: [
+                  MyMapView(),
+                  _SearchWidget(),
+                  _TextWidget(),
+                  Container(
+                    // color: Colors.blue,
+                    height: Get.size.height * 0.3,
+                    width: Get.size.width,
+                    child: Obx(
+                      () => ListView.builder(
+                        itemCount: giftController.giftList.value.length,
+                        itemBuilder: (_, i) => _GiftListTile(
+                            giftController: giftController, index: i),
+                      ),
                     ),
                   ),
-                ),
-                Obx(() => Slider(
-                    label: giftController.searchRadius.toInt().toString(),
-                    divisions: 199,
-                    min: 1.0,
-                    max: 200.0,
-                    value: giftController.searchRadius,
-                    onChanged: (value) {
-                      giftController.setSearchRadius(value);
-                    }))
-              ],
+                  Obx(() => Slider(
+                      label: giftController.searchRadius.toInt().toString(),
+                      divisions: 199,
+                      min: 1.0,
+                      max: 200.0,
+                      value: giftController.searchRadius,
+                      onChanged: (value) {
+                        giftController.setSearchRadius(value);
+                      }))
+                ],
+              ),
             ),
           ],
         ),
