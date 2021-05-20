@@ -74,7 +74,8 @@ mixin _$GiftGiver {
   String get uid => throw _privateConstructorUsedError;
   int get givingGiftInDays => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  String get giftDetails => throw _privateConstructorUsedError;
+  String get giftDetails =>
+      throw _privateConstructorUsedError; // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
   String get listingDate => throw _privateConstructorUsedError;
   int get listingForDays =>
       throw _privateConstructorUsedError; // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
@@ -366,7 +367,7 @@ class _$_GiftGiver implements _GiftGiver {
   final String imageUrl;
   @override
   final String giftDetails;
-  @override
+  @override // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
   final String listingDate;
   @override
   final int listingForDays;
@@ -499,7 +500,7 @@ abstract class _GiftGiver implements GiftGiver {
   String get imageUrl => throw _privateConstructorUsedError;
   @override
   String get giftDetails => throw _privateConstructorUsedError;
-  @override
+  @override // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
   String get listingDate => throw _privateConstructorUsedError;
   @override
   int get listingForDays => throw _privateConstructorUsedError;

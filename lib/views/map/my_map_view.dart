@@ -34,10 +34,10 @@ class _MyMapViewState extends State<MyMapView> {
     _longitudeController = TextEditingController();
 
     geo = Geoflutterfire();
-    GeoFirePoint center = geo.point(latitude: 23, longitude: 90);
-    // GeoFirePoint center = geo.point(
-    //     latitude: giftController.currentUserLocation.value.latitude,
-    //     longitude: giftController.currentUserLocation.value.longitude);
+    // GeoFirePoint center = geo.point(latitude: 23, longitude: 90);
+    GeoFirePoint center = geo.point(
+        latitude: giftController.currentUserLocation.value.latitude,
+        longitude: giftController.currentUserLocation.value.longitude);
 
     print('center lat: ' + center.latitude.toString());
     print('center long: ' + center.longitude.toString());

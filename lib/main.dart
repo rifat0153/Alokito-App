@@ -85,7 +85,7 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => GiftController());
+        Get.put(GiftController());
       }),
     ),
 

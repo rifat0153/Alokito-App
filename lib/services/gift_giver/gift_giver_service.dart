@@ -10,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
 import 'package:path/path.dart' as path;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
@@ -95,7 +96,7 @@ class GiftGiverService implements BaseGiftGiverService {
       imageUrl: url,
       givingGiftInDays: controller.givingGiftInDays.value,
       giftDetails: controller.giftDetails.value,
-      listingDate: Timestamp.now().toString(),
+      listingDate: Timestamp.now().toDate().toString(),
       listingForDays: controller.listingFor.value.toInt(),
       pickUpTime: controller.pickUpTime.value,
       canLeaveOutside: controller.canLeaveOutside.value,
@@ -109,9 +110,17 @@ class GiftGiverService implements BaseGiftGiverService {
   }
 
   Stream<List<GiftGiver>> giftStreamByLocation() {
-// Create a geoFirePoint
-    GeoFirePoint center = geo.point(latitude: 23.7590, longitude: 90.4119);
     GiftController giftController = Get.find();
+
+// Create a geoFirePoint
+    GeoFirePoint center = geo.point(
+        latitude: giftController.currentUserLocation.value.latitude,
+        longitude: giftController.currentUserLocation.value.longitude);
+    // GeoFirePoint center = geo.point(
+    //     latitude: giftController.currentUserLocation.value.latitude,
+    //     longitude: giftController.currentUserLocation.value.longitude);
+
+    print('In Service: center is: ' + center.toString());
 
     var collectionReference = _firestore.collection('gifts');
     var stream = geo

@@ -21,7 +21,8 @@ class GiftGiver with _$GiftGiver {
     required int givingGiftInDays,
     required String imageUrl,
     required String giftDetails,
-    required String listingDate,
+    // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+        required String listingDate,
     required int listingForDays,
     // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
     required String pickUpTime,
