@@ -117,6 +117,7 @@ class GiftGiverService implements BaseGiftGiverService {
     controller.isUploading.value = false;
   }
 
+  @override
   Stream<List<GiftGiver>> giftStreamByLocation() {
     GiftController giftController = Get.find();
 
@@ -131,6 +132,7 @@ class GiftGiverService implements BaseGiftGiverService {
     print('In Service: center is: ' + center.toString());
 
     var collectionReference = _firestore.collection('gifts');
+    // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
     var stream = geo
         .collection(collectionRef: collectionReference)
         .within(
@@ -138,8 +140,11 @@ class GiftGiverService implements BaseGiftGiverService {
             radius: giftController.searchRadius,
             field: 'position',
             strictMode: true)
-        .map((event) =>
-            event.map((e) => GiftGiver.fromJson(e.data() ?? {})).toList());
+        .map((event) => event
+            .map(
+              (e) => GiftGiver.fromJson(e.data() ?? {}),
+            )
+            .toList());
 
     return stream;
   }
