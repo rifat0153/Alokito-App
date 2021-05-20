@@ -61,51 +61,56 @@ class GiftAddView extends StatelessWidget {
         // persistentFooterButtons: [
         //   const Icon(Icons.ac_unit_outlined),
         // ],
-        body: Container(
-          height: Get.size.height,
-          width: Get.size.width,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/gift_add_form.png'),
-                fit: BoxFit.fill),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                controller.giftType.value == GiftType.anyRetailItem
-                    ? Container()
-                    : FamilyOptionWidget(),
-                controller.giftType.value == GiftType.customizedPackage
-                    ? CustomGiftOptionWidget()
-                    : Container(),
-                DistanceListRow(),
-                ImageInputWidget(),
-                _GiftDetailWidget(),
-                ListingDateWidget(),
-                _PickUpTimeWidget(),
-                GiftLocationWidget(),
-                Obx(
-                  () => controller.isUploading.value
-                      ? CircularProgressIndicator()
-                      : MaterialButton(
-                          onPressed: () {
-                            controller.addGift();
-                          },
-                          color: GIFT_ADD_FORM_SUBMIT,
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 100),
-                            child: Text(
-                              'Submit',
-                              style: TextStyle(
-                                color: Colors.white,
+        body: Stack(
+          children: [
+            Container(
+              height: Get.size.height,
+              width: Get.size.width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/gift_add_form.png'),
+                    fit: BoxFit.fill),
+              ),
+            ),
+            SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  controller.giftType.value == GiftType.anyRetailItem
+                      ? Container()
+                      : FamilyOptionWidget(),
+                  controller.giftType.value == GiftType.customizedPackage
+                      ? CustomGiftOptionWidget()
+                      : Container(),
+                  DistanceListRow(),
+                  ImageInputWidget(),
+                  _GiftDetailWidget(),
+                  ListingDateWidget(),
+                  _PickUpTimeWidget(),
+                  GiftLocationWidget(),
+                  Obx(
+                    () => controller.isUploading.value
+                        ? CircularProgressIndicator()
+                        : MaterialButton(
+                            onPressed: () {
+                              controller.addGift();
+                            },
+                            color: GIFT_ADD_FORM_SUBMIT,
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 100),
+                              child: Text(
+                                'Submit',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                ),
-              ],
+                  ),
+                  SizedBox(height: 400)
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
