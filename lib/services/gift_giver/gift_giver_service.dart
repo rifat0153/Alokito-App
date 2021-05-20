@@ -125,10 +125,6 @@ class GiftGiverService implements BaseGiftGiverService {
     GeoFirePoint center = geo.point(
         latitude: giftController.currentUserLocation.value.latitude,
         longitude: giftController.currentUserLocation.value.longitude);
-    // GeoFirePoint center = geo.point(
-    //     latitude: giftController.currentUserLocation.value.latitude,
-    //     longitude: giftController.currentUserLocation.value.longitude);
-
     print('In Service: center is: ' + center.toString());
 
     var collectionReference = _firestore.collection('gifts');
@@ -140,31 +136,39 @@ class GiftGiverService implements BaseGiftGiverService {
             radius: giftController.searchRadius,
             field: 'position',
             strictMode: true)
-        .map((event) => event
-            .map(
-              (e) => GiftGiver.fromJson(e.data() ?? {}),
-            )
-            .toList());
+        .map((event) => event.map(
+              (e) {
+                var gift = GiftGiver.fromJson(e.data() ?? {});
+                return gift;
+              },
+            ).toList());
 
     return stream;
   }
 
   @override
   Stream<List<GiftGiver>> giftStream() {
-    print('In stream');
-    List<GiftGiver> retVal = [];
-    return _firestore
-        .collection('gifts')
-        // .where('listingFor', isEqualTo: 3)
-        .snapshots()
-        .map((QuerySnapshot querySnapshot) {
-      retVal = [];
-      querySnapshot.docs.forEach((doc) {
-        retVal.add(GiftGiver.fromJson(doc.data()));
-      });
+    GiftController giftController = Get.find();
+    GeoFirePoint center = geo.point(
+        latitude: giftController.currentUserLocation.value.latitude,
+        longitude: giftController.currentUserLocation.value.longitude);
 
-      print('IN service:   ' + retVal.length.toString());
-      return retVal;
-    });
+    var collectionReference = _firestore.collection('gifts');
+    // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
+    var stream = geo
+        .collection(collectionRef: collectionReference)
+        .within(
+            center: center,
+            radius: giftController.searchRadius,
+            field: 'position',
+            strictMode: true)
+        .map((event) => event.map(
+              (e) {
+                var gift = GiftGiver.fromJson(e.data() ?? {});
+                return gift;
+              },
+            ).toList());
+
+    return stream;
   }
 }

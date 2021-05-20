@@ -2,6 +2,7 @@ import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_receiver/gift_details_view.dart';
 import 'package:alokito_new/views/map/my_map_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -77,82 +78,87 @@ class _GiftListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
-      child: GestureDetector(
-        onTap: () => Get.to(
-            GiftDetailsView(giftGiver: giftController.giftList.value[index])),
-        child: Row(
-          children: [
-            Obx(
-              () => Container(
-                decoration: BoxDecoration(
-                  color: GIFT_ADD_FORM_COLOR,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                  ),
-                ),
-                width: Get.size.width * 0.2,
-                height: 70,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                  ),
-                  child: Image.network(
-                    giftController.giftList.value[index].imageUrl,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: GIFT_ADD_FORM_COLOR,
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-              ),
-              height: 70,
-              width: Get.size.width * 0.63,
+    return giftController.giftList.value[index].uid ==
+            FirebaseAuth.instance.currentUser?.uid
+        ? Container()
+        : Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+            child: GestureDetector(
+              onTap: () => Get.to(GiftDetailsView(
+                  giftGiver: giftController.giftList.value[index])),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Obx(
-                          () => Text(
-                            giftController.convertGiftType(
-                                giftController.giftList.value[index].giftType),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                  Obx(
+                    () => Container(
+                      decoration: BoxDecoration(
+                        color: GIFT_ADD_FORM_COLOR,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
                         ),
-                        const SizedBox(height: 5),
-                        Text(giftController.giftList.value[index].userName),
-                      ],
+                      ),
+                      width: Get.size.width * 0.2,
+                      height: 70,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                        ),
+                        child: Image.network(
+                          giftController.giftList.value[index].imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Location'),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: GIFT_ADD_FORM_COLOR,
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
                       ),
-                    ],
+                    ),
+                    height: 70,
+                    width: Get.size.width * 0.63,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Obx(
+                                () => Text(
+                                  giftController.convertGiftType(giftController
+                                      .giftList.value[index].giftType),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(giftController
+                                  .giftList.value[index].userName),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('Location'),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          );
   }
 }
 
