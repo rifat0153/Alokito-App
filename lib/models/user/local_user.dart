@@ -1,3 +1,5 @@
+
+import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,10 +12,13 @@ abstract class LocalUser with _$LocalUser {
     String? id,
     String? firstName,
     String? lastName,
+    @Default(0) int totalReview,
+    @Default(0) int reviewInStar,
     required String userName,
     required String email,
     String? imageUrl,
     @Default('user') String role,
+     @JsonKey(fromJson: _fromJson, toJson: _toJson) required MyPosition position,
   }) = _LocalUser;
 
   factory LocalUser.fromJson(Map<String, dynamic> json) =>
@@ -26,3 +31,7 @@ class LocalUserInfo with _$LocalUserInfo {
   const factory LocalUserInfo.loading() = Loading;
   const factory LocalUserInfo.error(Object e, StackTrace s) = Error;
 }
+
+
+Map<String, dynamic> _toJson(MyPosition myPosition) => myPosition.toJson();
+MyPosition _fromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);

@@ -1,5 +1,6 @@
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,7 @@ class GiftDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var giftType = giftController.getGiftType(giftGiver.giftType);
+    var giftType = giftController.convertGiftType(giftGiver.giftType);
 
     return SafeArea(
       child: Scaffold(
@@ -47,11 +48,8 @@ class GiftDetailsView extends StatelessWidget {
                     child: Column(
                       children: [
                         _Image(giftGiver: giftGiver),
-                        _Image(giftGiver: giftGiver),
-                        _Image(giftGiver: giftGiver),
-                        _Image(giftGiver: giftGiver),
-                        _Image(giftGiver: giftGiver),
-                        _Image(giftGiver: giftGiver),
+                        _PackageName(giftGiver: giftGiver),
+                        _GiftDetails(giftGiver: giftGiver),
                       ],
                     ),
                   ),
@@ -66,13 +64,102 @@ class GiftDetailsView extends StatelessWidget {
 class _Image extends StatelessWidget {
   _Image({required this.giftGiver});
 
-  GiftGiver giftGiver;
+  final GiftGiver giftGiver;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
-      width: Get.size.width,
-      child: Image.network(giftGiver.imageUrl, fit: BoxFit.contain),
+      height: 200,
+      width: Get.size.width * 0.9,
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.network(giftGiver.imageUrl, fit: BoxFit.fill)),
+    );
+  }
+}
+
+class _PackageName extends StatelessWidget {
+  _PackageName({required this.giftGiver});
+
+  final GiftGiver giftGiver;
+  final GiftController giftController = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              const Text(
+                'Package For',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 8, color: Colors.transparent),
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              color: GIFT_ADD_FORM_COLOR,
+            ),
+            child: Row(
+              children: [
+                Text(giftController.convertGiftFor(giftGiver)),
+                const SizedBox(width: 30),
+                Text('${giftGiver.givingGiftInDays} days'),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _GiftDetails extends StatelessWidget {
+  _GiftDetails({required this.giftGiver});
+
+  final GiftGiver giftGiver;
+  final GiftController giftController = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              const Text(
+                'Gift Details',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 8, color: Colors.transparent),
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                  color: GIFT_ADD_FORM_COLOR,
+                ),
+                child: Text('${giftGiver.giftDetails}'),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _GiftGiverInfo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [],
     );
   }
 }

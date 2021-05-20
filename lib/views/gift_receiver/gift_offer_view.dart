@@ -127,7 +127,7 @@ class _GiftListTile extends StatelessWidget {
                       children: [
                         Obx(
                           () => Text(
-                            giftController.getGiftType(
+                            giftController.convertGiftType(
                                 giftController.giftList.value[index].giftType),
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),

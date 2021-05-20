@@ -6,7 +6,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class GiftController extends GetxController {
-  
   GiftGiverService clubService = GiftGiverService();
   Rx<List<GiftGiver>> giftList = Rx<List<GiftGiver>>([]);
   var _searchRadius = 100.0.obs;
@@ -33,7 +32,7 @@ class GiftController extends GetxController {
     giftList.bindStream(clubService.giftStreamByLocation());
   }
 
-  String getGiftType(GiftType giftType) {
+  String convertGiftType(GiftType giftType) {
     switch (giftType) {
       case GiftType.anyRetailItem:
         return 'Any Retail Item';
@@ -43,6 +42,17 @@ class GiftController extends GetxController {
         return 'Package for 7 days';
       case GiftType.customizedPackage:
         return 'Custom Package';
+    }
+  }
+
+  String convertGiftFor(GiftGiver giftType) {
+    switch (giftType.giftFor) {
+      case 0:
+        return 'Small Family';
+      case 1:
+        return 'Large Family';
+      default:
+        return '';
     }
   }
 }
