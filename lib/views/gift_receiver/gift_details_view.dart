@@ -16,10 +16,12 @@ class GiftDetailsView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
+          leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+              onPressed: () => Get.back()),
           title: Text('Gift Offer- $giftType'),
           elevation: 5,
           foregroundColor: Colors.black,
@@ -36,7 +38,24 @@ class GiftDetailsView extends StatelessWidget {
                     fit: BoxFit.fill),
               ),
             ),
-            Positioned(top: 10, left: 10, child: _Image()),
+            Positioned(
+                top: 10,
+                child: Container(
+                  height: Get.size.height,
+                  width: Get.size.width,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _Image(giftGiver: giftGiver),
+                        _Image(giftGiver: giftGiver),
+                        _Image(giftGiver: giftGiver),
+                        _Image(giftGiver: giftGiver),
+                        _Image(giftGiver: giftGiver),
+                        _Image(giftGiver: giftGiver),
+                      ],
+                    ),
+                  ),
+                )),
           ],
         ),
       ),
@@ -45,13 +64,15 @@ class GiftDetailsView extends StatelessWidget {
 }
 
 class _Image extends StatelessWidget {
+  _Image({required this.giftGiver});
+
+  GiftGiver giftGiver;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-            icon: const Icon(Icons.arrow_back), onPressed: () => Get.back()),
-      ],
+    return Container(
+      height: 250,
+      width: Get.size.width,
+      child: Image.network(giftGiver.imageUrl, fit: BoxFit.contain),
     );
   }
 }
