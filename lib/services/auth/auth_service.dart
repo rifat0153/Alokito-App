@@ -1,6 +1,10 @@
 import 'dart:io';
 
+import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/services/auth/base_auth_service.dart';
+import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 import '../../controller/auth/auth_controller.dart';
 import 'package:flutter/material.dart';
@@ -66,12 +70,26 @@ class AuthService implements BaseAuthService {
 
       print('IN signup:  ' + firebaseUser.user!.uid);
 
+      Geoflutterfire geo = Geoflutterfire();
+
+      var loc = await Location().getLocation();
+
+      LatLng userPosition = LatLng(loc.latitude!, loc.latitude!);
+      var myLocation = geo.point(
+          latitude: userPosition.latitude, longitude: userPosition.longitude);
+      var pos = myLocation.data as Map<dynamic, dynamic>;
+
+      MyPosition myPosition = MyPosition(
+          geohash: pos['geohash'] as String,
+          geopoint: pos['geopoint'] as GeoPoint);
+
       LocalUser myUser = LocalUser(
           id: firebaseUser.user?.uid,
           firstName: firstName,
           lastName: lastName,
           email: email,
-          userName: userName);
+          userName: userName,
+          position: myPosition);
 
       uploadUserAndImage(myUser, false, localFile);
 
