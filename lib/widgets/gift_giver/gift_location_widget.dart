@@ -16,6 +16,13 @@ class GiftLocationWidget extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 8),
+        MaterialButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          color: Colors.blue,
+          onPressed: () => Get.to(() => GiftMapWidget()),
+          child: const Text('Pickup Location'),
+        ),
         Row(
           children: [
             const SizedBox(width: 20),

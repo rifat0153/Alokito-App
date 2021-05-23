@@ -35,6 +35,7 @@ class _$GiftGiverTearOff {
       required String uid,
       required int givingGiftInDays,
       required String area,
+      required String location,
       required String imageUrl,
       required String giftDetails,
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
@@ -58,6 +59,7 @@ class _$GiftGiverTearOff {
       uid: uid,
       givingGiftInDays: givingGiftInDays,
       area: area,
+      location: location,
       imageUrl: imageUrl,
       giftDetails: giftDetails,
       userCreatedAt: userCreatedAt,
@@ -93,6 +95,7 @@ mixin _$GiftGiver {
   String get uid => throw _privateConstructorUsedError;
   int get givingGiftInDays => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
+  String get location => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   String get giftDetails => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
@@ -130,6 +133,7 @@ abstract class $GiftGiverCopyWith<$Res> {
       String uid,
       int givingGiftInDays,
       String area,
+      String location,
       String imageUrl,
       String giftDetails,
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
@@ -167,6 +171,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? uid = freezed,
     Object? givingGiftInDays = freezed,
     Object? area = freezed,
+    Object? location = freezed,
     Object? imageUrl = freezed,
     Object? giftDetails = freezed,
     Object? userCreatedAt = freezed,
@@ -224,6 +229,10 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
@@ -296,6 +305,7 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       String uid,
       int givingGiftInDays,
       String area,
+      String location,
       String imageUrl,
       String giftDetails,
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
@@ -336,6 +346,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? givingGiftInDays = freezed,
     Object? area = freezed,
+    Object? location = freezed,
     Object? imageUrl = freezed,
     Object? giftDetails = freezed,
     Object? userCreatedAt = freezed,
@@ -394,6 +405,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
               as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -448,6 +463,7 @@ class _$_GiftGiver implements _GiftGiver {
       required this.uid,
       required this.givingGiftInDays,
       required this.area,
+      required this.location,
       required this.imageUrl,
       required this.giftDetails,
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
@@ -490,6 +506,8 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final String area;
   @override
+  final String location;
+  @override
   final String imageUrl;
   @override
   final String giftDetails;
@@ -510,7 +528,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userRating: $userRating, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userRating: $userRating, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, location: $location, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
   }
 
   @override
@@ -550,6 +568,9 @@ class _$_GiftGiver implements _GiftGiver {
                     .equals(other.givingGiftInDays, givingGiftInDays)) &&
             (identical(other.area, area) ||
                 const DeepCollectionEquality().equals(other.area, area)) &&
+            (identical(other.location, location) ||
+                const DeepCollectionEquality()
+                    .equals(other.location, location)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)) &&
@@ -591,6 +612,7 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(givingGiftInDays) ^
       const DeepCollectionEquality().hash(area) ^
+      const DeepCollectionEquality().hash(location) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(giftDetails) ^
       const DeepCollectionEquality().hash(userCreatedAt) ^
@@ -627,6 +649,7 @@ abstract class _GiftGiver implements GiftGiver {
       required String uid,
       required int givingGiftInDays,
       required String area,
+      required String location,
       required String imageUrl,
       required String giftDetails,
       @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
@@ -667,6 +690,8 @@ abstract class _GiftGiver implements GiftGiver {
   int get givingGiftInDays => throw _privateConstructorUsedError;
   @override
   String get area => throw _privateConstructorUsedError;
+  @override
+  String get location => throw _privateConstructorUsedError;
   @override
   String get imageUrl => throw _privateConstructorUsedError;
   @override

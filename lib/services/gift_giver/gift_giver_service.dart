@@ -123,6 +123,7 @@ class GiftGiverService implements BaseGiftGiverService {
       userRating: giverRating,
       userPosition: userPosition,
       area: controller.area.value,
+      location: controller.location.value,
       giftFor: controller.giftFor.value,
       distance: controller.distance.value,
       giftType: controller.giftType.value,

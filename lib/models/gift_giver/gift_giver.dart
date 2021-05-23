@@ -25,6 +25,7 @@ class GiftGiver with _$GiftGiver {
     required String uid,
     required int givingGiftInDays,
     required String area,
+    required String location,
     required String imageUrl,
     required String giftDetails,
     @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)

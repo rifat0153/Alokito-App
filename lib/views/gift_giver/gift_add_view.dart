@@ -164,12 +164,18 @@ class _LocationAndAreaWidget extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 4, right: 30),
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    color: Colors.blue,
-                    onPressed: () => Get.to(() => GiftMapWidget()),
-                    child: const Text('Pickup Location'),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 0, style: BorderStyle.none),
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                        fillColor: GIFT_ADD_FORM_COLOR,
+                        // hoverColor: Colors.grey,
+                        filled: true,
+                        hintText: 'e.g. Banani'),
+                    onChanged: (value) => controller.location.value = value,
                   ),
                 ),
               ],
