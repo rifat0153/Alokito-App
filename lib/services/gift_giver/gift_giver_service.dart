@@ -91,10 +91,14 @@ class GiftGiverService implements BaseGiftGiverService {
         userDoc.data() == null ? 1 : userDoc.data()!['reviewInStar'] as int;
     MyPosition userPosition = MyPosition.fromJson(
         userDoc.data()!['position'] as Map<String, dynamic>);
+    Timestamp userCreatedAt = userDoc.data()!['createdAt'] as Timestamp;
+    String userFullName = (userDoc.data()!['firstName'] as String) +
+        (userDoc.data()!['lastName'] as String);
 
     var gift = GiftGiver(
       id: docRef.id,
       userName: name,
+      userFullName: userFullName,
       userImageUrl: giverImageUrl,
       userRating: giverRating,
       userPosition: userPosition,
@@ -110,6 +114,7 @@ class GiftGiverService implements BaseGiftGiverService {
       pickUpTime: controller.pickUpTime.value,
       canLeaveOutside: controller.canLeaveOutside.value,
       position: myPosition,
+      userCreatedAt: userCreatedAt,
     );
 
     print(gift.toJson());

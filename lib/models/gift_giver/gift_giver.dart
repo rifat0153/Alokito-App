@@ -16,6 +16,7 @@ class GiftGiver with _$GiftGiver {
     required String userName,
     required int userRating,
     required String userImageUrl,
+    required String userFullName,
     @JsonKey(fromJson: _fromJson, toJson: _toJson)
         required MyPosition userPosition,
     required int distance,
@@ -25,7 +26,8 @@ class GiftGiver with _$GiftGiver {
     required int givingGiftInDays,
     required String imageUrl,
     required String giftDetails,
-    // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+    @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+        required Timestamp userCreatedAt,
     required String listingDate,
     required int listingForDays,
     // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)

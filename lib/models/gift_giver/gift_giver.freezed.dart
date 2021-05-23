@@ -26,6 +26,7 @@ class _$GiftGiverTearOff {
       required String userName,
       required int userRating,
       required String userImageUrl,
+      required String userFullName,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required MyPosition userPosition,
       required int distance,
@@ -35,6 +36,8 @@ class _$GiftGiverTearOff {
       required int givingGiftInDays,
       required String imageUrl,
       required String giftDetails,
+      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+          required Timestamp userCreatedAt,
       required String listingDate,
       required int listingForDays,
       required String pickUpTime,
@@ -47,6 +50,7 @@ class _$GiftGiverTearOff {
       userName: userName,
       userRating: userRating,
       userImageUrl: userImageUrl,
+      userFullName: userFullName,
       userPosition: userPosition,
       distance: distance,
       giftType: giftType,
@@ -54,6 +58,7 @@ class _$GiftGiverTearOff {
       givingGiftInDays: givingGiftInDays,
       imageUrl: imageUrl,
       giftDetails: giftDetails,
+      userCreatedAt: userCreatedAt,
       listingDate: listingDate,
       listingForDays: listingForDays,
       pickUpTime: pickUpTime,
@@ -77,6 +82,7 @@ mixin _$GiftGiver {
   String get userName => throw _privateConstructorUsedError;
   int get userRating => throw _privateConstructorUsedError;
   String get userImageUrl => throw _privateConstructorUsedError;
+  String get userFullName => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   MyPosition get userPosition => throw _privateConstructorUsedError;
   int get distance => throw _privateConstructorUsedError;
@@ -85,8 +91,9 @@ mixin _$GiftGiver {
   String get uid => throw _privateConstructorUsedError;
   int get givingGiftInDays => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  String get giftDetails =>
-      throw _privateConstructorUsedError; // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  String get giftDetails => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  Timestamp get userCreatedAt => throw _privateConstructorUsedError;
   String get listingDate => throw _privateConstructorUsedError;
   int get listingForDays =>
       throw _privateConstructorUsedError; // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
@@ -111,6 +118,7 @@ abstract class $GiftGiverCopyWith<$Res> {
       String userName,
       int userRating,
       String userImageUrl,
+      String userFullName,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           MyPosition userPosition,
       int distance,
@@ -120,6 +128,8 @@ abstract class $GiftGiverCopyWith<$Res> {
       int givingGiftInDays,
       String imageUrl,
       String giftDetails,
+      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+          Timestamp userCreatedAt,
       String listingDate,
       int listingForDays,
       String pickUpTime,
@@ -146,6 +156,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? userName = freezed,
     Object? userRating = freezed,
     Object? userImageUrl = freezed,
+    Object? userFullName = freezed,
     Object? userPosition = freezed,
     Object? distance = freezed,
     Object? giftType = freezed,
@@ -153,6 +164,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? givingGiftInDays = freezed,
     Object? imageUrl = freezed,
     Object? giftDetails = freezed,
+    Object? userCreatedAt = freezed,
     Object? listingDate = freezed,
     Object? listingForDays = freezed,
     Object? pickUpTime = freezed,
@@ -179,6 +191,10 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
       userImageUrl: userImageUrl == freezed
           ? _value.userImageUrl
           : userImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      userFullName: userFullName == freezed
+          ? _value.userFullName
+          : userFullName // ignore: cast_nullable_to_non_nullable
               as String,
       userPosition: userPosition == freezed
           ? _value.userPosition
@@ -208,6 +224,10 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.giftDetails
           : giftDetails // ignore: cast_nullable_to_non_nullable
               as String,
+      userCreatedAt: userCreatedAt == freezed
+          ? _value.userCreatedAt
+          : userCreatedAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
       listingDate: listingDate == freezed
           ? _value.listingDate
           : listingDate // ignore: cast_nullable_to_non_nullable
@@ -258,6 +278,7 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       String userName,
       int userRating,
       String userImageUrl,
+      String userFullName,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           MyPosition userPosition,
       int distance,
@@ -267,6 +288,8 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       int givingGiftInDays,
       String imageUrl,
       String giftDetails,
+      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+          Timestamp userCreatedAt,
       String listingDate,
       int listingForDays,
       String pickUpTime,
@@ -296,6 +319,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? userName = freezed,
     Object? userRating = freezed,
     Object? userImageUrl = freezed,
+    Object? userFullName = freezed,
     Object? userPosition = freezed,
     Object? distance = freezed,
     Object? giftType = freezed,
@@ -303,6 +327,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? givingGiftInDays = freezed,
     Object? imageUrl = freezed,
     Object? giftDetails = freezed,
+    Object? userCreatedAt = freezed,
     Object? listingDate = freezed,
     Object? listingForDays = freezed,
     Object? pickUpTime = freezed,
@@ -329,6 +354,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
       userImageUrl: userImageUrl == freezed
           ? _value.userImageUrl
           : userImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      userFullName: userFullName == freezed
+          ? _value.userFullName
+          : userFullName // ignore: cast_nullable_to_non_nullable
               as String,
       userPosition: userPosition == freezed
           ? _value.userPosition
@@ -358,6 +387,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.giftDetails
           : giftDetails // ignore: cast_nullable_to_non_nullable
               as String,
+      userCreatedAt: userCreatedAt == freezed
+          ? _value.userCreatedAt
+          : userCreatedAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
       listingDate: listingDate == freezed
           ? _value.listingDate
           : listingDate // ignore: cast_nullable_to_non_nullable
@@ -391,6 +424,7 @@ class _$_GiftGiver implements _GiftGiver {
       required this.userName,
       required this.userRating,
       required this.userImageUrl,
+      required this.userFullName,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required this.userPosition,
       required this.distance,
@@ -400,6 +434,8 @@ class _$_GiftGiver implements _GiftGiver {
       required this.givingGiftInDays,
       required this.imageUrl,
       required this.giftDetails,
+      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+          required this.userCreatedAt,
       required this.listingDate,
       required this.listingForDays,
       required this.pickUpTime,
@@ -422,6 +458,8 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final String userImageUrl;
   @override
+  final String userFullName;
+  @override
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   final MyPosition userPosition;
   @override
@@ -437,7 +475,10 @@ class _$_GiftGiver implements _GiftGiver {
   final String imageUrl;
   @override
   final String giftDetails;
-  @override // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  @override
+  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  final Timestamp userCreatedAt;
+  @override
   final String listingDate;
   @override
   final int listingForDays;
@@ -451,7 +492,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userRating: $userRating, userImageUrl: $userImageUrl, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, imageUrl: $imageUrl, giftDetails: $giftDetails, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userRating: $userRating, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
   }
 
   @override
@@ -472,6 +513,9 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.userImageUrl, userImageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.userImageUrl, userImageUrl)) &&
+            (identical(other.userFullName, userFullName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userFullName, userFullName)) &&
             (identical(other.userPosition, userPosition) ||
                 const DeepCollectionEquality()
                     .equals(other.userPosition, userPosition)) &&
@@ -492,6 +536,9 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.giftDetails, giftDetails) ||
                 const DeepCollectionEquality()
                     .equals(other.giftDetails, giftDetails)) &&
+            (identical(other.userCreatedAt, userCreatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.userCreatedAt, userCreatedAt)) &&
             (identical(other.listingDate, listingDate) ||
                 const DeepCollectionEquality()
                     .equals(other.listingDate, listingDate)) &&
@@ -517,6 +564,7 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(userRating) ^
       const DeepCollectionEquality().hash(userImageUrl) ^
+      const DeepCollectionEquality().hash(userFullName) ^
       const DeepCollectionEquality().hash(userPosition) ^
       const DeepCollectionEquality().hash(distance) ^
       const DeepCollectionEquality().hash(giftType) ^
@@ -524,6 +572,7 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(givingGiftInDays) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(giftDetails) ^
+      const DeepCollectionEquality().hash(userCreatedAt) ^
       const DeepCollectionEquality().hash(listingDate) ^
       const DeepCollectionEquality().hash(listingForDays) ^
       const DeepCollectionEquality().hash(pickUpTime) ^
@@ -548,6 +597,7 @@ abstract class _GiftGiver implements GiftGiver {
       required String userName,
       required int userRating,
       required String userImageUrl,
+      required String userFullName,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required MyPosition userPosition,
       required int distance,
@@ -557,6 +607,8 @@ abstract class _GiftGiver implements GiftGiver {
       required int givingGiftInDays,
       required String imageUrl,
       required String giftDetails,
+      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+          required Timestamp userCreatedAt,
       required String listingDate,
       required int listingForDays,
       required String pickUpTime,
@@ -578,6 +630,8 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   String get userImageUrl => throw _privateConstructorUsedError;
   @override
+  String get userFullName => throw _privateConstructorUsedError;
+  @override
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   MyPosition get userPosition => throw _privateConstructorUsedError;
   @override
@@ -593,7 +647,10 @@ abstract class _GiftGiver implements GiftGiver {
   String get imageUrl => throw _privateConstructorUsedError;
   @override
   String get giftDetails => throw _privateConstructorUsedError;
-  @override // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  @override
+  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  Timestamp get userCreatedAt => throw _privateConstructorUsedError;
+  @override
   String get listingDate => throw _privateConstructorUsedError;
   @override
   int get listingForDays => throw _privateConstructorUsedError;

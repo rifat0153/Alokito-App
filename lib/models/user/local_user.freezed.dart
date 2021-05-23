@@ -22,8 +22,8 @@ class _$LocalUserTearOff {
 
   _LocalUser call(
       {String? id,
-      String? firstName,
-      String? lastName,
+      required String firstName,
+      required String lastName,
       int totalReview = 0,
       int reviewInStar = 0,
       required String userName,
@@ -31,7 +31,9 @@ class _$LocalUserTearOff {
       String? imageUrl,
       String role = 'user',
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
-          required MyPosition position}) {
+          required MyPosition position,
+      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+          required Timestamp createdAt}) {
     return _LocalUser(
       id: id,
       firstName: firstName,
@@ -43,6 +45,7 @@ class _$LocalUserTearOff {
       imageUrl: imageUrl,
       role: role,
       position: position,
+      createdAt: createdAt,
     );
   }
 
@@ -57,8 +60,8 @@ const $LocalUser = _$LocalUserTearOff();
 /// @nodoc
 mixin _$LocalUser {
   String? get id => throw _privateConstructorUsedError;
-  String? get firstName => throw _privateConstructorUsedError;
-  String? get lastName => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
   int get totalReview => throw _privateConstructorUsedError;
   int get reviewInStar => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
@@ -67,6 +70,8 @@ mixin _$LocalUser {
   String get role => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   MyPosition get position => throw _privateConstructorUsedError;
+  @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -80,15 +85,18 @@ abstract class $LocalUserCopyWith<$Res> {
       _$LocalUserCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      String? firstName,
-      String? lastName,
+      String firstName,
+      String lastName,
       int totalReview,
       int reviewInStar,
       String userName,
       String email,
       String? imageUrl,
       String role,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson) MyPosition position});
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          MyPosition position,
+      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+          Timestamp createdAt});
 
   $MyPositionCopyWith<$Res> get position;
 }
@@ -113,6 +121,7 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
     Object? imageUrl = freezed,
     Object? role = freezed,
     Object? position = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -122,11 +131,11 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       lastName: lastName == freezed
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       totalReview: totalReview == freezed
           ? _value.totalReview
           : totalReview // ignore: cast_nullable_to_non_nullable
@@ -155,6 +164,10 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as MyPosition,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 
@@ -174,15 +187,18 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
-      String? firstName,
-      String? lastName,
+      String firstName,
+      String lastName,
       int totalReview,
       int reviewInStar,
       String userName,
       String email,
       String? imageUrl,
       String role,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson) MyPosition position});
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          MyPosition position,
+      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+          Timestamp createdAt});
 
   @override
   $MyPositionCopyWith<$Res> get position;
@@ -209,6 +225,7 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? role = freezed,
     Object? position = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_LocalUser(
       id: id == freezed
@@ -218,11 +235,11 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       lastName: lastName == freezed
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       totalReview: totalReview == freezed
           ? _value.totalReview
           : totalReview // ignore: cast_nullable_to_non_nullable
@@ -251,6 +268,10 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as MyPosition,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 }
@@ -260,15 +281,18 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
 class _$_LocalUser implements _LocalUser {
   const _$_LocalUser(
       {this.id,
-      this.firstName,
-      this.lastName,
+      required this.firstName,
+      required this.lastName,
       this.totalReview = 0,
       this.reviewInStar = 0,
       required this.userName,
       required this.email,
       this.imageUrl,
       this.role = 'user',
-      @JsonKey(fromJson: _fromJson, toJson: _toJson) required this.position});
+      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+          required this.position,
+      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+          required this.createdAt});
 
   factory _$_LocalUser.fromJson(Map<String, dynamic> json) =>
       _$_$_LocalUserFromJson(json);
@@ -276,9 +300,9 @@ class _$_LocalUser implements _LocalUser {
   @override
   final String? id;
   @override
-  final String? firstName;
+  final String firstName;
   @override
-  final String? lastName;
+  final String lastName;
   @JsonKey(defaultValue: 0)
   @override
   final int totalReview;
@@ -297,10 +321,13 @@ class _$_LocalUser implements _LocalUser {
   @override
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   final MyPosition position;
+  @override
+  @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+  final Timestamp createdAt;
 
   @override
   String toString() {
-    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, totalReview: $totalReview, reviewInStar: $reviewInStar, userName: $userName, email: $email, imageUrl: $imageUrl, role: $role, position: $position)';
+    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, totalReview: $totalReview, reviewInStar: $reviewInStar, userName: $userName, email: $email, imageUrl: $imageUrl, role: $role, position: $position, createdAt: $createdAt)';
   }
 
   @override
@@ -333,7 +360,10 @@ class _$_LocalUser implements _LocalUser {
                 const DeepCollectionEquality().equals(other.role, role)) &&
             (identical(other.position, position) ||
                 const DeepCollectionEquality()
-                    .equals(other.position, position)));
+                    .equals(other.position, position)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -348,7 +378,8 @@ class _$_LocalUser implements _LocalUser {
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(position);
+      const DeepCollectionEquality().hash(position) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -364,8 +395,8 @@ class _$_LocalUser implements _LocalUser {
 abstract class _LocalUser implements LocalUser {
   const factory _LocalUser(
       {String? id,
-      String? firstName,
-      String? lastName,
+      required String firstName,
+      required String lastName,
       int totalReview,
       int reviewInStar,
       required String userName,
@@ -373,7 +404,9 @@ abstract class _LocalUser implements LocalUser {
       String? imageUrl,
       String role,
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
-          required MyPosition position}) = _$_LocalUser;
+          required MyPosition position,
+      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+          required Timestamp createdAt}) = _$_LocalUser;
 
   factory _LocalUser.fromJson(Map<String, dynamic> json) =
       _$_LocalUser.fromJson;
@@ -381,9 +414,9 @@ abstract class _LocalUser implements LocalUser {
   @override
   String? get id => throw _privateConstructorUsedError;
   @override
-  String? get firstName => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
   @override
-  String? get lastName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
   @override
   int get totalReview => throw _privateConstructorUsedError;
   @override
@@ -399,6 +432,9 @@ abstract class _LocalUser implements LocalUser {
   @override
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   MyPosition get position => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LocalUserCopyWith<_LocalUser> get copyWith =>

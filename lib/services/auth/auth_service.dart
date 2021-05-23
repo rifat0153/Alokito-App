@@ -84,12 +84,14 @@ class AuthService implements BaseAuthService {
           geopoint: pos['geopoint'] as GeoPoint);
 
       LocalUser myUser = LocalUser(
-          id: firebaseUser.user?.uid,
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          userName: userName,
-          position: myPosition);
+        id: firebaseUser.user?.uid,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        userName: userName,
+        position: myPosition,
+        createdAt: Timestamp.now(),
+      );
 
       uploadUserAndImage(myUser, false, localFile);
 

@@ -1,6 +1,9 @@
+import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,6 +53,7 @@ class GiftDetailsView extends StatelessWidget {
                         _Image(giftGiver: giftGiver),
                         _PackageName(giftGiver: giftGiver),
                         _GiftDetails(giftGiver: giftGiver),
+                        _UserDetail(giftGiver: giftGiver),
                       ],
                     ),
                   ),
@@ -57,6 +61,38 @@ class GiftDetailsView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _UserDetail extends StatelessWidget {
+  _UserDetail({required this.giftGiver});
+
+  final GiftGiver giftGiver;
+  AuthController authController = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    print(authController.currentUser.value.maybeWhen(orElse: () => ''));
+
+    var date = DateTime.now();
+    var userCreatedAt = DateTime.fromMillisecondsSinceEpoch(
+        giftGiver.userCreatedAt.millisecondsSinceEpoch);
+    var joined = date.difference(userCreatedAt).inDays ~/ 30;
+
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 30,
+          backgroundImage: NetworkImage(giftGiver.userImageUrl),
+        ),
+        Column(
+          children: [
+            Text(giftGiver.userFullName),
+            Text('Joined $joined months ago'),
+          ],
+        )
+      ],
     );
   }
 }
@@ -72,7 +108,7 @@ class _Image extends StatelessWidget {
       width: Get.size.width * 0.9,
       child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Image.network(giftGiver.imageUrl, fit: BoxFit.fill)),
+          child: Image.network(giftGiver.imageUrl)),
     );
   }
 }
