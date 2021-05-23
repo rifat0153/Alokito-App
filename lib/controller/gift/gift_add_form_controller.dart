@@ -53,11 +53,11 @@ class GiftAddFormController extends GetxController {
           duration: Duration(milliseconds: 2000));
       return;
     }
-    if (location.value.isEmpty) {
-      Get.snackbar('Gift Add Error', 'Location cant be empty',
-          backgroundColor: Colors.red.withOpacity(0.5));
-      return;
-    }
+    // if (location.value.isEmpty) {
+    //   Get.snackbar('Gift Add Error', 'Location cant be empty',
+    //       backgroundColor: Colors.red.withOpacity(0.5));
+    //   return;
+    // }
 
     GiftGiverService().addGift();
   }

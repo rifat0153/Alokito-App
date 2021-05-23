@@ -24,7 +24,6 @@ class GiftGiver with _$GiftGiver {
         required GiftType giftType,
     required String uid,
     required int givingGiftInDays,
-    required String location,
     required String area,
     required String imageUrl,
     required String giftDetails,

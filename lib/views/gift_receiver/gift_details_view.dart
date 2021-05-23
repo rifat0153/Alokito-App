@@ -84,7 +84,7 @@ class _Location extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('Location', style: TextStyle(fontWeight: FontWeight.bold)),
-          Text('${giftGiver.location}, ${giftGiver.area}'),
+          Text('${giftGiver.area}'),
         ],
       ),
     );

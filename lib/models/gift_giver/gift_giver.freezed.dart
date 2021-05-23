@@ -34,7 +34,6 @@ class _$GiftGiverTearOff {
           required GiftType giftType,
       required String uid,
       required int givingGiftInDays,
-      required String location,
       required String area,
       required String imageUrl,
       required String giftDetails,
@@ -58,7 +57,6 @@ class _$GiftGiverTearOff {
       giftType: giftType,
       uid: uid,
       givingGiftInDays: givingGiftInDays,
-      location: location,
       area: area,
       imageUrl: imageUrl,
       giftDetails: giftDetails,
@@ -94,7 +92,6 @@ mixin _$GiftGiver {
   GiftType get giftType => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   int get givingGiftInDays => throw _privateConstructorUsedError;
-  String get location => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   String get giftDetails => throw _privateConstructorUsedError;
@@ -132,7 +129,6 @@ abstract class $GiftGiverCopyWith<$Res> {
           GiftType giftType,
       String uid,
       int givingGiftInDays,
-      String location,
       String area,
       String imageUrl,
       String giftDetails,
@@ -170,7 +166,6 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? giftType = freezed,
     Object? uid = freezed,
     Object? givingGiftInDays = freezed,
-    Object? location = freezed,
     Object? area = freezed,
     Object? imageUrl = freezed,
     Object? giftDetails = freezed,
@@ -226,10 +221,6 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.givingGiftInDays
           : givingGiftInDays // ignore: cast_nullable_to_non_nullable
               as int,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
@@ -304,7 +295,6 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
           GiftType giftType,
       String uid,
       int givingGiftInDays,
-      String location,
       String area,
       String imageUrl,
       String giftDetails,
@@ -345,7 +335,6 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? giftType = freezed,
     Object? uid = freezed,
     Object? givingGiftInDays = freezed,
-    Object? location = freezed,
     Object? area = freezed,
     Object? imageUrl = freezed,
     Object? giftDetails = freezed,
@@ -401,10 +390,6 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.givingGiftInDays
           : givingGiftInDays // ignore: cast_nullable_to_non_nullable
               as int,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
@@ -462,7 +447,6 @@ class _$_GiftGiver implements _GiftGiver {
           required this.giftType,
       required this.uid,
       required this.givingGiftInDays,
-      required this.location,
       required this.area,
       required this.imageUrl,
       required this.giftDetails,
@@ -504,8 +488,6 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final int givingGiftInDays;
   @override
-  final String location;
-  @override
   final String area;
   @override
   final String imageUrl;
@@ -528,7 +510,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userRating: $userRating, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, location: $location, area: $area, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userRating: $userRating, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
   }
 
   @override
@@ -566,9 +548,6 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.givingGiftInDays, givingGiftInDays) ||
                 const DeepCollectionEquality()
                     .equals(other.givingGiftInDays, givingGiftInDays)) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality()
-                    .equals(other.location, location)) &&
             (identical(other.area, area) ||
                 const DeepCollectionEquality().equals(other.area, area)) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -611,7 +590,6 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(givingGiftInDays) ^
-      const DeepCollectionEquality().hash(location) ^
       const DeepCollectionEquality().hash(area) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(giftDetails) ^
@@ -648,7 +626,6 @@ abstract class _GiftGiver implements GiftGiver {
           required GiftType giftType,
       required String uid,
       required int givingGiftInDays,
-      required String location,
       required String area,
       required String imageUrl,
       required String giftDetails,
@@ -688,8 +665,6 @@ abstract class _GiftGiver implements GiftGiver {
   String get uid => throw _privateConstructorUsedError;
   @override
   int get givingGiftInDays => throw _privateConstructorUsedError;
-  @override
-  String get location => throw _privateConstructorUsedError;
   @override
   String get area => throw _privateConstructorUsedError;
   @override

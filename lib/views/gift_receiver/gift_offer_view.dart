@@ -148,8 +148,8 @@ class _GiftListTile extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(giftController
-                                  .giftList.value[index].location),
+                              child: Text(
+                                  giftController.giftList.value[index].area),
                             ),
                           ],
                         )
