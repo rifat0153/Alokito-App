@@ -18,13 +18,6 @@ class GiftLocationWidget extends StatelessWidget {
         const SizedBox(height: 8),
         Row(
           children: [
-            const SizedBox(width: 30),
-            const Text('Pick Up Location'),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Row(
-          children: [
             const SizedBox(width: 20),
             Obx(
               () => Checkbox(
@@ -38,50 +31,17 @@ class GiftLocationWidget extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          children: [
-            const SizedBox(width: 20),
-            Obx(
-              () => Checkbox(
-                value: controller.isLocationSelected.value,
-                onChanged: (value) {},
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                // Get.focusScope?.dispose();
-                Get.to(() => _GiftMapWidget());
-              },
-              child: Container(
-                height: 30,
-                width: Get.size.width * 0.75,
-                decoration: BoxDecoration(
-                  color: GIFT_ADD_FORM_COLOR,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text('insert pickup location'),
-                    const Icon(Icons.send),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
       ],
     );
   }
 }
 
-class _GiftMapWidget extends StatefulWidget {
+class GiftMapWidget extends StatefulWidget {
   @override
-  State<_GiftMapWidget> createState() => _GiftMapWidgetState();
+  State<GiftMapWidget> createState() => GiftMapWidgetState();
 }
 
-class _GiftMapWidgetState extends State<_GiftMapWidget> {
+class GiftMapWidgetState extends State<GiftMapWidget> {
   final GiftAddFormController controller = Get.find();
   final Completer<GoogleMapController> _controller = Completer();
   late LatLng myLocation;
@@ -127,23 +87,11 @@ class _GiftMapWidgetState extends State<_GiftMapWidget> {
                 position: LatLng(postion.latitude, postion.longitude),
               ),
             ];
+
             print(controller.markers.first.position);
           },
         ),
       ),
     );
   }
-
-  // Future<void> _goSelectedPosition(LatLng postion) async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   await controller.animateCamera(
-  //     CameraUpdate.newCameraPosition(
-  //       CameraPosition(
-  //           bearing: 192.8334901395799,
-  //           target: LatLng(postion.latitude, postion.longitude),
-  //           tilt: 59.440717697143555,
-  //           zoom: 19.151926040649414),
-  //     ),
-  //   );
-  // }
 }

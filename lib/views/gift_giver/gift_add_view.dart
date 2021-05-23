@@ -90,11 +90,9 @@ class GiftAddView extends StatelessWidget {
                   GiftLocationWidget(),
                   Obx(
                     () => controller.isUploading.value
-                        ? CircularProgressIndicator()
+                        ? const CircularProgressIndicator()
                         : MaterialButton(
-                            onPressed: () {
-                              controller.addGift();
-                            },
+                            onPressed: controller.addGift,
                             color: GIFT_ADD_FORM_SUBMIT,
                             child: const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 100),
@@ -107,7 +105,7 @@ class GiftAddView extends StatelessWidget {
                             ),
                           ),
                   ),
-                  SizedBox(height: 400)
+                  const SizedBox(height: 500)
                 ],
               ),
             ),
@@ -134,7 +132,7 @@ class _LocationAndAreaWidget extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 30),
-                  child: Text('Location'),
+                  child: Text('Pickup Area'),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 30, right: 4),
@@ -149,7 +147,7 @@ class _LocationAndAreaWidget extends StatelessWidget {
                         // hoverColor: Colors.grey,
                         filled: true,
                         hintText: 'e.g. near modhubag field'),
-                    onChanged: (value) => controller.location.value = value,
+                    onChanged: (value) => controller.area.value = value,
                   ),
                 ),
               ],
@@ -162,22 +160,16 @@ class _LocationAndAreaWidget extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 8),
-                  child: Text('Area'),
+                  child: Text('Location'),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 4, right: 30),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        border: const OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 0, style: BorderStyle.none),
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        ),
-                        fillColor: GIFT_ADD_FORM_COLOR,
-                        // hoverColor: Colors.grey,
-                        filled: true,
-                        hintText: 'your area'),
-                    onChanged: (value) => controller.area.value = value,
+                  child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    color: Colors.blue,
+                    onPressed: () => Get.to(() => GiftMapWidget()),
+                    child: const Text('Pickup Location'),
                   ),
                 ),
               ],
