@@ -8,7 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class GiftController extends GetxController {
-  GiftGiverService clubService = GiftGiverService();
+  GiftGiverService giftService = GiftGiverService();
   Rx<List<GiftGiver>> giftList = Rx<List<GiftGiver>>([]);
   Rx<List<GiftGiver>> filteredGiftList = Rx<List<GiftGiver>>([]);
   var _searchRadius = 100.0.obs;
@@ -34,7 +34,7 @@ class GiftController extends GetxController {
   }
 
   void bindGiftStream() {
-    giftList.bindStream(clubService.giftStreamByLocation());
+    giftList.bindStream(giftService.giftStreamByLocation());
 
     filteredGiftList.value = List<GiftGiver>.empty();
 

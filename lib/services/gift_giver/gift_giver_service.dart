@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:alokito_new/controller/auth/auth_controller.dart';
@@ -6,6 +7,7 @@ import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/geo.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/services/gift_giver/base_gift_giver_service.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz_unsafe.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,11 +21,29 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:path/path.dart';
 import 'package:uuid/uuid.dart';
 import '../../models/gift_giver/my_position.dart';
+import 'package:http/http.dart' as http;
 
 class GiftGiverService implements BaseGiftGiverService {
   final geo = Geoflutterfire();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
+
+  @override
+  Future<String> getAddressFromLatLng(
+      {required double lat, required double lng}) async {
+    print('Inside GMAP service');
+    final url =
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$GOOGLE_API_KEY';
+    final uri = Uri.parse(url);
+
+    final response = await http.get(uri);
+
+    var place =
+        json.decode(response.body)['results'][0]['formateed_address'] as String;
+
+    print('in service place:  ' + place);
+    return place;
+  }
 
   Future<void> addPosition() async {
     var myLocation = geo.point(latitude: 23.7590, longitude: 90.4119);

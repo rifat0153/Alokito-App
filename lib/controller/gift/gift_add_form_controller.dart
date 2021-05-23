@@ -17,6 +17,8 @@ class GiftAddFormController extends GetxController {
   var givingGiftInDays = 1.obs;
   var pickUpTime = ''.obs;
   var listingFor = 5.0.obs;
+  var location = ''.obs;
+  var area = ''.obs;
   var canLeaveOutside = false.obs;
   var isLocationSelected = false.obs;
   var markers = List<Marker>.empty().obs;
