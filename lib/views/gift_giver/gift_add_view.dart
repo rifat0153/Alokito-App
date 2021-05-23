@@ -86,6 +86,7 @@ class GiftAddView extends StatelessWidget {
                   _GiftDetailWidget(),
                   ListingDateWidget(),
                   _PickUpTimeWidget(),
+                  _LocationAndAreaWidget(),
                   GiftLocationWidget(),
                   Obx(
                     () => controller.isUploading.value
@@ -112,6 +113,77 @@ class GiftAddView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _LocationAndAreaWidget extends StatelessWidget {
+  final GiftAddFormController controller = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          Container(
+            width: Get.size.width / 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Text('Location'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 4),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 0, style: BorderStyle.none),
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                        fillColor: GIFT_ADD_FORM_COLOR,
+                        // hoverColor: Colors.grey,
+                        filled: true,
+                        hintText: 'e.g. near modhubag field'),
+                    onChanged: (value) => controller.location.value = value,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: Get.size.width / 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Text('Area'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4, right: 30),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 0, style: BorderStyle.none),
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                        fillColor: GIFT_ADD_FORM_COLOR,
+                        // hoverColor: Colors.grey,
+                        filled: true,
+                        hintText: 'your area'),
+                    onChanged: (value) => controller.area.value = value,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

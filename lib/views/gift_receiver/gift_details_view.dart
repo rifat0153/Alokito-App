@@ -84,23 +84,6 @@ class _Location extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('Location', style: TextStyle(fontWeight: FontWeight.bold)),
-          FutureBuilder(
-            future:
-                giftController.giftService.getAddressFromLatLng(lat: 0, lng: 2),
-            // future: giftController.giftService.getAddressFromLatLng(
-            //     lat: giftGiver.position.geopoint.latitude,
-            //     lng: giftGiver.position.geopoint.longitude),
-            initialData: 'asd',
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting)
-                return CircularProgressIndicator();
-
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Text('${snapshot.data}');
-              }
-              return Text('no data');
-            },
-          ),
         ],
       ),
     );
