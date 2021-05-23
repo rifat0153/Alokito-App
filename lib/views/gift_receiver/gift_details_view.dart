@@ -174,6 +174,7 @@ class _UserDetail extends StatelessWidget {
                 giftGiver.userFullName,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
+              SizedBox(height: 8),
               Text('Joined $joined months ago'),
             ],
           ),
@@ -196,7 +197,10 @@ class _Image extends StatelessWidget {
         width: Get.size.width * 0.9,
         child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.network(giftGiver.imageUrl)),
+            child: Image.network(
+              giftGiver.imageUrl,
+              fit: BoxFit.fill,
+            )),
       ),
     );
   }
