@@ -162,7 +162,7 @@ class _MyMapViewState extends State<MyMapView> {
     final _marker = Marker(
       markerId: id,
       position: LatLng(lat, lng),
-      icon: customIcon,
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
       infoWindow: InfoWindow(title: 'latLng', snippet: '$distance km'),
     );
     setState(() {
