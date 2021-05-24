@@ -2,6 +2,7 @@ import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/widgets/gift_giver/custom_gift_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/family_option_widget.dart';
+import 'package:alokito_new/widgets/gift_giver/location_search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -83,7 +84,7 @@ class GiftAddView extends StatelessWidget {
                   controller.giftType.value == GiftType.customizedPackage
                       ? CustomGiftOptionWidget()
                       : Container(),
-                  _CurrentAddressFromCordinate(),
+                  CurrentAddressFromCordinate(),
                   DistanceListRow(),
                   ImageInputWidget(),
                   _GiftDetailWidget(),
@@ -115,21 +116,6 @@ class GiftAddView extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _CurrentAddressFromCordinate extends StatelessWidget {
-  _CurrentAddressFromCordinate();
-
-  final GiftController giftController = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    giftController.setLatLngFromAddress();
-
-    return Obx(
-      () => Text(giftController.currentAddress.value),
     );
   }
 }

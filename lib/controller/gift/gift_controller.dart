@@ -14,7 +14,7 @@ class GiftController extends GetxController {
   Rx<List<GiftGiver>> filteredGiftList = Rx<List<GiftGiver>>([]);
   var _searchRadius = 100.0.obs;
   var currentUserLocation = const LatLng(0, 0).obs;
-  var currentAddress = 'No data'.obs;
+  
 
   AuthController authController = Get.find();
 

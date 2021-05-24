@@ -27,6 +27,8 @@ class GiftAddFormController extends GetxController {
   Rx<File> imageFile = File('').obs;
 
   var userLocation = LatLng(0, 0).obs;
+  var currentAddress = ''.obs;
+  var foundAddress = ''.obs;
 
   @override
   void onInit() {
@@ -35,12 +37,15 @@ class GiftAddFormController extends GetxController {
       position: Get.find<GiftController>().currentUserLocation.value,
     ));
     getCurrentLocation();
+
+    debounce(currentAddress, (_) => setLatLngFromAddress());
+
     super.onInit();
   }
 
   void setLatLngFromAddress() async {
     // From a query
-    final query = 'Goran, Bangladesh';
+    final query = '$currentAddress, Bangladesh';
     var addresses = await Geocoder.local.findAddressesFromQuery(query);
     var first = addresses.first;
     print('${first.featureName} : ${first.coordinates}');
