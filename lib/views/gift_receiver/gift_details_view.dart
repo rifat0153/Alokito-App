@@ -3,6 +3,7 @@ import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/widgets/gift_reciever/gift_map_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -59,6 +60,7 @@ class GiftDetailsView extends StatelessWidget {
                         _UserDetail(giftGiver: giftGiver),
                         _UserRatingAndDistance(giftGiver: giftGiver),
                         _Location(giftGiver: giftGiver),
+                        GiftDetailMapWidget(giftGiver: giftGiver),
                       ],
                     ),
                   ),
