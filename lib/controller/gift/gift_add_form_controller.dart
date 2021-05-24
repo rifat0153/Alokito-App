@@ -32,6 +32,9 @@ class GiftAddFormController extends GetxController {
   var addressSelected = true.obs;
   var selectedAddressLatLng = LatLng(0, 0).obs;
 
+  var selectedLatLng = LatLng(0, 0).obs;
+  var selectedMapLocation = ''.obs;
+
   @override
   void onInit() {
     markers.add(Marker(
@@ -41,7 +44,21 @@ class GiftAddFormController extends GetxController {
     getCurrentLocation();
 
     debounce(addressQuery, (_) => setLatLngFromAddress());
+    debounce(selectedLatLng, (_) => setLocationFromMapCordinates());
+
     super.onInit();
+  }
+
+  void setLocationFromMapCordinates() async {
+    print('In FROM MAP Controller');
+    // From coordinates
+    final coordinates = Coordinates(
+        selectedLatLng.value.latitude, selectedLatLng.value.longitude);
+    var addresses1 =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = addresses1.first;
+    print(
+        '${first.featureName} : ${first.addressLine} : ${first.subLocality}: ${first.subAdminArea}: ${first.subThoroughfare}');
   }
 
   void setLatLngFromAddress() async {

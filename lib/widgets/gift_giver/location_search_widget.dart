@@ -16,6 +16,11 @@ class CurrentAddressFromCordinate extends StatelessWidget {
       () {
         return Column(
           children: [
+            controller.selectedMapLocation.isNotEmpty
+                ? Card(
+                    child: Text(controller.selectedMapLocation.value),
+                  )
+                : Container(),
             controller.selectedAddress.value.isNotEmpty &&
                     !controller.addressSelected.value
                 ? Card(

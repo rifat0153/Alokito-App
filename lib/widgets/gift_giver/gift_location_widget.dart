@@ -53,19 +53,12 @@ class GiftMapWidgetState extends State<GiftMapWidget> {
   final Completer<GoogleMapController> _controller = Completer();
   late LatLng myLocation;
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(23.7590, 90.4119),
-    zoom: 16,
-  );
-
   var markers = [
     Marker(
       markerId: MarkerId('1'),
       position: LatLng(23.7590, 90.4119),
     )
   ];
-
-  // @override
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +87,8 @@ class GiftMapWidgetState extends State<GiftMapWidget> {
                 position: LatLng(postion.latitude, postion.longitude),
               ),
             ];
+
+            controller.selectedLatLng.value = postion;
 
             print(controller.markers.first.position);
           },
