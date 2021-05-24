@@ -27,7 +27,7 @@ class GiftAddFormController extends GetxController {
   Rx<File> imageFile = File('').obs;
 
   var userLocation = LatLng(0, 0).obs;
-  var currentAddress = ''.obs;
+  var addressQuery = ''.obs;
   var foundAddress = ''.obs;
 
   @override
@@ -38,23 +38,37 @@ class GiftAddFormController extends GetxController {
     ));
     getCurrentLocation();
 
-    debounce(currentAddress, (_) => setLatLngFromAddress());
-
     super.onInit();
   }
 
   void setLatLngFromAddress() async {
+    debounce(addressQuery, (_) => setLatLngFromAddress());
     // From a query
-    final query = '$currentAddress, Bangladesh';
-    var addresses = await Geocoder.local.findAddressesFromQuery(query);
-    var first = addresses.first;
-    print('${first.featureName} : ${first.coordinates}');
+    final query = '$addressQuery';
+    bool errorFound = false;
+    Address first = Address();
 
-    // From coordinates
-    final coordinates = Coordinates(23.81511, 90.42555829999999);
-    addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    first = addresses.first;
-    print('${first.featureName} : ${first.addressLine}');
+    try {
+      var addresses = await Geocoder.local.findAddressesFromQuery(query);
+      first = addresses.first;
+      print(addresses.first.addressLine);
+      print('${first.featureName} : ${first.coordinates}');
+    } catch (e) {
+      print(e);
+      errorFound = true;
+    }
+
+    if (errorFound) {
+      foundAddress.value = 'No matching location';
+    } else {
+      foundAddress.value = first.addressLine;
+    }
+
+    // // From coordinates
+    // final coordinates = Coordinates(23.81511, 90.42555829999999);
+    // addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    // first = addresses.first;
+    // print('${first.featureName} : ${first.addressLine}');
   }
 
   void getCurrentLocation() async {

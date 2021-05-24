@@ -28,10 +28,11 @@ class CurrentAddressFromCordinate extends StatelessWidget {
                     // hoverColor: Colors.grey,
                     filled: true,
                     hintText: 'e.g. near modhubag field'),
+                onChanged: (value) => controller.addressQuery.value = value,
               ),
             ),
             controller.foundAddress.value.isNotEmpty
-                ? Text('data')
+                ? Text(controller.foundAddress.value)
                 : Container(),
           ],
         );
