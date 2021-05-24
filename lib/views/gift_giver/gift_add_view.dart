@@ -1,3 +1,4 @@
+import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/widgets/gift_giver/custom_gift_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/family_option_widget.dart';
@@ -13,6 +14,7 @@ import '../../widgets/gift_giver/listing_date_widget.dart';
 class GiftAddView extends StatelessWidget {
   static const route = 'giftaddview';
   final GiftAddFormController controller = Get.find();
+  final GiftController giftController = Get.find();
 
   // String giftType = Get.arguments.toString();
 
@@ -81,6 +83,7 @@ class GiftAddView extends StatelessWidget {
                   controller.giftType.value == GiftType.customizedPackage
                       ? CustomGiftOptionWidget()
                       : Container(),
+                  _CurrentAddressFromCordinate(),
                   DistanceListRow(),
                   ImageInputWidget(),
                   _GiftDetailWidget(),
@@ -112,6 +115,21 @@ class GiftAddView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CurrentAddressFromCordinate extends StatelessWidget {
+  _CurrentAddressFromCordinate();
+
+  final GiftController giftController = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    giftController.setLatLngFromAddress();
+
+    return Obx(
+      () => Text(giftController.currentAddress.value),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -13,6 +14,7 @@ class GiftController extends GetxController {
   Rx<List<GiftGiver>> filteredGiftList = Rx<List<GiftGiver>>([]);
   var _searchRadius = 100.0.obs;
   var currentUserLocation = const LatLng(0, 0).obs;
+  var currentAddress = 'No data'.obs;
 
   AuthController authController = Get.find();
 
