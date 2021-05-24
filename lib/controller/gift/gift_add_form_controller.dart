@@ -22,13 +22,14 @@ class GiftAddFormController extends GetxController {
   var location = ''.obs;
   var area = ''.obs;
   var canLeaveOutside = false.obs;
-  var isLocationSelected = false.obs;
   var markers = List<Marker>.empty().obs;
   Rx<File> imageFile = File('').obs;
 
   var userLocation = LatLng(0, 0).obs;
   var addressQuery = ''.obs;
   var foundAddress = ''.obs;
+  var selectedAddress = ''.obs;
+  var addressSelected = true.obs;
 
   @override
   void onInit() {
@@ -38,13 +39,13 @@ class GiftAddFormController extends GetxController {
     ));
     getCurrentLocation();
 
+    debounce(addressQuery, (_) => setLatLngFromAddress());
     super.onInit();
   }
 
   void setLatLngFromAddress() async {
-    debounce(addressQuery, (_) => setLatLngFromAddress());
     // From a query
-    final query = '$addressQuery';
+    final query = '$addressQuery, Bangladesh';
     bool errorFound = false;
     Address first = Address();
 
@@ -64,11 +65,17 @@ class GiftAddFormController extends GetxController {
       foundAddress.value = first.addressLine;
     }
 
-    // // From coordinates
-    // final coordinates = Coordinates(23.81511, 90.42555829999999);
-    // addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    // first = addresses.first;
-    // print('${first.featureName} : ${first.addressLine}');
+    // From coordinates
+    final coordinates =
+        Coordinates(first.coordinates.latitude, first.coordinates.longitude);
+    var addresses1 =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    first = addresses1.first;
+    print('${first.featureName} : ${first.addressLine}');
+  }
+
+  void setSelectedAddress() {
+    selectedAddress.value = foundAddress.value;
   }
 
   void getCurrentLocation() async {
