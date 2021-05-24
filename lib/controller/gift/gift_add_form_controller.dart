@@ -30,6 +30,7 @@ class GiftAddFormController extends GetxController {
   var foundAddress = ''.obs;
   var selectedAddress = ''.obs;
   var addressSelected = true.obs;
+  var selectedAddressLatLng = LatLng(0, 0).obs;
 
   @override
   void onInit() {
@@ -63,6 +64,8 @@ class GiftAddFormController extends GetxController {
       foundAddress.value = 'No matching location';
     } else {
       foundAddress.value = first.addressLine;
+      selectedAddressLatLng.value =
+          LatLng(first.coordinates.latitude, first.coordinates.longitude);
     }
 
     // From coordinates
