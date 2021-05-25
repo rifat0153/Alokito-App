@@ -21,6 +21,9 @@ class RoleWrapper extends StatelessWidget {
 
     return Obx(() => authController.currentUser.value.when(
         data: (localUser) {
+          authController.currentUserImageUrl.value = localUser.imageUrl!;
+          authController.currentUserName.value = localUser.userName;
+
           return localUser.role == 'admin' || localUser.id == null
               ? Container(
                   child: Center(

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class GiftDetailMapWidget extends StatelessWidget {
 
   final GiftGiver giftGiver;
   final GiftController giftController = Get.find();
+  final AuthController authController = Get.find();
   final Completer<GoogleMapController> _controller = Completer();
 
   var markers = [
@@ -22,6 +24,9 @@ class GiftDetailMapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var distanceOfGift =
+        authController.calculateDistanceForGiftDetail(giftGiver: giftGiver);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -36,7 +41,7 @@ class GiftDetailMapWidget extends StatelessWidget {
                   'Pick up Location',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Text('500 meters away'),
+                Text('$distanceOfGift km away'),
               ],
             ),
           ),

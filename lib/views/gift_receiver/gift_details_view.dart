@@ -160,8 +160,8 @@ class _UserRatingAndDistance extends StatelessWidget {
             data: (data) {
               final geo = Geoflutterfire();
               var giftGiverPoint = geo.point(
-                  latitude: giftGiver.position.geopoint.latitude,
-                  longitude: giftGiver.position.geopoint.longitude);
+                  latitude: giftGiver.userPosition.geopoint.latitude,
+                  longitude: giftGiver.userPosition.geopoint.longitude);
 
               var distance = giftGiverPoint.distance(
                   lat: data.position.geopoint.latitude,
