@@ -9,6 +9,8 @@ abstract class BaseGiftGiverService {
   Future<String> getAddressFromLatLng(
       {required double lat, required double lng});
 
+  Future<bool> addGiftRequest({required GiftGiver giftGiver});
+
   Stream<List<GiftGiver>> giftStreamByLocation();
 
   Stream<List<GiftGiver>> giftStream();

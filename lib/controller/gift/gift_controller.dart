@@ -14,7 +14,6 @@ class GiftController extends GetxController {
   Rx<List<GiftGiver>> filteredGiftList = Rx<List<GiftGiver>>([]);
   var _searchRadius = 100.0.obs;
   var currentUserLocation = const LatLng(0, 0).obs;
-  
 
   AuthController authController = Get.find();
 
@@ -25,14 +24,13 @@ class GiftController extends GetxController {
     print('Current user loc:  ' + currentUserLocation.value.toString());
 
     debounce(_searchRadius, (_) => bindGiftStream());
-
     super.onInit();
   }
 
-  double get searchRadius => _searchRadius.value;
-
-  void setSearchRadius(double rad) {
-    _searchRadius.value = rad;
+  //GIFT RECIEVER
+  void requestGift({required GiftGiver giftGiver}) {
+    print('Gift Requested');
+    print(giftGiver);
   }
 
   void bindGiftStream() {
@@ -72,5 +70,11 @@ class GiftController extends GetxController {
       default:
         return '';
     }
+  }
+
+  double get searchRadius => _searchRadius.value;
+
+  void setSearchRadius(double rad) {
+    _searchRadius.value = rad;
   }
 }

@@ -6,6 +6,7 @@ import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/geo.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/services/gift_giver/base_gift_giver_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,6 +28,24 @@ class GiftGiverService implements BaseGiftGiverService {
   final geo = Geoflutterfire();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
+
+  @override
+  Future<bool> addGiftRequest({required GiftGiver giftGiver}) async {
+    AuthController authController = Get.find();
+
+    try {
+      var docRef = _firestore.collection('gift_requests').doc();
+
+      // GiftReqeust giftReqeust = GiftReqeust(giftId: giftGiver.id!, requesterUid: _auth.currentUser!.uid, giftType: giftGiver.giftType, giftImageUrl: giftGiver.imageUrl, giftDetails: giftGiver.imageUrl requesterPosition:  , requesterName: , requesterImageUrl: requesterImageUrl,);
+
+      docRef.set({});
+
+      return Future.value(false);
+    } catch (e) {
+      print(e);
+      return Future.value(false);
+    }
+  }
 
   @override
   Future<String> getAddressFromLatLng(

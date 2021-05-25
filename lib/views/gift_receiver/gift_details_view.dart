@@ -80,7 +80,8 @@ class GiftDetailsView extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () =>
+                    giftController.requestGift(giftGiver: giftGiver),
                 color: GIFT_ADD_FORM_SUBMIT,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)),
