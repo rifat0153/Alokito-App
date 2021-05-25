@@ -38,13 +38,13 @@ class GiftDetailMapWidget extends StatelessWidget {
                   giftGiver.position.geopoint.longitude),
               zoom: 15,
             ),
-            // markers: [
-            //   Marker(
-            //     markerId: MarkerId('1'),
-            //     position: LatLng(giftGiver.position.geopoint.latitude,
-            //         giftGiver.position.geopoint.longitude),
-            //   )
-            // ].toSet(),
+            markers: [
+              Marker(
+                markerId: MarkerId('1'),
+                position: LatLng(giftGiver.position.geopoint.latitude,
+                    giftGiver.position.geopoint.longitude),
+              )
+            ].toSet(),
           ),
         ),
       ),
