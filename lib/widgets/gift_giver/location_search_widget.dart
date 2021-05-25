@@ -19,30 +19,43 @@ class CurrentAddressFromCordinate extends StatelessWidget {
             controller.selectedMapLocation.isNotEmpty
                 ? Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Selected Location',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.blue,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Selected Location',
+                            style: TextStyle(
+                                // fontSize: 20,
+                                // color: Colors.blue,
+                                ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                ' ${controller.selectedMapLocation.value},',
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                          const SizedBox(height: 8),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: GIFT_ADD_FORM_COLOR,
                             ),
-                            MaterialButton(
-                              onPressed: () {},
-                              child: Text('clear'),
-                            )
-                          ],
-                        ),
-                      ],
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    ' ${controller.selectedMapLocation.value},',
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                MaterialButton(
+                                  onPressed: () =>
+                                      controller.selectedMapLocation.value = '',
+                                  child: const Icon(Icons.close,
+                                      color: Colors.red),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   )
                 : Container(),
