@@ -38,7 +38,7 @@ class GiftGiverService implements BaseGiftGiverService {
 
       // GiftReqeust giftReqeust = GiftReqeust(giftId: giftGiver.id!, requesterUid: _auth.currentUser!.uid, giftType: giftGiver.giftType, giftImageUrl: giftGiver.imageUrl, giftDetails: giftGiver.imageUrl requesterPosition:  , requesterName: , requesterImageUrl: requesterImageUrl,);
 
-      docRef.set({});
+      await docRef.set({});
 
       return Future.value(false);
     } catch (e) {

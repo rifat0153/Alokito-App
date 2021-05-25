@@ -9,6 +9,10 @@ class AuthController extends GetxController {
   final Rx<String> firebaseUser = ''.obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
+  final currentUserName = ''.obs;
+  final currentUserImageUrl = ''.obs;
+  
+
   @override
   void onInit() {
     authStream.bindStream(authService.value.authStateChanges);

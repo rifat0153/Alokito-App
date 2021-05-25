@@ -111,11 +111,12 @@ class _Location extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('Location', style: TextStyle(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
           Text('${giftGiver.location}'),
         ],
       ),
@@ -300,13 +301,15 @@ class _GiftDetails extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 8, color: Colors.transparent),
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  color: GIFT_ADD_FORM_COLOR,
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 8, color: Colors.transparent),
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                    color: GIFT_ADD_FORM_COLOR,
+                  ),
+                  child: Text('${giftGiver.giftDetails}'),
                 ),
-                child: Text('${giftGiver.giftDetails}'),
               ),
             ],
           )
