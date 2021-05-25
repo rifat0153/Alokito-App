@@ -92,11 +92,7 @@ class GiftAddView extends StatelessWidget {
                   _PickUpTimeWidget(),
                   // _LocationAndAreaWidget(),
                   CurrentAddressFromCordinate(),
-                  Obx(
-                    () => controller.selectedMapLocation.value.isEmpty
-                        ? GiftLocationWidget()
-                        : Container(),
-                  ),
+                  GiftLocationWidget(),
                   Obx(
                     () => controller.isUploading.value
                         ? const CircularProgressIndicator()

@@ -33,6 +33,7 @@ class CurrentAddressFromCordinate extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Container(
+                            height: 60,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: GIFT_ADD_FORM_COLOR,
@@ -42,16 +43,9 @@ class CurrentAddressFromCordinate extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     ' ${controller.selectedMapLocation.value},',
-                                    // overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.black54),
                                   ),
                                 ),
-                                MaterialButton(
-                                  onPressed: () =>
-                                      controller.selectedMapLocation.value = '',
-                                  child: const Icon(Icons.close,
-                                      color: Colors.red),
-                                )
                               ],
                             ),
                           ),

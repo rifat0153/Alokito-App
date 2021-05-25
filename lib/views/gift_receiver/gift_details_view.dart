@@ -29,7 +29,17 @@ class GiftDetailsView extends StatelessWidget {
                 color: Colors.black,
               ),
               onPressed: () => Get.back()),
-          title: Text('Gift Offer- $giftType'),
+          title: RichText(
+            text: TextSpan(
+              text: 'Gift Offer - ',
+              style: DefaultTextStyle.of(context).style,
+              children: <TextSpan>[
+                TextSpan(
+                    text: '$giftType',
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
           elevation: 5,
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
@@ -46,30 +56,44 @@ class GiftDetailsView extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: 10,
-                child: Container(
-                  height: Get.size.height,
-                  width: Get.size.width,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _Image(giftGiver: giftGiver),
-                        _PackageName(giftGiver: giftGiver),
-                        _GiftDetails(giftGiver: giftGiver),
-                        _UserDetail(giftGiver: giftGiver),
-                        _UserRatingAndDistance(giftGiver: giftGiver),
-                        _Location(giftGiver: giftGiver),
-                        GiftDetailMapWidget(giftGiver: giftGiver),
-                        MaterialButton(
-                          onPressed: () {},
-                          child: Text('data'),
-                        ),
-                        SizedBox(height: 300)
-                      ],
-                    ),
+              // top: 10,
+              child: Container(
+                height: Get.size.height - 170,
+                width: Get.size.width,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _Image(giftGiver: giftGiver),
+                      _PackageName(giftGiver: giftGiver),
+                      _GiftDetails(giftGiver: giftGiver),
+                      _UserDetail(giftGiver: giftGiver),
+                      _UserRatingAndDistance(giftGiver: giftGiver),
+                      _Location(giftGiver: giftGiver),
+                      GiftDetailMapWidget(giftGiver: giftGiver),
+                      // SizedBox(height: 100)
+                    ],
                   ),
-                )),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: MaterialButton(
+                onPressed: () {},
+                color: GIFT_ADD_FORM_SUBMIT,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
+                  child: Text(
+                    'Send Request',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
