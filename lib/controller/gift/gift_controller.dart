@@ -37,11 +37,11 @@ class GiftController extends GetxController {
     var result = await giftService.addGiftRequest(giftGiver: giftGiver);
     if (result) {
       Get.snackbar('Gift Request', 'gift request succesful',
-          backgroundColor: Colors.green);
+          backgroundColor: Colors.green.withOpacity(0.5));
       loading.value = false;
     } else {
       Get.snackbar('Gift Request', 'gift request failure',
-          backgroundColor: Colors.red);
+          backgroundColor: Colors.red.withOpacity(0.5));
       loading.value = false;
     }
   }
