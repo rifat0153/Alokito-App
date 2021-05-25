@@ -19,24 +19,30 @@ class CurrentAddressFromCordinate extends StatelessWidget {
             controller.selectedMapLocation.isNotEmpty
                 ? Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: Get.size.width,
-                      height: 50,
-                      child: Column(
-                        children: [
-                          Text('Selected Location'),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  ' ${controller.selectedMapLocation.value},',
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
+                    child: Column(
+                      children: [
+                        Text(
+                          'Selected Location',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue,
                           ),
-                        ],
-                      ),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                ' ${controller.selectedMapLocation.value},',
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            MaterialButton(
+                              onPressed: () {},
+                              child: Text('clear'),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   )
                 : Container(),

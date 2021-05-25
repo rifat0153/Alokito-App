@@ -44,7 +44,7 @@ class GiftAddFormController extends GetxController {
     ));
     getCurrentLocation();
 
-    debounce(addressQuery, (_) => setLatLngFromAddress());
+    // debounce(addressQuery, (_) => setLatLngFromAddress());
     debounce(selectedLatLng, (_) => setLocationFromMapCordinates());
 
     super.onInit();
@@ -63,6 +63,7 @@ class GiftAddFormController extends GetxController {
     location.value = first.addressLine;
     area.value = first.subLocality;
 
+    print('area: $area, location: $location');
     print('${first.featureName} : ${first.addressLine} : ${first.subLocality}');
   }
 
