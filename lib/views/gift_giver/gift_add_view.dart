@@ -40,7 +40,7 @@ class GiftAddView extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
+        // resizeToAvoidBottomInset: false,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           actions: [
@@ -114,7 +114,7 @@ class GiftAddView extends StatelessWidget {
                             ),
                           ),
                   ),
-                  const SizedBox(height: 500)
+                  // const SizedBox(height: 500)
                 ],
               ),
             ),

@@ -42,7 +42,8 @@ class CurrentAddressFromCordinate extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     ' ${controller.selectedMapLocation.value},',
-                                    overflow: TextOverflow.ellipsis,
+                                    // overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                                 MaterialButton(

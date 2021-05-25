@@ -61,6 +61,11 @@ class GiftDetailsView extends StatelessWidget {
                         _UserRatingAndDistance(giftGiver: giftGiver),
                         _Location(giftGiver: giftGiver),
                         GiftDetailMapWidget(giftGiver: giftGiver),
+                        MaterialButton(
+                          onPressed: () {},
+                          child: Text('data'),
+                        ),
+                        SizedBox(height: 300)
                       ],
                     ),
                   ),
