@@ -19,8 +19,7 @@ class GiftAddFormController extends GetxController {
   var givingGiftInDays = 1.obs;
   var pickUpTime = ''.obs;
   var listingFor = 5.0.obs;
-  var location = ''.obs;
-  var area = ''.obs;
+
   var canLeaveOutside = false.obs;
   var markers = List<Marker>.empty().obs;
   Rx<File> imageFile = File('').obs;
@@ -34,6 +33,8 @@ class GiftAddFormController extends GetxController {
 
   var selectedLatLng = LatLng(0, 0).obs;
   var selectedMapLocation = ''.obs;
+  var location = ''.obs;
+  var area = ''.obs;
 
   @override
   void onInit() {
@@ -57,8 +58,12 @@ class GiftAddFormController extends GetxController {
     var addresses1 =
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
     var first = addresses1.first;
-    print(
-        '${first.featureName} : ${first.addressLine} : ${first.subLocality}: ${first.subAdminArea}: ${first.subThoroughfare}');
+    selectedMapLocation.value = ' ${first.addressLine}  ${first.subLocality}';
+
+    location.value = first.addressLine;
+    area.value = first.subLocality;
+
+    print('${first.featureName} : ${first.addressLine} : ${first.subLocality}');
   }
 
   void setLatLngFromAddress() async {

@@ -84,13 +84,14 @@ class GiftAddView extends StatelessWidget {
                   controller.giftType.value == GiftType.customizedPackage
                       ? CustomGiftOptionWidget()
                       : Container(),
-                  CurrentAddressFromCordinate(),
+
                   DistanceListRow(),
                   ImageInputWidget(),
                   _GiftDetailWidget(),
                   ListingDateWidget(),
                   _PickUpTimeWidget(),
-                  _LocationAndAreaWidget(),
+                  CurrentAddressFromCordinate(),
+                  // _LocationAndAreaWidget(),
                   GiftLocationWidget(),
                   Obx(
                     () => controller.isUploading.value
