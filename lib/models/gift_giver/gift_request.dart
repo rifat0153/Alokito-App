@@ -13,6 +13,7 @@ class GiftReqeust with _$GiftReqeust {
   const factory GiftReqeust({
     String? id,
     required String giftId,
+    required String giverUid,
     required String requesterUid,
     @Default(0) int giftFor,
     @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)

@@ -33,17 +33,40 @@ class GiftGiverService implements BaseGiftGiverService {
   Future<bool> addGiftRequest({required GiftGiver giftGiver}) async {
     AuthController authController = Get.find();
 
+    var currentPos = await Location().getLocation();
+
+    var myLocation = geo.point(
+        latitude: currentPos.latitude ?? 23.7590,
+        longitude: currentPos.longitude ?? 90.4119);
+    var pos = myLocation.data as Map<dynamic, dynamic>;
+
+    MyPosition myPosition = MyPosition(
+        geohash: pos['geohash'] as String,
+        geopoint: pos['geopoint'] as GeoPoint);
+
     try {
       var docRef = _firestore.collection('gift_requests').doc();
 
-      // GiftReqeust giftReqeust = GiftReqeust(giftId: giftGiver.id!, requesterUid: _auth.currentUser!.uid, giftType: giftGiver.giftType, giftImageUrl: giftGiver.imageUrl, giftDetails: giftGiver.imageUrl requesterPosition:  , requesterName: , requesterImageUrl: requesterImageUrl,);
+      GiftReqeust giftReqeust = GiftReqeust(
+        id: docRef.id,
+        giftId: giftGiver.id!,
+        giverUid: giftGiver.uid,
+        requesterUid: _auth.currentUser!.uid,
+        giftType: giftGiver.giftType,
+        giftImageUrl: giftGiver.imageUrl,
+        giftDetails: giftGiver.giftDetails,
+        requesterPosition: myPosition,
+        requesterName: authController.currentUserName.value,
+        requesterImageUrl: authController.currentUserImageUrl.value,
+      );
 
-      await docRef.set({});
+      await docRef.set(giftReqeust.toJson());
+      print(giftReqeust);
 
-      return Future.value(false);
+      return true;
     } catch (e) {
       print(e);
-      return Future.value(false);
+      return false;
     }
   }
 

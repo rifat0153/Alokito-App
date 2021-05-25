@@ -45,7 +45,7 @@ class GiftDetailMapWidget extends StatelessWidget {
           ),
         ),
         Container(
-          color: GIFT_ADD_FORM_COLOR,
+          decoration: BoxDecoration(color: GIFT_ADD_FORM_COLOR),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

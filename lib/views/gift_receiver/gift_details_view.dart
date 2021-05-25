@@ -77,22 +77,26 @@ class GiftDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: MaterialButton(
-                onPressed: () =>
-                    giftController.requestGift(giftGiver: giftGiver),
-                color: GIFT_ADD_FORM_SUBMIT,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
-                  child: Text(
-                    'Send Request',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
+            Obx(
+              () => Align(
+                alignment: Alignment.bottomCenter,
+                child: giftController.loading.value
+                    ? CircularProgressIndicator()
+                    : MaterialButton(
+                        onPressed: () =>
+                            giftController.requestGift(giftGiver: giftGiver),
+                        color: GIFT_ADD_FORM_SUBMIT,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: Get.size.width * 0.2),
+                          child: Text(
+                            'Send Request',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
               ),
             )
           ],

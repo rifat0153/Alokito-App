@@ -23,6 +23,7 @@ class _$GiftReqeustTearOff {
   _GiftReqeust call(
       {String? id,
       required String giftId,
+      required String giverUid,
       required String requesterUid,
       int giftFor = 0,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
@@ -36,6 +37,7 @@ class _$GiftReqeustTearOff {
     return _GiftReqeust(
       id: id,
       giftId: giftId,
+      giverUid: giverUid,
       requesterUid: requesterUid,
       giftFor: giftFor,
       giftType: giftType,
@@ -59,6 +61,7 @@ const $GiftReqeust = _$GiftReqeustTearOff();
 mixin _$GiftReqeust {
   String? get id => throw _privateConstructorUsedError;
   String get giftId => throw _privateConstructorUsedError;
+  String get giverUid => throw _privateConstructorUsedError;
   String get requesterUid => throw _privateConstructorUsedError;
   int get giftFor => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
@@ -84,6 +87,7 @@ abstract class $GiftReqeustCopyWith<$Res> {
   $Res call(
       {String? id,
       String giftId,
+      String giverUid,
       String requesterUid,
       int giftFor,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
@@ -110,6 +114,7 @@ class _$GiftReqeustCopyWithImpl<$Res> implements $GiftReqeustCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? giftId = freezed,
+    Object? giverUid = freezed,
     Object? requesterUid = freezed,
     Object? giftFor = freezed,
     Object? giftType = freezed,
@@ -127,6 +132,10 @@ class _$GiftReqeustCopyWithImpl<$Res> implements $GiftReqeustCopyWith<$Res> {
       giftId: giftId == freezed
           ? _value.giftId
           : giftId // ignore: cast_nullable_to_non_nullable
+              as String,
+      giverUid: giverUid == freezed
+          ? _value.giverUid
+          : giverUid // ignore: cast_nullable_to_non_nullable
               as String,
       requesterUid: requesterUid == freezed
           ? _value.requesterUid
@@ -181,6 +190,7 @@ abstract class _$GiftReqeustCopyWith<$Res>
   $Res call(
       {String? id,
       String giftId,
+      String giverUid,
       String requesterUid,
       int giftFor,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
@@ -210,6 +220,7 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftId = freezed,
+    Object? giverUid = freezed,
     Object? requesterUid = freezed,
     Object? giftFor = freezed,
     Object? giftType = freezed,
@@ -227,6 +238,10 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
       giftId: giftId == freezed
           ? _value.giftId
           : giftId // ignore: cast_nullable_to_non_nullable
+              as String,
+      giverUid: giverUid == freezed
+          ? _value.giverUid
+          : giverUid // ignore: cast_nullable_to_non_nullable
               as String,
       requesterUid: requesterUid == freezed
           ? _value.requesterUid
@@ -270,6 +285,7 @@ class _$_GiftReqeust implements _GiftReqeust {
   const _$_GiftReqeust(
       {this.id,
       required this.giftId,
+      required this.giverUid,
       required this.requesterUid,
       this.giftFor = 0,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
@@ -288,6 +304,8 @@ class _$_GiftReqeust implements _GiftReqeust {
   final String? id;
   @override
   final String giftId;
+  @override
+  final String giverUid;
   @override
   final String requesterUid;
   @JsonKey(defaultValue: 0)
@@ -310,7 +328,7 @@ class _$_GiftReqeust implements _GiftReqeust {
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, requesterUid: $requesterUid, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, requesterImageUrl: $requesterImageUrl)';
+    return 'GiftReqeust(id: $id, giftId: $giftId, giverUid: $giverUid, requesterUid: $requesterUid, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, requesterImageUrl: $requesterImageUrl)';
   }
 
   @override
@@ -321,6 +339,9 @@ class _$_GiftReqeust implements _GiftReqeust {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.giftId, giftId) ||
                 const DeepCollectionEquality().equals(other.giftId, giftId)) &&
+            (identical(other.giverUid, giverUid) ||
+                const DeepCollectionEquality()
+                    .equals(other.giverUid, giverUid)) &&
             (identical(other.requesterUid, requesterUid) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterUid, requesterUid)) &&
@@ -352,6 +373,7 @@ class _$_GiftReqeust implements _GiftReqeust {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftId) ^
+      const DeepCollectionEquality().hash(giverUid) ^
       const DeepCollectionEquality().hash(requesterUid) ^
       const DeepCollectionEquality().hash(giftFor) ^
       const DeepCollectionEquality().hash(giftType) ^
@@ -376,6 +398,7 @@ abstract class _GiftReqeust implements GiftReqeust {
   const factory _GiftReqeust(
       {String? id,
       required String giftId,
+      required String giverUid,
       required String requesterUid,
       int giftFor,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
@@ -394,6 +417,8 @@ abstract class _GiftReqeust implements GiftReqeust {
   String? get id => throw _privateConstructorUsedError;
   @override
   String get giftId => throw _privateConstructorUsedError;
+  @override
+  String get giverUid => throw _privateConstructorUsedError;
   @override
   String get requesterUid => throw _privateConstructorUsedError;
   @override
