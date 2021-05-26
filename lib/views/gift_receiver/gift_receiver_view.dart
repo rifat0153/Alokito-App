@@ -1,4 +1,5 @@
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
+import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
@@ -11,13 +12,14 @@ import '../gift_giver/my_gift_view.dart';
 
 class GiftReceiverView extends StatelessWidget {
   static const route = '/giftreceiverview';
+
+  final GiftRequestController controller = Get.put(GiftRequestController());
+
   final media = Get.size;
   final double menuHeight = Get.size.height * 0.18;
   final double menuWidth = Get.size.width * 0.6;
   final bannerHeight = Get.size.height * 0.12;
   final bannerWidth = Get.size.width;
-
-  // final GiftAddFormController giftAddFormController = Get.find();
 
   @override
   Widget build(BuildContext context) {

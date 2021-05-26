@@ -12,7 +12,6 @@ class GiftRequestController extends GetxController {
   RxBool showDialog = RxBool(false);
 
   //GIFT RECIEVER
-
   Future<void> findExistingGift({required GiftGiver giftGiver}) async {
     await giftRequestService.findGift(giftGiver: giftGiver);
     return;
@@ -32,6 +31,5 @@ class GiftRequestController extends GetxController {
     }
 
     showDialog.value = false;
-    // Navigator.of(context).pop();
   }
 }
