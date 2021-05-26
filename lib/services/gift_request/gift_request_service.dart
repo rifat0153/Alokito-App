@@ -14,11 +14,12 @@ class GiftRequestService implements BaseGiftRequestService {
   final geo = Geoflutterfire();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
-  AuthController authController = Get.find();
-  GiftRequestController giftRequestController = Get.find();
 
   @override
   Future<bool> findGift({required GiftGiver giftGiver}) async {
+    AuthController authController = Get.find();
+    GiftRequestController giftRequestController = Get.find();
+
     var currentUserUid = _auth.currentUser?.uid;
 
     try {
@@ -42,6 +43,8 @@ class GiftRequestService implements BaseGiftRequestService {
 
   @override
   Future<bool> addGiftRequest({required GiftGiver giftGiver}) async {
+    AuthController authController = Get.find();
+
     var currentPos = await Location().getLocation();
 
     var myLocation = geo.point(

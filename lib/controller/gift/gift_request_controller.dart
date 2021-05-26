@@ -1,5 +1,4 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
 import 'package:alokito_new/services/gift_request/gift_request_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
