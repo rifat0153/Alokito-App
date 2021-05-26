@@ -88,8 +88,6 @@ class GiftDetailsView extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: MaterialButton(
                 onPressed: () {
-                  // giftRequestController.showDialog.value = true;
-                  // Get.to(MessagePopUpWidget(giftGiver: giftGiver));
                   showDialog(
                     context: context,
                     barrierDismissible: true,

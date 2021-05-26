@@ -84,7 +84,7 @@ class _GiftListTile extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
             child: GestureDetector(
-              onTap: () => Get.to(GiftDetailsView(
+              onTap: () => Get.to(() => GiftDetailsView(
                   giftGiver: giftController.giftList.value[index])),
               child: Row(
                 children: [
