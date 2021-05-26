@@ -1,9 +1,11 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/widgets/gift_reciever/gift_detail_map_widget.dart';
+import 'package:alokito_new/views/gift_receiver/widgets/gift_detail_map_widget.dart';
+import 'package:alokito_new/views/gift_receiver/widgets/message_popup_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -13,8 +15,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class GiftDetailsView extends StatelessWidget {
   GiftDetailsView({required this.giftGiver});
 
+  static const route = 'giftdetail';
+
   GiftGiver giftGiver;
   GiftController giftController = Get.find();
+  GiftRequestController giftRequestController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -77,28 +82,29 @@ class GiftDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            Obx(
-              () => Align(
-                alignment: Alignment.bottomCenter,
-                child: giftController.loading.value
-                    ? CircularProgressIndicator()
-                    : MaterialButton(
-                        onPressed: () =>
-                            giftController.requestGift(giftGiver: giftGiver),
-                        color: GIFT_ADD_FORM_SUBMIT,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: Get.size.width * 0.2),
-                          child: Text(
-                            'Send Request',
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: MaterialButton(
+                onPressed: () {
+                  giftRequestController.showDialog.value = true;
+                },
+                color: GIFT_ADD_FORM_SUBMIT,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
+                  child: Text(
+                    'Send Request',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
               ),
-            )
+            ),
+            Obx(() => giftRequestController.showDialog.value
+                ? Positioned.fill(
+                    child: MessagePopUpWidget(giftGiver: giftGiver))
+                : Container()),
           ],
         ),
       ),

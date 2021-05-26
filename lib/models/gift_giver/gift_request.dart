@@ -15,6 +15,7 @@ class GiftReqeust with _$GiftReqeust {
     required String giftId,
     required String giverUid,
     required String requesterUid,
+    required String requesterMessage,
     @Default(0) int giftFor,
     @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
         required GiftType giftType,
@@ -23,6 +24,7 @@ class GiftReqeust with _$GiftReqeust {
     @JsonKey(fromJson: _fromJson, toJson: _toJson)
         required MyPosition requesterPosition,
     required String requesterName,
+    required String giftGiverImageUrl,
     required String requesterImageUrl,
   }) = _GiftReqeust;
 

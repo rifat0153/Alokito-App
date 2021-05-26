@@ -29,22 +29,7 @@ class GiftController extends GetxController {
     super.onInit();
   }
 
-  //GIFT RECIEVER
-  void requestGift({required GiftGiver giftGiver}) async {
-    print('Gift Requested');
-    print(giftGiver);
-    loading.value = true;
-    var result = await giftService.addGiftRequest(giftGiver: giftGiver);
-    if (result) {
-      Get.snackbar('Gift Request', 'gift request succesful',
-          backgroundColor: Colors.green.withOpacity(0.5));
-      loading.value = false;
-    } else {
-      Get.snackbar('Gift Request', 'gift request failure',
-          backgroundColor: Colors.red.withOpacity(0.5));
-      loading.value = false;
-    }
-  }
+
 
   void bindGiftStream() {
     giftList.bindStream(giftService.giftStreamByLocation());

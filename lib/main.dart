@@ -3,10 +3,12 @@
 import 'package:alokito_new/bindings/auth_binding.dart';
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/controller/map/geo_controller.dart';
 import 'package:alokito_new/views/auth/auth_wrapper.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_giver/gift_giver_view.dart';
+import 'package:alokito_new/views/gift_receiver/gift_details_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/views/map/geo_map_view.dart';
@@ -86,6 +88,7 @@ class GetPages {
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
         Get.put(GiftController());
+        Get.lazyPut(() => GiftRequestController());
       }),
     ),
 

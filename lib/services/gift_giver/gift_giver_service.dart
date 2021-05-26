@@ -51,12 +51,14 @@ class GiftGiverService implements BaseGiftGiverService {
         id: docRef.id,
         giftId: giftGiver.id!,
         giverUid: giftGiver.uid,
+        requesterMessage: 'no',
         requesterUid: _auth.currentUser!.uid,
         giftType: giftGiver.giftType,
         giftImageUrl: giftGiver.imageUrl,
         giftDetails: giftGiver.giftDetails,
         requesterPosition: myPosition,
         requesterName: authController.currentUserName.value,
+        giftGiverImageUrl: giftGiver.userImageUrl,
         requesterImageUrl: authController.currentUserImageUrl.value,
       );
 

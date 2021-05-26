@@ -35,6 +35,7 @@ class _$GiftReqeustTearOff {
       required String giftId,
       required String giverUid,
       required String requesterUid,
+      required String requesterMessage,
       int giftFor = 0,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required GiftType giftType,
@@ -43,18 +44,21 @@ class _$GiftReqeustTearOff {
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required MyPosition requesterPosition,
       required String requesterName,
+      required String giftGiverImageUrl,
       required String requesterImageUrl}) {
     return _GiftReqeust(
       id: id,
       giftId: giftId,
       giverUid: giverUid,
       requesterUid: requesterUid,
+      requesterMessage: requesterMessage,
       giftFor: giftFor,
       giftType: giftType,
       giftImageUrl: giftImageUrl,
       giftDetails: giftDetails,
       requesterPosition: requesterPosition,
       requesterName: requesterName,
+      giftGiverImageUrl: giftGiverImageUrl,
       requesterImageUrl: requesterImageUrl,
     );
   }
@@ -86,6 +90,7 @@ mixin _$GiftReqeust {
             String giftId,
             String giverUid,
             String requesterUid,
+            String requesterMessage,
             int giftFor,
             @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
                 GiftType giftType,
@@ -94,6 +99,7 @@ mixin _$GiftReqeust {
             @JsonKey(fromJson: _fromJson, toJson: _toJson)
                 MyPosition requesterPosition,
             String requesterName,
+            String giftGiverImageUrl,
             String requesterImageUrl)
         $default, {
     required TResult Function() loading,
@@ -107,6 +113,7 @@ mixin _$GiftReqeust {
             String giftId,
             String giverUid,
             String requesterUid,
+            String requesterMessage,
             int giftFor,
             @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
                 GiftType giftType,
@@ -115,6 +122,7 @@ mixin _$GiftReqeust {
             @JsonKey(fromJson: _fromJson, toJson: _toJson)
                 MyPosition requesterPosition,
             String requesterName,
+            String giftGiverImageUrl,
             String requesterImageUrl)?
         $default, {
     TResult Function()? loading,
@@ -166,6 +174,7 @@ abstract class _$GiftReqeustCopyWith<$Res> {
       String giftId,
       String giverUid,
       String requesterUid,
+      String requesterMessage,
       int giftFor,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           GiftType giftType,
@@ -174,6 +183,7 @@ abstract class _$GiftReqeustCopyWith<$Res> {
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           MyPosition requesterPosition,
       String requesterName,
+      String giftGiverImageUrl,
       String requesterImageUrl});
 
   $MyPositionCopyWith<$Res> get requesterPosition;
@@ -195,12 +205,14 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
     Object? giftId = freezed,
     Object? giverUid = freezed,
     Object? requesterUid = freezed,
+    Object? requesterMessage = freezed,
     Object? giftFor = freezed,
     Object? giftType = freezed,
     Object? giftImageUrl = freezed,
     Object? giftDetails = freezed,
     Object? requesterPosition = freezed,
     Object? requesterName = freezed,
+    Object? giftGiverImageUrl = freezed,
     Object? requesterImageUrl = freezed,
   }) {
     return _then(_GiftReqeust(
@@ -219,6 +231,10 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
       requesterUid: requesterUid == freezed
           ? _value.requesterUid
           : requesterUid // ignore: cast_nullable_to_non_nullable
+              as String,
+      requesterMessage: requesterMessage == freezed
+          ? _value.requesterMessage
+          : requesterMessage // ignore: cast_nullable_to_non_nullable
               as String,
       giftFor: giftFor == freezed
           ? _value.giftFor
@@ -244,6 +260,10 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
           ? _value.requesterName
           : requesterName // ignore: cast_nullable_to_non_nullable
               as String,
+      giftGiverImageUrl: giftGiverImageUrl == freezed
+          ? _value.giftGiverImageUrl
+          : giftGiverImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       requesterImageUrl: requesterImageUrl == freezed
           ? _value.requesterImageUrl
           : requesterImageUrl // ignore: cast_nullable_to_non_nullable
@@ -267,6 +287,7 @@ class _$_GiftReqeust implements _GiftReqeust {
       required this.giftId,
       required this.giverUid,
       required this.requesterUid,
+      required this.requesterMessage,
       this.giftFor = 0,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required this.giftType,
@@ -275,6 +296,7 @@ class _$_GiftReqeust implements _GiftReqeust {
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required this.requesterPosition,
       required this.requesterName,
+      required this.giftGiverImageUrl,
       required this.requesterImageUrl});
 
   factory _$_GiftReqeust.fromJson(Map<String, dynamic> json) =>
@@ -288,6 +310,8 @@ class _$_GiftReqeust implements _GiftReqeust {
   final String giverUid;
   @override
   final String requesterUid;
+  @override
+  final String requesterMessage;
   @JsonKey(defaultValue: 0)
   @override
   final int giftFor;
@@ -304,11 +328,13 @@ class _$_GiftReqeust implements _GiftReqeust {
   @override
   final String requesterName;
   @override
+  final String giftGiverImageUrl;
+  @override
   final String requesterImageUrl;
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, giverUid: $giverUid, requesterUid: $requesterUid, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, requesterImageUrl: $requesterImageUrl)';
+    return 'GiftReqeust(id: $id, giftId: $giftId, giverUid: $giverUid, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl)';
   }
 
   @override
@@ -325,6 +351,9 @@ class _$_GiftReqeust implements _GiftReqeust {
             (identical(other.requesterUid, requesterUid) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterUid, requesterUid)) &&
+            (identical(other.requesterMessage, requesterMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterMessage, requesterMessage)) &&
             (identical(other.giftFor, giftFor) ||
                 const DeepCollectionEquality()
                     .equals(other.giftFor, giftFor)) &&
@@ -343,6 +372,9 @@ class _$_GiftReqeust implements _GiftReqeust {
             (identical(other.requesterName, requesterName) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterName, requesterName)) &&
+            (identical(other.giftGiverImageUrl, giftGiverImageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftGiverImageUrl, giftGiverImageUrl)) &&
             (identical(other.requesterImageUrl, requesterImageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterImageUrl, requesterImageUrl)));
@@ -355,12 +387,14 @@ class _$_GiftReqeust implements _GiftReqeust {
       const DeepCollectionEquality().hash(giftId) ^
       const DeepCollectionEquality().hash(giverUid) ^
       const DeepCollectionEquality().hash(requesterUid) ^
+      const DeepCollectionEquality().hash(requesterMessage) ^
       const DeepCollectionEquality().hash(giftFor) ^
       const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(giftImageUrl) ^
       const DeepCollectionEquality().hash(giftDetails) ^
       const DeepCollectionEquality().hash(requesterPosition) ^
       const DeepCollectionEquality().hash(requesterName) ^
+      const DeepCollectionEquality().hash(giftGiverImageUrl) ^
       const DeepCollectionEquality().hash(requesterImageUrl);
 
   @JsonKey(ignore: true)
@@ -376,6 +410,7 @@ class _$_GiftReqeust implements _GiftReqeust {
             String giftId,
             String giverUid,
             String requesterUid,
+            String requesterMessage,
             int giftFor,
             @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
                 GiftType giftType,
@@ -384,6 +419,7 @@ class _$_GiftReqeust implements _GiftReqeust {
             @JsonKey(fromJson: _fromJson, toJson: _toJson)
                 MyPosition requesterPosition,
             String requesterName,
+            String giftGiverImageUrl,
             String requesterImageUrl)
         $default, {
     required TResult Function() loading,
@@ -394,12 +430,14 @@ class _$_GiftReqeust implements _GiftReqeust {
         giftId,
         giverUid,
         requesterUid,
+        requesterMessage,
         giftFor,
         giftType,
         giftImageUrl,
         giftDetails,
         requesterPosition,
         requesterName,
+        giftGiverImageUrl,
         requesterImageUrl);
   }
 
@@ -411,6 +449,7 @@ class _$_GiftReqeust implements _GiftReqeust {
             String giftId,
             String giverUid,
             String requesterUid,
+            String requesterMessage,
             int giftFor,
             @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
                 GiftType giftType,
@@ -419,6 +458,7 @@ class _$_GiftReqeust implements _GiftReqeust {
             @JsonKey(fromJson: _fromJson, toJson: _toJson)
                 MyPosition requesterPosition,
             String requesterName,
+            String giftGiverImageUrl,
             String requesterImageUrl)?
         $default, {
     TResult Function()? loading,
@@ -431,12 +471,14 @@ class _$_GiftReqeust implements _GiftReqeust {
           giftId,
           giverUid,
           requesterUid,
+          requesterMessage,
           giftFor,
           giftType,
           giftImageUrl,
           giftDetails,
           requesterPosition,
           requesterName,
+          giftGiverImageUrl,
           requesterImageUrl);
     }
     return orElse();
@@ -478,6 +520,7 @@ abstract class _GiftReqeust implements GiftReqeust {
       required String giftId,
       required String giverUid,
       required String requesterUid,
+      required String requesterMessage,
       int giftFor,
       @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
           required GiftType giftType,
@@ -486,6 +529,7 @@ abstract class _GiftReqeust implements GiftReqeust {
       @JsonKey(fromJson: _fromJson, toJson: _toJson)
           required MyPosition requesterPosition,
       required String requesterName,
+      required String giftGiverImageUrl,
       required String requesterImageUrl}) = _$_GiftReqeust;
 
   factory _GiftReqeust.fromJson(Map<String, dynamic> json) =
@@ -495,6 +539,7 @@ abstract class _GiftReqeust implements GiftReqeust {
   String get giftId => throw _privateConstructorUsedError;
   String get giverUid => throw _privateConstructorUsedError;
   String get requesterUid => throw _privateConstructorUsedError;
+  String get requesterMessage => throw _privateConstructorUsedError;
   int get giftFor => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
@@ -503,6 +548,7 @@ abstract class _GiftReqeust implements GiftReqeust {
   @JsonKey(fromJson: _fromJson, toJson: _toJson)
   MyPosition get requesterPosition => throw _privateConstructorUsedError;
   String get requesterName => throw _privateConstructorUsedError;
+  String get giftGiverImageUrl => throw _privateConstructorUsedError;
   String get requesterImageUrl => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GiftReqeustCopyWith<_GiftReqeust> get copyWith =>
@@ -554,6 +600,7 @@ class _$Loading implements Loading {
             String giftId,
             String giverUid,
             String requesterUid,
+            String requesterMessage,
             int giftFor,
             @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
                 GiftType giftType,
@@ -562,6 +609,7 @@ class _$Loading implements Loading {
             @JsonKey(fromJson: _fromJson, toJson: _toJson)
                 MyPosition requesterPosition,
             String requesterName,
+            String giftGiverImageUrl,
             String requesterImageUrl)
         $default, {
     required TResult Function() loading,
@@ -578,6 +626,7 @@ class _$Loading implements Loading {
             String giftId,
             String giverUid,
             String requesterUid,
+            String requesterMessage,
             int giftFor,
             @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
                 GiftType giftType,
@@ -586,6 +635,7 @@ class _$Loading implements Loading {
             @JsonKey(fromJson: _fromJson, toJson: _toJson)
                 MyPosition requesterPosition,
             String requesterName,
+            String giftGiverImageUrl,
             String requesterImageUrl)?
         $default, {
     TResult Function()? loading,
@@ -704,6 +754,7 @@ class _$Error implements Error {
             String giftId,
             String giverUid,
             String requesterUid,
+            String requesterMessage,
             int giftFor,
             @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
                 GiftType giftType,
@@ -712,6 +763,7 @@ class _$Error implements Error {
             @JsonKey(fromJson: _fromJson, toJson: _toJson)
                 MyPosition requesterPosition,
             String requesterName,
+            String giftGiverImageUrl,
             String requesterImageUrl)
         $default, {
     required TResult Function() loading,
@@ -728,6 +780,7 @@ class _$Error implements Error {
             String giftId,
             String giverUid,
             String requesterUid,
+            String requesterMessage,
             int giftFor,
             @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
                 GiftType giftType,
@@ -736,6 +789,7 @@ class _$Error implements Error {
             @JsonKey(fromJson: _fromJson, toJson: _toJson)
                 MyPosition requesterPosition,
             String requesterName,
+            String giftGiverImageUrl,
             String requesterImageUrl)?
         $default, {
     TResult Function()? loading,
