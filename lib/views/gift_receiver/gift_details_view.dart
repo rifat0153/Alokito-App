@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
@@ -86,7 +88,15 @@ class GiftDetailsView extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: MaterialButton(
                 onPressed: () {
-                  giftRequestController.showDialog.value = true;
+                  // giftRequestController.showDialog.value = true;
+                  // Get.to(MessagePopUpWidget(giftGiver: giftGiver));
+                  showDialog(
+                    context: context,
+                    barrierDismissible: true,
+                    builder: (BuildContext context) {
+                      return MessagePopUpWidget(giftGiver: giftGiver);
+                    },
+                  );
                 },
                 color: GIFT_ADD_FORM_SUBMIT,
                 shape: RoundedRectangleBorder(
@@ -101,10 +111,12 @@ class GiftDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            Obx(() => giftRequestController.showDialog.value
-                ? Positioned.fill(
-                    child: MessagePopUpWidget(giftGiver: giftGiver))
-                : Container()),
+            Obx(
+              () => giftRequestController.showDialog.value
+                  ? Positioned.fill(
+                      child: MessagePopUpWidget(giftGiver: giftGiver))
+                  : Container(),
+            ),
           ],
         ),
       ),

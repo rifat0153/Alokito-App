@@ -11,7 +11,7 @@ class GiftRequestController extends GetxController {
   RxBool showDialog = RxBool(false);
 
   //GIFT RECIEVER
-  void requestGift({required GiftGiver giftGiver}) async {
+  void requestGift({required GiftGiver giftGiver, required BuildContext context}) async {
     print('Gift Requested');
     print(giftGiver);
     loading.value = true;
@@ -27,5 +27,6 @@ class GiftRequestController extends GetxController {
     }
 
     showDialog.value = false;
+    Navigator.of(context).pop();
   }
 }

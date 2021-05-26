@@ -15,8 +15,8 @@ class MessagePopUpWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10) as ImageFilter,
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
@@ -59,7 +59,8 @@ class MessagePopUpWidget extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                           onPressed: () {
-                            controller.requestGift(giftGiver: giftGiver);
+                            controller.requestGift(
+                                giftGiver: giftGiver, context: context);
                             // controller.showDialog.value = false;
                           },
                           child: Padding(
