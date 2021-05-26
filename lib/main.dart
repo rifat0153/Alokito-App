@@ -88,7 +88,7 @@ class GetPages {
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
         Get.put(GiftController());
-        Get.lazyPut(() => GiftRequestController());
+        Get.put(GiftRequestController());
       }),
     ),
 

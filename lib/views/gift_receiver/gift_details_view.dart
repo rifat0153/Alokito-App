@@ -21,7 +21,6 @@ class GiftDetailsView extends StatelessWidget {
 
   GiftGiver giftGiver;
   GiftController giftController = Get.find();
-  GiftRequestController giftRequestController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -108,12 +107,6 @@ class GiftDetailsView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Obx(
-              () => giftRequestController.showDialog.value
-                  ? Positioned.fill(
-                      child: MessagePopUpWidget(giftGiver: giftGiver))
-                  : Container(),
             ),
           ],
         ),
