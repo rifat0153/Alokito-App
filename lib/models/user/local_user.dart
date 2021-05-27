@@ -1,4 +1,5 @@
 import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/models/json_converters.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -19,8 +20,9 @@ abstract class LocalUser with _$LocalUser {
     required String email,
     String? imageUrl,
     @Default('user') String role,
-    @JsonKey(fromJson: _fromJson, toJson: _toJson) required MyPosition position,
-    @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+        required MyPosition position,
+    @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
         required Timestamp createdAt,
   }) = _LocalUser;
 
@@ -34,9 +36,3 @@ class LocalUserInfo with _$LocalUserInfo {
   const factory LocalUserInfo.loading() = Loading;
   const factory LocalUserInfo.error(Object e, StackTrace s) = Error;
 }
-
-Map<String, dynamic> _toJson(MyPosition myPosition) => myPosition.toJson();
-MyPosition _fromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);
-
-Timestamp _timestampToJson(Timestamp t) => t;
-Timestamp _timestampFromJson(Timestamp t) => t;

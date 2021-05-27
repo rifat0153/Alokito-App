@@ -30,9 +30,9 @@ class _$LocalUserTearOff {
       required String email,
       String? imageUrl,
       String role = 'user',
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position,
-      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
           required Timestamp createdAt}) {
     return _LocalUser(
       id: id,
@@ -68,9 +68,9 @@ mixin _$LocalUser {
   String get email => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;
-  @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+  @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
   Timestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -93,9 +93,9 @@ abstract class $LocalUserCopyWith<$Res> {
       String email,
       String? imageUrl,
       String role,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position,
-      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
           Timestamp createdAt});
 
   $MyPositionCopyWith<$Res> get position;
@@ -195,9 +195,9 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
       String email,
       String? imageUrl,
       String role,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position,
-      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
           Timestamp createdAt});
 
   @override
@@ -289,9 +289,9 @@ class _$_LocalUser implements _LocalUser {
       required this.email,
       this.imageUrl,
       this.role = 'user',
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required this.position,
-      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
           required this.createdAt});
 
   factory _$_LocalUser.fromJson(Map<String, dynamic> json) =>
@@ -319,10 +319,10 @@ class _$_LocalUser implements _LocalUser {
   @override
   final String role;
   @override
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   final MyPosition position;
   @override
-  @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+  @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
   final Timestamp createdAt;
 
   @override
@@ -403,9 +403,9 @@ abstract class _LocalUser implements LocalUser {
       required String email,
       String? imageUrl,
       String role,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position,
-      @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
           required Timestamp createdAt}) = _$_LocalUser;
 
   factory _LocalUser.fromJson(Map<String, dynamic> json) =
@@ -430,10 +430,10 @@ abstract class _LocalUser implements LocalUser {
   @override
   String get role => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;
   @override
-  @JsonKey(toJson: _timestampToJson, fromJson: _timestampFromJson)
+  @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
   Timestamp get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

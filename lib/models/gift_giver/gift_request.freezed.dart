@@ -39,11 +39,11 @@ class _$GiftReqeustTearOff {
       required String requesterUid,
       required String requesterMessage,
       int giftFor = 0,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
       required String giftImageUrl,
       required String giftDetails,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition requesterPosition,
       required String requesterName,
       required String giftGiverImageUrl,
@@ -98,11 +98,11 @@ mixin _$GiftReqeust {
             String requesterUid,
             String requesterMessage,
             int giftFor,
-            @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
             String giftImageUrl,
             String giftDetails,
-            @JsonKey(fromJson: _fromJson, toJson: _toJson)
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
@@ -123,11 +123,11 @@ mixin _$GiftReqeust {
             String requesterUid,
             String requesterMessage,
             int giftFor,
-            @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
             String giftImageUrl,
             String giftDetails,
-            @JsonKey(fromJson: _fromJson, toJson: _toJson)
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
@@ -186,11 +186,11 @@ abstract class _$GiftReqeustCopyWith<$Res> {
       String requesterUid,
       String requesterMessage,
       int giftFor,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           GiftType giftType,
       String giftImageUrl,
       String giftDetails,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition requesterPosition,
       String requesterName,
       String giftGiverImageUrl,
@@ -311,11 +311,11 @@ class _$_GiftReqeust implements _GiftReqeust {
       required this.requesterUid,
       required this.requesterMessage,
       this.giftFor = 0,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required this.giftType,
       required this.giftImageUrl,
       required this.giftDetails,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required this.requesterPosition,
       required this.requesterName,
       required this.giftGiverImageUrl,
@@ -342,14 +342,14 @@ class _$_GiftReqeust implements _GiftReqeust {
   @override
   final int giftFor;
   @override
-  @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   final GiftType giftType;
   @override
   final String giftImageUrl;
   @override
   final String giftDetails;
   @override
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   final MyPosition requesterPosition;
   @override
   final String requesterName;
@@ -448,11 +448,11 @@ class _$_GiftReqeust implements _GiftReqeust {
             String requesterUid,
             String requesterMessage,
             int giftFor,
-            @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
             String giftImageUrl,
             String giftDetails,
-            @JsonKey(fromJson: _fromJson, toJson: _toJson)
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
@@ -491,11 +491,11 @@ class _$_GiftReqeust implements _GiftReqeust {
             String requesterUid,
             String requesterMessage,
             int giftFor,
-            @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
             String giftImageUrl,
             String giftDetails,
-            @JsonKey(fromJson: _fromJson, toJson: _toJson)
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
@@ -566,11 +566,11 @@ abstract class _GiftReqeust implements GiftReqeust {
       required String requesterUid,
       required String requesterMessage,
       int giftFor,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
       required String giftImageUrl,
       required String giftDetails,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition requesterPosition,
       required String requesterName,
       required String giftGiverImageUrl,
@@ -587,11 +587,11 @@ abstract class _GiftReqeust implements GiftReqeust {
   String get requesterUid => throw _privateConstructorUsedError;
   String get requesterMessage => throw _privateConstructorUsedError;
   int get giftFor => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
   String get giftImageUrl => throw _privateConstructorUsedError;
   String get giftDetails => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get requesterPosition => throw _privateConstructorUsedError;
   String get requesterName => throw _privateConstructorUsedError;
   String get giftGiverImageUrl => throw _privateConstructorUsedError;
@@ -650,11 +650,11 @@ class _$Loading implements Loading {
             String requesterUid,
             String requesterMessage,
             int giftFor,
-            @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
             String giftImageUrl,
             String giftDetails,
-            @JsonKey(fromJson: _fromJson, toJson: _toJson)
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
@@ -678,11 +678,11 @@ class _$Loading implements Loading {
             String requesterUid,
             String requesterMessage,
             int giftFor,
-            @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
             String giftImageUrl,
             String giftDetails,
-            @JsonKey(fromJson: _fromJson, toJson: _toJson)
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
@@ -808,11 +808,11 @@ class _$Error implements Error {
             String requesterUid,
             String requesterMessage,
             int giftFor,
-            @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
             String giftImageUrl,
             String giftDetails,
-            @JsonKey(fromJson: _fromJson, toJson: _toJson)
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
@@ -836,11 +836,11 @@ class _$Error implements Error {
             String requesterUid,
             String requesterMessage,
             int giftFor,
-            @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
             String giftImageUrl,
             String giftDetails,
-            @JsonKey(fromJson: _fromJson, toJson: _toJson)
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,

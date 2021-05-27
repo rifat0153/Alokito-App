@@ -22,7 +22,7 @@ class _$MyPositionTearOff {
 
   _MyPosition call(
       {required String geohash,
-      @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+      @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
           required GeoPoint geopoint}) {
     return _MyPosition(
       geohash: geohash,
@@ -41,7 +41,7 @@ const $MyPosition = _$MyPositionTearOff();
 /// @nodoc
 mixin _$MyPosition {
   String get geohash => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+  @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
   GeoPoint get geopoint => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ abstract class $MyPositionCopyWith<$Res> {
       _$MyPositionCopyWithImpl<$Res>;
   $Res call(
       {String geohash,
-      @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+      @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
           GeoPoint geopoint});
 }
 
@@ -95,7 +95,7 @@ abstract class _$MyPositionCopyWith<$Res> implements $MyPositionCopyWith<$Res> {
   @override
   $Res call(
       {String geohash,
-      @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+      @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
           GeoPoint geopoint});
 }
 
@@ -132,7 +132,7 @@ class __$MyPositionCopyWithImpl<$Res> extends _$MyPositionCopyWithImpl<$Res>
 class _$_MyPosition implements _MyPosition {
   const _$_MyPosition(
       {required this.geohash,
-      @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+      @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
           required this.geopoint});
 
   factory _$_MyPosition.fromJson(Map<String, dynamic> json) =>
@@ -141,7 +141,7 @@ class _$_MyPosition implements _MyPosition {
   @override
   final String geohash;
   @override
-  @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+  @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
   final GeoPoint geopoint;
 
   @override
@@ -181,7 +181,7 @@ class _$_MyPosition implements _MyPosition {
 abstract class _MyPosition implements MyPosition {
   const factory _MyPosition(
       {required String geohash,
-      @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+      @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
           required GeoPoint geopoint}) = _$_MyPosition;
 
   factory _MyPosition.fromJson(Map<String, dynamic> json) =
@@ -190,7 +190,7 @@ abstract class _MyPosition implements MyPosition {
   @override
   String get geohash => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+  @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
   GeoPoint get geopoint => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

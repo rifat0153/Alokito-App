@@ -27,10 +27,10 @@ class _$GiftGiverTearOff {
       required int userRating,
       required String userImageUrl,
       required String userFullName,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition userPosition,
       required int distance,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
       required String uid,
       required int givingGiftInDays,
@@ -38,13 +38,13 @@ class _$GiftGiverTearOff {
       required String location,
       required String imageUrl,
       required String giftDetails,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp userCreatedAt,
       required String listingDate,
       required int listingForDays,
       required String pickUpTime,
       required bool canLeaveOutside,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position}) {
     return _GiftGiver(
       id: id,
@@ -87,10 +87,10 @@ mixin _$GiftGiver {
   int get userRating => throw _privateConstructorUsedError;
   String get userImageUrl => throw _privateConstructorUsedError;
   String get userFullName => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get userPosition => throw _privateConstructorUsedError;
   int get distance => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   int get givingGiftInDays => throw _privateConstructorUsedError;
@@ -98,14 +98,14 @@ mixin _$GiftGiver {
   String get location => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   String get giftDetails => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get userCreatedAt => throw _privateConstructorUsedError;
   String get listingDate => throw _privateConstructorUsedError;
   int get listingForDays =>
       throw _privateConstructorUsedError; // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
   String get pickUpTime => throw _privateConstructorUsedError;
   bool get canLeaveOutside => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -125,10 +125,10 @@ abstract class $GiftGiverCopyWith<$Res> {
       int userRating,
       String userImageUrl,
       String userFullName,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition userPosition,
       int distance,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           GiftType giftType,
       String uid,
       int givingGiftInDays,
@@ -136,13 +136,13 @@ abstract class $GiftGiverCopyWith<$Res> {
       String location,
       String imageUrl,
       String giftDetails,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp userCreatedAt,
       String listingDate,
       int listingForDays,
       String pickUpTime,
       bool canLeaveOutside,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position});
 
   $MyPositionCopyWith<$Res> get userPosition;
@@ -297,10 +297,10 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       int userRating,
       String userImageUrl,
       String userFullName,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition userPosition,
       int distance,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           GiftType giftType,
       String uid,
       int givingGiftInDays,
@@ -308,13 +308,13 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       String location,
       String imageUrl,
       String giftDetails,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp userCreatedAt,
       String listingDate,
       int listingForDays,
       String pickUpTime,
       bool canLeaveOutside,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position});
 
   @override
@@ -455,10 +455,10 @@ class _$_GiftGiver implements _GiftGiver {
       required this.userRating,
       required this.userImageUrl,
       required this.userFullName,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required this.userPosition,
       required this.distance,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required this.giftType,
       required this.uid,
       required this.givingGiftInDays,
@@ -466,13 +466,13 @@ class _$_GiftGiver implements _GiftGiver {
       required this.location,
       required this.imageUrl,
       required this.giftDetails,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required this.userCreatedAt,
       required this.listingDate,
       required this.listingForDays,
       required this.pickUpTime,
       required this.canLeaveOutside,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required this.position});
 
   factory _$_GiftGiver.fromJson(Map<String, dynamic> json) =>
@@ -492,12 +492,12 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final String userFullName;
   @override
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   final MyPosition userPosition;
   @override
   final int distance;
   @override
-  @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   final GiftType giftType;
   @override
   final String uid;
@@ -512,7 +512,7 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final String giftDetails;
   @override
-  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp userCreatedAt;
   @override
   final String listingDate;
@@ -523,7 +523,7 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final bool canLeaveOutside;
   @override
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   final MyPosition position;
 
   @override
@@ -641,10 +641,10 @@ abstract class _GiftGiver implements GiftGiver {
       required int userRating,
       required String userImageUrl,
       required String userFullName,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition userPosition,
       required int distance,
-      @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
       required String uid,
       required int givingGiftInDays,
@@ -652,13 +652,13 @@ abstract class _GiftGiver implements GiftGiver {
       required String location,
       required String imageUrl,
       required String giftDetails,
-      @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp userCreatedAt,
       required String listingDate,
       required int listingForDays,
       required String pickUpTime,
       required bool canLeaveOutside,
-      @JsonKey(fromJson: _fromJson, toJson: _toJson)
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position}) = _$_GiftGiver;
 
   factory _GiftGiver.fromJson(Map<String, dynamic> json) =
@@ -677,12 +677,12 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   String get userFullName => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get userPosition => throw _privateConstructorUsedError;
   @override
   int get distance => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
   @override
   String get uid => throw _privateConstructorUsedError;
@@ -697,7 +697,7 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   String get giftDetails => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get userCreatedAt => throw _privateConstructorUsedError;
   @override
   String get listingDate => throw _privateConstructorUsedError;
@@ -708,7 +708,7 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

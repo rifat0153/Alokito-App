@@ -8,7 +8,7 @@ part 'my_position.g.dart';
 class MyPosition with _$MyPosition {
   const factory MyPosition({
     required String geohash,
-    @JsonKey(fromJson: _geoPointFromJson, toJson: _geoPointToJson)
+    @JsonKey(fromJson: geoPointFromJson, toJson: geoPointToJson)
         required GeoPoint geopoint,
   }) = _MyPosition;
 
@@ -16,5 +16,5 @@ class MyPosition with _$MyPosition {
       _$MyPositionFromJson(json);
 }
 
-GeoPoint _geoPointToJson(GeoPoint geoPoint) => geoPoint;
-GeoPoint _geoPointFromJson(GeoPoint json) => json;
+GeoPoint geoPointToJson(GeoPoint geoPoint) => geoPoint;
+GeoPoint geoPointFromJson(GeoPoint json) => json;
