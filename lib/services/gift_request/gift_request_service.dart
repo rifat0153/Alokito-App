@@ -87,7 +87,9 @@ class GiftRequestService implements BaseGiftRequestService {
 
       GiftReqeust giftReqeust = GiftReqeust(
         id: '${currentUserUid}.${giftGiver.id}',
-        
+        giftFor: giftGiver.giftFor,
+        requestConfirmed: false,
+        requestDenied: false,
         giftId: giftGiver.id!,
         giverUid: giftGiver.uid,
         requesterMessage: giftRequestController.requesterMessage.value,
