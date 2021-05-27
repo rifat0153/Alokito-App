@@ -7,11 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MessagePopUpWidget extends StatelessWidget {
+  MessagePopUpWidget({required this.giftGiver});
   final GiftRequestController controller = Get.find();
 
-  MessagePopUpWidget({required this.giftGiver});
-
-  GiftGiver giftGiver;
+  final GiftGiver giftGiver;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class MessagePopUpWidget extends StatelessWidget {
           // height: 800,
           // width: Get.size.width,
           decoration: BoxDecoration(
-            image: DecorationImage(
+            image: const DecorationImage(
                 image: AssetImage('assets/images/submit-feedback.png'),
                 fit: BoxFit.fill),
             borderRadius: BorderRadius.circular(10),
@@ -31,7 +30,7 @@ class MessagePopUpWidget extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text('Send a message for this gift'),
+                const Text('Send a message for this gift'),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
