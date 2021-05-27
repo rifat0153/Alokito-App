@@ -20,10 +20,12 @@ class MessagePopUpWidget extends StatelessWidget {
       child: Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
-          // height: 300,
+          // height: 800,
           // width: Get.size.width,
           decoration: BoxDecoration(
-            color: Colors.blue.withOpacity(0.5),
+            image: DecorationImage(
+                image: AssetImage('assets/images/submit-feedback.png'),
+                fit: BoxFit.fill),
             borderRadius: BorderRadius.circular(10),
           ),
           child: SingleChildScrollView(
