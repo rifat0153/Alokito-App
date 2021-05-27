@@ -9,6 +9,7 @@ import '../../views/map/my_map_view.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
+import '../../views/connection_views/connection_view.dart';
 
 class UserNavbar extends StatelessWidget {
   final height = Get.size.height;
@@ -40,7 +41,7 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.toNamed(MyMapView.route);
+            Get.to(ConnectionView());
           },
           child: Icon(Icons.message, color: Colors.white, size: height * 0.045),
         ),
