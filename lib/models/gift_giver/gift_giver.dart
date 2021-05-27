@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/geo.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -17,10 +18,10 @@ class GiftGiver with _$GiftGiver {
     required int userRating,
     required String userImageUrl,
     required String userFullName,
-    @JsonKey(fromJson: _fromJson, toJson: _toJson)
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition userPosition,
     required int distance,
-    @JsonKey(fromJson: _giftTypeFromJson, toJson: _giftTypeToJson)
+    @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
         required GiftType giftType,
     required String uid,
     required int givingGiftInDays,
@@ -28,53 +29,17 @@ class GiftGiver with _$GiftGiver {
     required String location,
     required String imageUrl,
     required String giftDetails,
-    @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
         required Timestamp userCreatedAt,
     required String listingDate,
     required int listingForDays,
     // @JsonKey(fromJson: _pickedTimeFromJson, toJson: _pickedTimeToJson)
     required String pickUpTime,
     required bool canLeaveOutside,
-    @JsonKey(fromJson: _fromJson, toJson: _toJson) required MyPosition position,
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+        required MyPosition position,
   }) = _GiftGiver;
 
   factory GiftGiver.fromJson(Map<String, dynamic> json) =>
       _$GiftGiverFromJson(json);
 }
-
-int _giftTypeToJson(GiftType giftType) {
-  switch (giftType) {
-    case GiftType.anyRetailItem:
-      return 0;
-    case GiftType.packageFor3Days:
-      return 1;
-    case GiftType.packageFor7Days:
-      return 2;
-    case GiftType.customizedPackage:
-      return 3;
-  }
-}
-
-GiftType _giftTypeFromJson(int json) {
-  switch (json) {
-    case 0:
-      return GiftType.anyRetailItem;
-    case 1:
-      return GiftType.packageFor3Days;
-    case 2:
-      return GiftType.packageFor7Days;
-    case 3:
-      return GiftType.customizedPackage;
-    default:
-      return GiftType.anyRetailItem;
-  }
-}
-
-Map<String, dynamic> _toJson(MyPosition myPosition) => myPosition.toJson();
-MyPosition _fromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);
-
-Timestamp _pickedTimeToJson(Timestamp pickUpTime) => pickUpTime;
-Timestamp _pickedTimeFromJson(Timestamp json) => json;
-
-Map<String, dynamic> _positionToJson(Position position) => position.toMap();
-Position _positionFromJson(Position json) => json;

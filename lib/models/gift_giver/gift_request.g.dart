@@ -10,6 +10,8 @@ _$_GiftReqeust _$_$_GiftReqeustFromJson(Map<String, dynamic> json) {
   return _$_GiftReqeust(
     id: json['id'] as String?,
     giftId: json['giftId'] as String,
+    requestConfirmed: json['requestConfirmed'] as bool,
+    requestDenied: json['requestDenied'] as bool,
     giverUid: json['giverUid'] as String,
     requesterUid: json['requesterUid'] as String,
     requesterMessage: json['requesterMessage'] as String,
@@ -29,6 +31,8 @@ Map<String, dynamic> _$_$_GiftReqeustToJson(_$_GiftReqeust instance) =>
     <String, dynamic>{
       'id': instance.id,
       'giftId': instance.giftId,
+      'requestConfirmed': instance.requestConfirmed,
+      'requestDenied': instance.requestDenied,
       'giverUid': instance.giverUid,
       'requesterUid': instance.requesterUid,
       'requesterMessage': instance.requesterMessage,

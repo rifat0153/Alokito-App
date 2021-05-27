@@ -33,6 +33,8 @@ class _$GiftReqeustTearOff {
   _GiftReqeust call(
       {String? id,
       required String giftId,
+      required bool requestConfirmed,
+      required bool requestDenied,
       required String giverUid,
       required String requesterUid,
       required String requesterMessage,
@@ -49,6 +51,8 @@ class _$GiftReqeustTearOff {
     return _GiftReqeust(
       id: id,
       giftId: giftId,
+      requestConfirmed: requestConfirmed,
+      requestDenied: requestDenied,
       giverUid: giverUid,
       requesterUid: requesterUid,
       requesterMessage: requesterMessage,
@@ -88,6 +92,8 @@ mixin _$GiftReqeust {
     TResult Function(
             String? id,
             String giftId,
+            bool requestConfirmed,
+            bool requestDenied,
             String giverUid,
             String requesterUid,
             String requesterMessage,
@@ -111,6 +117,8 @@ mixin _$GiftReqeust {
     TResult Function(
             String? id,
             String giftId,
+            bool requestConfirmed,
+            bool requestDenied,
             String giverUid,
             String requesterUid,
             String requesterMessage,
@@ -172,6 +180,8 @@ abstract class _$GiftReqeustCopyWith<$Res> {
   $Res call(
       {String? id,
       String giftId,
+      bool requestConfirmed,
+      bool requestDenied,
       String giverUid,
       String requesterUid,
       String requesterMessage,
@@ -203,6 +213,8 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftId = freezed,
+    Object? requestConfirmed = freezed,
+    Object? requestDenied = freezed,
     Object? giverUid = freezed,
     Object? requesterUid = freezed,
     Object? requesterMessage = freezed,
@@ -224,6 +236,14 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
           ? _value.giftId
           : giftId // ignore: cast_nullable_to_non_nullable
               as String,
+      requestConfirmed: requestConfirmed == freezed
+          ? _value.requestConfirmed
+          : requestConfirmed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requestDenied: requestDenied == freezed
+          ? _value.requestDenied
+          : requestDenied // ignore: cast_nullable_to_non_nullable
+              as bool,
       giverUid: giverUid == freezed
           ? _value.giverUid
           : giverUid // ignore: cast_nullable_to_non_nullable
@@ -285,6 +305,8 @@ class _$_GiftReqeust implements _GiftReqeust {
   const _$_GiftReqeust(
       {this.id,
       required this.giftId,
+      required this.requestConfirmed,
+      required this.requestDenied,
       required this.giverUid,
       required this.requesterUid,
       required this.requesterMessage,
@@ -306,6 +328,10 @@ class _$_GiftReqeust implements _GiftReqeust {
   final String? id;
   @override
   final String giftId;
+  @override
+  final bool requestConfirmed;
+  @override
+  final bool requestDenied;
   @override
   final String giverUid;
   @override
@@ -334,7 +360,7 @@ class _$_GiftReqeust implements _GiftReqeust {
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, giverUid: $giverUid, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl)';
+    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, giverUid: $giverUid, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl)';
   }
 
   @override
@@ -345,6 +371,12 @@ class _$_GiftReqeust implements _GiftReqeust {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.giftId, giftId) ||
                 const DeepCollectionEquality().equals(other.giftId, giftId)) &&
+            (identical(other.requestConfirmed, requestConfirmed) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestConfirmed, requestConfirmed)) &&
+            (identical(other.requestDenied, requestDenied) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestDenied, requestDenied)) &&
             (identical(other.giverUid, giverUid) ||
                 const DeepCollectionEquality()
                     .equals(other.giverUid, giverUid)) &&
@@ -385,6 +417,8 @@ class _$_GiftReqeust implements _GiftReqeust {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftId) ^
+      const DeepCollectionEquality().hash(requestConfirmed) ^
+      const DeepCollectionEquality().hash(requestDenied) ^
       const DeepCollectionEquality().hash(giverUid) ^
       const DeepCollectionEquality().hash(requesterUid) ^
       const DeepCollectionEquality().hash(requesterMessage) ^
@@ -408,6 +442,8 @@ class _$_GiftReqeust implements _GiftReqeust {
     TResult Function(
             String? id,
             String giftId,
+            bool requestConfirmed,
+            bool requestDenied,
             String giverUid,
             String requesterUid,
             String requesterMessage,
@@ -428,6 +464,8 @@ class _$_GiftReqeust implements _GiftReqeust {
     return $default(
         id,
         giftId,
+        requestConfirmed,
+        requestDenied,
         giverUid,
         requesterUid,
         requesterMessage,
@@ -447,6 +485,8 @@ class _$_GiftReqeust implements _GiftReqeust {
     TResult Function(
             String? id,
             String giftId,
+            bool requestConfirmed,
+            bool requestDenied,
             String giverUid,
             String requesterUid,
             String requesterMessage,
@@ -469,6 +509,8 @@ class _$_GiftReqeust implements _GiftReqeust {
       return $default(
           id,
           giftId,
+          requestConfirmed,
+          requestDenied,
           giverUid,
           requesterUid,
           requesterMessage,
@@ -518,6 +560,8 @@ abstract class _GiftReqeust implements GiftReqeust {
   const factory _GiftReqeust(
       {String? id,
       required String giftId,
+      required bool requestConfirmed,
+      required bool requestDenied,
       required String giverUid,
       required String requesterUid,
       required String requesterMessage,
@@ -537,6 +581,8 @@ abstract class _GiftReqeust implements GiftReqeust {
 
   String? get id => throw _privateConstructorUsedError;
   String get giftId => throw _privateConstructorUsedError;
+  bool get requestConfirmed => throw _privateConstructorUsedError;
+  bool get requestDenied => throw _privateConstructorUsedError;
   String get giverUid => throw _privateConstructorUsedError;
   String get requesterUid => throw _privateConstructorUsedError;
   String get requesterMessage => throw _privateConstructorUsedError;
@@ -598,6 +644,8 @@ class _$Loading implements Loading {
     TResult Function(
             String? id,
             String giftId,
+            bool requestConfirmed,
+            bool requestDenied,
             String giverUid,
             String requesterUid,
             String requesterMessage,
@@ -624,6 +672,8 @@ class _$Loading implements Loading {
     TResult Function(
             String? id,
             String giftId,
+            bool requestConfirmed,
+            bool requestDenied,
             String giverUid,
             String requesterUid,
             String requesterMessage,
@@ -752,6 +802,8 @@ class _$Error implements Error {
     TResult Function(
             String? id,
             String giftId,
+            bool requestConfirmed,
+            bool requestDenied,
             String giverUid,
             String requesterUid,
             String requesterMessage,
@@ -778,6 +830,8 @@ class _$Error implements Error {
     TResult Function(
             String? id,
             String giftId,
+            bool requestConfirmed,
+            bool requestDenied,
             String giverUid,
             String requesterUid,
             String requesterMessage,
