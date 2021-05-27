@@ -96,13 +96,13 @@ class GiftDetailsView extends StatelessWidget {
                         children: [
                           MaterialButton(
                             onPressed: null,
-                            color: Colors.grey,
-                            
+                            disabledColor: GIFT_ADD_FORM_COLOR,
+                            color: Colors.blue,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
                             child: Text(
                               'Gift Requested',
-                              style: const TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.blue),
                             ),
                           ),
                           MaterialButton(
