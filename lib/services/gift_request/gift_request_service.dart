@@ -16,9 +16,38 @@ class GiftRequestService implements BaseGiftRequestService {
   final _auth = FirebaseAuth.instance;
 
   @override
+  Future<bool> increaseNoOfTimesGiftRequested(
+      {required GiftGiver giftGiver}) async {
+    var currentUserUid = _auth.currentUser?.uid;
+    var docRef = _firestore
+        .collection('gift_requested_data')
+        .doc('${currentUserUid}.${giftGiver.id}');
+
+    try {
+      var doc = await docRef.get();
+
+      if (doc.data() == null) {
+        await docRef.set({'requestedNoOfTimes': 1});
+        return true;
+      }
+
+      int requested = doc.data()!['requestedNoOfTimes'] as int;
+
+      if (requested > 2) {
+        return false;
+      }
+
+      await docRef.set({'requestedNoOfTimes': requested + 1});
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  @override
   Future<bool> deleteGiftRequest({required GiftGiver giftGiver}) async {
-    AuthController authController = Get.find();
-    GiftRequestController giftRequestController = Get.find();
     var currentUserUid = _auth.currentUser?.uid;
 
     try {
@@ -38,9 +67,6 @@ class GiftRequestService implements BaseGiftRequestService {
 
   @override
   Future<bool> findGift({required GiftGiver giftGiver}) async {
-    AuthController authController = Get.find();
-    GiftRequestController giftRequestController = Get.find();
-
     var currentUserUid = _auth.currentUser?.uid;
 
     try {

@@ -36,6 +36,16 @@ class GiftRequestController extends GetxController {
     loading.value = true;
     var exists = await giftRequestService.findGift(giftGiver: giftGiver);
 
+    var requestedMoreThan3Times = await giftRequestService
+        .increaseNoOfTimesGiftRequested(giftGiver: giftGiver);
+
+    if (!requestedMoreThan3Times) {
+      Get.snackbar('Gift Request', 'gift request was made more than 3 times',
+          backgroundColor: Colors.yellow.withOpacity(0.5));
+      loading.value = false;
+      return;
+    }
+
     if (exists) {
       Get.snackbar('Gift Request', 'gift request exists',
           backgroundColor: Colors.yellow.withOpacity(0.5));

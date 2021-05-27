@@ -95,8 +95,9 @@ class GiftDetailsView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           MaterialButton(
-                            onPressed: () {},
-                            color: Colors.yellowAccent,
+                            onPressed: null,
+                            color: Colors.grey,
+                            
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
                             child: Text(
