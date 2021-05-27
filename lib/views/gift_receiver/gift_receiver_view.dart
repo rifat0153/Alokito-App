@@ -13,7 +13,7 @@ import '../gift_giver/my_gift_view.dart';
 class GiftReceiverView extends StatelessWidget {
   static const route = '/giftreceiverview';
 
-  final GiftRequestController controller = Get.put(GiftRequestController());
+  // final GiftRequestController controller = Get.put(GiftRequestController());
 
   final media = Get.size;
   final double menuHeight = Get.size.height * 0.18;

@@ -18,7 +18,7 @@ class LoginForm extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         // color: Colors.blue,
         image: DecorationImage(
           image: AssetImage('assets/images/login.png'),
@@ -29,7 +29,7 @@ class LoginForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 50),
             child: LoginInput(
               hint: 'Username',
               onChanged: (value) =>
@@ -41,7 +41,8 @@ class LoginForm extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 50),
             child: LoginInput(
               hint: 'Password',
-              onChanged: (value) => loginController.password.value = value as String,
+              onChanged: (value) =>
+                  loginController.password.value = value as String,
             ),
           ),
           SizedBox(height: Get.size.height * 0.01),

@@ -8,6 +8,7 @@ import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_receiver/widgets/gift_detail_map_widget.dart';
 import 'package:alokito_new/views/gift_receiver/widgets/message_popup_widget.dart';
+import 'package:alokito_new/views/gift_receiver/widgets/request_delete_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -20,11 +21,14 @@ class GiftDetailsView extends StatelessWidget {
   static const route = 'giftdetail';
 
   GiftGiver giftGiver;
+  final GiftRequestController giftRequestController = Get.find();
   GiftController giftController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     var giftType = giftController.convertGiftType(giftGiver.giftType);
+
+    giftRequestController.findGiftReqeust(giftGiver: giftGiver);
 
     return SafeArea(
       child: Scaffold(
@@ -83,29 +87,66 @@ class GiftDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: MaterialButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    barrierDismissible: true,
-                    builder: (BuildContext context) {
-                      return MessagePopUpWidget(giftGiver: giftGiver);
-                    },
-                  );
-                },
-                color: GIFT_ADD_FORM_SUBMIT,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
-                  child: Text(
-                    'Send Request',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
+            Obx(
+              () => Align(
+                alignment: Alignment.bottomCenter,
+                child: giftRequestController.requestExists.value
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          MaterialButton(
+                            onPressed: () {},
+                            color: Colors.yellowAccent,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              'Gift Requested',
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context) {
+                                  return RequestDeleteWidget(
+                                      giftGiver: giftGiver);
+                                },
+                              );
+                            },
+                            color: Colors.red,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              'Cancel',
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      )
+                    : MaterialButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) {
+                              return MessagePopUpWidget(giftGiver: giftGiver);
+                            },
+                          );
+                        },
+                        color: GIFT_ADD_FORM_SUBMIT,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: Get.size.width * 0.2),
+                          child: Text(
+                            'Send Request',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
               ),
             ),
           ],

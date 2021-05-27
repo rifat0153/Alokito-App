@@ -16,6 +16,27 @@ class GiftRequestService implements BaseGiftRequestService {
   final _auth = FirebaseAuth.instance;
 
   @override
+  Future<bool> deleteGiftRequest({required GiftGiver giftGiver}) async {
+    AuthController authController = Get.find();
+    GiftRequestController giftRequestController = Get.find();
+    var currentUserUid = _auth.currentUser?.uid;
+
+    try {
+      var result = await _firestore
+          .collection('gift_requests')
+          .doc('${currentUserUid}.${giftGiver.id}')
+          .delete();
+
+      print('Service: delete gift request');
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  @override
   Future<bool> findGift({required GiftGiver giftGiver}) async {
     AuthController authController = Get.find();
     GiftRequestController giftRequestController = Get.find();
@@ -43,7 +64,9 @@ class GiftRequestService implements BaseGiftRequestService {
 
   @override
   Future<bool> addGiftRequest({required GiftGiver giftGiver}) async {
+    print('in add gift request');
     AuthController authController = Get.find();
+    GiftRequestController giftRequestController = Get.find();
 
     var currentPos = await Location().getLocation();
 
@@ -66,8 +89,7 @@ class GiftRequestService implements BaseGiftRequestService {
         id: '${currentUserUid}.${giftGiver.id}',
         giftId: giftGiver.id!,
         giverUid: giftGiver.uid,
-        requesterMessage: '',
-        // requesterMessage: giftRequestController.requesterMessage.value,
+        requesterMessage: giftRequestController.requesterMessage.value,
         requesterUid: _auth.currentUser!.uid,
         giftType: giftGiver.giftType,
         giftImageUrl: giftGiver.imageUrl,

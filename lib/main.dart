@@ -106,6 +106,11 @@ class GetPages {
       page: () => GiftOfferView(),
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.downToUp,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => GiftController());
+        Get.lazyPut(() => GiftAddFormController());
+        Get.put(GiftRequestController());
+      }),
     ),
     GetPage(
       name: GiftGiverView.route,
