@@ -41,6 +41,7 @@ class GiftRequestController extends GetxController {
 
     if (!requestedMoreThan3Times) {
       Get.snackbar('Gift Request', 'gift request was made more than 3 times',
+          duration: const Duration(seconds: 5),
           backgroundColor: Colors.yellow.withOpacity(0.5));
       loading.value = false;
       return;
