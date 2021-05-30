@@ -1,5 +1,6 @@
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
@@ -14,10 +15,10 @@ class AuthController extends GetxController {
 
   final currentUserName = ''.obs;
   final currentUserImageUrl = ''.obs;
-  final currentUserImageUrl = ''.obs;
-  final currentUserImageUrl = ''.obs;
-  final currentUserImageUrl = ''.obs;
-  final currentUserImageUrl = ''.obs;
+  final currentUserGiftOffered = 0.obs;
+  final currentUserGiftReceived = 0.obs;
+  final currentUserCreatedAt = Timestamp.now().obs;
+  final currentUserLocation = ''.obs;
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();

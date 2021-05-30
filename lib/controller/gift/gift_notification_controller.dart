@@ -1,5 +1,6 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/services/notification/gift_notification_service.dart';
@@ -19,10 +20,17 @@ class GiftNotificationController extends GetxController {
   }
 
   Future<bool> addNotificationForGiftRequest(
-      {required GiftGiver giftGiver}) async {
+      {required GiftGiver giftGiver, required String message}) async {
+    AuthController authController = Get.find<AuthController>();
+
     GiftNotification giftNotification = GiftNotification(
       requesterName: giftGiver.userName,
       requesterUid: FirebaseAuth.instance.currentUser?.uid ?? '',
+      giftArea: giftGiver.area,
+      giftLocation: giftGiver.location,
+      giverJoinedAt: giftGiver.userCreatedAt,
+      requesterJoinedAt: authController.currentUserCreatedAt.value,
+      requesterMessage: message,
       giverName: giftGiver.userName,
       giverUid: giftGiver.uid,
       giftType: giftGiver.giftType,

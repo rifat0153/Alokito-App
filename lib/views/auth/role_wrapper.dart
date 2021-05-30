@@ -23,6 +23,9 @@ class RoleWrapper extends StatelessWidget {
         data: (localUser) {
           authController.currentUserImageUrl.value = localUser.imageUrl!;
           authController.currentUserName.value = localUser.userName;
+          authController.currentUserCreatedAt.value = localUser.createdAt;
+          authController.currentUserGiftOffered.value = localUser.giftOffered;
+          authController.currentUserGiftReceived.value = localUser.giftReceived;
 
           return localUser.role == 'admin' || localUser.id == null
               ? Container(

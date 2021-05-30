@@ -23,7 +23,7 @@ class RegisterForm extends StatelessWidget {
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/rsz_registration.png'),
               fit: BoxFit.cover),
@@ -40,7 +40,8 @@ class RegisterForm extends StatelessWidget {
                       SizedBox(height: Get.size.height * 0.07),
                       Text(
                         'Registration',
-                        style: TextStyle(color: Colors.white, fontSize: 30),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 30),
                       ),
                       SizedBox(height: Get.size.height * 0.04),
                       // User Image Input

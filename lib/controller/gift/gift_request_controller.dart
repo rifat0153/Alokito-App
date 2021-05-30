@@ -59,7 +59,8 @@ class GiftRequestController extends GetxController {
     var result = await giftRequestService.addGiftRequest(giftGiver: giftGiver);
     if (result) {
       await Get.find<GiftNotificationController>()
-          .addNotificationForGiftRequest(giftGiver: giftGiver);
+          .addNotificationForGiftRequest(
+              giftGiver: giftGiver, message: requesterMessage.value);
 
       Get.snackbar('Gift Request', 'gift request succesful',
           backgroundColor: Colors.green.withOpacity(0.5));
