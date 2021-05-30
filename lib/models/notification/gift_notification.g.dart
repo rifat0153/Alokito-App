@@ -9,6 +9,7 @@ part of 'gift_notification.dart';
 _$_GiftNotification _$_$_GiftNotificationFromJson(Map<String, dynamic> json) {
   return _$_GiftNotification(
     id: json['id'] as String?,
+    giftId: json['giftId'] as String,
     requesterName: json['requesterName'] as String,
     requesterUid: json['requesterUid'] as String,
     requesterMessage: json['requesterMessage'] as String,
@@ -30,6 +31,7 @@ Map<String, dynamic> _$_$_GiftNotificationToJson(
         _$_GiftNotification instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'giftId': instance.giftId,
       'requesterName': instance.requesterName,
       'requesterUid': instance.requesterUid,
       'requesterMessage': instance.requesterMessage,

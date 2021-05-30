@@ -11,6 +11,7 @@ part 'gift_notification.g.dart';
 class GiftNotification with _$GiftNotification {
   const factory GiftNotification({
     String? id,
+    required String giftId,
     required String requesterName,
     required String requesterUid,
     required String requesterMessage,

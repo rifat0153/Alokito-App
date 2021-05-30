@@ -24,7 +24,8 @@ class GiftNotificationController extends GetxController {
     AuthController authController = Get.find<AuthController>();
 
     GiftNotification giftNotification = GiftNotification(
-      requesterName: giftGiver.userName,
+      requesterName: authController.currentUserName.value,
+      giftId: giftGiver.id ?? '',
       requesterUid: FirebaseAuth.instance.currentUser?.uid ?? '',
       giftArea: giftGiver.area,
       giftLocation: giftGiver.location,

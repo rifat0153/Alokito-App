@@ -33,7 +33,7 @@ class GiftRequestService implements BaseGiftRequestService {
 
       int requested = doc.data()!['requestedNoOfTimes'] as int;
 
-      if (requested > 2) {
+      if (requested > 20) {
         return false;
       }
 

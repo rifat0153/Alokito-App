@@ -22,6 +22,7 @@ class _$GiftNotificationTearOff {
 
   _GiftNotification call(
       {String? id,
+      required String giftId,
       required String requesterName,
       required String requesterUid,
       required String requesterMessage,
@@ -41,6 +42,7 @@ class _$GiftNotificationTearOff {
           required Timestamp createdAt}) {
     return _GiftNotification(
       id: id,
+      giftId: giftId,
       requesterName: requesterName,
       requesterUid: requesterUid,
       requesterMessage: requesterMessage,
@@ -67,6 +69,7 @@ const $GiftNotification = _$GiftNotificationTearOff();
 /// @nodoc
 mixin _$GiftNotification {
   String? get id => throw _privateConstructorUsedError;
+  String get giftId => throw _privateConstructorUsedError;
   String get requesterName => throw _privateConstructorUsedError;
   String get requesterUid => throw _privateConstructorUsedError;
   String get requesterMessage => throw _privateConstructorUsedError;
@@ -101,6 +104,7 @@ abstract class $GiftNotificationCopyWith<$Res> {
       _$GiftNotificationCopyWithImpl<$Res>;
   $Res call(
       {String? id,
+      String giftId,
       String requesterName,
       String requesterUid,
       String requesterMessage,
@@ -132,6 +136,7 @@ class _$GiftNotificationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? giftId = freezed,
     Object? requesterName = freezed,
     Object? requesterUid = freezed,
     Object? requesterMessage = freezed,
@@ -150,6 +155,10 @@ class _$GiftNotificationCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      giftId: giftId == freezed
+          ? _value.giftId
+          : giftId // ignore: cast_nullable_to_non_nullable
+              as String,
       requesterName: requesterName == freezed
           ? _value.requesterName
           : requesterName // ignore: cast_nullable_to_non_nullable
@@ -211,6 +220,7 @@ abstract class _$GiftNotificationCopyWith<$Res>
   @override
   $Res call(
       {String? id,
+      String giftId,
       String requesterName,
       String requesterUid,
       String requesterMessage,
@@ -244,6 +254,7 @@ class __$GiftNotificationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? giftId = freezed,
     Object? requesterName = freezed,
     Object? requesterUid = freezed,
     Object? requesterMessage = freezed,
@@ -262,6 +273,10 @@ class __$GiftNotificationCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      giftId: giftId == freezed
+          ? _value.giftId
+          : giftId // ignore: cast_nullable_to_non_nullable
+              as String,
       requesterName: requesterName == freezed
           ? _value.requesterName
           : requesterName // ignore: cast_nullable_to_non_nullable
@@ -319,6 +334,7 @@ class __$GiftNotificationCopyWithImpl<$Res>
 class _$_GiftNotification implements _GiftNotification {
   const _$_GiftNotification(
       {this.id,
+      required this.giftId,
       required this.requesterName,
       required this.requesterUid,
       required this.requesterMessage,
@@ -342,6 +358,8 @@ class _$_GiftNotification implements _GiftNotification {
 
   @override
   final String? id;
+  @override
+  final String giftId;
   @override
   final String requesterName;
   @override
@@ -376,7 +394,7 @@ class _$_GiftNotification implements _GiftNotification {
 
   @override
   String toString() {
-    return 'GiftNotification(id: $id, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giverName: $giverName, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
+    return 'GiftNotification(id: $id, giftId: $giftId, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giverName: $giverName, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
   }
 
   @override
@@ -385,6 +403,8 @@ class _$_GiftNotification implements _GiftNotification {
         (other is _GiftNotification &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.giftId, giftId) ||
+                const DeepCollectionEquality().equals(other.giftId, giftId)) &&
             (identical(other.requesterName, requesterName) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterName, requesterName)) &&
@@ -427,6 +447,7 @@ class _$_GiftNotification implements _GiftNotification {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(giftId) ^
       const DeepCollectionEquality().hash(requesterName) ^
       const DeepCollectionEquality().hash(requesterUid) ^
       const DeepCollectionEquality().hash(requesterMessage) ^
@@ -454,6 +475,7 @@ class _$_GiftNotification implements _GiftNotification {
 abstract class _GiftNotification implements GiftNotification {
   const factory _GiftNotification(
       {String? id,
+      required String giftId,
       required String requesterName,
       required String requesterUid,
       required String requesterMessage,
@@ -477,6 +499,8 @@ abstract class _GiftNotification implements GiftNotification {
 
   @override
   String? get id => throw _privateConstructorUsedError;
+  @override
+  String get giftId => throw _privateConstructorUsedError;
   @override
   String get requesterName => throw _privateConstructorUsedError;
   @override
