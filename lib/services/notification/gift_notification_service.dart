@@ -42,8 +42,8 @@ class GiftNotificationService implements BaseGiftNotificationService {
     return _firestore
         .collection('gift_notifications')
         .where('notificationFor', isEqualTo: _auth.currentUser?.uid ?? '')
-        // .orderBy('createdAt', descending: true)
-        // .limit(25)
+        .orderBy('createdAt', descending: true)
+        .limit(25)
         .snapshots()
         .map((QuerySnapshot querySnapshot) {
       List<GiftNotification> retVal = [];
