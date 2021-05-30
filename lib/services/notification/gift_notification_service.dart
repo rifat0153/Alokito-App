@@ -37,11 +37,13 @@ class GiftNotificationService implements BaseGiftNotificationService {
   Stream<List<GiftNotification>> streamGiftNotification() {
     AuthController authController = Get.find();
 
+    print('IN not stream:  ' + _auth.currentUser!.uid);
+
     return _firestore
         .collection('gift_notifications')
-        .where('id', isGreaterThanOrEqualTo: _auth.currentUser?.uid ?? '')
+        .where('notificationFor', isEqualTo: _auth.currentUser?.uid ?? '')
         // .orderBy('createdAt', descending: true)
-        .limit(25)
+        // .limit(25)
         .snapshots()
         .map((QuerySnapshot querySnapshot) {
       List<GiftNotification> retVal = [];
