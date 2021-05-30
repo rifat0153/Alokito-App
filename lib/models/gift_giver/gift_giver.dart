@@ -1,7 +1,7 @@
-import 'package:alokito_new/models/geo.dart';
+
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/json_converters.dart';
-import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
