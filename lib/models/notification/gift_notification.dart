@@ -19,6 +19,7 @@ class GiftNotification with _$GiftNotification {
     required String giverUid,
     required String giftLocation,
     required String giftArea,
+    required List<String> notificationFor,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
         required Timestamp giverJoinedAt,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)

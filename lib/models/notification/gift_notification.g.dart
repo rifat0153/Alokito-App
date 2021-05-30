@@ -17,6 +17,9 @@ _$_GiftNotification _$_$_GiftNotificationFromJson(Map<String, dynamic> json) {
     giverUid: json['giverUid'] as String,
     giftLocation: json['giftLocation'] as String,
     giftArea: json['giftArea'] as String,
+    notificationFor: (json['notificationFor'] as List<dynamic>)
+        .map((e) => e as String)
+        .toList(),
     giverJoinedAt: timestampFromJson(json['giverJoinedAt'] as Timestamp),
     requesterJoinedAt:
         timestampFromJson(json['requesterJoinedAt'] as Timestamp),
@@ -39,6 +42,7 @@ Map<String, dynamic> _$_$_GiftNotificationToJson(
       'giverUid': instance.giverUid,
       'giftLocation': instance.giftLocation,
       'giftArea': instance.giftArea,
+      'notificationFor': instance.notificationFor,
       'giverJoinedAt': timestampToJson(instance.giverJoinedAt),
       'requesterJoinedAt': timestampToJson(instance.requesterJoinedAt),
       'giftType': giftTypeToJson(instance.giftType),
