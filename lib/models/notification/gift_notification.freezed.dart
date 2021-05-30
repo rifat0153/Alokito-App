@@ -24,8 +24,15 @@ class _$GiftNotificationTearOff {
       {String? id,
       required String requesterName,
       required String requesterUid,
+      required String requesterMessage,
       required String giverName,
       required String giverUid,
+      required String giftLocation,
+      required String giftArea,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp giverJoinedAt,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp requesterJoinedAt,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
@@ -36,8 +43,13 @@ class _$GiftNotificationTearOff {
       id: id,
       requesterName: requesterName,
       requesterUid: requesterUid,
+      requesterMessage: requesterMessage,
       giverName: giverName,
       giverUid: giverUid,
+      giftLocation: giftLocation,
+      giftArea: giftArea,
+      giverJoinedAt: giverJoinedAt,
+      requesterJoinedAt: requesterJoinedAt,
       giftType: giftType,
       notificationType: notificationType,
       createdAt: createdAt,
@@ -57,8 +69,15 @@ mixin _$GiftNotification {
   String? get id => throw _privateConstructorUsedError;
   String get requesterName => throw _privateConstructorUsedError;
   String get requesterUid => throw _privateConstructorUsedError;
+  String get requesterMessage => throw _privateConstructorUsedError;
   String get giverName => throw _privateConstructorUsedError;
   String get giverUid => throw _privateConstructorUsedError;
+  String get giftLocation => throw _privateConstructorUsedError;
+  String get giftArea => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get giverJoinedAt => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get requesterJoinedAt => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
   @JsonKey(
@@ -84,8 +103,15 @@ abstract class $GiftNotificationCopyWith<$Res> {
       {String? id,
       String requesterName,
       String requesterUid,
+      String requesterMessage,
       String giverName,
       String giverUid,
+      String giftLocation,
+      String giftArea,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp giverJoinedAt,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp requesterJoinedAt,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           GiftType giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
@@ -108,8 +134,13 @@ class _$GiftNotificationCopyWithImpl<$Res>
     Object? id = freezed,
     Object? requesterName = freezed,
     Object? requesterUid = freezed,
+    Object? requesterMessage = freezed,
     Object? giverName = freezed,
     Object? giverUid = freezed,
+    Object? giftLocation = freezed,
+    Object? giftArea = freezed,
+    Object? giverJoinedAt = freezed,
+    Object? requesterJoinedAt = freezed,
     Object? giftType = freezed,
     Object? notificationType = freezed,
     Object? createdAt = freezed,
@@ -127,6 +158,10 @@ class _$GiftNotificationCopyWithImpl<$Res>
           ? _value.requesterUid
           : requesterUid // ignore: cast_nullable_to_non_nullable
               as String,
+      requesterMessage: requesterMessage == freezed
+          ? _value.requesterMessage
+          : requesterMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       giverName: giverName == freezed
           ? _value.giverName
           : giverName // ignore: cast_nullable_to_non_nullable
@@ -135,6 +170,22 @@ class _$GiftNotificationCopyWithImpl<$Res>
           ? _value.giverUid
           : giverUid // ignore: cast_nullable_to_non_nullable
               as String,
+      giftLocation: giftLocation == freezed
+          ? _value.giftLocation
+          : giftLocation // ignore: cast_nullable_to_non_nullable
+              as String,
+      giftArea: giftArea == freezed
+          ? _value.giftArea
+          : giftArea // ignore: cast_nullable_to_non_nullable
+              as String,
+      giverJoinedAt: giverJoinedAt == freezed
+          ? _value.giverJoinedAt
+          : giverJoinedAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
+      requesterJoinedAt: requesterJoinedAt == freezed
+          ? _value.requesterJoinedAt
+          : requesterJoinedAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
       giftType: giftType == freezed
           ? _value.giftType
           : giftType // ignore: cast_nullable_to_non_nullable
@@ -162,8 +213,15 @@ abstract class _$GiftNotificationCopyWith<$Res>
       {String? id,
       String requesterName,
       String requesterUid,
+      String requesterMessage,
       String giverName,
       String giverUid,
+      String giftLocation,
+      String giftArea,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp giverJoinedAt,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp requesterJoinedAt,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           GiftType giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
@@ -188,8 +246,13 @@ class __$GiftNotificationCopyWithImpl<$Res>
     Object? id = freezed,
     Object? requesterName = freezed,
     Object? requesterUid = freezed,
+    Object? requesterMessage = freezed,
     Object? giverName = freezed,
     Object? giverUid = freezed,
+    Object? giftLocation = freezed,
+    Object? giftArea = freezed,
+    Object? giverJoinedAt = freezed,
+    Object? requesterJoinedAt = freezed,
     Object? giftType = freezed,
     Object? notificationType = freezed,
     Object? createdAt = freezed,
@@ -207,6 +270,10 @@ class __$GiftNotificationCopyWithImpl<$Res>
           ? _value.requesterUid
           : requesterUid // ignore: cast_nullable_to_non_nullable
               as String,
+      requesterMessage: requesterMessage == freezed
+          ? _value.requesterMessage
+          : requesterMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       giverName: giverName == freezed
           ? _value.giverName
           : giverName // ignore: cast_nullable_to_non_nullable
@@ -215,6 +282,22 @@ class __$GiftNotificationCopyWithImpl<$Res>
           ? _value.giverUid
           : giverUid // ignore: cast_nullable_to_non_nullable
               as String,
+      giftLocation: giftLocation == freezed
+          ? _value.giftLocation
+          : giftLocation // ignore: cast_nullable_to_non_nullable
+              as String,
+      giftArea: giftArea == freezed
+          ? _value.giftArea
+          : giftArea // ignore: cast_nullable_to_non_nullable
+              as String,
+      giverJoinedAt: giverJoinedAt == freezed
+          ? _value.giverJoinedAt
+          : giverJoinedAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
+      requesterJoinedAt: requesterJoinedAt == freezed
+          ? _value.requesterJoinedAt
+          : requesterJoinedAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
       giftType: giftType == freezed
           ? _value.giftType
           : giftType // ignore: cast_nullable_to_non_nullable
@@ -238,8 +321,15 @@ class _$_GiftNotification implements _GiftNotification {
       {this.id,
       required this.requesterName,
       required this.requesterUid,
+      required this.requesterMessage,
       required this.giverName,
       required this.giverUid,
+      required this.giftLocation,
+      required this.giftArea,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required this.giverJoinedAt,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required this.requesterJoinedAt,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required this.giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
@@ -257,9 +347,21 @@ class _$_GiftNotification implements _GiftNotification {
   @override
   final String requesterUid;
   @override
+  final String requesterMessage;
+  @override
   final String giverName;
   @override
   final String giverUid;
+  @override
+  final String giftLocation;
+  @override
+  final String giftArea;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  final Timestamp giverJoinedAt;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  final Timestamp requesterJoinedAt;
   @override
   @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   final GiftType giftType;
@@ -274,7 +376,7 @@ class _$_GiftNotification implements _GiftNotification {
 
   @override
   String toString() {
-    return 'GiftNotification(id: $id, requesterName: $requesterName, requesterUid: $requesterUid, giverName: $giverName, giverUid: $giverUid, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
+    return 'GiftNotification(id: $id, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giverName: $giverName, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
   }
 
   @override
@@ -289,12 +391,27 @@ class _$_GiftNotification implements _GiftNotification {
             (identical(other.requesterUid, requesterUid) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterUid, requesterUid)) &&
+            (identical(other.requesterMessage, requesterMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterMessage, requesterMessage)) &&
             (identical(other.giverName, giverName) ||
                 const DeepCollectionEquality()
                     .equals(other.giverName, giverName)) &&
             (identical(other.giverUid, giverUid) ||
                 const DeepCollectionEquality()
                     .equals(other.giverUid, giverUid)) &&
+            (identical(other.giftLocation, giftLocation) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftLocation, giftLocation)) &&
+            (identical(other.giftArea, giftArea) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftArea, giftArea)) &&
+            (identical(other.giverJoinedAt, giverJoinedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.giverJoinedAt, giverJoinedAt)) &&
+            (identical(other.requesterJoinedAt, requesterJoinedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterJoinedAt, requesterJoinedAt)) &&
             (identical(other.giftType, giftType) ||
                 const DeepCollectionEquality()
                     .equals(other.giftType, giftType)) &&
@@ -312,8 +429,13 @@ class _$_GiftNotification implements _GiftNotification {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(requesterName) ^
       const DeepCollectionEquality().hash(requesterUid) ^
+      const DeepCollectionEquality().hash(requesterMessage) ^
       const DeepCollectionEquality().hash(giverName) ^
       const DeepCollectionEquality().hash(giverUid) ^
+      const DeepCollectionEquality().hash(giftLocation) ^
+      const DeepCollectionEquality().hash(giftArea) ^
+      const DeepCollectionEquality().hash(giverJoinedAt) ^
+      const DeepCollectionEquality().hash(requesterJoinedAt) ^
       const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(notificationType) ^
       const DeepCollectionEquality().hash(createdAt);
@@ -334,8 +456,15 @@ abstract class _GiftNotification implements GiftNotification {
       {String? id,
       required String requesterName,
       required String requesterUid,
+      required String requesterMessage,
       required String giverName,
       required String giverUid,
+      required String giftLocation,
+      required String giftArea,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp giverJoinedAt,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp requesterJoinedAt,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
@@ -353,9 +482,21 @@ abstract class _GiftNotification implements GiftNotification {
   @override
   String get requesterUid => throw _privateConstructorUsedError;
   @override
+  String get requesterMessage => throw _privateConstructorUsedError;
+  @override
   String get giverName => throw _privateConstructorUsedError;
   @override
   String get giverUid => throw _privateConstructorUsedError;
+  @override
+  String get giftLocation => throw _privateConstructorUsedError;
+  @override
+  String get giftArea => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get giverJoinedAt => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get requesterJoinedAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;

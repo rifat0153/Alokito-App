@@ -28,8 +28,8 @@ class GiftNotificationService implements BaseGiftNotificationService {
   Stream<List<GiftNotification>> streamGiftNotification() {
     return _firestore
         .collection('gift_notifications')
-        // .orderBy('createdAt', descending: true)
-        // .limit(25)
+        .orderBy('createdAt', descending: true)
+        .limit(25)
         .snapshots()
         .map((QuerySnapshot querySnapshot) {
       List<GiftNotification> retVal = [];

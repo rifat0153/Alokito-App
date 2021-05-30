@@ -17,6 +17,8 @@ _$_LocalUser _$_$_LocalUserFromJson(Map<String, dynamic> json) {
     email: json['email'] as String,
     imageUrl: json['imageUrl'] as String?,
     role: json['role'] as String? ?? 'user',
+    giftOffered: json['giftOffered'] as int? ?? 0,
+    giftReceived: json['giftReceived'] as int? ?? 0,
     position: myPositionFromJson(json['position'] as Map<String, dynamic>),
     createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
@@ -33,6 +35,8 @@ Map<String, dynamic> _$_$_LocalUserToJson(_$_LocalUser instance) =>
       'email': instance.email,
       'imageUrl': instance.imageUrl,
       'role': instance.role,
+      'giftOffered': instance.giftOffered,
+      'giftReceived': instance.giftReceived,
       'position': myPositionToJson(instance.position),
       'createdAt': timestampToJson(instance.createdAt),
     };

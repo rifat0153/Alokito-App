@@ -14,6 +14,10 @@ class AuthController extends GetxController {
 
   final currentUserName = ''.obs;
   final currentUserImageUrl = ''.obs;
+  final currentUserImageUrl = ''.obs;
+  final currentUserImageUrl = ''.obs;
+  final currentUserImageUrl = ''.obs;
+  final currentUserImageUrl = ''.obs;
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();

@@ -13,8 +13,15 @@ class GiftNotification with _$GiftNotification {
     String? id,
     required String requesterName,
     required String requesterUid,
+    required String requesterMessage,
     required String giverName,
     required String giverUid,
+    required String giftLocation,
+    required String giftArea,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+        required Timestamp giverJoinedAt,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+        required Timestamp requesterJoinedAt,
     @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
         required GiftType giftType,
     @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)

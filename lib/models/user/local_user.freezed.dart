@@ -30,6 +30,8 @@ class _$LocalUserTearOff {
       required String email,
       String? imageUrl,
       String role = 'user',
+      int giftOffered = 0,
+      int giftReceived = 0,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position,
       @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
@@ -44,6 +46,8 @@ class _$LocalUserTearOff {
       email: email,
       imageUrl: imageUrl,
       role: role,
+      giftOffered: giftOffered,
+      giftReceived: giftReceived,
       position: position,
       createdAt: createdAt,
     );
@@ -68,6 +72,8 @@ mixin _$LocalUser {
   String get email => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
+  int get giftOffered => throw _privateConstructorUsedError;
+  int get giftReceived => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;
   @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
@@ -93,6 +99,8 @@ abstract class $LocalUserCopyWith<$Res> {
       String email,
       String? imageUrl,
       String role,
+      int giftOffered,
+      int giftReceived,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position,
       @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
@@ -120,6 +128,8 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
     Object? email = freezed,
     Object? imageUrl = freezed,
     Object? role = freezed,
+    Object? giftOffered = freezed,
+    Object? giftReceived = freezed,
     Object? position = freezed,
     Object? createdAt = freezed,
   }) {
@@ -160,6 +170,14 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      giftOffered: giftOffered == freezed
+          ? _value.giftOffered
+          : giftOffered // ignore: cast_nullable_to_non_nullable
+              as int,
+      giftReceived: giftReceived == freezed
+          ? _value.giftReceived
+          : giftReceived // ignore: cast_nullable_to_non_nullable
+              as int,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -195,6 +213,8 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
       String email,
       String? imageUrl,
       String role,
+      int giftOffered,
+      int giftReceived,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position,
       @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
@@ -224,6 +244,8 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
     Object? email = freezed,
     Object? imageUrl = freezed,
     Object? role = freezed,
+    Object? giftOffered = freezed,
+    Object? giftReceived = freezed,
     Object? position = freezed,
     Object? createdAt = freezed,
   }) {
@@ -264,6 +286,14 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      giftOffered: giftOffered == freezed
+          ? _value.giftOffered
+          : giftOffered // ignore: cast_nullable_to_non_nullable
+              as int,
+      giftReceived: giftReceived == freezed
+          ? _value.giftReceived
+          : giftReceived // ignore: cast_nullable_to_non_nullable
+              as int,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -289,6 +319,8 @@ class _$_LocalUser implements _LocalUser {
       required this.email,
       this.imageUrl,
       this.role = 'user',
+      this.giftOffered = 0,
+      this.giftReceived = 0,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required this.position,
       @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
@@ -318,6 +350,12 @@ class _$_LocalUser implements _LocalUser {
   @JsonKey(defaultValue: 'user')
   @override
   final String role;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int giftOffered;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int giftReceived;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   final MyPosition position;
@@ -327,7 +365,7 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   String toString() {
-    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, totalReview: $totalReview, reviewInStar: $reviewInStar, userName: $userName, email: $email, imageUrl: $imageUrl, role: $role, position: $position, createdAt: $createdAt)';
+    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, totalReview: $totalReview, reviewInStar: $reviewInStar, userName: $userName, email: $email, imageUrl: $imageUrl, role: $role, giftOffered: $giftOffered, giftReceived: $giftReceived, position: $position, createdAt: $createdAt)';
   }
 
   @override
@@ -358,6 +396,12 @@ class _$_LocalUser implements _LocalUser {
                     .equals(other.imageUrl, imageUrl)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)) &&
+            (identical(other.giftOffered, giftOffered) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftOffered, giftOffered)) &&
+            (identical(other.giftReceived, giftReceived) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftReceived, giftReceived)) &&
             (identical(other.position, position) ||
                 const DeepCollectionEquality()
                     .equals(other.position, position)) &&
@@ -378,6 +422,8 @@ class _$_LocalUser implements _LocalUser {
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(role) ^
+      const DeepCollectionEquality().hash(giftOffered) ^
+      const DeepCollectionEquality().hash(giftReceived) ^
       const DeepCollectionEquality().hash(position) ^
       const DeepCollectionEquality().hash(createdAt);
 
@@ -403,6 +449,8 @@ abstract class _LocalUser implements LocalUser {
       required String email,
       String? imageUrl,
       String role,
+      int giftOffered,
+      int giftReceived,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position,
       @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
@@ -429,6 +477,10 @@ abstract class _LocalUser implements LocalUser {
   String? get imageUrl => throw _privateConstructorUsedError;
   @override
   String get role => throw _privateConstructorUsedError;
+  @override
+  int get giftOffered => throw _privateConstructorUsedError;
+  @override
+  int get giftReceived => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;

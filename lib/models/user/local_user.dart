@@ -20,6 +20,8 @@ abstract class LocalUser with _$LocalUser {
     required String email,
     String? imageUrl,
     @Default('user') String role,
+    @Default(0) int giftOffered,
+    @Default(0) int giftReceived,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition position,
     @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
