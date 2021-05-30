@@ -11,6 +11,10 @@ class GiftRequestController extends GetxController {
   RxBool showDialog = RxBool(false);
   RxBool requestExists = RxBool(false);
 
+
+
+  
+
   //Delete giftRequest\
   Future<bool> deleleGiftRequest({required GiftGiver giftGiver}) async {
     var result =
