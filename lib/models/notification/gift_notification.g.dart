@@ -16,6 +16,7 @@ _$_GiftNotification _$_$_GiftNotificationFromJson(Map<String, dynamic> json) {
     giftType: giftTypeFromJson(json['giftType'] as int),
     notificationType:
         giftNotificationTypeFromJson(json['notificationType'] as int),
+    createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
 }
 
@@ -29,4 +30,5 @@ Map<String, dynamic> _$_$_GiftNotificationToJson(
       'giverUid': instance.giverUid,
       'giftType': giftTypeToJson(instance.giftType),
       'notificationType': giftNotificationTypeToJson(instance.notificationType),
+      'createdAt': timestampToJson(instance.createdAt),
     };

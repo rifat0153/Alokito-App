@@ -13,13 +13,33 @@ class GiftNotificationService implements BaseGiftNotificationService {
     try {
       var docRef = _firestore.collection('gift_notifications').doc();
 
-      giftNotification.copyWith(id: docRef.id);
-      await docRef.set(giftNotification.toJson());
+      print(docRef.id + '   in doc ref');
+      var object = giftNotification.copyWith(id: docRef.id);
+      await docRef.set(object.toJson());
 
       return true;
     } catch (e) {
       print(e);
       return false;
     }
+  }
+
+  @override
+  Stream<List<GiftNotification>> streamGiftNotification() {
+    return _firestore
+        .collection('gift_notifications')
+        // .orderBy('createdAt', descending: true)
+        // .limit(25)
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      List<GiftNotification> retVal = [];
+
+      print(querySnapshot.docs.length.toString() + 'in service length of docs');
+
+      querySnapshot.docs.forEach((doc) {
+        retVal.add(GiftNotification.fromJson(doc.data()));
+      });
+      return retVal;
+    });
   }
 }

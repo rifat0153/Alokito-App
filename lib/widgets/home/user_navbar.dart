@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
+import 'package:alokito_new/views/notification/notification_view.dart';
 
 import '../../views/map/geo_locations.dart';
 import '../../views/map/geo_map_view.dart';
@@ -32,10 +33,7 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            GiftGiverService().addGift();
-
-            // geoController.bindGeoStream();
-            // Get.to(() => GeoLocation());
+            Get.to(() => NotificationView());
           },
           child: Icon(Icons.circle, color: Colors.red, size: height * 0.06),
         ),

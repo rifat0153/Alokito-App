@@ -3,16 +3,18 @@ import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/services/notification/gift_notification_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class GiftNotificationController extends GetxController {
   GiftNotificationService giftNotificationService = GiftNotificationService();
-  RxList<GiftNotification> giftNotifications = RxList.empty();
+  RxList<GiftNotification> giftNotificationList = RxList.empty();
 
   @override
   void onInit() {
-    // giftNotifications.bindStream(stream);
+    giftNotificationList
+        .bindStream(giftNotificationService.streamGiftNotification());
     super.onInit();
   }
 
@@ -25,6 +27,7 @@ class GiftNotificationController extends GetxController {
       giverUid: giftGiver.uid,
       giftType: giftGiver.giftType,
       notificationType: GiftNotificationType.packageRequested,
+      createdAt: Timestamp.now(),
     );
 
     var result = await giftNotificationService.addGiftNotification(

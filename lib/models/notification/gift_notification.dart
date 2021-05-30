@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'gift_notification.freezed.dart';
@@ -18,6 +19,8 @@ class GiftNotification with _$GiftNotification {
         required GiftType giftType,
     @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
         required GiftNotificationType notificationType,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+        required Timestamp createdAt,
   }) = _GiftNotification;
 
   factory GiftNotification.fromJson(Map<String, dynamic> json) =>

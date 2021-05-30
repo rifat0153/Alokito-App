@@ -1,4 +1,6 @@
+import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/services/gift_request/gift_request_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,10 +12,6 @@ class GiftRequestController extends GetxController {
   RxString requesterMessage = RxString('');
   RxBool showDialog = RxBool(false);
   RxBool requestExists = RxBool(false);
-
-
-
-  
 
   //Delete giftRequest\
   Future<bool> deleleGiftRequest({required GiftGiver giftGiver}) async {
@@ -60,6 +58,9 @@ class GiftRequestController extends GetxController {
 
     var result = await giftRequestService.addGiftRequest(giftGiver: giftGiver);
     if (result) {
+      await Get.find<GiftNotificationController>()
+          .addNotificationForGiftRequest(giftGiver: giftGiver);
+
       Get.snackbar('Gift Request', 'gift request succesful',
           backgroundColor: Colors.green.withOpacity(0.5));
       loading.value = false;

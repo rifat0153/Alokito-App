@@ -29,7 +29,9 @@ class _$GiftNotificationTearOff {
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
-          required GiftNotificationType notificationType}) {
+          required GiftNotificationType notificationType,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp createdAt}) {
     return _GiftNotification(
       id: id,
       requesterName: requesterName,
@@ -38,6 +40,7 @@ class _$GiftNotificationTearOff {
       giverUid: giverUid,
       giftType: giftType,
       notificationType: notificationType,
+      createdAt: createdAt,
     );
   }
 
@@ -63,6 +66,8 @@ mixin _$GiftNotification {
       toJson: giftNotificationTypeToJson)
   GiftNotificationType get notificationType =>
       throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -84,7 +89,9 @@ abstract class $GiftNotificationCopyWith<$Res> {
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           GiftType giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
-          GiftNotificationType notificationType});
+          GiftNotificationType notificationType,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp createdAt});
 }
 
 /// @nodoc
@@ -105,6 +112,7 @@ class _$GiftNotificationCopyWithImpl<$Res>
     Object? giverUid = freezed,
     Object? giftType = freezed,
     Object? notificationType = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -135,6 +143,10 @@ class _$GiftNotificationCopyWithImpl<$Res>
           ? _value.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
               as GiftNotificationType,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 }
@@ -155,7 +167,9 @@ abstract class _$GiftNotificationCopyWith<$Res>
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           GiftType giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
-          GiftNotificationType notificationType});
+          GiftNotificationType notificationType,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp createdAt});
 }
 
 /// @nodoc
@@ -178,6 +192,7 @@ class __$GiftNotificationCopyWithImpl<$Res>
     Object? giverUid = freezed,
     Object? giftType = freezed,
     Object? notificationType = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_GiftNotification(
       id: id == freezed
@@ -208,6 +223,10 @@ class __$GiftNotificationCopyWithImpl<$Res>
           ? _value.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
               as GiftNotificationType,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 }
@@ -224,7 +243,9 @@ class _$_GiftNotification implements _GiftNotification {
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required this.giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
-          required this.notificationType});
+          required this.notificationType,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required this.createdAt});
 
   factory _$_GiftNotification.fromJson(Map<String, dynamic> json) =>
       _$_$_GiftNotificationFromJson(json);
@@ -247,10 +268,13 @@ class _$_GiftNotification implements _GiftNotification {
       fromJson: giftNotificationTypeFromJson,
       toJson: giftNotificationTypeToJson)
   final GiftNotificationType notificationType;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  final Timestamp createdAt;
 
   @override
   String toString() {
-    return 'GiftNotification(id: $id, requesterName: $requesterName, requesterUid: $requesterUid, giverName: $giverName, giverUid: $giverUid, giftType: $giftType, notificationType: $notificationType)';
+    return 'GiftNotification(id: $id, requesterName: $requesterName, requesterUid: $requesterUid, giverName: $giverName, giverUid: $giverUid, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
   }
 
   @override
@@ -276,7 +300,10 @@ class _$_GiftNotification implements _GiftNotification {
                     .equals(other.giftType, giftType)) &&
             (identical(other.notificationType, notificationType) ||
                 const DeepCollectionEquality()
-                    .equals(other.notificationType, notificationType)));
+                    .equals(other.notificationType, notificationType)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -288,7 +315,8 @@ class _$_GiftNotification implements _GiftNotification {
       const DeepCollectionEquality().hash(giverName) ^
       const DeepCollectionEquality().hash(giverUid) ^
       const DeepCollectionEquality().hash(giftType) ^
-      const DeepCollectionEquality().hash(notificationType);
+      const DeepCollectionEquality().hash(notificationType) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -311,7 +339,9 @@ abstract class _GiftNotification implements GiftNotification {
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
       @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
-          required GiftNotificationType notificationType}) = _$_GiftNotification;
+          required GiftNotificationType notificationType,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp createdAt}) = _$_GiftNotification;
 
   factory _GiftNotification.fromJson(Map<String, dynamic> json) =
       _$_GiftNotification.fromJson;
@@ -335,6 +365,9 @@ abstract class _GiftNotification implements GiftNotification {
       toJson: giftNotificationTypeToJson)
   GiftNotificationType get notificationType =>
       throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GiftNotificationCopyWith<_GiftNotification> get copyWith =>
