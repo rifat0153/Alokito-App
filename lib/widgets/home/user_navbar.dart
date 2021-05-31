@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
 import 'package:alokito_new/views/notification/notification_view.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../../views/map/geo_locations.dart';
 import '../../views/map/geo_map_view.dart';
@@ -27,9 +28,9 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.find<AuthController>().authService.value.signOut();
+            Get.to(() => NotificationView());
           },
-          child: Icon(Icons.ballot, color: Colors.white, size: height * 0.04),
+          child: Icon(LineIcons.bell, color: Colors.white, size: height * 0.04),
         ),
         GestureDetector(
           onTap: () {
@@ -44,7 +45,7 @@ class UserNavbar extends StatelessWidget {
           child: Icon(Icons.message, color: Colors.white, size: height * 0.045),
         ),
         GestureDetector(
-          onTap: () => Get.toNamed(GeoMapView.route),
+          onTap: () => Get.find<AuthController>().authService.value.signOut(),
           child: Icon(Icons.map, color: Colors.white, size: height * 0.035),
         ),
       ],

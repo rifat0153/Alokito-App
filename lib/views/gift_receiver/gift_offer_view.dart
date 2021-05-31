@@ -7,6 +7,7 @@ import 'package:alokito_new/views/map/my_map_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
 
 class GiftOfferView extends StatelessWidget {
   static const route = 'giftoffer';
@@ -23,6 +24,12 @@ class GiftOfferView extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+         ),
+        extendBodyBehindAppBar: true,
         body: Stack(
           children: [
             Container(
