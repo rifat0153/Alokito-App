@@ -23,10 +23,13 @@ class _$GiftNotificationTearOff {
   _GiftNotification call(
       {String? id,
       required String giftId,
+      required String giftImageUrl,
+      required String requesterImageUrl,
       required String requesterName,
       required String requesterUid,
       required String requesterMessage,
       required String giverName,
+      required String giverImageUrl,
       required String giverUid,
       required String giftLocation,
       required String giftArea,
@@ -45,10 +48,13 @@ class _$GiftNotificationTearOff {
     return _GiftNotification(
       id: id,
       giftId: giftId,
+      giftImageUrl: giftImageUrl,
+      requesterImageUrl: requesterImageUrl,
       requesterName: requesterName,
       requesterUid: requesterUid,
       requesterMessage: requesterMessage,
       giverName: giverName,
+      giverImageUrl: giverImageUrl,
       giverUid: giverUid,
       giftLocation: giftLocation,
       giftArea: giftArea,
@@ -74,10 +80,13 @@ const $GiftNotification = _$GiftNotificationTearOff();
 mixin _$GiftNotification {
   String? get id => throw _privateConstructorUsedError;
   String get giftId => throw _privateConstructorUsedError;
+  String get giftImageUrl => throw _privateConstructorUsedError;
+  String get requesterImageUrl => throw _privateConstructorUsedError;
   String get requesterName => throw _privateConstructorUsedError;
   String get requesterUid => throw _privateConstructorUsedError;
   String get requesterMessage => throw _privateConstructorUsedError;
   String get giverName => throw _privateConstructorUsedError;
+  String get giverImageUrl => throw _privateConstructorUsedError;
   String get giverUid => throw _privateConstructorUsedError;
   String get giftLocation => throw _privateConstructorUsedError;
   String get giftArea => throw _privateConstructorUsedError;
@@ -111,10 +120,13 @@ abstract class $GiftNotificationCopyWith<$Res> {
   $Res call(
       {String? id,
       String giftId,
+      String giftImageUrl,
+      String requesterImageUrl,
       String requesterName,
       String requesterUid,
       String requesterMessage,
       String giverName,
+      String giverImageUrl,
       String giverUid,
       String giftLocation,
       String giftArea,
@@ -145,10 +157,13 @@ class _$GiftNotificationCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftId = freezed,
+    Object? giftImageUrl = freezed,
+    Object? requesterImageUrl = freezed,
     Object? requesterName = freezed,
     Object? requesterUid = freezed,
     Object? requesterMessage = freezed,
     Object? giverName = freezed,
+    Object? giverImageUrl = freezed,
     Object? giverUid = freezed,
     Object? giftLocation = freezed,
     Object? giftArea = freezed,
@@ -169,6 +184,14 @@ class _$GiftNotificationCopyWithImpl<$Res>
           ? _value.giftId
           : giftId // ignore: cast_nullable_to_non_nullable
               as String,
+      giftImageUrl: giftImageUrl == freezed
+          ? _value.giftImageUrl
+          : giftImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      requesterImageUrl: requesterImageUrl == freezed
+          ? _value.requesterImageUrl
+          : requesterImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       requesterName: requesterName == freezed
           ? _value.requesterName
           : requesterName // ignore: cast_nullable_to_non_nullable
@@ -184,6 +207,10 @@ class _$GiftNotificationCopyWithImpl<$Res>
       giverName: giverName == freezed
           ? _value.giverName
           : giverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      giverImageUrl: giverImageUrl == freezed
+          ? _value.giverImageUrl
+          : giverImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
       giverUid: giverUid == freezed
           ? _value.giverUid
@@ -239,10 +266,13 @@ abstract class _$GiftNotificationCopyWith<$Res>
   $Res call(
       {String? id,
       String giftId,
+      String giftImageUrl,
+      String requesterImageUrl,
       String requesterName,
       String requesterUid,
       String requesterMessage,
       String giverName,
+      String giverImageUrl,
       String giverUid,
       String giftLocation,
       String giftArea,
@@ -275,10 +305,13 @@ class __$GiftNotificationCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftId = freezed,
+    Object? giftImageUrl = freezed,
+    Object? requesterImageUrl = freezed,
     Object? requesterName = freezed,
     Object? requesterUid = freezed,
     Object? requesterMessage = freezed,
     Object? giverName = freezed,
+    Object? giverImageUrl = freezed,
     Object? giverUid = freezed,
     Object? giftLocation = freezed,
     Object? giftArea = freezed,
@@ -299,6 +332,14 @@ class __$GiftNotificationCopyWithImpl<$Res>
           ? _value.giftId
           : giftId // ignore: cast_nullable_to_non_nullable
               as String,
+      giftImageUrl: giftImageUrl == freezed
+          ? _value.giftImageUrl
+          : giftImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      requesterImageUrl: requesterImageUrl == freezed
+          ? _value.requesterImageUrl
+          : requesterImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       requesterName: requesterName == freezed
           ? _value.requesterName
           : requesterName // ignore: cast_nullable_to_non_nullable
@@ -314,6 +355,10 @@ class __$GiftNotificationCopyWithImpl<$Res>
       giverName: giverName == freezed
           ? _value.giverName
           : giverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      giverImageUrl: giverImageUrl == freezed
+          ? _value.giverImageUrl
+          : giverImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
       giverUid: giverUid == freezed
           ? _value.giverUid
@@ -365,10 +410,13 @@ class _$_GiftNotification implements _GiftNotification {
   const _$_GiftNotification(
       {this.id,
       required this.giftId,
+      required this.giftImageUrl,
+      required this.requesterImageUrl,
       required this.requesterName,
       required this.requesterUid,
       required this.requesterMessage,
       required this.giverName,
+      required this.giverImageUrl,
       required this.giverUid,
       required this.giftLocation,
       required this.giftArea,
@@ -393,6 +441,10 @@ class _$_GiftNotification implements _GiftNotification {
   @override
   final String giftId;
   @override
+  final String giftImageUrl;
+  @override
+  final String requesterImageUrl;
+  @override
   final String requesterName;
   @override
   final String requesterUid;
@@ -400,6 +452,8 @@ class _$_GiftNotification implements _GiftNotification {
   final String requesterMessage;
   @override
   final String giverName;
+  @override
+  final String giverImageUrl;
   @override
   final String giverUid;
   @override
@@ -430,7 +484,7 @@ class _$_GiftNotification implements _GiftNotification {
 
   @override
   String toString() {
-    return 'GiftNotification(id: $id, giftId: $giftId, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giverName: $giverName, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, notificationFor: $notificationFor, notificationForList: $notificationForList, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
+    return 'GiftNotification(id: $id, giftId: $giftId, giftImageUrl: $giftImageUrl, requesterImageUrl: $requesterImageUrl, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giverName: $giverName, giverImageUrl: $giverImageUrl, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, notificationFor: $notificationFor, notificationForList: $notificationForList, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
   }
 
   @override
@@ -441,6 +495,12 @@ class _$_GiftNotification implements _GiftNotification {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.giftId, giftId) ||
                 const DeepCollectionEquality().equals(other.giftId, giftId)) &&
+            (identical(other.giftImageUrl, giftImageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftImageUrl, giftImageUrl)) &&
+            (identical(other.requesterImageUrl, requesterImageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterImageUrl, requesterImageUrl)) &&
             (identical(other.requesterName, requesterName) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterName, requesterName)) &&
@@ -453,6 +513,9 @@ class _$_GiftNotification implements _GiftNotification {
             (identical(other.giverName, giverName) ||
                 const DeepCollectionEquality()
                     .equals(other.giverName, giverName)) &&
+            (identical(other.giverImageUrl, giverImageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.giverImageUrl, giverImageUrl)) &&
             (identical(other.giverUid, giverUid) ||
                 const DeepCollectionEquality()
                     .equals(other.giverUid, giverUid)) &&
@@ -490,10 +553,13 @@ class _$_GiftNotification implements _GiftNotification {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftId) ^
+      const DeepCollectionEquality().hash(giftImageUrl) ^
+      const DeepCollectionEquality().hash(requesterImageUrl) ^
       const DeepCollectionEquality().hash(requesterName) ^
       const DeepCollectionEquality().hash(requesterUid) ^
       const DeepCollectionEquality().hash(requesterMessage) ^
       const DeepCollectionEquality().hash(giverName) ^
+      const DeepCollectionEquality().hash(giverImageUrl) ^
       const DeepCollectionEquality().hash(giverUid) ^
       const DeepCollectionEquality().hash(giftLocation) ^
       const DeepCollectionEquality().hash(giftArea) ^
@@ -520,10 +586,13 @@ abstract class _GiftNotification implements GiftNotification {
   const factory _GiftNotification(
       {String? id,
       required String giftId,
+      required String giftImageUrl,
+      required String requesterImageUrl,
       required String requesterName,
       required String requesterUid,
       required String requesterMessage,
       required String giverName,
+      required String giverImageUrl,
       required String giverUid,
       required String giftLocation,
       required String giftArea,
@@ -548,6 +617,10 @@ abstract class _GiftNotification implements GiftNotification {
   @override
   String get giftId => throw _privateConstructorUsedError;
   @override
+  String get giftImageUrl => throw _privateConstructorUsedError;
+  @override
+  String get requesterImageUrl => throw _privateConstructorUsedError;
+  @override
   String get requesterName => throw _privateConstructorUsedError;
   @override
   String get requesterUid => throw _privateConstructorUsedError;
@@ -555,6 +628,8 @@ abstract class _GiftNotification implements GiftNotification {
   String get requesterMessage => throw _privateConstructorUsedError;
   @override
   String get giverName => throw _privateConstructorUsedError;
+  @override
+  String get giverImageUrl => throw _privateConstructorUsedError;
   @override
   String get giverUid => throw _privateConstructorUsedError;
   @override

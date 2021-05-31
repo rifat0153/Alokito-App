@@ -21,7 +21,7 @@ class RoleWrapper extends StatelessWidget {
 
     return Obx(() => authController.currentUser.value.when(
         data: (localUser) {
-          authController.currentUserImageUrl.value = localUser.imageUrl!;
+          authController.currentUserImageUrl.value = localUser.imageUrl ?? '';
           authController.currentUserName.value = localUser.userName;
           authController.currentUserCreatedAt.value = localUser.createdAt;
           authController.currentUserGiftOffered.value = localUser.giftOffered;

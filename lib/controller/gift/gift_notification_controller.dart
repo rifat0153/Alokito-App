@@ -20,11 +20,14 @@ class GiftNotificationController extends GetxController {
   }
 
   Future<bool> addNotificationForGiftRequest(
-      {required GiftGiver giftGiver, required String message}) async {
+      {required GiftGiver giftGiver,
+      required String message,
+      required String requesterImageUrl}) async {
     AuthController authController = Get.find<AuthController>();
 
     GiftNotification giftNotification = GiftNotification(
       requesterName: authController.currentUserName.value,
+      giftImageUrl: giftGiver.imageUrl,
       giftId: giftGiver.id ?? '',
       notificationFor: giftGiver.uid,
       notificationForList: [
@@ -32,6 +35,8 @@ class GiftNotificationController extends GetxController {
         FirebaseAuth.instance.currentUser?.uid ?? ''
       ],
       requesterUid: FirebaseAuth.instance.currentUser?.uid ?? '',
+      requesterImageUrl: requesterImageUrl,
+      giverImageUrl: giftGiver.userImageUrl,
       giftArea: giftGiver.area,
       giftLocation: giftGiver.location,
       giverJoinedAt: giftGiver.userCreatedAt,

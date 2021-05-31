@@ -110,13 +110,15 @@ class GiftRequestWidget extends StatelessWidget {
       child: Card(
         child: Row(
           children: [
+            const SizedBox(width: 8),
             Flexible(
               flex: 1,
-              child: Image.asset(
-                'assets/images/notification-background.png',
-                fit: BoxFit.cover,
+              child: Image.network(
+                giftNotification.giftImageUrl,
+                fit: BoxFit.fill,
               ),
             ),
+            const SizedBox(width: 8),
             Flexible(
               flex: 7,
               child: Column(
@@ -137,7 +139,7 @@ class GiftRequestWidget extends StatelessWidget {
                                   const TextStyle(fontWeight: FontWeight.bold)),
                           const TextSpan(text: ' is requsted by '),
                           TextSpan(
-                              text: '${giftNotification.giverName}',
+                              text: '${giftNotification.requesterName}',
                               style:
                                   const TextStyle(fontWeight: FontWeight.bold)),
                         ],

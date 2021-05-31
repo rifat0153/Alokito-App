@@ -1,3 +1,4 @@
+import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
@@ -60,7 +61,10 @@ class GiftRequestController extends GetxController {
     if (result) {
       await Get.find<GiftNotificationController>()
           .addNotificationForGiftRequest(
-              giftGiver: giftGiver, message: requesterMessage.value);
+              giftGiver: giftGiver,
+              message: requesterMessage.value,
+              requesterImageUrl:
+                  Get.find<AuthController>().currentUserImageUrl.value);
 
       Get.snackbar('Gift Request', 'gift request succesful',
           backgroundColor: Colors.green.withOpacity(0.5));
