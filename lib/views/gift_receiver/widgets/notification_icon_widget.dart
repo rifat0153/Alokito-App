@@ -6,17 +6,18 @@ class NotificationIconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 30,
+      width: 30,
       child: Stack(
         children: <Widget>[
-          Align(
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.ac_unit,
-                color: Colors.yellow,
-                size: 30,
-              )),
-          Align(
-            alignment: Alignment.topRight,
+          Icon(
+            Icons.ac_unit,
+            color: Colors.yellow,
+            size: 30,
+          ),
+          Positioned(
+            top: 25,
+            right: 0,
             child: Text(
               '10',
               style: TextStyle(

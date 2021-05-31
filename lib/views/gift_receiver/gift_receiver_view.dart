@@ -4,6 +4,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/views/gift_receiver/widgets/notification_icon_widget.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,14 @@ class GiftReceiverView extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontSize: 30),
           ),
           actions: [
-            NotificationIconWidget(),
+            Row(
+              children: [
+                Badge(
+                  badgeContent: Text('3'),
+                  child: Icon(Icons.notification_important),
+                ),
+              ],
+            ),
             IconButton(
               onPressed: () {},
               icon: const Icon(Icons.settings),
