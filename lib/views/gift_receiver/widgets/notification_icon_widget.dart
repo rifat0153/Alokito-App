@@ -6,8 +6,6 @@ class NotificationIconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.size.height * 0.04,
-      width: Get.size.width * 0.08,
       child: Stack(
         children: <Widget>[
           Align(

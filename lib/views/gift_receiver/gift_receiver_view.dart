@@ -3,7 +3,7 @@ import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
-import 'package:alokito_new/widgets/gift_giver/notification_icon_widget.dart';
+import 'package:alokito_new/views/gift_receiver/widgets/notification_icon_widget.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -25,71 +25,49 @@ class GiftReceiverView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              height: Get.size.height,
-              width: Get.size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    // image: AssetImage(
-                    //     'assets/images/gift_receiver_background.png'),
-                    image: AssetImage('assets/images/rsz_1gift_receiver.png'),
-                    fit: BoxFit.fill),
-              ),
-            ),
-            Positioned(
-              top: media.height * 0.02,
-              left: 0,
-              child: Container(
-                // height: media.height,
-                width: media.width,
-                child: _Header(media: media),
-              ),
-            ),
-            Positioned(
-              top: media.height * 0.13,
-              child: Container(
-                  width: media.width, child: const _MyButtonRowWidget()),
-            ),
-            Positioned(
-              bottom: 0,
-              child: _ThankYouBannerWidget(height: 30, width: media.width),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Header extends StatelessWidget {
-  const _Header({
-    Key? key,
-    required this.media,
-  }) : super(key: key);
-
-  final Size media;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        SizedBox(width: media.width * 0.03),
-        const Icon(Icons.menu, color: Colors.white),
-        const SizedBox(width: 10),
-        const Expanded(
-          child: Text(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          toolbarHeight: 80,
+          centerTitle: true,
+          title: Text(
             'Gift Receiver',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 30),
           ),
+          actions: [
+            NotificationIconWidget(),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.settings),
+            ),
+          ],
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
         ),
-        NotificationIconWidget(),
-        const SizedBox(width: 10),
-        const Icon(Icons.settings, color: Colors.white),
-        SizedBox(width: media.width * 0.03),
-      ],
+        body: Container(
+          height: Get.size.height,
+          width: Get.size.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                // image: AssetImage(
+                //     'assets/images/gift_receiver_background.png'),
+                image: AssetImage('assets/images/rsz_1gift_receiver.png'),
+                fit: BoxFit.fill),
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 100),
+              Container(
+                width: media.width,
+                child: const _MyButtonRowWidget(),
+              ),
+              const Spacer(),
+              _ThankYouBannerWidget(height: 30, width: media.width),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
