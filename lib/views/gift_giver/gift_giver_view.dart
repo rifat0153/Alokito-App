@@ -4,6 +4,7 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_receiver/widgets/notification_icon_widget.dart';
+import 'package:alokito_new/widgets/menu/my_drawer_widget.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
@@ -27,34 +28,7 @@ class GiftGiverView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text('Drawer Header'),
-              ),
-              ListTile(
-                title: Text('Item 1'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              ListTile(
-                title: Text('Item 2'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: MyDrawer(),
         appBar: AppBar(
           toolbarHeight: 80,
           centerTitle: true,
@@ -95,6 +69,9 @@ class GiftGiverView extends StatelessWidget {
                     image: AssetImage('assets/images/rsz_background.png'),
                     fit: BoxFit.fill),
               ),
+              child: Column(children: [
+                
+              ],),
             ),
             Positioned(
               top: media.height * 0.14,

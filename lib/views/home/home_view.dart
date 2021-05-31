@@ -5,6 +5,7 @@ import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/views/home/widgets/user_email_widget.dart';
 import 'package:alokito_new/views/home/widgets/user_name_widget.dart';
 import 'package:alokito_new/views/home/widgets/user_navbar.dart';
+import 'package:alokito_new/widgets/menu/my_drawer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -24,34 +25,7 @@ class HomeView extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         extendBody: true,
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text('Drawer Header'),
-              ),
-              ListTile(
-                title: Text('Item 1'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              ListTile(
-                title: Text('Item 2'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: MyDrawer(),
         appBar: AppBar(
           toolbarHeight: 80,
           centerTitle: true,
