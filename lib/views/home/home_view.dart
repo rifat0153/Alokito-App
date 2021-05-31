@@ -81,69 +81,76 @@ class HomeView extends StatelessWidget {
                 image: AssetImage('assets/images/rsz_registration.png'),
                 fit: BoxFit.fill),
           ),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: media.height * 0.1, width: 0),
-              SizedBox(height: media.height * 0.03),
-              Flexible(
-                flex: 6,
-                fit: FlexFit.tight,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 35),
-                  child: authController.currentUser.value.when(
-                    data: (user) => CircleAvatar(
-                      radius: 75,
-                      backgroundImage: NetworkImage(user.imageUrl!),
+          child: Stack(
+            children: [
+              Column(
+                children: <Widget>[
+                  SizedBox(height: media.height * 0.1, width: 0),
+                  Flexible(
+                    flex: 6,
+                    fit: FlexFit.tight,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 35),
+                      child: authController.currentUser.value.when(
+                        data: (user) => CircleAvatar(
+                          radius: 75,
+                          backgroundImage: NetworkImage(user.imageUrl!),
+                        ),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (e, s) => CircularProgressIndicator(),
+                      ),
                     ),
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
-                    error: (e, s) => CircularProgressIndicator(),
                   ),
-                ),
-              ),
-              // SizedBox(height: media.height * 0.005, width: 0),
-              Expanded(
-                // padding: const EdgeInsets.only(top: 1),
-                child: UserNameWidget(
-                    localUser: authController.currentUser.value,
-                    context: context),
-              ),
-              Expanded(
-                child: UserEmailWidget(
-                    context: context,
-                    localUser: authController.currentUser.value),
-              ),
-              // SizedBox(height: media.height * 0.06),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Row(
-                  children: [
-                    SizedBox(width: media.width * 0.18, height: 0),
-                    const Text(
-                      'and you are a...',
-                      style: TextStyle(fontSize: 17),
+                  // SizedBox(height: media.height * 0.005, width: 0),
+                  Flexible(
+                    // padding: const EdgeInsets.only(top: 1),
+                    child: UserNameWidget(
+                        localUser: authController.currentUser.value,
+                        context: context),
+                  ),
+                  Flexible(
+                    child: UserEmailWidget(
+                        context: context,
+                        localUser: authController.currentUser.value),
+                  ),
+                  // SizedBox(height: media.height * 0.06),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        SizedBox(width: media.width * 0.18, height: 0),
+                        const Text(
+                          'and you are a...',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  GestureDetector(
+                    onTap: () => Get.toNamed(GiftGiverView.route),
+                    child: _GiftGiverMenu(
+                        height: media.height * 0.1, width: media.width * 0.7),
+                  ),
+                  GestureDetector(
+                    onTap: () => Get.toNamed(GiftReceiverView.route),
+                    child: _GiftRecieverMenu(
+                        height: media.height * 0.1, width: media.width * 0.7),
+                  ),
+                  _CommunityHeroMenu(
+                      height: media.height * 0.1, width: media.width * 0.7),
+                  _TeamPlayerMenu(
+                    height: media.height * 0.1,
+                    width: media.width * 0.7,
+                  ),
+                  Flexible(flex: 2, child: Container()),
+                ],
               ),
-              GestureDetector(
-                onTap: () => Get.toNamed(GiftGiverView.route),
-                child: _GiftGiverMenu(
-                    height: media.height * 0.1, width: media.width * 0.7),
-              ),
-              GestureDetector(
-                onTap: () => Get.toNamed(GiftReceiverView.route),
-                child: _GiftRecieverMenu(
-                    height: media.height * 0.1, width: media.width * 0.7),
-              ),
-              _CommunityHeroMenu(
-                  height: media.height * 0.1, width: media.width * 0.7),
-              _TeamPlayerMenu(
-                height: media.height * 0.1,
-                width: media.width * 0.7,
-              ),
-              Expanded(child: Container()),
-              UserNavbar()
+              Positioned(
+                width: Get.size.width,
+                bottom: 0,
+                child: UserNavbar(),
+              )
             ],
           ),
         ),
