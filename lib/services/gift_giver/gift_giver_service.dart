@@ -29,8 +29,6 @@ class GiftGiverService implements BaseGiftGiverService {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
- 
-
   @override
   Future<String> getAddressFromLatLng(
       {required double lat, required double lng}) async {

@@ -49,6 +49,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
       List<GiftNotification> retVal = [];
 
       print(querySnapshot.docs.length.toString() + 'in service length of docs');
+      print('in service length of docs' + _auth.currentUser!.uid);
 
       querySnapshot.docs.forEach((doc) {
         retVal.add(GiftNotification.fromJson(doc.data()));
