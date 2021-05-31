@@ -14,6 +14,7 @@ class GiftController extends GetxController {
   GiftGiverService giftService = GiftGiverService();
   RxBool loading = false.obs;
   Rx<List<GiftGiver>> giftList = Rx<List<GiftGiver>>([]);
+
   var _searchRadius = 100.0.obs;
   var currentUserLocation = const LatLng(0, 0).obs;
 
