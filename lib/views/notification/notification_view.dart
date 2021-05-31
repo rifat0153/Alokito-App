@@ -94,16 +94,54 @@ class GiftRequestWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var giftType = convertGiftType(giftType);
-    
+    var giftType = convertGiftType(giftNotification.giftType);
+    var date = DateTime.now();
+    var notificationCreatedAt = DateTime.fromMillisecondsSinceEpoch(
+        giftNotification.createdAt.millisecondsSinceEpoch);
+    var difference = date.difference(notificationCreatedAt).inHours;
+
     return Card(
-      child: ListTile(
-        leading: Text('Your gift offer ${} is requsted by ${giftNotification.requesterName}  ${giftNotification.giverName}'),
-        title: Text(giftNotification.requesterName),
-        trailing: Text(convertGiftNotificationTypeToString(
-            giftNotificationType: giftNotification.notificationType)),
-      ),
-    );
+        child: Row(
+      children: [
+        Flexible(
+          flex: 1,
+          child: Image.asset(
+            'assets/images/notification-background.png',
+            fit: BoxFit.cover,
+          ),
+        ),
+        Flexible(
+          flex: 7,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Your gift offer ',
+                    style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: '$giftType',
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: ' is requsted by '),
+                      TextSpan(
+                          text: '${giftNotification.giverName}',
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('$difference hours ago'),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ));
   }
 }
 
