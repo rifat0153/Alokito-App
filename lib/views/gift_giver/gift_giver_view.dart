@@ -69,9 +69,6 @@ class GiftGiverView extends StatelessWidget {
                     image: AssetImage('assets/images/rsz_background.png'),
                     fit: BoxFit.fill),
               ),
-              child: Column(children: [
-                
-              ],),
             ),
             Positioned(
               top: media.height * 0.14,
