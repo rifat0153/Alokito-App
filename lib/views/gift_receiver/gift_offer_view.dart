@@ -1,5 +1,6 @@
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
 
 import 'package:alokito_new/views/gift_receiver/gift_details_view.dart';
@@ -144,7 +145,7 @@ class _GiftListTile extends StatelessWidget {
                             children: [
                               Obx(
                                 () => Text(
-                                  giftController.convertGiftType(giftController
+                                  convertGiftType(giftController
                                       .giftList.value[index].giftType),
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),

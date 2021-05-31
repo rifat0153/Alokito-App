@@ -4,6 +4,7 @@ import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_receiver/widgets/gift_detail_map_widget.dart';
@@ -26,7 +27,7 @@ class GiftDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var giftType = giftController.convertGiftType(giftGiver.giftType);
+    var giftType = convertGiftType(giftGiver.giftType);
 
     giftRequestController.findGiftReqeust(giftGiver: giftGiver);
 
@@ -322,7 +323,7 @@ class _PackageName extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text(giftController.convertGiftFor(giftGiver)),
+                Text(convertGiftFor(giftGiver)),
                 const SizedBox(width: 30),
                 Text('${giftGiver.givingGiftInDays} days'),
               ],
