@@ -41,12 +41,14 @@ class GiftReceiverView extends StatelessWidget {
           actions: [
             Row(
               children: [
-                Obx(() => Badge(
-                      badgeContent: Text(giftNotificationController
-                          .giftNotificationList.length
-                          .toString()),
-                      child: Icon(Icons.notifications),
-                    )),
+                Obx(
+                  () => Badge(
+                    badgeContent: Text(giftNotificationController
+                        .giftNotificationList.length
+                        .toString()),
+                    child: Icon(Icons.notifications),
+                  ),
+                ),
               ],
             ),
             IconButton(
