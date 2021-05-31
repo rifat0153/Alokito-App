@@ -90,7 +90,7 @@ class HomeView extends StatelessWidget {
                     flex: 6,
                     fit: FlexFit.tight,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 35),
+                      padding: const EdgeInsets.only(top: 35),
                       child: authController.currentUser.value.when(
                         data: (user) => CircleAvatar(
                           radius: 75,
@@ -98,13 +98,11 @@ class HomeView extends StatelessWidget {
                         ),
                         loading: () =>
                             const Center(child: CircularProgressIndicator()),
-                        error: (e, s) => CircularProgressIndicator(),
+                        error: (e, s) => const CircularProgressIndicator(),
                       ),
                     ),
                   ),
-                  // SizedBox(height: media.height * 0.005, width: 0),
                   Flexible(
-                    // padding: const EdgeInsets.only(top: 1),
                     child: UserNameWidget(
                         localUser: authController.currentUser.value,
                         context: context),
@@ -114,7 +112,6 @@ class HomeView extends StatelessWidget {
                         context: context,
                         localUser: authController.currentUser.value),
                   ),
-                  // SizedBox(height: media.height * 0.06),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Row(
