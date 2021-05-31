@@ -40,7 +40,7 @@ class GiftReceiverView extends StatelessWidget {
               children: [
                 Badge(
                   badgeContent: Text('3'),
-                  child: Icon(Icons.notification_important),
+                  child: Icon(Icons.notifications),
                 ),
               ],
             ),
