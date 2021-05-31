@@ -21,9 +21,9 @@ class HomeView extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         extendBody: true,
-
         drawer: Drawer(
           child: ListView(
             // Important: Remove any padding from the ListView.
@@ -52,11 +52,6 @@ class HomeView extends StatelessWidget {
             ],
           ),
         ),
-
-        // persistentFooterButtons: [
-        //   Icon(Icons.add),
-        //   Icon(Icons.deck),
-        // ],
         appBar: AppBar(
           toolbarHeight: 80,
           centerTitle: true,

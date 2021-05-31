@@ -1,4 +1,5 @@
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
+import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
@@ -14,7 +15,9 @@ import '../gift_giver/my_gift_view.dart';
 class GiftReceiverView extends StatelessWidget {
   static const route = '/giftreceiverview';
 
-  // final GiftRequestController controller = Get.put(GiftRequestController());
+  final GiftRequestController giftRequestController =
+      Get.put(GiftRequestController());
+  final GiftNotificationController giftNotificationController = Get.find();
 
   final media = Get.size;
   final double menuHeight = Get.size.height * 0.18;
@@ -39,7 +42,9 @@ class GiftReceiverView extends StatelessWidget {
             Row(
               children: [
                 Badge(
-                  badgeContent: Text('3'),
+                  badgeContent: Text(giftNotificationController
+                      .giftNotificationList.length
+                      .toString()),
                   child: Icon(Icons.notifications),
                 ),
               ],

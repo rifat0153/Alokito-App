@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:alokito_new/controller/auth/auth_controller.dart';
+import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
 import 'package:alokito_new/views/notification/notification_view.dart';
 import 'package:badges/badges.dart';
@@ -18,6 +19,8 @@ class UserNavbar extends StatelessWidget {
   final height = Get.size.height;
   final width = Get.size.width;
 
+  final GiftNotificationController giftNotificationController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,7 +35,9 @@ class UserNavbar extends StatelessWidget {
             Get.toNamed(NotificationView.route);
           },
           child: Badge(
-            badgeContent: Text('3'),
+            badgeContent: Text(giftNotificationController
+                .giftNotificationList.length
+                .toString()),
             child: Icon(Icons.notifications,
                 color: Colors.white, size: height * 0.05),
             badgeColor: Colors.white,

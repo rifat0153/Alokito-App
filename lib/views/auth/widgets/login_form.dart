@@ -1,10 +1,10 @@
-import '../../shared/config.dart';
+import '../../../shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controller/auth/auth_controller.dart';
-import '../../shared/login_input.dart';
-import '../../controller/auth/login_controller.dart';
-import '../../shared/my_name_input.dart';
+import '../../../controller/auth/auth_controller.dart';
+import '../../../shared/login_input.dart';
+import '../../../controller/auth/login_controller.dart';
+import '../../../shared/my_name_input.dart';
 
 class LoginForm extends StatelessWidget {
   final LoginController loginController = Get.find();

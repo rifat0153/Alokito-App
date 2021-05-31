@@ -81,6 +81,7 @@ class GetPages {
       page: () => AuthenticationWrapper(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => AuthController());
+        Get.put(GiftNotificationController());
       }),
     ),
     //Notification Routes
