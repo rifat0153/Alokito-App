@@ -19,6 +19,11 @@ class GiftNotificationController extends GetxController {
     super.onInit();
   }
 
+  void bindNotificationStream() {
+    giftNotificationList
+        .bindStream(giftNotificationService.streamGiftNotification());
+  }
+
   Future<bool> addNotificationForGiftRequest(
       {required GiftGiver giftGiver,
       required String message,

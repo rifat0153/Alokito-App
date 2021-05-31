@@ -6,6 +6,7 @@ import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/controller/map/geo_controller.dart';
+import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/views/auth/auth_wrapper.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_giver/gift_giver_view.dart';
@@ -90,6 +91,7 @@ class GetPages {
       page: () => NotificationView(),
       binding: BindingsBuilder(() {
         Get.put(GiftNotificationController());
+        Get.find<GiftNotificationController>().bindNotificationStream();
       }),
     ),
     // Gift Receiver Routes
