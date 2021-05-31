@@ -28,7 +28,11 @@ class GiftOfferView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
-         ),
+          leading: IconButton(
+            onPressed: () => Get.back(),
+            icon: LineIcon.arrowLeft(color: Colors.black),
+          ),
+        ),
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [

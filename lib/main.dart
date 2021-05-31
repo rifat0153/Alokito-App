@@ -14,6 +14,7 @@ import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/views/map/geo_map_view.dart';
 import 'package:alokito_new/views/map/my_map_view.dart';
+import 'package:alokito_new/views/notification/notification_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -74,11 +75,20 @@ class _MyAppState extends State<MyApp> {
 
 class GetPages {
   List<GetPage> getPages = [
+    //Auth Route
     GetPage(
       name: '/',
       page: () => AuthenticationWrapper(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => AuthController());
+      }),
+    ),
+    //Notification Routes
+    GetPage(
+      name: NotificationView.route,
+      page: () => NotificationView(),
+      binding: BindingsBuilder(() {
+        Get.put(GiftNotificationController());
       }),
     ),
     // Gift Receiver Routes

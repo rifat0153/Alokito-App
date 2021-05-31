@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 
 class NotificationView extends StatelessWidget {
-  final GiftNotificationController giftNotificationController =
-      Get.put(GiftNotificationController());
+  static const route = 'notificationview';
+  final GiftNotificationController giftNotificationController = Get.find();
 
   @override
   Widget build(BuildContext context) {

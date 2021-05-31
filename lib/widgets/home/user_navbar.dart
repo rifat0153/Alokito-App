@@ -28,14 +28,12 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.to(() => NotificationView());
+            Get.toNamed(NotificationView.route);
           },
           child: Icon(LineIcons.bell, color: Colors.white, size: height * 0.04),
         ),
         GestureDetector(
-          onTap: () {
-            Get.to(() => NotificationView());
-          },
+          onTap: () {},
           child: Icon(Icons.circle, color: Colors.red, size: height * 0.06),
         ),
         GestureDetector(
