@@ -14,7 +14,6 @@ class GiftController extends GetxController {
   GiftGiverService giftService = GiftGiverService();
   RxBool loading = false.obs;
   Rx<List<GiftGiver>> giftList = Rx<List<GiftGiver>>([]);
-  Rx<List<GiftGiver>> filteredGiftList = Rx<List<GiftGiver>>([]);
   var _searchRadius = 100.0.obs;
   var currentUserLocation = const LatLng(0, 0).obs;
 
@@ -22,27 +21,25 @@ class GiftController extends GetxController {
 
   @override
   void onInit() async {
-    var locData = await Location().getLocation();
-    currentUserLocation.value = LatLng(locData.latitude!, locData.longitude!);
-    print('Current user loc:  ' + currentUserLocation.value.toString());
-
+    bindLocationData();
     debounce(_searchRadius, (_) => bindGiftStream());
     super.onInit();
   }
 
+  @override
+  void onClose() {
+    giftList.close();
+    super.onClose();
+  }
+
+  void bindLocationData() async {
+    var locData = await Location().getLocation();
+    currentUserLocation.value = LatLng(locData.latitude!, locData.longitude!);
+    print('Current user loc:  ' + currentUserLocation.value.toString());
+  }
+
   void bindGiftStream() {
     giftList.bindStream(giftService.giftStreamByLocation());
-
-    filteredGiftList.value = List<GiftGiver>.empty();
-
-    List<GiftGiver> tempList = [];
-
-    giftList.value.forEach((element) {
-      if (element.uid != FirebaseAuth.instance.currentUser?.uid)
-        tempList.add(element);
-    });
-
-    filteredGiftList.value = tempList;
   }
 
   double get searchRadius => _searchRadius.value;

@@ -5,6 +5,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/views/gift_receiver/widgets/notification_icon_widget.dart';
+import 'package:alokito_new/widgets/menu/my_drawer_widget.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
@@ -30,6 +31,7 @@ class GiftReceiverView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
+        drawer: MyDrawer(),
         appBar: AppBar(
           toolbarHeight: 80,
           centerTitle: true,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -15,10 +16,9 @@ class MyDrawer extends StatelessWidget {
             child: Text('Drawer Header'),
           ),
           ListTile(
-            title: Text('Item 1'),
+            title: Text('Home'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Get.toNamed('/');
             },
           ),
           ListTile(
