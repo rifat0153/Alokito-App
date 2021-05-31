@@ -37,7 +37,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
   Stream<List<GiftNotification>> streamGiftNotification() {
     AuthController authController = Get.find();
 
-    print('IN not stream:  ' + _auth.currentUser!.uid);
+    // print('IN not stream:  ' + _auth.currentUser?.uid ?? '');
 
     return _firestore
         .collection('gift_notifications')
