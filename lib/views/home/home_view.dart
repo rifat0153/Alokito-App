@@ -83,8 +83,7 @@ class HomeView extends StatelessWidget {
           ),
           child: Column(
             children: <Widget>[
-              SizedBox(height: media.height * 0.035, width: 0),
-
+              SizedBox(height: media.height * 0.1, width: 0),
               SizedBox(height: media.height * 0.03),
               Flexible(
                 flex: 6,
