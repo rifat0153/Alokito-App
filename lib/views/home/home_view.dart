@@ -23,6 +23,7 @@ class HomeView extends StatelessWidget {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         extendBody: true,
+
         drawer: Drawer(
           child: ListView(
             // Important: Remove any padding from the ListView.
@@ -57,17 +58,22 @@ class HomeView extends StatelessWidget {
         //   Icon(Icons.deck),
         // ],
         appBar: AppBar(
+          toolbarHeight: 80,
+          centerTitle: true,
+          title: const Text(
+            'User',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.settings),
+            ),
+          ],
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
-          title: const Text(
-            'User',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          // leading: IconButton(
-          //   onPressed: () => Get.back(),
-          //   icon: LineIcon.arrowLeft(color: Colors.black),
-          // ),
         ),
         body: Container(
           decoration: const BoxDecoration(
@@ -78,21 +84,7 @@ class HomeView extends StatelessWidget {
           child: Column(
             children: <Widget>[
               SizedBox(height: media.height * 0.035, width: 0),
-              // Row(
-              //   children: <Widget>[
-              //     SizedBox(width: media.width * 0.03),
-              //     const Icon(Icons.menu, color: Colors.white),
-              //     const Expanded(
-              //       child: Text(
-              //         'USER',
-              //         textAlign: TextAlign.center,
-              //         style: TextStyle(color: Colors.white, fontSize: 30),
-              //       ),
-              //     ),
-              //     const Icon(Icons.settings, color: Colors.white),
-              //     SizedBox(width: media.width * 0.03),
-              //   ],
-              // ),
+
               SizedBox(height: media.height * 0.03),
               Flexible(
                 flex: 6,
