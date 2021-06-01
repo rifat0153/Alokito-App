@@ -125,18 +125,9 @@ class _GiftListTile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: GIFT_ADD_FORM_COLOR,
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                    ),
-                    height: 70,
-                    width: Get.size.width * 0.63,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -157,13 +148,15 @@ class _GiftListTile extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Column(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                  giftController.giftList.value[index].area),
+                                giftController.giftList.value[index].area,
+                                softWrap: true,
+                              ),
                             ),
                           ],
                         )

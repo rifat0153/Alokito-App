@@ -38,16 +38,17 @@ class UserNavbar extends StatelessWidget {
             Get.toNamed(NotificationView.route);
           },
           child: Obx(
-            () => Badge(
-              badgeContent:
-                  giftNotificationController.totalNotifications.value > 0
-                      ? Text(giftNotificationController.totalNotifications.value
-                          .toString())
-                      : Text(''),
-              child: Icon(Icons.notifications,
-                  color: Colors.white, size: height * 0.05),
-              badgeColor: Colors.white,
-            ),
+            () => giftNotificationController.totalNotifications.value > 0
+                ? Badge(
+                    badgeContent: Text(giftNotificationController
+                        .totalNotifications.value
+                        .toString()),
+                    child: Icon(Icons.notifications,
+                        color: Colors.white, size: height * 0.05),
+                    badgeColor: Colors.white,
+                  )
+                : Icon(Icons.notifications,
+                    color: Colors.white, size: height * 0.05),
           ),
         ),
         GestureDetector(
