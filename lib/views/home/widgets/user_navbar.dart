@@ -23,6 +23,8 @@ class UserNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    giftNotificationController.bindNotificationStream();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
