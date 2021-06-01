@@ -29,6 +29,9 @@ class RoleWrapper extends StatelessWidget {
           authController.currentUserRating.value = localUser.averageRating;
           authController.currentUserTotalRating.value = localUser.totalRating;
 
+          print(
+              'current user ${authController.currentUserName.value} rating is: ${authController.currentUserRating.value}');
+
           return localUser.role == 'admin' || localUser.id == null
               ? Container(
                   child: Center(
