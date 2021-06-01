@@ -1,4 +1,5 @@
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
+import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -19,6 +20,7 @@ class GiftReceiverView extends StatelessWidget {
   final GiftRequestController giftRequestController =
       Get.put(GiftRequestController());
   final GiftNotificationController giftNotificationController = Get.find();
+  final GiftController giftController = Get.put(GiftController());
 
   final media = Get.size;
   final double menuHeight = Get.size.height * 0.18;

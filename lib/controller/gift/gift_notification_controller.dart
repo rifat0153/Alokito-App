@@ -14,8 +14,6 @@ class GiftNotificationController extends GetxController {
 
   @override
   void onInit() {
-    giftNotificationList
-        .bindStream(giftNotificationService.streamGiftNotification());
     super.onInit();
   }
 

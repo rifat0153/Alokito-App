@@ -102,7 +102,7 @@ class HomeView extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Get.toNamed(GiftReceiverView.route);
-                      Get.find<GiftController>().bindLocationData();
+                      // Get.find<GiftController>().bindLocationData();
                     },
                     child: _GiftRecieverMenu(
                         height: media.height * 0.1, width: media.width * 0.7),
