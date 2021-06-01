@@ -39,6 +39,8 @@ class GiftGiver with _$GiftGiver {
     required bool canLeaveOutside,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition position,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+        required Timestamp createdAt,
   }) = _GiftGiver;
 
   factory GiftGiver.fromJson(Map<String, dynamic> json) =>

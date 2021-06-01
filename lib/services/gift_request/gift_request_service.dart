@@ -112,25 +112,25 @@ class GiftRequestService implements BaseGiftRequestService {
           .doc('${currentUserUid}.${giftGiver.id}');
 
       GiftReqeust giftReqeust = GiftReqeust(
-        id: '${currentUserUid}.${giftGiver.id}',
-        requesterAvgRating: authController.currentUserRating.value,
-        requesterRatingSum: authController.currentUserRatingSum.value,
-        requesterTotRating: authController.currentUserTotalRating.value,
-        giftFor: giftGiver.giftFor,
-        requestConfirmed: false,
-        requestDenied: false,
-        giftId: giftGiver.id!,
-        giverUid: giftGiver.uid,
-        requesterMessage: giftRequestController.requesterMessage.value,
-        requesterUid: _auth.currentUser!.uid,
-        giftType: giftGiver.giftType,
-        giftImageUrl: giftGiver.imageUrl,
-        giftDetails: giftGiver.giftDetails,
-        requesterPosition: myPosition,
-        requesterName: authController.currentUserName.value,
-        giftGiverImageUrl: giftGiver.userImageUrl,
-        requesterImageUrl: authController.currentUserImageUrl.value,
-      );
+          id: '${currentUserUid}.${giftGiver.id}',
+          requesterAvgRating: authController.currentUserRating.value,
+          requesterRatingSum: authController.currentUserRatingSum.value,
+          requesterTotRating: authController.currentUserTotalRating.value,
+          giftFor: giftGiver.giftFor,
+          requestConfirmed: false,
+          requestDenied: false,
+          giftId: giftGiver.id!,
+          giverUid: giftGiver.uid,
+          requesterMessage: giftRequestController.requesterMessage.value,
+          requesterUid: _auth.currentUser!.uid,
+          giftType: giftGiver.giftType,
+          giftImageUrl: giftGiver.imageUrl,
+          giftDetails: giftGiver.giftDetails,
+          requesterPosition: myPosition,
+          requesterName: authController.currentUserName.value,
+          giftGiverImageUrl: giftGiver.userImageUrl,
+          requesterImageUrl: authController.currentUserImageUrl.value,
+          createdAt: Timestamp.now());
 
       await docRef.set(giftReqeust.toJson());
       // print(giftReqeust);

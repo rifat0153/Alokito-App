@@ -121,9 +121,9 @@ class GiftGiverService implements BaseGiftGiverService {
       userName: name,
       userFullName: userFullName,
       userImageUrl: giverImageUrl,
-      userAvgRating:  authController.currentUserRating.value,
-      userTotRating:  authController.currentUserTotalRating.value ,
-      userRatingSum:   authController.currentUserRatingSum.value,
+      userAvgRating: authController.currentUserRating.value,
+      userTotRating: authController.currentUserTotalRating.value,
+      userRatingSum: authController.currentUserRatingSum.value,
       userPosition: userPosition,
       area: controller.area.value,
       location: controller.location.value,
@@ -140,6 +140,7 @@ class GiftGiverService implements BaseGiftGiverService {
       canLeaveOutside: controller.canLeaveOutside.value,
       position: myPosition,
       userCreatedAt: userCreatedAt,
+      createdAt: Timestamp.now(),
     );
 
     print(gift.toJson());

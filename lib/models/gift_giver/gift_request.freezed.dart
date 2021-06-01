@@ -50,7 +50,9 @@ class _$GiftReqeustTearOff {
           required MyPosition requesterPosition,
       required String requesterName,
       required String giftGiverImageUrl,
-      required String requesterImageUrl}) {
+      required String requesterImageUrl,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp createdAt}) {
     return _GiftReqeust(
       id: id,
       giftId: giftId,
@@ -70,6 +72,7 @@ class _$GiftReqeustTearOff {
       requesterName: requesterName,
       giftGiverImageUrl: giftGiverImageUrl,
       requesterImageUrl: requesterImageUrl,
+      createdAt: createdAt,
     );
   }
 
@@ -115,7 +118,9 @@ mixin _$GiftReqeust {
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
-            String requesterImageUrl)
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)
         $default, {
     required TResult Function() loading,
     required TResult Function(Object e) error,
@@ -143,7 +148,9 @@ mixin _$GiftReqeust {
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
-            String requesterImageUrl)?
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)?
         $default, {
     TResult Function()? loading,
     TResult Function(Object e)? error,
@@ -209,7 +216,9 @@ abstract class _$GiftReqeustCopyWith<$Res> {
           MyPosition requesterPosition,
       String requesterName,
       String giftGiverImageUrl,
-      String requesterImageUrl});
+      String requesterImageUrl,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp createdAt});
 
   $MyPositionCopyWith<$Res> get requesterPosition;
 }
@@ -244,6 +253,7 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
     Object? requesterName = freezed,
     Object? giftGiverImageUrl = freezed,
     Object? requesterImageUrl = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_GiftReqeust(
       id: id == freezed
@@ -318,6 +328,10 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
           ? _value.requesterImageUrl
           : requesterImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 
@@ -352,7 +366,9 @@ class _$_GiftReqeust implements _GiftReqeust {
           required this.requesterPosition,
       required this.requesterName,
       required this.giftGiverImageUrl,
-      required this.requesterImageUrl});
+      required this.requesterImageUrl,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required this.createdAt});
 
   factory _$_GiftReqeust.fromJson(Map<String, dynamic> json) =>
       _$_$_GiftReqeustFromJson(json);
@@ -396,10 +412,13 @@ class _$_GiftReqeust implements _GiftReqeust {
   final String giftGiverImageUrl;
   @override
   final String requesterImageUrl;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  final Timestamp createdAt;
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, giverUid: $giverUid, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl)';
+    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, giverUid: $giverUid, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -457,7 +476,10 @@ class _$_GiftReqeust implements _GiftReqeust {
                     .equals(other.giftGiverImageUrl, giftGiverImageUrl)) &&
             (identical(other.requesterImageUrl, requesterImageUrl) ||
                 const DeepCollectionEquality()
-                    .equals(other.requesterImageUrl, requesterImageUrl)));
+                    .equals(other.requesterImageUrl, requesterImageUrl)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -480,7 +502,8 @@ class _$_GiftReqeust implements _GiftReqeust {
       const DeepCollectionEquality().hash(requesterPosition) ^
       const DeepCollectionEquality().hash(requesterName) ^
       const DeepCollectionEquality().hash(giftGiverImageUrl) ^
-      const DeepCollectionEquality().hash(requesterImageUrl);
+      const DeepCollectionEquality().hash(requesterImageUrl) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -510,7 +533,9 @@ class _$_GiftReqeust implements _GiftReqeust {
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
-            String requesterImageUrl)
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)
         $default, {
     required TResult Function() loading,
     required TResult Function(Object e) error,
@@ -533,7 +558,8 @@ class _$_GiftReqeust implements _GiftReqeust {
         requesterPosition,
         requesterName,
         giftGiverImageUrl,
-        requesterImageUrl);
+        requesterImageUrl,
+        createdAt);
   }
 
   @override
@@ -559,7 +585,9 @@ class _$_GiftReqeust implements _GiftReqeust {
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
-            String requesterImageUrl)?
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)?
         $default, {
     TResult Function()? loading,
     TResult Function(Object e)? error,
@@ -584,7 +612,8 @@ class _$_GiftReqeust implements _GiftReqeust {
           requesterPosition,
           requesterName,
           giftGiverImageUrl,
-          requesterImageUrl);
+          requesterImageUrl,
+          createdAt);
     }
     return orElse();
   }
@@ -640,7 +669,9 @@ abstract class _GiftReqeust implements GiftReqeust {
           required MyPosition requesterPosition,
       required String requesterName,
       required String giftGiverImageUrl,
-      required String requesterImageUrl}) = _$_GiftReqeust;
+      required String requesterImageUrl,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp createdAt}) = _$_GiftReqeust;
 
   factory _GiftReqeust.fromJson(Map<String, dynamic> json) =
       _$_GiftReqeust.fromJson;
@@ -665,6 +696,8 @@ abstract class _GiftReqeust implements GiftReqeust {
   String get requesterName => throw _privateConstructorUsedError;
   String get giftGiverImageUrl => throw _privateConstructorUsedError;
   String get requesterImageUrl => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GiftReqeustCopyWith<_GiftReqeust> get copyWith =>
       throw _privateConstructorUsedError;
@@ -730,7 +763,9 @@ class _$Loading implements Loading {
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
-            String requesterImageUrl)
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)
         $default, {
     required TResult Function() loading,
     required TResult Function(Object e) error,
@@ -761,7 +796,9 @@ class _$Loading implements Loading {
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
-            String requesterImageUrl)?
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)?
         $default, {
     TResult Function()? loading,
     TResult Function(Object e)? error,
@@ -894,7 +931,9 @@ class _$Error implements Error {
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
-            String requesterImageUrl)
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)
         $default, {
     required TResult Function() loading,
     required TResult Function(Object e) error,
@@ -925,7 +964,9 @@ class _$Error implements Error {
                 MyPosition requesterPosition,
             String requesterName,
             String giftGiverImageUrl,
-            String requesterImageUrl)?
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)?
         $default, {
     TResult Function()? loading,
     TResult Function(Object e)? error,

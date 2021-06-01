@@ -27,6 +27,7 @@ _$_GiftReqeust _$_$_GiftReqeustFromJson(Map<String, dynamic> json) {
     requesterName: json['requesterName'] as String,
     giftGiverImageUrl: json['giftGiverImageUrl'] as String,
     requesterImageUrl: json['requesterImageUrl'] as String,
+    createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
 }
 
@@ -50,6 +51,7 @@ Map<String, dynamic> _$_$_GiftReqeustToJson(_$_GiftReqeust instance) =>
       'requesterName': instance.requesterName,
       'giftGiverImageUrl': instance.giftGiverImageUrl,
       'requesterImageUrl': instance.requesterImageUrl,
+      'createdAt': timestampToJson(instance.createdAt),
     };
 
 _$Loading _$_$LoadingFromJson(Map<String, dynamic> json) {

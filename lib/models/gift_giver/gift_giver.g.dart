@@ -32,6 +32,7 @@ _$_GiftGiver _$_$_GiftGiverFromJson(Map<String, dynamic> json) {
     pickUpTime: json['pickUpTime'] as String,
     canLeaveOutside: json['canLeaveOutside'] as bool,
     position: myPositionFromJson(json['position'] as Map<String, dynamic>),
+    createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
 }
 
@@ -60,4 +61,5 @@ Map<String, dynamic> _$_$_GiftGiverToJson(_$_GiftGiver instance) =>
       'pickUpTime': instance.pickUpTime,
       'canLeaveOutside': instance.canLeaveOutside,
       'position': myPositionToJson(instance.position),
+      'createdAt': timestampToJson(instance.createdAt),
     };
