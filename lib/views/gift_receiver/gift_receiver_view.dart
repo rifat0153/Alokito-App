@@ -1,3 +1,4 @@
+import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
@@ -21,6 +22,7 @@ class GiftReceiverView extends StatelessWidget {
       Get.put(GiftRequestController());
   final GiftNotificationController giftNotificationController = Get.find();
   final GiftController giftController = Get.put(GiftController());
+  final AuthController authController = Get.find();
 
   final media = Get.size;
   final double menuHeight = Get.size.height * 0.18;
@@ -45,14 +47,14 @@ class GiftReceiverView extends StatelessWidget {
           actions: [
             Row(
               children: [
-                Obx(
-                  () => Badge(
-                    badgeContent: Text(giftNotificationController
-                        .giftNotificationList.length
-                        .toString()),
-                    child: Icon(Icons.notifications),
-                  ),
-                ),
+                Obx(() => Badge(
+                      badgeContent:
+                          authController.currentUserHasNotifications.value
+                              ? Text('!')
+                              : Text(''),
+                      badgeColor: Colors.white,
+                      child: Icon(Icons.notifications, color: Colors.white),
+                    )),
               ],
             ),
             IconButton(

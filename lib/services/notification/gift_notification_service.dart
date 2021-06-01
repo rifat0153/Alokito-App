@@ -26,10 +26,34 @@ class GiftNotificationService implements BaseGiftNotificationService {
               giftNotification.requesterUid);
       await docRef.set(object.toJson());
 
+      await addNotificationStatus(giftNotification);
+
       return true;
     } catch (e) {
       print(e);
       return false;
+    }
+  }
+
+  Future<void> addNotificationStatus(GiftNotification giftNotification) async {
+    // Updating Notification Status for the user
+    var docSnap = await _firestore
+        .collection('notification_status')
+        .doc(giftNotification.giverUid)
+        .get();
+
+    if (docSnap.data() == null) {
+      _firestore
+          .collection('notification_status')
+          .doc(giftNotification.giverUid)
+          .set({'totalNotification': 1});
+    } else {
+      _firestore
+          .collection('notification_status')
+          .doc(giftNotification.giverUid)
+          .set({
+        'totalNotification': docSnap.data()!['totalNotification'] + 1,
+      });
     }
   }
 

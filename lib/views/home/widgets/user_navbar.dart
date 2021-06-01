@@ -37,14 +37,14 @@ class UserNavbar extends StatelessWidget {
           onTap: () {
             Get.toNamed(NotificationView.route);
           },
-          child: Obx(() => Badge(
-                badgeContent: authController.currentUserHasNotifications.value
-                    ? Text('!')
-                    : Text(''),
-                child: Icon(Icons.notifications,
-                    color: Colors.white, size: height * 0.05),
-                badgeColor: Colors.white,
-              )),
+          child: Badge(
+            badgeContent: authController.currentUserHasNotifications.value
+                ? Text('!')
+                : Text(''),
+            child: Icon(Icons.notifications,
+                color: Colors.white, size: height * 0.05),
+            badgeColor: Colors.white,
+          ),
         ),
         GestureDetector(
           onTap: () {},
