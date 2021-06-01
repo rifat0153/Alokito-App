@@ -43,11 +43,9 @@ class GiftAddFormController extends GetxController {
       markerId: MarkerId('1'),
       position: Get.find<GiftController>().currentUserLocation.value,
     ));
+
     getCurrentLocation();
-
-    // debounce(addressQuery, (_) => setLatLngFromAddress());
     debounce(selectedLatLng, (_) => setLocationFromMapCordinates());
-
     super.onInit();
   }
 
@@ -62,9 +60,8 @@ class GiftAddFormController extends GetxController {
     selectedMapLocation.value = ' ${first.addressLine}  ${first.subLocality}';
 
     location.value = first.addressLine;
-    area.value = first.subLocality;
+    area.value = first.subLocality ?? 'N/A';
 
- 
     print('area: $area, location: $location');
     print('${first.featureName} : ${first.addressLine} : ${first.subLocality}');
   }
@@ -122,11 +119,11 @@ class GiftAddFormController extends GetxController {
           duration: Duration(milliseconds: 2000));
       return;
     }
-    // if (location.value.isEmpty) {
-    //   Get.snackbar('Gift Add Error', 'Location cant be empty',
-    //       backgroundColor: Colors.red.withOpacity(0.5));
-    //   return;
-    // }
+    if (location.value.isEmpty) {
+      Get.snackbar('Gift Add Error', 'Location cant be empty',
+          backgroundColor: Colors.red.withOpacity(0.5));
+      return;
+    }
 
     GiftGiverService().addGift();
   }
