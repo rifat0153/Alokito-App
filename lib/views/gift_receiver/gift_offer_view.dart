@@ -124,7 +124,7 @@ class _GiftListTile extends StatelessWidget {
                           ),
                           child: Image.network(
                             giftController.giftList.value[index].imageUrl,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
