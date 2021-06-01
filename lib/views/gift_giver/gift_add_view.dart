@@ -4,6 +4,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/widgets/gift_giver/custom_gift_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/family_option_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/location_search_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -128,29 +129,34 @@ class _PickUpTimeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const SizedBox(width: 30),
             const Text('Pick up time'),
+            Obx(
+              () => Text(controller.showPickupTime()),
+            ),
           ],
         ),
         const SizedBox(height: 8),
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: MaterialButton(
+              color: GIFT_GIVER_BUTTON_COLOR,
               onPressed: () async {
                 var time = await showTimePicker(
                   initialTime: TimeOfDay.now(),
                   context: context,
                 );
+                var now = DateTime.now();
+                now = DateTime(
+                    now.year, now.month, now.day, time!.hour, time.minute);
 
-                DateTime date = DateTime.parse(time.toString());
-
+                controller.pickUpTime.value = Timestamp.fromDate(now);
                 print(time);
-                print(date);
-                // controller.pickUpTime.value = Time
+                print(controller.pickUpTime.value);
               },
               child: Text('Pick Time'),
             )),

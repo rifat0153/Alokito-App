@@ -47,6 +47,21 @@ class GiftAddFormController extends GetxController {
     super.onInit();
   }
 
+  String showPickupTime() {
+    var hour = DateTime.fromMillisecondsSinceEpoch(
+            pickUpTime.value!.millisecondsSinceEpoch)
+        .hour;
+    var min = DateTime.fromMillisecondsSinceEpoch(
+            pickUpTime.value!.millisecondsSinceEpoch)
+        .minute;
+
+    if (hour > 12) {
+      return '${hour - 12}:$min pm';
+    } else {
+      return '$hour:$min am';
+    }
+  }
+
   void setLocationFromMapCordinates() async {
     print('In FROM MAP Controller');
     // From coordinates
