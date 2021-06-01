@@ -24,8 +24,9 @@ class _$LocalUserTearOff {
       {String? id,
       required String firstName,
       required String lastName,
-      int totalReview = 0,
-      int reviewInStar = 0,
+      double ratingSum = 0,
+      double totalRating = 0,
+      double averageRating = 0,
       required String userName,
       required String email,
       String? imageUrl,
@@ -40,8 +41,9 @@ class _$LocalUserTearOff {
       id: id,
       firstName: firstName,
       lastName: lastName,
-      totalReview: totalReview,
-      reviewInStar: reviewInStar,
+      ratingSum: ratingSum,
+      totalRating: totalRating,
+      averageRating: averageRating,
       userName: userName,
       email: email,
       imageUrl: imageUrl,
@@ -66,8 +68,9 @@ mixin _$LocalUser {
   String? get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
-  int get totalReview => throw _privateConstructorUsedError;
-  int get reviewInStar => throw _privateConstructorUsedError;
+  double get ratingSum => throw _privateConstructorUsedError;
+  double get totalRating => throw _privateConstructorUsedError;
+  double get averageRating => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
@@ -93,8 +96,9 @@ abstract class $LocalUserCopyWith<$Res> {
       {String? id,
       String firstName,
       String lastName,
-      int totalReview,
-      int reviewInStar,
+      double ratingSum,
+      double totalRating,
+      double averageRating,
       String userName,
       String email,
       String? imageUrl,
@@ -122,8 +126,9 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
     Object? id = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
-    Object? totalReview = freezed,
-    Object? reviewInStar = freezed,
+    Object? ratingSum = freezed,
+    Object? totalRating = freezed,
+    Object? averageRating = freezed,
     Object? userName = freezed,
     Object? email = freezed,
     Object? imageUrl = freezed,
@@ -146,14 +151,18 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      totalReview: totalReview == freezed
-          ? _value.totalReview
-          : totalReview // ignore: cast_nullable_to_non_nullable
-              as int,
-      reviewInStar: reviewInStar == freezed
-          ? _value.reviewInStar
-          : reviewInStar // ignore: cast_nullable_to_non_nullable
-              as int,
+      ratingSum: ratingSum == freezed
+          ? _value.ratingSum
+          : ratingSum // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalRating: totalRating == freezed
+          ? _value.totalRating
+          : totalRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      averageRating: averageRating == freezed
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double,
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -207,8 +216,9 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
       {String? id,
       String firstName,
       String lastName,
-      int totalReview,
-      int reviewInStar,
+      double ratingSum,
+      double totalRating,
+      double averageRating,
       String userName,
       String email,
       String? imageUrl,
@@ -238,8 +248,9 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
     Object? id = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
-    Object? totalReview = freezed,
-    Object? reviewInStar = freezed,
+    Object? ratingSum = freezed,
+    Object? totalRating = freezed,
+    Object? averageRating = freezed,
     Object? userName = freezed,
     Object? email = freezed,
     Object? imageUrl = freezed,
@@ -262,14 +273,18 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      totalReview: totalReview == freezed
-          ? _value.totalReview
-          : totalReview // ignore: cast_nullable_to_non_nullable
-              as int,
-      reviewInStar: reviewInStar == freezed
-          ? _value.reviewInStar
-          : reviewInStar // ignore: cast_nullable_to_non_nullable
-              as int,
+      ratingSum: ratingSum == freezed
+          ? _value.ratingSum
+          : ratingSum // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalRating: totalRating == freezed
+          ? _value.totalRating
+          : totalRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      averageRating: averageRating == freezed
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double,
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -313,8 +328,9 @@ class _$_LocalUser implements _LocalUser {
       {this.id,
       required this.firstName,
       required this.lastName,
-      this.totalReview = 0,
-      this.reviewInStar = 0,
+      this.ratingSum = 0,
+      this.totalRating = 0,
+      this.averageRating = 0,
       required this.userName,
       required this.email,
       this.imageUrl,
@@ -337,10 +353,13 @@ class _$_LocalUser implements _LocalUser {
   final String lastName;
   @JsonKey(defaultValue: 0)
   @override
-  final int totalReview;
+  final double ratingSum;
   @JsonKey(defaultValue: 0)
   @override
-  final int reviewInStar;
+  final double totalRating;
+  @JsonKey(defaultValue: 0)
+  @override
+  final double averageRating;
   @override
   final String userName;
   @override
@@ -365,7 +384,7 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   String toString() {
-    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, totalReview: $totalReview, reviewInStar: $reviewInStar, userName: $userName, email: $email, imageUrl: $imageUrl, role: $role, giftOffered: $giftOffered, giftReceived: $giftReceived, position: $position, createdAt: $createdAt)';
+    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, userName: $userName, email: $email, imageUrl: $imageUrl, role: $role, giftOffered: $giftOffered, giftReceived: $giftReceived, position: $position, createdAt: $createdAt)';
   }
 
   @override
@@ -380,12 +399,15 @@ class _$_LocalUser implements _LocalUser {
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
-            (identical(other.totalReview, totalReview) ||
+            (identical(other.ratingSum, ratingSum) ||
                 const DeepCollectionEquality()
-                    .equals(other.totalReview, totalReview)) &&
-            (identical(other.reviewInStar, reviewInStar) ||
+                    .equals(other.ratingSum, ratingSum)) &&
+            (identical(other.totalRating, totalRating) ||
                 const DeepCollectionEquality()
-                    .equals(other.reviewInStar, reviewInStar)) &&
+                    .equals(other.totalRating, totalRating)) &&
+            (identical(other.averageRating, averageRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.averageRating, averageRating)) &&
             (identical(other.userName, userName) ||
                 const DeepCollectionEquality()
                     .equals(other.userName, userName)) &&
@@ -416,8 +438,9 @@ class _$_LocalUser implements _LocalUser {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(totalReview) ^
-      const DeepCollectionEquality().hash(reviewInStar) ^
+      const DeepCollectionEquality().hash(ratingSum) ^
+      const DeepCollectionEquality().hash(totalRating) ^
+      const DeepCollectionEquality().hash(averageRating) ^
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(imageUrl) ^
@@ -443,8 +466,9 @@ abstract class _LocalUser implements LocalUser {
       {String? id,
       required String firstName,
       required String lastName,
-      int totalReview,
-      int reviewInStar,
+      double ratingSum,
+      double totalRating,
+      double averageRating,
       required String userName,
       required String email,
       String? imageUrl,
@@ -466,9 +490,11 @@ abstract class _LocalUser implements LocalUser {
   @override
   String get lastName => throw _privateConstructorUsedError;
   @override
-  int get totalReview => throw _privateConstructorUsedError;
+  double get ratingSum => throw _privateConstructorUsedError;
   @override
-  int get reviewInStar => throw _privateConstructorUsedError;
+  double get totalRating => throw _privateConstructorUsedError;
+  @override
+  double get averageRating => throw _privateConstructorUsedError;
   @override
   String get userName => throw _privateConstructorUsedError;
   @override

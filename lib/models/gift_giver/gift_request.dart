@@ -17,6 +17,9 @@ class GiftReqeust with _$GiftReqeust {
     required String giverUid,
     required String requesterUid,
     required String requesterMessage,
+    required double requesterAvgRating,
+    required double requesterTotRating,
+    required double requesterRatingSum,
     @Default(0) int giftFor,
     @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
         required GiftType giftType,

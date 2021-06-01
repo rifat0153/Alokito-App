@@ -19,6 +19,12 @@ class GiftNotificationController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onClose() {
+    giftNotificationList.close();
+    super.onClose();
+  }
+
   void bindNotificationStream() {
     giftNotificationList
         .bindStream(giftNotificationService.streamGiftNotification());

@@ -19,6 +19,15 @@ class AuthController extends GetxController {
   final currentUserGiftReceived = 0.obs;
   final currentUserCreatedAt = Timestamp.now().obs;
   final currentUserLocation = ''.obs;
+  final currentUserRating = 0.0.obs;
+  final currentUserTotalRating = 0.0.obs;
+  final currentUserRatingSum = 0.0.obs;
+
+  @override
+  void onInit() {
+    authStream.bindStream(authService.value.authStateChanges);
+    super.onInit();
+  }
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();
@@ -33,12 +42,6 @@ class AuthController extends GetxController {
         lng: giftController.currentUserLocation.value.longitude);
 
     return distance;
-  }
-
-  @override
-  void onInit() {
-    authStream.bindStream(authService.value.authStateChanges);
-    super.onInit();
   }
 
   void bindMyUserStream() {

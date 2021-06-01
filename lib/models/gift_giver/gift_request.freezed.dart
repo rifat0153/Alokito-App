@@ -38,6 +38,9 @@ class _$GiftReqeustTearOff {
       required String giverUid,
       required String requesterUid,
       required String requesterMessage,
+      required double requesterAvgRating,
+      required double requesterTotRating,
+      required double requesterRatingSum,
       int giftFor = 0,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
@@ -56,6 +59,9 @@ class _$GiftReqeustTearOff {
       giverUid: giverUid,
       requesterUid: requesterUid,
       requesterMessage: requesterMessage,
+      requesterAvgRating: requesterAvgRating,
+      requesterTotRating: requesterTotRating,
+      requesterRatingSum: requesterRatingSum,
       giftFor: giftFor,
       giftType: giftType,
       giftImageUrl: giftImageUrl,
@@ -97,6 +103,9 @@ mixin _$GiftReqeust {
             String giverUid,
             String requesterUid,
             String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
             int giftFor,
             @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
@@ -122,6 +131,9 @@ mixin _$GiftReqeust {
             String giverUid,
             String requesterUid,
             String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
             int giftFor,
             @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
@@ -185,6 +197,9 @@ abstract class _$GiftReqeustCopyWith<$Res> {
       String giverUid,
       String requesterUid,
       String requesterMessage,
+      double requesterAvgRating,
+      double requesterTotRating,
+      double requesterRatingSum,
       int giftFor,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           GiftType giftType,
@@ -218,6 +233,9 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
     Object? giverUid = freezed,
     Object? requesterUid = freezed,
     Object? requesterMessage = freezed,
+    Object? requesterAvgRating = freezed,
+    Object? requesterTotRating = freezed,
+    Object? requesterRatingSum = freezed,
     Object? giftFor = freezed,
     Object? giftType = freezed,
     Object? giftImageUrl = freezed,
@@ -256,6 +274,18 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
           ? _value.requesterMessage
           : requesterMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      requesterAvgRating: requesterAvgRating == freezed
+          ? _value.requesterAvgRating
+          : requesterAvgRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      requesterTotRating: requesterTotRating == freezed
+          ? _value.requesterTotRating
+          : requesterTotRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      requesterRatingSum: requesterRatingSum == freezed
+          ? _value.requesterRatingSum
+          : requesterRatingSum // ignore: cast_nullable_to_non_nullable
+              as double,
       giftFor: giftFor == freezed
           ? _value.giftFor
           : giftFor // ignore: cast_nullable_to_non_nullable
@@ -310,6 +340,9 @@ class _$_GiftReqeust implements _GiftReqeust {
       required this.giverUid,
       required this.requesterUid,
       required this.requesterMessage,
+      required this.requesterAvgRating,
+      required this.requesterTotRating,
+      required this.requesterRatingSum,
       this.giftFor = 0,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required this.giftType,
@@ -338,6 +371,12 @@ class _$_GiftReqeust implements _GiftReqeust {
   final String requesterUid;
   @override
   final String requesterMessage;
+  @override
+  final double requesterAvgRating;
+  @override
+  final double requesterTotRating;
+  @override
+  final double requesterRatingSum;
   @JsonKey(defaultValue: 0)
   @override
   final int giftFor;
@@ -360,7 +399,7 @@ class _$_GiftReqeust implements _GiftReqeust {
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, giverUid: $giverUid, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl)';
+    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, giverUid: $giverUid, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl)';
   }
 
   @override
@@ -386,6 +425,15 @@ class _$_GiftReqeust implements _GiftReqeust {
             (identical(other.requesterMessage, requesterMessage) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterMessage, requesterMessage)) &&
+            (identical(other.requesterAvgRating, requesterAvgRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterAvgRating, requesterAvgRating)) &&
+            (identical(other.requesterTotRating, requesterTotRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterTotRating, requesterTotRating)) &&
+            (identical(other.requesterRatingSum, requesterRatingSum) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterRatingSum, requesterRatingSum)) &&
             (identical(other.giftFor, giftFor) ||
                 const DeepCollectionEquality()
                     .equals(other.giftFor, giftFor)) &&
@@ -422,6 +470,9 @@ class _$_GiftReqeust implements _GiftReqeust {
       const DeepCollectionEquality().hash(giverUid) ^
       const DeepCollectionEquality().hash(requesterUid) ^
       const DeepCollectionEquality().hash(requesterMessage) ^
+      const DeepCollectionEquality().hash(requesterAvgRating) ^
+      const DeepCollectionEquality().hash(requesterTotRating) ^
+      const DeepCollectionEquality().hash(requesterRatingSum) ^
       const DeepCollectionEquality().hash(giftFor) ^
       const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(giftImageUrl) ^
@@ -447,6 +498,9 @@ class _$_GiftReqeust implements _GiftReqeust {
             String giverUid,
             String requesterUid,
             String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
             int giftFor,
             @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
@@ -469,6 +523,9 @@ class _$_GiftReqeust implements _GiftReqeust {
         giverUid,
         requesterUid,
         requesterMessage,
+        requesterAvgRating,
+        requesterTotRating,
+        requesterRatingSum,
         giftFor,
         giftType,
         giftImageUrl,
@@ -490,6 +547,9 @@ class _$_GiftReqeust implements _GiftReqeust {
             String giverUid,
             String requesterUid,
             String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
             int giftFor,
             @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
@@ -514,6 +574,9 @@ class _$_GiftReqeust implements _GiftReqeust {
           giverUid,
           requesterUid,
           requesterMessage,
+          requesterAvgRating,
+          requesterTotRating,
+          requesterRatingSum,
           giftFor,
           giftType,
           giftImageUrl,
@@ -565,6 +628,9 @@ abstract class _GiftReqeust implements GiftReqeust {
       required String giverUid,
       required String requesterUid,
       required String requesterMessage,
+      required double requesterAvgRating,
+      required double requesterTotRating,
+      required double requesterRatingSum,
       int giftFor,
       @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
           required GiftType giftType,
@@ -586,6 +652,9 @@ abstract class _GiftReqeust implements GiftReqeust {
   String get giverUid => throw _privateConstructorUsedError;
   String get requesterUid => throw _privateConstructorUsedError;
   String get requesterMessage => throw _privateConstructorUsedError;
+  double get requesterAvgRating => throw _privateConstructorUsedError;
+  double get requesterTotRating => throw _privateConstructorUsedError;
+  double get requesterRatingSum => throw _privateConstructorUsedError;
   int get giftFor => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
@@ -649,6 +718,9 @@ class _$Loading implements Loading {
             String giverUid,
             String requesterUid,
             String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
             int giftFor,
             @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
@@ -677,6 +749,9 @@ class _$Loading implements Loading {
             String giverUid,
             String requesterUid,
             String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
             int giftFor,
             @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
@@ -807,6 +882,9 @@ class _$Error implements Error {
             String giverUid,
             String requesterUid,
             String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
             int giftFor,
             @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
@@ -835,6 +913,9 @@ class _$Error implements Error {
             String giverUid,
             String requesterUid,
             String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
             int giftFor,
             @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
                 GiftType giftType,
