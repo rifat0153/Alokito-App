@@ -138,23 +138,22 @@ class _PickUpTimeWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: TextField(
-            decoration: InputDecoration(
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(width: 0, style: BorderStyle.none),
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                ),
-                fillColor: GIFT_ADD_FORM_COLOR,
-                hoverColor: Colors.grey,
-                filled: true,
-                hintText: 'e.g. today from 10.30 am to 4.30 pm'),
-            maxLines: 1,
-            onChanged: (value) {
-              controller.pickUpTime.value = value;
-            },
-          ),
-        ),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: MaterialButton(
+              onPressed: () async {
+                var time = await showTimePicker(
+                  initialTime: TimeOfDay.now(),
+                  context: context,
+                );
+
+                DateTime date = DateTime.parse(time.toString());
+
+                print(time);
+                print(date);
+                // controller.pickUpTime.value = Time
+              },
+              child: Text('Pick Time'),
+            )),
       ],
     );
   }

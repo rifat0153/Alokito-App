@@ -12,6 +12,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz_unsafe.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
@@ -136,7 +137,7 @@ class GiftGiverService implements BaseGiftGiverService {
       giftDetails: controller.giftDetails.value,
       listingDate: Timestamp.now().toDate().toString(),
       listingForDays: controller.listingFor.value.toInt(),
-      pickUpTime: controller.pickUpTime.value,
+      pickUpTime: controller.pickUpTime.value ?? Timestamp.now(),
       canLeaveOutside: controller.canLeaveOutside.value,
       position: myPosition,
       userCreatedAt: userCreatedAt,

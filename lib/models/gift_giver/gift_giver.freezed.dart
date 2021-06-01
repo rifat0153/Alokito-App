@@ -44,8 +44,8 @@ class _$GiftGiverTearOff {
           required Timestamp userCreatedAt,
       required String listingDate,
       required int listingForDays,
-      @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
-          required TimeOfDay pickUpTime,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp pickUpTime,
       required bool canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position,
@@ -112,8 +112,8 @@ mixin _$GiftGiver {
   Timestamp get userCreatedAt => throw _privateConstructorUsedError;
   String get listingDate => throw _privateConstructorUsedError;
   int get listingForDays => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
-  TimeOfDay get pickUpTime => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get pickUpTime => throw _privateConstructorUsedError;
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;
@@ -154,8 +154,8 @@ abstract class $GiftGiverCopyWith<$Res> {
           Timestamp userCreatedAt,
       String listingDate,
       int listingForDays,
-      @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
-          TimeOfDay pickUpTime,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp pickUpTime,
       bool canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position,
@@ -285,7 +285,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
       pickUpTime: pickUpTime == freezed
           ? _value.pickUpTime
           : pickUpTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
+              as Timestamp,
       canLeaveOutside: canLeaveOutside == freezed
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
@@ -346,8 +346,8 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
           Timestamp userCreatedAt,
       String listingDate,
       int listingForDays,
-      @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
-          TimeOfDay pickUpTime,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp pickUpTime,
       bool canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position,
@@ -480,7 +480,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
       pickUpTime: pickUpTime == freezed
           ? _value.pickUpTime
           : pickUpTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
+              as Timestamp,
       canLeaveOutside: canLeaveOutside == freezed
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
@@ -524,7 +524,7 @@ class _$_GiftGiver implements _GiftGiver {
           required this.userCreatedAt,
       required this.listingDate,
       required this.listingForDays,
-      @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required this.pickUpTime,
       required this.canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -580,8 +580,8 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final int listingForDays;
   @override
-  @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
-  final TimeOfDay pickUpTime;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  final Timestamp pickUpTime;
   @override
   final bool canLeaveOutside;
   @override
@@ -733,8 +733,8 @@ abstract class _GiftGiver implements GiftGiver {
           required Timestamp userCreatedAt,
       required String listingDate,
       required int listingForDays,
-      @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
-          required TimeOfDay pickUpTime,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp pickUpTime,
       required bool canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position,
@@ -788,8 +788,8 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   int get listingForDays => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
-  TimeOfDay get pickUpTime => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get pickUpTime => throw _privateConstructorUsedError;
   @override
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @override

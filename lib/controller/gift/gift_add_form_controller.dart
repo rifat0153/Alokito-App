@@ -5,6 +5,7 @@ import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
 import 'package:alokito_new/shared/config.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ class GiftAddFormController extends GetxController {
   var distance = 1.obs;
   var giftDetails = ''.obs;
   var givingGiftInDays = 1.obs;
-  var pickUpTime = TimeOfDay.now().obs;
+  Rx<Timestamp?> pickUpTime = Timestamp.now().obs;
   var listingFor = 5.0.obs;
   var canLeaveOutside = false.obs;
   var markers = List<Marker>.empty().obs;

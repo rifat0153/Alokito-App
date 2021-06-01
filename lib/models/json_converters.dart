@@ -12,9 +12,6 @@ MyPosition myPositionFromJson(Map<String, dynamic> json) =>
 Timestamp timestampToJson(Timestamp timestamp) => timestamp;
 Timestamp timestampFromJson(Timestamp json) => json;
 
-TimeOfDay timeOfDayToJson(TimeOfDay timeOfDay) => timeOfDay;
-TimeOfDay timeOfDayFromJson(TimeOfDay json) => json;
-
 int giftNotificationTypeToJson(GiftNotificationType giftNotificationType) {
   switch (giftNotificationType) {
     case GiftNotificationType.packageRequested:

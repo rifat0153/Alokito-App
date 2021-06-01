@@ -35,8 +35,8 @@ class GiftGiver with _$GiftGiver {
         required Timestamp userCreatedAt,
     required String listingDate,
     required int listingForDays,
-    @JsonKey(fromJson: timeOfDayFromJson, toJson: timeOfDayFromJson)
-        required TimeOfDay pickUpTime,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+        required Timestamp pickUpTime,
     required bool canLeaveOutside,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition position,
