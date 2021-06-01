@@ -100,70 +100,75 @@ class _GiftListTile extends StatelessWidget {
             child: GestureDetector(
               onTap: () => Get.to(() => GiftDetailsView(
                   giftGiver: giftController.giftList.value[index])),
-              child: Row(
-                children: [
-                  Obx(
-                    () => Container(
-                      decoration: BoxDecoration(
-                        color: GIFT_ADD_FORM_COLOR,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                        ),
-                      ),
-                      width: Get.size.width * 0.2,
-                      height: 70,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                        ),
-                        child: Image.network(
-                          giftController.giftList.value[index].imageUrl,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Obx(
-                                () => Text(
-                                  convertGiftType(giftController
-                                      .giftList.value[index].giftType),
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(giftController
-                                  .giftList.value[index].userName),
-                            ],
+              child: Container(
+                decoration: BoxDecoration(
+                  color: GIFT_ADD_FORM_COLOR,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  children: [
+                    Obx(
+                      () => Container(
+                        decoration: BoxDecoration(
+                          color: GIFT_ADD_FORM_COLOR,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                giftController.giftList.value[index].area,
-                                softWrap: true,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                        width: Get.size.width * 0.2,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                          ),
+                          child: Image.network(
+                            giftController.giftList.value[index].imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
-                  )
-                ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(
+                                  () => Text(
+                                    convertGiftType(giftController
+                                        .giftList.value[index].giftType),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(giftController
+                                    .giftList.value[index].userName),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  giftController.giftList.value[index].area,
+                                  softWrap: true,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           );
