@@ -22,6 +22,7 @@ class AuthController extends GetxController {
   final currentUserRating = 0.0.obs;
   final currentUserTotalRating = 0.0.obs;
   final currentUserRatingSum = 0.0.obs;
+  final currentUserHasNotifications = false.obs;
 
   @override
   void onInit() {

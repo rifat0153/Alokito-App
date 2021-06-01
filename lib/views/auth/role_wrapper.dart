@@ -28,9 +28,13 @@ class RoleWrapper extends StatelessWidget {
           authController.currentUserGiftReceived.value = localUser.giftReceived;
           authController.currentUserRating.value = localUser.averageRating;
           authController.currentUserTotalRating.value = localUser.totalRating;
+          authController.currentUserHasNotifications.value =
+              localUser.hasNotifications;
 
           print(
               'current user ${authController.currentUserName.value} rating is: ${authController.currentUserRating.value}');
+          print(
+              'current user ${authController.currentUserName.value} has not: ${authController.currentUserHasNotifications.value}');
 
           return localUser.role == 'admin' || localUser.id == null
               ? Container(
@@ -44,7 +48,7 @@ class RoleWrapper extends StatelessWidget {
                 )
               : HomeView();
         },
-        loading: () => Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, s) => Center(child: Container())));
   }
 }

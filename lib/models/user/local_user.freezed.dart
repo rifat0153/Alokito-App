@@ -30,6 +30,7 @@ class _$LocalUserTearOff {
       required String userName,
       required String email,
       String? imageUrl,
+      bool hasNotifications = false,
       String role = 'user',
       int giftOffered = 0,
       int giftReceived = 0,
@@ -47,6 +48,7 @@ class _$LocalUserTearOff {
       userName: userName,
       email: email,
       imageUrl: imageUrl,
+      hasNotifications: hasNotifications,
       role: role,
       giftOffered: giftOffered,
       giftReceived: giftReceived,
@@ -74,6 +76,7 @@ mixin _$LocalUser {
   String get userName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  bool get hasNotifications => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   int get giftOffered => throw _privateConstructorUsedError;
   int get giftReceived => throw _privateConstructorUsedError;
@@ -102,6 +105,7 @@ abstract class $LocalUserCopyWith<$Res> {
       String userName,
       String email,
       String? imageUrl,
+      bool hasNotifications,
       String role,
       int giftOffered,
       int giftReceived,
@@ -132,6 +136,7 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
     Object? userName = freezed,
     Object? email = freezed,
     Object? imageUrl = freezed,
+    Object? hasNotifications = freezed,
     Object? role = freezed,
     Object? giftOffered = freezed,
     Object? giftReceived = freezed,
@@ -175,6 +180,10 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      hasNotifications: hasNotifications == freezed
+          ? _value.hasNotifications
+          : hasNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -222,6 +231,7 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
       String userName,
       String email,
       String? imageUrl,
+      bool hasNotifications,
       String role,
       int giftOffered,
       int giftReceived,
@@ -254,6 +264,7 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
     Object? userName = freezed,
     Object? email = freezed,
     Object? imageUrl = freezed,
+    Object? hasNotifications = freezed,
     Object? role = freezed,
     Object? giftOffered = freezed,
     Object? giftReceived = freezed,
@@ -297,6 +308,10 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      hasNotifications: hasNotifications == freezed
+          ? _value.hasNotifications
+          : hasNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -334,6 +349,7 @@ class _$_LocalUser implements _LocalUser {
       required this.userName,
       required this.email,
       this.imageUrl,
+      this.hasNotifications = false,
       this.role = 'user',
       this.giftOffered = 0,
       this.giftReceived = 0,
@@ -366,6 +382,9 @@ class _$_LocalUser implements _LocalUser {
   final String email;
   @override
   final String? imageUrl;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool hasNotifications;
   @JsonKey(defaultValue: 'user')
   @override
   final String role;
@@ -384,7 +403,7 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   String toString() {
-    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, userName: $userName, email: $email, imageUrl: $imageUrl, role: $role, giftOffered: $giftOffered, giftReceived: $giftReceived, position: $position, createdAt: $createdAt)';
+    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, userName: $userName, email: $email, imageUrl: $imageUrl, hasNotifications: $hasNotifications, role: $role, giftOffered: $giftOffered, giftReceived: $giftReceived, position: $position, createdAt: $createdAt)';
   }
 
   @override
@@ -416,6 +435,9 @@ class _$_LocalUser implements _LocalUser {
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.hasNotifications, hasNotifications) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasNotifications, hasNotifications)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)) &&
             (identical(other.giftOffered, giftOffered) ||
@@ -444,6 +466,7 @@ class _$_LocalUser implements _LocalUser {
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(hasNotifications) ^
       const DeepCollectionEquality().hash(role) ^
       const DeepCollectionEquality().hash(giftOffered) ^
       const DeepCollectionEquality().hash(giftReceived) ^
@@ -472,6 +495,7 @@ abstract class _LocalUser implements LocalUser {
       required String userName,
       required String email,
       String? imageUrl,
+      bool hasNotifications,
       String role,
       int giftOffered,
       int giftReceived,
@@ -501,6 +525,8 @@ abstract class _LocalUser implements LocalUser {
   String get email => throw _privateConstructorUsedError;
   @override
   String? get imageUrl => throw _privateConstructorUsedError;
+  @override
+  bool get hasNotifications => throw _privateConstructorUsedError;
   @override
   String get role => throw _privateConstructorUsedError;
   @override

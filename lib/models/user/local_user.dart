@@ -20,6 +20,7 @@ abstract class LocalUser with _$LocalUser {
     required String userName,
     required String email,
     String? imageUrl,
+    @Default(false) bool hasNotifications,
     @Default('user') String role,
     @Default(0) int giftOffered,
     @Default(0) int giftReceived,

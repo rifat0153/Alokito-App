@@ -20,6 +20,7 @@ class UserNavbar extends StatelessWidget {
   final width = Get.size.width;
 
   final GiftNotificationController giftNotificationController = Get.find();
+  final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,9 @@ class UserNavbar extends StatelessWidget {
             Get.toNamed(NotificationView.route);
           },
           child: Obx(() => Badge(
-                badgeContent: Text(giftNotificationController
-                    .giftNotificationList.length
-                    .toString()),
+                badgeContent: authController.currentUserHasNotifications.value
+                    ? Text('!')
+                    : Text(''),
                 child: Icon(Icons.notifications,
                     color: Colors.white, size: height * 0.05),
                 badgeColor: Colors.white,
