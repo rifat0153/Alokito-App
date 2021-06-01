@@ -58,6 +58,25 @@ class GiftNotificationService implements BaseGiftNotificationService {
   }
 
   @override
+  Stream<int> streamGiftNotificationStatus() {
+    AuthController authController = Get.find();
+
+    // print('IN not stream:  ' + _auth.currentUser?.uid ?? '');
+
+    return _firestore
+        .collection('notification_status')
+        .doc(_auth.currentUser?.uid)
+        .snapshots()
+        .map((DocumentSnapshot querySnapshot) {
+      var totalNotifications = 0;
+      if (querySnapshot.exists) {
+        totalNotifications = querySnapshot.data()!['totalNotification'] as int;
+      }
+      return totalNotifications;
+    });
+  }
+
+  @override
   Stream<List<GiftNotification>> streamGiftNotification() {
     AuthController authController = Get.find();
 

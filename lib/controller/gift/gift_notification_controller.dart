@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 class GiftNotificationController extends GetxController {
   GiftNotificationService giftNotificationService = GiftNotificationService();
   RxList<GiftNotification> giftNotificationList = RxList.empty();
+  RxInt totalNotifications = 0.obs;
 
   @override
   void onInit() {
@@ -26,6 +27,8 @@ class GiftNotificationController extends GetxController {
   void bindNotificationStream() {
     giftNotificationList
         .bindStream(giftNotificationService.streamGiftNotification());
+    totalNotifications
+        .bindStream(giftNotificationService.streamGiftNotificationStatus());
   }
 
   Future<bool> addNotificationForGiftRequest(

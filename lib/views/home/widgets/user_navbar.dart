@@ -38,9 +38,11 @@ class UserNavbar extends StatelessWidget {
             Get.toNamed(NotificationView.route);
           },
           child: Badge(
-            badgeContent: authController.currentUserHasNotifications.value
-                ? Text('!')
-                : Text(''),
+            badgeContent:
+                giftNotificationController.totalNotifications.value > 0
+                    ? Text(giftNotificationController.totalNotifications.value
+                        .toString())
+                    : Text(''),
             child: Icon(Icons.notifications,
                 color: Colors.white, size: height * 0.05),
             badgeColor: Colors.white,
