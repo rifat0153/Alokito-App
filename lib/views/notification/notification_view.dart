@@ -99,6 +99,8 @@ class GiftRequestWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    giftNotificationController.resetNotificationStatus();
+
     var giftType = convertGiftType(giftNotification.giftType);
     var date = DateTime.now();
     var notificationCreatedAt = DateTime.fromMillisecondsSinceEpoch(

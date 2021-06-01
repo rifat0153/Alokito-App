@@ -15,6 +15,8 @@ class GiftNotificationController extends GetxController {
 
   @override
   void onInit() {
+    totalNotifications
+        .bindStream(giftNotificationService.streamGiftNotificationStatus());
     super.onInit();
   }
 
@@ -29,6 +31,10 @@ class GiftNotificationController extends GetxController {
         .bindStream(giftNotificationService.streamGiftNotification());
     totalNotifications
         .bindStream(giftNotificationService.streamGiftNotificationStatus());
+  }
+
+  Future<void> resetNotificationStatus() async {
+    giftNotificationService.resetNotificationStatus();
   }
 
   Future<bool> addNotificationForGiftRequest(

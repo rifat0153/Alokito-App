@@ -57,6 +57,13 @@ class GiftNotificationService implements BaseGiftNotificationService {
     }
   }
 
+  void resetNotificationStatus() async {
+    await _firestore
+        .collection('notification_status')
+        .doc(_auth.currentUser?.uid)
+        .set({'totalNotification': 0});
+  }
+
   @override
   Stream<int> streamGiftNotificationStatus() {
     AuthController authController = Get.find();
