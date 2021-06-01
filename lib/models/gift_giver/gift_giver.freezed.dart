@@ -24,7 +24,9 @@ class _$GiftGiverTearOff {
       {String? id,
       int giftFor = 0,
       required String userName,
-      required int userRating,
+      required double userAvgRating,
+      required double userTotRating,
+      required double userRatingSum,
       required String userImageUrl,
       required String userFullName,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -50,7 +52,9 @@ class _$GiftGiverTearOff {
       id: id,
       giftFor: giftFor,
       userName: userName,
-      userRating: userRating,
+      userAvgRating: userAvgRating,
+      userTotRating: userTotRating,
+      userRatingSum: userRatingSum,
       userImageUrl: userImageUrl,
       userFullName: userFullName,
       userPosition: userPosition,
@@ -84,7 +88,9 @@ mixin _$GiftGiver {
   String? get id => throw _privateConstructorUsedError;
   int get giftFor => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
-  int get userRating => throw _privateConstructorUsedError;
+  double get userAvgRating => throw _privateConstructorUsedError;
+  double get userTotRating => throw _privateConstructorUsedError;
+  double get userRatingSum => throw _privateConstructorUsedError;
   String get userImageUrl => throw _privateConstructorUsedError;
   String get userFullName => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -122,7 +128,9 @@ abstract class $GiftGiverCopyWith<$Res> {
       {String? id,
       int giftFor,
       String userName,
-      int userRating,
+      double userAvgRating,
+      double userTotRating,
+      double userRatingSum,
       String userImageUrl,
       String userFullName,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -162,7 +170,9 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? id = freezed,
     Object? giftFor = freezed,
     Object? userName = freezed,
-    Object? userRating = freezed,
+    Object? userAvgRating = freezed,
+    Object? userTotRating = freezed,
+    Object? userRatingSum = freezed,
     Object? userImageUrl = freezed,
     Object? userFullName = freezed,
     Object? userPosition = freezed,
@@ -194,10 +204,18 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      userRating: userRating == freezed
-          ? _value.userRating
-          : userRating // ignore: cast_nullable_to_non_nullable
-              as int,
+      userAvgRating: userAvgRating == freezed
+          ? _value.userAvgRating
+          : userAvgRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      userTotRating: userTotRating == freezed
+          ? _value.userTotRating
+          : userTotRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      userRatingSum: userRatingSum == freezed
+          ? _value.userRatingSum
+          : userRatingSum // ignore: cast_nullable_to_non_nullable
+              as double,
       userImageUrl: userImageUrl == freezed
           ? _value.userImageUrl
           : userImageUrl // ignore: cast_nullable_to_non_nullable
@@ -294,7 +312,9 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       {String? id,
       int giftFor,
       String userName,
-      int userRating,
+      double userAvgRating,
+      double userTotRating,
+      double userRatingSum,
       String userImageUrl,
       String userFullName,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -337,7 +357,9 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? id = freezed,
     Object? giftFor = freezed,
     Object? userName = freezed,
-    Object? userRating = freezed,
+    Object? userAvgRating = freezed,
+    Object? userTotRating = freezed,
+    Object? userRatingSum = freezed,
     Object? userImageUrl = freezed,
     Object? userFullName = freezed,
     Object? userPosition = freezed,
@@ -369,10 +391,18 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      userRating: userRating == freezed
-          ? _value.userRating
-          : userRating // ignore: cast_nullable_to_non_nullable
-              as int,
+      userAvgRating: userAvgRating == freezed
+          ? _value.userAvgRating
+          : userAvgRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      userTotRating: userTotRating == freezed
+          ? _value.userTotRating
+          : userTotRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      userRatingSum: userRatingSum == freezed
+          ? _value.userRatingSum
+          : userRatingSum // ignore: cast_nullable_to_non_nullable
+              as double,
       userImageUrl: userImageUrl == freezed
           ? _value.userImageUrl
           : userImageUrl // ignore: cast_nullable_to_non_nullable
@@ -452,7 +482,9 @@ class _$_GiftGiver implements _GiftGiver {
       {this.id,
       this.giftFor = 0,
       required this.userName,
-      required this.userRating,
+      required this.userAvgRating,
+      required this.userTotRating,
+      required this.userRatingSum,
       required this.userImageUrl,
       required this.userFullName,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -486,7 +518,11 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final String userName;
   @override
-  final int userRating;
+  final double userAvgRating;
+  @override
+  final double userTotRating;
+  @override
+  final double userRatingSum;
   @override
   final String userImageUrl;
   @override
@@ -528,7 +564,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userRating: $userRating, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, location: $location, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userAvgRating: $userAvgRating, userTotRating: $userTotRating, userRatingSum: $userRatingSum, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, location: $location, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position)';
   }
 
   @override
@@ -543,9 +579,15 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.userName, userName) ||
                 const DeepCollectionEquality()
                     .equals(other.userName, userName)) &&
-            (identical(other.userRating, userRating) ||
+            (identical(other.userAvgRating, userAvgRating) ||
                 const DeepCollectionEquality()
-                    .equals(other.userRating, userRating)) &&
+                    .equals(other.userAvgRating, userAvgRating)) &&
+            (identical(other.userTotRating, userTotRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.userTotRating, userTotRating)) &&
+            (identical(other.userRatingSum, userRatingSum) ||
+                const DeepCollectionEquality()
+                    .equals(other.userRatingSum, userRatingSum)) &&
             (identical(other.userImageUrl, userImageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.userImageUrl, userImageUrl)) &&
@@ -603,7 +645,9 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftFor) ^
       const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(userRating) ^
+      const DeepCollectionEquality().hash(userAvgRating) ^
+      const DeepCollectionEquality().hash(userTotRating) ^
+      const DeepCollectionEquality().hash(userRatingSum) ^
       const DeepCollectionEquality().hash(userImageUrl) ^
       const DeepCollectionEquality().hash(userFullName) ^
       const DeepCollectionEquality().hash(userPosition) ^
@@ -638,7 +682,9 @@ abstract class _GiftGiver implements GiftGiver {
       {String? id,
       int giftFor,
       required String userName,
-      required int userRating,
+      required double userAvgRating,
+      required double userTotRating,
+      required double userRatingSum,
       required String userImageUrl,
       required String userFullName,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -671,7 +717,11 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   String get userName => throw _privateConstructorUsedError;
   @override
-  int get userRating => throw _privateConstructorUsedError;
+  double get userAvgRating => throw _privateConstructorUsedError;
+  @override
+  double get userTotRating => throw _privateConstructorUsedError;
+  @override
+  double get userRatingSum => throw _privateConstructorUsedError;
   @override
   String get userImageUrl => throw _privateConstructorUsedError;
   @override

@@ -28,6 +28,12 @@ class _$GiftNotificationTearOff {
       required String requesterName,
       required String requesterUid,
       required String requesterMessage,
+      required double requesterAvgRating,
+      required double requesterTotRating,
+      required double requesterRatingSum,
+      required double giverAvgRating,
+      required double giverTotRating,
+      required double giverRatingSum,
       required String giverName,
       required String giverImageUrl,
       required String giverUid,
@@ -53,6 +59,12 @@ class _$GiftNotificationTearOff {
       requesterName: requesterName,
       requesterUid: requesterUid,
       requesterMessage: requesterMessage,
+      requesterAvgRating: requesterAvgRating,
+      requesterTotRating: requesterTotRating,
+      requesterRatingSum: requesterRatingSum,
+      giverAvgRating: giverAvgRating,
+      giverTotRating: giverTotRating,
+      giverRatingSum: giverRatingSum,
       giverName: giverName,
       giverImageUrl: giverImageUrl,
       giverUid: giverUid,
@@ -85,6 +97,12 @@ mixin _$GiftNotification {
   String get requesterName => throw _privateConstructorUsedError;
   String get requesterUid => throw _privateConstructorUsedError;
   String get requesterMessage => throw _privateConstructorUsedError;
+  double get requesterAvgRating => throw _privateConstructorUsedError;
+  double get requesterTotRating => throw _privateConstructorUsedError;
+  double get requesterRatingSum => throw _privateConstructorUsedError;
+  double get giverAvgRating => throw _privateConstructorUsedError;
+  double get giverTotRating => throw _privateConstructorUsedError;
+  double get giverRatingSum => throw _privateConstructorUsedError;
   String get giverName => throw _privateConstructorUsedError;
   String get giverImageUrl => throw _privateConstructorUsedError;
   String get giverUid => throw _privateConstructorUsedError;
@@ -125,6 +143,12 @@ abstract class $GiftNotificationCopyWith<$Res> {
       String requesterName,
       String requesterUid,
       String requesterMessage,
+      double requesterAvgRating,
+      double requesterTotRating,
+      double requesterRatingSum,
+      double giverAvgRating,
+      double giverTotRating,
+      double giverRatingSum,
       String giverName,
       String giverImageUrl,
       String giverUid,
@@ -162,6 +186,12 @@ class _$GiftNotificationCopyWithImpl<$Res>
     Object? requesterName = freezed,
     Object? requesterUid = freezed,
     Object? requesterMessage = freezed,
+    Object? requesterAvgRating = freezed,
+    Object? requesterTotRating = freezed,
+    Object? requesterRatingSum = freezed,
+    Object? giverAvgRating = freezed,
+    Object? giverTotRating = freezed,
+    Object? giverRatingSum = freezed,
     Object? giverName = freezed,
     Object? giverImageUrl = freezed,
     Object? giverUid = freezed,
@@ -204,6 +234,30 @@ class _$GiftNotificationCopyWithImpl<$Res>
           ? _value.requesterMessage
           : requesterMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      requesterAvgRating: requesterAvgRating == freezed
+          ? _value.requesterAvgRating
+          : requesterAvgRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      requesterTotRating: requesterTotRating == freezed
+          ? _value.requesterTotRating
+          : requesterTotRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      requesterRatingSum: requesterRatingSum == freezed
+          ? _value.requesterRatingSum
+          : requesterRatingSum // ignore: cast_nullable_to_non_nullable
+              as double,
+      giverAvgRating: giverAvgRating == freezed
+          ? _value.giverAvgRating
+          : giverAvgRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      giverTotRating: giverTotRating == freezed
+          ? _value.giverTotRating
+          : giverTotRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      giverRatingSum: giverRatingSum == freezed
+          ? _value.giverRatingSum
+          : giverRatingSum // ignore: cast_nullable_to_non_nullable
+              as double,
       giverName: giverName == freezed
           ? _value.giverName
           : giverName // ignore: cast_nullable_to_non_nullable
@@ -271,6 +325,12 @@ abstract class _$GiftNotificationCopyWith<$Res>
       String requesterName,
       String requesterUid,
       String requesterMessage,
+      double requesterAvgRating,
+      double requesterTotRating,
+      double requesterRatingSum,
+      double giverAvgRating,
+      double giverTotRating,
+      double giverRatingSum,
       String giverName,
       String giverImageUrl,
       String giverUid,
@@ -310,6 +370,12 @@ class __$GiftNotificationCopyWithImpl<$Res>
     Object? requesterName = freezed,
     Object? requesterUid = freezed,
     Object? requesterMessage = freezed,
+    Object? requesterAvgRating = freezed,
+    Object? requesterTotRating = freezed,
+    Object? requesterRatingSum = freezed,
+    Object? giverAvgRating = freezed,
+    Object? giverTotRating = freezed,
+    Object? giverRatingSum = freezed,
     Object? giverName = freezed,
     Object? giverImageUrl = freezed,
     Object? giverUid = freezed,
@@ -352,6 +418,30 @@ class __$GiftNotificationCopyWithImpl<$Res>
           ? _value.requesterMessage
           : requesterMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      requesterAvgRating: requesterAvgRating == freezed
+          ? _value.requesterAvgRating
+          : requesterAvgRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      requesterTotRating: requesterTotRating == freezed
+          ? _value.requesterTotRating
+          : requesterTotRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      requesterRatingSum: requesterRatingSum == freezed
+          ? _value.requesterRatingSum
+          : requesterRatingSum // ignore: cast_nullable_to_non_nullable
+              as double,
+      giverAvgRating: giverAvgRating == freezed
+          ? _value.giverAvgRating
+          : giverAvgRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      giverTotRating: giverTotRating == freezed
+          ? _value.giverTotRating
+          : giverTotRating // ignore: cast_nullable_to_non_nullable
+              as double,
+      giverRatingSum: giverRatingSum == freezed
+          ? _value.giverRatingSum
+          : giverRatingSum // ignore: cast_nullable_to_non_nullable
+              as double,
       giverName: giverName == freezed
           ? _value.giverName
           : giverName // ignore: cast_nullable_to_non_nullable
@@ -415,6 +505,12 @@ class _$_GiftNotification implements _GiftNotification {
       required this.requesterName,
       required this.requesterUid,
       required this.requesterMessage,
+      required this.requesterAvgRating,
+      required this.requesterTotRating,
+      required this.requesterRatingSum,
+      required this.giverAvgRating,
+      required this.giverTotRating,
+      required this.giverRatingSum,
       required this.giverName,
       required this.giverImageUrl,
       required this.giverUid,
@@ -451,6 +547,18 @@ class _$_GiftNotification implements _GiftNotification {
   @override
   final String requesterMessage;
   @override
+  final double requesterAvgRating;
+  @override
+  final double requesterTotRating;
+  @override
+  final double requesterRatingSum;
+  @override
+  final double giverAvgRating;
+  @override
+  final double giverTotRating;
+  @override
+  final double giverRatingSum;
+  @override
   final String giverName;
   @override
   final String giverImageUrl;
@@ -484,7 +592,7 @@ class _$_GiftNotification implements _GiftNotification {
 
   @override
   String toString() {
-    return 'GiftNotification(id: $id, giftId: $giftId, giftImageUrl: $giftImageUrl, requesterImageUrl: $requesterImageUrl, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, giverName: $giverName, giverImageUrl: $giverImageUrl, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, notificationFor: $notificationFor, notificationForList: $notificationForList, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
+    return 'GiftNotification(id: $id, giftId: $giftId, giftImageUrl: $giftImageUrl, requesterImageUrl: $requesterImageUrl, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giverAvgRating: $giverAvgRating, giverTotRating: $giverTotRating, giverRatingSum: $giverRatingSum, giverName: $giverName, giverImageUrl: $giverImageUrl, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, notificationFor: $notificationFor, notificationForList: $notificationForList, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
   }
 
   @override
@@ -510,6 +618,24 @@ class _$_GiftNotification implements _GiftNotification {
             (identical(other.requesterMessage, requesterMessage) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterMessage, requesterMessage)) &&
+            (identical(other.requesterAvgRating, requesterAvgRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterAvgRating, requesterAvgRating)) &&
+            (identical(other.requesterTotRating, requesterTotRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterTotRating, requesterTotRating)) &&
+            (identical(other.requesterRatingSum, requesterRatingSum) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterRatingSum, requesterRatingSum)) &&
+            (identical(other.giverAvgRating, giverAvgRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.giverAvgRating, giverAvgRating)) &&
+            (identical(other.giverTotRating, giverTotRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.giverTotRating, giverTotRating)) &&
+            (identical(other.giverRatingSum, giverRatingSum) ||
+                const DeepCollectionEquality()
+                    .equals(other.giverRatingSum, giverRatingSum)) &&
             (identical(other.giverName, giverName) ||
                 const DeepCollectionEquality()
                     .equals(other.giverName, giverName)) &&
@@ -538,14 +664,9 @@ class _$_GiftNotification implements _GiftNotification {
                 const DeepCollectionEquality()
                     .equals(other.requesterJoinedAt, requesterJoinedAt)) &&
             (identical(other.giftType, giftType) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftType, giftType)) &&
-            (identical(other.notificationType, notificationType) ||
-                const DeepCollectionEquality()
-                    .equals(other.notificationType, notificationType)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                const DeepCollectionEquality().equals(other.giftType, giftType)) &&
+            (identical(other.notificationType, notificationType) || const DeepCollectionEquality().equals(other.notificationType, notificationType)) &&
+            (identical(other.createdAt, createdAt) || const DeepCollectionEquality().equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -558,6 +679,12 @@ class _$_GiftNotification implements _GiftNotification {
       const DeepCollectionEquality().hash(requesterName) ^
       const DeepCollectionEquality().hash(requesterUid) ^
       const DeepCollectionEquality().hash(requesterMessage) ^
+      const DeepCollectionEquality().hash(requesterAvgRating) ^
+      const DeepCollectionEquality().hash(requesterTotRating) ^
+      const DeepCollectionEquality().hash(requesterRatingSum) ^
+      const DeepCollectionEquality().hash(giverAvgRating) ^
+      const DeepCollectionEquality().hash(giverTotRating) ^
+      const DeepCollectionEquality().hash(giverRatingSum) ^
       const DeepCollectionEquality().hash(giverName) ^
       const DeepCollectionEquality().hash(giverImageUrl) ^
       const DeepCollectionEquality().hash(giverUid) ^
@@ -591,6 +718,12 @@ abstract class _GiftNotification implements GiftNotification {
       required String requesterName,
       required String requesterUid,
       required String requesterMessage,
+      required double requesterAvgRating,
+      required double requesterTotRating,
+      required double requesterRatingSum,
+      required double giverAvgRating,
+      required double giverTotRating,
+      required double giverRatingSum,
       required String giverName,
       required String giverImageUrl,
       required String giverUid,
@@ -626,6 +759,18 @@ abstract class _GiftNotification implements GiftNotification {
   String get requesterUid => throw _privateConstructorUsedError;
   @override
   String get requesterMessage => throw _privateConstructorUsedError;
+  @override
+  double get requesterAvgRating => throw _privateConstructorUsedError;
+  @override
+  double get requesterTotRating => throw _privateConstructorUsedError;
+  @override
+  double get requesterRatingSum => throw _privateConstructorUsedError;
+  @override
+  double get giverAvgRating => throw _privateConstructorUsedError;
+  @override
+  double get giverTotRating => throw _privateConstructorUsedError;
+  @override
+  double get giverRatingSum => throw _privateConstructorUsedError;
   @override
   String get giverName => throw _privateConstructorUsedError;
   @override

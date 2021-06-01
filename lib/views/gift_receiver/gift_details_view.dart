@@ -188,7 +188,7 @@ class _UserRatingAndDistance extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(giftGiver.userRating);
+    print(giftGiver.userAvgRating);
 
     const double starSize = 12;
 
@@ -196,19 +196,19 @@ class _UserRatingAndDistance extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children: [
-          giftGiver.userRating >= 1
+          giftGiver.userAvgRating >= 1
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftGiver.userRating >= 2
+          giftGiver.userAvgRating >= 2
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftGiver.userRating >= 3
+          giftGiver.userAvgRating >= 3
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftGiver.userRating >= 4
+          giftGiver.userAvgRating >= 4
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftGiver.userRating >= 5
+          giftGiver.userAvgRating >= 5
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
           const Icon(Icons.arrow_forward_ios),

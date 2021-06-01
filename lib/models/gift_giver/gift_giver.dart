@@ -1,4 +1,3 @@
-
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';
@@ -15,7 +14,9 @@ class GiftGiver with _$GiftGiver {
     String? id,
     @Default(0) int giftFor,
     required String userName,
-    required int userRating,
+    required double userAvgRating,
+    required double userTotRating,
+    required double userRatingSum,
     required String userImageUrl,
     required String userFullName,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
