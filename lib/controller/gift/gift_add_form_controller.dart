@@ -18,20 +18,17 @@ class GiftAddFormController extends GetxController {
   var distance = 1.obs;
   var giftDetails = ''.obs;
   var givingGiftInDays = 1.obs;
-  var pickUpTime = ''.obs;
+  var pickUpTime = TimeOfDay.now().obs;
   var listingFor = 5.0.obs;
-
   var canLeaveOutside = false.obs;
   var markers = List<Marker>.empty().obs;
   Rx<File> imageFile = File('').obs;
-
   var userLocation = LatLng(0, 0).obs;
   var addressQuery = ''.obs;
   var foundAddress = ''.obs;
   var selectedAddress = ''.obs;
   var addressSelected = true.obs;
   var selectedAddressLatLng = LatLng(0, 0).obs;
-
   var selectedLatLng = LatLng(0, 0).obs;
   var selectedMapLocation = ''.obs;
   var location = ''.obs;

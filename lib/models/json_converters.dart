@@ -2,14 +2,18 @@ import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 Map<String, dynamic> myPositionToJson(MyPosition myPosition) =>
     myPosition.toJson();
 MyPosition myPositionFromJson(Map<String, dynamic> json) =>
     MyPosition.fromJson(json);
 
-Timestamp timestampToJson(Timestamp pickUpTime) => pickUpTime;
+Timestamp timestampToJson(Timestamp timestamp) => timestamp;
 Timestamp timestampFromJson(Timestamp json) => json;
+
+TimeOfDay timeOfDayToJson(TimeOfDay timeOfDay) => timeOfDay;
+TimeOfDay timeOfDayFromJson(TimeOfDay json) => json;
 
 int giftNotificationTypeToJson(GiftNotificationType giftNotificationType) {
   switch (giftNotificationType) {
