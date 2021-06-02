@@ -1,6 +1,7 @@
 import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:alokito_new/views/notification/notification_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
@@ -109,53 +110,57 @@ class GiftRequestWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Card(
-        child: Row(
-          children: [
-            const SizedBox(width: 8),
-            Flexible(
-              flex: 1,
-              child: Image.network(
-                giftNotification.giftImageUrl,
-                fit: BoxFit.fill,
+      child: GestureDetector(
+        onTap: () => Get.toNamed(NotificationDetailsView.route,
+            arguments: giftNotification),
+        child: Card(
+          child: Row(
+            children: [
+              const SizedBox(width: 8),
+              Flexible(
+                flex: 1,
+                child: Image.network(
+                  giftNotification.giftImageUrl,
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
-            const SizedBox(width: 8),
-            Flexible(
-              flex: 7,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RichText(
-                      // overflow: TextOverflow.visible,
-                      // softWrap: false,
-                      text: TextSpan(
-                        text: 'Your gift offer ',
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '$giftType',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                          const TextSpan(text: ' is requsted by '),
-                          TextSpan(
-                              text: '${giftNotification.requesterName}',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                        ],
+              const SizedBox(width: 8),
+              Flexible(
+                flex: 7,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RichText(
+                        // overflow: TextOverflow.visible,
+                        // softWrap: false,
+                        text: TextSpan(
+                          text: 'Your gift offer ',
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '$giftType',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                            const TextSpan(text: ' is requsted by '),
+                            TextSpan(
+                                text: '${giftNotification.requesterName}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('$difference hours ago'),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('$difference hours ago'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

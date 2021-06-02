@@ -1,5 +1,6 @@
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -23,6 +24,8 @@ class AuthController extends GetxController {
   final currentUserTotalRating = 0.0.obs;
   final currentUserRatingSum = 0.0.obs;
   final currentUserHasNotifications = false.obs;
+  final currentUserPosition =
+      const MyPosition(geohash: '', geopoint: GeoPoint(0, 0)).obs;
 
   @override
   void onInit() {

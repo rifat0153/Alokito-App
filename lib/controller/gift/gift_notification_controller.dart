@@ -52,9 +52,11 @@ class GiftNotificationController extends GetxController {
         giftGiver.uid,
         FirebaseAuth.instance.currentUser?.uid ?? ''
       ],
+      requesterPosition: authController.currentUserPosition.value,
       requesterAvgRating: authController.currentUserRating.value,
       requesterRatingSum: authController.currentUserRatingSum.value,
       requesterTotRating: authController.currentUserTotalRating.value,
+      giverPosition: giftGiver.userPosition,
       giverAvgRating: giftGiver.userAvgRating,
       giverRatingSum: giftGiver.userRatingSum,
       giverTotRating: giftGiver.userTotRating,

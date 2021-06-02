@@ -28,6 +28,7 @@ class RoleWrapper extends StatelessWidget {
           authController.currentUserGiftReceived.value = localUser.giftReceived;
           authController.currentUserRating.value = localUser.averageRating;
           authController.currentUserTotalRating.value = localUser.totalRating;
+          authController.currentUserPosition.value = localUser.position;
           authController.currentUserHasNotifications.value =
               localUser.hasNotifications;
 

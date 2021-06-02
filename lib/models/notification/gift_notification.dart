@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -29,6 +30,10 @@ class GiftNotification with _$GiftNotification {
     required String giftLocation,
     required String giftArea,
     required String notificationFor,
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+        required MyPosition requesterPosition,
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+        required MyPosition giverPosition,
     required List<String> notificationForList,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
         required Timestamp giverJoinedAt,
