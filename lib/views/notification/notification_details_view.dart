@@ -1,7 +1,9 @@
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/views/notification/notification_view.dart';
+import 'package:alokito_new/views/notification/widgets/location_widget.dart';
 import 'package:alokito_new/views/notification/widgets/user_detail_widget.dart';
+import 'package:alokito_new/views/notification/widgets/user_location_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/user_joining_distance_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,6 +42,8 @@ class NotificationDetailsView extends StatelessWidget {
             children: [
               SizedBox(height: Get.height * 0.1),
               UserDetailWidget(giftNotification: giftNotification),
+              UserLocationWidget(giftNotification: giftNotification),
+              LocationWidget(giftNotification: giftNotification),
             ],
           ),
         ),

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 
-class UserRatingAndDistance extends StatelessWidget {
-  UserRatingAndDistance({required this.giftNotification});
+class UserLocationWidget extends StatelessWidget {
+  UserLocationWidget({required this.giftNotification});
 
   final GiftNotification giftNotification;
   final AuthController authController = Get.find();

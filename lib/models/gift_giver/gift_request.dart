@@ -16,6 +16,7 @@ class GiftReqeust with _$GiftReqeust {
     required bool requestConfirmed,
     required bool requestDenied,
     required String giverUid,
+    required String giftArea,
     required String requesterUid,
     required String requesterMessage,
     required double requesterAvgRating,
