@@ -41,34 +41,50 @@ class RequesterGiftRecords extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            MaterialButton(
-              color: GIFT_ADD_FORM_SUBMIT,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              onPressed: () {},
+            Container(
+              height: 60,
+              width: 75,
+              decoration: BoxDecoration(
+                color: GIFT_ADD_FORM_SUBMIT,
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 5),
-                child: Transform.rotate(
-                  angle: -math.pi / 4,
-                  child: const FaIcon(
-                    FontAwesomeIcons.phoneVolume,
-                    color: Colors.white,
-                    size: 40,
-                  ),
+                child: Column(
+                  children: [
+                    Transform.rotate(
+                      angle: -math.pi / 4,
+                      child: const FaIcon(
+                        FontAwesomeIcons.phoneVolume,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                    Text('Voice Call',
+                        style: whiteFontStyle.copyWith(fontSize: 10))
+                  ],
                 ),
               ),
             ),
-            MaterialButton(
-              color: GIFT_ADD_FORM_SUBMIT,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              onPressed: () {},
+            Container(
+              height: 60,
+              width: 75,
+              decoration: BoxDecoration(
+                color: GIFT_ADD_FORM_SUBMIT,
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 5),
-                child: const FaIcon(
-                  FontAwesomeIcons.commentDots,
-                  color: Colors.white,
-                  size: 40,
+                child: Column(
+                  children: [
+                    const FaIcon(
+                      FontAwesomeIcons.commentDots,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    Text('Conversation',
+                        style: whiteFontStyle.copyWith(fontSize: 10))
+                  ],
                 ),
               ),
             ),

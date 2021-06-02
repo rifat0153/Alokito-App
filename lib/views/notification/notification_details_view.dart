@@ -49,17 +49,51 @@ class NotificationDetailsView extends StatelessWidget {
               UserDetailWidget(giftNotification: giftNotification),
               UserLocationWidget(giftNotification: giftNotification),
               StyledContainer(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  LocationWidget(giftNotification: giftNotification),
-                  RequesterGiftRecords(),
-                ],
-              )),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LocationWidget(giftNotification: giftNotification),
+                    RequesterGiftRecords(),
+                  ],
+                ),
+              ),
+              DecistionWidget(giftNotification: giftNotification),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class DecistionWidget extends StatelessWidget {
+  DecistionWidget({required this.giftNotification});
+  GiftNotification giftNotification;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        MaterialButton(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          color: GIFT_ADD_FORM_SUBMIT,
+          onPressed: () {},
+          child: Text(
+            'Accept for Confirmation',
+            style: boldFontStyle.copyWith(color: Colors.white),
+          ),
+        ),
+        MaterialButton(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          color: GIFT_ADD_FORM_SUBMIT,
+          onPressed: () {},
+          child: Text(
+            'Denied',
+            style: boldFontStyle.copyWith(color: Colors.white),
+          ),
+        )
+      ],
     );
   }
 }
