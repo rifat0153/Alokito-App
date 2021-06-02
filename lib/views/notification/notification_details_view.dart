@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/views/notification/notification_view.dart';
 import 'package:alokito_new/views/notification/widgets/location_widget.dart';
 import 'package:alokito_new/views/notification/widgets/user_detail_widget.dart';
@@ -39,15 +40,54 @@ class NotificationDetailsView extends StatelessWidget {
                 fit: BoxFit.fill),
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: Get.height * 0.1),
               UserDetailWidget(giftNotification: giftNotification),
               UserLocationWidget(giftNotification: giftNotification),
               LocationWidget(giftNotification: giftNotification),
+              UserGiftRecords()
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class UserGiftRecords extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text('Gift offered', style: boldFontStyle),
+            Text('Gift received', style: boldFontStyle),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: Text(
+                '0',
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const Text('All time'),
+            Expanded(
+              child: Text(
+                '0',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }
