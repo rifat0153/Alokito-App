@@ -114,6 +114,8 @@ class GiftRequestService implements BaseGiftRequestService {
       GiftReqeust giftReqeust = GiftReqeust(
           id: '${currentUserUid}.${giftGiver.id}',
           giftArea: giftGiver.area,
+          giftOfferedByRequester: authController.currentUserGiftOffered.value,
+          giftReceivedByRequester: authController.currentUserGiftReceived.value,
           requesterAvgRating: authController.currentUserRating.value,
           requesterRatingSum: authController.currentUserRatingSum.value,
           requesterTotRating: authController.currentUserTotalRating.value,

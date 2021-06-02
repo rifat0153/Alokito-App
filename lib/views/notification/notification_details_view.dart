@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/views/notification/notification_view.dart';
 import 'package:alokito_new/views/notification/widgets/location_widget.dart';
@@ -45,8 +46,14 @@ class NotificationDetailsView extends StatelessWidget {
               SizedBox(height: Get.height * 0.1),
               UserDetailWidget(giftNotification: giftNotification),
               UserLocationWidget(giftNotification: giftNotification),
-              LocationWidget(giftNotification: giftNotification),
-              UserGiftRecords()
+              StyledContainer(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LocationWidget(giftNotification: giftNotification),
+                  UserGiftRecords()
+                ],
+              )),
             ],
           ),
         ),
@@ -55,7 +62,31 @@ class NotificationDetailsView extends StatelessWidget {
   }
 }
 
+class StyledContainer extends StatelessWidget {
+  StyledContainer({required this.child});
+
+  Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+      child: Container(
+        width: Get.width,
+        decoration: BoxDecoration(
+            color: GIFT_ADD_FORM_COLOR,
+            borderRadius: BorderRadius.circular(10)),
+        child: child,
+      ),
+    );
+  }
+}
+
 class UserGiftRecords extends StatelessWidget {
+
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -86,7 +117,8 @@ class UserGiftRecords extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
+        const SizedBox(height: 16),
       ],
     );
   }

@@ -9,12 +9,15 @@ class LocationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Location', style: boldFontStyle),
-        Text(giftNotification.giftArea),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Location', style: boldFontStyle),
+          Text(giftNotification.giftArea),
+        ],
+      ),
     );
   }
 }
