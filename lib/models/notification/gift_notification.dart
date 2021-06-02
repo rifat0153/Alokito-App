@@ -13,6 +13,8 @@ class GiftNotification with _$GiftNotification {
   const factory GiftNotification({
     String? id,
     required String giftId,
+    required bool giftConfirmed,
+    required bool giftDenied,
     required String giftImageUrl,
     required String requesterImageUrl,
     required String requesterName,

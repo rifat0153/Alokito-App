@@ -10,6 +10,8 @@ _$_GiftNotification _$_$_GiftNotificationFromJson(Map<String, dynamic> json) {
   return _$_GiftNotification(
     id: json['id'] as String?,
     giftId: json['giftId'] as String,
+    giftConfirmed: json['giftConfirmed'] as bool,
+    giftDenied: json['giftDenied'] as bool,
     giftImageUrl: json['giftImageUrl'] as String,
     requesterImageUrl: json['requesterImageUrl'] as String,
     requesterName: json['requesterName'] as String,
@@ -49,6 +51,8 @@ Map<String, dynamic> _$_$_GiftNotificationToJson(
     <String, dynamic>{
       'id': instance.id,
       'giftId': instance.giftId,
+      'giftConfirmed': instance.giftConfirmed,
+      'giftDenied': instance.giftDenied,
       'giftImageUrl': instance.giftImageUrl,
       'requesterImageUrl': instance.requesterImageUrl,
       'requesterName': instance.requesterName,

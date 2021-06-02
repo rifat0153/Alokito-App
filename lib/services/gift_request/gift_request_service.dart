@@ -27,9 +27,18 @@ class GiftRequestService implements BaseGiftRequestService {
       if (doc.exists) {
         GiftReqeust giftReqeust = GiftReqeust.fromJson(doc.data() ?? {});
 
-        print(giftReqeust);
+        GiftReqeust giftReqeust1 = giftReqeust.maybeMap(
+            (value) => value.copyWith(requestConfirmed: true),
+            orElse: () => giftReqeust);
+
+        _firestore
+            .collection('gift_requests')
+            .doc(docId)
+            .set(giftReqeust1.toJson());
+      } else {
+        print('request doc does not exitswt');
+        return false;
       }
-      print('request doc does not exitswt');
 
       return true;
     } catch (e) {
