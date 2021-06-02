@@ -1,3 +1,4 @@
+import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
@@ -80,38 +81,81 @@ class NotificationDetailsView extends StatelessWidget {
 class DecistionWidget extends StatelessWidget {
   DecistionWidget({required this.giftNotification});
   GiftNotification giftNotification;
+  GiftNotificationController giftNotificationController = Get.find();
   GiftRequestController giftRequestController =
       Get.put(GiftRequestController());
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        MaterialButton(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          color: GIFT_ADD_FORM_SUBMIT,
-          onPressed: () {
-            print('accept');
-            giftRequestController.giftRequestService.changeRequestStatus(
-                decision: true, giftNotification: giftNotification);
-          },
-          child: Text(
-            'Accept for Confirmation',
-            style: boldFontStyle.copyWith(color: Colors.white),
-          ),
-        ),
-        MaterialButton(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          color: GIFT_ADD_FORM_SUBMIT,
-          onPressed: () {},
-          child: Text(
-            'Denied',
-            style: boldFontStyle.copyWith(color: Colors.white),
-          ),
-        )
-      ],
-    );
+    return giftNotification.giftConfirmed
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Obx(() => MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    color: GIFT_ADD_FORM_SUBMIT,
+                    onPressed: () {
+                      print('accept');
+                      giftRequestController.giftRequestService
+                          .changeRequestStatus(
+                              decision: true,
+                              giftNotification: giftNotification);
+                      giftNotificationController.giftNotificationService
+                          .changeRequestStatus(
+                              decision: true,
+                              giftNotification: giftNotification);
+                    },
+                    child: Text(
+                      'Request Accepted',
+                      style: boldFontStyle.copyWith(color: Colors.white),
+                    ),
+                  )),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                color: GIFT_ADD_FORM_SUBMIT,
+                onPressed: () {},
+                child: Text(
+                  'Denied',
+                  style: boldFontStyle.copyWith(color: Colors.white),
+                ),
+              )
+            ],
+          )
+        : Obx(() => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MaterialButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                  color: GIFT_ADD_FORM_SUBMIT,
+                  onPressed: () {
+                    print('accept');
+                    giftRequestController.giftRequestService
+                        .changeRequestStatus(
+                            decision: true, giftNotification: giftNotification);
+                    giftNotificationController.giftNotificationService
+                        .changeRequestStatus(
+                            decision: true, giftNotification: giftNotification);
+                  },
+                  child: Text(
+                    'Accept for Confirmation',
+                    style: boldFontStyle.copyWith(color: Colors.white),
+                  ),
+                ),
+                MaterialButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                  color: GIFT_ADD_FORM_SUBMIT,
+                  onPressed: () {},
+                  child: Text(
+                    'Denied',
+                    style: boldFontStyle.copyWith(color: Colors.white),
+                  ),
+                )
+              ],
+            ));
   }
 }
 

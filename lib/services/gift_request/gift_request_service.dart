@@ -31,10 +31,10 @@ class GiftRequestService implements BaseGiftRequestService {
             (value) => value.copyWith(requestConfirmed: true),
             orElse: () => giftReqeust);
 
-        _firestore
+        await _firestore
             .collection('gift_requests')
             .doc(docId)
-            .set(giftReqeust1.toJson());
+            .update(giftReqeust1.toJson());
       } else {
         print('request doc does not exitswt');
         return false;

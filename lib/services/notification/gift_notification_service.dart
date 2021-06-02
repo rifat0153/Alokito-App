@@ -1,4 +1,5 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
+import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/services/notification/base_gift_notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,18 +13,37 @@ class GiftNotificationService implements BaseGiftNotificationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
+  Future<bool> changeRequestStatus(
+      {required bool decision,
+      required GiftNotification giftNotification}) async {
+    try {
+      var modified = giftNotification.copyWith(giftConfirmed: true);
+
+      print('in notif status change: id is:   ${modified.id}');
+
+      print(giftNotification);
+      print(modified);
+
+      await _firestore
+          .collection('gift_notifications')
+          .doc(modified.id)
+          .update(modified.toJson());
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  @override
   Future<bool> addGiftNotification(
       {required GiftNotification giftNotification}) async {
     try {
       var docRef = _firestore.collection('gift_notifications').doc();
 
       print(docRef.id + '   in doc ref');
-      var object = giftNotification.copyWith(
-          id: docRef.id +
-              '.' +
-              giftNotification.giverUid +
-              '.' +
-              giftNotification.requesterUid);
+      var object = giftNotification.copyWith(id: docRef.id);
       await docRef.set(object.toJson());
 
       await addNotificationStatus(giftNotification);
@@ -57,7 +77,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
     }
   }
 
-  void resetNotificationStatus() async {
+  Future<void> resetNotificationStatus() async {
     await _firestore
         .collection('notification_status')
         .doc(_auth.currentUser?.uid)

@@ -59,20 +59,26 @@ class NotificationListWidget extends StatelessWidget {
       () => ListView.builder(
         itemCount: giftNotificationController.giftNotificationList.length,
         itemBuilder: (c, i) {
-          if (giftNotificationController.giftNotificationList[i].notificationType ==
+          if (giftNotificationController
+                  .giftNotificationList[i].notificationType ==
               GiftNotificationType.packageRequested) {
             return GiftRequestWidget(
-              key: ValueKey(giftNotificationController.giftNotificationList[i].id),
+              key: ValueKey(
+                  giftNotificationController.giftNotificationList[i].id),
               giftNotificationController: giftNotificationController,
-              giftNotification: giftNotificationController.giftNotificationList[i],
+              giftNotification:
+                  giftNotificationController.giftNotificationList[i],
             );
           }
-          if (giftNotificationController.giftNotificationList[i].notificationType ==
+          if (giftNotificationController
+                  .giftNotificationList[i].notificationType ==
               GiftNotificationType.packageConfirmed) {
             return GiftConfirmedWidget(
-              key: ValueKey(giftNotificationController.giftNotificationList[i].id),
+              key: ValueKey(
+                  giftNotificationController.giftNotificationList[i].id),
               giftNotificationController: giftNotificationController,
-              giftNotification: giftNotificationController.giftNotificationList[i],
+              giftNotification:
+                  giftNotificationController.giftNotificationList[i],
             );
           }
           return Text('NO DAta');
