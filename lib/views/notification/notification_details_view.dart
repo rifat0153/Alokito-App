@@ -46,8 +46,18 @@ class NotificationDetailsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: Get.height * 0.1),
-              UserDetailWidget(giftNotification: giftNotification),
-              UserLocationWidget(giftNotification: giftNotification),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      UserDetailWidget(giftNotification: giftNotification),
+                      UserLocationWidget(giftNotification: giftNotification),
+                    ],
+                  ),
+                ],
+              ),
               StyledContainer(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
