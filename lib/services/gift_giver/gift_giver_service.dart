@@ -139,7 +139,7 @@ class GiftGiverService implements BaseGiftGiverService {
       listingForDays: controller.listingFor.value.toInt(),
       pickUpTime: controller.pickUpTime.value ?? Timestamp.now(),
       canLeaveOutside: controller.canLeaveOutside.value,
-      giftPosition: myPosition,
+      position: myPosition,
       userCreatedAt: userCreatedAt,
       createdAt: Timestamp.now(),
     );

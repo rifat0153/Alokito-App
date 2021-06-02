@@ -36,8 +36,8 @@ class AuthController extends GetxController {
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();
     var giftGiverPoint = geo.point(
-        latitude: giftGiver.giftPosition.geopoint.latitude,
-        longitude: giftGiver.giftPosition.geopoint.longitude);
+        latitude: giftGiver.position.geopoint.latitude,
+        longitude: giftGiver.position.geopoint.longitude);
 
     final GiftController giftController = Get.find();
 

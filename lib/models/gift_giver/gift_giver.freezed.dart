@@ -48,7 +48,7 @@ class _$GiftGiverTearOff {
           required Timestamp pickUpTime,
       required bool canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required MyPosition giftPosition,
+          required MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp createdAt}) {
     return _GiftGiver(
@@ -74,7 +74,7 @@ class _$GiftGiverTearOff {
       listingForDays: listingForDays,
       pickUpTime: pickUpTime,
       canLeaveOutside: canLeaveOutside,
-      giftPosition: giftPosition,
+      position: position,
       createdAt: createdAt,
     );
   }
@@ -116,7 +116,7 @@ mixin _$GiftGiver {
   Timestamp get pickUpTime => throw _privateConstructorUsedError;
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get giftPosition => throw _privateConstructorUsedError;
+  MyPosition get position => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get createdAt => throw _privateConstructorUsedError;
 
@@ -158,12 +158,12 @@ abstract class $GiftGiverCopyWith<$Res> {
           Timestamp pickUpTime,
       bool canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition giftPosition,
+          MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp createdAt});
 
   $MyPositionCopyWith<$Res> get userPosition;
-  $MyPositionCopyWith<$Res> get giftPosition;
+  $MyPositionCopyWith<$Res> get position;
 }
 
 /// @nodoc
@@ -198,7 +198,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? listingForDays = freezed,
     Object? pickUpTime = freezed,
     Object? canLeaveOutside = freezed,
-    Object? giftPosition = freezed,
+    Object? position = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -290,9 +290,9 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
               as bool,
-      giftPosition: giftPosition == freezed
-          ? _value.giftPosition
-          : giftPosition // ignore: cast_nullable_to_non_nullable
+      position: position == freezed
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
               as MyPosition,
       createdAt: createdAt == freezed
           ? _value.createdAt
@@ -309,9 +309,9 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
   }
 
   @override
-  $MyPositionCopyWith<$Res> get giftPosition {
-    return $MyPositionCopyWith<$Res>(_value.giftPosition, (value) {
-      return _then(_value.copyWith(giftPosition: value));
+  $MyPositionCopyWith<$Res> get position {
+    return $MyPositionCopyWith<$Res>(_value.position, (value) {
+      return _then(_value.copyWith(position: value));
     });
   }
 }
@@ -350,14 +350,14 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
           Timestamp pickUpTime,
       bool canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition giftPosition,
+          MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp createdAt});
 
   @override
   $MyPositionCopyWith<$Res> get userPosition;
   @override
-  $MyPositionCopyWith<$Res> get giftPosition;
+  $MyPositionCopyWith<$Res> get position;
 }
 
 /// @nodoc
@@ -393,7 +393,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? listingForDays = freezed,
     Object? pickUpTime = freezed,
     Object? canLeaveOutside = freezed,
-    Object? giftPosition = freezed,
+    Object? position = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_GiftGiver(
@@ -485,9 +485,9 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
               as bool,
-      giftPosition: giftPosition == freezed
-          ? _value.giftPosition
-          : giftPosition // ignore: cast_nullable_to_non_nullable
+      position: position == freezed
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
               as MyPosition,
       createdAt: createdAt == freezed
           ? _value.createdAt
@@ -528,7 +528,7 @@ class _$_GiftGiver implements _GiftGiver {
           required this.pickUpTime,
       required this.canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required this.giftPosition,
+          required this.position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required this.createdAt});
 
@@ -586,14 +586,14 @@ class _$_GiftGiver implements _GiftGiver {
   final bool canLeaveOutside;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  final MyPosition giftPosition;
+  final MyPosition position;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp createdAt;
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userAvgRating: $userAvgRating, userTotRating: $userTotRating, userRatingSum: $userRatingSum, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, location: $location, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, giftPosition: $giftPosition, createdAt: $createdAt)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userAvgRating: $userAvgRating, userTotRating: $userTotRating, userRatingSum: $userRatingSum, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, location: $location, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position, createdAt: $createdAt)';
   }
 
   @override
@@ -663,9 +663,9 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.canLeaveOutside, canLeaveOutside) ||
                 const DeepCollectionEquality()
                     .equals(other.canLeaveOutside, canLeaveOutside)) &&
-            (identical(other.giftPosition, giftPosition) ||
+            (identical(other.position, position) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftPosition, giftPosition)) &&
+                    .equals(other.position, position)) &&
             (identical(other.createdAt, createdAt) || const DeepCollectionEquality().equals(other.createdAt, createdAt)));
   }
 
@@ -694,7 +694,7 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(listingForDays) ^
       const DeepCollectionEquality().hash(pickUpTime) ^
       const DeepCollectionEquality().hash(canLeaveOutside) ^
-      const DeepCollectionEquality().hash(giftPosition) ^
+      const DeepCollectionEquality().hash(position) ^
       const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
@@ -737,7 +737,7 @@ abstract class _GiftGiver implements GiftGiver {
           required Timestamp pickUpTime,
       required bool canLeaveOutside,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required MyPosition giftPosition,
+          required MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp createdAt}) = _$_GiftGiver;
 
@@ -794,7 +794,7 @@ abstract class _GiftGiver implements GiftGiver {
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get giftPosition => throw _privateConstructorUsedError;
+  MyPosition get position => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get createdAt => throw _privateConstructorUsedError;

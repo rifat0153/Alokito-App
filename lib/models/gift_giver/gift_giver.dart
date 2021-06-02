@@ -39,7 +39,7 @@ class GiftGiver with _$GiftGiver {
         required Timestamp pickUpTime,
     required bool canLeaveOutside,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition giftPosition,
+        required MyPosition position,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
         required Timestamp createdAt,
   }) = _GiftGiver;
