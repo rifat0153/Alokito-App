@@ -94,7 +94,10 @@ class DecistionWidget extends StatelessWidget {
         .indexOf(giftNotification);
 
     return Obx(
-      () => giftNotificationController.giftNotificationList[0].giftConfirmed
+      () => giftNotificationController
+              .giftNotificationList[
+                  giftNotificationController.notificationIndex.value]
+              .giftConfirmed
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

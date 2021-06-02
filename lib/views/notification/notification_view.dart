@@ -68,6 +68,7 @@ class NotificationListWidget extends StatelessWidget {
               giftNotificationController: giftNotificationController,
               giftNotification:
                   giftNotificationController.giftNotificationList[i],
+              index: i,
             );
           }
           if (giftNotificationController
@@ -92,9 +93,11 @@ class GiftRequestWidget extends StatelessWidget {
   const GiftRequestWidget(
       {required Key key,
       required this.giftNotificationController,
-      required this.giftNotification})
+      required this.giftNotification,
+      required this.index})
       : super(key: key);
 
+  final int index;
   final GiftNotification giftNotification;
   final GiftNotificationController giftNotificationController;
 
@@ -113,6 +116,7 @@ class GiftRequestWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Get.toNamed(NotificationDetailsView.route);
+          giftNotificationController.notificationIndex.value = index;
         },
         child: Card(
           child: Row(
