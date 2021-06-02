@@ -87,7 +87,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
   Future<List<GiftNotification>> getGiftNotification() async {
     AuthController authController = Get.find();
 
-    // print('IN not stream:  ' + _auth.currentUser?.uid ?? '');
+    print('IN not future:  ');
 
     return _firestore
         .collection('gift_notifications')
