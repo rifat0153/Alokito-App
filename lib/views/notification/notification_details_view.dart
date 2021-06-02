@@ -8,6 +8,7 @@ import 'package:alokito_new/views/notification/widgets/user_detail_widget.dart';
 import 'package:alokito_new/views/notification/widgets/user_location_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/user_joining_distance_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 
@@ -83,10 +84,6 @@ class StyledContainer extends StatelessWidget {
 }
 
 class UserGiftRecords extends StatelessWidget {
-
-
-  
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -119,6 +116,20 @@ class UserGiftRecords extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
+        Row(
+          children: [
+            MaterialButton(
+              color: Colors.blue,
+              onPressed: () {},
+              child: FaIcon(FontAwesomeIcons.phoneVolume),
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              onPressed: () {},
+              child: FaIcon(FontAwesomeIcons.commentDots),
+            ),
+          ],
+        )
       ],
     );
   }
