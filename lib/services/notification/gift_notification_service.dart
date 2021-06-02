@@ -84,6 +84,29 @@ class GiftNotificationService implements BaseGiftNotificationService {
   }
 
   @override
+  Future<List<GiftNotification>> getGiftNotification() async {
+    AuthController authController = Get.find();
+
+    // print('IN not stream:  ' + _auth.currentUser?.uid ?? '');
+
+    return _firestore
+        .collection('gift_notifications')
+        .where('notificationFor', isEqualTo: _auth.currentUser?.uid ?? '')
+        .orderBy('createdAt', descending: true)
+        .limit(25)
+        .get()
+        .then((docList) {
+      List<GiftNotification> retVal = [];
+
+      docList.docs.forEach((doc) {
+        retVal.add(GiftNotification.fromJson(doc.data()));
+      });
+
+      return retVal;
+    });
+  }
+
+  @override
   Stream<List<GiftNotification>> streamGiftNotification() {
     AuthController authController = Get.find();
 

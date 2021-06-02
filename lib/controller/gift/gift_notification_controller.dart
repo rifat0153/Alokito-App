@@ -11,10 +11,13 @@ import 'package:get/get.dart';
 class GiftNotificationController extends GetxController {
   GiftNotificationService giftNotificationService = GiftNotificationService();
   RxList<GiftNotification> giftNotificationList = RxList.empty();
+  RxList<GiftNotification> giftNotList = RxList.empty();
+
   RxInt totalNotifications = 0.obs;
 
   @override
   void onInit() {
+    getNotData();
     totalNotifications
         .bindStream(giftNotificationService.streamGiftNotificationStatus());
     super.onInit();
@@ -26,7 +29,12 @@ class GiftNotificationController extends GetxController {
     super.onClose();
   }
 
+  Future<void> getNotData() async {
+    giftNotList.value = await giftNotificationService.getGiftNotification();
+  }
+
   void bindNotificationStream() {
+    getNotData();
     giftNotificationList
         .bindStream(giftNotificationService.streamGiftNotification());
     totalNotifications
@@ -48,6 +56,8 @@ class GiftNotificationController extends GetxController {
       giftImageUrl: giftGiver.imageUrl,
       giftId: giftGiver.id ?? '',
       notificationFor: giftGiver.uid,
+      giftConfirmed: false,
+      giftDenied: false,
       notificationForList: [
         giftGiver.uid,
         FirebaseAuth.instance.currentUser?.uid ?? ''
