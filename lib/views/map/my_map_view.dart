@@ -176,7 +176,7 @@ class _MyMapViewState extends State<MyMapView> {
       // document.data()!['position']['geopoint'] as GeoPoint;
 
       final GiftGiver giftGiver = GiftGiver.fromJson(document.data()!);
-      final GeoPoint point = giftGiver.position.geopoint;
+      final GeoPoint point = giftGiver.giftPosition.geopoint;
 
       var userPoint = geo.point(
           latitude: giftController.currentUserLocation.value.latitude,

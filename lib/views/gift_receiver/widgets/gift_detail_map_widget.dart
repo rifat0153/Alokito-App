@@ -67,16 +67,16 @@ class GiftDetailMapWidget extends StatelessWidget {
                           _controller.complete(controller);
                         },
                         initialCameraPosition: CameraPosition(
-                          target: LatLng(giftGiver.position.geopoint.latitude,
-                              giftGiver.position.geopoint.longitude),
+                          target: LatLng(giftGiver.giftPosition.geopoint.latitude,
+                              giftGiver.giftPosition.geopoint.longitude),
                           zoom: 15,
                         ),
                         markers: [
                           Marker(
                             markerId: MarkerId('1'),
                             position: LatLng(
-                                giftGiver.position.geopoint.latitude,
-                                giftGiver.position.geopoint.longitude),
+                                giftGiver.giftPosition.geopoint.latitude,
+                                giftGiver.giftPosition.geopoint.longitude),
                           )
                         ].toSet(),
                       ),

@@ -39,7 +39,7 @@ class NotificationDetailsView extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/notification-background.png'),
+                image: AssetImage('assets/images/gift_details.png'),
                 fit: BoxFit.fill),
           ),
           child: Column(
