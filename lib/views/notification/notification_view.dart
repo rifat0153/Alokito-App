@@ -111,8 +111,9 @@ class GiftRequestWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
-        onTap: () => Get.toNamed(NotificationDetailsView.route,
-            arguments: giftNotification),
+        onTap: () {
+          Get.toNamed(NotificationDetailsView.route);
+        },
         child: Card(
           child: Row(
             children: [

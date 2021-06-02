@@ -12,6 +12,7 @@ class GiftNotificationController extends GetxController {
   GiftNotificationService giftNotificationService = GiftNotificationService();
   RxList<GiftNotification> giftNotificationList = RxList.empty();
   RxList<GiftNotification> giftNotList = RxList.empty();
+  RxInt notificationIndex = 0.obs;
 
   RxInt totalNotifications = 0.obs;
 
