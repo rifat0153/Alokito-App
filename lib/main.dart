@@ -15,6 +15,7 @@ import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/views/map/geo_map_view.dart';
 import 'package:alokito_new/views/map/my_map_view.dart';
+import 'package:alokito_new/views/notification/notification_details_view.dart';
 import 'package:alokito_new/views/notification/notification_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +94,11 @@ class GetPages {
         Get.put(GiftNotificationController());
         Get.find<GiftNotificationController>().bindNotificationStream();
       }),
+    ),
+    GetPage(
+      name: NotificationDetailsView.route,
+      page: () => NotificationDetailsView(),
+      binding: BindingsBuilder(() {}),
     ),
     // Gift Receiver Routes
     GetPage(
