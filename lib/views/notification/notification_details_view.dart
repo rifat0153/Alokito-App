@@ -105,15 +105,7 @@ class DecistionWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {
-                    print('accept');
-                    giftRequestController.giftRequestService
-                        .changeRequestStatus(
-                            decision: true, giftNotification: giftNotification);
-                    giftNotificationController.giftNotificationService
-                        .changeRequestStatus(
-                            decision: true, giftNotification: giftNotification);
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Request Accepted',
                     style: boldFontStyle.copyWith(color: Colors.white),
@@ -123,9 +115,19 @@ class DecistionWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {},
+                  onPressed: () {
+                    print('cancel request');
+                    giftRequestController.giftRequestService
+                        .changeRequestStatus(
+                            decision: false,
+                            giftNotification: giftNotification);
+                    giftNotificationController.giftNotificationService
+                        .changeRequestStatus(
+                            decision: false,
+                            giftNotification: giftNotification);
+                  },
                   child: Text(
-                    'Denied',
+                    'Cancel Request',
                     style: boldFontStyle.copyWith(color: Colors.white),
                   ),
                 )
@@ -139,7 +141,7 @@ class DecistionWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5)),
                   color: GIFT_ADD_FORM_SUBMIT,
                   onPressed: () {
-                    print('accept');
+                    print('accepting request');
                     giftRequestController.giftRequestService
                         .changeRequestStatus(
                             decision: true, giftNotification: giftNotification);

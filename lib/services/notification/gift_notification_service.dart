@@ -17,7 +17,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
       {required bool decision,
       required GiftNotification giftNotification}) async {
     try {
-      var modified = giftNotification.copyWith(giftConfirmed: true);
+      var modified = giftNotification.copyWith(giftConfirmed: decision);
 
       print('in notif status change: id is:   ${modified.id}');
 
