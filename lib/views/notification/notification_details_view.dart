@@ -1,3 +1,4 @@
+import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -79,6 +80,8 @@ class NotificationDetailsView extends StatelessWidget {
 class DecistionWidget extends StatelessWidget {
   DecistionWidget({required this.giftNotification});
   GiftNotification giftNotification;
+  GiftRequestController giftRequestController =
+      Get.put(GiftRequestController());
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +91,11 @@ class DecistionWidget extends StatelessWidget {
         MaterialButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           color: GIFT_ADD_FORM_SUBMIT,
-          onPressed: () {},
+          onPressed: () {
+            print('accept');
+            giftRequestController.giftRequestService.changeRequestStatus(
+                decision: true, giftNotification: giftNotification);
+          },
           child: Text(
             'Accept for Confirmation',
             style: boldFontStyle.copyWith(color: Colors.white),

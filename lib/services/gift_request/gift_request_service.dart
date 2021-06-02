@@ -3,6 +3,7 @@ import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/services/gift_request/base_gift_request_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +15,28 @@ class GiftRequestService implements BaseGiftRequestService {
   final geo = Geoflutterfire();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
+
+  @override
+  Future<bool> changeRequestStatus(
+      {required bool decision,
+      required GiftNotification giftNotification}) async {
+    try {
+      var docId = '${giftNotification.requesterUid}.${giftNotification.giftId}';
+      var doc = await _firestore.collection('gift_requests').doc(docId).get();
+
+      if (doc.exists) {
+        GiftReqeust giftReqeust = GiftReqeust.fromJson(doc.data() ?? {});
+
+        print(giftReqeust);
+      }
+      print('request doc does not exitswt');
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 
   @override
   Future<bool> increaseNoOfTimesGiftRequested(
