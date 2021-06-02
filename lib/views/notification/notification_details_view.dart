@@ -4,6 +4,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/views/notification/notification_view.dart';
 import 'package:alokito_new/views/notification/widgets/location_widget.dart';
+import 'package:alokito_new/views/notification/widgets/requester_gift_records_widget.dart';
 import 'package:alokito_new/views/notification/widgets/user_detail_widget.dart';
 import 'package:alokito_new/views/notification/widgets/user_location_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/user_joining_distance_widget.dart';
@@ -52,7 +53,7 @@ class NotificationDetailsView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   LocationWidget(giftNotification: giftNotification),
-                  UserGiftRecords()
+                  RequesterGiftRecords(),
                 ],
               )),
             ],
@@ -79,58 +80,6 @@ class StyledContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)),
         child: child,
       ),
-    );
-  }
-}
-
-class UserGiftRecords extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text('Gift offered', style: boldFontStyle),
-            Text('Gift received', style: boldFontStyle),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              child: Text(
-                '0',
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const Text('All time'),
-            Expanded(
-              child: Text(
-                '0',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Row(
-          children: [
-            MaterialButton(
-              color: Colors.blue,
-              onPressed: () {},
-              child: FaIcon(FontAwesomeIcons.phoneVolume),
-            ),
-            MaterialButton(
-              color: Colors.blue,
-              onPressed: () {},
-              child: FaIcon(FontAwesomeIcons.commentDots),
-            ),
-          ],
-        )
-      ],
     );
   }
 }
