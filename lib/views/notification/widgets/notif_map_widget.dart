@@ -19,27 +19,30 @@ class NotifMapWidgetState extends State<NotifMapWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      child: GoogleMap(
-        // mapType: MapType.hybrid,
-        initialCameraPosition: CameraPosition(
-            bearing: 192.8334901395799,
-            target: LatLng(
-                widget.giftNotification.giftPosition.geopoint.latitude,
-                widget.giftNotification.giftPosition.geopoint.longitude),
-            // tilt: 59.440717697143555,
-            zoom: 19.151926040649414),
-        markers: Set<Marker>.of([
-          Marker(
-            markerId: MarkerId('1'),
-            position: LatLng(
-                widget.giftNotification.giftPosition.geopoint.latitude,
-                widget.giftNotification.giftPosition.geopoint.longitude),
-          )
-        ]),
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+      height: 200,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: GoogleMap(
+          // mapType: MapType.hybrid,
+          initialCameraPosition: CameraPosition(
+              bearing: 192.8334901395799,
+              target: LatLng(
+                  widget.giftNotification.giftPosition.geopoint.latitude,
+                  widget.giftNotification.giftPosition.geopoint.longitude),
+              // tilt: 59.440717697143555,
+              zoom: 14.151926040649414),
+          markers: Set<Marker>.of([
+            Marker(
+              markerId: MarkerId('1'),
+              position: LatLng(
+                  widget.giftNotification.giftPosition.geopoint.latitude,
+                  widget.giftNotification.giftPosition.geopoint.longitude),
+            )
+          ]),
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+        ),
       ),
     );
   }
