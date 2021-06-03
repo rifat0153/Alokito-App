@@ -30,8 +30,8 @@ class GiftNotificationService implements BaseGiftNotificationService {
           .update(modified.toJson());
 
       return true;
-    } catch (e) {
-      print(e);
+    } on FirebaseException catch (e) {
+      print(e.message);
       return false;
     }
   }
@@ -49,8 +49,8 @@ class GiftNotificationService implements BaseGiftNotificationService {
       await addNotificationStatus(giftNotification);
 
       return true;
-    } catch (e) {
-      print(e);
+    } on FirebaseException catch (e) {
+      print(e.message);
       return false;
     }
   }

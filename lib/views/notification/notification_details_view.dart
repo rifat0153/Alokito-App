@@ -111,26 +111,6 @@ class DecistionWidget extends StatelessWidget {
                     style: boldFontStyle.copyWith(color: Colors.white),
                   ),
                 ),
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {
-                    print('cancel request');
-                    giftRequestController.giftRequestService
-                        .changeRequestStatus(
-                            decision: false,
-                            giftNotification: giftNotification);
-                    giftNotificationController.giftNotificationService
-                        .changeRequestStatus(
-                            decision: false,
-                            giftNotification: giftNotification);
-                  },
-                  child: Text(
-                    'Cancel Request',
-                    style: boldFontStyle.copyWith(color: Colors.white),
-                  ),
-                )
               ],
             )
           : Row(
@@ -173,12 +153,12 @@ class DecistionWidget extends StatelessWidget {
 class StyledContainer extends StatelessWidget {
   StyledContainer({required this.child});
 
-  Widget child;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       child: Container(
         width: Get.width,
         decoration: BoxDecoration(
