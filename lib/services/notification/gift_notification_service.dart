@@ -1,5 +1,6 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/services/notification/base_gift_notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,6 +29,16 @@ class GiftNotificationService implements BaseGiftNotificationService {
           .collection('gift_notifications')
           .doc(modified.id)
           .update(modified.toJson());
+
+      var newGift = decision
+          ? giftNotification.copyWith(
+              notificationType: GiftNotificationType.packageConfirmed,
+              createdAt: Timestamp.now())
+          : giftNotification.copyWith(
+              notificationType: GiftNotificationType.packageCanceled,
+              createdAt: Timestamp.now());
+
+      await addGiftNotification(giftNotification: newGift);
 
       return true;
     } on FirebaseException catch (e) {

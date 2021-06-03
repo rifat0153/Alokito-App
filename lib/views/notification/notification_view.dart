@@ -197,8 +197,8 @@ class GiftConfirmedWidget extends StatelessWidget {
           children: [
             Flexible(
               flex: 1,
-              child: Image.asset(
-                'assets/images/notification-background.png',
+              child: Image.network(
+                giftNotification.giftImageUrl,
                 fit: BoxFit.cover,
               ),
             ),
