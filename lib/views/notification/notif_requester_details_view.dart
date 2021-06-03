@@ -59,7 +59,24 @@ class NotifRequesterDetailsView extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        UserDetailWidget(giftNotification: giftNotification),
+                        Text(
+                          'Offered By',
+                          style: boldFontStyle,
+                        ),
+                        UserDetailWidget(
+                          imageUrl: giftNotification.giverImageUrl,
+                          userJoinedAt: giftNotification.giverJoinedAt,
+                          userName: giftNotification.giverName,
+                        ),
+                        Text(
+                          'Requested By',
+                          style: boldFontStyle,
+                        ),
+                        UserDetailWidget(
+                          imageUrl: giftNotification.requesterImageUrl,
+                          userJoinedAt: giftNotification.requesterJoinedAt,
+                          userName: giftNotification.requesterName,
+                        ),
                         UserLocationWidget(giftNotification: giftNotification),
                       ],
                     ),
@@ -70,86 +87,15 @@ class NotifRequesterDetailsView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       LocationWidget(giftNotification: giftNotification),
-                      RequesterGiftRecords(),
                     ],
                   ),
                 ),
-                DecistionWidget(giftNotification: giftNotification),
                 NotifMapWidget(giftNotification: giftNotification),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class DecistionWidget extends StatelessWidget {
-  DecistionWidget({required this.giftNotification});
-  final GiftNotification giftNotification;
-  final GiftNotificationController giftNotificationController = Get.find();
-  final GiftRequestController giftRequestController =
-      Get.put(GiftRequestController());
-
-  @override
-  Widget build(BuildContext context) {
-    var index = giftNotificationController.giftNotificationList
-        .indexOf(giftNotification);
-
-    return Obx(
-      () => giftNotificationController
-              .giftNotificationList[
-                  giftNotificationController.notificationIndex.value]
-              .giftConfirmed
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {},
-                  child: Text(
-                    'Request Accepted',
-                    style: boldFontStyle.copyWith(color: Colors.white),
-                  ),
-                ),
-              ],
-            )
-          : Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {
-                    print('accepting request');
-                    giftRequestController.giftRequestService
-                        .changeRequestStatus(
-                            decision: true, giftNotification: giftNotification);
-                    giftNotificationController.giftNotificationService
-                        .changeRequestStatus(
-                            decision: true, giftNotification: giftNotification);
-                  },
-                  child: Text(
-                    'Accept for Confirmation',
-                    style: boldFontStyle.copyWith(color: Colors.white),
-                  ),
-                ),
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {},
-                  child: Text(
-                    'Denied',
-                    style: boldFontStyle.copyWith(color: Colors.white),
-                  ),
-                )
-              ],
-            ),
     );
   }
 }

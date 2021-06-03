@@ -1,17 +1,23 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailWidget extends StatelessWidget {
-  UserDetailWidget({required this.giftNotification});
+  UserDetailWidget(
+      {required this.imageUrl,
+      required this.userJoinedAt,
+      required this.userName});
 
-  final GiftNotification giftNotification;
+  final String imageUrl;
+  final Timestamp userJoinedAt;
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
     var date = DateTime.now();
     var userCreatedAt = DateTime.fromMillisecondsSinceEpoch(
-        giftNotification.requesterJoinedAt.millisecondsSinceEpoch);
+        userJoinedAt.millisecondsSinceEpoch);
     var joined = date.difference(userCreatedAt).inDays ~/ 30;
 
     return Padding(
@@ -22,14 +28,14 @@ class UserDetailWidget extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: CircleAvatar(
               radius: 30,
-              backgroundImage: NetworkImage(giftNotification.requesterImageUrl),
+              backgroundImage: NetworkImage(imageUrl),
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                giftNotification.requesterName,
+                userName,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),

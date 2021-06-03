@@ -17,7 +17,7 @@ class UserLocationWidget extends StatelessWidget {
     const double starSize = 12;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children: [
           giftNotification.requesterAvgRating >= 1

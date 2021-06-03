@@ -98,9 +98,100 @@ class NotificationListWidget extends StatelessWidget {
                 index: i,
               );
             }
+          } else if (giftNotificationController
+                  .giftNotificationList[i].notificationType ==
+              GiftNotificationType.packageCanceled) {
+            return GiftCanceledRequesterWidget(
+              key: ValueKey(
+                  giftNotificationController.giftNotificationList[i].id),
+              giftNotificationController: giftNotificationController,
+              giftNotification:
+                  giftNotificationController.giftNotificationList[i],
+              index: i,
+            );
           }
-          return Center(child: Text('No Notifications'));
+          return Container();
         },
+      ),
+    );
+  }
+}
+
+class GiftCanceledRequesterWidget extends StatelessWidget {
+  const GiftCanceledRequesterWidget(
+      {required Key key,
+      required this.giftNotificationController,
+      required this.giftNotification,
+      required this.index})
+      : super(key: key);
+
+  final int index;
+  final GiftNotification giftNotification;
+  final GiftNotificationController giftNotificationController;
+
+  @override
+  Widget build(BuildContext context) {
+    print('uid is:   ' + giftNotification.requesterUid);
+    print('current user uid:   ' + FirebaseAuth.instance.currentUser!.uid);
+
+    var giftType = convertGiftType(giftNotification.giftType);
+    var date = DateTime.now();
+    var notificationCreatedAt = DateTime.fromMillisecondsSinceEpoch(
+        giftNotification.createdAt.millisecondsSinceEpoch);
+    var difference = date.difference(notificationCreatedAt).inHours;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: GestureDetector(
+        onTap: () {
+          Get.to(() => NotifRequesterDetailsView());
+          giftNotificationController.notificationIndex.value = index;
+        },
+        child: Card(
+          child: Row(
+            children: [
+              Flexible(
+                flex: 1,
+                child: Image.network(
+                  giftNotification.giftImageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Flexible(
+                flex: 7,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'Your gift request for ',
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '$giftType',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                            const TextSpan(text: ' was confrimed by '),
+                            TextSpan(
+                                text: '${giftNotification.giverName}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('$difference hours ago'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

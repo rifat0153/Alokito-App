@@ -59,7 +59,11 @@ class NotificationDetailsView extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        UserDetailWidget(giftNotification: giftNotification),
+                        UserDetailWidget(
+                          imageUrl: giftNotification.giverImageUrl,
+                          userJoinedAt: giftNotification.giverJoinedAt,
+                          userName: giftNotification.giverName,
+                        ),
                         UserLocationWidget(giftNotification: giftNotification),
                       ],
                     ),
