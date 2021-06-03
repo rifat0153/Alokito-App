@@ -1,7 +1,9 @@
+import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/views/notification/notification_details_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
@@ -74,16 +76,22 @@ class NotificationListWidget extends StatelessWidget {
           if (giftNotificationController
                   .giftNotificationList[i].notificationType ==
               GiftNotificationType.packageConfirmed) {
-            return GiftConfirmedWidget(
-              key: ValueKey(
-                  giftNotificationController.giftNotificationList[i].id),
-              giftNotificationController: giftNotificationController,
-              giftNotification:
-                  giftNotificationController.giftNotificationList[i],
-              index: i,
-            );
+            if (giftNotificationController
+                    .giftNotificationList[i].requesterUid !=
+                FirebaseAuth.instance.currentUser?.uid) {
+              return GiftConfirmedWidget(
+                key: ValueKey(
+                    giftNotificationController.giftNotificationList[i].id),
+                giftNotificationController: giftNotificationController,
+                giftNotification:
+                    giftNotificationController.giftNotificationList[i],
+                index: i,
+              );
+            } else {
+              Container();
+            }
           }
-          return Text('NO DAta');
+          return Center(child: Text('No Notifications'));
         },
       ),
     );
@@ -187,6 +195,9 @@ class GiftConfirmedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('uid is:   ' + giftNotification.requesterUid);
+    print('current user uid:   ' + FirebaseAuth.instance.currentUser!.uid);
+
     var giftType = convertGiftType(giftNotification.giftType);
     var date = DateTime.now();
     var notificationCreatedAt = DateTime.fromMillisecondsSinceEpoch(
