@@ -5,14 +5,21 @@ import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 
 class UserLocationWidget extends StatelessWidget {
-  UserLocationWidget({required this.giftNotification});
+  UserLocationWidget({
+    required this.giftNotification,
+    required this.rating,
+    required this.lat,
+    required this.lng,
+  });
 
   final GiftNotification giftNotification;
+  final int rating;
+  final double lat, lng;
   final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    print(giftNotification.requesterAvgRating);
+    print(rating);
 
     const double starSize = 12;
 
@@ -20,19 +27,19 @@ class UserLocationWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children: [
-          giftNotification.requesterAvgRating >= 1
+          rating >= 1
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftNotification.requesterAvgRating >= 2
+          rating >= 2
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftNotification.requesterAvgRating >= 3
+          rating >= 3
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftNotification.requesterAvgRating >= 4
+          rating >= 4
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftNotification.requesterAvgRating >= 5
+          rating >= 5
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
           const Icon(Icons.arrow_forward_ios),

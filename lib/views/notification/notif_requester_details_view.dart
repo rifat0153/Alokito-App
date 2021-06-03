@@ -68,6 +68,13 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           userJoinedAt: giftNotification.giverJoinedAt,
                           userName: giftNotification.giverName,
                         ),
+                        UserLocationWidget(
+                          giftNotification: giftNotification,
+                          rating: giftNotification.giverAvgRating.toInt(),
+                          lat: giftNotification.giverPosition.geopoint.latitude,
+                          lng:
+                              giftNotification.giverPosition.geopoint.longitude,
+                        ),
                         Text(
                           'Requested By',
                           style: boldFontStyle,
@@ -77,7 +84,14 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           userJoinedAt: giftNotification.requesterJoinedAt,
                           userName: giftNotification.requesterName,
                         ),
-                        UserLocationWidget(giftNotification: giftNotification),
+                        UserLocationWidget(
+                          giftNotification: giftNotification,
+                          rating: giftNotification.requesterAvgRating.toInt(),
+                          lat: giftNotification
+                              .requesterPosition.geopoint.latitude,
+                          lng: giftNotification
+                              .requesterPosition.geopoint.longitude,
+                        ),
                       ],
                     ),
                   ],

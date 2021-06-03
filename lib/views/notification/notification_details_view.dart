@@ -64,7 +64,13 @@ class NotificationDetailsView extends StatelessWidget {
                           userJoinedAt: giftNotification.giverJoinedAt,
                           userName: giftNotification.giverName,
                         ),
-                        UserLocationWidget(giftNotification: giftNotification),
+                        UserLocationWidget(
+                          giftNotification: giftNotification,
+                          rating: giftNotification.giverAvgRating.toInt(),
+                          lat: giftNotification.giverPosition.geopoint.latitude,
+                          lng:
+                              giftNotification.giverPosition.geopoint.longitude,
+                        ),
                       ],
                     ),
                   ],
