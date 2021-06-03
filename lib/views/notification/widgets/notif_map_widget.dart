@@ -21,14 +21,22 @@ class NotifMapWidgetState extends State<NotifMapWidget> {
     return Container(
       height: 300,
       child: GoogleMap(
-        mapType: MapType.hybrid,
+        // mapType: MapType.hybrid,
         initialCameraPosition: CameraPosition(
             bearing: 192.8334901395799,
             target: LatLng(
                 widget.giftNotification.giftPosition.geopoint.latitude,
                 widget.giftNotification.giftPosition.geopoint.longitude),
-            tilt: 59.440717697143555,
+            // tilt: 59.440717697143555,
             zoom: 19.151926040649414),
+        markers: Set<Marker>.of([
+          Marker(
+            markerId: MarkerId('1'),
+            position: LatLng(
+                widget.giftNotification.giftPosition.geopoint.latitude,
+                widget.giftNotification.giftPosition.geopoint.longitude),
+          )
+        ]),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
