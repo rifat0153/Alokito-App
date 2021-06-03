@@ -31,6 +31,8 @@ class GiftReqeust with _$GiftReqeust {
     required String giftDetails,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition requesterPosition,
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+        required MyPosition giftPosition,
     required String requesterName,
     required String giftGiverImageUrl,
     required String requesterImageUrl,

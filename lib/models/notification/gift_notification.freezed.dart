@@ -43,6 +43,8 @@ class _$GiftNotificationTearOff {
       required String giftArea,
       required String notificationFor,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required MyPosition giftPosition,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition requesterPosition,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition giverPosition,
@@ -79,6 +81,7 @@ class _$GiftNotificationTearOff {
       giftLocation: giftLocation,
       giftArea: giftArea,
       notificationFor: notificationFor,
+      giftPosition: giftPosition,
       requesterPosition: requesterPosition,
       giverPosition: giverPosition,
       notificationForList: notificationForList,
@@ -121,6 +124,8 @@ mixin _$GiftNotification {
   String get giftLocation => throw _privateConstructorUsedError;
   String get giftArea => throw _privateConstructorUsedError;
   String get notificationFor => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+  MyPosition get giftPosition => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get requesterPosition => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -174,6 +179,8 @@ abstract class $GiftNotificationCopyWith<$Res> {
       String giftArea,
       String notificationFor,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          MyPosition giftPosition,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition requesterPosition,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition giverPosition,
@@ -189,6 +196,7 @@ abstract class $GiftNotificationCopyWith<$Res> {
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp createdAt});
 
+  $MyPositionCopyWith<$Res> get giftPosition;
   $MyPositionCopyWith<$Res> get requesterPosition;
   $MyPositionCopyWith<$Res> get giverPosition;
 }
@@ -225,6 +233,7 @@ class _$GiftNotificationCopyWithImpl<$Res>
     Object? giftLocation = freezed,
     Object? giftArea = freezed,
     Object? notificationFor = freezed,
+    Object? giftPosition = freezed,
     Object? requesterPosition = freezed,
     Object? giverPosition = freezed,
     Object? notificationForList = freezed,
@@ -319,6 +328,10 @@ class _$GiftNotificationCopyWithImpl<$Res>
           ? _value.notificationFor
           : notificationFor // ignore: cast_nullable_to_non_nullable
               as String,
+      giftPosition: giftPosition == freezed
+          ? _value.giftPosition
+          : giftPosition // ignore: cast_nullable_to_non_nullable
+              as MyPosition,
       requesterPosition: requesterPosition == freezed
           ? _value.requesterPosition
           : requesterPosition // ignore: cast_nullable_to_non_nullable
@@ -352,6 +365,13 @@ class _$GiftNotificationCopyWithImpl<$Res>
           : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp,
     ));
+  }
+
+  @override
+  $MyPositionCopyWith<$Res> get giftPosition {
+    return $MyPositionCopyWith<$Res>(_value.giftPosition, (value) {
+      return _then(_value.copyWith(giftPosition: value));
+    });
   }
 
   @override
@@ -399,6 +419,8 @@ abstract class _$GiftNotificationCopyWith<$Res>
       String giftArea,
       String notificationFor,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          MyPosition giftPosition,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition requesterPosition,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition giverPosition,
@@ -414,6 +436,8 @@ abstract class _$GiftNotificationCopyWith<$Res>
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp createdAt});
 
+  @override
+  $MyPositionCopyWith<$Res> get giftPosition;
   @override
   $MyPositionCopyWith<$Res> get requesterPosition;
   @override
@@ -454,6 +478,7 @@ class __$GiftNotificationCopyWithImpl<$Res>
     Object? giftLocation = freezed,
     Object? giftArea = freezed,
     Object? notificationFor = freezed,
+    Object? giftPosition = freezed,
     Object? requesterPosition = freezed,
     Object? giverPosition = freezed,
     Object? notificationForList = freezed,
@@ -548,6 +573,10 @@ class __$GiftNotificationCopyWithImpl<$Res>
           ? _value.notificationFor
           : notificationFor // ignore: cast_nullable_to_non_nullable
               as String,
+      giftPosition: giftPosition == freezed
+          ? _value.giftPosition
+          : giftPosition // ignore: cast_nullable_to_non_nullable
+              as MyPosition,
       requesterPosition: requesterPosition == freezed
           ? _value.requesterPosition
           : requesterPosition // ignore: cast_nullable_to_non_nullable
@@ -609,6 +638,8 @@ class _$_GiftNotification implements _GiftNotification {
       required this.giftLocation,
       required this.giftArea,
       required this.notificationFor,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required this.giftPosition,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required this.requesterPosition,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -672,6 +703,9 @@ class _$_GiftNotification implements _GiftNotification {
   final String notificationFor;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+  final MyPosition giftPosition;
+  @override
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   final MyPosition requesterPosition;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -698,7 +732,7 @@ class _$_GiftNotification implements _GiftNotification {
 
   @override
   String toString() {
-    return 'GiftNotification(id: $id, giftId: $giftId, giftConfirmed: $giftConfirmed, giftDenied: $giftDenied, giftImageUrl: $giftImageUrl, requesterImageUrl: $requesterImageUrl, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giverAvgRating: $giverAvgRating, giverTotRating: $giverTotRating, giverRatingSum: $giverRatingSum, giverName: $giverName, giverImageUrl: $giverImageUrl, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, notificationFor: $notificationFor, requesterPosition: $requesterPosition, giverPosition: $giverPosition, notificationForList: $notificationForList, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
+    return 'GiftNotification(id: $id, giftId: $giftId, giftConfirmed: $giftConfirmed, giftDenied: $giftDenied, giftImageUrl: $giftImageUrl, requesterImageUrl: $requesterImageUrl, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giverAvgRating: $giverAvgRating, giverTotRating: $giverTotRating, giverRatingSum: $giverRatingSum, giverName: $giverName, giverImageUrl: $giverImageUrl, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, notificationFor: $notificationFor, giftPosition: $giftPosition, requesterPosition: $requesterPosition, giverPosition: $giverPosition, notificationForList: $notificationForList, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
   }
 
   @override
@@ -766,11 +800,12 @@ class _$_GiftNotification implements _GiftNotification {
             (identical(other.notificationFor, notificationFor) ||
                 const DeepCollectionEquality()
                     .equals(other.notificationFor, notificationFor)) &&
-            (identical(other.requesterPosition, requesterPosition) ||
+            (identical(other.giftPosition, giftPosition) ||
                 const DeepCollectionEquality()
-                    .equals(other.requesterPosition, requesterPosition)) &&
-            (identical(other.giverPosition, giverPosition) ||
-                const DeepCollectionEquality().equals(other.giverPosition, giverPosition)) &&
+                    .equals(other.giftPosition, giftPosition)) &&
+            (identical(other.requesterPosition, requesterPosition) ||
+                const DeepCollectionEquality().equals(other.requesterPosition, requesterPosition)) &&
+            (identical(other.giverPosition, giverPosition) || const DeepCollectionEquality().equals(other.giverPosition, giverPosition)) &&
             (identical(other.notificationForList, notificationForList) || const DeepCollectionEquality().equals(other.notificationForList, notificationForList)) &&
             (identical(other.giverJoinedAt, giverJoinedAt) || const DeepCollectionEquality().equals(other.giverJoinedAt, giverJoinedAt)) &&
             (identical(other.requesterJoinedAt, requesterJoinedAt) || const DeepCollectionEquality().equals(other.requesterJoinedAt, requesterJoinedAt)) &&
@@ -803,6 +838,7 @@ class _$_GiftNotification implements _GiftNotification {
       const DeepCollectionEquality().hash(giftLocation) ^
       const DeepCollectionEquality().hash(giftArea) ^
       const DeepCollectionEquality().hash(notificationFor) ^
+      const DeepCollectionEquality().hash(giftPosition) ^
       const DeepCollectionEquality().hash(requesterPosition) ^
       const DeepCollectionEquality().hash(giverPosition) ^
       const DeepCollectionEquality().hash(notificationForList) ^
@@ -846,6 +882,8 @@ abstract class _GiftNotification implements GiftNotification {
       required String giftLocation,
       required String giftArea,
       required String notificationFor,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required MyPosition giftPosition,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition requesterPosition,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -907,6 +945,9 @@ abstract class _GiftNotification implements GiftNotification {
   String get giftArea => throw _privateConstructorUsedError;
   @override
   String get notificationFor => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+  MyPosition get giftPosition => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get requesterPosition => throw _privateConstructorUsedError;

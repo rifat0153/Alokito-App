@@ -33,6 +33,8 @@ class GiftNotification with _$GiftNotification {
     required String giftArea,
     required String notificationFor,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+        required MyPosition giftPosition,
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition requesterPosition,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition giverPosition,

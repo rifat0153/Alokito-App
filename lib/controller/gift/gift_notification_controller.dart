@@ -59,6 +59,7 @@ class GiftNotificationController extends GetxController {
       notificationFor: giftGiver.uid,
       giftConfirmed: false,
       giftDenied: false,
+      giftPosition: giftGiver.position,
       notificationForList: [
         giftGiver.uid,
         FirebaseAuth.instance.currentUser?.uid ?? ''

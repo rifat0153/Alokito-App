@@ -51,6 +51,8 @@ class _$GiftReqeustTearOff {
       required String giftDetails,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition requesterPosition,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required MyPosition giftPosition,
       required String requesterName,
       required String giftGiverImageUrl,
       required String requesterImageUrl,
@@ -75,6 +77,7 @@ class _$GiftReqeustTearOff {
       giftImageUrl: giftImageUrl,
       giftDetails: giftDetails,
       requesterPosition: requesterPosition,
+      giftPosition: giftPosition,
       requesterName: requesterName,
       giftGiverImageUrl: giftGiverImageUrl,
       requesterImageUrl: requesterImageUrl,
@@ -125,6 +128,8 @@ mixin _$GiftReqeust {
             String giftDetails,
             @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
             String requesterName,
             String giftGiverImageUrl,
             String requesterImageUrl,
@@ -158,6 +163,8 @@ mixin _$GiftReqeust {
             String giftDetails,
             @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
             String requesterName,
             String giftGiverImageUrl,
             String requesterImageUrl,
@@ -229,6 +236,8 @@ abstract class _$GiftReqeustCopyWith<$Res> {
       String giftDetails,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition requesterPosition,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          MyPosition giftPosition,
       String requesterName,
       String giftGiverImageUrl,
       String requesterImageUrl,
@@ -236,6 +245,7 @@ abstract class _$GiftReqeustCopyWith<$Res> {
           Timestamp createdAt});
 
   $MyPositionCopyWith<$Res> get requesterPosition;
+  $MyPositionCopyWith<$Res> get giftPosition;
 }
 
 /// @nodoc
@@ -268,6 +278,7 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
     Object? giftImageUrl = freezed,
     Object? giftDetails = freezed,
     Object? requesterPosition = freezed,
+    Object? giftPosition = freezed,
     Object? requesterName = freezed,
     Object? giftGiverImageUrl = freezed,
     Object? requesterImageUrl = freezed,
@@ -346,6 +357,10 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
           ? _value.requesterPosition
           : requesterPosition // ignore: cast_nullable_to_non_nullable
               as MyPosition,
+      giftPosition: giftPosition == freezed
+          ? _value.giftPosition
+          : giftPosition // ignore: cast_nullable_to_non_nullable
+              as MyPosition,
       requesterName: requesterName == freezed
           ? _value.requesterName
           : requesterName // ignore: cast_nullable_to_non_nullable
@@ -369,6 +384,13 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
   $MyPositionCopyWith<$Res> get requesterPosition {
     return $MyPositionCopyWith<$Res>(_value.requesterPosition, (value) {
       return _then(_value.copyWith(requesterPosition: value));
+    });
+  }
+
+  @override
+  $MyPositionCopyWith<$Res> get giftPosition {
+    return $MyPositionCopyWith<$Res>(_value.giftPosition, (value) {
+      return _then(_value.copyWith(giftPosition: value));
     });
   }
 }
@@ -397,6 +419,8 @@ class _$_GiftReqeust implements _GiftReqeust {
       required this.giftDetails,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required this.requesterPosition,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required this.giftPosition,
       required this.requesterName,
       required this.giftGiverImageUrl,
       required this.requesterImageUrl,
@@ -446,6 +470,9 @@ class _$_GiftReqeust implements _GiftReqeust {
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   final MyPosition requesterPosition;
   @override
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+  final MyPosition giftPosition;
+  @override
   final String requesterName;
   @override
   final String giftGiverImageUrl;
@@ -457,7 +484,7 @@ class _$_GiftReqeust implements _GiftReqeust {
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, giverUid: $giverUid, giftArea: $giftArea, giftOfferedByRequester: $giftOfferedByRequester, giftReceivedByRequester: $giftReceivedByRequester, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl, createdAt: $createdAt)';
+    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, giverUid: $giverUid, giftArea: $giftArea, giftOfferedByRequester: $giftOfferedByRequester, giftReceivedByRequester: $giftReceivedByRequester, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, giftPosition: $giftPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -516,8 +543,9 @@ class _$_GiftReqeust implements _GiftReqeust {
             (identical(other.requesterPosition, requesterPosition) ||
                 const DeepCollectionEquality()
                     .equals(other.requesterPosition, requesterPosition)) &&
-            (identical(other.requesterName, requesterName) ||
-                const DeepCollectionEquality().equals(other.requesterName, requesterName)) &&
+            (identical(other.giftPosition, giftPosition) ||
+                const DeepCollectionEquality().equals(other.giftPosition, giftPosition)) &&
+            (identical(other.requesterName, requesterName) || const DeepCollectionEquality().equals(other.requesterName, requesterName)) &&
             (identical(other.giftGiverImageUrl, giftGiverImageUrl) || const DeepCollectionEquality().equals(other.giftGiverImageUrl, giftGiverImageUrl)) &&
             (identical(other.requesterImageUrl, requesterImageUrl) || const DeepCollectionEquality().equals(other.requesterImageUrl, requesterImageUrl)) &&
             (identical(other.createdAt, createdAt) || const DeepCollectionEquality().equals(other.createdAt, createdAt)));
@@ -544,6 +572,7 @@ class _$_GiftReqeust implements _GiftReqeust {
       const DeepCollectionEquality().hash(giftImageUrl) ^
       const DeepCollectionEquality().hash(giftDetails) ^
       const DeepCollectionEquality().hash(requesterPosition) ^
+      const DeepCollectionEquality().hash(giftPosition) ^
       const DeepCollectionEquality().hash(requesterName) ^
       const DeepCollectionEquality().hash(giftGiverImageUrl) ^
       const DeepCollectionEquality().hash(requesterImageUrl) ^
@@ -578,6 +607,8 @@ class _$_GiftReqeust implements _GiftReqeust {
             String giftDetails,
             @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
             String requesterName,
             String giftGiverImageUrl,
             String requesterImageUrl,
@@ -606,6 +637,7 @@ class _$_GiftReqeust implements _GiftReqeust {
         giftImageUrl,
         giftDetails,
         requesterPosition,
+        giftPosition,
         requesterName,
         giftGiverImageUrl,
         requesterImageUrl,
@@ -636,6 +668,8 @@ class _$_GiftReqeust implements _GiftReqeust {
             String giftDetails,
             @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
             String requesterName,
             String giftGiverImageUrl,
             String requesterImageUrl,
@@ -666,6 +700,7 @@ class _$_GiftReqeust implements _GiftReqeust {
           giftImageUrl,
           giftDetails,
           requesterPosition,
+          giftPosition,
           requesterName,
           giftGiverImageUrl,
           requesterImageUrl,
@@ -726,6 +761,8 @@ abstract class _GiftReqeust implements GiftReqeust {
       required String giftDetails,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition requesterPosition,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required MyPosition giftPosition,
       required String requesterName,
       required String giftGiverImageUrl,
       required String requesterImageUrl,
@@ -755,6 +792,8 @@ abstract class _GiftReqeust implements GiftReqeust {
   String get giftDetails => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get requesterPosition => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+  MyPosition get giftPosition => throw _privateConstructorUsedError;
   String get requesterName => throw _privateConstructorUsedError;
   String get giftGiverImageUrl => throw _privateConstructorUsedError;
   String get requesterImageUrl => throw _privateConstructorUsedError;
@@ -826,6 +865,8 @@ class _$Loading implements Loading {
             String giftDetails,
             @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
             String requesterName,
             String giftGiverImageUrl,
             String requesterImageUrl,
@@ -862,6 +903,8 @@ class _$Loading implements Loading {
             String giftDetails,
             @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
             String requesterName,
             String giftGiverImageUrl,
             String requesterImageUrl,
@@ -1000,6 +1043,8 @@ class _$Error implements Error {
             String giftDetails,
             @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
             String requesterName,
             String giftGiverImageUrl,
             String requesterImageUrl,
@@ -1036,6 +1081,8 @@ class _$Error implements Error {
             String giftDetails,
             @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
                 MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
             String requesterName,
             String giftGiverImageUrl,
             String requesterImageUrl,

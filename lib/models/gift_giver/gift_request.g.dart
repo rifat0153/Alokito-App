@@ -27,6 +27,8 @@ _$_GiftReqeust _$_$_GiftReqeustFromJson(Map<String, dynamic> json) {
     giftDetails: json['giftDetails'] as String,
     requesterPosition:
         myPositionFromJson(json['requesterPosition'] as Map<String, dynamic>),
+    giftPosition:
+        myPositionFromJson(json['giftPosition'] as Map<String, dynamic>),
     requesterName: json['requesterName'] as String,
     giftGiverImageUrl: json['giftGiverImageUrl'] as String,
     requesterImageUrl: json['requesterImageUrl'] as String,
@@ -54,6 +56,7 @@ Map<String, dynamic> _$_$_GiftReqeustToJson(_$_GiftReqeust instance) =>
       'giftImageUrl': instance.giftImageUrl,
       'giftDetails': instance.giftDetails,
       'requesterPosition': myPositionToJson(instance.requesterPosition),
+      'giftPosition': myPositionToJson(instance.giftPosition),
       'requesterName': instance.requesterName,
       'giftGiverImageUrl': instance.giftGiverImageUrl,
       'requesterImageUrl': instance.requesterImageUrl,
