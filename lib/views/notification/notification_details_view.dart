@@ -6,6 +6,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/views/notification/notification_view.dart';
 import 'package:alokito_new/views/notification/widgets/location_widget.dart';
+import 'package:alokito_new/views/notification/widgets/notif_map_widget.dart';
 import 'package:alokito_new/views/notification/widgets/requester_gift_records_widget.dart';
 import 'package:alokito_new/views/notification/widgets/user_detail_widget.dart';
 import 'package:alokito_new/views/notification/widgets/user_location_widget.dart';
@@ -47,33 +48,36 @@ class NotificationDetailsView extends StatelessWidget {
                 image: AssetImage('assets/images/gift_details.png'),
                 fit: BoxFit.fill),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: Get.height * 0.1),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      UserDetailWidget(giftNotification: giftNotification),
-                      UserLocationWidget(giftNotification: giftNotification),
-                    ],
-                  ),
-                ],
-              ),
-              StyledContainer(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: Get.height * 0.1),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    LocationWidget(giftNotification: giftNotification),
-                    RequesterGiftRecords(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        UserDetailWidget(giftNotification: giftNotification),
+                        UserLocationWidget(giftNotification: giftNotification),
+                      ],
+                    ),
                   ],
                 ),
-              ),
-              DecistionWidget(giftNotification: giftNotification),
-            ],
+                StyledContainer(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      LocationWidget(giftNotification: giftNotification),
+                      RequesterGiftRecords(),
+                    ],
+                  ),
+                ),
+                DecistionWidget(giftNotification: giftNotification),
+                NotifMapWidget(giftNotification: giftNotification),
+              ],
+            ),
           ),
         ),
       ),

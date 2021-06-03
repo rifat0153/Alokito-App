@@ -1,32 +1,37 @@
+import 'dart:async';
+
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class NotifMapWidget extends StatelessWidget {
-  NotifMapWidget({Key? key, required this.giftNotification}) : super(key: key);
+class NotifMapWidget extends StatefulWidget {
+  NotifMapWidget({required this.giftNotification});
 
   GiftNotification giftNotification;
 
   @override
+  State<NotifMapWidget> createState() => NotifMapWidgetState();
+}
+
+class NotifMapWidgetState extends State<NotifMapWidget> {
+  Completer<GoogleMapController> _controller = Completer();
+
+  @override
   Widget build(BuildContext context) {
     return Container(
+      height: 300,
       child: GoogleMap(
-        markers: Set<Marker>.of([
-          Marker(
-            markerId: MarkerId(giftNotification.id ?? ''),
-            position: LatLng(
-              giftNotification.giftPosition.geopoint.latitude,
-              giftNotification.giftPosition.geopoint.latitude,
-            ),
-          ),
-        ]),
+        mapType: MapType.hybrid,
         initialCameraPosition: CameraPosition(
-          target: LatLng(
-            giftNotification.giftPosition.geopoint.latitude,
-            giftNotification.giftPosition.geopoint.latitude,
-          ),
-          zoom: 11,
-        ),
+            bearing: 192.8334901395799,
+            target: LatLng(
+                widget.giftNotification.giftPosition.geopoint.latitude,
+                widget.giftNotification.giftPosition.geopoint.longitude),
+            tilt: 59.440717697143555,
+            zoom: 19.151926040649414),
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
       ),
     );
   }
