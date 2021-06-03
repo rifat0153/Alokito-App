@@ -42,7 +42,8 @@ class _$GiftGiverTearOff {
       required String giftDetails,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp userCreatedAt,
-      required String listingDate,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp listingDate,
       required int listingForDays,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp pickUpTime,
@@ -110,7 +111,8 @@ mixin _$GiftGiver {
   String get giftDetails => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get userCreatedAt => throw _privateConstructorUsedError;
-  String get listingDate => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get listingDate => throw _privateConstructorUsedError;
   int get listingForDays => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get pickUpTime => throw _privateConstructorUsedError;
@@ -152,7 +154,8 @@ abstract class $GiftGiverCopyWith<$Res> {
       String giftDetails,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp userCreatedAt,
-      String listingDate,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp listingDate,
       int listingForDays,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp pickUpTime,
@@ -277,7 +280,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
       listingDate: listingDate == freezed
           ? _value.listingDate
           : listingDate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Timestamp,
       listingForDays: listingForDays == freezed
           ? _value.listingForDays
           : listingForDays // ignore: cast_nullable_to_non_nullable
@@ -344,7 +347,8 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       String giftDetails,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp userCreatedAt,
-      String listingDate,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp listingDate,
       int listingForDays,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp pickUpTime,
@@ -472,7 +476,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
       listingDate: listingDate == freezed
           ? _value.listingDate
           : listingDate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Timestamp,
       listingForDays: listingForDays == freezed
           ? _value.listingForDays
           : listingForDays // ignore: cast_nullable_to_non_nullable
@@ -522,7 +526,8 @@ class _$_GiftGiver implements _GiftGiver {
       required this.giftDetails,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required this.userCreatedAt,
-      required this.listingDate,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required this.listingDate,
       required this.listingForDays,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required this.pickUpTime,
@@ -576,7 +581,8 @@ class _$_GiftGiver implements _GiftGiver {
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp userCreatedAt;
   @override
-  final String listingDate;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  final Timestamp listingDate;
   @override
   final int listingForDays;
   @override
@@ -731,7 +737,8 @@ abstract class _GiftGiver implements GiftGiver {
       required String giftDetails,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp userCreatedAt,
-      required String listingDate,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp listingDate,
       required int listingForDays,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp pickUpTime,
@@ -784,7 +791,8 @@ abstract class _GiftGiver implements GiftGiver {
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get userCreatedAt => throw _privateConstructorUsedError;
   @override
-  String get listingDate => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get listingDate => throw _privateConstructorUsedError;
   @override
   int get listingForDays => throw _privateConstructorUsedError;
   @override

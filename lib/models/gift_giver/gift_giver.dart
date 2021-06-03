@@ -33,7 +33,8 @@ class GiftGiver with _$GiftGiver {
     required String giftDetails,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
         required Timestamp userCreatedAt,
-    required String listingDate,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+        required Timestamp listingDate,
     required int listingForDays,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
         required Timestamp pickUpTime,

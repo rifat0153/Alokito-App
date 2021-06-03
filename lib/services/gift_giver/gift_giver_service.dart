@@ -135,7 +135,7 @@ class GiftGiverService implements BaseGiftGiverService {
       imageUrl: url,
       givingGiftInDays: controller.givingGiftInDays.value,
       giftDetails: controller.giftDetails.value,
-      listingDate: Timestamp.now().toDate().toString(),
+      listingDate: Timestamp.now(),
       listingForDays: controller.listingFor.value.toInt(),
       pickUpTime: controller.pickUpTime.value ?? Timestamp.now(),
       canLeaveOutside: controller.canLeaveOutside.value,
