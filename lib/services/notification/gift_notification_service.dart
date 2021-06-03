@@ -31,10 +31,10 @@ class GiftNotificationService implements BaseGiftNotificationService {
           .update(modified.toJson());
 
       var giftNotifGiver = decision
-          ? giftNotification.copyWith(
+          ? modified.copyWith(
               notificationType: GiftNotificationType.packageConfirmed,
               createdAt: Timestamp.now())
-          : giftNotification.copyWith(
+          : modified.copyWith(
               notificationType: GiftNotificationType.packageCanceled,
               createdAt: Timestamp.now());
 
