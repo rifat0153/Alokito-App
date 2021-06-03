@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class NotifMapWidget extends StatefulWidget {
@@ -15,6 +17,7 @@ class NotifMapWidget extends StatefulWidget {
 
 class NotifMapWidgetState extends State<NotifMapWidget> {
   Completer<GoogleMapController> _controller = Completer();
+  final GiftNotificationController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {

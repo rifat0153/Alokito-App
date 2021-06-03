@@ -30,7 +30,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
           .doc(modified.id)
           .update(modified.toJson());
 
-      var newGift = decision
+      var giftNotifGiver = decision
           ? giftNotification.copyWith(
               notificationType: GiftNotificationType.packageConfirmed,
               createdAt: Timestamp.now())
@@ -38,7 +38,11 @@ class GiftNotificationService implements BaseGiftNotificationService {
               notificationType: GiftNotificationType.packageCanceled,
               createdAt: Timestamp.now());
 
-      await addGiftNotification(giftNotification: newGift);
+      var giftNotifRequester =
+          giftNotifGiver.copyWith(notificationFor: giftNotifGiver.requesterUid);
+
+      await addGiftNotification(giftNotification: giftNotifGiver);
+      await addGiftNotification(giftNotification: giftNotifRequester);
 
       return true;
     } on FirebaseException catch (e) {

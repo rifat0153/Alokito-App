@@ -1,18 +1,22 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
+import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/services/notification/gift_notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftNotificationController extends GetxController {
   GiftNotificationService giftNotificationService = GiftNotificationService();
   RxList<GiftNotification> giftNotificationList = RxList.empty();
   RxList<GiftNotification> giftNotList = RxList.empty();
   RxInt notificationIndex = 0.obs;
+  Rx<MyPosition> giftPosition =
+      const MyPosition(geohash: 'a', geopoint: GeoPoint(0, 0)).obs;
 
   RxInt totalNotifications = 0.obs;
 
@@ -43,7 +47,7 @@ class GiftNotificationController extends GetxController {
   }
 
   Future<void> resetNotificationStatus() async {
-    giftNotificationService.resetNotificationStatus();
+    await giftNotificationService.resetNotificationStatus();
   }
 
   Future<bool> addNotificationForGiftRequest(

@@ -80,6 +80,7 @@ class NotificationListWidget extends StatelessWidget {
               giftNotificationController: giftNotificationController,
               giftNotification:
                   giftNotificationController.giftNotificationList[i],
+              index: i,
             );
           }
           return Text('NO DAta');
@@ -176,9 +177,11 @@ class GiftConfirmedWidget extends StatelessWidget {
   const GiftConfirmedWidget(
       {required Key key,
       required this.giftNotificationController,
-      required this.giftNotification})
+      required this.giftNotification,
+      required this.index})
       : super(key: key);
 
+  final int index;
   final GiftNotification giftNotification;
   final GiftNotificationController giftNotificationController;
 
@@ -192,44 +195,50 @@ class GiftConfirmedWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Card(
-        child: Row(
-          children: [
-            Flexible(
-              flex: 1,
-              child: Image.network(
-                giftNotification.giftImageUrl,
-                fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: () {
+          Get.toNamed(NotificationDetailsView.route);
+          giftNotificationController.notificationIndex.value = index;
+        },
+        child: Card(
+          child: Row(
+            children: [
+              Flexible(
+                flex: 1,
+                child: Image.network(
+                  giftNotification.giftImageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Flexible(
-              flex: 7,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RichText(
-                      text: TextSpan(
-                        text: "You've confirmed the Request of ",
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '${giftNotification.requesterName}',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                        ],
+              Flexible(
+                flex: 7,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RichText(
+                        text: TextSpan(
+                          text: "You've confirmed the Request of ",
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '${giftNotification.requesterName}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('$difference hours ago'),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('$difference hours ago'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
