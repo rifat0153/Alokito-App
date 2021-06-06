@@ -79,7 +79,8 @@ class NotifRequesterDetailsView extends StatelessWidget {
                         ),
                         StyledContainer(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 8),
                             child: Text(
                               'Contact this person',
                               style: boldFontStyle,
@@ -104,6 +105,8 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           color: GIFT_ADD_FORM_SUBMIT,
                           onPressed: () {
                             print('Gift Request Canceled ');
+                            controller.cancelGiftRequestByRequester(
+                                giftNotification: giftNotification);
                           },
                           child: Text('Cancel Request',
                               style: whiteFontStyle.copyWith(

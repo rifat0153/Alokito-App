@@ -142,7 +142,9 @@ class DecistionWidget extends StatelessWidget {
                             giftNotification: giftNotification);
                     giftNotificationController.giftNotificationService
                         .changeRequestStatus(
-                            giftRequestStatus:
+                            giftRequestStatusForGiver:
+                                GiftRequestStatus.requestConfirmed,
+                            giftRequestStatusForRequester:
                                 GiftRequestStatus.requestConfirmed,
                             giftNotification: giftNotification);
                   },

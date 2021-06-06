@@ -11,7 +11,8 @@ abstract class BaseGiftNotificationService {
   Stream<List<GiftNotification>> streamGiftNotification();
 
   Future<bool> changeRequestStatus(
-      {required GiftRequestStatus giftRequestStatus,
+      {required GiftRequestStatus giftRequestStatusForGiver,
+      required GiftRequestStatus giftRequestStatusForRequester,
       required GiftNotification giftNotification});
 
   Future<void> addNotificationStatus(GiftNotification giftNotification);
@@ -29,16 +30,12 @@ class GiftNotificationService implements BaseGiftNotificationService {
 
   @override
   Future<bool> changeRequestStatus(
-      {required GiftRequestStatus giftRequestStatus,
+      {required GiftRequestStatus giftRequestStatusForGiver,
+      required GiftRequestStatus giftRequestStatusForRequester,
       required GiftNotification giftNotification}) async {
     try {
-      var modified =
-          giftNotification.copyWith(giftRequestStatus: giftRequestStatus);
-
-      print('in notif status change: id is:   ${modified.id}');
-
-      print(giftNotification);
-      print(modified);
+      var modified = giftNotification.copyWith(
+          giftRequestStatus: giftRequestStatusForGiver);
 
       await _firestore
           .collection('gift_notifications')
@@ -46,16 +43,17 @@ class GiftNotificationService implements BaseGiftNotificationService {
           .update(modified.toJson());
 
       var giftNotifGiver =
-          giftRequestStatus == GiftRequestStatus.requestConfirmed
+          giftRequestStatusForGiver == GiftRequestStatus.requestConfirmed
               ? modified.copyWith(
                   notificationType: GiftNotificationType.packageConfirmed,
                   createdAt: Timestamp.now())
               : modified.copyWith(
-                  notificationType: GiftNotificationType.packageCanceled,
+                  notificationType: GiftNotificationType.packageCanceledByGiver,
                   createdAt: Timestamp.now());
 
-      var giftNotifRequester =
-          giftNotifGiver.copyWith(notificationFor: giftNotifGiver.requesterUid);
+      var giftNotifRequester = giftNotifGiver.copyWith(
+          notificationFor: giftNotifGiver.requesterUid,
+          giftRequestStatus: giftRequestStatusForRequester);
 
       await addGiftNotification(giftNotification: giftNotifGiver);
       await addGiftNotification(giftNotification: giftNotifRequester);

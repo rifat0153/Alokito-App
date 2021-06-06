@@ -51,8 +51,10 @@ int giftNotificationTypeToJson(GiftNotificationType giftNotificationType) {
       return 1;
     case GiftNotificationType.packageDelivered:
       return 2;
-    case GiftNotificationType.packageCanceled:
+    case GiftNotificationType.packageCanceledByGiver:
       return 3;
+    case GiftNotificationType.packageCanceledByRequester:
+      return 4;
     default:
       return -1;
   }
@@ -68,7 +70,9 @@ GiftNotificationType giftNotificationTypeFromJson(int json) {
     case 2:
       return GiftNotificationType.packageDelivered;
     case 3:
-      return GiftNotificationType.packageCanceled;
+      return GiftNotificationType.packageCanceledByGiver;
+    case 4:
+      return GiftNotificationType.packageCanceledByRequester;
     default:
       return GiftNotificationType.error;
   }

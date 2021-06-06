@@ -37,7 +37,7 @@ class GiftRequestService implements BaseGiftRequestService {
             .doc(docId)
             .update(giftReqeust1.toJson());
       } else {
-        print('request doc does not exitswt');
+        print('request doc does not exists');
         return false;
       }
 

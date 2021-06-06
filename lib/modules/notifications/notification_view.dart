@@ -76,6 +76,18 @@ class NotificationListWidget extends StatelessWidget {
           }
           if (giftNotificationController
                   .giftNotificationList[i].notificationType ==
+              GiftNotificationType.packageCanceledByGiver) {
+            return GiftRequestWidget(
+              key: ValueKey(
+                  giftNotificationController.giftNotificationList[i].id),
+              giftNotificationController: giftNotificationController,
+              giftNotification:
+                  giftNotificationController.giftNotificationList[i],
+              index: i,
+            );
+          }
+          if (giftNotificationController
+                  .giftNotificationList[i].notificationType ==
               GiftNotificationType.packageConfirmed) {
             if (giftNotificationController
                     .giftNotificationList[i].requesterUid !=
@@ -100,7 +112,7 @@ class NotificationListWidget extends StatelessWidget {
             }
           } else if (giftNotificationController
                   .giftNotificationList[i].notificationType ==
-              GiftNotificationType.packageCanceled) {
+              GiftNotificationType.packageCanceledByRequester) {
             return GiftCanceledRequesterWidget(
               key: ValueKey(
                   giftNotificationController.giftNotificationList[i].id),
