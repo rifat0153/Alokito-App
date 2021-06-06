@@ -64,6 +64,7 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           'Offered By',
                           style: boldFontStyle,
                         ),
+                        const SizedBox(height: 8),
                         UserDetailWidget(
                           imageUrl: giftNotification.giverImageUrl,
                           userJoinedAt: giftNotification.giverJoinedAt,
@@ -76,10 +77,12 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           lng:
                               giftNotification.giverPosition.geopoint.longitude,
                         ),
+                        SizedBox(height: 16),
                         Text(
                           'Requested By',
                           style: boldFontStyle,
                         ),
+                        const SizedBox(height: 8),
                         UserDetailWidget(
                           imageUrl: giftNotification.requesterImageUrl,
                           userJoinedAt: giftNotification.requesterJoinedAt,
