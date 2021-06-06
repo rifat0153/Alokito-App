@@ -53,7 +53,7 @@ class NotifRequesterDetailsView extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: Get.height * 0.1),
                 Row(
@@ -64,8 +64,8 @@ class NotifRequesterDetailsView extends StatelessWidget {
                       child: Container(
                         width: Get.width - 40,
                         color: GIFT_ADD_FORM_COLOR,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -132,64 +132,101 @@ class NotifRequesterDetailsView extends StatelessWidget {
                   child: NotifMapWidget(giftNotification: giftNotification),
                 ),
                 StyledContainer(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        height: 60,
-                        width: 75,
-                        decoration: BoxDecoration(
-                          color: GIFT_ADD_FORM_SUBMIT,
-                          borderRadius: BorderRadius.circular(10),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Text(
+                      'Contact this person',
+                      style: boldFontStyle,
+                    ),
+                  ),
+                ),
+                StyledContainer(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: 60,
+                          width: 75,
+                          decoration: BoxDecoration(
+                            color: GIFT_ADD_FORM_SUBMIT,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                            child: Column(
+                              children: [
+                                Transform.rotate(
+                                  angle: -math.pi / 4,
+                                  child: const FaIcon(
+                                    FontAwesomeIcons.phoneVolume,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                ),
+                                Text('Voice Call',
+                                    style:
+                                        whiteFontStyle.copyWith(fontSize: 10))
+                              ],
+                            ),
+                          ),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Transform.rotate(
-                                angle: -math.pi / 4,
-                                child: const FaIcon(
-                                  FontAwesomeIcons.phoneVolume,
+                        Container(
+                          height: 60,
+                          width: 75,
+                          decoration: BoxDecoration(
+                            color: GIFT_ADD_FORM_SUBMIT,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                            child: Column(
+                              children: [
+                                const FaIcon(
+                                  FontAwesomeIcons.commentDots,
                                   color: Colors.white,
                                   size: 30,
                                 ),
-                              ),
-                              Text('Voice Call',
-                                  style: whiteFontStyle.copyWith(fontSize: 10))
-                            ],
+                                Text('Conversation',
+                                    style:
+                                        whiteFontStyle.copyWith(fontSize: 10))
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 60,
-                        width: 75,
-                        decoration: BoxDecoration(
-                          color: GIFT_ADD_FORM_SUBMIT,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              const FaIcon(
-                                FontAwesomeIcons.commentDots,
-                                color: Colors.white,
-                                size: 30,
-                              ),
-                              Text('Conversation',
-                                  style: whiteFontStyle.copyWith(fontSize: 10))
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                )
+                ),
+                Text('Status', style: boldFontStyle),
+                Text('On the way', style: boldFontStyle.copyWith(fontSize: 30)),
+                _GuideLines(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _GuideLines extends StatelessWidget {
+  const _GuideLines({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(FontAwesomeIcons.bullhorn),
+        Column(
+          children: [
+            Text('* Please see the '),
+            Text('data'),
+            Text('data'),
+          ],
+        )
+      ],
     );
   }
 }
