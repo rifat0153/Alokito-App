@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
+import 'dart:math' as math;
 
 class NotifRequesterDetailsView extends StatelessWidget {
   static const route = 'notification_details_view';
@@ -104,7 +105,63 @@ class NotifRequesterDetailsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                NotifMapWidget(giftNotification: giftNotification),
+                StyledContainer(
+                  child: NotifMapWidget(giftNotification: giftNotification),
+                ),
+                StyledContainer(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        height: 60,
+                        width: 75,
+                        decoration: BoxDecoration(
+                          color: GIFT_ADD_FORM_SUBMIT,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 5),
+                          child: Column(
+                            children: [
+                              Transform.rotate(
+                                angle: -math.pi / 4,
+                                child: const FaIcon(
+                                  FontAwesomeIcons.phoneVolume,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
+                              ),
+                              Text('Voice Call',
+                                  style: whiteFontStyle.copyWith(fontSize: 10))
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 60,
+                        width: 75,
+                        decoration: BoxDecoration(
+                          color: GIFT_ADD_FORM_SUBMIT,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 5),
+                          child: Column(
+                            children: [
+                              const FaIcon(
+                                FontAwesomeIcons.commentDots,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                              Text('Conversation',
+                                  style: whiteFontStyle.copyWith(fontSize: 10))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
@@ -122,7 +179,7 @@ class StyledContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         width: Get.width,
         decoration: BoxDecoration(

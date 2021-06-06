@@ -25,7 +25,7 @@ class NotifMapWidgetState extends State<NotifMapWidget> {
     return Container(
       height: 200,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.only(top: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

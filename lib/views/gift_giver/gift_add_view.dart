@@ -138,12 +138,7 @@ class _PickUpTimeWidget extends StatelessWidget {
             Obx(
               () => Text(controller.showPickupTime()),
             ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: MaterialButton(
+            MaterialButton(
               color: GIFT_GIVER_BUTTON_COLOR,
               onPressed: () async {
                 var time = await showTimePicker(
@@ -159,7 +154,30 @@ class _PickUpTimeWidget extends StatelessWidget {
                 print(controller.pickUpTime.value);
               },
               child: Text('Pick Time'),
-            )),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: MaterialButton(
+            color: GIFT_GIVER_BUTTON_COLOR,
+            onPressed: () async {
+              var time = await showTimePicker(
+                initialTime: TimeOfDay.now(),
+                context: context,
+              );
+              var now = DateTime.now();
+              now = DateTime(
+                  now.year, now.month, now.day, time!.hour, time.minute);
+
+              controller.pickUpTime.value = Timestamp.fromDate(now);
+              print(time);
+              print(controller.pickUpTime.value);
+            },
+            child: Text('Pick Time'),
+          ),
+        ),
       ],
     );
   }
