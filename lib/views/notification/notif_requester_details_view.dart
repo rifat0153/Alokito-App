@@ -98,6 +98,15 @@ class NotifRequesterDetailsView extends StatelessWidget {
                               style: boldFontStyle.copyWith(fontSize: 30)),
                         ),
                         const _GuideLines(),
+                        const SizedBox(height: 16),
+                        MaterialButton(
+                          color: GIFT_ADD_FORM_SUBMIT,
+                          onPressed: () {},
+                          child: Text('Cancel Request',
+                              style: whiteFontStyle.copyWith(
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                        const SizedBox(height: 16),
                       ],
                     ),
                   ),
