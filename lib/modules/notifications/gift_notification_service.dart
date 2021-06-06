@@ -11,7 +11,8 @@ abstract class BaseGiftNotificationService {
   Stream<List<GiftNotification>> streamGiftNotification();
 
   Future<bool> changeRequestStatus(
-      {required bool decision, required GiftNotification giftNotification});
+      {required GiftRequestStatus giftRequestStatus,
+      required GiftNotification giftNotification});
 
   Future<void> addNotificationStatus(GiftNotification giftNotification);
 
@@ -28,10 +29,11 @@ class GiftNotificationService implements BaseGiftNotificationService {
 
   @override
   Future<bool> changeRequestStatus(
-      {required bool decision,
+      {required GiftRequestStatus giftRequestStatus,
       required GiftNotification giftNotification}) async {
     try {
-      var modified = giftNotification.copyWith(giftConfirmed: decision);
+      var modified =
+          giftNotification.copyWith(giftRequestStatus: giftRequestStatus);
 
       print('in notif status change: id is:   ${modified.id}');
 
@@ -43,13 +45,14 @@ class GiftNotificationService implements BaseGiftNotificationService {
           .doc(modified.id)
           .update(modified.toJson());
 
-      var giftNotifGiver = decision
-          ? modified.copyWith(
-              notificationType: GiftNotificationType.packageConfirmed,
-              createdAt: Timestamp.now())
-          : modified.copyWith(
-              notificationType: GiftNotificationType.packageCanceled,
-              createdAt: Timestamp.now());
+      var giftNotifGiver =
+          giftRequestStatus == GiftRequestStatus.requestConfirmed
+              ? modified.copyWith(
+                  notificationType: GiftNotificationType.packageConfirmed,
+                  createdAt: Timestamp.now())
+              : modified.copyWith(
+                  notificationType: GiftNotificationType.packageCanceled,
+                  createdAt: Timestamp.now());
 
       var giftNotifRequester =
           giftNotifGiver.copyWith(notificationFor: giftNotifGiver.requesterUid);

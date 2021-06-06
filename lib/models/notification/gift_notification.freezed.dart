@@ -23,8 +23,8 @@ class _$GiftNotificationTearOff {
   _GiftNotification call(
       {String? id,
       required String giftId,
-      required bool giftConfirmed,
-      required bool giftDenied,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          required GiftRequestStatus giftRequestStatus,
       required String giftImageUrl,
       required String requesterImageUrl,
       required String requesterName,
@@ -62,8 +62,7 @@ class _$GiftNotificationTearOff {
     return _GiftNotification(
       id: id,
       giftId: giftId,
-      giftConfirmed: giftConfirmed,
-      giftDenied: giftDenied,
+      giftRequestStatus: giftRequestStatus,
       giftImageUrl: giftImageUrl,
       requesterImageUrl: requesterImageUrl,
       requesterName: requesterName,
@@ -105,8 +104,8 @@ const $GiftNotification = _$GiftNotificationTearOff();
 mixin _$GiftNotification {
   String? get id => throw _privateConstructorUsedError;
   String get giftId => throw _privateConstructorUsedError;
-  bool get giftConfirmed => throw _privateConstructorUsedError;
-  bool get giftDenied => throw _privateConstructorUsedError;
+  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   String get giftImageUrl => throw _privateConstructorUsedError;
   String get requesterImageUrl => throw _privateConstructorUsedError;
   String get requesterName => throw _privateConstructorUsedError;
@@ -159,8 +158,8 @@ abstract class $GiftNotificationCopyWith<$Res> {
   $Res call(
       {String? id,
       String giftId,
-      bool giftConfirmed,
-      bool giftDenied,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          GiftRequestStatus giftRequestStatus,
       String giftImageUrl,
       String requesterImageUrl,
       String requesterName,
@@ -214,8 +213,7 @@ class _$GiftNotificationCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftId = freezed,
-    Object? giftConfirmed = freezed,
-    Object? giftDenied = freezed,
+    Object? giftRequestStatus = freezed,
     Object? giftImageUrl = freezed,
     Object? requesterImageUrl = freezed,
     Object? requesterName = freezed,
@@ -252,14 +250,10 @@ class _$GiftNotificationCopyWithImpl<$Res>
           ? _value.giftId
           : giftId // ignore: cast_nullable_to_non_nullable
               as String,
-      giftConfirmed: giftConfirmed == freezed
-          ? _value.giftConfirmed
-          : giftConfirmed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      giftDenied: giftDenied == freezed
-          ? _value.giftDenied
-          : giftDenied // ignore: cast_nullable_to_non_nullable
-              as bool,
+      giftRequestStatus: giftRequestStatus == freezed
+          ? _value.giftRequestStatus
+          : giftRequestStatus // ignore: cast_nullable_to_non_nullable
+              as GiftRequestStatus,
       giftImageUrl: giftImageUrl == freezed
           ? _value.giftImageUrl
           : giftImageUrl // ignore: cast_nullable_to_non_nullable
@@ -399,8 +393,8 @@ abstract class _$GiftNotificationCopyWith<$Res>
   $Res call(
       {String? id,
       String giftId,
-      bool giftConfirmed,
-      bool giftDenied,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          GiftRequestStatus giftRequestStatus,
       String giftImageUrl,
       String requesterImageUrl,
       String requesterName,
@@ -459,8 +453,7 @@ class __$GiftNotificationCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftId = freezed,
-    Object? giftConfirmed = freezed,
-    Object? giftDenied = freezed,
+    Object? giftRequestStatus = freezed,
     Object? giftImageUrl = freezed,
     Object? requesterImageUrl = freezed,
     Object? requesterName = freezed,
@@ -497,14 +490,10 @@ class __$GiftNotificationCopyWithImpl<$Res>
           ? _value.giftId
           : giftId // ignore: cast_nullable_to_non_nullable
               as String,
-      giftConfirmed: giftConfirmed == freezed
-          ? _value.giftConfirmed
-          : giftConfirmed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      giftDenied: giftDenied == freezed
-          ? _value.giftDenied
-          : giftDenied // ignore: cast_nullable_to_non_nullable
-              as bool,
+      giftRequestStatus: giftRequestStatus == freezed
+          ? _value.giftRequestStatus
+          : giftRequestStatus // ignore: cast_nullable_to_non_nullable
+              as GiftRequestStatus,
       giftImageUrl: giftImageUrl == freezed
           ? _value.giftImageUrl
           : giftImageUrl // ignore: cast_nullable_to_non_nullable
@@ -619,8 +608,8 @@ class _$_GiftNotification implements _GiftNotification {
   const _$_GiftNotification(
       {this.id,
       required this.giftId,
-      required this.giftConfirmed,
-      required this.giftDenied,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          required this.giftRequestStatus,
       required this.giftImageUrl,
       required this.requesterImageUrl,
       required this.requesterName,
@@ -664,9 +653,8 @@ class _$_GiftNotification implements _GiftNotification {
   @override
   final String giftId;
   @override
-  final bool giftConfirmed;
-  @override
-  final bool giftDenied;
+  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+  final GiftRequestStatus giftRequestStatus;
   @override
   final String giftImageUrl;
   @override
@@ -732,7 +720,7 @@ class _$_GiftNotification implements _GiftNotification {
 
   @override
   String toString() {
-    return 'GiftNotification(id: $id, giftId: $giftId, giftConfirmed: $giftConfirmed, giftDenied: $giftDenied, giftImageUrl: $giftImageUrl, requesterImageUrl: $requesterImageUrl, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giverAvgRating: $giverAvgRating, giverTotRating: $giverTotRating, giverRatingSum: $giverRatingSum, giverName: $giverName, giverImageUrl: $giverImageUrl, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, notificationFor: $notificationFor, giftPosition: $giftPosition, requesterPosition: $requesterPosition, giverPosition: $giverPosition, notificationForList: $notificationForList, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
+    return 'GiftNotification(id: $id, giftId: $giftId, giftRequestStatus: $giftRequestStatus, giftImageUrl: $giftImageUrl, requesterImageUrl: $requesterImageUrl, requesterName: $requesterName, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giverAvgRating: $giverAvgRating, giverTotRating: $giverTotRating, giverRatingSum: $giverRatingSum, giverName: $giverName, giverImageUrl: $giverImageUrl, giverUid: $giverUid, giftLocation: $giftLocation, giftArea: $giftArea, notificationFor: $notificationFor, giftPosition: $giftPosition, requesterPosition: $requesterPosition, giverPosition: $giverPosition, notificationForList: $notificationForList, giverJoinedAt: $giverJoinedAt, requesterJoinedAt: $requesterJoinedAt, giftType: $giftType, notificationType: $notificationType, createdAt: $createdAt)';
   }
 
   @override
@@ -743,12 +731,9 @@ class _$_GiftNotification implements _GiftNotification {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.giftId, giftId) ||
                 const DeepCollectionEquality().equals(other.giftId, giftId)) &&
-            (identical(other.giftConfirmed, giftConfirmed) ||
+            (identical(other.giftRequestStatus, giftRequestStatus) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftConfirmed, giftConfirmed)) &&
-            (identical(other.giftDenied, giftDenied) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftDenied, giftDenied)) &&
+                    .equals(other.giftRequestStatus, giftRequestStatus)) &&
             (identical(other.giftImageUrl, giftImageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.giftImageUrl, giftImageUrl)) &&
@@ -804,8 +789,10 @@ class _$_GiftNotification implements _GiftNotification {
                 const DeepCollectionEquality()
                     .equals(other.giftPosition, giftPosition)) &&
             (identical(other.requesterPosition, requesterPosition) ||
-                const DeepCollectionEquality().equals(other.requesterPosition, requesterPosition)) &&
-            (identical(other.giverPosition, giverPosition) || const DeepCollectionEquality().equals(other.giverPosition, giverPosition)) &&
+                const DeepCollectionEquality()
+                    .equals(other.requesterPosition, requesterPosition)) &&
+            (identical(other.giverPosition, giverPosition) ||
+                const DeepCollectionEquality().equals(other.giverPosition, giverPosition)) &&
             (identical(other.notificationForList, notificationForList) || const DeepCollectionEquality().equals(other.notificationForList, notificationForList)) &&
             (identical(other.giverJoinedAt, giverJoinedAt) || const DeepCollectionEquality().equals(other.giverJoinedAt, giverJoinedAt)) &&
             (identical(other.requesterJoinedAt, requesterJoinedAt) || const DeepCollectionEquality().equals(other.requesterJoinedAt, requesterJoinedAt)) &&
@@ -819,8 +806,7 @@ class _$_GiftNotification implements _GiftNotification {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftId) ^
-      const DeepCollectionEquality().hash(giftConfirmed) ^
-      const DeepCollectionEquality().hash(giftDenied) ^
+      const DeepCollectionEquality().hash(giftRequestStatus) ^
       const DeepCollectionEquality().hash(giftImageUrl) ^
       const DeepCollectionEquality().hash(requesterImageUrl) ^
       const DeepCollectionEquality().hash(requesterName) ^
@@ -863,8 +849,8 @@ abstract class _GiftNotification implements GiftNotification {
   const factory _GiftNotification(
       {String? id,
       required String giftId,
-      required bool giftConfirmed,
-      required bool giftDenied,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          required GiftRequestStatus giftRequestStatus,
       required String giftImageUrl,
       required String requesterImageUrl,
       required String requesterName,
@@ -908,9 +894,8 @@ abstract class _GiftNotification implements GiftNotification {
   @override
   String get giftId => throw _privateConstructorUsedError;
   @override
-  bool get giftConfirmed => throw _privateConstructorUsedError;
-  @override
-  bool get giftDenied => throw _privateConstructorUsedError;
+  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @override
   String get giftImageUrl => throw _privateConstructorUsedError;
   @override

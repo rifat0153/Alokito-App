@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
@@ -106,9 +107,10 @@ class DecistionWidget extends StatelessWidget {
 
     return Obx(
       () => giftNotificationController
-              .giftNotificationList[
-                  giftNotificationController.notificationIndex.value]
-              .giftConfirmed
+                  .giftNotificationList[
+                      giftNotificationController.notificationIndex.value]
+                  .giftRequestStatus ==
+              GiftRequestStatus.requestConfirmed
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -135,10 +137,14 @@ class DecistionWidget extends StatelessWidget {
                     print('accepting request');
                     giftRequestController.giftRequestService
                         .changeRequestStatus(
-                            decision: true, giftNotification: giftNotification);
+                            giftRequestStatus:
+                                GiftRequestStatus.requestConfirmed,
+                            giftNotification: giftNotification);
                     giftNotificationController.giftNotificationService
                         .changeRequestStatus(
-                            decision: true, giftNotification: giftNotification);
+                            giftRequestStatus:
+                                GiftRequestStatus.requestConfirmed,
+                            giftNotification: giftNotification);
                   },
                   child: Text(
                     'Accept for Confirmation',

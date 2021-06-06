@@ -1,4 +1,5 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 
 abstract class BaseGiftRequestService {
@@ -11,5 +12,6 @@ abstract class BaseGiftRequestService {
   Future<bool> addGiftRequest({required GiftGiver giftGiver});
 
   Future<bool> changeRequestStatus(
-      {required bool decision, required GiftNotification giftNotification});
+      {required GiftRequestStatus giftRequestStatus,
+      required GiftNotification giftNotification});
 }

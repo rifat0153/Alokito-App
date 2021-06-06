@@ -33,9 +33,8 @@ class _$GiftReqeustTearOff {
   _GiftReqeust call(
       {String? id,
       required String giftId,
-      required bool requestConfirmed,
-      required bool requestDenied,
-      bool requestCancelByRequester = false,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          required GiftRequestStatus giftRequestStatus,
       required String giverUid,
       required String giftArea,
       required int giftOfferedByRequester,
@@ -62,9 +61,7 @@ class _$GiftReqeustTearOff {
     return _GiftReqeust(
       id: id,
       giftId: giftId,
-      requestConfirmed: requestConfirmed,
-      requestDenied: requestDenied,
-      requestCancelByRequester: requestCancelByRequester,
+      giftRequestStatus: giftRequestStatus,
       giverUid: giverUid,
       giftArea: giftArea,
       giftOfferedByRequester: giftOfferedByRequester,
@@ -112,9 +109,8 @@ mixin _$GiftReqeust {
     TResult Function(
             String? id,
             String giftId,
-            bool requestConfirmed,
-            bool requestDenied,
-            bool requestCancelByRequester,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -148,9 +144,8 @@ mixin _$GiftReqeust {
     TResult Function(
             String? id,
             String giftId,
-            bool requestConfirmed,
-            bool requestDenied,
-            bool requestCancelByRequester,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -222,9 +217,8 @@ abstract class _$GiftReqeustCopyWith<$Res> {
   $Res call(
       {String? id,
       String giftId,
-      bool requestConfirmed,
-      bool requestDenied,
-      bool requestCancelByRequester,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          GiftRequestStatus giftRequestStatus,
       String giverUid,
       String giftArea,
       int giftOfferedByRequester,
@@ -267,9 +261,7 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftId = freezed,
-    Object? requestConfirmed = freezed,
-    Object? requestDenied = freezed,
-    Object? requestCancelByRequester = freezed,
+    Object? giftRequestStatus = freezed,
     Object? giverUid = freezed,
     Object? giftArea = freezed,
     Object? giftOfferedByRequester = freezed,
@@ -299,18 +291,10 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
           ? _value.giftId
           : giftId // ignore: cast_nullable_to_non_nullable
               as String,
-      requestConfirmed: requestConfirmed == freezed
-          ? _value.requestConfirmed
-          : requestConfirmed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requestDenied: requestDenied == freezed
-          ? _value.requestDenied
-          : requestDenied // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requestCancelByRequester: requestCancelByRequester == freezed
-          ? _value.requestCancelByRequester
-          : requestCancelByRequester // ignore: cast_nullable_to_non_nullable
-              as bool,
+      giftRequestStatus: giftRequestStatus == freezed
+          ? _value.giftRequestStatus
+          : giftRequestStatus // ignore: cast_nullable_to_non_nullable
+              as GiftRequestStatus,
       giverUid: giverUid == freezed
           ? _value.giverUid
           : giverUid // ignore: cast_nullable_to_non_nullable
@@ -411,9 +395,8 @@ class _$_GiftReqeust implements _GiftReqeust {
   const _$_GiftReqeust(
       {this.id,
       required this.giftId,
-      required this.requestConfirmed,
-      required this.requestDenied,
-      this.requestCancelByRequester = false,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          required this.giftRequestStatus,
       required this.giverUid,
       required this.giftArea,
       required this.giftOfferedByRequester,
@@ -446,12 +429,8 @@ class _$_GiftReqeust implements _GiftReqeust {
   @override
   final String giftId;
   @override
-  final bool requestConfirmed;
-  @override
-  final bool requestDenied;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool requestCancelByRequester;
+  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+  final GiftRequestStatus giftRequestStatus;
   @override
   final String giverUid;
   @override
@@ -498,7 +477,7 @@ class _$_GiftReqeust implements _GiftReqeust {
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, requestCancelByRequester: $requestCancelByRequester, giverUid: $giverUid, giftArea: $giftArea, giftOfferedByRequester: $giftOfferedByRequester, giftReceivedByRequester: $giftReceivedByRequester, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, giftPosition: $giftPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl, createdAt: $createdAt)';
+    return 'GiftReqeust(id: $id, giftId: $giftId, giftRequestStatus: $giftRequestStatus, giverUid: $giverUid, giftArea: $giftArea, giftOfferedByRequester: $giftOfferedByRequester, giftReceivedByRequester: $giftReceivedByRequester, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, giftPosition: $giftPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -509,16 +488,9 @@ class _$_GiftReqeust implements _GiftReqeust {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.giftId, giftId) ||
                 const DeepCollectionEquality().equals(other.giftId, giftId)) &&
-            (identical(other.requestConfirmed, requestConfirmed) ||
+            (identical(other.giftRequestStatus, giftRequestStatus) ||
                 const DeepCollectionEquality()
-                    .equals(other.requestConfirmed, requestConfirmed)) &&
-            (identical(other.requestDenied, requestDenied) ||
-                const DeepCollectionEquality()
-                    .equals(other.requestDenied, requestDenied)) &&
-            (identical(other.requestCancelByRequester, requestCancelByRequester) ||
-                const DeepCollectionEquality().equals(
-                    other.requestCancelByRequester,
-                    requestCancelByRequester)) &&
+                    .equals(other.giftRequestStatus, giftRequestStatus)) &&
             (identical(other.giverUid, giverUid) ||
                 const DeepCollectionEquality()
                     .equals(other.giverUid, giverUid)) &&
@@ -550,11 +522,20 @@ class _$_GiftReqeust implements _GiftReqeust {
                 const DeepCollectionEquality()
                     .equals(other.giftFor, giftFor)) &&
             (identical(other.giftType, giftType) ||
-                const DeepCollectionEquality().equals(other.giftType, giftType)) &&
-            (identical(other.giftImageUrl, giftImageUrl) || const DeepCollectionEquality().equals(other.giftImageUrl, giftImageUrl)) &&
-            (identical(other.giftDetails, giftDetails) || const DeepCollectionEquality().equals(other.giftDetails, giftDetails)) &&
-            (identical(other.requesterPosition, requesterPosition) || const DeepCollectionEquality().equals(other.requesterPosition, requesterPosition)) &&
-            (identical(other.giftPosition, giftPosition) || const DeepCollectionEquality().equals(other.giftPosition, giftPosition)) &&
+                const DeepCollectionEquality()
+                    .equals(other.giftType, giftType)) &&
+            (identical(other.giftImageUrl, giftImageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftImageUrl, giftImageUrl)) &&
+            (identical(other.giftDetails, giftDetails) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftDetails, giftDetails)) &&
+            (identical(other.requesterPosition, requesterPosition) ||
+                const DeepCollectionEquality()
+                    .equals(other.requesterPosition, requesterPosition)) &&
+            (identical(other.giftPosition, giftPosition) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftPosition, giftPosition)) &&
             (identical(other.requesterName, requesterName) || const DeepCollectionEquality().equals(other.requesterName, requesterName)) &&
             (identical(other.giftGiverImageUrl, giftGiverImageUrl) || const DeepCollectionEquality().equals(other.giftGiverImageUrl, giftGiverImageUrl)) &&
             (identical(other.requesterImageUrl, requesterImageUrl) || const DeepCollectionEquality().equals(other.requesterImageUrl, requesterImageUrl)) &&
@@ -566,9 +547,7 @@ class _$_GiftReqeust implements _GiftReqeust {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftId) ^
-      const DeepCollectionEquality().hash(requestConfirmed) ^
-      const DeepCollectionEquality().hash(requestDenied) ^
-      const DeepCollectionEquality().hash(requestCancelByRequester) ^
+      const DeepCollectionEquality().hash(giftRequestStatus) ^
       const DeepCollectionEquality().hash(giverUid) ^
       const DeepCollectionEquality().hash(giftArea) ^
       const DeepCollectionEquality().hash(giftOfferedByRequester) ^
@@ -600,9 +579,8 @@ class _$_GiftReqeust implements _GiftReqeust {
     TResult Function(
             String? id,
             String giftId,
-            bool requestConfirmed,
-            bool requestDenied,
-            bool requestCancelByRequester,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -633,9 +611,7 @@ class _$_GiftReqeust implements _GiftReqeust {
     return $default(
         id,
         giftId,
-        requestConfirmed,
-        requestDenied,
-        requestCancelByRequester,
+        giftRequestStatus,
         giverUid,
         giftArea,
         giftOfferedByRequester,
@@ -663,9 +639,8 @@ class _$_GiftReqeust implements _GiftReqeust {
     TResult Function(
             String? id,
             String giftId,
-            bool requestConfirmed,
-            bool requestDenied,
-            bool requestCancelByRequester,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -698,9 +673,7 @@ class _$_GiftReqeust implements _GiftReqeust {
       return $default(
           id,
           giftId,
-          requestConfirmed,
-          requestDenied,
-          requestCancelByRequester,
+          giftRequestStatus,
           giverUid,
           giftArea,
           giftOfferedByRequester,
@@ -758,9 +731,8 @@ abstract class _GiftReqeust implements GiftReqeust {
   const factory _GiftReqeust(
       {String? id,
       required String giftId,
-      required bool requestConfirmed,
-      required bool requestDenied,
-      bool requestCancelByRequester,
+      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+          required GiftRequestStatus giftRequestStatus,
       required String giverUid,
       required String giftArea,
       required int giftOfferedByRequester,
@@ -790,9 +762,8 @@ abstract class _GiftReqeust implements GiftReqeust {
 
   String? get id => throw _privateConstructorUsedError;
   String get giftId => throw _privateConstructorUsedError;
-  bool get requestConfirmed => throw _privateConstructorUsedError;
-  bool get requestDenied => throw _privateConstructorUsedError;
-  bool get requestCancelByRequester => throw _privateConstructorUsedError;
+  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   String get giverUid => throw _privateConstructorUsedError;
   String get giftArea => throw _privateConstructorUsedError;
   int get giftOfferedByRequester => throw _privateConstructorUsedError;
@@ -864,9 +835,8 @@ class _$Loading implements Loading {
     TResult Function(
             String? id,
             String giftId,
-            bool requestConfirmed,
-            bool requestDenied,
-            bool requestCancelByRequester,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -903,9 +873,8 @@ class _$Loading implements Loading {
     TResult Function(
             String? id,
             String giftId,
-            bool requestConfirmed,
-            bool requestDenied,
-            bool requestCancelByRequester,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -1044,9 +1013,8 @@ class _$Error implements Error {
     TResult Function(
             String? id,
             String giftId,
-            bool requestConfirmed,
-            bool requestDenied,
-            bool requestCancelByRequester,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -1083,9 +1051,8 @@ class _$Error implements Error {
     TResult Function(
             String? id,
             String giftId,
-            bool requestConfirmed,
-            bool requestDenied,
-            bool requestCancelByRequester,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,

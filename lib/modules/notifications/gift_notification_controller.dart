@@ -63,8 +63,7 @@ class GiftNotificationController extends GetxController {
       giftImageUrl: giftGiver.imageUrl,
       giftId: giftGiver.id ?? '',
       notificationFor: giftGiver.uid,
-      giftConfirmed: false,
-      giftDenied: giftCanceledByRequester,
+      giftRequestStatus: GiftRequestStatus.requestPedning,
       giftPosition: giftGiver.position,
       notificationForList: [
         giftGiver.uid,

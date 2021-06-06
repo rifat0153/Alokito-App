@@ -13,9 +13,8 @@ class GiftReqeust with _$GiftReqeust {
   const factory GiftReqeust({
     String? id,
     required String giftId,
-    required bool requestConfirmed,
-    required bool requestDenied,
-    @Default(false) bool requestCancelByRequester,
+    @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+        required GiftRequestStatus giftRequestStatus,
     required String giverUid,
     required String giftArea,
     required int giftOfferedByRequester,

@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
@@ -18,7 +19,7 @@ class GiftRequestService implements BaseGiftRequestService {
 
   @override
   Future<bool> changeRequestStatus(
-      {required bool decision,
+      {required GiftRequestStatus giftRequestStatus,
       required GiftNotification giftNotification}) async {
     try {
       var docId = '${giftNotification.requesterUid}.${giftNotification.giftId}';
@@ -28,7 +29,7 @@ class GiftRequestService implements BaseGiftRequestService {
         GiftReqeust giftReqeust = GiftReqeust.fromJson(doc.data() ?? {});
 
         GiftReqeust giftReqeust1 = giftReqeust.maybeMap(
-            (value) => value.copyWith(requestConfirmed: decision),
+            (value) => value.copyWith(giftRequestStatus: giftRequestStatus),
             orElse: () => giftReqeust);
 
         await _firestore
@@ -145,6 +146,7 @@ class GiftRequestService implements BaseGiftRequestService {
 
       GiftReqeust giftReqeust = GiftReqeust(
           id: '${currentUserUid}.${giftGiver.id}',
+          giftRequestStatus: GiftRequestStatus.requestPedning,
           giftArea: giftGiver.area,
           giftPosition: giftGiver.position,
           giftOfferedByRequester: authController.currentUserGiftOffered.value,
@@ -153,8 +155,6 @@ class GiftRequestService implements BaseGiftRequestService {
           requesterRatingSum: authController.currentUserRatingSum.value,
           requesterTotRating: authController.currentUserTotalRating.value,
           giftFor: giftGiver.giftFor,
-          requestConfirmed: false,
-          requestDenied: false,
           giftId: giftGiver.id!,
           giverUid: giftGiver.uid,
           requesterMessage: giftRequestController.requesterMessage.value,
