@@ -1,6 +1,3 @@
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/gift/gift_controller.dart';

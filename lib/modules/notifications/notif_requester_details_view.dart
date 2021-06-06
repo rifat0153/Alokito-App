@@ -10,7 +10,6 @@ import './widgets/notif_map_widget.dart';
 import './widgets/requester_gift_records_widget.dart';
 import './widgets/user_detail_widget.dart';
 import './widgets/user_location_widget.dart';
-import 'package:alokito_new/widgets/gift_giver/user_joining_distance_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';

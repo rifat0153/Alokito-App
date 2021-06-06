@@ -1,18 +1,19 @@
 import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver/custom_gift_widget.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver/distance_row_widget.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver/family_option_widget.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver/gift_location_widget.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver/image_input_widget.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver/listing_date_widget.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver/location_search_widget.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/widgets/gift_giver/custom_gift_widget.dart';
-import 'package:alokito_new/widgets/gift_giver/family_option_widget.dart';
-import 'package:alokito_new/widgets/gift_giver/location_search_widget.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../controller/gift/gift_add_form_controller.dart';
-import '../../widgets/gift_giver/distance_row_widget.dart';
-import '../../widgets/gift_giver/gift_location_widget.dart';
-import '../../widgets/gift_giver/image_input_widget.dart';
-import '../../widgets/gift_giver/listing_date_widget.dart';
 
 class GiftAddView extends StatelessWidget {
   static const route = 'giftaddview';

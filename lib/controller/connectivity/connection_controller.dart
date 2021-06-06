@@ -1,6 +1,6 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
-import '../../services/connection_service.dart';
+import '../../modules/connection/connection_service.dart';
 
 class ConnectionController extends GetxController {
   ConnectionService connectionService = ConnectionService();

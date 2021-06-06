@@ -7,7 +7,7 @@ import 'package:alokito_new/controller/gift/gift_controller.dart';
 import 'package:alokito_new/models/geo.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
-import 'package:alokito_new/services/gift_giver/base_gift_giver_service.dart';
+import 'package:alokito_new/modules/gift_giver/base_gift_giver_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz_unsafe.dart';
