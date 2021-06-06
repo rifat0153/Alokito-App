@@ -28,6 +28,27 @@ class GiftNotificationService implements BaseGiftNotificationService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  Future<bool> cancelGiftRequestNotification(
+      {required GiftNotification giftNotification}) async {
+    try {
+      var modified = giftNotification.copyWith(
+          giftRequestStatus: GiftRequestStatus.requestCanceledByRequester);
+
+      var notificationForGiver =
+          modified.copyWith(notificationFor: modified.giverUid);
+      var notificationForRequester =
+          modified.copyWith(notificationFor: modified.requesterUid);
+
+      await addGiftNotification(giftNotification: notificationForGiver);
+      await addGiftNotification(giftNotification: notificationForRequester);
+
+      return true;
+    } on FirebaseException catch (e) {
+      print(e.message);
+      return false;
+    }
+  }
+
   @override
   Future<bool> changeRequestStatus(
       {required GiftRequestStatus giftRequestStatusForGiver,

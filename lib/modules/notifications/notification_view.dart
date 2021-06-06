@@ -185,11 +185,11 @@ class GiftCanceledRequesterWidget extends StatelessWidget {
                                 text: '$giftType',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
-                            const TextSpan(text: ' was confrimed by '),
-                            TextSpan(
-                                text: '${giftNotification.giverName}',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold)),
+                            const TextSpan(text: ' was canceled by you'),
+                            // TextSpan(
+                            //     text: '${giftNotification.giverName}',
+                            //     style: const TextStyle(
+                            //         fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),
