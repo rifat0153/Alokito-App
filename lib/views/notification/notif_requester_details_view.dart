@@ -97,7 +97,7 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           child: Text('On the way',
                               style: boldFontStyle.copyWith(fontSize: 30)),
                         ),
-                        const _GuideLines(),
+                        _GuideLines(),
                         const SizedBox(height: 16),
                         MaterialButton(
                           color: GIFT_ADD_FORM_SUBMIT,
@@ -280,10 +280,17 @@ class _GuideLines extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        const TextSpan(text: '* Please see the '),
+                        TextSpan(
+                          text: '* Please see the ',
+                          style: whiteFontStyle.copyWith(
+                              fontSize: notificationFontSize,
+                              color: Colors.black),
+                        ),
                         TextSpan(
                           text: 'Guideline for Food Adding',
-                          style: boldFontStyle.copyWith(color: Colors.red),
+                          style: boldFontStyle.copyWith(
+                              color: Colors.red,
+                              fontSize: notificationFontSize),
                         ),
                       ],
                     ),
@@ -292,10 +299,18 @@ class _GuideLines extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        TextSpan(text: '* Request to follow '),
+                        TextSpan(
+                          text: '* Request to follow ',
+                          style: whiteFontStyle.copyWith(
+                              fontSize: notificationFontSize,
+                              color: Colors.black),
+                        ),
                         TextSpan(
                           text: 'Covid - 19: Sharing & Safety Guidelines',
-                          style: boldFontStyle.copyWith(color: Colors.red),
+                          style: boldFontStyle.copyWith(
+                            color: Colors.red,
+                            fontSize: notificationFontSize,
+                          ),
                         ),
                       ],
                     ),
