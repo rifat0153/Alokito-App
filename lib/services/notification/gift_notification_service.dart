@@ -1,11 +1,24 @@
-import 'package:alokito_new/controller/auth/auth_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
-import 'package:alokito_new/services/notification/base_gift_notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
+abstract class BaseGiftNotificationService {
+  Future<bool> addGiftNotification(
+      {required GiftNotification giftNotification});
+
+  Stream<List<GiftNotification>> streamGiftNotification();
+
+  Future<bool> changeRequestStatus(
+      {required bool decision, required GiftNotification giftNotification});
+
+  Future<void> addNotificationStatus(GiftNotification giftNotification);
+
+  Stream<int> streamGiftNotificationStatus();
+
+  Future<List<GiftNotification>> getGiftNotification();
+}
 
 class GiftNotificationService implements BaseGiftNotificationService {
   GiftNotificationService();
@@ -70,6 +83,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
     }
   }
 
+  @override
   Future<void> addNotificationStatus(GiftNotification giftNotification) async {
     // Updating Notification Status for the user
     var docSnap = await _firestore
@@ -101,10 +115,6 @@ class GiftNotificationService implements BaseGiftNotificationService {
 
   @override
   Stream<int> streamGiftNotificationStatus() {
-    AuthController authController = Get.find();
-
-    // print('IN not stream:  ' + _auth.currentUser?.uid ?? '');
-
     return _firestore
         .collection('notification_status')
         .doc(_auth.currentUser?.uid)
@@ -120,10 +130,6 @@ class GiftNotificationService implements BaseGiftNotificationService {
 
   @override
   Future<List<GiftNotification>> getGiftNotification() async {
-    AuthController authController = Get.find();
-
-    print('IN not future:  ');
-
     return _firestore
         .collection('gift_notifications')
         .where('notificationFor', isEqualTo: _auth.currentUser?.uid ?? '')
@@ -143,10 +149,6 @@ class GiftNotificationService implements BaseGiftNotificationService {
 
   @override
   Stream<List<GiftNotification>> streamGiftNotification() {
-    AuthController authController = Get.find();
-
-    // print('IN not stream:  ' + _auth.currentUser?.uid ?? '');
-
     return _firestore
         .collection('gift_notifications')
         .where('notificationFor', isEqualTo: _auth.currentUser?.uid ?? '')
