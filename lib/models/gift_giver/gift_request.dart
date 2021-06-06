@@ -15,6 +15,7 @@ class GiftReqeust with _$GiftReqeust {
     required String giftId,
     required bool requestConfirmed,
     required bool requestDenied,
+    @Default(false) bool requestCancelByRequester,
     required String giverUid,
     required String giftArea,
     required int giftOfferedByRequester,

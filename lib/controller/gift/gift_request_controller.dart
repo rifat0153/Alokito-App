@@ -1,5 +1,5 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
-import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
+import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/services/gift_request/gift_request_service.dart';

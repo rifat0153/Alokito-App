@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
+import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';

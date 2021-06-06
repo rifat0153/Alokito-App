@@ -4,7 +4,7 @@ import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
-import 'package:alokito_new/services/notification/gift_notification_service.dart';
+import 'package:alokito_new/modules/notifications/gift_notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';

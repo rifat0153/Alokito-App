@@ -35,6 +35,7 @@ class _$GiftReqeustTearOff {
       required String giftId,
       required bool requestConfirmed,
       required bool requestDenied,
+      bool requestCancelByRequester = false,
       required String giverUid,
       required String giftArea,
       required int giftOfferedByRequester,
@@ -63,6 +64,7 @@ class _$GiftReqeustTearOff {
       giftId: giftId,
       requestConfirmed: requestConfirmed,
       requestDenied: requestDenied,
+      requestCancelByRequester: requestCancelByRequester,
       giverUid: giverUid,
       giftArea: giftArea,
       giftOfferedByRequester: giftOfferedByRequester,
@@ -112,6 +114,7 @@ mixin _$GiftReqeust {
             String giftId,
             bool requestConfirmed,
             bool requestDenied,
+            bool requestCancelByRequester,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -147,6 +150,7 @@ mixin _$GiftReqeust {
             String giftId,
             bool requestConfirmed,
             bool requestDenied,
+            bool requestCancelByRequester,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -220,6 +224,7 @@ abstract class _$GiftReqeustCopyWith<$Res> {
       String giftId,
       bool requestConfirmed,
       bool requestDenied,
+      bool requestCancelByRequester,
       String giverUid,
       String giftArea,
       int giftOfferedByRequester,
@@ -264,6 +269,7 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
     Object? giftId = freezed,
     Object? requestConfirmed = freezed,
     Object? requestDenied = freezed,
+    Object? requestCancelByRequester = freezed,
     Object? giverUid = freezed,
     Object? giftArea = freezed,
     Object? giftOfferedByRequester = freezed,
@@ -300,6 +306,10 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
       requestDenied: requestDenied == freezed
           ? _value.requestDenied
           : requestDenied // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requestCancelByRequester: requestCancelByRequester == freezed
+          ? _value.requestCancelByRequester
+          : requestCancelByRequester // ignore: cast_nullable_to_non_nullable
               as bool,
       giverUid: giverUid == freezed
           ? _value.giverUid
@@ -403,6 +413,7 @@ class _$_GiftReqeust implements _GiftReqeust {
       required this.giftId,
       required this.requestConfirmed,
       required this.requestDenied,
+      this.requestCancelByRequester = false,
       required this.giverUid,
       required this.giftArea,
       required this.giftOfferedByRequester,
@@ -438,6 +449,9 @@ class _$_GiftReqeust implements _GiftReqeust {
   final bool requestConfirmed;
   @override
   final bool requestDenied;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool requestCancelByRequester;
   @override
   final String giverUid;
   @override
@@ -484,7 +498,7 @@ class _$_GiftReqeust implements _GiftReqeust {
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, giverUid: $giverUid, giftArea: $giftArea, giftOfferedByRequester: $giftOfferedByRequester, giftReceivedByRequester: $giftReceivedByRequester, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, giftPosition: $giftPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl, createdAt: $createdAt)';
+    return 'GiftReqeust(id: $id, giftId: $giftId, requestConfirmed: $requestConfirmed, requestDenied: $requestDenied, requestCancelByRequester: $requestCancelByRequester, giverUid: $giverUid, giftArea: $giftArea, giftOfferedByRequester: $giftOfferedByRequester, giftReceivedByRequester: $giftReceivedByRequester, requesterUid: $requesterUid, requesterMessage: $requesterMessage, requesterAvgRating: $requesterAvgRating, requesterTotRating: $requesterTotRating, requesterRatingSum: $requesterRatingSum, giftFor: $giftFor, giftType: $giftType, giftImageUrl: $giftImageUrl, giftDetails: $giftDetails, requesterPosition: $requesterPosition, giftPosition: $giftPosition, requesterName: $requesterName, giftGiverImageUrl: $giftGiverImageUrl, requesterImageUrl: $requesterImageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -501,6 +515,10 @@ class _$_GiftReqeust implements _GiftReqeust {
             (identical(other.requestDenied, requestDenied) ||
                 const DeepCollectionEquality()
                     .equals(other.requestDenied, requestDenied)) &&
+            (identical(other.requestCancelByRequester, requestCancelByRequester) ||
+                const DeepCollectionEquality().equals(
+                    other.requestCancelByRequester,
+                    requestCancelByRequester)) &&
             (identical(other.giverUid, giverUid) ||
                 const DeepCollectionEquality()
                     .equals(other.giverUid, giverUid)) &&
@@ -532,19 +550,11 @@ class _$_GiftReqeust implements _GiftReqeust {
                 const DeepCollectionEquality()
                     .equals(other.giftFor, giftFor)) &&
             (identical(other.giftType, giftType) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftType, giftType)) &&
-            (identical(other.giftImageUrl, giftImageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftImageUrl, giftImageUrl)) &&
-            (identical(other.giftDetails, giftDetails) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftDetails, giftDetails)) &&
-            (identical(other.requesterPosition, requesterPosition) ||
-                const DeepCollectionEquality()
-                    .equals(other.requesterPosition, requesterPosition)) &&
-            (identical(other.giftPosition, giftPosition) ||
-                const DeepCollectionEquality().equals(other.giftPosition, giftPosition)) &&
+                const DeepCollectionEquality().equals(other.giftType, giftType)) &&
+            (identical(other.giftImageUrl, giftImageUrl) || const DeepCollectionEquality().equals(other.giftImageUrl, giftImageUrl)) &&
+            (identical(other.giftDetails, giftDetails) || const DeepCollectionEquality().equals(other.giftDetails, giftDetails)) &&
+            (identical(other.requesterPosition, requesterPosition) || const DeepCollectionEquality().equals(other.requesterPosition, requesterPosition)) &&
+            (identical(other.giftPosition, giftPosition) || const DeepCollectionEquality().equals(other.giftPosition, giftPosition)) &&
             (identical(other.requesterName, requesterName) || const DeepCollectionEquality().equals(other.requesterName, requesterName)) &&
             (identical(other.giftGiverImageUrl, giftGiverImageUrl) || const DeepCollectionEquality().equals(other.giftGiverImageUrl, giftGiverImageUrl)) &&
             (identical(other.requesterImageUrl, requesterImageUrl) || const DeepCollectionEquality().equals(other.requesterImageUrl, requesterImageUrl)) &&
@@ -558,6 +568,7 @@ class _$_GiftReqeust implements _GiftReqeust {
       const DeepCollectionEquality().hash(giftId) ^
       const DeepCollectionEquality().hash(requestConfirmed) ^
       const DeepCollectionEquality().hash(requestDenied) ^
+      const DeepCollectionEquality().hash(requestCancelByRequester) ^
       const DeepCollectionEquality().hash(giverUid) ^
       const DeepCollectionEquality().hash(giftArea) ^
       const DeepCollectionEquality().hash(giftOfferedByRequester) ^
@@ -591,6 +602,7 @@ class _$_GiftReqeust implements _GiftReqeust {
             String giftId,
             bool requestConfirmed,
             bool requestDenied,
+            bool requestCancelByRequester,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -623,6 +635,7 @@ class _$_GiftReqeust implements _GiftReqeust {
         giftId,
         requestConfirmed,
         requestDenied,
+        requestCancelByRequester,
         giverUid,
         giftArea,
         giftOfferedByRequester,
@@ -652,6 +665,7 @@ class _$_GiftReqeust implements _GiftReqeust {
             String giftId,
             bool requestConfirmed,
             bool requestDenied,
+            bool requestCancelByRequester,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -686,6 +700,7 @@ class _$_GiftReqeust implements _GiftReqeust {
           giftId,
           requestConfirmed,
           requestDenied,
+          requestCancelByRequester,
           giverUid,
           giftArea,
           giftOfferedByRequester,
@@ -745,6 +760,7 @@ abstract class _GiftReqeust implements GiftReqeust {
       required String giftId,
       required bool requestConfirmed,
       required bool requestDenied,
+      bool requestCancelByRequester,
       required String giverUid,
       required String giftArea,
       required int giftOfferedByRequester,
@@ -776,6 +792,7 @@ abstract class _GiftReqeust implements GiftReqeust {
   String get giftId => throw _privateConstructorUsedError;
   bool get requestConfirmed => throw _privateConstructorUsedError;
   bool get requestDenied => throw _privateConstructorUsedError;
+  bool get requestCancelByRequester => throw _privateConstructorUsedError;
   String get giverUid => throw _privateConstructorUsedError;
   String get giftArea => throw _privateConstructorUsedError;
   int get giftOfferedByRequester => throw _privateConstructorUsedError;
@@ -849,6 +866,7 @@ class _$Loading implements Loading {
             String giftId,
             bool requestConfirmed,
             bool requestDenied,
+            bool requestCancelByRequester,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -887,6 +905,7 @@ class _$Loading implements Loading {
             String giftId,
             bool requestConfirmed,
             bool requestDenied,
+            bool requestCancelByRequester,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -1027,6 +1046,7 @@ class _$Error implements Error {
             String giftId,
             bool requestConfirmed,
             bool requestDenied,
+            bool requestCancelByRequester,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,
@@ -1065,6 +1085,7 @@ class _$Error implements Error {
             String giftId,
             bool requestConfirmed,
             bool requestDenied,
+            bool requestCancelByRequester,
             String giverUid,
             String giftArea,
             int giftOfferedByRequester,

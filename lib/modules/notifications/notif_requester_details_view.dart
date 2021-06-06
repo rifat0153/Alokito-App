@@ -1,15 +1,15 @@
-import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
+import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
-import 'package:alokito_new/views/notification/notification_view.dart';
-import 'package:alokito_new/views/notification/widgets/location_widget.dart';
-import 'package:alokito_new/views/notification/widgets/notif_map_widget.dart';
-import 'package:alokito_new/views/notification/widgets/requester_gift_records_widget.dart';
-import 'package:alokito_new/views/notification/widgets/user_detail_widget.dart';
-import 'package:alokito_new/views/notification/widgets/user_location_widget.dart';
+import 'package:alokito_new/modules/notifications/notification_view.dart';
+import './widgets/location_widget.dart';
+import './widgets/notif_map_widget.dart';
+import './widgets/requester_gift_records_widget.dart';
+import './widgets/user_detail_widget.dart';
+import './widgets/user_location_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/user_joining_distance_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -100,6 +100,8 @@ class NotifRequesterDetailsView extends StatelessWidget {
                         _GuideLines(),
                         const SizedBox(height: 16),
                         MaterialButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
                           color: GIFT_ADD_FORM_SUBMIT,
                           onPressed: () {},
                           child: Text('Cancel Request',
@@ -295,7 +297,6 @@ class _GuideLines extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text('data'),
                   Text.rich(
                     TextSpan(
                       children: [

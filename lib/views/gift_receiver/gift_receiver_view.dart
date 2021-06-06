@@ -1,7 +1,7 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
-import 'package:alokito_new/controller/gift/gift_notification_controller.dart';
+import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/controller/gift/gift_request_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
