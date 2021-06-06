@@ -27,13 +27,15 @@ class NotifRequesterDetailsView extends StatelessWidget {
     GiftNotification giftNotification =
         controller.giftNotificationList[controller.notificationIndex.value];
 
+    var giftType = convertGiftType(giftNotification.giftType);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
-          title: Text(
+          title: const Text(
             'Notification',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
@@ -57,46 +59,64 @@ class NotifRequesterDetailsView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Offered By',
-                          style: boldFontStyle,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        width: Get.width - 40,
+                        color: GIFT_ADD_FORM_COLOR,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Gift'),
+                            const SizedBox(height: 8),
+                            Text(
+                              giftType,
+                              style: boldFontStyle.copyWith(fontSize: 25),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Offered By',
+                              style: boldFontStyle,
+                            ),
+                            const SizedBox(height: 8),
+                            UserDetailWidget(
+                              imageUrl: giftNotification.giverImageUrl,
+                              userJoinedAt: giftNotification.giverJoinedAt,
+                              userName: giftNotification.giverName,
+                            ),
+                            UserLocationWidget(
+                              giftNotification: giftNotification,
+                              rating: giftNotification.giverAvgRating.toInt(),
+                              lat: giftNotification
+                                  .giverPosition.geopoint.latitude,
+                              lng: giftNotification
+                                  .giverPosition.geopoint.longitude,
+                            ),
+                            SizedBox(height: 16),
+                            Text(
+                              'Requested By',
+                              style: boldFontStyle,
+                            ),
+                            const SizedBox(height: 8),
+                            UserDetailWidget(
+                              imageUrl: giftNotification.requesterImageUrl,
+                              userJoinedAt: giftNotification.requesterJoinedAt,
+                              userName: giftNotification.requesterName,
+                            ),
+                            UserLocationWidget(
+                              giftNotification: giftNotification,
+                              rating:
+                                  giftNotification.requesterAvgRating.toInt(),
+                              lat: giftNotification
+                                  .requesterPosition.geopoint.latitude,
+                              lng: giftNotification
+                                  .requesterPosition.geopoint.longitude,
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 8),
-                        UserDetailWidget(
-                          imageUrl: giftNotification.giverImageUrl,
-                          userJoinedAt: giftNotification.giverJoinedAt,
-                          userName: giftNotification.giverName,
-                        ),
-                        UserLocationWidget(
-                          giftNotification: giftNotification,
-                          rating: giftNotification.giverAvgRating.toInt(),
-                          lat: giftNotification.giverPosition.geopoint.latitude,
-                          lng:
-                              giftNotification.giverPosition.geopoint.longitude,
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Requested By',
-                          style: boldFontStyle,
-                        ),
-                        const SizedBox(height: 8),
-                        UserDetailWidget(
-                          imageUrl: giftNotification.requesterImageUrl,
-                          userJoinedAt: giftNotification.requesterJoinedAt,
-                          userName: giftNotification.requesterName,
-                        ),
-                        UserLocationWidget(
-                          giftNotification: giftNotification,
-                          rating: giftNotification.requesterAvgRating.toInt(),
-                          lat: giftNotification
-                              .requesterPosition.geopoint.latitude,
-                          lng: giftNotification
-                              .requesterPosition.geopoint.longitude,
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -186,8 +206,7 @@ class StyledContainer extends StatelessWidget {
       child: Container(
         width: Get.width,
         decoration: BoxDecoration(
-            color: GIFT_ADD_FORM_COLOR,
-            borderRadius: BorderRadius.circular(10)),
+            color: GIFT_ADD_FORM_COLOR, borderRadius: BorderRadius.circular(0)),
         child: child,
       ),
     );
