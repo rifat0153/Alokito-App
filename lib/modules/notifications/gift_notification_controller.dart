@@ -50,10 +50,12 @@ class GiftNotificationController extends GetxController {
     await giftNotificationService.resetNotificationStatus();
   }
 
-  Future<bool> addNotificationForGiftRequest(
-      {required GiftGiver giftGiver,
-      required String message,
-      required String requesterImageUrl}) async {
+  Future<bool> addNotificationForGiftRequest({
+    required GiftGiver giftGiver,
+    required String message,
+    required String requesterImageUrl,
+    bool giftCanceledByRequester = false,
+  }) async {
     AuthController authController = Get.find<AuthController>();
 
     GiftNotification giftNotification = GiftNotification(
@@ -62,7 +64,7 @@ class GiftNotificationController extends GetxController {
       giftId: giftGiver.id ?? '',
       notificationFor: giftGiver.uid,
       giftConfirmed: false,
-      giftDenied: false,
+      giftDenied: giftCanceledByRequester,
       giftPosition: giftGiver.position,
       notificationForList: [
         giftGiver.uid,

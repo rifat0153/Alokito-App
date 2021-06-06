@@ -1,16 +1,16 @@
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
+import 'package:alokito_new/modules/gift_request/widgets/notification_icon_widget.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
-import 'package:alokito_new/views/gift_receiver/widgets/notification_icon_widget.dart';
+import 'package:alokito_new/modules/gift_add/gift_add_view.dart';
 import 'package:alokito_new/widgets/menu/my_drawer_widget.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
-import '../gift_giver/my_gift_view.dart';
+import 'my_gift_view.dart';
 
 class GiftGiverView extends StatelessWidget {
   static const route = '/giftgivermainmenu';

@@ -1,5 +1,5 @@
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
-import 'package:alokito_new/controller/gift/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/shared/config.dart';

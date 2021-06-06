@@ -2,14 +2,14 @@ import 'dart:ui';
 
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
-import 'package:alokito_new/controller/gift/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/views/gift_receiver/widgets/gift_detail_map_widget.dart';
-import 'package:alokito_new/views/gift_receiver/widgets/message_popup_widget.dart';
-import 'package:alokito_new/views/gift_receiver/widgets/request_delete_widget.dart';
+import './widgets/gift_detail_map_widget.dart';
+import './widgets/message_popup_widget.dart';
+import './widgets/request_delete_widget.dart';
 import 'package:alokito_new/widgets/gift_giver/user_joining_distance_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

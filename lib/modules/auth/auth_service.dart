@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:alokito_new/models/gift_giver/my_position.dart';
-import 'package:alokito_new/services/auth/base_auth_service.dart';
+import 'package:alokito_new/modules/auth/base_auth_service.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';

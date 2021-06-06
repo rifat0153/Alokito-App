@@ -3,18 +3,19 @@
 import 'package:alokito_new/bindings/auth_binding.dart';
 import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/modules/auth/auth_wrapper.dart';
+import 'package:alokito_new/modules/map/geo_map_view.dart';
+import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
-import 'package:alokito_new/controller/gift/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
 import 'package:alokito_new/controller/map/geo_controller.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
-import 'package:alokito_new/views/auth/auth_wrapper.dart';
-import 'package:alokito_new/views/gift_giver/gift_add_view.dart';
-import 'package:alokito_new/views/gift_giver/gift_giver_view.dart';
-import 'package:alokito_new/views/gift_receiver/gift_details_view.dart';
-import 'package:alokito_new/views/gift_receiver/gift_offer_view.dart';
-import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
-import 'package:alokito_new/views/map/geo_map_view.dart';
-import 'package:alokito_new/views/map/my_map_view.dart';
+import 'package:alokito_new/modules/gift_add/gift_add_view.dart';
+import 'package:alokito_new/modules/gift_add/gift_giver_view.dart';
+import 'package:alokito_new/modules/gift_request/gift_details_view.dart';
+import 'package:alokito_new/modules/gift_request/gift_offer_view.dart';
+import 'package:alokito_new/modules/gift_request/gift_receiver_view.dart';
+
 import 'package:alokito_new/modules/notifications/notification_details_view.dart';
 import 'package:alokito_new/modules/notifications/notification_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,7 +25,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'controller/auth/auth_controller.dart';
-import './views/gift_giver/my_gift_view.dart';
+import 'modules/gift_add/my_gift_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

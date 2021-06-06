@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import '../../models/user/local_user.dart';
-import '../../services/auth/auth_service.dart';
+import '../../modules/auth/auth_service.dart';
 
 class AuthController extends GetxController {
   Rx<AuthService> authService = AuthService().obs;

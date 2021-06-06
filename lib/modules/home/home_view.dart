@@ -1,11 +1,11 @@
 import 'package:alokito_new/controller/auth/auth_controller.dart';
 import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
+import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
+import 'package:alokito_new/modules/home/widgets/user_navbar.dart';
 import 'package:alokito_new/services/gift_giver/gift_giver_service.dart';
-import 'package:alokito_new/views/gift_giver/gift_giver_view.dart';
-import 'package:alokito_new/views/gift_receiver/gift_receiver_view.dart';
-import 'package:alokito_new/views/home/widgets/user_email_widget.dart';
-import 'package:alokito_new/views/home/widgets/user_name_widget.dart';
-import 'package:alokito_new/views/home/widgets/user_navbar.dart';
+import 'package:alokito_new/modules/gift_add/gift_giver_view.dart';
+import 'package:alokito_new/modules/gift_request/gift_receiver_view.dart';
 import 'package:alokito_new/widgets/menu/my_drawer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
