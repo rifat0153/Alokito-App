@@ -102,7 +102,9 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                           color: GIFT_ADD_FORM_SUBMIT,
-                          onPressed: () {},
+                          onPressed: () {
+                            print('Gift Request Canceled ');
+                          },
                           child: Text('Cancel Request',
                               style: whiteFontStyle.copyWith(
                                   fontWeight: FontWeight.bold)),

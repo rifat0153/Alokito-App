@@ -15,6 +15,13 @@ enum GiftNotificationType {
   error
 }
 
+enum GiftRequestStatus {
+  requestPedning,
+  requestConfirmed,
+  requestCanceledByGiver,
+  requestCanceledByRequester,
+}
+
 String convertGiftNotificationTypeToString(
     {required GiftNotificationType giftNotificationType}) {
   switch (giftNotificationType) {

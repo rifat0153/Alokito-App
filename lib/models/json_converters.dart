@@ -12,6 +12,37 @@ MyPosition myPositionFromJson(Map<String, dynamic> json) =>
 Timestamp timestampToJson(Timestamp timestamp) => timestamp;
 Timestamp timestampFromJson(Timestamp json) => json;
 
+int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
+  switch (giftRequestStatus) {
+    case GiftRequestStatus.requestPedning:
+      return 0;
+    case GiftRequestStatus.requestConfirmed:
+      return 1;
+    case GiftRequestStatus.requestCanceledByGiver:
+      return 2;
+    case GiftRequestStatus.requestCanceledByRequester:
+      return 3;
+    default:
+      return -1;
+  }
+}
+
+GiftRequestStatus giftRequestStatusFromJson(int json) {
+  switch (json) {
+    case 0:
+      return GiftRequestStatus.requestPedning;
+    case 1:
+      return GiftRequestStatus.requestConfirmed;
+    case 2:
+      return GiftRequestStatus.requestCanceledByGiver;
+    case 3:
+      return GiftRequestStatus.requestCanceledByRequester;
+
+    default:
+      return GiftRequestStatus.requestPedning;
+  }
+}
+
 int giftNotificationTypeToJson(GiftNotificationType giftNotificationType) {
   switch (giftNotificationType) {
     case GiftNotificationType.packageRequested:
