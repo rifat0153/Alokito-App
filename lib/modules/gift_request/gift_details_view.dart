@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:alokito_new/controller/auth/auth_controller.dart';
-import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver/user_joining_distance_widget.dart';
 import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';

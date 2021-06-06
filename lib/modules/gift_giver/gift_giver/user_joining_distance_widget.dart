@@ -1,4 +1,4 @@
-import 'package:alokito_new/controller/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';

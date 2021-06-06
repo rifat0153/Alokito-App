@@ -1,4 +1,4 @@
-import 'package:alokito_new/controller/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/auth/login_view.dart';
 import 'package:alokito_new/modules/auth/role_wrapper.dart';
 import 'package:flutter/material.dart';

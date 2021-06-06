@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controller/gift/gift_controller.dart';
+import 'gift_controller.dart';
 
 class MyGiftView extends StatelessWidget {
   static const route = 'mygiftview';

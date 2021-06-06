@@ -1,4 +1,4 @@
-import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';

@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:alokito_new/controller/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/connection/connection_view.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/modules/notifications/notification_view.dart';

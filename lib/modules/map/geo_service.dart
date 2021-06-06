@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../../controller/map/geo_controller.dart';
+import 'geo_controller.dart';
 import '../../models/geo.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

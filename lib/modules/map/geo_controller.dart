@@ -1,5 +1,5 @@
 import '../../models/geo.dart';
-import '../../modules/map/geo_service.dart';
+import 'geo_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';

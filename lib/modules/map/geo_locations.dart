@@ -1,4 +1,4 @@
-import '../../controller/map/geo_controller.dart';
+import 'geo_controller.dart';
 import '../../models/geo.dart';
 import '../home/widgets/user_navbar.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
+import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

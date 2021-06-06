@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controller/auth/auth_controller.dart';
+import 'auth_controller.dart';
 import '../home/home_view.dart';
 
 class R extends StatelessWidget {

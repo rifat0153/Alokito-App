@@ -1,5 +1,5 @@
-import 'package:alokito_new/controller/auth/auth_controller.dart';
-import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
 import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';

@@ -1,4 +1,4 @@
-import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import '../../models/user/local_user.dart';
-import '../../modules/auth/auth_service.dart';
+import 'auth_service.dart';
 
 class AuthController extends GetxController {
   Rx<AuthService> authService = AuthService().obs;

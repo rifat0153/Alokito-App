@@ -1,8 +1,7 @@
 // @dart=2.9
 // above line is used to disabel sound null safety
-import 'package:alokito_new/bindings/auth_binding.dart';
-import 'package:alokito_new/controller/gift/gift_add_form_controller.dart';
-import 'package:alokito_new/controller/gift/gift_controller.dart';
+import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
+import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
@@ -10,7 +9,7 @@ import 'package:alokito_new/modules/map/geo_map_view.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
-import 'package:alokito_new/controller/map/geo_controller.dart';
+import 'package:alokito_new/modules/map/geo_controller.dart';
 import 'package:alokito_new/modules/gift_request/gift_offer_view.dart';
 import 'package:alokito_new/modules/gift_request/gift_receiver_view.dart';
 
@@ -22,7 +21,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'controller/auth/auth_controller.dart';
+import 'modules/auth/auth_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,7 +55,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: AuthControllerBinding(),
       // darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
