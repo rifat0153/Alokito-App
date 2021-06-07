@@ -25,7 +25,7 @@ class NotifRequesterDetailsView extends StatelessWidget {
     GiftNotification giftNotification =
         controller.giftNotificationList[controller.notificationIndex.value];
 
-    GiftRequestController giftRequestController = Get.find();
+    GiftRequestController giftRequestController = Get.put(GiftRequestController());
 
     var giftType = convertGiftType(giftNotification.giftType);
 
@@ -106,8 +106,8 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           color: GIFT_ADD_FORM_SUBMIT,
                           onPressed: () {
                             print('Gift Request Canceled ');
-                            // controller.cancelGiftRequestByRequester(
-                            //     giftNotification: giftNotification);
+                            controller.cancelGiftRequestByRequester(
+                                giftNotification: giftNotification);
 
                             giftRequestController.cancelGiftRequestByRequester(
                                 requesterId: giftNotification.requesterUid,
