@@ -73,7 +73,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
                   createdAt: Timestamp.now());
 
       var giftNotifRequester = giftNotifGiver.copyWith(
-          notificationFor: giftNotifGiver.requesterUid,
+          notificationFor: giftNotifGiver.giverUid,
           giftRequestStatus: giftRequestStatusForRequester);
 
       await addGiftNotification(giftNotification: giftNotifGiver);

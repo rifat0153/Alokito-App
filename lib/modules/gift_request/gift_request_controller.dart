@@ -17,7 +17,7 @@ class GiftRequestController extends GetxController {
   Rx<GiftReqeust> giftRequest = GiftReqeust.loading().obs;
 
   void setGiftRequest({required String id}) async {
-    giftRequest.value = await giftRequestService.getGiftRequestStatus(id: id);
+    giftRequest.value = await giftRequestService.getGiftRequest(id: id);
   }
 
   //Delete giftRequest

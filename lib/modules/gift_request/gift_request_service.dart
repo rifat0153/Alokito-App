@@ -21,7 +21,10 @@ abstract class BaseGiftRequestService {
 
   Future<bool> addGiftRequest({required GiftGiver giftGiver});
 
-  Future<GiftReqeust> getGiftRequestStatus({required String id});
+  Future<GiftReqeust> getGiftRequest({required String id});
+
+  Future<void> updateGiftRequestStatus(
+      {required String id, required GiftRequestStatus giftRequestStatus});
 
   Future<bool> changeRequestStatus(
       {required GiftRequestStatus giftRequestStatus,
@@ -34,7 +37,17 @@ class GiftRequestService implements BaseGiftRequestService {
   final _auth = FirebaseAuth.instance;
 
   @override
-  Future<GiftReqeust> getGiftRequestStatus({required String id}) async {
+  Future<void> updateGiftRequestStatus(
+      {required String id,
+      required GiftRequestStatus giftRequestStatus}) async {
+    await _firestore
+        .collection('gift_requests')
+        .doc(id)
+        .update({'giftRequestStatus': giftRequestStatus});
+  }
+
+  @override
+  Future<GiftReqeust> getGiftRequest({required String id}) async {
     var snap = await _firestore.collection('gift_requests').doc(id).get();
     var giftRequest = GiftReqeust.fromJson(snap.data() ?? {});
 
