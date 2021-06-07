@@ -54,8 +54,9 @@ class GiftRequestService implements BaseGiftRequestService {
       if (doc.exists) {
         GiftReqeust giftReqeust = GiftReqeust.fromJson(doc.data() ?? {});
 
-        GiftReqeust giftReqeust1 =
-            giftReqeust.copyWith(giftRequestStatus: giftRequestStatus);
+        GiftReqeust giftReqeust1 = giftReqeust.maybeMap(
+            (value) => value.copyWith(giftRequestStatus: giftRequestStatus),
+            orElse: () => giftReqeust);
 
         await _firestore
             .collection('gift_requests')

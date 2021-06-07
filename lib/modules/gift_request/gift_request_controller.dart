@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
@@ -13,8 +14,13 @@ class GiftRequestController extends GetxController {
   RxString requesterMessage = RxString('');
   RxBool showDialog = RxBool(false);
   RxBool requestExists = RxBool(false);
+  Rx<GiftReqeust> giftRequest = GiftReqeust.loading().obs;
 
-  //Delete giftRequest\
+  void setGiftRequest({required String id}) async {
+    giftRequest.value = await giftRequestService.getGiftRequestStatus(id: id);
+  }
+
+  //Delete giftRequest
   Future<bool> deleleGiftRequest({required GiftGiver giftGiver}) async {
     var result =
         await giftRequestService.deleteGiftRequest(giftGiver: giftGiver);

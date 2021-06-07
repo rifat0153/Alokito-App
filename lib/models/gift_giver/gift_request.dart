@@ -9,7 +9,11 @@ part 'gift_request.freezed.dart';
 part 'gift_request.g.dart';
 
 @freezed
-class GiftReqeust with _$GiftReqeust {
+abstract class GiftReqeust with _$GiftReqeust {
+  const GiftReqeust._();
+
+  factory GiftReqeust.loading() = Loading;
+
   const factory GiftReqeust({
     String? id,
     required String giftId,

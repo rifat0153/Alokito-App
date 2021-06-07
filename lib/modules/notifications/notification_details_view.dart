@@ -94,42 +94,22 @@ class NotificationDetailsView extends StatelessWidget {
   }
 }
 
-class DecistionWidget extends StatefulWidget {
+class DecistionWidget extends StatelessWidget {
   DecistionWidget({required this.giftNotification});
   final GiftNotification giftNotification;
-
-  @override
-  _DecistionWidgetState createState() => _DecistionWidgetState();
-}
-
-class _DecistionWidgetState extends State<DecistionWidget> {
   final GiftNotificationController giftNotificationController = Get.find();
-
   final GiftRequestController giftRequestController =
       Get.put(GiftRequestController());
-
-  late GiftReqeust giftReqeust;
-
-  Future<void> getGiftRequestStatus() async {
-    giftReqeust = await giftRequestController.giftRequestService
-        .getGiftRequestStatus(
-            id: '${widget.giftNotification.requesterUid}.${widget.giftNotification.giftId}');
-  }
-
-  @override
-  void initState() {
-    getGiftRequestStatus();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     var index = giftNotificationController.giftNotificationList
-        .indexOf(widget.giftNotification);
+        .indexOf(giftNotification);
 
-    getGiftRequestStatus();
+    giftRequestController.setGiftRequest(
+        id: '${giftNotification.requesterUid}.${giftNotification.giftId}');
 
-    print('IN details view gift status is: $giftReqeust');
+    print(giftRequestController.giftRequest.value);
 
     return Obx(
       () => giftNotificationController
@@ -165,14 +145,14 @@ class _DecistionWidgetState extends State<DecistionWidget> {
                         .changeRequestStatus(
                             giftRequestStatus:
                                 GiftRequestStatus.requestConfirmed,
-                            giftNotification: widget.giftNotification);
+                            giftNotification: giftNotification);
                     giftNotificationController.giftNotificationService
                         .changeRequestStatus(
                             giftRequestStatusForGiver:
                                 GiftRequestStatus.requestConfirmed,
                             giftRequestStatusForRequester:
                                 GiftRequestStatus.requestConfirmed,
-                            giftNotification: widget.giftNotification);
+                            giftNotification: giftNotification);
                   },
                   child: Text(
                     'Accept for Confirmation',

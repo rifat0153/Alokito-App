@@ -6,6 +6,13 @@ part of 'gift_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$Loading _$_$LoadingFromJson(Map<String, dynamic> json) {
+  return _$Loading();
+}
+
+Map<String, dynamic> _$_$LoadingToJson(_$Loading instance) =>
+    <String, dynamic>{};
+
 _$_GiftReqeust _$_$_GiftReqeustFromJson(Map<String, dynamic> json) {
   return _$_GiftReqeust(
     id: json['id'] as String?,

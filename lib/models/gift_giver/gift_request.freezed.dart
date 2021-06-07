@@ -13,12 +13,24 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 GiftReqeust _$GiftReqeustFromJson(Map<String, dynamic> json) {
-  return _GiftReqeust.fromJson(json);
+  switch (json['runtimeType'] as String) {
+    case 'loading':
+      return Loading.fromJson(json);
+    case 'default':
+      return _GiftReqeust.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
 }
 
 /// @nodoc
 class _$GiftReqeustTearOff {
   const _$GiftReqeustTearOff();
+
+  Loading loading() {
+    return Loading();
+  }
 
   _GiftReqeust call(
       {String? id,
@@ -84,38 +96,89 @@ const $GiftReqeust = _$GiftReqeustTearOff();
 
 /// @nodoc
 mixin _$GiftReqeust {
-  String? get id => throw _privateConstructorUsedError;
-  String get giftId => throw _privateConstructorUsedError;
-  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
-  String get giverUid => throw _privateConstructorUsedError;
-  String get giftArea => throw _privateConstructorUsedError;
-  int get giftOfferedByRequester => throw _privateConstructorUsedError;
-  int get giftReceivedByRequester => throw _privateConstructorUsedError;
-  String get requesterUid => throw _privateConstructorUsedError;
-  String get requesterMessage => throw _privateConstructorUsedError;
-  double get requesterAvgRating => throw _privateConstructorUsedError;
-  double get requesterTotRating => throw _privateConstructorUsedError;
-  double get requesterRatingSum => throw _privateConstructorUsedError;
-  int get giftFor => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-  GiftType get giftType => throw _privateConstructorUsedError;
-  String get giftImageUrl => throw _privateConstructorUsedError;
-  String get giftDetails => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get requesterPosition => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get giftPosition => throw _privateConstructorUsedError;
-  String get requesterName => throw _privateConstructorUsedError;
-  String get giftGiverImageUrl => throw _privateConstructorUsedError;
-  String get requesterImageUrl => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get createdAt => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $GiftReqeustCopyWith<GiftReqeust> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String giftId,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
+            String giverUid,
+            String giftArea,
+            int giftOfferedByRequester,
+            int giftReceivedByRequester,
+            String requesterUid,
+            String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
+            int giftFor,
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
+                GiftType giftType,
+            String giftImageUrl,
+            String giftDetails,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
+            String requesterName,
+            String giftGiverImageUrl,
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)
+        $default, {
+    required TResult Function() loading,
+  }) =>
       throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String giftId,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
+            String giverUid,
+            String giftArea,
+            int giftOfferedByRequester,
+            int giftReceivedByRequester,
+            String requesterUid,
+            String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
+            int giftFor,
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
+                GiftType giftType,
+            String giftImageUrl,
+            String giftDetails,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
+            String requesterName,
+            String giftGiverImageUrl,
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)?
+        $default, {
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GiftReqeust value) $default, {
+    required TResult Function(Loading value) loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GiftReqeust value)? $default, {
+    TResult Function(Loading value)? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -123,37 +186,6 @@ abstract class $GiftReqeustCopyWith<$Res> {
   factory $GiftReqeustCopyWith(
           GiftReqeust value, $Res Function(GiftReqeust) then) =
       _$GiftReqeustCopyWithImpl<$Res>;
-  $Res call(
-      {String? id,
-      String giftId,
-      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-          GiftRequestStatus giftRequestStatus,
-      String giverUid,
-      String giftArea,
-      int giftOfferedByRequester,
-      int giftReceivedByRequester,
-      String requesterUid,
-      String requesterMessage,
-      double requesterAvgRating,
-      double requesterTotRating,
-      double requesterRatingSum,
-      int giftFor,
-      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-          GiftType giftType,
-      String giftImageUrl,
-      String giftDetails,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition requesterPosition,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition giftPosition,
-      String requesterName,
-      String giftGiverImageUrl,
-      String requesterImageUrl,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp createdAt});
-
-  $MyPositionCopyWith<$Res> get requesterPosition;
-  $MyPositionCopyWith<$Res> get giftPosition;
 }
 
 /// @nodoc
@@ -163,146 +195,163 @@ class _$GiftReqeustCopyWithImpl<$Res> implements $GiftReqeustCopyWith<$Res> {
   final GiftReqeust _value;
   // ignore: unused_field
   final $Res Function(GiftReqeust) _then;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? giftId = freezed,
-    Object? giftRequestStatus = freezed,
-    Object? giverUid = freezed,
-    Object? giftArea = freezed,
-    Object? giftOfferedByRequester = freezed,
-    Object? giftReceivedByRequester = freezed,
-    Object? requesterUid = freezed,
-    Object? requesterMessage = freezed,
-    Object? requesterAvgRating = freezed,
-    Object? requesterTotRating = freezed,
-    Object? requesterRatingSum = freezed,
-    Object? giftFor = freezed,
-    Object? giftType = freezed,
-    Object? giftImageUrl = freezed,
-    Object? giftDetails = freezed,
-    Object? requesterPosition = freezed,
-    Object? giftPosition = freezed,
-    Object? requesterName = freezed,
-    Object? giftGiverImageUrl = freezed,
-    Object? requesterImageUrl = freezed,
-    Object? createdAt = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      giftId: giftId == freezed
-          ? _value.giftId
-          : giftId // ignore: cast_nullable_to_non_nullable
-              as String,
-      giftRequestStatus: giftRequestStatus == freezed
-          ? _value.giftRequestStatus
-          : giftRequestStatus // ignore: cast_nullable_to_non_nullable
-              as GiftRequestStatus,
-      giverUid: giverUid == freezed
-          ? _value.giverUid
-          : giverUid // ignore: cast_nullable_to_non_nullable
-              as String,
-      giftArea: giftArea == freezed
-          ? _value.giftArea
-          : giftArea // ignore: cast_nullable_to_non_nullable
-              as String,
-      giftOfferedByRequester: giftOfferedByRequester == freezed
-          ? _value.giftOfferedByRequester
-          : giftOfferedByRequester // ignore: cast_nullable_to_non_nullable
-              as int,
-      giftReceivedByRequester: giftReceivedByRequester == freezed
-          ? _value.giftReceivedByRequester
-          : giftReceivedByRequester // ignore: cast_nullable_to_non_nullable
-              as int,
-      requesterUid: requesterUid == freezed
-          ? _value.requesterUid
-          : requesterUid // ignore: cast_nullable_to_non_nullable
-              as String,
-      requesterMessage: requesterMessage == freezed
-          ? _value.requesterMessage
-          : requesterMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      requesterAvgRating: requesterAvgRating == freezed
-          ? _value.requesterAvgRating
-          : requesterAvgRating // ignore: cast_nullable_to_non_nullable
-              as double,
-      requesterTotRating: requesterTotRating == freezed
-          ? _value.requesterTotRating
-          : requesterTotRating // ignore: cast_nullable_to_non_nullable
-              as double,
-      requesterRatingSum: requesterRatingSum == freezed
-          ? _value.requesterRatingSum
-          : requesterRatingSum // ignore: cast_nullable_to_non_nullable
-              as double,
-      giftFor: giftFor == freezed
-          ? _value.giftFor
-          : giftFor // ignore: cast_nullable_to_non_nullable
-              as int,
-      giftType: giftType == freezed
-          ? _value.giftType
-          : giftType // ignore: cast_nullable_to_non_nullable
-              as GiftType,
-      giftImageUrl: giftImageUrl == freezed
-          ? _value.giftImageUrl
-          : giftImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      giftDetails: giftDetails == freezed
-          ? _value.giftDetails
-          : giftDetails // ignore: cast_nullable_to_non_nullable
-              as String,
-      requesterPosition: requesterPosition == freezed
-          ? _value.requesterPosition
-          : requesterPosition // ignore: cast_nullable_to_non_nullable
-              as MyPosition,
-      giftPosition: giftPosition == freezed
-          ? _value.giftPosition
-          : giftPosition // ignore: cast_nullable_to_non_nullable
-              as MyPosition,
-      requesterName: requesterName == freezed
-          ? _value.requesterName
-          : requesterName // ignore: cast_nullable_to_non_nullable
-              as String,
-      giftGiverImageUrl: giftGiverImageUrl == freezed
-          ? _value.giftGiverImageUrl
-          : giftGiverImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      requesterImageUrl: requesterImageUrl == freezed
-          ? _value.requesterImageUrl
-          : requesterImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
-    ));
-  }
-
-  @override
-  $MyPositionCopyWith<$Res> get requesterPosition {
-    return $MyPositionCopyWith<$Res>(_value.requesterPosition, (value) {
-      return _then(_value.copyWith(requesterPosition: value));
-    });
-  }
-
-  @override
-  $MyPositionCopyWith<$Res> get giftPosition {
-    return $MyPositionCopyWith<$Res>(_value.giftPosition, (value) {
-      return _then(_value.copyWith(giftPosition: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$GiftReqeustCopyWith<$Res>
-    implements $GiftReqeustCopyWith<$Res> {
+abstract class $LoadingCopyWith<$Res> {
+  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
+      _$LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoadingCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
+    implements $LoadingCopyWith<$Res> {
+  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
+      : super(_value, (v) => _then(v as Loading));
+
+  @override
+  Loading get _value => super._value as Loading;
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$Loading extends Loading {
+  _$Loading() : super._();
+
+  factory _$Loading.fromJson(Map<String, dynamic> json) =>
+      _$_$LoadingFromJson(json);
+
+  @override
+  String toString() {
+    return 'GiftReqeust.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String giftId,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
+            String giverUid,
+            String giftArea,
+            int giftOfferedByRequester,
+            int giftReceivedByRequester,
+            String requesterUid,
+            String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
+            int giftFor,
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
+                GiftType giftType,
+            String giftImageUrl,
+            String giftDetails,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
+            String requesterName,
+            String giftGiverImageUrl,
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)
+        $default, {
+    required TResult Function() loading,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String giftId,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
+            String giverUid,
+            String giftArea,
+            int giftOfferedByRequester,
+            int giftReceivedByRequester,
+            String requesterUid,
+            String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
+            int giftFor,
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
+                GiftType giftType,
+            String giftImageUrl,
+            String giftDetails,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
+            String requesterName,
+            String giftGiverImageUrl,
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)?
+        $default, {
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GiftReqeust value) $default, {
+    required TResult Function(Loading value) loading,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GiftReqeust value)? $default, {
+    TResult Function(Loading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LoadingToJson(this)..['runtimeType'] = 'loading';
+  }
+}
+
+abstract class Loading extends GiftReqeust {
+  factory Loading() = _$Loading;
+  Loading._() : super._();
+
+  factory Loading.fromJson(Map<String, dynamic> json) = _$Loading.fromJson;
+}
+
+/// @nodoc
+abstract class _$GiftReqeustCopyWith<$Res> {
   factory _$GiftReqeustCopyWith(
           _GiftReqeust value, $Res Function(_GiftReqeust) then) =
       __$GiftReqeustCopyWithImpl<$Res>;
-  @override
   $Res call(
       {String? id,
       String giftId,
@@ -332,9 +381,7 @@ abstract class _$GiftReqeustCopyWith<$Res>
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp createdAt});
 
-  @override
   $MyPositionCopyWith<$Res> get requesterPosition;
-  @override
   $MyPositionCopyWith<$Res> get giftPosition;
 }
 
@@ -464,11 +511,25 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
               as Timestamp,
     ));
   }
+
+  @override
+  $MyPositionCopyWith<$Res> get requesterPosition {
+    return $MyPositionCopyWith<$Res>(_value.requesterPosition, (value) {
+      return _then(_value.copyWith(requesterPosition: value));
+    });
+  }
+
+  @override
+  $MyPositionCopyWith<$Res> get giftPosition {
+    return $MyPositionCopyWith<$Res>(_value.giftPosition, (value) {
+      return _then(_value.copyWith(giftPosition: value));
+    });
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_GiftReqeust implements _GiftReqeust {
+class _$_GiftReqeust extends _GiftReqeust {
   const _$_GiftReqeust(
       {this.id,
       required this.giftId,
@@ -496,7 +557,8 @@ class _$_GiftReqeust implements _GiftReqeust {
       required this.giftGiverImageUrl,
       required this.requesterImageUrl,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required this.createdAt});
+          required this.createdAt})
+      : super._();
 
   factory _$_GiftReqeust.fromJson(Map<String, dynamic> json) =>
       _$_$_GiftReqeustFromJson(json);
@@ -651,12 +713,156 @@ class _$_GiftReqeust implements _GiftReqeust {
       __$GiftReqeustCopyWithImpl<_GiftReqeust>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String giftId,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
+            String giverUid,
+            String giftArea,
+            int giftOfferedByRequester,
+            int giftReceivedByRequester,
+            String requesterUid,
+            String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
+            int giftFor,
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
+                GiftType giftType,
+            String giftImageUrl,
+            String giftDetails,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
+            String requesterName,
+            String giftGiverImageUrl,
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)
+        $default, {
+    required TResult Function() loading,
+  }) {
+    return $default(
+        id,
+        giftId,
+        giftRequestStatus,
+        giverUid,
+        giftArea,
+        giftOfferedByRequester,
+        giftReceivedByRequester,
+        requesterUid,
+        requesterMessage,
+        requesterAvgRating,
+        requesterTotRating,
+        requesterRatingSum,
+        giftFor,
+        giftType,
+        giftImageUrl,
+        giftDetails,
+        requesterPosition,
+        giftPosition,
+        requesterName,
+        giftGiverImageUrl,
+        requesterImageUrl,
+        createdAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String giftId,
+            @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
+                GiftRequestStatus giftRequestStatus,
+            String giverUid,
+            String giftArea,
+            int giftOfferedByRequester,
+            int giftReceivedByRequester,
+            String requesterUid,
+            String requesterMessage,
+            double requesterAvgRating,
+            double requesterTotRating,
+            double requesterRatingSum,
+            int giftFor,
+            @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
+                GiftType giftType,
+            String giftImageUrl,
+            String giftDetails,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition requesterPosition,
+            @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+                MyPosition giftPosition,
+            String requesterName,
+            String giftGiverImageUrl,
+            String requesterImageUrl,
+            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+                Timestamp createdAt)?
+        $default, {
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(
+          id,
+          giftId,
+          giftRequestStatus,
+          giverUid,
+          giftArea,
+          giftOfferedByRequester,
+          giftReceivedByRequester,
+          requesterUid,
+          requesterMessage,
+          requesterAvgRating,
+          requesterTotRating,
+          requesterRatingSum,
+          giftFor,
+          giftType,
+          giftImageUrl,
+          giftDetails,
+          requesterPosition,
+          giftPosition,
+          requesterName,
+          giftGiverImageUrl,
+          requesterImageUrl,
+          createdAt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GiftReqeust value) $default, {
+    required TResult Function(Loading value) loading,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GiftReqeust value)? $default, {
+    TResult Function(Loading value)? loading,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
-    return _$_$_GiftReqeustToJson(this);
+    return _$_$_GiftReqeustToJson(this)..['runtimeType'] = 'default';
   }
 }
 
-abstract class _GiftReqeust implements GiftReqeust {
+abstract class _GiftReqeust extends GiftReqeust {
   const factory _GiftReqeust(
       {String? id,
       required String giftId,
@@ -685,60 +891,38 @@ abstract class _GiftReqeust implements GiftReqeust {
       required String requesterImageUrl,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp createdAt}) = _$_GiftReqeust;
+  const _GiftReqeust._() : super._();
 
   factory _GiftReqeust.fromJson(Map<String, dynamic> json) =
       _$_GiftReqeust.fromJson;
 
-  @override
   String? get id => throw _privateConstructorUsedError;
-  @override
   String get giftId => throw _privateConstructorUsedError;
-  @override
   @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
-  @override
   String get giverUid => throw _privateConstructorUsedError;
-  @override
   String get giftArea => throw _privateConstructorUsedError;
-  @override
   int get giftOfferedByRequester => throw _privateConstructorUsedError;
-  @override
   int get giftReceivedByRequester => throw _privateConstructorUsedError;
-  @override
   String get requesterUid => throw _privateConstructorUsedError;
-  @override
   String get requesterMessage => throw _privateConstructorUsedError;
-  @override
   double get requesterAvgRating => throw _privateConstructorUsedError;
-  @override
   double get requesterTotRating => throw _privateConstructorUsedError;
-  @override
   double get requesterRatingSum => throw _privateConstructorUsedError;
-  @override
   int get giftFor => throw _privateConstructorUsedError;
-  @override
   @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
   GiftType get giftType => throw _privateConstructorUsedError;
-  @override
   String get giftImageUrl => throw _privateConstructorUsedError;
-  @override
   String get giftDetails => throw _privateConstructorUsedError;
-  @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get requesterPosition => throw _privateConstructorUsedError;
-  @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get giftPosition => throw _privateConstructorUsedError;
-  @override
   String get requesterName => throw _privateConstructorUsedError;
-  @override
   String get giftGiverImageUrl => throw _privateConstructorUsedError;
-  @override
   String get requesterImageUrl => throw _privateConstructorUsedError;
-  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get createdAt => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$GiftReqeustCopyWith<_GiftReqeust> get copyWith =>
       throw _privateConstructorUsedError;
