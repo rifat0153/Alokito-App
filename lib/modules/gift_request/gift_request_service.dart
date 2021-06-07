@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
@@ -5,17 +6,41 @@ import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
-import 'package:alokito_new/modules/gift_request/base_gift_request_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 
+abstract class BaseGiftRequestService {
+  Future<bool> findGift({required GiftGiver giftGiver});
+
+  Future<bool> increaseNoOfTimesGiftRequested({required GiftGiver giftGiver});
+
+  Future<bool> deleteGiftRequest({required GiftGiver giftGiver});
+
+  Future<bool> addGiftRequest({required GiftGiver giftGiver});
+
+  Future<GiftRequestStatus> getGiftRequestStatus({required String id});
+
+  Future<bool> changeRequestStatus(
+      {required GiftRequestStatus giftRequestStatus,
+      required GiftNotification giftNotification});
+}
+
 class GiftRequestService implements BaseGiftRequestService {
   final geo = Geoflutterfire();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
+
+  @override
+  Future<GiftRequestStatus> getGiftRequestStatus({required String id}) async {
+    var snap = await _firestore.collection('gift_requests').doc(id).get();
+    var giftRequest =
+        giftRequestStatusFromJson(snap.data()!['giftRequestStatus'] as int);
+
+    return giftRequest;
+  }
 
   @override
   Future<bool> changeRequestStatus(

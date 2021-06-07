@@ -32,7 +32,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
       {required GiftNotification giftNotification}) async {
     try {
       var modified = giftNotification.copyWith(
-          giftRequestStatus: GiftRequestStatus.requestCanceledByRequester);
+          notificationType: GiftNotificationType.packageCanceledByRequester);
 
       var notificationForGiver =
           modified.copyWith(notificationFor: modified.giverUid);
