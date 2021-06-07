@@ -24,7 +24,9 @@ abstract class BaseGiftRequestService {
   Future<GiftReqeust> getGiftRequest({required String id});
 
   Future<void> updateGiftRequestStatus(
-      {required String id, required GiftRequestStatus giftRequestStatus});
+      {required String requesterId,
+      required String giftId,
+      required GiftRequestStatus giftRequestStatus});
 
   Future<bool> changeRequestStatus(
       {required GiftRequestStatus giftRequestStatus,
@@ -38,12 +40,14 @@ class GiftRequestService implements BaseGiftRequestService {
 
   @override
   Future<void> updateGiftRequestStatus(
-      {required String id,
+      {required String requesterId,
+      required String giftId,
       required GiftRequestStatus giftRequestStatus}) async {
     await _firestore
         .collection('gift_requests')
-        .doc(id)
-        .update({'giftRequestStatus': giftRequestStatus});
+        .doc('${requesterId}.$giftId')
+        .update(
+            {'giftRequestStatus': giftRequestStatusToJson(giftRequestStatus)});
   }
 
   @override

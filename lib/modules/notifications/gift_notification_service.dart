@@ -10,10 +10,13 @@ abstract class BaseGiftNotificationService {
 
   Stream<List<GiftNotification>> streamGiftNotification();
 
-  Future<bool> changeRequestStatus(
-      {required GiftRequestStatus giftRequestStatusForGiver,
-      required GiftRequestStatus giftRequestStatusForRequester,
-      required GiftNotification giftNotification});
+  Future<bool> changeRequestStatus({
+    required GiftRequestStatus giftRequestStatusForGiver,
+    required GiftRequestStatus giftRequestStatusForRequester,
+    required GiftNotificationType giftNotificationTypeForGiver,
+    required GiftNotificationType giftNotificationTypeForRequester,
+    required GiftNotification giftNotification,
+  });
 
   Future<void> addNotificationStatus(GiftNotification giftNotification);
 
@@ -76,7 +79,7 @@ class GiftNotificationService implements BaseGiftNotificationService {
       var giftNotifRequester = giftNotifGiver.copyWith(
         notificationType: giftNotificationTypeForRequester,
         giftRequestStatus: giftRequestStatusForRequester,
-        notificationFor: giftNotifGiver.requesterUid,
+        notificationFor: giftNotification.requesterUid,
         createdAt: Timestamp.now(),
       );
 

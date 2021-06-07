@@ -1,4 +1,5 @@
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
@@ -18,6 +19,16 @@ class GiftRequestController extends GetxController {
 
   void setGiftRequest({required String id}) async {
     giftRequest.value = await giftRequestService.getGiftRequest(id: id);
+  }
+
+  Future<void> cancelGiftRequestByRequester({
+    required String requesterId,
+    required String giftId,
+  }) async {
+    await giftRequestService.updateGiftRequestStatus(
+        requesterId: requesterId,
+        giftId: giftId,
+        giftRequestStatus: GiftRequestStatus.requestCanceledByRequester);
   }
 
   //Delete giftRequest

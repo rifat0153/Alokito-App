@@ -49,6 +49,10 @@ class GiftNotificationController extends GetxController {
   Future<bool> cancelGiftRequestByRequester(
       {required GiftNotification giftNotification}) async {
     await giftNotificationService.changeRequestStatus(
+        giftNotificationTypeForGiver:
+            GiftNotificationType.packageCanceledByRequester,
+        giftNotificationTypeForRequester:
+            GiftNotificationType.packageCanceledByRequester,
         giftRequestStatusForGiver: GiftRequestStatus.requestCanceledByRequester,
         giftRequestStatusForRequester:
             GiftRequestStatus.requestCanceledByRequester,

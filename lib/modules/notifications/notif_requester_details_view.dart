@@ -2,19 +2,18 @@ import 'package:alokito_new/modules/notifications/gift_notification_controller.d
 import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:alokito_new/modules/notifications/widgets/location_widget.dart';
+import 'package:alokito_new/modules/notifications/widgets/notif_map_widget.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
-import 'package:alokito_new/modules/notifications/notification_view.dart';
-import './widgets/location_widget.dart';
-import './widgets/notif_map_widget.dart';
-import './widgets/requester_gift_records_widget.dart';
-import './widgets/user_detail_widget.dart';
-import './widgets/user_location_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 import 'dart:math' as math;
+import './widgets/user_detail_widget.dart';
+import './widgets/user_location_widget.dart';
 
 class NotifRequesterDetailsView extends StatelessWidget {
   static const route = 'notification_details_view';
@@ -25,6 +24,8 @@ class NotifRequesterDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     GiftNotification giftNotification =
         controller.giftNotificationList[controller.notificationIndex.value];
+
+    GiftRequestController giftRequestController = Get.find();
 
     var giftType = convertGiftType(giftNotification.giftType);
 
@@ -105,8 +106,12 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           color: GIFT_ADD_FORM_SUBMIT,
                           onPressed: () {
                             print('Gift Request Canceled ');
-                            controller.cancelGiftRequestByRequester(
-                                giftNotification: giftNotification);
+                            // controller.cancelGiftRequestByRequester(
+                            //     giftNotification: giftNotification);
+
+                            giftRequestController.cancelGiftRequestByRequester(
+                                requesterId: giftNotification.requesterUid,
+                                giftId: giftNotification.giftId);
                           },
                           child: Text('Cancel Request',
                               style: whiteFontStyle.copyWith(
