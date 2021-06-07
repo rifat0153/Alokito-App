@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
@@ -93,17 +94,42 @@ class NotificationDetailsView extends StatelessWidget {
   }
 }
 
-class DecistionWidget extends StatelessWidget {
+class DecistionWidget extends StatefulWidget {
   DecistionWidget({required this.giftNotification});
   final GiftNotification giftNotification;
+
+  @override
+  _DecistionWidgetState createState() => _DecistionWidgetState();
+}
+
+class _DecistionWidgetState extends State<DecistionWidget> {
   final GiftNotificationController giftNotificationController = Get.find();
+
   final GiftRequestController giftRequestController =
       Get.put(GiftRequestController());
+
+  late GiftReqeust giftReqeust;
+
+  Future<void> getGiftRequestStatus() async {
+    giftReqeust = await giftRequestController.giftRequestService
+        .getGiftRequestStatus(
+            id: '${widget.giftNotification.requesterUid}.${widget.giftNotification.giftId}');
+  }
+
+  @override
+  void initState() {
+    getGiftRequestStatus();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     var index = giftNotificationController.giftNotificationList
-        .indexOf(giftNotification);
+        .indexOf(widget.giftNotification);
+
+    getGiftRequestStatus();
+
+    print('IN details view gift status is: $giftReqeust');
 
     return Obx(
       () => giftNotificationController
@@ -139,14 +165,14 @@ class DecistionWidget extends StatelessWidget {
                         .changeRequestStatus(
                             giftRequestStatus:
                                 GiftRequestStatus.requestConfirmed,
-                            giftNotification: giftNotification);
+                            giftNotification: widget.giftNotification);
                     giftNotificationController.giftNotificationService
                         .changeRequestStatus(
                             giftRequestStatusForGiver:
                                 GiftRequestStatus.requestConfirmed,
                             giftRequestStatusForRequester:
                                 GiftRequestStatus.requestConfirmed,
-                            giftNotification: giftNotification);
+                            giftNotification: widget.giftNotification);
                   },
                   child: Text(
                     'Accept for Confirmation',

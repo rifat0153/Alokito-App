@@ -40,9 +40,6 @@ class GiftReqeust with _$GiftReqeust {
         required Timestamp createdAt,
   }) = _GiftReqeust;
 
-  const factory GiftReqeust.loading() = Loading;
-  const factory GiftReqeust.error(Object e) = Error;
-
   factory GiftReqeust.fromJson(Map<String, dynamic> json) =>
       _$GiftReqeustFromJson(json);
 }

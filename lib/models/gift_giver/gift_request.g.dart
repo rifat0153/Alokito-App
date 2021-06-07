@@ -61,20 +61,3 @@ Map<String, dynamic> _$_$_GiftReqeustToJson(_$_GiftReqeust instance) =>
       'requesterImageUrl': instance.requesterImageUrl,
       'createdAt': timestampToJson(instance.createdAt),
     };
-
-_$Loading _$_$LoadingFromJson(Map<String, dynamic> json) {
-  return _$Loading();
-}
-
-Map<String, dynamic> _$_$LoadingToJson(_$Loading instance) =>
-    <String, dynamic>{};
-
-_$Error _$_$ErrorFromJson(Map<String, dynamic> json) {
-  return _$Error(
-    json['e'] as Object,
-  );
-}
-
-Map<String, dynamic> _$_$ErrorToJson(_$Error instance) => <String, dynamic>{
-      'e': instance.e,
-    };
