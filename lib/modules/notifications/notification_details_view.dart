@@ -112,65 +112,64 @@ class DecistionWidget extends StatelessWidget {
     print(giftRequestController.giftRequest.value);
 
     return Obx(
-      () => giftNotificationController
-                  .giftNotificationList[
-                      giftNotificationController.notificationIndex.value]
-                  .giftRequestStatus ==
-              GiftRequestStatus.requestConfirmed
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {},
-                  child: Text(
-                    'Request Accepted',
-                    style: boldFontStyle.copyWith(color: Colors.white),
+      () => giftRequestController.giftRequest.value.map(
+        (value) => value.giftRequestStatus == GiftRequestStatus.requestConfirmed
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    color: GIFT_ADD_FORM_SUBMIT,
+                    onPressed: () {},
+                    child: Text(
+                      'Request Accepted',
+                      style: boldFontStyle.copyWith(color: Colors.white),
+                    ),
                   ),
-                ),
-              ],
-            )
-          : Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {
-                    print('accepting request');
-                    giftRequestController.giftRequestService
-                        .changeRequestStatus(
-                            giftRequestStatus:
-                                GiftRequestStatus.requestConfirmed,
-                            giftNotification: giftNotification);
-                    giftNotificationController.giftNotificationService
-                        .changeRequestStatus(
-                            giftRequestStatusForGiver:
-                                GiftRequestStatus.requestConfirmed,
-                            giftRequestStatusForRequester:
-                                GiftRequestStatus.requestConfirmed,
-                            giftNotification: giftNotification);
-                  },
-                  child: Text(
-                    'Accept for Confirmation',
-                    style: boldFontStyle.copyWith(color: Colors.white),
+                ],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    color: GIFT_ADD_FORM_SUBMIT,
+                    onPressed: () {
+                      print('accepting request');
+                      giftRequestController.giftRequestService
+                          .changeRequestStatus(
+                              giftRequestStatus:
+                                  GiftRequestStatus.requestConfirmed,
+                              giftNotification: giftNotification);
+                      giftNotificationController.giftNotificationService
+                          .changeRequestStatus(
+                              giftRequestStatusForGiver:
+                                  GiftRequestStatus.requestConfirmed,
+                              giftRequestStatusForRequester:
+                                  GiftRequestStatus.requestConfirmed,
+                              giftNotification: giftNotification);
+                    },
+                    child: Text(
+                      'Accept for Confirmation',
+                      style: boldFontStyle.copyWith(color: Colors.white),
+                    ),
                   ),
-                ),
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  color: GIFT_ADD_FORM_SUBMIT,
-                  onPressed: () {},
-                  child: Text(
-                    'Denied',
-                    style: boldFontStyle.copyWith(color: Colors.white),
-                  ),
-                )
-              ],
-            ),
+                  MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    color: GIFT_ADD_FORM_SUBMIT,
+                    onPressed: () {},
+                    child: Text(
+                      'Denied',
+                      style: boldFontStyle.copyWith(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+        loading: (_) => Center(child: CircularProgressIndicator()),
+      ),
     );
   }
 }

@@ -38,7 +38,7 @@ class GiftRequestService implements BaseGiftRequestService {
     var snap = await _firestore.collection('gift_requests').doc(id).get();
     var giftRequest = GiftReqeust.fromJson(snap.data() ?? {});
 
-    print('In gift request service: ' + giftRequest.toString());
+    // print('In gift request service: ' + giftRequest.toString());
 
     return giftRequest;
   }
