@@ -179,11 +179,16 @@ class DecistionWidget extends StatelessWidget {
                                       giftNotification: giftNotification);
                               giftNotificationController.giftNotificationService
                                   .changeRequestStatus(
-                                      giftRequestStatusForGiver:
-                                          GiftRequestStatus.requestConfirmed,
-                                      giftRequestStatusForRequester:
-                                          GiftRequestStatus.requestConfirmed,
-                                      giftNotification: giftNotification);
+                                giftRequestStatusForGiver:
+                                    GiftRequestStatus.requestConfirmed,
+                                giftRequestStatusForRequester:
+                                    GiftRequestStatus.requestConfirmed,
+                                giftNotification: giftNotification,
+                                giftNotificationTypeForGiver:
+                                    GiftNotificationType.packageConfirmed,
+                                giftNotificationTypeForRequester:
+                                    GiftNotificationType.packageConfirmed,
+                              );
                             },
                             child: Text(
                               'Accept for Confirmation',

@@ -50,34 +50,40 @@ class GiftNotificationService implements BaseGiftNotificationService {
   }
 
   @override
-  Future<bool> changeRequestStatus(
-      {required GiftRequestStatus giftRequestStatusForGiver,
-      required GiftRequestStatus giftRequestStatusForRequester,
-      required GiftNotification giftNotification}) async {
+  Future<bool> changeRequestStatus({
+    required GiftRequestStatus giftRequestStatusForGiver,
+    required GiftRequestStatus giftRequestStatusForRequester,
+    required GiftNotificationType giftNotificationTypeForGiver,
+    required GiftNotificationType giftNotificationTypeForRequester,
+    required GiftNotification giftNotification,
+  }) async {
     try {
       var modified = giftNotification.copyWith(
           giftRequestStatus: giftRequestStatusForGiver);
 
-      await _firestore
-          .collection('gift_notifications')
-          .doc(modified.id)
-          .update(modified.toJson());
+      // await _firestore
+      //     .collection('gift_notifications')
+      //     .doc(modified.id)
+      //     .update(modified.toJson());
 
-      var giftNotifGiver =
-          giftRequestStatusForGiver == GiftRequestStatus.requestConfirmed
-              ? modified.copyWith(
-                  notificationType: GiftNotificationType.packageConfirmed,
-                  createdAt: Timestamp.now())
-              : modified.copyWith(
-                  notificationType: GiftNotificationType.packageCanceledByGiver,
-                  createdAt: Timestamp.now());
+      var giftNotifGiver = giftNotification.copyWith(
+        notificationType: giftNotificationTypeForGiver,
+        giftRequestStatus: giftRequestStatusForGiver,
+        notificationFor: giftNotification.giverUid,
+        createdAt: Timestamp.now(),
+      );
 
       var giftNotifRequester = giftNotifGiver.copyWith(
-          notificationFor: giftNotifGiver.giverUid,
-          giftRequestStatus: giftRequestStatusForRequester);
+        notificationType: giftNotificationTypeForRequester,
+        giftRequestStatus: giftRequestStatusForRequester,
+        notificationFor: giftNotifGiver.requesterUid,
+        createdAt: Timestamp.now(),
+      );
 
       await addGiftNotification(giftNotification: giftNotifGiver);
       await addGiftNotification(giftNotification: giftNotifRequester);
+
+      Get.back();
 
       return true;
     } on FirebaseException catch (e) {
