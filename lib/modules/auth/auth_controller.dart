@@ -9,6 +9,8 @@ import '../../models/user/local_user.dart';
 import 'auth_service.dart';
 
 class AuthController extends GetxController {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
   Rx<AuthService> authService = AuthService().obs;
   final currentUser = const LocalUserInfo.loading().obs;
   final Rx<String> firebaseUser = ''.obs;

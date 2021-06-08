@@ -4,6 +4,7 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/modules/notifications/notif_requester_details_view.dart';
 import 'package:alokito_new/modules/notifications/notification_details_view.dart';
+import 'package:alokito_new/shared/styles.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -130,22 +131,21 @@ class NotificationListWidget extends StatelessWidget {
 }
 
 class GiftCanceledRequesterWidget extends StatelessWidget {
-  const GiftCanceledRequesterWidget(
-      {required Key key,
-      required this.giftNotificationController,
-      required this.giftNotification,
-      required this.index})
-      : super(key: key);
+  GiftCanceledRequesterWidget({
+    required Key key,
+    required this.giftNotificationController,
+    required this.giftNotification,
+    required this.index,
+  }) : super(key: key);
 
   final int index;
   final GiftNotification giftNotification;
   final GiftNotificationController giftNotificationController;
 
+  final AuthController authController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    print('uid is:   ' + giftNotification.requesterUid);
-    print('current user uid:   ' + FirebaseAuth.instance.currentUser!.uid);
-
     var giftType = convertGiftType(giftNotification.giftType);
     var date = DateTime.now();
     var notificationCreatedAt = DateTime.fromMillisecondsSinceEpoch(
@@ -185,7 +185,14 @@ class GiftCanceledRequesterWidget extends StatelessWidget {
                                 text: '$giftType',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
-                            const TextSpan(text: ' was canceled by you'),
+                            const TextSpan(text: ' was canceled by '),
+
+                            giftNotification.requesterUid !=
+                                    authController.auth.currentUser?.uid
+                                ? TextSpan(
+                                    text: giftNotification.requesterName,
+                                    style: boldFontStyle)
+                                : TextSpan(text: 'you', style: boldFontStyle)
                             // TextSpan(
                             //     text: '${giftNotification.giverName}',
                             //     style: const TextStyle(
