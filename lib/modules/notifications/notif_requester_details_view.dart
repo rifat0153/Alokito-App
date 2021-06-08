@@ -25,7 +25,8 @@ class NotifRequesterDetailsView extends StatelessWidget {
     GiftNotification giftNotification =
         controller.giftNotificationList[controller.notificationIndex.value];
 
-    GiftRequestController giftRequestController = Get.put(GiftRequestController());
+    GiftRequestController giftRequestController =
+        Get.put(GiftRequestController());
 
     var giftType = convertGiftType(giftNotification.giftType);
 
@@ -53,7 +54,7 @@ class NotifRequesterDetailsView extends StatelessWidget {
           ),
           child: Column(
             children: [
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               Expanded(
                 child: Container(
                   // height: Get.height - ,
@@ -93,30 +94,41 @@ class NotifRequesterDetailsView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           child: Text('Status', style: boldFontStyle),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: Text('On the way',
-                              style: boldFontStyle.copyWith(fontSize: 30)),
-                        ),
-                        _GuideLines(),
+                        giftNotification.giftRequestStatus ==
+                                GiftRequestStatus.requestCanceledByRequester
+                            ? Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 16),
+                                    child: Text('Cancelled',
+                                        style: boldFontStyle.copyWith(
+                                            fontSize: 30)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30),
+                                    child: Divider(
+                                      color: Colors.grey,
+                                      thickness: 2,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: Text('On the way',
+                                    style:
+                                        boldFontStyle.copyWith(fontSize: 30)),
+                              ),
+                        giftNotification.giftRequestStatus ==
+                                GiftRequestStatus.requestCanceledByRequester
+                            ? Container()
+                            : _GuideLines(),
                         const SizedBox(height: 16),
-                        MaterialButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          color: GIFT_ADD_FORM_SUBMIT,
-                          onPressed: () {
-                            print('Gift Request Canceled ');
-                            controller.cancelGiftRequestByRequester(
-                                giftNotification: giftNotification);
-
-                            giftRequestController.cancelGiftRequestByRequester(
-                                requesterId: giftNotification.requesterUid,
-                                giftId: giftNotification.giftId);
-                          },
-                          child: Text('Cancel Request',
-                              style: whiteFontStyle.copyWith(
-                                  fontWeight: FontWeight.bold)),
-                        ),
+                        _DecisionWidget(
+                            controller: controller,
+                            giftNotification: giftNotification,
+                            giftRequestController: giftRequestController),
                         const SizedBox(height: 16),
                       ],
                     ),
@@ -128,6 +140,64 @@ class NotifRequesterDetailsView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _DecisionWidget extends StatelessWidget {
+  const _DecisionWidget({
+    Key? key,
+    required this.controller,
+    required this.giftNotification,
+    required this.giftRequestController,
+  }) : super(key: key);
+
+  final GiftNotificationController controller;
+  final GiftNotification giftNotification;
+  final GiftRequestController giftRequestController;
+
+  @override
+  Widget build(BuildContext context) {
+    return giftNotification.giftRequestStatus ==
+            GiftRequestStatus.requestCanceledByRequester
+        ? Column(
+            children: [
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                color: GIFT_ADD_FORM_SUBMIT,
+                onPressed: () {},
+                child: Text('Thanks',
+                    style:
+                        whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
+              ),
+              Text('or'),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                color: GIFT_ADD_FORM_SUBMIT,
+                onPressed: () {},
+                child: Text('Leave with comments',
+                    style:
+                        whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
+              ),
+            ],
+          )
+        : MaterialButton(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            color: GIFT_ADD_FORM_SUBMIT,
+            onPressed: () {
+              print('Gift Request Canceled ');
+              controller.cancelGiftRequestByRequester(
+                  giftNotification: giftNotification);
+
+              giftRequestController.cancelGiftRequestByRequester(
+                  requesterId: giftNotification.requesterUid,
+                  giftId: giftNotification.giftId);
+            },
+            child: Text('Cancel Request',
+                style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
+          );
   }
 }
 
