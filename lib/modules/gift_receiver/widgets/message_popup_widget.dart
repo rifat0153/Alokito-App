@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';

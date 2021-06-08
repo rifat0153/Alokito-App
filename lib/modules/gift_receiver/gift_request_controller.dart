@@ -4,7 +4,7 @@ import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
-import 'package:alokito_new/modules/gift_request/gift_request_service.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_request_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

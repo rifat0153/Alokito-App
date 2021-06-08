@@ -4,7 +4,7 @@ import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
 import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_navbar.dart';
-import 'package:alokito_new/modules/gift_request/gift_receiver_view.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

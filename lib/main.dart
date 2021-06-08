@@ -8,10 +8,10 @@ import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
 import 'package:alokito_new/modules/map/geo_map_view.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
-import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/modules/map/geo_controller.dart';
-import 'package:alokito_new/modules/gift_request/gift_offer_view.dart';
-import 'package:alokito_new/modules/gift_request/gift_receiver_view.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_offer_view.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 
 import 'package:alokito_new/modules/notifications/notification_details_view.dart';
 import 'package:alokito_new/modules/notifications/notification_view.dart';

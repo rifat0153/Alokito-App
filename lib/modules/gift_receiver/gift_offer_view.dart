@@ -1,10 +1,10 @@
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
-import 'package:alokito_new/modules/gift_request/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/shared/config.dart';
 
-import 'package:alokito_new/modules/gift_request/gift_details_view.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_details_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
