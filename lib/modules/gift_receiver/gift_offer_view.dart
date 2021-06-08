@@ -23,6 +23,8 @@ class GiftOfferView extends StatelessWidget {
 
     print(giftController.giftList.value.length);
 
+    giftController.bindLocationData();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
