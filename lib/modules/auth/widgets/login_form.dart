@@ -1,3 +1,5 @@
+import 'package:alokito_new/modules/auth/widgets/register-form.dart';
+
 import '../../../shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,10 +9,9 @@ import '../login_controller.dart';
 import '../../../shared/my_name_input.dart';
 
 class LoginForm extends StatelessWidget {
-  final LoginController loginController = Get.find();
-  final Function setLogin;
+  LoginForm();
 
-  LoginForm(this.setLogin);
+  final LoginController loginController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,7 @@ class LoginForm extends StatelessWidget {
             ),
             SizedBox(height: Get.size.height * 0.02),
             GestureDetector(
-              onTap: () => setLogin(false),
+              onTap: () => Get.to(RegisterForm()),
               child: RichText(
                 text: TextSpan(
                   text: 'Already have an account ? ',

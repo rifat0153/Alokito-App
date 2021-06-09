@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'auth_controller.dart';
 
 class LoginController extends GetxController {
+  RxBool isLogin = true.obs;
+
   var firstName = ''.obs;
   var lastName = ''.obs;
   var password = ''.obs;

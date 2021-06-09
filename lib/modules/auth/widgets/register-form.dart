@@ -1,3 +1,5 @@
+import 'package:alokito_new/modules/auth/widgets/login_form.dart';
+
 import '../../../shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,9 +10,9 @@ import '../../../shared/my_name_input.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class RegisterForm extends StatelessWidget {
-  final Function setLogin;
-  RegisterForm(this.setLogin);
-  final LoginController loginController = Get.find();
+  RegisterForm();
+
+  final LoginController loginController = Get.put(LoginController());
   final AuthController authController = Get.find();
 
   void _register() {
@@ -102,7 +104,7 @@ class RegisterForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     MaterialButton(
-                      onPressed: () => setLogin(true),
+                      onPressed: () => Get.to(LoginForm()),
                       child: RichText(
                         text: TextSpan(
                           text: 'Back to ',
