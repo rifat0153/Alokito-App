@@ -18,7 +18,7 @@ import './widgets/user_location_widget.dart';
 class NotificationDetailsView extends StatelessWidget {
   static const route = 'notification_details_view';
 
-  GiftNotificationController controller = Get.find();
+  final GiftNotificationController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
