@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/modules/auth/auth_exception.dart';
 import 'package:alokito_new/modules/auth/base_auth_service.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -22,6 +23,7 @@ class AuthService implements BaseAuthService {
   final _firebaseAuth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
 
+  @override
   Future<String> signIn(
       {required String email, required String password}) async {
     try {
@@ -35,12 +37,11 @@ class AuthService implements BaseAuthService {
       return _firebaseAuth.currentUser!.uid;
     } on FirebaseAuthException catch (e) {
       await EasyLoading.dismiss();
-      print(e.message);
-      return '';
+      throw AuthException(message: e.message);
     }
   }
 
-  // For finding out if user is admin or not
+  @override
   Stream<LocalUserInfo> loggedInUserStream() {
     return _firestore
         .collection('users')
@@ -54,7 +55,7 @@ class AuthService implements BaseAuthService {
     });
   }
 
-  // Sign Up function
+  @override
   Future<bool> signUp({
     required String firstName,
     required String lastName,
