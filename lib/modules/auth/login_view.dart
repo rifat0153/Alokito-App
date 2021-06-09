@@ -8,7 +8,7 @@ import 'widgets/login_form.dart';
 import 'widgets/register-form.dart';
 
 class LoginView extends StatefulWidget {
-  final AuthController authController = Get.find();
+  final AuthController authController = Get.put(AuthController());
   final LoginController loginFormController = Get.put(LoginController());
 
   @override

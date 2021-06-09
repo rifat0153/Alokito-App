@@ -1,6 +1,8 @@
 import 'dart:collection';
 
 import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/auth_wrapper.dart';
+import 'package:alokito_new/modules/auth/login_view.dart';
 import 'package:alokito_new/modules/connection/connection_view.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/modules/notifications/notification_view.dart';
@@ -57,7 +59,10 @@ class UserNavbar extends StatelessWidget {
           child: Icon(Icons.message, color: Colors.white, size: height * 0.045),
         ),
         GestureDetector(
-          onTap: () => Get.find<AuthController>().authService.value.signOut(),
+          onTap: () {
+            Get.back();
+            Get.find<AuthController>().authService.value.signOut();
+          },
           child: Icon(Icons.map, color: Colors.white, size: height * 0.035),
         ),
       ],
