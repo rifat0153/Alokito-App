@@ -89,7 +89,7 @@ class NotificationDetailsView extends StatelessWidget {
                     ? Text('Gift Confiremd by Giver')
                     : DecistionWidget(giftNotification: giftNotification),
                 NotifMapWidget(giftNotification: giftNotification),
-                _GuideLinesAndThanks()
+                _GuideLinesAndThanks(giftNotification: giftNotification),
               ],
             ),
           ),
@@ -100,7 +100,10 @@ class NotificationDetailsView extends StatelessWidget {
 }
 
 class _GuideLinesAndThanks extends StatelessWidget {
-  const _GuideLinesAndThanks({Key? key}) : super(key: key);
+  _GuideLinesAndThanks({Key? key, required this.giftNotification})
+      : super(key: key);
+
+  GiftNotification giftNotification;
 
   @override
   Widget build(BuildContext context) {
@@ -179,6 +182,30 @@ class _GuideLinesAndThanks extends StatelessWidget {
             style: whiteFontStyle.copyWith(fontSize: 10, color: Colors.black),
           ),
           const SizedBox(height: 32),
+          const Text(
+            'Gift',
+            style: TextStyle(fontSize: 30),
+          ),
+          Text(
+            convertGiftType(giftNotification.giftType),
+            style: boldFontStyle.copyWith(fontSize: 30),
+          ),
+          const Text(
+            'given to',
+            style: TextStyle(fontSize: 30),
+          ),
+          Text(
+            giftNotification.requesterName,
+            style: boldFontStyle.copyWith(fontSize: 30),
+          ),
+          const SizedBox(height: 16),
+          MaterialButton(
+            color: GIFT_ADD_FORM_SUBMIT,
+            shape: roundedBorder,
+            onPressed: () {},
+            child: Text('Done', style: whiteFontStyle),
+          ),
+          const SizedBox(height: 16),
         ],
       ),
     );

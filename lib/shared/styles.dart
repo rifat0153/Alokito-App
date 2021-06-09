@@ -5,4 +5,7 @@ var boldFontStyle =
 
 var whiteFontStyle = const TextStyle(color: Colors.white);
 
+var roundedBorder =
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(5));
+
 var notificationFontSize = 10.0;
