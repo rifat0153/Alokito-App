@@ -10,6 +10,9 @@ abstract class BaseGiftNotificationService {
 
   Stream<List<GiftNotification>> streamGiftNotification();
 
+  Future<bool> giftRequestDoneNotif(
+      {required GiftNotification giftNotification});
+
   Future<bool> changeRequestStatus({
     required GiftRequestStatus giftRequestStatusForGiver,
     required GiftRequestStatus giftRequestStatusForRequester,
@@ -31,6 +34,12 @@ class GiftNotificationService implements BaseGiftNotificationService {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  Future<bool> giftRequestDoneNotif(
+      {required GiftNotification giftNotification}) async {
+    return true;
+  }
 
   Future<bool> cancelGiftRequestNotification(
       {required GiftNotification giftNotification}) async {

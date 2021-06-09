@@ -178,6 +178,7 @@ class _GuideLinesAndThanks extends StatelessWidget {
             "please press 'Done' after giving your gift.",
             style: whiteFontStyle.copyWith(fontSize: 10, color: Colors.black),
           ),
+          const SizedBox(height: 32),
         ],
       ),
     );
