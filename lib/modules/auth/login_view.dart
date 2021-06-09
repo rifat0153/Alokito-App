@@ -10,6 +10,7 @@ import 'widgets/register-form.dart';
 class LoginView extends StatefulWidget {
   final AuthController authController = Get.put(AuthController());
   final LoginController loginFormController = Get.put(LoginController());
+  static const route = 'loginview';
 
   @override
   _LoginViewState createState() => _LoginViewState();
@@ -17,6 +18,9 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   bool isLogin = true;
+
+  final LoginController loginController = Get.put(LoginController());
+  final AuthController authController = Get.put(AuthController());
 
   void setIslogin(bool value) {
     setState(() {
@@ -26,8 +30,6 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    // EasyLoading.dismiss();
-
     return isLogin ? LoginForm(setIslogin) : RegisterForm(setIslogin);
   }
 }

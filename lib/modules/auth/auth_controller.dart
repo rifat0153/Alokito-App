@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/sockets/src/socket_notifier.dart';
 import '../../models/user/local_user.dart';
 import 'auth_service.dart';
 
@@ -33,6 +34,12 @@ class AuthController extends GetxController {
   void onInit() {
     authStream.bindStream(authService.value.authStateChanges);
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    authStream.close();
+    super.onClose();
   }
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
