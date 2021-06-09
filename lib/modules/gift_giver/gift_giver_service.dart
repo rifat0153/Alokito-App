@@ -25,6 +25,9 @@ abstract class BaseGiftGiverService {
   Stream<List<GiftGiver>> giftStreamByLocation();
 
   Stream<List<GiftGiver>> giftStream();
+
+  Future<bool> updateAcquiredStatus(
+      {required String giftId, required bool acquiredStatus});
 }
 
 class GiftGiverService implements BaseGiftGiverService {
@@ -32,18 +35,19 @@ class GiftGiverService implements BaseGiftGiverService {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
-  Future<void> addPosition() async {
-    var myLocation = geo.point(latitude: 23.7590, longitude: 90.4119);
-    var docRef = _firestore.collection('positions').doc();
-    var pos = myLocation.data as Map<dynamic, dynamic>;
-
-    MyPosition myPosition = MyPosition(
-        geohash: pos['geohash'] as String,
-        geopoint: pos['geopoint'] as GeoPoint);
-
-    await docRef.set(myPosition.toJson());
-
-    print('Position added');
+  @override
+  Future<bool> updateAcquiredStatus(
+      {required String giftId, required bool acquiredStatus}) async {
+    try {
+      await _firestore
+          .collection('gifts')
+          .doc(giftId)
+          .update({'giftAcquiredStatus': acquiredStatus});
+      return true;
+    } on FirebaseException catch (e) {
+      print(e.message);
+      return false;
+    }
   }
 
   @override
@@ -91,8 +95,6 @@ class GiftGiverService implements BaseGiftGiverService {
         userDoc.data() == null ? '' : userDoc.data()!['userName'] as String;
     var giverImageUrl =
         userDoc.data() == null ? '' : userDoc.data()!['imageUrl'] as String;
-    int giverRating =
-        userDoc.data() == null ? 1 : userDoc.data()!['reviewInStar'] as int;
     MyPosition userPosition = MyPosition.fromJson(
         userDoc.data()!['position'] as Map<String, dynamic>);
     Timestamp userCreatedAt = userDoc.data()!['createdAt'] as Timestamp;
