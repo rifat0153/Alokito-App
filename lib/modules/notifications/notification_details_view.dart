@@ -89,6 +89,7 @@ class NotificationDetailsView extends StatelessWidget {
                     ? Text('Gift Confiremd by Giver')
                     : DecistionWidget(giftNotification: giftNotification),
                 NotifMapWidget(giftNotification: giftNotification),
+                _GuideLinesAndThanks()
               ],
             ),
           ),
@@ -98,64 +99,85 @@ class NotificationDetailsView extends StatelessWidget {
   }
 }
 
-class _GuideLines extends StatelessWidget {
-  const _GuideLines({Key? key}) : super(key: key);
+class _GuideLinesAndThanks extends StatelessWidget {
+  const _GuideLinesAndThanks({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       // width: Get.width,
-      child: Row(
+      child: Column(
         children: [
-          const SizedBox(width: 16),
-          const Icon(FontAwesomeIcons.bullhorn),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      children: [
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              const SizedBox(width: 16),
+              const Icon(FontAwesomeIcons.bullhorn),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text.rich(
                         TextSpan(
-                          text: '* Please see the ',
-                          style: whiteFontStyle.copyWith(
-                              fontSize: notificationFontSize,
-                              color: Colors.black),
+                          children: [
+                            TextSpan(
+                              text: '* Please see the ',
+                              style: whiteFontStyle.copyWith(
+                                  fontSize: notificationFontSize,
+                                  color: Colors.black),
+                            ),
+                            TextSpan(
+                              text: 'Guideline for Food Adding',
+                              style: boldFontStyle.copyWith(
+                                  color: Colors.red,
+                                  fontSize: notificationFontSize),
+                            ),
+                          ],
                         ),
+                      ),
+                      Text.rich(
                         TextSpan(
-                          text: 'Guideline for Food Adding',
-                          style: boldFontStyle.copyWith(
-                              color: Colors.red,
-                              fontSize: notificationFontSize),
+                          children: [
+                            TextSpan(
+                              text: '* Request to follow ',
+                              style: whiteFontStyle.copyWith(
+                                  fontSize: notificationFontSize,
+                                  color: Colors.black),
+                            ),
+                            TextSpan(
+                              text: 'Covid - 19: Sharing & Safety Guidelines',
+                              style: boldFontStyle.copyWith(
+                                color: Colors.red,
+                                fontSize: notificationFontSize,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '* Request to follow ',
-                          style: whiteFontStyle.copyWith(
-                              fontSize: notificationFontSize,
-                              color: Colors.black),
-                        ),
-                        TextSpan(
-                          text: 'Covid - 19: Sharing & Safety Guidelines',
-                          style: boldFontStyle.copyWith(
-                            color: Colors.red,
-                            fontSize: notificationFontSize,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: Divider(
+              thickness: 3,
+              color: Colors.grey,
             ),
-          )
+          ),
+          Text(
+            'Thanks a lot for this noble job. For the record our earnest request is,',
+            style: whiteFontStyle.copyWith(fontSize: 10, color: Colors.black),
+          ),
+          Text(
+            "please press 'Done' after giving your gift.",
+            style: whiteFontStyle.copyWith(fontSize: 10, color: Colors.black),
+          ),
         ],
       ),
     );
