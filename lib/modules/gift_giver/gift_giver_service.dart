@@ -6,6 +6,7 @@ import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver/gift_error.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,7 +27,7 @@ abstract class BaseGiftGiverService {
 
   Stream<List<GiftGiver>> giftStream();
 
-  Future<bool> updateAcquiredStatus(
+  Future<bool> updateGiftAcquiredStatus(
       {required String giftId, required bool acquiredStatus});
 }
 
@@ -36,17 +37,17 @@ class GiftGiverService implements BaseGiftGiverService {
   final _auth = FirebaseAuth.instance;
 
   @override
-  Future<bool> updateAcquiredStatus(
+  Future<bool> updateGiftAcquiredStatus(
       {required String giftId, required bool acquiredStatus}) async {
     try {
       await _firestore
           .collection('gifts')
           .doc(giftId)
           .update({'giftAcquiredStatus': acquiredStatus});
+
       return true;
     } on FirebaseException catch (e) {
-      print(e.message);
-      return false;
+      throw GiftError(e);
     }
   }
 
