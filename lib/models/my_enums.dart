@@ -23,6 +23,7 @@ enum GiftRequestStatus {
   requestConfirmed,
   requestCanceledByGiver,
   requestCanceledByRequester,
+  requestComplete
 }
 
 String convertGiftNotificationTypeToString(

@@ -22,6 +22,8 @@ int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
       return 2;
     case GiftRequestStatus.requestCanceledByRequester:
       return 3;
+    case GiftRequestStatus.requestComplete:
+      return 4;
     default:
       return -1;
   }
@@ -37,7 +39,8 @@ GiftRequestStatus giftRequestStatusFromJson(int json) {
       return GiftRequestStatus.requestCanceledByGiver;
     case 3:
       return GiftRequestStatus.requestCanceledByRequester;
-
+    case 4:
+      return GiftRequestStatus.requestComplete;
     default:
       return GiftRequestStatus.requestPedning;
   }

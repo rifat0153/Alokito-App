@@ -14,7 +14,7 @@ class GiftNotification with _$GiftNotification {
     String? id,
     required String giftId,
     @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-    required GiftRequestStatus giftRequestStatus,
+        required GiftRequestStatus giftRequestStatus,
     required String giftImageUrl,
     required String requesterImageUrl,
     required String requesterName,
@@ -32,6 +32,7 @@ class GiftNotification with _$GiftNotification {
     required String giftLocation,
     required String giftArea,
     required String notificationFor,
+    @Default('') String commentsForGiver,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition giftPosition,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)

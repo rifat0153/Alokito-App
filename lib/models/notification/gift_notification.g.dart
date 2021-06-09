@@ -29,6 +29,7 @@ _$_GiftNotification _$_$_GiftNotificationFromJson(Map<String, dynamic> json) {
     giftLocation: json['giftLocation'] as String,
     giftArea: json['giftArea'] as String,
     notificationFor: json['notificationFor'] as String,
+    commentsForGiver: json['commentsForGiver'] as String? ?? '',
     giftPosition:
         myPositionFromJson(json['giftPosition'] as Map<String, dynamic>),
     requesterPosition:
@@ -71,6 +72,7 @@ Map<String, dynamic> _$_$_GiftNotificationToJson(
       'giftLocation': instance.giftLocation,
       'giftArea': instance.giftArea,
       'notificationFor': instance.notificationFor,
+      'commentsForGiver': instance.commentsForGiver,
       'giftPosition': myPositionToJson(instance.giftPosition),
       'requesterPosition': myPositionToJson(instance.requesterPosition),
       'giverPosition': myPositionToJson(instance.giverPosition),
