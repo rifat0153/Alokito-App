@@ -25,12 +25,15 @@ class GiftNotificationController extends GetxController {
     getNotData();
     totalNotifications
         .bindStream(giftNotificationService.streamGiftNotificationStatus());
+
     super.onInit();
   }
 
   @override
   void onClose() {
     giftNotificationList.close();
+    giftNotList.close();
+    totalNotifications.close();
     super.onClose();
   }
 
