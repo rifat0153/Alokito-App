@@ -8,7 +8,7 @@ import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+// import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 
@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    EasyLoading.dismiss();
+    // EasyLoading.dismiss();
     final media = Get.size;
 
     return SafeArea(

@@ -23,7 +23,7 @@ class _MyNameInputState extends State<LoginInput> {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: TextFormField(
+        child: TextField(
           style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
             border: InputBorder.none,

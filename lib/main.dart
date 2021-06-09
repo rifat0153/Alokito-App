@@ -18,7 +18,7 @@ import 'package:alokito_new/modules/notifications/notification_details_view.dart
 import 'package:alokito_new/modules/notifications/notification_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+// import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
         accentColor: Color(0xff1b2e59),
       ),
       initialRoute: '/',
-      builder: EasyLoading.init(),
+      // builder: EasyLoading.init(),
 
       getPages: GetPages().getPages,
     );

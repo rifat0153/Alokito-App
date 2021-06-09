@@ -5,7 +5,7 @@ import '../auth_controller.dart';
 import 'reg_image_input.dart';
 import '../login_controller.dart';
 import '../../../shared/my_name_input.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+// import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class RegisterForm extends StatelessWidget {
   final Function setLogin;
@@ -19,7 +19,7 @@ class RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    EasyLoading.dismiss();
+    // EasyLoading.dismiss();
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,

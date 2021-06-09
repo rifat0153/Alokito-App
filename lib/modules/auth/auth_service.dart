@@ -9,7 +9,7 @@ import 'package:location/location.dart';
 
 import 'auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+// import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../models/user/local_user.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
@@ -27,16 +27,16 @@ class AuthService implements BaseAuthService {
   Future<String> signIn(
       {required String email, required String password}) async {
     try {
-      await EasyLoading.show(status: 'loading...');
+      // await EasyLoading.show(status: 'loading...');
 
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      await EasyLoading.dismiss();
+      // await EasyLoading.dismiss();
 
       return _firebaseAuth.currentUser!.uid;
     } on FirebaseAuthException catch (e) {
-      await EasyLoading.dismiss();
+      // await EasyLoading.dismiss();
       throw AuthException(message: e.message);
     }
   }
@@ -65,7 +65,7 @@ class AuthService implements BaseAuthService {
     required File localFile,
   }) async {
     try {
-      EasyLoading.show(status: 'loading...');
+      // EasyLoading.show(status: 'loading...');
       UserCredential firebaseUser = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
@@ -99,7 +99,7 @@ class AuthService implements BaseAuthService {
       print("Signed up");
       return true;
     } on FirebaseAuthException catch (e) {
-      EasyLoading.dismiss();
+      // EasyLoading.dismiss();
 
       Get.snackbar(e.message ?? '', '', backgroundColor: Colors.red);
       print(e.message);
@@ -159,15 +159,15 @@ class AuthService implements BaseAuthService {
         print('Uploaded user successfully: ${user.toString()}');
       }
 
-      EasyLoading.showSuccess('Successful!');
-      EasyLoading.dismiss();
+      // EasyLoading.showSuccess('Successful!');
+      // EasyLoading.dismiss();
       // EasyLoading.showToast('Toast');
     } catch (e) {
-      EasyLoading.showError('Action Failed');
+      // EasyLoading.showError('Action Failed');
       print(e.toString());
     }
 
-    EasyLoading.dismiss();
+    // EasyLoading.dismiss();
   }
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
