@@ -4,6 +4,9 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+GeoPoint geoPointToJson(GeoPoint geoPoint) => geoPoint;
+GeoPoint geoPointFromJson(GeoPoint json) => json;
+
 Map<String, dynamic> myPositionToJson(MyPosition myPosition) =>
     myPosition.toJson();
 MyPosition myPositionFromJson(Map<String, dynamic> json) =>

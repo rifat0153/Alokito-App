@@ -23,6 +23,7 @@ class _$GiftGiverTearOff {
   _GiftGiver call(
       {String? id,
       int giftFor = 0,
+      bool giftAcquired = false,
       required String userName,
       required double userAvgRating,
       required double userTotRating,
@@ -55,6 +56,7 @@ class _$GiftGiverTearOff {
     return _GiftGiver(
       id: id,
       giftFor: giftFor,
+      giftAcquired: giftAcquired,
       userName: userName,
       userAvgRating: userAvgRating,
       userTotRating: userTotRating,
@@ -92,6 +94,7 @@ const $GiftGiver = _$GiftGiverTearOff();
 mixin _$GiftGiver {
   String? get id => throw _privateConstructorUsedError;
   int get giftFor => throw _privateConstructorUsedError;
+  bool get giftAcquired => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   double get userAvgRating => throw _privateConstructorUsedError;
   double get userTotRating => throw _privateConstructorUsedError;
@@ -135,6 +138,7 @@ abstract class $GiftGiverCopyWith<$Res> {
   $Res call(
       {String? id,
       int giftFor,
+      bool giftAcquired,
       String userName,
       double userAvgRating,
       double userTotRating,
@@ -181,6 +185,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? giftFor = freezed,
+    Object? giftAcquired = freezed,
     Object? userName = freezed,
     Object? userAvgRating = freezed,
     Object? userTotRating = freezed,
@@ -213,6 +218,10 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.giftFor
           : giftFor // ignore: cast_nullable_to_non_nullable
               as int,
+      giftAcquired: giftAcquired == freezed
+          ? _value.giftAcquired
+          : giftAcquired // ignore: cast_nullable_to_non_nullable
+              as bool,
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -328,6 +337,7 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
   $Res call(
       {String? id,
       int giftFor,
+      bool giftAcquired,
       String userName,
       double userAvgRating,
       double userTotRating,
@@ -377,6 +387,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giftFor = freezed,
+    Object? giftAcquired = freezed,
     Object? userName = freezed,
     Object? userAvgRating = freezed,
     Object? userTotRating = freezed,
@@ -409,6 +420,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.giftFor
           : giftFor // ignore: cast_nullable_to_non_nullable
               as int,
+      giftAcquired: giftAcquired == freezed
+          ? _value.giftAcquired
+          : giftAcquired // ignore: cast_nullable_to_non_nullable
+              as bool,
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -507,6 +522,7 @@ class _$_GiftGiver implements _GiftGiver {
   const _$_GiftGiver(
       {this.id,
       this.giftFor = 0,
+      this.giftAcquired = false,
       required this.userName,
       required this.userAvgRating,
       required this.userTotRating,
@@ -545,6 +561,9 @@ class _$_GiftGiver implements _GiftGiver {
   @JsonKey(defaultValue: 0)
   @override
   final int giftFor;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool giftAcquired;
   @override
   final String userName;
   @override
@@ -599,7 +618,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, userName: $userName, userAvgRating: $userAvgRating, userTotRating: $userTotRating, userRatingSum: $userRatingSum, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, location: $location, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position, createdAt: $createdAt)';
+    return 'GiftGiver(id: $id, giftFor: $giftFor, giftAcquired: $giftAcquired, userName: $userName, userAvgRating: $userAvgRating, userTotRating: $userTotRating, userRatingSum: $userRatingSum, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, location: $location, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position, createdAt: $createdAt)';
   }
 
   @override
@@ -611,6 +630,9 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.giftFor, giftFor) ||
                 const DeepCollectionEquality()
                     .equals(other.giftFor, giftFor)) &&
+            (identical(other.giftAcquired, giftAcquired) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftAcquired, giftAcquired)) &&
             (identical(other.userName, userName) ||
                 const DeepCollectionEquality()
                     .equals(other.userName, userName)) &&
@@ -669,9 +691,7 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.canLeaveOutside, canLeaveOutside) ||
                 const DeepCollectionEquality()
                     .equals(other.canLeaveOutside, canLeaveOutside)) &&
-            (identical(other.position, position) ||
-                const DeepCollectionEquality()
-                    .equals(other.position, position)) &&
+            (identical(other.position, position) || const DeepCollectionEquality().equals(other.position, position)) &&
             (identical(other.createdAt, createdAt) || const DeepCollectionEquality().equals(other.createdAt, createdAt)));
   }
 
@@ -680,6 +700,7 @@ class _$_GiftGiver implements _GiftGiver {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftFor) ^
+      const DeepCollectionEquality().hash(giftAcquired) ^
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(userAvgRating) ^
       const DeepCollectionEquality().hash(userTotRating) ^
@@ -718,6 +739,7 @@ abstract class _GiftGiver implements GiftGiver {
   const factory _GiftGiver(
       {String? id,
       int giftFor,
+      bool giftAcquired,
       required String userName,
       required double userAvgRating,
       required double userTotRating,
@@ -755,6 +777,8 @@ abstract class _GiftGiver implements GiftGiver {
   String? get id => throw _privateConstructorUsedError;
   @override
   int get giftFor => throw _privateConstructorUsedError;
+  @override
+  bool get giftAcquired => throw _privateConstructorUsedError;
   @override
   String get userName => throw _privateConstructorUsedError;
   @override

@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/json_converters.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,6 +16,3 @@ class MyPosition with _$MyPosition {
   factory MyPosition.fromJson(Map<String, dynamic> json) =>
       _$MyPositionFromJson(json);
 }
-
-GeoPoint geoPointToJson(GeoPoint geoPoint) => geoPoint;
-GeoPoint geoPointFromJson(GeoPoint json) => json;

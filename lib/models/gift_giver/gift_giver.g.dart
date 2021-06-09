@@ -10,6 +10,7 @@ _$_GiftGiver _$_$_GiftGiverFromJson(Map<String, dynamic> json) {
   return _$_GiftGiver(
     id: json['id'] as String?,
     giftFor: json['giftFor'] as int? ?? 0,
+    giftAcquired: json['giftAcquired'] as bool? ?? false,
     userName: json['userName'] as String,
     userAvgRating: (json['userAvgRating'] as num).toDouble(),
     userTotRating: (json['userTotRating'] as num).toDouble(),
@@ -40,6 +41,7 @@ Map<String, dynamic> _$_$_GiftGiverToJson(_$_GiftGiver instance) =>
     <String, dynamic>{
       'id': instance.id,
       'giftFor': instance.giftFor,
+      'giftAcquired': instance.giftAcquired,
       'userName': instance.userName,
       'userAvgRating': instance.userAvgRating,
       'userTotRating': instance.userTotRating,
