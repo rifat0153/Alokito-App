@@ -15,6 +15,7 @@ abstract class BaseGiftNotificationService {
     required GiftRequestStatus giftRequestStatusForRequester,
     required GiftNotificationType giftNotificationTypeForGiver,
     required GiftNotificationType giftNotificationTypeForRequester,
+    required GiftRequestStatus giftRequestStatus,
     required GiftNotification giftNotification,
   });
 
@@ -58,16 +59,17 @@ class GiftNotificationService implements BaseGiftNotificationService {
     required GiftRequestStatus giftRequestStatusForRequester,
     required GiftNotificationType giftNotificationTypeForGiver,
     required GiftNotificationType giftNotificationTypeForRequester,
+    required GiftRequestStatus giftRequestStatus,
     required GiftNotification giftNotification,
   }) async {
     try {
-      var modified = giftNotification.copyWith(
-          giftRequestStatus: giftRequestStatusForGiver);
+      var modified =
+          giftNotification.copyWith(giftRequestStatus: giftRequestStatus);
 
-      // await _firestore
-      //     .collection('gift_notifications')
-      //     .doc(modified.id)
-      //     .update(modified.toJson());
+      await _firestore
+          .collection('gift_notifications')
+          .doc(modified.id)
+          .update(modified.toJson());
 
       var giftNotifGiver = giftNotification.copyWith(
         notificationType: giftNotificationTypeForGiver,
