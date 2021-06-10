@@ -96,7 +96,11 @@ class NotificationDetailsView extends StatelessWidget {
                           ? Text('Gift Confiremd by Giver')
                           : DecistionWidget(giftNotification: giftNotification),
                       NotifMapWidget(giftNotification: giftNotification),
-                      _GuideLinesAndThanks(giftNotification: giftNotification),
+                      giftNotification.notificationType ==
+                              GiftNotificationType.packageConfirmed
+                          ? _GuideLinesAndThanks(
+                              giftNotification: giftNotification)
+                          : Container(),
                     ],
                   ),
                 ),

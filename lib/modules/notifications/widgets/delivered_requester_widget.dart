@@ -53,14 +53,14 @@ class GiftDeliveredRequesterWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: RichText(
                         text: TextSpan(
-                          text: 'Your gift request for ',
+                          text: giftNotification.giverUid ==   'Your gift request for ',
                           style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
                             TextSpan(
                                 text: '$giftType',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
-                            const TextSpan(text: ' was canceled by '),
+                            const TextSpan(text: ' was delivered by '),
 
                             giftNotification.requesterUid !=
                                     authController.auth.currentUser?.uid

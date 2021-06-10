@@ -66,6 +66,18 @@ class NotificationListWidget extends StatelessWidget {
         itemBuilder: (c, i) {
           if (giftNotificationController
                   .giftNotificationList[i].notificationType ==
+              GiftNotificationType.packageDelivered) {
+            return GiftDeliveredRequesterWidget(
+              key: ValueKey(
+                  giftNotificationController.giftNotificationList[i].id),
+              giftNotificationController: giftNotificationController,
+              giftNotification:
+                  giftNotificationController.giftNotificationList[i],
+              index: i,
+            );
+          }
+          if (giftNotificationController
+                  .giftNotificationList[i].notificationType ==
               GiftNotificationType.packageRequested) {
             return GiftRequestWidget(
               key: ValueKey(
@@ -124,18 +136,7 @@ class NotificationListWidget extends StatelessWidget {
               index: i,
             );
           }
-          if (giftNotificationController
-                  .giftNotificationList[i].notificationType ==
-              GiftNotificationType.packageDelivered) {
-            return GiftDeliveredRequesterWidget(
-              key: ValueKey(
-                  giftNotificationController.giftNotificationList[i].id),
-              giftNotificationController: giftNotificationController,
-              giftNotification:
-                  giftNotificationController.giftNotificationList[i],
-              index: i,
-            );
-          }
+
           return Container();
         },
       ),
