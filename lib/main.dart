@@ -79,11 +79,11 @@ class GetPages {
     GetPage(
       name: '/',
       page: () => AuthenticationWrapper(),
-      binding: BindingsBuilder(() {
-        Get.put(() => AuthController());
-        Get.put(() => LoginController());
-        Get.put(GiftNotificationController());
-      }),
+      // binding: BindingsBuilder(() {
+      //   Get.put(() => AuthController());
+      //   Get.put(() => LoginController());
+      //   Get.put(GiftNotificationController());
+      // }),
     ),
     GetPage(
       name: LoginView.route,
