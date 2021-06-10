@@ -42,14 +42,15 @@ class NotifMapWidgetState extends State<NotifMapWidget> {
             Expanded(
               child: GoogleMap(
                 // mapType: MapType.hybrid,
+                zoomControlsEnabled: false,
                 initialCameraPosition: CameraPosition(
-                    bearing: 192.8334901395799,
+                    // bearing: 192.8334901395799,
                     target: LatLng(
                         widget.giftNotification.giftPosition.geopoint.latitude,
                         widget
                             .giftNotification.giftPosition.geopoint.longitude),
                     // tilt: 59.440717697143555,
-                    zoom: 14.151926040649414),
+                    zoom: 13),
                 markers: Set<Marker>.of([
                   Marker(
                     markerId: MarkerId('1'),

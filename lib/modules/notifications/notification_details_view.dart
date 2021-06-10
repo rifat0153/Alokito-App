@@ -43,55 +43,64 @@ class NotificationDetailsView extends StatelessWidget {
         ),
         extendBodyBehindAppBar: true,
         body: Container(
+          // height: Get.size.height,
           decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/gift_details.png'),
                 fit: BoxFit.fill),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: Get.height * 0.1),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        UserDetailWidget(
-                          imageUrl: giftNotification.giverImageUrl,
-                          userJoinedAt: giftNotification.giverJoinedAt,
-                          userName: giftNotification.giverName,
-                        ),
-                        UserLocationWidget(
-                          giftNotification: giftNotification,
-                          rating: giftNotification.giverAvgRating.toInt(),
-                          lat: giftNotification.giverPosition.geopoint.latitude,
-                          lng:
-                              giftNotification.giverPosition.geopoint.longitude,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                StyledContainer(
+          child: Column(
+            children: [
+              const SizedBox(height: 50),
+              Expanded(
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      LocationWidget(giftNotification: giftNotification),
-                      RequesterGiftRecords(),
+                      SizedBox(height: Get.height * 0.1),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              UserDetailWidget(
+                                imageUrl: giftNotification.giverImageUrl,
+                                userJoinedAt: giftNotification.giverJoinedAt,
+                                userName: giftNotification.giverName,
+                              ),
+                              UserLocationWidget(
+                                giftNotification: giftNotification,
+                                rating: giftNotification.giverAvgRating.toInt(),
+                                lat: giftNotification
+                                    .giverPosition.geopoint.latitude,
+                                lng: giftNotification
+                                    .giverPosition.geopoint.longitude,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      StyledContainer(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LocationWidget(giftNotification: giftNotification),
+                            RequesterGiftRecords(),
+                          ],
+                        ),
+                      ),
+                      giftNotification.giftRequestStatus ==
+                              GiftRequestStatus.requestConfirmed
+                          ? Text('Gift Confiremd by Giver')
+                          : DecistionWidget(giftNotification: giftNotification),
+                      NotifMapWidget(giftNotification: giftNotification),
+                      _GuideLinesAndThanks(giftNotification: giftNotification),
                     ],
                   ),
                 ),
-                giftNotification.giftRequestStatus ==
-                        GiftRequestStatus.requestConfirmed
-                    ? Text('Gift Confiremd by Giver')
-                    : DecistionWidget(giftNotification: giftNotification),
-                NotifMapWidget(giftNotification: giftNotification),
-                _GuideLinesAndThanks(giftNotification: giftNotification),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
