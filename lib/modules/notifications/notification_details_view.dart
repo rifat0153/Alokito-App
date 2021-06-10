@@ -57,7 +57,7 @@ class NotificationDetailsView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: Get.height * 0.1),
+                      SizedBox(height: Get.height * 0.01),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -211,7 +211,9 @@ class _GuideLinesAndThanks extends StatelessWidget {
           MaterialButton(
             color: GIFT_ADD_FORM_SUBMIT,
             shape: roundedBorder,
-            onPressed: () {},
+            onPressed: () {
+              print('gift done');
+            },
             child: Text('Done', style: whiteFontStyle),
           ),
           const SizedBox(height: 16),

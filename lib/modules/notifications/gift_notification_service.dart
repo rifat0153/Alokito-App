@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:alokito_new/modules/notifications/notif_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,13 @@ class GiftNotificationService implements BaseGiftNotificationService {
   @override
   Future<bool> giftRequestDoneNotif(
       {required GiftNotification giftNotification}) async {
-    return true;
+    try {
+      // _firestore.collection('gift_notifications').add(data)
+
+      return true;
+    } on FirebaseException catch (e) {
+      throw NotificationError(message: e.message);
+    }
   }
 
   Future<bool> cancelGiftRequestNotification(
