@@ -54,6 +54,17 @@ class GiftNotificationController extends GetxController {
         .bindStream(giftNotificationService.streamGiftNotificationStatus());
   }
 
+  Future<void> addDeliveryNotifications({
+    required GiftNotification giftNotification,
+  }) async {
+    loading.value = true;
+
+    await giftNotificationService.giftRequestDoneNotif(
+        giftNotification: giftNotification);
+
+    loading.value = false;
+  }
+
   Future<bool> cancelGiftRequestByRequester(
       {required GiftNotification giftNotification}) async {
     await giftNotificationService.changeRequestStatus(

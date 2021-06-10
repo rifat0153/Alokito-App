@@ -40,7 +40,21 @@ class GiftNotificationService implements BaseGiftNotificationService {
   Future<bool> giftRequestDoneNotif(
       {required GiftNotification giftNotification}) async {
     try {
-      // _firestore.collection('gift_notifications').add(data)
+      var notifForGiver = giftNotification.copyWith(
+          notificationFor: giftNotification.giverUid,
+          notificationType: GiftNotificationType.packageDelivered);
+      var notifForRequester = giftNotification.copyWith(
+          notificationFor: giftNotification.requesterUid,
+          notificationType: GiftNotificationType.packageDelivered);
+
+      await _firestore
+          .collection('gift_notifications')
+          .add(notifForRequester.toJson());
+      await _firestore
+          .collection('gift_notifications')
+          .add(notifForGiver.toJson());
+
+      // _firestore.collection('gift_requests')
 
       return true;
     } on FirebaseException catch (e) {

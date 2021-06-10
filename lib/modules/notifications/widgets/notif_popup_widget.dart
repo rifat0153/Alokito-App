@@ -79,6 +79,8 @@ class NotifPopupWidget extends StatelessWidget {
                             child: Text('Submit', style: whiteFontStyle),
                           ),
                           onPressed: () {
+                            controller.addDeliveryNotifications(
+                                giftNotification: giftNotification);
                             Get.back();
                             showDialog(
                                 context: context,
