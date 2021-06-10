@@ -17,8 +17,13 @@ class GiftNotificationController extends GetxController {
   RxInt notificationIndex = 0.obs;
   Rx<MyPosition> giftPosition =
       const MyPosition(geohash: 'a', geopoint: GeoPoint(0, 0)).obs;
-
   RxInt totalNotifications = 0.obs;
+
+  RxBool loading = false.obs;
+  RxString feedbakcForRequester = ''.obs;
+  RxString feedbakcForGiver = ''.obs;
+  RxInt ratingForRequester = 0.obs;
+  RxInt ratingForGiver = 0.obs;
 
   @override
   void onInit() {

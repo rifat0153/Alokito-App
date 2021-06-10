@@ -3,6 +3,7 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:alokito_new/modules/notifications/widgets/notif_popup_widget.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
@@ -213,6 +214,12 @@ class _GuideLinesAndThanks extends StatelessWidget {
             shape: roundedBorder,
             onPressed: () {
               print('gift done');
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return NotifPopupWidget();
+                },
+              );
             },
             child: Text('Done', style: whiteFontStyle),
           ),
