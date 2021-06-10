@@ -41,12 +41,22 @@ class GiftNotificationService implements BaseGiftNotificationService {
       {required GiftNotification giftNotification}) async {
     try {
       var notifForGiver = giftNotification.copyWith(
-          notificationFor: giftNotification.giverUid,
-          notificationType: GiftNotificationType.packageDelivered);
+        notificationFor: giftNotification.giverUid,
+        notificationType: GiftNotificationType.packageDelivered,
+        createdAt: Timestamp.now(),
+      );
       var notifForRequester = giftNotification.copyWith(
-          notificationFor: giftNotification.requesterUid,
-          notificationType: GiftNotificationType.packageDelivered);
+        notificationFor: giftNotification.requesterUid,
+        notificationType: GiftNotificationType.packageDelivered,
+        createdAt: Timestamp.now(),
+      );
 
+      await _firestore
+          .collection('gift_notifications')
+          .doc(giftNotification.id)
+          .update(giftNotification
+              .copyWith(notificationType: GiftNotificationType.packageDelivered)
+              .toJson());
       await _firestore
           .collection('gift_notifications')
           .add(notifForRequester.toJson());
