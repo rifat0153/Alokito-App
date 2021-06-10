@@ -1,12 +1,16 @@
 import 'dart:ui';
 
+import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotifPopupWidget extends StatelessWidget {
-  NotifPopupWidget({Key? key}) : super(key: key);
+  NotifPopupWidget({required this.giftNotification});
+
+  final GiftNotification giftNotification;
 
   final GiftNotificationController controller = Get.find();
 
@@ -28,9 +32,22 @@ class NotifPopupWidget extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Text('Send a message for this gift'),
+                const SizedBox(height: 20),
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(
+                    giftNotification.requesterImageUrl,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(giftNotification.requesterName, style: boldFontStyle),
+                const SizedBox(height: 8),
+                const Text('give rating'),
+                _StarWidget(),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                  ),
                   child: TextField(
                     decoration: InputDecoration(
                         border: const OutlineInputBorder(
@@ -61,9 +78,9 @@ class NotifPopupWidget extends StatelessWidget {
                             // controller.addGiftRequest(giftGiver: giftGiver);
                             Get.back();
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 30),
-                            child: Text('send'),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Text('Submit', style: whiteFontStyle),
                           ),
                         ),
                 )
@@ -72,6 +89,76 @@ class NotifPopupWidget extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _StarWidget extends StatelessWidget {
+  _StarWidget({Key? key}) : super(key: key);
+
+  final GiftNotificationController controller = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Obx(
+          () => IconButton(
+            icon: const Icon(Icons.star),
+            color: controller.ratingForRequester.value > 0
+                ? Colors.orange
+                : Colors.black,
+            onPressed: () {
+              controller.ratingForRequester.value = 1;
+            },
+          ),
+        ),
+        Obx(
+          () => IconButton(
+            icon: const Icon(Icons.star),
+            color: controller.ratingForRequester.value > 1
+                ? Colors.orange
+                : Colors.black,
+            onPressed: () {
+              controller.ratingForRequester.value = 2;
+            },
+          ),
+        ),
+        Obx(
+          () => IconButton(
+            icon: const Icon(Icons.star),
+            color: controller.ratingForRequester.value > 2
+                ? Colors.orange
+                : Colors.black,
+            onPressed: () {
+              controller.ratingForRequester.value = 3;
+            },
+          ),
+        ),
+        Obx(
+          () => IconButton(
+            icon: const Icon(Icons.star),
+            color: controller.ratingForRequester.value > 3
+                ? Colors.orange
+                : Colors.black,
+            onPressed: () {
+              controller.ratingForRequester.value = 4;
+            },
+          ),
+        ),
+        Obx(
+          () => IconButton(
+            icon: const Icon(Icons.star),
+            color: controller.ratingForRequester.value > 4
+                ? Colors.orange
+                : Colors.black,
+            onPressed: () {
+              controller.ratingForRequester.value = 5;
+            },
+          ),
+        ),
+      ],
     );
   }
 }

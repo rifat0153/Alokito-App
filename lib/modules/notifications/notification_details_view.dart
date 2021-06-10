@@ -217,7 +217,7 @@ class _GuideLinesAndThanks extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return NotifPopupWidget();
+                  return NotifPopupWidget(giftNotification: giftNotification);
                 },
               );
             },
