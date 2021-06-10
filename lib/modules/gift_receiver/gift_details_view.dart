@@ -1,14 +1,11 @@
-
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver/user_joining_distance_widget.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/models/user/local_user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -35,7 +32,7 @@ class GiftDetailsView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               ),
@@ -43,11 +40,12 @@ class GiftDetailsView extends StatelessWidget {
           title: RichText(
             text: TextSpan(
               text: 'Gift Offer - ',
-              style: DefaultTextStyle.of(context).style,
+              style: const TextStyle(color: Colors.black),
               children: <TextSpan>[
                 TextSpan(
-                    text: '$giftType',
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                  text: '$giftType',
+                  style: boldFontStyle.copyWith(fontSize: 20),
+                ),
               ],
             ),
           ),
