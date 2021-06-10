@@ -3,6 +3,7 @@ import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/shared/styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +28,8 @@ class GiftDeliveredRequesterWidget extends StatelessWidget {
     var notificationCreatedAt = DateTime.fromMillisecondsSinceEpoch(
         giftNotification.createdAt.millisecondsSinceEpoch);
     var difference = date.difference(notificationCreatedAt).inHours;
+
+    var currentUserUid = FirebaseAuth.instance.currentUser?.uid;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -53,7 +56,9 @@ class GiftDeliveredRequesterWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: RichText(
                         text: TextSpan(
-                          text: giftNotification.giverUid ==   'Your gift request for ',
+                          text: giftNotification.giverUid == currentUserUid
+                              ? 'Gift request '
+                              : 'Your gift request for ',
                           style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
                             TextSpan(
