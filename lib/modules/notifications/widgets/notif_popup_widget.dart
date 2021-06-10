@@ -74,18 +74,50 @@ class NotifPopupWidget extends StatelessWidget {
                           color: GIFT_ADD_FORM_SUBMIT,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
-                          onPressed: () {
-                            // controller.addGiftRequest(giftGiver: giftGiver);
-                            Get.back();
-                          },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Text('Submit', style: whiteFontStyle),
                           ),
+                          onPressed: () {
+                            Get.back();
+                            showDialog(
+                                context: context,
+                                builder: (_) => ThanksWidget());
+                          },
                         ),
                 )
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ThanksWidget extends StatelessWidget {
+  const ThanksWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      child: Dialog(
+        child: Container(
+          decoration: BoxDecoration(
+            image: const DecorationImage(
+                image: AssetImage('assets/images/submit-feedback.png'),
+                fit: BoxFit.fill),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          height: 100,
+          width: Get.width - 50,
+          child: Column(
+            children: [
+              Text('Thank You', style: boldFontStyle),
+              const Text('Thanks a lot for your kind support.'),
+              const Text('you are such a wonderful person.'),
+            ],
           ),
         ),
       ),
@@ -101,7 +133,7 @@ class _StarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Obx(
           () => IconButton(
