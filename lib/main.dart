@@ -1,3 +1,5 @@
+// @dart=2.9
+// above line is used to disabel sound null safety
 import 'package:alokito_new/modules/auth/initial_view.dart';
 import 'package:alokito_new/modules/auth/login_controller.dart';
 import 'package:alokito_new/modules/auth/login_view.dart';
@@ -40,7 +42,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late AssetImage giftGiverImage;
+  AssetImage giftGiverImage;
 
   @override
   void initState() {
@@ -88,11 +90,7 @@ class GetPages {
     GetPage(
       name: LoginView.route,
       page: () => LoginView(),
-      binding: BindingsBuilder(() {
-        Get.put(() => AuthController());
-        Get.put(() => LoginController());
-        Get.put(GiftNotificationController());
-      }),
+      binding: BindingsBuilder(() {}),
     ),
     //Notification Routes
     GetPage(

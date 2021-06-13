@@ -31,6 +31,16 @@ class GiftRequestController extends GetxController {
         giftRequestStatus: GiftRequestStatus.requestCanceledByRequester);
   }
 
+  Future<void> updateGiftRequestToComplete({
+    required String requesterId,
+    required String giftId,
+  }) async {
+    await giftRequestService.updateGiftRequestStatus(
+        requesterId: requesterId,
+        giftId: giftId,
+        giftRequestStatus: GiftRequestStatus.requestComplete);
+  }
+
   //Delete giftRequest
   Future<bool> deleleGiftRequest({required GiftGiver giftGiver}) async {
     var result =
