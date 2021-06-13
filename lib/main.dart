@@ -79,12 +79,12 @@ class GetPages {
     //Auth Route
     GetPage(
       name: '/',
-      page: () => const InitialView(),
-      binding: BindingsBuilder(() {
-        Get.put(() => AuthController());
-        Get.put(() => LoginController());
-        Get.put(GiftNotificationController());
-      }),
+      page: () => InitialView(),
+      // binding: BindingsBuilder(() {
+      //   Get.put(AuthController());
+      //   Get.put(LoginController());
+      //   Get.put(GiftNotificationController());
+      // }),
     ),
     GetPage(
       name: LoginView.route,

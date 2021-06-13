@@ -19,7 +19,8 @@ class RoleWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<AuthController>().bindMyUserStream();
 
-    return Obx(() => authController.currentUser.value.when(
+    return Obx(
+      () => authController.currentUser.value.when(
         data: (localUser) {
           authController.currentUserImageUrl.value = localUser.imageUrl ?? '';
           authController.currentUserName.value = localUser.userName;
@@ -50,6 +51,10 @@ class RoleWrapper extends StatelessWidget {
               : HomeView();
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, s) => Center(child: Container())));
+        error: (e, s) => Center(
+          child: Container(),
+        ),
+      ),
+    );
   }
 }

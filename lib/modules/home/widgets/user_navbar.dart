@@ -54,7 +54,7 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.to(ConnectionView());
+            Get.to(() => ConnectionView());
           },
           child: Icon(Icons.message, color: Colors.white, size: height * 0.045),
         ),
