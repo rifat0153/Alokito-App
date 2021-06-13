@@ -67,10 +67,10 @@ class GiftDeliveredRequesterWidget extends StatelessWidget {
                                     fontWeight: FontWeight.bold)),
                             const TextSpan(text: ' was delivered by '),
 
-                            giftNotification.requesterUid !=
+                            giftNotification.giverUid !=
                                     authController.auth.currentUser?.uid
                                 ? TextSpan(
-                                    text: giftNotification.requesterName,
+                                    text: giftNotification.giverName,
                                     style: boldFontStyle)
                                 : TextSpan(text: 'you', style: boldFontStyle)
                             // TextSpan(
