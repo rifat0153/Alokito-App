@@ -13,7 +13,7 @@ class AuthController extends GetxController {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   Rx<AuthService> authService = AuthService().obs;
-  final currentUser = const LocalUserInfo.loading().obs;
+  final currentUser = LocalUserInfo.loading().obs;
   final Rx<String> firebaseUser = ''.obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
@@ -39,6 +39,7 @@ class AuthController extends GetxController {
   @override
   void onClose() {
     authStream.close();
+    currentUser.close();
     super.onClose();
   }
 

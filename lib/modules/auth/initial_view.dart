@@ -14,6 +14,8 @@ class InitialView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthenticationWrapper();
+    return Scaffold(
+      body: AuthenticationWrapper(),
+    );
   }
 }
