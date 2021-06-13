@@ -9,8 +9,8 @@ part of 'gift_record.dart';
 _$_GiftRecord _$_$_GiftRecordFromJson(Map<String, dynamic> json) {
   return _$_GiftRecord(
     id: json['id'] as String?,
-    giftReqeust:
-        giftReqeustFromJson(json['giftReqeust'] as Map<String, dynamic>),
+    giftNotification: giftNotificationFromJson(
+        json['giftNotification'] as Map<String, dynamic>),
     createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
 }
@@ -18,6 +18,6 @@ _$_GiftRecord _$_$_GiftRecordFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_GiftRecordToJson(_$_GiftRecord instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'giftReqeust': giftRequestToJson(instance.giftReqeust),
+      'giftNotification': giftNotificationToJson(instance.giftNotification),
       'createdAt': timestampToJson(instance.createdAt),
     };

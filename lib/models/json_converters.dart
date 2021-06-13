@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,12 @@ Map<String, dynamic> giftRequestToJson(GiftReqeust giftReqeust) =>
     giftReqeust.toJson();
 GiftReqeust giftReqeustFromJson(Map<String, dynamic> json) =>
     GiftReqeust.fromJson(json);
+//Gift Notifications
+Map<String, dynamic> giftNotificationToJson(
+        GiftNotification giftNotification) =>
+    giftNotification.toJson();
+GiftNotification giftNotificationFromJson(Map<String, dynamic> json) =>
+    GiftNotification.fromJson(json);
 
 int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
   switch (giftRequestStatus) {
