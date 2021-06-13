@@ -62,7 +62,7 @@ class GiftDeliveredRequesterWidget extends StatelessWidget {
                           style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
                             TextSpan(
-                                text: '$giftType',
+                                text: giftType,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
                             const TextSpan(text: ' was delivered by '),
