@@ -9,8 +9,8 @@ class InitialView extends StatelessWidget {
   InitialView({Key? key}) : super(key: key);
   final AuthController authController = Get.put(AuthController());
   final LoginController loginController = Get.put(LoginController());
-  final GiftNotificationController giftNotificationController =
-      Get.put(GiftNotificationController());
+  // final GiftNotificationController giftNotificationController =
+  //     Get.put(GiftNotificationController());
 
   @override
   Widget build(BuildContext context) {

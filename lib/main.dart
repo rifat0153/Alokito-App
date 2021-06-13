@@ -1,5 +1,3 @@
-// @dart=2.9
-// above line is used to disabel sound null safety
 import 'package:alokito_new/modules/auth/initial_view.dart';
 import 'package:alokito_new/modules/auth/login_controller.dart';
 import 'package:alokito_new/modules/auth/login_view.dart';
@@ -8,6 +6,7 @@ import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
+import 'package:alokito_new/modules/home/home_view.dart';
 import 'package:alokito_new/modules/map/geo_map_view.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
@@ -41,7 +40,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  AssetImage giftGiverImage;
+  late AssetImage giftGiverImage;
 
   @override
   void initState() {
@@ -80,11 +79,11 @@ class GetPages {
     GetPage(
       name: '/',
       page: () => InitialView(),
-      // binding: BindingsBuilder(() {
-      //   Get.put(AuthController());
-      //   Get.put(LoginController());
-      //   Get.put(GiftNotificationController());
-      // }),
+      binding: BindingsBuilder(() {
+        Get.put(AuthController());
+        Get.put(LoginController());
+        Get.put(GiftNotificationController());
+      }),
     ),
     GetPage(
       name: LoginView.route,
