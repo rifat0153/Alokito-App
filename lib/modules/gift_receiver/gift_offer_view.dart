@@ -37,10 +37,10 @@ class GiftOfferView extends StatelessWidget {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: Stack(
+        body: Column(
           children: [
             Container(
-              height: Get.size.height + 500,
+              // height: Get.size.height + 500,
               width: Get.size.width,
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -51,7 +51,7 @@ class GiftOfferView extends StatelessWidget {
                 children: [
                   MyMapView(),
                   _SearchWidget(),
-                  _TextWidget(),
+                  // _TextWidget(),
                   Container(
                     // color: Colors.blue,
                     height: Get.size.height * 0.3,
@@ -64,7 +64,8 @@ class GiftOfferView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Obx(() => Slider(
+                  Obx(
+                    () => Slider(
                       label: giftController.searchRadius.toInt().toString(),
                       divisions: 199,
                       min: 1.0,
@@ -72,7 +73,9 @@ class GiftOfferView extends StatelessWidget {
                       value: giftController.searchRadius,
                       onChanged: (value) {
                         giftController.setSearchRadius(value);
-                      }))
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -84,8 +87,11 @@ class GiftOfferView extends StatelessWidget {
 }
 
 class _GiftListTile extends StatelessWidget {
-  _GiftListTile({Key? key, required this.giftController, required this.index})
-      : super(key: key);
+  _GiftListTile({
+    Key? key,
+    required this.giftController,
+    required this.index,
+  }) : super(key: key);
 
   final GiftController giftController;
   final int index;
@@ -100,8 +106,10 @@ class _GiftListTile extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
             child: GestureDetector(
-              onTap: () => Get.to(() => GiftDetailsView(
-                  giftGiver: giftController.giftList.value[index])),
+              onTap: () => Get.to(
+                () => GiftDetailsView(
+                    giftGiver: giftController.giftList.value[index]),
+              ),
               child: Container(
                 decoration: BoxDecoration(
                   color: GIFT_ADD_FORM_COLOR,
@@ -165,7 +173,7 @@ class _GiftListTile extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     )
@@ -206,6 +214,7 @@ class _TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(width: 30),
         Text('Listing by date'),

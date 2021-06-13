@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -14,6 +15,12 @@ MyPosition myPositionFromJson(Map<String, dynamic> json) =>
 
 Timestamp timestampToJson(Timestamp timestamp) => timestamp;
 Timestamp timestampFromJson(Timestamp json) => json;
+
+//Gift Request
+Map<String, dynamic> giftRequestToJson(GiftReqeust giftReqeust) =>
+    giftReqeust.toJson();
+GiftReqeust giftReqeustFromJson(Map<String, dynamic> json) =>
+    GiftReqeust.fromJson(json);
 
 int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
   switch (giftRequestStatus) {
