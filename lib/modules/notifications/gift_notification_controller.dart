@@ -113,6 +113,7 @@ class GiftNotificationController extends GetxController {
       requesterName: authController.currentUserName.value,
       giftImageUrl: giftGiver.imageUrl,
       giftId: giftGiver.id ?? '',
+      giftPickUpTime: giftGiver.pickUpTime,
       notificationFor: giftGiver.uid,
       giftRequestStatus: GiftRequestStatus.requestPedning,
       giftPosition: giftGiver.position,

@@ -93,7 +93,13 @@ class NotificationDetailsView extends StatelessWidget {
                       ),
                       giftNotification.giftRequestStatus ==
                               GiftRequestStatus.requestConfirmed
-                          ? Text('Gift Confiremd by Giver')
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Gift Confiremd by Giver',
+                                    style: boldFontStyle),
+                              ],
+                            )
                           : DecistionWidget(giftNotification: giftNotification),
                       NotifMapWidget(giftNotification: giftNotification),
                       giftNotification.notificationType ==

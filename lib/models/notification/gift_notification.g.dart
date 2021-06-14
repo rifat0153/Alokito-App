@@ -30,6 +30,7 @@ _$_GiftNotification _$_$_GiftNotificationFromJson(Map<String, dynamic> json) {
     giftArea: json['giftArea'] as String,
     notificationFor: json['notificationFor'] as String,
     commentsForGiver: json['commentsForGiver'] as String? ?? '',
+    giftPickUpTime: timestampFromJson(json['giftPickUpTime'] as Timestamp),
     giftPosition:
         myPositionFromJson(json['giftPosition'] as Map<String, dynamic>),
     requesterPosition:
@@ -73,6 +74,7 @@ Map<String, dynamic> _$_$_GiftNotificationToJson(
       'giftArea': instance.giftArea,
       'notificationFor': instance.notificationFor,
       'commentsForGiver': instance.commentsForGiver,
+      'giftPickUpTime': timestampToJson(instance.giftPickUpTime),
       'giftPosition': myPositionToJson(instance.giftPosition),
       'requesterPosition': myPositionToJson(instance.requesterPosition),
       'giverPosition': myPositionToJson(instance.giverPosition),

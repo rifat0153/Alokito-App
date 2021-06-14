@@ -33,6 +33,8 @@ class GiftNotification with _$GiftNotification {
     required String giftArea,
     required String notificationFor,
     @Default('') String commentsForGiver,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+        required Timestamp giftPickUpTime,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
         required MyPosition giftPosition,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
