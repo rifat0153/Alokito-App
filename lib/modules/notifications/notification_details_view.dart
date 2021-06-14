@@ -119,6 +119,15 @@ class NotificationDetailsView extends StatelessWidget {
   }
 }
 
+class _PickUpTime extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: null,
+    );
+  }
+}
+
 class _GuideLinesAndThanks extends StatelessWidget {
   _GuideLinesAndThanks({Key? key, required this.giftNotification})
       : super(key: key);
