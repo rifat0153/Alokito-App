@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/modules/gift_record/gift_record_controller.dart';
 import 'package:alokito_new/modules/notifications/notif_error.dart';
@@ -27,6 +28,12 @@ abstract class BaseGiftNotificationService {
 
   Future<void> addNotificationStatus(GiftNotification giftNotification);
 
+  Future<void> updateUserInfo({
+    required String userId,
+    required bool giftReceiver,
+    required double rating,
+  });
+
   Stream<int> streamGiftNotificationStatus();
 
   Future<List<GiftNotification>> getGiftNotification();
@@ -37,6 +44,39 @@ class GiftNotificationService implements BaseGiftNotificationService {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  Future<void> updateUserInfo({
+    required String userId,
+    required bool giftReceiver,
+    required double rating,
+  }) async {
+    try {
+      var userDocRef = _firestore.collection('users').doc(userId);
+      var userDoc = await userDocRef.get();
+      LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
+      double avgRating =
+          (localUser.ratingSum + rating) / localUser.totalRating + 1;
+
+      var updatedUser = localUser.copyWith(
+        averageRating: avgRating,
+        totalRating: localUser.totalRating + 1,
+        ratingSum: localUser.ratingSum + rating,
+      );
+
+      if (giftReceiver) {
+        await userDocRef.set(updatedUser
+            .copyWith(giftOffered: localUser.giftOffered + 1)
+            .toJson());
+      } else {
+        await userDocRef.set(updatedUser
+            .copyWith(giftReceived: localUser.giftReceived + 1)
+            .toJson());
+      }
+    } on FirebaseException catch (e) {
+      throw NotificationError(message: e.message);
+    }
+  }
 
   @override
   Future<bool> giftRequestDoneNotif(
@@ -56,12 +96,15 @@ class GiftNotificationService implements BaseGiftNotificationService {
         createdAt: Timestamp.now(),
       );
 
+      //update existing notification
       await _firestore
           .collection('gift_notifications')
           .doc(giftNotification.id)
           .update(giftNotification
               .copyWith(notificationType: GiftNotificationType.packageDelivered)
               .toJson());
+
+      //add new notifications for both receiver and giver
       await _firestore
           .collection('gift_notifications')
           .add(notifForRequester.toJson());
@@ -69,10 +112,12 @@ class GiftNotificationService implements BaseGiftNotificationService {
           .collection('gift_notifications')
           .add(notifForGiver.toJson());
 
+      //add a record of the gift transaction
       await giftRecordController.addGiftRecord(
         giftNotification: giftNotification,
       );
 
+      //updating request status so new request can not be made
       await giftRequestController.updateGiftRequestToComplete(
         requesterId: giftNotification.requesterUid,
         giftId: giftNotification.giftId,
