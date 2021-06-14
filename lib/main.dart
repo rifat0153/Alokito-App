@@ -25,7 +25,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'modules/auth/auth_controller.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,6 +58,18 @@ class _AlokitoAppState extends State<AlokitoApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
+
     return GetMaterialApp(
       // darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
@@ -65,7 +77,7 @@ class _AlokitoAppState extends State<AlokitoApp> {
       theme: ThemeData(
         fontFamily: GoogleFonts.montserrat().fontFamily,
         primarySwatch: Colors.teal,
-        accentColor: Color(0xff1b2e59),
+        accentColor: const Color(0xff1b2e59),
       ),
       initialRoute: '/',
       // builder: EasyLoading.init(),

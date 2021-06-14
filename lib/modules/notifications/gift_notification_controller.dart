@@ -59,9 +59,7 @@ class GiftNotificationController extends GetxController {
       required double rating,
       required bool giftReceiver}) async {
     await giftNotificationService.updateUserInfo(
-        userId: userId,
-        giftReceiver: giftReceiver,
-        rating: rating);
+        userId: userId, giftReceiver: giftReceiver, rating: rating);
   }
 
   Future<void> addDeliveryNotifications({
@@ -71,6 +69,15 @@ class GiftNotificationController extends GetxController {
 
     await giftNotificationService.giftRequestDoneNotif(
         giftNotification: giftNotification);
+
+    await updateUserRatingAndInfo(
+        userId: giftNotification.requesterUid,
+        rating: ratingForRequester.value.toDouble(),
+        giftReceiver: true);
+    await updateUserRatingAndInfo(
+        userId: giftNotification.giverUid,
+        rating: ratingForRequester.value.toDouble(),
+        giftReceiver: false);
 
     loading.value = false;
   }
@@ -87,15 +94,6 @@ class GiftNotificationController extends GetxController {
         giftRequestStatusForRequester:
             GiftRequestStatus.requestCanceledByRequester,
         giftNotification: giftNotification);
-
-    await updateUserRatingAndInfo(
-        userId: giftNotification.requesterUid,
-        rating: ratingForRequester.value.toDouble(),
-        giftReceiver: true);
-    await updateUserRatingAndInfo(
-        userId: giftNotification.giverUid,
-        rating: ratingForRequester.value.toDouble(),
-        giftReceiver: false);
 
     return true;
   }
