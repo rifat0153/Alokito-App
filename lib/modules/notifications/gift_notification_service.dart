@@ -56,7 +56,9 @@ class GiftNotificationService implements BaseGiftNotificationService {
       var userDoc = await userDocRef.get();
       LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
       double avgRating =
-          (localUser.ratingSum + rating) / localUser.totalRating + 1;
+          (localUser.ratingSum + rating) / localUser.totalRating == 0
+              ? 1
+              : localUser.totalRating + 1;
 
       var updatedUser = localUser.copyWith(
         averageRating: avgRating,
