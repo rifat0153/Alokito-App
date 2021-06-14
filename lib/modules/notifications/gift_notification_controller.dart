@@ -54,6 +54,16 @@ class GiftNotificationController extends GetxController {
         .bindStream(giftNotificationService.streamGiftNotificationStatus());
   }
 
+  Future<void> updateUserRatingAndInfo(
+      {required String userId,
+      required double rating,
+      required bool giftReceiver}) async {
+    await giftNotificationService.updateUserInfo(
+        userId: userId,
+        giftReceiver: giftReceiver,
+        rating: rating);
+  }
+
   Future<void> addDeliveryNotifications({
     required GiftNotification giftNotification,
   }) async {
@@ -77,6 +87,15 @@ class GiftNotificationController extends GetxController {
         giftRequestStatusForRequester:
             GiftRequestStatus.requestCanceledByRequester,
         giftNotification: giftNotification);
+
+    await updateUserRatingAndInfo(
+        userId: giftNotification.requesterUid,
+        rating: ratingForRequester.value.toDouble(),
+        giftReceiver: true);
+    await updateUserRatingAndInfo(
+        userId: giftNotification.giverUid,
+        rating: ratingForRequester.value.toDouble(),
+        giftReceiver: false);
 
     return true;
   }

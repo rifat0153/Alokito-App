@@ -66,11 +66,11 @@ class GiftNotificationService implements BaseGiftNotificationService {
 
       if (giftReceiver) {
         await userDocRef.set(updatedUser
-            .copyWith(giftOffered: localUser.giftOffered + 1)
+            .copyWith(giftOffered: localUser.giftReceived + 1)
             .toJson());
       } else {
         await userDocRef.set(updatedUser
-            .copyWith(giftReceived: localUser.giftReceived + 1)
+            .copyWith(giftReceived: localUser.giftOffered + 1)
             .toJson());
       }
     } on FirebaseException catch (e) {

@@ -81,6 +81,7 @@ class NotifPopupWidget extends StatelessWidget {
                           onPressed: () {
                             controller.addDeliveryNotifications(
                                 giftNotification: giftNotification);
+
                             Get.back();
                             showDialog(
                                 context: context,
