@@ -2,15 +2,9 @@ import 'dart:io';
 
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
-import 'package:alokito_new/modules/auth/base_auth_service.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-
-import 'auth_controller.dart';
-import 'package:flutter/material.dart';
-// import 'package:flutter_easyloading/flutter_easyloading.dart';
-import '../../models/user/local_user.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,6 +12,32 @@ import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import '../../models/user/local_user.dart';
+
+abstract class BaseAuthService {
+  Future<String> signIn({required String email, required String password});
+
+  // For finding out if user is admin or not
+  Stream<LocalUserInfo> loggedInUserStream();
+
+  // Sign Up function
+  Future<bool> signUp({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+    required String userName,
+    required File localImageFile,
+  });
+
+  uploadUserAndImage(LocalUser user, bool isUpdating, File localFile);
+
+  uploadUser(LocalUser user, bool isUpdating, {String? imageUrl});
+  Stream<User?> get authStateChanges;
+
+  Future<void> signOut();
+}
 
 class AuthService implements BaseAuthService {
   final _firebaseAuth = FirebaseAuth.instance;
@@ -62,7 +82,7 @@ class AuthService implements BaseAuthService {
     required String email,
     required String password,
     required String userName,
-    required File localFile,
+    required File localImageFile,
   }) async {
     try {
       // EasyLoading.show(status: 'loading...');
@@ -94,7 +114,7 @@ class AuthService implements BaseAuthService {
         createdAt: Timestamp.now(),
       );
 
-      uploadUserAndImage(myUser, false, localFile);
+      uploadUserAndImage(myUser, false, localImageFile);
 
       print("Signed up");
       return true;

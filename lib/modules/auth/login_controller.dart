@@ -51,7 +51,7 @@ class LoginController extends GetxController {
         email: email.value.trim(),
         password: password.value,
         userName: userName.value,
-        localFile: imageFile.value);
+        localImageFile: imageFile.value);
 
     return null;
   }

@@ -31,17 +31,17 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    MyApp(),
+    AlokitoApp(),
   );
 }
 
-class MyApp extends StatefulWidget {
+class AlokitoApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  _AlokitoAppState createState() => _AlokitoAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _AlokitoAppState extends State<AlokitoApp> {
   AssetImage giftGiverImage;
 
   @override
