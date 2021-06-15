@@ -169,24 +169,24 @@ class GiftNotificationService implements BaseGiftNotificationService {
       var modified =
           giftNotification.copyWith(giftRequestStatus: giftRequestStatus);
 
-      // await _firestore
-      //     .collection('gift_notifications')
-      //     .doc(modified.id)
-      //     .update(modified.toJson());
+      await _firestore
+          .collection('gift_notifications')
+          .doc(modified.id)
+          .update(modified.toJson());
 
-      // var giftNotifGiver = giftNotification.copyWith(
-      //   notificationType: giftNotificationTypeForGiver,
-      //   giftRequestStatus: giftRequestStatusForGiver,
-      //   notificationFor: giftNotification.giverUid,
-      //   createdAt: Timestamp.now(),
-      // );
+      var giftNotifGiver = giftNotification.copyWith(
+        notificationType: giftNotificationTypeForGiver,
+        giftRequestStatus: giftRequestStatusForGiver,
+        notificationFor: giftNotification.giverUid,
+        createdAt: Timestamp.now(),
+      );
 
-      // var giftNotifRequester = giftNotifGiver.copyWith(
-      //   notificationType: giftNotificationTypeForRequester,
-      //   giftRequestStatus: giftRequestStatusForRequester,
-      //   notificationFor: giftNotification.requesterUid,
-      //   createdAt: Timestamp.now(),
-      // );
+      var giftNotifRequester = giftNotifGiver.copyWith(
+        notificationType: giftNotificationTypeForRequester,
+        giftRequestStatus: giftRequestStatusForRequester,
+        notificationFor: giftNotification.requesterUid,
+        createdAt: Timestamp.now(),
+      );
 
       var notifList = await _firestore
           .collection('gift_notifications')
@@ -195,20 +195,26 @@ class GiftNotificationService implements BaseGiftNotificationService {
           .get();
 
       var idList = notifList.docs
-          .map((doc) => GiftNotification.fromJson(doc.data()).notificationType)
+          .map((doc) => GiftNotification.fromJson(doc.data()))
           .toList();
 
-      var filteredList = idList
-          .where((element) => element == GiftNotificationType.packageConfirmed);
+      var filteredList = idList.where((element) =>
+          element.notificationType == GiftNotificationType.packageConfirmed);
 
-      filteredList.forEach((element) {
-        print('Filtered notif LIST ID: ' + element.toString());
+      idList.forEach((element) {
+        print('Notif LIST ID: ' + element.id.toString());
+
+        _firestore.collection('gift_notifications').doc(element.id).delete();
       });
 
-      // await addGiftNotification(giftNotification: giftNotifGiver);
-      // await addGiftNotification(giftNotification: giftNotifRequester);
+      filteredList.forEach((element) {
+        print('Filtered notif LIST ID: ' + element.id.toString());
+      });
 
-      // Get.back();
+      await addGiftNotification(giftNotification: giftNotifGiver);
+      await addGiftNotification(giftNotification: giftNotifRequester);
+
+      Get.back();
 
       return true;
     } on FirebaseException catch (e) {
