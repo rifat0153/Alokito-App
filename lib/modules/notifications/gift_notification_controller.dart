@@ -79,6 +79,8 @@ class GiftNotificationController extends GetxController {
         userId: giftNotification.giverUid,
         giftReceiver: false,
         rating: ratingForRequester.toDouble());
+
+    Get.back();
   }
 
   Future<bool> cancelGiftRequestByRequester(

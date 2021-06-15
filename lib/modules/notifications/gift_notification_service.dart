@@ -14,8 +14,8 @@ abstract class BaseGiftNotificationService {
 
   Stream<List<GiftNotification>> streamGiftNotification();
 
-  Future<bool> cancelGiftRequestNotification(
-      {required GiftNotification giftNotification});
+  // Future<bool> cancelGiftRequestNotification(
+  //     {required GiftNotification giftNotification});
 
   Future<bool> giftRequestDoneNotif(
       {required GiftNotification giftNotification});
@@ -109,6 +109,23 @@ class GiftNotificationService implements BaseGiftNotificationService {
               .copyWith(notificationType: GiftNotificationType.packageDelivered)
               .toJson());
 
+      // Remove Existing Notification about this Request
+      var notifList = await _firestore
+          .collection('gift_notifications')
+          .where('giftId', isEqualTo: giftNotification.giftId)
+          .where('requesterUid', isEqualTo: giftNotification.requesterUid)
+          .get();
+
+      var idList = notifList.docs
+          .map((doc) => GiftNotification.fromJson(doc.data()))
+          .toList();
+
+      idList.forEach((element) {
+        print('Notif LIST ID: ' + element.id.toString());
+
+        _firestore.collection('gift_notifications').doc(element.id).delete();
+      });
+
       //add new notifications for both receiver and giver
       await _firestore
           .collection('gift_notifications')
@@ -131,28 +148,6 @@ class GiftNotificationService implements BaseGiftNotificationService {
       return true;
     } on FirebaseException catch (e) {
       throw NotificationError(message: e.message);
-    }
-  }
-
-  @override
-  Future<bool> cancelGiftRequestNotification(
-      {required GiftNotification giftNotification}) async {
-    try {
-      // var modified = giftNotification.copyWith(
-      //     notificationType: GiftNotificationType.packageCanceledByRequester);
-
-      // var notificationForGiver =
-      //     modified.copyWith(notificationFor: modified.giverUid);
-      // var notificationForRequester =
-      //     modified.copyWith(notificationFor: modified.requesterUid);
-
-      // await addGiftNotification(giftNotification: notificationForGiver);
-      // await addGiftNotification(giftNotification: notificationForRequester);
-
-      return true;
-    } on FirebaseException catch (e) {
-      print(e.message);
-      return false;
     }
   }
 
