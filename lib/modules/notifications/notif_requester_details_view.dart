@@ -187,12 +187,13 @@ class _DecisionWidget extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             color: GIFT_ADD_FORM_SUBMIT,
             onPressed: () {
+              print('Canceled Request');
               controller.cancelGiftRequestByRequester(
                   giftNotification: giftNotification);
 
-              giftRequestController.cancelGiftRequestByRequester(
-                  requesterId: giftNotification.requesterUid,
-                  giftId: giftNotification.giftId);
+              // giftRequestController.cancelGiftRequestByRequester(
+              //     requesterId: giftNotification.requesterUid,
+              //     giftId: giftNotification.giftId);
             },
             child: Text('Cancel Request',
                 style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),

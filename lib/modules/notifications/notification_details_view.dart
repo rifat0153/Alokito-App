@@ -24,6 +24,10 @@ class NotificationDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Notif ID: ' +
+        controller.giftNotificationList[controller.notificationIndex.value].id
+            .toString());
+
     GiftNotification giftNotification =
         controller.giftNotificationList[controller.notificationIndex.value];
 

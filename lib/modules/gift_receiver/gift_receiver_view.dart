@@ -35,7 +35,7 @@ class GiftReceiverView extends StatelessWidget {
         appBar: AppBar(
           toolbarHeight: 80,
           centerTitle: true,
-          title: Text(
+          title: const Text(
             'Gift Receiver',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 30),
@@ -46,10 +46,11 @@ class GiftReceiverView extends StatelessWidget {
                 Obx(() => Badge(
                       badgeContent:
                           authController.currentUserHasNotifications.value
-                              ? Text('!')
-                              : Text(''),
+                              ? const Text('!')
+                              : const Text(''),
                       badgeColor: Colors.white,
-                      child: Icon(Icons.notifications, color: Colors.white),
+                      child:
+                          const Icon(Icons.notifications, color: Colors.white),
                     )),
               ],
             ),

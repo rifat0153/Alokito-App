@@ -14,6 +14,9 @@ abstract class BaseGiftNotificationService {
 
   Stream<List<GiftNotification>> streamGiftNotification();
 
+  Future<bool> cancelGiftRequestNotification(
+      {required GiftNotification giftNotification});
+
   Future<bool> giftRequestDoneNotif(
       {required GiftNotification giftNotification});
 
@@ -131,19 +134,20 @@ class GiftNotificationService implements BaseGiftNotificationService {
     }
   }
 
+  @override
   Future<bool> cancelGiftRequestNotification(
       {required GiftNotification giftNotification}) async {
     try {
-      var modified = giftNotification.copyWith(
-          notificationType: GiftNotificationType.packageCanceledByRequester);
+      // var modified = giftNotification.copyWith(
+      //     notificationType: GiftNotificationType.packageCanceledByRequester);
 
-      var notificationForGiver =
-          modified.copyWith(notificationFor: modified.giverUid);
-      var notificationForRequester =
-          modified.copyWith(notificationFor: modified.requesterUid);
+      // var notificationForGiver =
+      //     modified.copyWith(notificationFor: modified.giverUid);
+      // var notificationForRequester =
+      //     modified.copyWith(notificationFor: modified.requesterUid);
 
-      await addGiftNotification(giftNotification: notificationForGiver);
-      await addGiftNotification(giftNotification: notificationForRequester);
+      // await addGiftNotification(giftNotification: notificationForGiver);
+      // await addGiftNotification(giftNotification: notificationForRequester);
 
       return true;
     } on FirebaseException catch (e) {
@@ -165,29 +169,46 @@ class GiftNotificationService implements BaseGiftNotificationService {
       var modified =
           giftNotification.copyWith(giftRequestStatus: giftRequestStatus);
 
-      await _firestore
+      // await _firestore
+      //     .collection('gift_notifications')
+      //     .doc(modified.id)
+      //     .update(modified.toJson());
+
+      // var giftNotifGiver = giftNotification.copyWith(
+      //   notificationType: giftNotificationTypeForGiver,
+      //   giftRequestStatus: giftRequestStatusForGiver,
+      //   notificationFor: giftNotification.giverUid,
+      //   createdAt: Timestamp.now(),
+      // );
+
+      // var giftNotifRequester = giftNotifGiver.copyWith(
+      //   notificationType: giftNotificationTypeForRequester,
+      //   giftRequestStatus: giftRequestStatusForRequester,
+      //   notificationFor: giftNotification.requesterUid,
+      //   createdAt: Timestamp.now(),
+      // );
+
+      var notifList = await _firestore
           .collection('gift_notifications')
-          .doc(modified.id)
-          .update(modified.toJson());
+          .where('giftId', isEqualTo: giftNotification.giftId)
+          .where('requesterUid', isEqualTo: giftNotification.requesterUid)
+          .get();
 
-      var giftNotifGiver = giftNotification.copyWith(
-        notificationType: giftNotificationTypeForGiver,
-        giftRequestStatus: giftRequestStatusForGiver,
-        notificationFor: giftNotification.giverUid,
-        createdAt: Timestamp.now(),
-      );
+      var idList = notifList.docs
+          .map((doc) => GiftNotification.fromJson(doc.data()).notificationType)
+          .toList();
 
-      var giftNotifRequester = giftNotifGiver.copyWith(
-        notificationType: giftNotificationTypeForRequester,
-        giftRequestStatus: giftRequestStatusForRequester,
-        notificationFor: giftNotification.requesterUid,
-        createdAt: Timestamp.now(),
-      );
+      var filteredList = idList
+          .where((element) => element == GiftNotificationType.packageConfirmed);
 
-      await addGiftNotification(giftNotification: giftNotifGiver);
-      await addGiftNotification(giftNotification: giftNotifRequester);
+      filteredList.forEach((element) {
+        print('Filtered notif LIST ID: ' + element.toString());
+      });
 
-      Get.back();
+      // await addGiftNotification(giftNotification: giftNotifGiver);
+      // await addGiftNotification(giftNotification: giftNotifRequester);
+
+      // Get.back();
 
       return true;
     } on FirebaseException catch (e) {
