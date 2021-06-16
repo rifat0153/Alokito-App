@@ -99,9 +99,9 @@ class GiftDetailsView extends StatelessWidget {
                             color: Colors.blue,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
-                            child: Text(
+                            child: const Text(
                               'Gift Requested',
-                              style: const TextStyle(color: Colors.blue),
+                              style: TextStyle(color: Colors.blue),
                             ),
                           ),
                           MaterialButton(
