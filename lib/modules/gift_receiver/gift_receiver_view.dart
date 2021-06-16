@@ -1,6 +1,7 @@
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
+import 'package:alokito_new/modules/gift_request/gift_request_view.dart';
 import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -145,13 +146,15 @@ class _MyButtonRowWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         ElevatedButton(
-          onPressed: () {},
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith(
                 (states) => GIFT_GIVER_BUTTON_COLOR),
             foregroundColor:
                 MaterialStateProperty.resolveWith((states) => Colors.black),
           ),
+          onPressed: () {
+            Get.to(() => GiftRequestView());
+          },
           child: const Text('Gift Request'),
         ),
         ElevatedButton(

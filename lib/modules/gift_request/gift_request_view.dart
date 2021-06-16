@@ -1,10 +1,176 @@
+import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/shared/styles.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 class GiftRequestView extends StatelessWidget {
-  const GiftRequestView({ Key? key }) : super(key: key);
+  GiftRequestView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            foregroundColor: Colors.transparent,
+            leading: IconButton(
+                onPressed: () => Get.back(),
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                )),
+          ),
+          body: Container(
+            height: Get.height,
+            width: Get.width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  // image: AssetImage(
+                  //     'assets/images/gift_receiver_background.png'),
+                  image: AssetImage('assets/images/rsz_1gift_receiver.png'),
+                  fit: BoxFit.fill),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: context.height * 0.15),
+                Text(
+                  "Don't worry...",
+                  style: boldFontStyle.copyWith(fontSize: 24),
+                ),
+                const SizedBox(height: 8),
+                Text('thre are many people', style: boldFontStyle),
+                const SizedBox(height: 8),
+                Text('around you ready to help', style: boldFontStyle),
+                const SizedBox(height: 8),
+                _InsertLocationWidget(),
+                const SizedBox(height: 8),
+                _RequestDateWidget(),
+              ],
+            ),
+          )),
+    );
+  }
+}
+
+class _InsertLocationWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Container(
+        height: 30,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: GIFT_ADD_FORM_COLOR,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                'insert your location',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Transform.rotate(
+              angle: -0.7,
+              child: const Icon(
+                Icons.send,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RequestDateWidget extends StatelessWidget {
+  const _RequestDateWidget();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      width: Get.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Text('Request Date', style: boldFontStyle),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              children: [
+                Icon(Icons.calendar_today),
+                Container(
+                  color: GIFT_ADD_FORM_COLOR,
+                  height: 30,
+                  width: 100,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              children: [
+                Text('Request For', style: boldFontStyle),
+                const SizedBox(width: 8),
+                _StyledContainer(
+                  widget: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child:
+                        Text('-', style: boldFontStyle.copyWith(fontSize: 20)),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                const _StyledContainer(
+                  widget: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                    child: Text(
+                      '02',
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                _StyledContainer(
+                  widget: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child:
+                        Text('+', style: boldFontStyle.copyWith(fontSize: 20)),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _StyledContainer extends StatelessWidget {
+  const _StyledContainer({Key? key, required this.widget}) : super(key: key);
+
+  final Widget widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: GIFT_ADD_FORM_COLOR,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: widget,
     );
   }
 }
