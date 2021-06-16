@@ -41,13 +41,24 @@ class GiftRequestView extends StatelessWidget {
                   style: boldFontStyle.copyWith(fontSize: 24),
                 ),
                 const SizedBox(height: 8),
-                Text('thre are many people', style: boldFontStyle),
+                Text('there are many people', style: boldFontStyle),
                 const SizedBox(height: 8),
                 Text('around you ready to help', style: boldFontStyle),
                 const SizedBox(height: 8),
                 _InsertLocationWidget(),
                 const SizedBox(height: 8),
-                _RequestDateWidget(),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        _RequestDateWidget(),
+                      ],
+                    ),
+                    Column(
+                      children: [],
+                    )
+                  ],
+                ),
               ],
             ),
           )),
@@ -121,39 +132,106 @@ class _RequestDateWidget extends StatelessWidget {
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Container(
+              width: double.infinity,
+              child: Row(
+                children: [
+                  Text('Request For', style: boldFontStyle),
+                  const SizedBox(width: 8),
+                  _StyledContainer(
+                    widget: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text('-',
+                          style: boldFontStyle.copyWith(fontSize: 20)),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const _StyledContainer(
+                    widget: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                      child: Text(
+                        '02',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  _StyledContainer(
+                    widget: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text('+',
+                          style: boldFontStyle.copyWith(fontSize: 20)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
             child: Row(
               children: [
-                Text('Request For', style: boldFontStyle),
+                Container(
+                  height: 10,
+                  width: 10,
+                  decoration: BoxDecoration(
+                      color: Colors.teal,
+                      borderRadius: BorderRadius.circular(30)),
+                ),
                 const SizedBox(width: 8),
-                _StyledContainer(
-                  widget: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child:
-                        Text('-', style: boldFontStyle.copyWith(fontSize: 20)),
-                  ),
+                Text(
+                  'Any Retail Item',
+                  style: boldFontStyle,
                 ),
                 const SizedBox(width: 8),
                 const _StyledContainer(
-                  widget: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-                    child: Text(
-                      '02',
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                _StyledContainer(
-                  widget: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child:
-                        Text('+', style: boldFontStyle.copyWith(fontSize: 20)),
-                  ),
+                  widget: _MyDropdownButton(),
                 )
               ],
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class _MyDropdownButton extends StatefulWidget {
+  const _MyDropdownButton({Key? key}) : super(key: key);
+
+  @override
+  State<_MyDropdownButton> createState() => __MyDropdownButtonState();
+}
+
+/// This is the private State class that goes with _MyDropdownButton.
+class __MyDropdownButtonState extends State<_MyDropdownButton> {
+  String dropdownValue = 'One';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      isDense: true,
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.transparent,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          dropdownValue = newValue!;
+        });
+      },
+      items: <String>['One', 'Two', 'Free', 'Four']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
     );
   }
 }
