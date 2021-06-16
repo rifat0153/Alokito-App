@@ -26,7 +26,7 @@ class NotificationView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
-          title: Text(
+          title: const Text(
             'Notification',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
@@ -286,12 +286,12 @@ class GiftRequestWidget extends StatelessWidget {
                           style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
                             TextSpan(
-                                text: '$giftType',
+                                text: giftType,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
                             const TextSpan(text: ' is requsted by '),
                             TextSpan(
-                                text: '${giftNotification.requesterName}',
+                                text: giftNotification.requesterName,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
                           ],
