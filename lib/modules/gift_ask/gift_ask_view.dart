@@ -325,12 +325,12 @@ class _GiftTypeDropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = giftAskController.selectedGiftType.value;
+    String dropdownValue = giftAskController.selectedGiftType;
 
     return Obx(
       () => DropdownButton<String>(
         isDense: true,
-        value: giftAskController.selectedGiftType.value,
+        value: giftAskController.selectedGiftType,
         icon: const Icon(Icons.arrow_downward),
         iconSize: 20,
         elevation: 16,
@@ -342,8 +342,8 @@ class _GiftTypeDropdownButton extends StatelessWidget {
           color: Colors.transparent,
         ),
         onChanged: (String? newValue) {
-          giftAskController.selectedGiftType.value = newValue ?? 'Food';
-          print(giftAskController.selectedGiftType.value);
+          giftAskController.setSelectedGiftType(newValue ?? 'Food');
+          print(giftAskController.selectedGiftType);
         },
         items: giftAskController.giftTypeOptions
             .map<DropdownMenuItem<String>>((String value) {
