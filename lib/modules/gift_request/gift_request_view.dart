@@ -47,17 +47,45 @@ class GiftRequestView extends StatelessWidget {
                 const SizedBox(height: 8),
                 _InsertLocationWidget(),
                 const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        _RequestDateWidget(),
-                      ],
-                    ),
-                    Column(
-                      children: [],
-                    )
-                  ],
+                Container(
+                  width: Get.width,
+                  height: 120,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            _RequestDateWidget(),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Container(
+                              height: 60,
+                              width: 60,
+                              decoration: const BoxDecoration(
+                                color: Colors.green,
+                                backgroundBlendMode: BlendMode.darken,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(5)),
+                            child:
+                                Text('Add Prescription', style: whiteFontStyle),
+                          ),
+                          const SizedBox(height: 8),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -81,8 +109,8 @@ class _InsertLocationWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
               child: Text(
                 'insert your location',
                 overflow: TextOverflow.ellipsis,
@@ -108,7 +136,7 @@ class _RequestDateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width,
+      // width: Get.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -120,7 +148,7 @@ class _RequestDateWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Row(
               children: [
-                Icon(Icons.calendar_today),
+                const Icon(Icons.calendar_today),
                 Container(
                   color: GIFT_ADD_FORM_COLOR,
                   height: 30,
@@ -205,7 +233,7 @@ class _MyDropdownButton extends StatefulWidget {
 
 /// This is the private State class that goes with _MyDropdownButton.
 class __MyDropdownButtonState extends State<_MyDropdownButton> {
-  String dropdownValue = 'One';
+  String dropdownValue = 'Food';
 
   @override
   Widget build(BuildContext context) {
@@ -213,11 +241,13 @@ class __MyDropdownButtonState extends State<_MyDropdownButton> {
       isDense: true,
       value: dropdownValue,
       icon: const Icon(Icons.arrow_downward),
-      iconSize: 24,
+      iconSize: 20,
       elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
+      style: const TextStyle(
+        color: Colors.deepPurple,
+      ),
       underline: Container(
-        height: 2,
+        height: 0,
         color: Colors.transparent,
       ),
       onChanged: (String? newValue) {
@@ -225,7 +255,7 @@ class __MyDropdownButtonState extends State<_MyDropdownButton> {
           dropdownValue = newValue!;
         });
       },
-      items: <String>['One', 'Two', 'Free', 'Four']
+      items: <String>['Food', 'Medicine', 'Others']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
