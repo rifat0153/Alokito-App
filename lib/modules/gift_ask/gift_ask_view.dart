@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,8 @@ import 'package:get/get.dart';
 
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
+
+  final GiftAskController giftAskController = Get.put(GiftAskController());
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,7 @@ class _FormWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.symmetric(horizontal: 50),
           child: _StyledContainer(
             widget: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -75,6 +78,46 @@ class _FormWidget extends StatelessWidget {
                 style: TextStyle(color: Colors.black),
               ),
             ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+          child: Row(
+            children: [
+              Container(
+                height: 10,
+                width: 10,
+                decoration: BoxDecoration(
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.circular(30)),
+              ),
+              SizedBox(width: 16),
+              Text('Small Family Package', style: boldFontStyle),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 4),
+          child: Row(
+            children: [
+              Container(
+                height: 10,
+                width: 10,
+                decoration: BoxDecoration(
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.circular(30)),
+              ),
+              SizedBox(width: 16),
+              Text('Large Family Package', style: boldFontStyle),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+          child: Row(
+            children: [
+              Text('View Profile', style: boldFontStyle),
+            ],
           ),
         )
       ],
@@ -202,6 +245,8 @@ class _RequestDateWidget extends StatelessWidget {
                   color: GIFT_ADD_FORM_COLOR,
                   height: 30,
                   width: 100,
+                  alignment: Alignment.center,
+                  child: Text('11/22/2020'),
                 ),
               ],
             ),
@@ -261,8 +306,8 @@ class _RequestDateWidget extends StatelessWidget {
                   style: boldFontStyle,
                 ),
                 const SizedBox(width: 8),
-                const _StyledContainer(
-                  widget: _MyDropdownButton(),
+                _StyledContainer(
+                  widget: _GiftTypeDropdownButton(),
                 )
               ],
             ),
@@ -273,44 +318,41 @@ class _RequestDateWidget extends StatelessWidget {
   }
 }
 
-class _MyDropdownButton extends StatefulWidget {
-  const _MyDropdownButton({Key? key}) : super(key: key);
+class _GiftTypeDropdownButton extends StatelessWidget {
+  _GiftTypeDropdownButton({Key? key}) : super(key: key);
 
-  @override
-  State<_MyDropdownButton> createState() => __MyDropdownButtonState();
-}
-
-/// This is the private State class that goes with _MyDropdownButton.
-class __MyDropdownButtonState extends State<_MyDropdownButton> {
-  String dropdownValue = 'Food';
+  final GiftAskController giftAskController = Get.find<GiftAskController>();
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      isDense: true,
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      iconSize: 20,
-      elevation: 16,
-      style: const TextStyle(
-        color: Colors.deepPurple,
+    String dropdownValue = giftAskController.selectedGiftType.value;
+
+    return Obx(
+      () => DropdownButton<String>(
+        isDense: true,
+        value: giftAskController.selectedGiftType.value,
+        icon: const Icon(Icons.arrow_downward),
+        iconSize: 20,
+        elevation: 16,
+        style: const TextStyle(
+          color: Colors.deepPurple,
+        ),
+        underline: Container(
+          height: 0,
+          color: Colors.transparent,
+        ),
+        onChanged: (String? newValue) {
+          giftAskController.selectedGiftType.value = newValue ?? 'Food';
+          print(giftAskController.selectedGiftType.value);
+        },
+        items: giftAskController.giftTypeOptions
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
       ),
-      underline: Container(
-        height: 0,
-        color: Colors.transparent,
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          dropdownValue = newValue!;
-        });
-      },
-      items: <String>['Food', 'Medicine', 'Others']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
     );
   }
 }
