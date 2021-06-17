@@ -25,49 +25,52 @@ class GiftAskView extends StatelessWidget {
             ),
           ),
         ),
-        body: Container(
-          height: Get.size.height,
-          width: Get.size.width,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                // image: AssetImage(
-                //     'assets/images/gift_receiver_background.png'),
-                image: AssetImage('assets/images/rsz_1gift_receiver.png'),
-                fit: BoxFit.fill),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: context.height * 0.14),
-              Container(
-                height: Get.height * 0.70,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Text(
-                        "Don't worry...",
-                        style: boldFontStyle.copyWith(fontSize: 24),
-                      ),
-                      const SizedBox(height: 8),
-                      Text('there are many people', style: boldFontStyle),
-                      const SizedBox(height: 8),
-                      Text('around you ready to help', style: boldFontStyle),
-                      const SizedBox(height: 8),
-                      _InsertLocationWidget(),
-                      const SizedBox(height: 8),
-                      _RequestForAndImageRow(),
-                      _FormWidget(key: ValueKey('formWidget')),
-                      const SizedBox(height: 300),
-                    ],
+        body: Stack(
+          children: [
+            Container(
+              height: Get.size.height,
+              width: Get.size.width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    // image: AssetImage(
+                    //     'assets/images/gift_receiver_background.png'),
+                    image: AssetImage('assets/images/rsz_1gift_receiver.png'),
+                    fit: BoxFit.fill),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: context.height * 0.14),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Text(
+                          "Don't worry...",
+                          style: boldFontStyle.copyWith(fontSize: 24),
+                        ),
+                        const SizedBox(height: 8),
+                        Text('there are many people', style: boldFontStyle),
+                        const SizedBox(height: 8),
+                        Text('around you ready to help', style: boldFontStyle),
+                        const SizedBox(height: 8),
+                        _InsertLocationWidget(),
+                        const SizedBox(height: 8),
+                        _RequestForAndImageRow(),
+                        _FormWidget(key: ValueKey('formWidget')),
+                        const SizedBox(height: 300),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                color: Colors.transparent,
-                height: Get.height * 0.07,
-              )
-            ],
-          ),
+                Container(
+                  color: Colors.green,
+                  height: Get.height * 0.07,
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -139,13 +142,46 @@ class _FormWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-          child: Row(
-            children: [
-              Text('View Profile', style: boldFontStyle),
-            ],
+          padding: EdgeInsets.symmetric(horizontal: 50),
+          child: _StyledContainer(
+            widget: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                maxLength: 25,
+                decoration: const InputDecoration(
+                  hintText: 'gift title',
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.all(0),
+                  counterText: '',
+                  isCollapsed: true,
+                  isDense: true,
+                ),
+                onChanged: (String value) {
+                  giftAskController.giftTitle.value = value;
+                },
+              ),
+            ),
           ),
-        )
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+          child: _StyledContainer(
+            widget: TextField(
+              maxLength: 25,
+              decoration: const InputDecoration(
+                hintText: 'gift title',
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.all(0),
+                counterText: '',
+                isCollapsed: true,
+                isDense: true,
+              ),
+              onChanged: (String value) {
+                giftAskController.giftTitle.value = value;
+              },
+            ),
+          ),
+        ),
       ],
     );
   }
