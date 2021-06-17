@@ -20,6 +20,7 @@ class GiftAskController extends GetxController {
   RxBool _packageSmallFamilty = false.obs;
   var note = ''.obs;
 
+  bool get packageSmallFamilty => _packageSmallFamilty.value;
   void togglePackageSmallFamilty() {
     _packageSmallFamilty.value = !_packageSmallFamilty.value;
   }
