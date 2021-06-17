@@ -47,49 +47,73 @@ class GiftRequestView extends StatelessWidget {
                 const SizedBox(height: 8),
                 _InsertLocationWidget(),
                 const SizedBox(height: 8),
-                Container(
-                  width: Get.width,
-                  height: 120,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            _RequestDateWidget(),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Container(
-                              height: 60,
-                              width: 60,
-                              decoration: const BoxDecoration(
-                                color: Colors.green,
-                                backgroundBlendMode: BlendMode.darken,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(5)),
-                            child:
-                                Text('Add Prescription', style: whiteFontStyle),
-                          ),
-                          const SizedBox(height: 8),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+                _RequestForAndImageRow(),
               ],
             ),
           )),
+    );
+  }
+}
+
+
+
+class _RequestForAndImageRow extends StatelessWidget {
+  const _RequestForAndImageRow({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: Get.width,
+      height: 120,
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              children: [
+                _RequestDateWidget(),
+              ],
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                  child: ColorFiltered(
+                    colorFilter:
+                        ColorFilter.mode(Colors.grey, BlendMode.modulate),
+                    child: Image.asset(
+                      'assets/images/add_prescription.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 2),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(5)),
+                child: ColorFiltered(
+                  colorFilter:
+                      ColorFilter.mode(Colors.grey, BlendMode.modulate),
+                  child: Text(' Add Prescription ',
+                      style: whiteFontStyle.copyWith(fontSize: 10)),
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
