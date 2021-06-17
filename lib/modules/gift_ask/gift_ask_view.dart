@@ -3,59 +3,84 @@ import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class GiftRequestView extends StatelessWidget {
-  GiftRequestView({Key? key}) : super(key: key);
+class GiftAskView extends StatelessWidget {
+  GiftAskView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-            foregroundColor: Colors.transparent,
-            leading: IconButton(
-                onPressed: () => Get.back(),
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                )),
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          leading: IconButton(
+              onPressed: () => Get.back(),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              )),
+        ),
+        body: Container(
+          height: Get.height,
+          width: Get.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                // image: AssetImage(
+                //     'assets/images/gift_receiver_background.png'),
+                image: AssetImage('assets/images/rsz_1gift_receiver.png'),
+                fit: BoxFit.fill),
           ),
-          body: Container(
-            height: Get.height,
-            width: Get.width,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  // image: AssetImage(
-                  //     'assets/images/gift_receiver_background.png'),
-                  image: AssetImage('assets/images/rsz_1gift_receiver.png'),
-                  fit: BoxFit.fill),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: context.height * 0.15),
-                Text(
-                  "Don't worry...",
-                  style: boldFontStyle.copyWith(fontSize: 24),
-                ),
-                const SizedBox(height: 8),
-                Text('there are many people', style: boldFontStyle),
-                const SizedBox(height: 8),
-                Text('around you ready to help', style: boldFontStyle),
-                const SizedBox(height: 8),
-                _InsertLocationWidget(),
-                const SizedBox(height: 8),
-                _RequestForAndImageRow(),
-              ],
-            ),
-          )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: context.height * 0.15),
+              Text(
+                "Don't worry...",
+                style: boldFontStyle.copyWith(fontSize: 24),
+              ),
+              const SizedBox(height: 8),
+              Text('there are many people', style: boldFontStyle),
+              const SizedBox(height: 8),
+              Text('around you ready to help', style: boldFontStyle),
+              const SizedBox(height: 8),
+              _InsertLocationWidget(),
+              const SizedBox(height: 8),
+              _RequestForAndImageRow(),
+              _FormWidget(key: ValueKey('formWidget')),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
+class _FormWidget extends StatelessWidget {
+  const _FormWidget({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: _StyledContainer(
+            widget: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'data',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
 
 class _RequestForAndImageRow extends StatelessWidget {
   const _RequestForAndImageRow({
