@@ -11,6 +11,7 @@ class GiftAskView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -34,23 +35,30 @@ class GiftAskView extends StatelessWidget {
                 image: AssetImage('assets/images/rsz_1gift_receiver.png'),
                 fit: BoxFit.fill),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child: ListView(
             children: [
-              SizedBox(height: context.height * 0.15),
-              Text(
-                "Don't worry...",
-                style: boldFontStyle.copyWith(fontSize: 24),
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: context.height * 0.15),
+                    Text(
+                      "Don't worry...",
+                      style: boldFontStyle.copyWith(fontSize: 24),
+                    ),
+                    const SizedBox(height: 8),
+                    Text('there are many people', style: boldFontStyle),
+                    const SizedBox(height: 8),
+                    Text('around you ready to help', style: boldFontStyle),
+                    const SizedBox(height: 8),
+                    _InsertLocationWidget(),
+                    const SizedBox(height: 8),
+                    _RequestForAndImageRow(),
+                    _FormWidget(key: ValueKey('formWidget')),
+                    const SizedBox(height: 200),
+                  ],
+                ),
               ),
-              const SizedBox(height: 8),
-              Text('there are many people', style: boldFontStyle),
-              const SizedBox(height: 8),
-              Text('around you ready to help', style: boldFontStyle),
-              const SizedBox(height: 8),
-              _InsertLocationWidget(),
-              const SizedBox(height: 8),
-              _RequestForAndImageRow(),
-              _FormWidget(key: ValueKey('formWidget')),
             ],
           ),
         ),
@@ -89,7 +97,6 @@ class _FormWidget extends StatelessWidget {
                 onChanged: (String value) {
                   giftAskController.giftTitle.value = value;
                 },
-                
               ),
             ),
           ),
