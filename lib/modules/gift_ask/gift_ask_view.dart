@@ -25,6 +25,11 @@ class GiftAskView extends StatelessWidget {
               color: Colors.black,
             ),
           ),
+          title: Text(
+            'Gift Receiver',
+            style: TextStyle(fontSize: 30),
+          ),
+          centerTitle: true,
         ),
         body: Stack(
           children: [
