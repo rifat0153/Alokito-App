@@ -7,8 +7,6 @@ import 'package:get/get.dart';
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
 
-  final GiftAskController giftAskController = Get.put(GiftAskController());
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,11 +17,12 @@ class GiftAskView extends StatelessWidget {
           shadowColor: Colors.transparent,
           foregroundColor: Colors.transparent,
           leading: IconButton(
-              onPressed: () => Get.back(),
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              )),
+            onPressed: () => Get.back(),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+          ),
         ),
         body: Container(
           height: Get.height,
@@ -126,9 +125,11 @@ class _FormWidget extends StatelessWidget {
 }
 
 class _RequestForAndImageRow extends StatelessWidget {
-  const _RequestForAndImageRow({
+  _RequestForAndImageRow({
     Key? key,
   }) : super(key: key);
+
+  final GiftAskController giftAskController = Get.find<GiftAskController>();
 
   @override
   Widget build(BuildContext context) {
@@ -155,12 +156,18 @@ class _RequestForAndImageRow extends StatelessWidget {
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
-                  child: ColorFiltered(
-                    colorFilter:
-                        ColorFilter.mode(Colors.grey, BlendMode.modulate),
-                    child: Image.asset(
-                      'assets/images/add_prescription.png',
-                      fit: BoxFit.fill,
+                  child: Obx(
+                    () => ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                        giftAskController.showPrescription.value
+                            ? Colors.white
+                            : Colors.grey,
+                        BlendMode.modulate,
+                      ),
+                      child: Image.asset(
+                        'assets/images/add_prescription.png',
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 ),
@@ -170,11 +177,17 @@ class _RequestForAndImageRow extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(5)),
-                child: ColorFiltered(
-                  colorFilter:
-                      ColorFilter.mode(Colors.grey, BlendMode.modulate),
-                  child: Text(' Add Prescription ',
-                      style: whiteFontStyle.copyWith(fontSize: 10)),
+                child: Obx(
+                  () => ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      giftAskController.showPrescription.value
+                          ? Colors.white
+                          : Colors.grey,
+                      BlendMode.modulate,
+                    ),
+                    child: Text(' Add Prescription ',
+                        style: whiteFontStyle.copyWith(fontSize: 10)),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -343,7 +356,6 @@ class _GiftTypeDropdownButton extends StatelessWidget {
         ),
         onChanged: (String? newValue) {
           giftAskController.setSelectedGiftType(newValue ?? 'Food');
-          print(giftAskController.selectedGiftType);
         },
         items: giftAskController.giftTypeOptions
             .map<DropdownMenuItem<String>>((String value) {
