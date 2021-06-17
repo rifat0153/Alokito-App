@@ -60,21 +60,36 @@ class GiftAskView extends StatelessWidget {
 }
 
 class _FormWidget extends StatelessWidget {
-  const _FormWidget({Key? key}) : super(key: key);
+  _FormWidget({Key? key}) : super(key: key);
+
+  final GiftAskController giftAskController = Get.find<GiftAskController>();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 50),
           child: _StyledContainer(
             widget: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'data',
-                style: TextStyle(color: Colors.black),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'gift title',
+                  border: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                  focusedErrorBorder: InputBorder.none,
+                  contentPadding: EdgeInsets.all(0),
+                  isCollapsed: true,
+                  isDense: true,
+                ),
+                onChanged: (String value) {
+                  giftAskController.giftTitle.value = value;
+                },
+                
               ),
             ),
           ),
@@ -236,7 +251,9 @@ class _InsertLocationWidget extends StatelessWidget {
 }
 
 class _RequestDateWidget extends StatelessWidget {
-  const _RequestDateWidget();
+  _RequestDateWidget();
+
+  final GiftAskController giftAskController = Get.find<GiftAskController>();
 
   @override
   Widget build(BuildContext context) {
@@ -273,29 +290,39 @@ class _RequestDateWidget extends StatelessWidget {
                 children: [
                   Text('Request For', style: boldFontStyle),
                   const SizedBox(width: 8),
-                  _StyledContainer(
-                    widget: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Text('-',
-                          style: boldFontStyle.copyWith(fontSize: 20)),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  const _StyledContainer(
-                    widget: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-                      child: Text(
-                        '02',
+                  GestureDetector(
+                    onTap: () =>
+                        giftAskController.decreseRequestForNoOfPeople(),
+                    child: _StyledContainer(
+                      widget: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('-',
+                            style: boldFontStyle.copyWith(fontSize: 20)),
                       ),
                     ),
                   ),
                   const SizedBox(width: 8),
                   _StyledContainer(
                     widget: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Text('+',
-                          style: boldFontStyle.copyWith(fontSize: 20)),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                      child: Obx(
+                        () => Text(
+                          giftAskController.requestForNoOfPeople.toString(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () =>
+                        giftAskController.increaseRequestForNoOfPeople(),
+                    child: _StyledContainer(
+                      widget: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text('+',
+                            style: boldFontStyle.copyWith(fontSize: 20)),
+                      ),
                     ),
                   ),
                 ],

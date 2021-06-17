@@ -12,13 +12,30 @@ class GiftAskController extends GetxController {
   var address = ''.obs;
   Rx<LatLng> locationInLatLng = LatLng(0, 0).obs;
   Rx<Timestamp> requestDate = Timestamp.now().obs;
-  var requestForNoOfPeople = 1.obs;
-  var _selectedGiftType = 'Food'.obs;
+  final _requestForNoOfPeople = 1.obs;
+  final _selectedGiftType = 'Food'.obs;
   var giftTitle = ''.obs;
   RxBool showPrescription = false.obs;
   var precriptionImageFile = File('').obs;
-  RxBool packageSmallFamilty = false.obs;
+  RxBool _packageSmallFamilty = false.obs;
   var note = ''.obs;
+
+  void togglePackageSmallFamilty() {
+    _packageSmallFamilty.value = !_packageSmallFamilty.value;
+  }
+
+  int get requestForNoOfPeople => _requestForNoOfPeople.value;
+
+  void decreseRequestForNoOfPeople() {
+    _requestForNoOfPeople.value =
+        _requestForNoOfPeople.value < 1 ? 0 : _requestForNoOfPeople.value - 1;
+  }
+
+  void increaseRequestForNoOfPeople() {
+    _requestForNoOfPeople.value = _requestForNoOfPeople.value > 9
+        ? _requestForNoOfPeople.value
+        : _requestForNoOfPeople.value + 1;
+  }
 
   String get selectedGiftType => _selectedGiftType.value;
   void setSelectedGiftType(String newValue) {
