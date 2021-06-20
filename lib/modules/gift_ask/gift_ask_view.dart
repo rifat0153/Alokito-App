@@ -224,7 +224,7 @@ class _RequestForAndImageRow extends StatelessWidget {
 
   void _getLocalImage() async {
     ImagePicker _picker = ImagePicker();
-    var pickedFile = await _picker.getImage(source: ImageSource.camera, imageQuality: 50, maxWidth: 400);
+    var pickedFile = await _picker.getImage(source: ImageSource.gallery, imageQuality: 50, maxWidth: 400);
 
     File imageFile = File(pickedFile != null ? pickedFile.path : "");
 

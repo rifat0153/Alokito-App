@@ -44,13 +44,11 @@ class AuthService implements BaseAuthService {
   final _firestore = FirebaseFirestore.instance;
 
   @override
-  Future<String> signIn(
-      {required String email, required String password}) async {
+  Future<String> signIn({required String email, required String password}) async {
     try {
       // await EasyLoading.show(status: 'loading...');
 
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
 
       // await EasyLoading.dismiss();
 
@@ -68,8 +66,7 @@ class AuthService implements BaseAuthService {
         .doc(_firebaseAuth.currentUser?.uid)
         .snapshots()
         .map((DocumentSnapshot documentSnapshot) {
-      var retVal =
-          LocalUserInfo.data(LocalUser.fromJson(documentSnapshot.data()!));
+      var retVal = LocalUserInfo.data(LocalUser.fromJson(documentSnapshot.data()!));
 
       return retVal;
     });
@@ -86,8 +83,8 @@ class AuthService implements BaseAuthService {
   }) async {
     try {
       // EasyLoading.show(status: 'loading...');
-      UserCredential firebaseUser = await _firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential firebaseUser =
+          await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
       print('IN signup:  ' + firebaseUser.user!.uid);
 
@@ -96,13 +93,10 @@ class AuthService implements BaseAuthService {
       var loc = await Location().getLocation();
 
       LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
-      var myLocation = geo.point(
-          latitude: userPosition.latitude, longitude: userPosition.longitude);
+      var myLocation = geo.point(latitude: userPosition.latitude, longitude: userPosition.longitude);
       var pos = myLocation.data as Map<dynamic, dynamic>;
 
-      MyPosition myPosition = MyPosition(
-          geohash: pos['geohash'] as String,
-          geopoint: pos['geopoint'] as GeoPoint);
+      MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
       LocalUser myUser = LocalUser(
         id: firebaseUser.user?.uid,
@@ -136,10 +130,8 @@ class AuthService implements BaseAuthService {
 
       var uuid = Uuid().v4();
 
-      firebase_storage.Reference firebaseStorageRef = firebase_storage
-          .FirebaseStorage.instance
-          .ref()
-          .child('users/images/$uuid$fileExtension');
+      firebase_storage.Reference firebaseStorageRef =
+          firebase_storage.FirebaseStorage.instance.ref().child('users/images/$uuid$fileExtension');
 
       try {
         await firebaseStorageRef.putFile(localFile);
@@ -158,8 +150,7 @@ class AuthService implements BaseAuthService {
   }
 
   uploadUser(LocalUser user, bool isUpdating, {String? imageUrl}) async {
-    final CollectionReference userRef =
-        FirebaseFirestore.instance.collection('users');
+    final CollectionReference userRef = FirebaseFirestore.instance.collection('users');
 
     if (imageUrl != null) {
       user = user.copyWith(imageUrl: imageUrl);

@@ -27,8 +27,7 @@ class AuthController extends GetxController {
   final currentUserTotalRating = 0.0.obs;
   final currentUserRatingSum = 0.0.obs;
   final currentUserHasNotifications = false.obs;
-  final currentUserPosition =
-      const MyPosition(geohash: '', geopoint: GeoPoint(0, 0)).obs;
+  final currentUserPosition = const MyPosition(geohash: '', geopoint: GeoPoint(0, 0)).obs;
 
   @override
   void onInit() {
@@ -45,9 +44,8 @@ class AuthController extends GetxController {
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();
-    var giftGiverPoint = geo.point(
-        latitude: giftGiver.position.geopoint.latitude,
-        longitude: giftGiver.position.geopoint.longitude);
+    var giftGiverPoint =
+        geo.point(latitude: giftGiver.position.geopoint.latitude, longitude: giftGiver.position.geopoint.longitude);
 
     final GiftController giftController = Get.find();
 
