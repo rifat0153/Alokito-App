@@ -309,37 +309,46 @@ class _RequestForAndImageRow extends StatelessWidget {
 }
 
 class _InsertLocationWidget extends StatelessWidget {
+  GiftAskController giftAskController = Get.find<GiftAskController>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Container(
         height: 30,
-        width: double.infinity,
+        width: context.width,
         decoration: BoxDecoration(
           color: GIFT_ADD_FORM_COLOR,
           borderRadius: BorderRadius.circular(5),
         ),
         child: GestureDetector(
           onTap: () => Get.to(_MapWidget()),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  'insert your location',
-                  overflow: TextOverflow.ellipsis,
+          child: Container(
+            width: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Obx(
+                    () => Text(
+                      giftAskController.locationAddress.value.isEmpty
+                          ? 'insert your location'
+                          : giftAskController.locationAddress.value,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
                 ),
-              ),
-              Transform.rotate(
-                angle: -0.7,
-                child: const Icon(
-                  Icons.send,
-                  color: Colors.grey,
+                Transform.rotate(
+                  angle: -0.7,
+                  child: const Icon(
+                    Icons.send,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -357,6 +366,7 @@ class _MapWidget extends StatefulWidget {
 class __MapWidgetState extends State<_MapWidget> {
   final GiftAskController giftAskController = Get.find();
   Completer<GoogleMapController> _controller = Completer();
+  double zoom = 13;
 
   late LatLng userPosition = LatLng(0, 0);
 
@@ -368,11 +378,12 @@ class __MapWidgetState extends State<_MapWidget> {
 
   void getLocationtionData() async {
     var locData = await Location().getLocation();
-    userPosition = LatLng(locData.latitude ?? 0, locData.longitude ?? 0);
-    CameraPosition userCameraPosition = CameraPosition(target: userPosition);
+    giftAskController.currentUserPosition.value = LatLng(locData.latitude ?? 0, locData.longitude ?? 0);
+    CameraPosition userCameraPosition = CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom);
+    giftAskController.formMarker.value =
+        Marker(markerId: MarkerId('markerId'), position: giftAskController.currentUserPosition.value);
     final GoogleMapController controller = await _controller.future;
     await controller.animateCamera(CameraUpdate.newCameraPosition(userCameraPosition));
-    setState(() {});
   }
 
   @override
@@ -385,19 +396,25 @@ class __MapWidgetState extends State<_MapWidget> {
           foregroundColor: Colors.transparent,
         ),
         extendBodyBehindAppBar: true,
-        body: GoogleMap(
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
-          initialCameraPosition: CameraPosition(
-            target: giftAskController.currentUserPosition.value,
+        body: Obx(
+          () => GoogleMap(
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
+            zoomControlsEnabled: false,
+            initialCameraPosition: CameraPosition(
+              target: giftAskController.currentUserPosition.value,
+            ),
+            onTap: (LatLng latLng) async {
+              giftAskController.formMarker.value = Marker(markerId: MarkerId('markerId'), position: latLng);
+              final GoogleMapController controller = await _controller.future;
+              await controller.animateCamera(
+                CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: zoom)),
+              );
+              giftAskController.setLocationFromMapCordinates();
+            },
+            markers: {giftAskController.formMarker.value},
           ),
-          markers: Set.from([
-            Marker(
-              markerId: MarkerId('123'),
-              position: userPosition,
-            )
-          ]),
         ),
       ),
     );

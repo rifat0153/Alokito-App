@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -8,6 +9,7 @@ class GiftAskController extends GetxController {
   // final service
 
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
+  var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(0, 0).obs;
   var locationAddress = ''.obs;
   Rx<LatLng> locationInLatLng = const LatLng(0, 0).obs;
@@ -19,6 +21,22 @@ class GiftAskController extends GetxController {
   var precriptionImageFile = File('').obs;
   final RxBool _packageSmallFamilty = false.obs;
   var note = ''.obs;
+
+  void setLocationFromMapCordinates() async {
+    print('In FROM MAP Controller');
+    // From coordinates
+    final coordinates = Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
+    var addresses1 = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = addresses1.first;
+    locationAddress.value = ' ${first.addressLine}  ${first.subLocality}';
+
+    var location = first.addressLine;
+    locationAddress.value = location;
+    var area = first.subLocality ?? 'N/A';
+
+    print('area: $area, location: $location');
+    print('${first.featureName} : ${first.addressLine} : ${first.subLocality}');
+  }
 
   bool get packageSmallFamilty => _packageSmallFamilty.value;
   void togglePackageSmallFamilty() {
