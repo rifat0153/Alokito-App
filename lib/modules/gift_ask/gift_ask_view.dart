@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
@@ -25,7 +28,7 @@ class GiftAskView extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          title: Text(
+          title: const Text(
             'Gift Receiver',
             style: TextStyle(fontSize: 30),
           ),
@@ -68,15 +71,13 @@ class GiftAskView extends StatelessWidget {
                         const SizedBox(height: 16),
                         MaterialButton(
                           onPressed: () {},
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                           color: GIFT_ADD_FORM_SUBMIT,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 50),
                             child: Text(
                               'Place a Request',
-                              style:
-                                  boldFontStyle.copyWith(color: Colors.white),
+                              style: boldFontStyle.copyWith(color: Colors.white),
                             ),
                           ),
                         ),
@@ -105,13 +106,15 @@ class _FormWidget extends StatelessWidget {
 
   final GiftAskController giftAskController = Get.find<GiftAskController>();
 
+  FocusNode focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           child: _StyledContainer(
             widget: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -145,9 +148,7 @@ class _FormWidget extends StatelessWidget {
                     height: 10,
                     width: 10,
                     decoration: BoxDecoration(
-                        color: giftAskController.packageSmallFamilty
-                            ? Colors.teal
-                            : Colors.grey,
+                        color: giftAskController.packageSmallFamilty ? Colors.teal : Colors.grey,
                         borderRadius: BorderRadius.circular(30)),
                   ),
                 ),
@@ -170,9 +171,7 @@ class _FormWidget extends StatelessWidget {
                     height: 10,
                     width: 10,
                     decoration: BoxDecoration(
-                        color: !giftAskController.packageSmallFamilty
-                            ? Colors.teal
-                            : Colors.grey,
+                        color: !giftAskController.packageSmallFamilty ? Colors.teal : Colors.grey,
                         borderRadius: BorderRadius.circular(30)),
                   ),
                 ),
@@ -183,11 +182,7 @@ class _FormWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(
-            top: 20,
-            left: 30,
-            right: 30,
-          ),
+          padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
           child: Text('Note', style: boldFontStyle),
         ),
         Padding(
@@ -196,6 +191,8 @@ class _FormWidget extends StatelessWidget {
             widget: Padding(
               padding: const EdgeInsets.all(4.0),
               child: TextField(
+                // autofocus: true,
+                // focusNode: focusNode,
                 maxLength: 150,
                 maxLines: 3,
                 decoration: const InputDecoration(
@@ -225,6 +222,17 @@ class _RequestForAndImageRow extends StatelessWidget {
 
   final GiftAskController giftAskController = Get.find<GiftAskController>();
 
+  void _getLocalImage() async {
+    ImagePicker _picker = ImagePicker();
+    var pickedFile = await _picker.getImage(source: ImageSource.camera, imageQuality: 50, maxWidth: 400);
+
+    File imageFile = File(pickedFile != null ? pickedFile.path : "");
+
+    if (imageFile.path != "") {
+      giftAskController.precriptionImageFile.value = imageFile;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -253,15 +261,15 @@ class _RequestForAndImageRow extends StatelessWidget {
                   child: Obx(
                     () => ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                        giftAskController.showPrescription.value
-                            ? Colors.white
-                            : Colors.grey,
+                        giftAskController.showPrescription.value ? Colors.white : Colors.grey,
                         BlendMode.modulate,
                       ),
-                      child: Image.asset(
-                        'assets/images/add_prescription.png',
-                        fit: BoxFit.fill,
-                      ),
+                      child: giftAskController.precriptionImageFile.value.path.length > 0
+                          ? Image.file(giftAskController.precriptionImageFile.value)
+                          : Image.asset(
+                              'assets/images/add_prescription.png',
+                              fit: BoxFit.fill,
+                            ),
                     ),
                   ),
                 ),
@@ -269,18 +277,21 @@ class _RequestForAndImageRow extends StatelessWidget {
               const SizedBox(height: 2),
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: giftAskController.showPrescription.value ? Colors.black : Colors.grey,
                     borderRadius: BorderRadius.circular(5)),
                 child: Obx(
                   () => ColorFiltered(
                     colorFilter: ColorFilter.mode(
-                      giftAskController.showPrescription.value
-                          ? Colors.white
-                          : Colors.grey,
+                      giftAskController.showPrescription.value ? Colors.white : Colors.grey,
                       BlendMode.modulate,
                     ),
-                    child: Text(' Add Prescription ',
-                        style: whiteFontStyle.copyWith(fontSize: 10)),
+                    child: GestureDetector(
+                      onTap: _getLocalImage,
+                      child: Text(' Add Prescription ',
+                          style: whiteFontStyle.copyWith(
+                              fontSize: 10,
+                              color: giftAskController.showPrescription.value ? Colors.white : Colors.black)),
+                    ),
                   ),
                 ),
               ),
@@ -370,21 +381,18 @@ class _RequestDateWidget extends StatelessWidget {
                   Text('Request For', style: boldFontStyle),
                   const SizedBox(width: 8),
                   GestureDetector(
-                    onTap: () =>
-                        giftAskController.decreseRequestForNoOfPeople(),
+                    onTap: () => giftAskController.decreseRequestForNoOfPeople(),
                     child: _StyledContainer(
                       widget: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text('-',
-                            style: boldFontStyle.copyWith(fontSize: 20)),
+                        child: Text('-', style: boldFontStyle.copyWith(fontSize: 20)),
                       ),
                     ),
                   ),
                   const SizedBox(width: 8),
                   _StyledContainer(
                     widget: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),
                       child: Obx(
                         () => Text(
                           giftAskController.requestForNoOfPeople.toString(),
@@ -394,13 +402,11 @@ class _RequestDateWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   GestureDetector(
-                    onTap: () =>
-                        giftAskController.increaseRequestForNoOfPeople(),
+                    onTap: () => giftAskController.increaseRequestForNoOfPeople(),
                     child: _StyledContainer(
                       widget: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text('+',
-                            style: boldFontStyle.copyWith(fontSize: 20)),
+                        child: Text('+', style: boldFontStyle.copyWith(fontSize: 20)),
                       ),
                     ),
                   ),
@@ -415,9 +421,7 @@ class _RequestDateWidget extends StatelessWidget {
                 Container(
                   height: 10,
                   width: 10,
-                  decoration: BoxDecoration(
-                      color: Colors.teal,
-                      borderRadius: BorderRadius.circular(30)),
+                  decoration: BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(30)),
                 ),
                 const SizedBox(width: 8),
                 Text(
@@ -463,8 +467,7 @@ class _GiftTypeDropdownButton extends StatelessWidget {
         onChanged: (String? newValue) {
           giftAskController.setSelectedGiftType(newValue ?? 'Food');
         },
-        items: giftAskController.giftTypeOptions
-            .map<DropdownMenuItem<String>>((String value) {
+        items: giftAskController.giftTypeOptions.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(value),
@@ -514,15 +517,11 @@ class _GuideLines extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '* Please see the ',
-                          style: whiteFontStyle.copyWith(
-                              fontSize: notificationFontSize,
-                              color: Colors.black),
+                          style: whiteFontStyle.copyWith(fontSize: notificationFontSize, color: Colors.black),
                         ),
                         TextSpan(
                           text: 'Guideline for Food Adding',
-                          style: boldFontStyle.copyWith(
-                              color: Colors.red,
-                              fontSize: notificationFontSize),
+                          style: boldFontStyle.copyWith(color: Colors.red, fontSize: notificationFontSize),
                         ),
                       ],
                     ),
@@ -532,9 +531,7 @@ class _GuideLines extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '* Request to follow ',
-                          style: whiteFontStyle.copyWith(
-                              fontSize: notificationFontSize,
-                              color: Colors.black),
+                          style: whiteFontStyle.copyWith(fontSize: notificationFontSize, color: Colors.black),
                         ),
                         TextSpan(
                           text: 'Covid - 19: Sharing & Safety Guidelines',
