@@ -23,7 +23,6 @@ class GiftAskController extends GetxController {
   var note = ''.obs;
 
   void setLocationFromMapCordinates() async {
-    print('In FROM MAP Controller');
     // From coordinates
     final coordinates = Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
     var addresses1 = await Geocoder.local.findAddressesFromCoordinates(coordinates);
@@ -33,9 +32,6 @@ class GiftAskController extends GetxController {
     var location = first.addressLine;
     locationAddress.value = location;
     var area = first.subLocality ?? 'N/A';
-
-    print('area: $area, location: $location');
-    print('${first.featureName} : ${first.addressLine} : ${first.subLocality}');
   }
 
   bool get packageSmallFamilty => _packageSmallFamilty.value;

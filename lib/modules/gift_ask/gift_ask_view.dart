@@ -241,7 +241,7 @@ class _RequestForAndImageRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width,
-      height: 120,
+      height: 140,
       child: Row(
         children: [
           Expanded(
@@ -269,7 +269,10 @@ class _RequestForAndImageRow extends StatelessWidget {
                         BlendMode.modulate,
                       ),
                       child: giftAskController.precriptionImageFile.value.path.length > 0
-                          ? Image.file(giftAskController.precriptionImageFile.value)
+                          ? Image.file(
+                              giftAskController.precriptionImageFile.value,
+                              fit: BoxFit.cover,
+                            )
                           : Image.asset(
                               'assets/images/add_prescription.png',
                               fit: BoxFit.fill,
@@ -279,12 +282,12 @@ class _RequestForAndImageRow extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 2),
-              Container(
-                decoration: BoxDecoration(
-                    color: giftAskController.showPrescription.value ? Colors.black : Colors.grey,
-                    borderRadius: BorderRadius.circular(5)),
-                child: Obx(
-                  () => ColorFiltered(
+              Obx(
+                () => Container(
+                  decoration: BoxDecoration(
+                      color: giftAskController.showPrescription.value ? Colors.black : Colors.grey,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: ColorFiltered(
                     colorFilter: ColorFilter.mode(
                       giftAskController.showPrescription.value ? Colors.white : Colors.grey,
                       BlendMode.modulate,
@@ -299,7 +302,7 @@ class _RequestForAndImageRow extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
             ],
           )
         ],
@@ -324,31 +327,32 @@ class _InsertLocationWidget extends StatelessWidget {
         ),
         child: GestureDetector(
           onTap: () => Get.to(_MapWidget()),
-          child: Container(
-            width: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Obx(
                     () => Text(
                       giftAskController.locationAddress.value.isEmpty
                           ? 'insert your location'
                           : giftAskController.locationAddress.value,
-                      overflow: TextOverflow.clip,
+                      maxLines: 1,
+                      overflow: TextOverflow.fade,
+                      softWrap: false,
                     ),
                   ),
                 ),
-                Transform.rotate(
-                  angle: -0.7,
-                  child: const Icon(
-                    Icons.send,
-                    color: Colors.grey,
-                  ),
+              ),
+              Transform.rotate(
+                angle: -0.7,
+                child: const Icon(
+                  Icons.send,
+                  color: Colors.grey,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -434,7 +438,7 @@ class _RequestDateWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
             child: Text('Request Date', style: boldFontStyle),
           ),
           Padding(
