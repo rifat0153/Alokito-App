@@ -22,20 +22,32 @@ class _$GiftAskTearOff {
 
   _GiftAsk call(
       {String? id,
+      required String address,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp reuqestDate,
       required int requestForNoOfPeople,
+      String? prescriptionImageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required GiftAskType giftAskType,
       required String giftTitle,
-      required bool giftForSmallFamily}) {
+      required bool giftForSmallFamily,
+      required String note,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp createdAt}) {
     return _GiftAsk(
       id: id,
+      address: address,
+      position: position,
       reuqestDate: reuqestDate,
       requestForNoOfPeople: requestForNoOfPeople,
+      prescriptionImageUrl: prescriptionImageUrl,
       giftAskType: giftAskType,
       giftTitle: giftTitle,
       giftForSmallFamily: giftForSmallFamily,
+      note: note,
+      createdAt: createdAt,
     );
   }
 
@@ -50,13 +62,20 @@ const $GiftAsk = _$GiftAskTearOff();
 /// @nodoc
 mixin _$GiftAsk {
   String? get id => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+  MyPosition get position => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get reuqestDate => throw _privateConstructorUsedError;
   int get requestForNoOfPeople => throw _privateConstructorUsedError;
+  String? get prescriptionImageUrl => throw _privateConstructorUsedError;
   @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
   GiftAskType get giftAskType => throw _privateConstructorUsedError;
   String get giftTitle => throw _privateConstructorUsedError;
   bool get giftForSmallFamily => throw _privateConstructorUsedError;
+  String get note => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,13 +88,22 @@ abstract class $GiftAskCopyWith<$Res> {
       _$GiftAskCopyWithImpl<$Res>;
   $Res call(
       {String? id,
+      String address,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp reuqestDate,
       int requestForNoOfPeople,
+      String? prescriptionImageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           GiftAskType giftAskType,
       String giftTitle,
-      bool giftForSmallFamily});
+      bool giftForSmallFamily,
+      String note,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp createdAt});
+
+  $MyPositionCopyWith<$Res> get position;
 }
 
 /// @nodoc
@@ -89,17 +117,30 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? address = freezed,
+    Object? position = freezed,
     Object? reuqestDate = freezed,
     Object? requestForNoOfPeople = freezed,
+    Object? prescriptionImageUrl = freezed,
     Object? giftAskType = freezed,
     Object? giftTitle = freezed,
     Object? giftForSmallFamily = freezed,
+    Object? note = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      position: position == freezed
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as MyPosition,
       reuqestDate: reuqestDate == freezed
           ? _value.reuqestDate
           : reuqestDate // ignore: cast_nullable_to_non_nullable
@@ -108,6 +149,10 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
           ? _value.requestForNoOfPeople
           : requestForNoOfPeople // ignore: cast_nullable_to_non_nullable
               as int,
+      prescriptionImageUrl: prescriptionImageUrl == freezed
+          ? _value.prescriptionImageUrl
+          : prescriptionImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       giftAskType: giftAskType == freezed
           ? _value.giftAskType
           : giftAskType // ignore: cast_nullable_to_non_nullable
@@ -120,7 +165,22 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
           ? _value.giftForSmallFamily
           : giftForSmallFamily // ignore: cast_nullable_to_non_nullable
               as bool,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
+  }
+
+  @override
+  $MyPositionCopyWith<$Res> get position {
+    return $MyPositionCopyWith<$Res>(_value.position, (value) {
+      return _then(_value.copyWith(position: value));
+    });
   }
 }
 
@@ -131,13 +191,23 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
+      String address,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp reuqestDate,
       int requestForNoOfPeople,
+      String? prescriptionImageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           GiftAskType giftAskType,
       String giftTitle,
-      bool giftForSmallFamily});
+      bool giftForSmallFamily,
+      String note,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp createdAt});
+
+  @override
+  $MyPositionCopyWith<$Res> get position;
 }
 
 /// @nodoc
@@ -152,17 +222,30 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? address = freezed,
+    Object? position = freezed,
     Object? reuqestDate = freezed,
     Object? requestForNoOfPeople = freezed,
+    Object? prescriptionImageUrl = freezed,
     Object? giftAskType = freezed,
     Object? giftTitle = freezed,
     Object? giftForSmallFamily = freezed,
+    Object? note = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_GiftAsk(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      position: position == freezed
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as MyPosition,
       reuqestDate: reuqestDate == freezed
           ? _value.reuqestDate
           : reuqestDate // ignore: cast_nullable_to_non_nullable
@@ -171,6 +254,10 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
           ? _value.requestForNoOfPeople
           : requestForNoOfPeople // ignore: cast_nullable_to_non_nullable
               as int,
+      prescriptionImageUrl: prescriptionImageUrl == freezed
+          ? _value.prescriptionImageUrl
+          : prescriptionImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       giftAskType: giftAskType == freezed
           ? _value.giftAskType
           : giftAskType // ignore: cast_nullable_to_non_nullable
@@ -183,6 +270,14 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
           ? _value.giftForSmallFamily
           : giftForSmallFamily // ignore: cast_nullable_to_non_nullable
               as bool,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 }
@@ -192,13 +287,20 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
 class _$_GiftAsk implements _GiftAsk {
   const _$_GiftAsk(
       {this.id,
+      required this.address,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required this.position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required this.reuqestDate,
       required this.requestForNoOfPeople,
+      this.prescriptionImageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required this.giftAskType,
       required this.giftTitle,
-      required this.giftForSmallFamily});
+      required this.giftForSmallFamily,
+      required this.note,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required this.createdAt});
 
   factory _$_GiftAsk.fromJson(Map<String, dynamic> json) =>
       _$_$_GiftAskFromJson(json);
@@ -206,10 +308,17 @@ class _$_GiftAsk implements _GiftAsk {
   @override
   final String? id;
   @override
+  final String address;
+  @override
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+  final MyPosition position;
+  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp reuqestDate;
   @override
   final int requestForNoOfPeople;
+  @override
+  final String? prescriptionImageUrl;
   @override
   @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
   final GiftAskType giftAskType;
@@ -217,10 +326,15 @@ class _$_GiftAsk implements _GiftAsk {
   final String giftTitle;
   @override
   final bool giftForSmallFamily;
+  @override
+  final String note;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  final Timestamp createdAt;
 
   @override
   String toString() {
-    return 'GiftAsk(id: $id, reuqestDate: $reuqestDate, requestForNoOfPeople: $requestForNoOfPeople, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily)';
+    return 'GiftAsk(id: $id, address: $address, position: $position, reuqestDate: $reuqestDate, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note, createdAt: $createdAt)';
   }
 
   @override
@@ -229,12 +343,21 @@ class _$_GiftAsk implements _GiftAsk {
         (other is _GiftAsk &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.position, position) ||
+                const DeepCollectionEquality()
+                    .equals(other.position, position)) &&
             (identical(other.reuqestDate, reuqestDate) ||
                 const DeepCollectionEquality()
                     .equals(other.reuqestDate, reuqestDate)) &&
             (identical(other.requestForNoOfPeople, requestForNoOfPeople) ||
                 const DeepCollectionEquality().equals(
                     other.requestForNoOfPeople, requestForNoOfPeople)) &&
+            (identical(other.prescriptionImageUrl, prescriptionImageUrl) ||
+                const DeepCollectionEquality().equals(
+                    other.prescriptionImageUrl, prescriptionImageUrl)) &&
             (identical(other.giftAskType, giftAskType) ||
                 const DeepCollectionEquality()
                     .equals(other.giftAskType, giftAskType)) &&
@@ -243,18 +366,28 @@ class _$_GiftAsk implements _GiftAsk {
                     .equals(other.giftTitle, giftTitle)) &&
             (identical(other.giftForSmallFamily, giftForSmallFamily) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftForSmallFamily, giftForSmallFamily)));
+                    .equals(other.giftForSmallFamily, giftForSmallFamily)) &&
+            (identical(other.note, note) ||
+                const DeepCollectionEquality().equals(other.note, note)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(position) ^
       const DeepCollectionEquality().hash(reuqestDate) ^
       const DeepCollectionEquality().hash(requestForNoOfPeople) ^
+      const DeepCollectionEquality().hash(prescriptionImageUrl) ^
       const DeepCollectionEquality().hash(giftAskType) ^
       const DeepCollectionEquality().hash(giftTitle) ^
-      const DeepCollectionEquality().hash(giftForSmallFamily);
+      const DeepCollectionEquality().hash(giftForSmallFamily) ^
+      const DeepCollectionEquality().hash(note) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -270,23 +403,37 @@ class _$_GiftAsk implements _GiftAsk {
 abstract class _GiftAsk implements GiftAsk {
   const factory _GiftAsk(
       {String? id,
+      required String address,
+      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+          required MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp reuqestDate,
       required int requestForNoOfPeople,
+      String? prescriptionImageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required GiftAskType giftAskType,
       required String giftTitle,
-      required bool giftForSmallFamily}) = _$_GiftAsk;
+      required bool giftForSmallFamily,
+      required String note,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp createdAt}) = _$_GiftAsk;
 
   factory _GiftAsk.fromJson(Map<String, dynamic> json) = _$_GiftAsk.fromJson;
 
   @override
   String? get id => throw _privateConstructorUsedError;
   @override
+  String get address => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
+  MyPosition get position => throw _privateConstructorUsedError;
+  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get reuqestDate => throw _privateConstructorUsedError;
   @override
   int get requestForNoOfPeople => throw _privateConstructorUsedError;
+  @override
+  String? get prescriptionImageUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
   GiftAskType get giftAskType => throw _privateConstructorUsedError;
@@ -294,6 +441,11 @@ abstract class _GiftAsk implements GiftAsk {
   String get giftTitle => throw _privateConstructorUsedError;
   @override
   bool get giftForSmallFamily => throw _privateConstructorUsedError;
+  @override
+  String get note => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GiftAskCopyWith<_GiftAsk> get copyWith =>

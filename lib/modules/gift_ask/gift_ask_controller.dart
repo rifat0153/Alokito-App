@@ -1,17 +1,24 @@
 import 'dart:io';
 
+import 'package:alokito_new/models/gift_ask/gift_ask.dart';
+import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/modules/gift_ask/gift_ask_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftAskController extends GetxController {
-  // final service
+  final geo = Geoflutterfire();
+
+  final GiftAskService giftAskService = GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance);
 
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(0, 0).obs;
-  var locationAddress = ''.obs;
+  var address = ''.obs;
   Rx<LatLng> locationInLatLng = const LatLng(0, 0).obs;
   Rx<Timestamp> requestDate = Timestamp.now().obs;
   final _requestForNoOfPeople = 1.obs;
@@ -21,6 +28,27 @@ class GiftAskController extends GetxController {
   var precriptionImageFile = File('').obs;
   final RxBool _packageSmallFamilty = false.obs;
   var note = ''.obs;
+
+  void addGift() async {
+    var giftLocation =
+        geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
+    var giftPos = giftLocation.data as Map<dynamic, dynamic>;
+
+    MyPosition giftPosition =
+        MyPosition(geohash: giftPos['geohash'] as String, geopoint: giftPos['geopoint'] as GeoPoint);
+
+    GiftAsk giftAsk = GiftAsk(
+        address: address.value,
+        position: position,
+        reuqestDate: reuqestDate,
+        requestForNoOfPeople: requestForNoOfPeople,
+        giftAskType: giftAskType,
+        giftTitle: giftTitle,
+        giftForSmallFamily: giftForSmallFamily,
+        note: note,
+        createdAt: createdAt);
+    if (showPrescription.value) {}
+  }
 
   void setLocationFromMapCordinates() async {
     // From coordinates

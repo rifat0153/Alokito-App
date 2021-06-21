@@ -335,9 +335,9 @@ class _InsertLocationWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Obx(
                     () => Text(
-                      giftAskController.locationAddress.value.isEmpty
+                      giftAskController.address.value.isEmpty
                           ? 'insert your location'
-                          : giftAskController.locationAddress.value,
+                          : giftAskController.address.value,
                       maxLines: 1,
                       overflow: TextOverflow.fade,
                       softWrap: false,
