@@ -34,6 +34,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+
   // const bool USE_EMULATOR = false;
 
   // if (USE_EMULATOR) {

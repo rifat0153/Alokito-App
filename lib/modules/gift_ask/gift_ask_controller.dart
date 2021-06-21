@@ -5,6 +5,8 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'package:geocoder/geocoder.dart' as geocoder;
 
@@ -17,6 +19,7 @@ class GiftAskController extends GetxController {
 
   final geo = Geoflutterfire();
 
+  RxBool loading = false.obs;
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(0, 0).obs;
@@ -31,7 +34,9 @@ class GiftAskController extends GetxController {
   final RxBool _packageSmallFamilty = false.obs;
   var note = ''.obs;
 
-  void addGift() async {
+  void addGift(BuildContext context) async {
+    loading.value = true;
+
     var myLocation =
         geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.latitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
@@ -57,7 +62,11 @@ class GiftAskController extends GetxController {
 
     giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
 
-    await giftAskService.addGift(giftAsk: giftAsk);
+    bool status = await giftAskService.addGift(giftAsk: giftAsk);
+
+    loading.value = false;
+
+    showSuccessOrErrorBottomSheet(status, 'Success: Gift request added', 'Something went wrong');
   }
 
   GiftAskType getGiftAskType() {
@@ -101,5 +110,37 @@ class GiftAskController extends GetxController {
     showPrescription.value = (newValue == 'Medicine') ? true : false;
     precriptionImageFile.value = (newValue == 'Medicine') ? precriptionImageFile.value : File('');
     _selectedGiftType.value = newValue;
+  }
+
+  void showSuccessOrErrorBottomSheet(bool status, String successMessage, String errorMessage) async {
+    if (status) {
+      await Get.bottomSheet(
+        Container(
+          height: 60,
+          child: Center(
+            child: Text(
+              successMessage,
+              textAlign: TextAlign.center,
+              // style: TextStyle(color: Colors.green),
+            ),
+          ),
+        ),
+        backgroundColor: Colors.greenAccent,
+      );
+    } else {
+      await Get.bottomSheet(
+        Container(
+          height: 60,
+          child: Center(
+            child: Text(
+              errorMessage,
+              textAlign: TextAlign.center,
+              // style: TextStyle(color: Colors.green),
+            ),
+          ),
+        ),
+        backgroundColor: Colors.redAccent,
+      );
+    }
   }
 }

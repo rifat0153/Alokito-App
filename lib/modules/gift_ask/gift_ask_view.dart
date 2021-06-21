@@ -15,7 +15,7 @@ import 'package:location/location.dart';
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
 
-  final GiftAskController giftAskController = Get.find<GiftAskController>();
+  final GiftAskController giftAskController = Get.find<GiftAskController>()..loading.value = false;
 
   @override
   Widget build(BuildContext context) {
@@ -75,20 +75,24 @@ class GiftAskView extends StatelessWidget {
                         _RequestForAndImageRow(),
                         _FormWidget(key: ValueKey('formWidget')),
                         const SizedBox(height: 16),
-                        MaterialButton(
-                          onPressed: () async {
-                            print('clicked');
-                            giftAskController.addGift();
-                          },
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                          color: GIFT_ADD_FORM_SUBMIT,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 50),
-                            child: Text(
-                              'Place a Request',
-                              style: boldFontStyle.copyWith(color: Colors.white),
-                            ),
-                          ),
+                        Obx(
+                          () => giftAskController.loading.value
+                              ? CircularProgressIndicator()
+                              : MaterialButton(
+                                  onPressed: () async {
+                                    print('clicked');
+                                    giftAskController.addGift(context);
+                                  },
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                  color: GIFT_ADD_FORM_SUBMIT,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                                    child: Text(
+                                      'Place a Request',
+                                      style: boldFontStyle.copyWith(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
                         ),
                         const SizedBox(height: 16),
                         _GuideLines(),
