@@ -49,7 +49,15 @@ class GiftAskController extends GetxController {
       note: note.value,
       createdAt: Timestamp.now(),
     );
-    if (showPrescription.value) {}
+
+    String prescriptionUrl = '';
+    if (showPrescription.value && precriptionImageFile.value.path.isNotEmpty) {
+      prescriptionUrl = await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
+    }
+
+    giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
+
+    await giftAskService.addGift(giftAsk: giftAsk);
   }
 
   GiftAskType getGiftAskType() {

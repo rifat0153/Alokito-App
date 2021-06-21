@@ -18,19 +18,23 @@ class GiftAskService implements BaseGiftAskService {
   final FirebaseStorage _storage;
 
   @override
-  Future<bool> addGift({required GiftAsk giftAsk, File? imageFile}) async {
-    String downloadUrl = '';
+  Future<bool> addGift({required GiftAsk giftAsk}) async {
+    try {
+      var docRef = _firestore.collection('gift_ask').doc();
+      giftAsk = giftAsk.copyWith(id: docRef.id);
+      await docRef.set(giftAsk.toJson());
 
-    
-
-    return false;
+      return true;
+    } on FirebaseException catch (e) {
+      return false;
+    }
   }
 
   @override
   Future<String> uploadImageAndGetDownloadUrl(File file) async {
     var fileExtension = path.extension(file.path);
     var uuid = const Uuid().v4();
-    var firebaseStorageRef = _storage.ref().child('gifts/images/$uuid$fileExtension');
+    var firebaseStorageRef = _storage.ref().child('gift_ask/images/$uuid$fileExtension');
 
     try {
       await firebaseStorageRef.putFile(file);

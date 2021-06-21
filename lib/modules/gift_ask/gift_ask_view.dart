@@ -15,6 +15,8 @@ import 'package:location/location.dart';
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
 
+  final GiftAskController giftAskController = Get.find<GiftAskController>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -74,7 +76,10 @@ class GiftAskView extends StatelessWidget {
                         _FormWidget(key: ValueKey('formWidget')),
                         const SizedBox(height: 16),
                         MaterialButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            print('clicked');
+                            giftAskController.addGift();
+                          },
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                           color: GIFT_ADD_FORM_SUBMIT,
                           child: Padding(
@@ -538,7 +543,7 @@ class _GiftTypeDropdownButton extends StatelessWidget {
     return Obx(
       () => DropdownButton<String>(
         isDense: true,
-        value:   giftAskController.selectedGiftType,
+        value: giftAskController.selectedGiftType,
         icon: const Icon(Icons.arrow_downward),
         iconSize: 20,
         elevation: 16,
