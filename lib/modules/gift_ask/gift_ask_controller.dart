@@ -1,19 +1,21 @@
 import 'dart:io';
-
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:geocoder/geocoder.dart';
+
+import 'package:geocoder/geocoder.dart' as geocoder;
+
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftAskController extends GetxController {
-  final geo = Geoflutterfire();
-
   final GiftAskService giftAskService = GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance);
+
+  final geo = Geoflutterfire();
 
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
@@ -30,35 +32,42 @@ class GiftAskController extends GetxController {
   var note = ''.obs;
 
   void addGift() async {
-    var giftLocation =
-        geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
-    var giftPos = giftLocation.data as Map<dynamic, dynamic>;
+    var myLocation =
+        geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.latitude);
+    var pos = myLocation.data as Map<dynamic, dynamic>;
 
-    MyPosition giftPosition =
-        MyPosition(geohash: giftPos['geohash'] as String, geopoint: giftPos['geopoint'] as GeoPoint);
+    MyPosition giftPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
     GiftAsk giftAsk = GiftAsk(
-        address: address.value,
-        position: position,
-        reuqestDate: reuqestDate,
-        requestForNoOfPeople: requestForNoOfPeople,
-        giftAskType: giftAskType,
-        giftTitle: giftTitle,
-        giftForSmallFamily: giftForSmallFamily,
-        note: note,
-        createdAt: createdAt);
+      address: address.value,
+      position: giftPosition,
+      reuqestDate: Timestamp.now(),
+      requestForNoOfPeople: requestForNoOfPeople,
+      giftAskType: getGiftAskType(),
+      giftTitle: giftTitle.value,
+      giftForSmallFamily: _packageSmallFamilty.value,
+      note: note.value,
+      createdAt: Timestamp.now(),
+    );
     if (showPrescription.value) {}
+  }
+
+  GiftAskType getGiftAskType() {
+    if (selectedGiftType == 'Food') return GiftAskType.food;
+    if (selectedGiftType == 'Medicine') return GiftAskType.medicine;
+    if (selectedGiftType == 'Others') return GiftAskType.others;
+    return GiftAskType.error;
   }
 
   void setLocationFromMapCordinates() async {
     // From coordinates
-    final coordinates = Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
-    var addresses1 = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    final coordinates = geocoder.Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
+    var addresses1 = await geocoder.Geocoder.local.findAddressesFromCoordinates(coordinates);
     var first = addresses1.first;
-    locationAddress.value = ' ${first.addressLine}  ${first.subLocality}';
+    address.value = ' ${first.addressLine}  ${first.subLocality}';
 
     var location = first.addressLine;
-    locationAddress.value = location;
+    address.value = location;
     var area = first.subLocality ?? 'N/A';
   }
 
@@ -79,6 +88,7 @@ class GiftAskController extends GetxController {
   }
 
   String get selectedGiftType => _selectedGiftType.value;
+
   void setSelectedGiftType(String newValue) {
     showPrescription.value = (newValue == 'Medicine') ? true : false;
     precriptionImageFile.value = (newValue == 'Medicine') ? precriptionImageFile.value : File('');

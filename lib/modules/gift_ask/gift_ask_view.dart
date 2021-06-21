@@ -538,7 +538,7 @@ class _GiftTypeDropdownButton extends StatelessWidget {
     return Obx(
       () => DropdownButton<String>(
         isDense: true,
-        value: giftAskController.selectedGiftType,
+        value:   giftAskController.selectedGiftType,
         icon: const Icon(Icons.arrow_downward),
         iconSize: 20,
         elevation: 16,
