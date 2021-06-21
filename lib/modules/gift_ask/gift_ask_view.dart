@@ -297,7 +297,7 @@ class _RequestForAndImageRow extends StatelessWidget {
                       child: Text(' Add Prescription ',
                           style: whiteFontStyle.copyWith(
                               fontSize: 10,
-                              color: giftAskController.showPrescription.value ? Colors.white : Colors.black)),
+                              color: giftAskController.showPrescription.value ? Colors.white : Colors.grey)),
                     ),
                   ),
                 ),

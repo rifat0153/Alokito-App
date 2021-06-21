@@ -21,31 +21,23 @@ class GiftGiver with _$GiftGiver {
     required double userRatingSum,
     required String userImageUrl,
     required String userFullName,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition userPosition,
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition userPosition,
     required int distance,
-    @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-        required GiftType giftType,
+    @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson) required GiftType giftType,
     required String uid,
     required int givingGiftInDays,
     required String area,
     required String location,
     required String imageUrl,
     required String giftDetails,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp userCreatedAt,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp listingDate,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp userCreatedAt,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp listingDate,
     required int listingForDays,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp pickUpTime,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp pickUpTime,
     required bool canLeaveOutside,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition position,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp createdAt,
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition position,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
   }) = _GiftGiver;
 
-  factory GiftGiver.fromJson(Map<String, dynamic> json) =>
-      _$GiftGiverFromJson(json);
+  factory GiftGiver.fromJson(Map<String, dynamic> json) => _$GiftGiverFromJson(json);
 }

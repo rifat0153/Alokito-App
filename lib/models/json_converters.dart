@@ -9,25 +9,18 @@ import 'package:flutter/material.dart';
 GeoPoint geoPointToJson(GeoPoint geoPoint) => geoPoint;
 GeoPoint geoPointFromJson(GeoPoint json) => json;
 
-Map<String, dynamic> myPositionToJson(MyPosition myPosition) =>
-    myPosition.toJson();
-MyPosition myPositionFromJson(Map<String, dynamic> json) =>
-    MyPosition.fromJson(json);
+Map<String, dynamic> myPositionToJson(MyPosition myPosition) => myPosition.toJson();
+MyPosition myPositionFromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);
 
 Timestamp timestampToJson(Timestamp timestamp) => timestamp;
 Timestamp timestampFromJson(Timestamp json) => json;
 
 //Gift Request
-Map<String, dynamic> giftRequestToJson(GiftReqeust giftReqeust) =>
-    giftReqeust.toJson();
-GiftReqeust giftReqeustFromJson(Map<String, dynamic> json) =>
-    GiftReqeust.fromJson(json);
+Map<String, dynamic> giftRequestToJson(GiftReqeust giftReqeust) => giftReqeust.toJson();
+GiftReqeust giftReqeustFromJson(Map<String, dynamic> json) => GiftReqeust.fromJson(json);
 //Gift Notifications
-Map<String, dynamic> giftNotificationToJson(
-        GiftNotification giftNotification) =>
-    giftNotification.toJson();
-GiftNotification giftNotificationFromJson(Map<String, dynamic> json) =>
-    GiftNotification.fromJson(json);
+Map<String, dynamic> giftNotificationToJson(GiftNotification giftNotification) => giftNotification.toJson();
+GiftNotification giftNotificationFromJson(Map<String, dynamic> json) => GiftNotification.fromJson(json);
 
 int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
   switch (giftRequestStatus) {
@@ -131,5 +124,31 @@ GiftType giftTypeFromJson(int json) {
       return GiftType.customizedPackage;
     default:
       return GiftType.anyRetailItem;
+  }
+}
+
+int giftAskTypeToJson(GiftAskType giftAskType) {
+  switch (giftAskType) {
+    case GiftAskType.food:
+      return 0;
+    case GiftAskType.medicine:
+      return 1;
+    case GiftAskType.others:
+      return 2;
+    case GiftAskType.error:
+      return 3;
+  }
+}
+
+GiftAskType giftAskTypeFromJson(int json) {
+  switch (json) {
+    case 0:
+      return GiftAskType.food;
+    case 1:
+      return GiftAskType.medicine;
+    case 2:
+      return GiftAskType.others;
+    default:
+      return GiftAskType.error;
   }
 }
