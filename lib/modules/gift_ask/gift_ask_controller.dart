@@ -114,6 +114,8 @@ class GiftAskController extends GetxController {
 
   void showSuccessOrErrorBottomSheet(bool status, String successMessage, String errorMessage) async {
     if (status) {
+      Get.back();
+
       await Get.bottomSheet(
         Container(
           height: 60,
