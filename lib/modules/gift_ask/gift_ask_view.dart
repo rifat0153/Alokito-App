@@ -379,9 +379,9 @@ class _MapWidget extends StatefulWidget {
 class __MapWidgetState extends State<_MapWidget> {
   final GiftAskController giftAskController = Get.find();
   Completer<GoogleMapController> _controller = Completer();
-  double zoom = 13;
+  double zoom = 11;
 
-  late LatLng userPosition = LatLng(0, 0);
+  late LatLng userPosition = LatLng(23, 90);
 
   @override
   void initState() {
