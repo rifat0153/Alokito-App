@@ -1,3 +1,5 @@
+import 'package:alokito_new/models/gift_ask/gift_ask.dart';
+import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/auth/auth_service.dart';
@@ -9,16 +11,18 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-class MapWidget extends StatefulWidget {
+class GiftAskMapWidget extends StatefulWidget {
+  static const route = '/GiftAskMapWidget';
+
   @override
-  _MapWidgetState createState() => _MapWidgetState();
+  _GiftAskMapWidgetState createState() => _GiftAskMapWidgetState();
 }
 
-class _MapWidgetState extends State<MapWidget> {
+class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
 // make sure to initialize before map loading
 
   GoogleMapController? _mapController;
-  final GiftController giftController = Get.find();
+  final GiftAskController giftAskController = Get.find();
   late TextEditingController _latitudeController, _longitudeController;
 
   // firestore init
@@ -40,8 +44,8 @@ class _MapWidgetState extends State<MapWidget> {
     geo = Geoflutterfire();
     // GeoFirePoint center = geo.point(latitude: 23, longitude: 90);
     GeoFirePoint center = geo.point(
-      latitude: giftController.currentUserLocation.value.latitude,
-      longitude: giftController.currentUserLocation.value.longitude,
+      latitude: giftAskController.currentUserPosition.value.latitude,
+      longitude: giftAskController.currentUserPosition.value.latitude,
     );
 
     stream = radius.switchMap((rad) {
@@ -68,8 +72,8 @@ class _MapWidgetState extends State<MapWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print('user lat: ' + giftController.currentUserLocation.value.latitude.toString());
-    print('user lat: ' + giftController.currentUserLocation.value.longitude.toString());
+    print('user lat: ' + giftAskController.currentUserPosition.value.latitude.toString());
+    print('user long: ' + giftAskController.currentUserPosition.value.longitude.toString());
 
     final mediaQuery = MediaQuery.of(context);
     return Container(
@@ -170,12 +174,12 @@ class _MapWidgetState extends State<MapWidget> {
       // final GeoPoint point =
       // document.data()!['position']['geopoint'] as GeoPoint;
 
-      final GiftGiver giftGiver = GiftGiver.fromJson(document.data()!);
-      final GeoPoint point = giftGiver.position.geopoint;
+      final GiftAsk giftAsk = GiftAsk.fromJson(document.data()!);
+      final GeoPoint point = giftAsk.position.geopoint;
 
       var userPoint = geo.point(
-          latitude: giftController.currentUserLocation.value.latitude,
-          longitude: giftController.currentUserLocation.value.longitude);
+          latitude: giftAskController.currentUserPosition.value.latitude,
+          longitude: giftAskController.currentUserPosition.value.longitude);
 
       var distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
       _addMarker(point.latitude, point.longitude, distance);

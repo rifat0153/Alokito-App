@@ -1,3 +1,5 @@
+import 'package:alokito_new/modules/gift_ask/widgets/gift_ask_map_widget.dart';
+import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:flutter/material.dart';
 
 class GiftAskRequestView extends StatelessWidget {
@@ -11,9 +13,8 @@ class GiftAskRequestView extends StatelessWidget {
         foregroundColor: Colors.grey,
         // backgroundColor: ,
       ),
-      body: Center(
-        child: Text('data'),
-      ),
+      // body: GiftAskMapWidget(),
+      body: GiftAskMapWidget(),
     );
   }
 }

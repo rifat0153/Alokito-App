@@ -24,7 +24,7 @@ class GiftAskController extends GetxController {
   RxBool loading = false.obs;
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
-  var currentUserPosition = const LatLng(0, 0).obs;
+  var currentUserPosition = const LatLng(23, 90).obs;
   var address = ''.obs;
   Rx<LatLng> locationInLatLng = const LatLng(0, 0).obs;
   Rx<Timestamp> requestDate = Timestamp.now().obs;
@@ -40,8 +40,8 @@ class GiftAskController extends GetxController {
   void onInit() async {
     super.onInit();
     LocationData loc = await Location().getLocation();
-    locationInLatLng.value = LatLng(loc.latitude!, loc.longitude!);
-    print('GiftAskController: ' + locationInLatLng.value.toString());
+    currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
+    print('GiftAskController: ' + currentUserPosition.value.toString());
   }
 
   // FIREBASE REQUESTS
@@ -49,7 +49,7 @@ class GiftAskController extends GetxController {
     loading.value = true;
 
     var myLocation =
-        geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.latitude);
+        geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
     MyPosition giftPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
