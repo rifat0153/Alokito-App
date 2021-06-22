@@ -81,7 +81,9 @@ class GiftAskView extends StatelessWidget {
                               : MaterialButton(
                                   onPressed: () async {
                                     print('clicked');
-                                    giftAskController.addGift(context);
+                                    // await giftAskController.findGiftExistsOrNot(
+                                    // giftAskId: 'X9dupwSyi6WcTHaCvcz5o3JkhCK');
+                                    await giftAskController.addGift();
                                   },
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                                   color: GIFT_ADD_FORM_SUBMIT,

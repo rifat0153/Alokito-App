@@ -8,8 +8,9 @@ import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 
 abstract class BaseGiftAskService {
-  Future<bool> addGift({required GiftAsk giftAsk});
+  Future<bool> addGift({required GiftAsk giftAsk, required String userId});
   Future<String> uploadImageAndGetDownloadUrl(File file);
+  Future<bool> findGiftById(String id);
 }
 
 class GiftAskService implements BaseGiftAskService {
@@ -19,10 +20,10 @@ class GiftAskService implements BaseGiftAskService {
   final FirebaseStorage _storage;
 
   @override
-  Future<bool> addGift({required GiftAsk giftAsk}) async {
+  Future<bool> addGift({required GiftAsk giftAsk, required String userId}) async {
     try {
-      var docRef = _firestore.collection('gift_ask').doc();
-      giftAsk = giftAsk.copyWith(id: docRef.id);
+      var docRef = _firestore.collection('gift_ask').doc(userId);
+      giftAsk = giftAsk.copyWith(id: userId);
       await docRef.set(giftAsk.toJson());
 
       return true;
@@ -44,6 +45,17 @@ class GiftAskService implements BaseGiftAskService {
       return url;
     } on FirebaseException catch (e) {
       throw GiftAskException(message: 'Prescription Image upload error');
+    }
+  }
+
+  @override
+  Future<bool> findGiftById(String id) async {
+    try {
+      var docRef = await _firestore.collection('gift_ask').doc(id).get();
+
+      return docRef.data() != null ? true : false;
+    } on FirebaseException catch (e) {
+      throw GiftAskException(message: 'GiftRequest finding error');
     }
   }
 }

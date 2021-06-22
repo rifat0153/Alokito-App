@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -34,7 +35,8 @@ class GiftAskController extends GetxController {
   final RxBool _packageSmallFamilty = false.obs;
   var note = ''.obs;
 
-  void addGift(BuildContext context) async {
+  // FIREBASE REQUESTS
+  Future<void> addGift() async {
     loading.value = true;
 
     var myLocation =
@@ -62,11 +64,23 @@ class GiftAskController extends GetxController {
 
     giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
 
-    bool status = await giftAskService.addGift(giftAsk: giftAsk);
+    String userId = Get.find<AuthController>().auth.currentUser?.uid ?? '';
+    bool giftExists = await giftAskService.findGiftById(userId);
+    if (giftExists) {
+      loading.value = false;
+      return showSuccessOrErrorBottomSheet(!giftExists, 'No request exists', 'Only one request at a time');
+    }
 
+    bool status = await giftAskService.addGift(giftAsk: giftAsk, userId: userId);
     loading.value = false;
 
     showSuccessOrErrorBottomSheet(status, 'Success: Gift request added', 'Something went wrong');
+  }
+
+  Future<void> findGiftExistsOrNot({required String giftAskId}) async {
+    var responseStatus = await giftAskService.findGiftById(giftAskId);
+
+    showSuccessOrErrorBottomSheet(responseStatus, 'gift exists', 'gift does not exists');
   }
 
   GiftAskType getGiftAskType() {
@@ -118,12 +132,12 @@ class GiftAskController extends GetxController {
 
       await Get.bottomSheet(
         Container(
-          height: 60,
+          height: 50,
           child: Center(
             child: Text(
               successMessage,
               textAlign: TextAlign.center,
-              // style: TextStyle(color: Colors.green),
+              style: TextStyle(fontSize: 15),
             ),
           ),
         ),
@@ -132,12 +146,12 @@ class GiftAskController extends GetxController {
     } else {
       await Get.bottomSheet(
         Container(
-          height: 60,
+          height: 50,
           child: Center(
             child: Text(
               errorMessage,
               textAlign: TextAlign.center,
-              // style: TextStyle(color: Colors.green),
+              style: TextStyle(fontSize: 15),
             ),
           ),
         ),
