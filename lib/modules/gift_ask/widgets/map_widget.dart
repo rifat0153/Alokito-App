@@ -9,14 +9,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-class MyMapView extends StatefulWidget {
-  static const route = '/mymapview';
-
+class MapWidget extends StatefulWidget {
   @override
-  _MyMapViewState createState() => _MyMapViewState();
+  _MapWidgetState createState() => _MapWidgetState();
 }
 
-class _MyMapViewState extends State<MyMapView> {
+class _MapWidgetState extends State<MapWidget> {
 // make sure to initialize before map loading
 
   GoogleMapController? _mapController;
@@ -47,7 +45,7 @@ class _MyMapViewState extends State<MyMapView> {
     );
 
     stream = radius.switchMap((rad) {
-      var collectionReference = _firestore.collection('gifts');
+      var collectionReference = _firestore.collection('gift_ask');
 //          .where('name', isEqualTo: 'darshan');
       return geo
           .collection(collectionRef: collectionReference)

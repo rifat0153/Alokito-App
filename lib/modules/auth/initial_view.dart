@@ -16,8 +16,7 @@ class InitialView extends StatelessWidget {
   final giftNotificationController = Get.put(GiftNotificationController());
   final giftRequestController = Get.put(GiftRequestController());
 
-  final GiftAskController giftAskController =
-      Get.put(GiftAskController(), permanent: true);
+  final GiftAskController giftAskController = Get.put(GiftAskController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {

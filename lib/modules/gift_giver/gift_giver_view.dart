@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/gift_ask/gift_ask_request_view.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/modules/gift_receiver/widgets/notification_icon_widget.dart';
@@ -42,9 +43,7 @@ class GiftGiverView extends StatelessWidget {
               children: [
                 Obx(
                   () => Badge(
-                    badgeContent: Text(giftNotificationController
-                        .giftNotificationList.length
-                        .toString()),
+                    badgeContent: Text(giftNotificationController.giftNotificationList.length.toString()),
                     child: Icon(Icons.notifications),
                   ),
                 ),
@@ -65,9 +64,7 @@ class GiftGiverView extends StatelessWidget {
               height: Get.size.height,
               width: Get.size.width,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/rsz_background.png'),
-                    fit: BoxFit.fill),
+                image: DecorationImage(image: AssetImage('assets/images/rsz_background.png'), fit: BoxFit.fill),
               ),
             ),
             Positioned(
@@ -92,55 +89,43 @@ class GiftGiverView extends StatelessWidget {
                 child: ListView(
                   children: <Widget>[
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                      padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
                       child: GestureDetector(
                         onTap: () {
-                          giftAddFormController.giftType.value =
-                              GiftType.anyRetailItem;
+                          giftAddFormController.giftType.value = GiftType.anyRetailItem;
                           Get.toNamed(GiftAddView.route);
                         },
-                        child: _AnyRetailItemMenu(
-                            height: menuHeight, width: menuWidth),
+                        child: _AnyRetailItemMenu(height: menuHeight, width: menuWidth),
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                      padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
                       child: GestureDetector(
                         onTap: () {
-                          giftAddFormController.giftType.value =
-                              GiftType.packageFor3Days;
+                          giftAddFormController.giftType.value = GiftType.packageFor3Days;
                           Get.toNamed(GiftAddView.route);
                         },
-                        child: _Package3DaysMenu(
-                            height: menuHeight, width: menuWidth),
+                        child: _Package3DaysMenu(height: menuHeight, width: menuWidth),
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                      padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
                       child: GestureDetector(
                         onTap: () {
-                          giftAddFormController.giftType.value =
-                              GiftType.packageFor7Days;
+                          giftAddFormController.giftType.value = GiftType.packageFor7Days;
                           Get.toNamed(GiftAddView.route);
                         },
-                        child: _Package7DaysMenu(
-                            height: menuHeight, width: menuWidth),
+                        child: _Package7DaysMenu(height: menuHeight, width: menuWidth),
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                      padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
                       child: GestureDetector(
                         onTap: () {
-                          giftAddFormController.giftType.value =
-                              GiftType.customizedPackage;
+                          giftAddFormController.giftType.value = GiftType.customizedPackage;
                           Get.toNamed(GiftAddView.route);
                         },
-                        child: _PackageCustomMenu(
-                            height: menuHeight, width: menuWidth),
+                        child: _PackageCustomMenu(height: menuHeight, width: menuWidth),
                       ),
                     ),
                     const SizedBox(height: 40)
@@ -321,20 +306,18 @@ class _MyButtonRowWidget extends StatelessWidget {
         ElevatedButton(
           onPressed: () {},
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith(
-                (states) => GIFT_GIVER_BUTTON_COLOR),
-            foregroundColor:
-                MaterialStateProperty.resolveWith((states) => Colors.black),
+            backgroundColor: MaterialStateProperty.resolveWith((states) => GIFT_GIVER_BUTTON_COLOR),
+            foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.black),
           ),
           child: const Text('My Gift'),
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => GiftAskRequestView());
+          },
           style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.resolveWith((states) => Colors.grey),
-            foregroundColor:
-                MaterialStateProperty.resolveWith((states) => Colors.black),
+            backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.grey),
+            foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.black),
           ),
           child: const Text('Gift Request'),
         ),
@@ -365,8 +348,7 @@ class _BannerWidget extends StatelessWidget {
             padding: EdgeInsets.only(left: 8),
             child: Text(
               'Covid - 19 Sharing & Safety Guidelines',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),

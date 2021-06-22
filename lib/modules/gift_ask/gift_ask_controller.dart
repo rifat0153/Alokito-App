@@ -14,6 +14,7 @@ import 'package:geocoder/geocoder.dart' as geocoder;
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class GiftAskController extends GetxController {
   final GiftAskService giftAskService = GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance);
@@ -34,6 +35,14 @@ class GiftAskController extends GetxController {
   var precriptionImageFile = File('').obs;
   final RxBool _packageSmallFamilty = false.obs;
   var note = ''.obs;
+
+  @override
+  void onInit() async {
+    super.onInit();
+    LocationData loc = await Location().getLocation();
+    locationInLatLng.value = LatLng(loc.latitude!, loc.longitude!);
+    print('GiftAskController: ' + locationInLatLng.value.toString());
+  }
 
   // FIREBASE REQUESTS
   Future<void> addGift() async {
@@ -57,19 +66,19 @@ class GiftAskController extends GetxController {
       createdAt: Timestamp.now(),
     );
 
-    String prescriptionUrl = '';
-    if (showPrescription.value && precriptionImageFile.value.path.isNotEmpty) {
-      prescriptionUrl = await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
-    }
-
-    giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
-
     String userId = Get.find<AuthController>().auth.currentUser?.uid ?? '';
     bool giftExists = await giftAskService.findGiftById(userId);
     if (giftExists) {
       loading.value = false;
       return showSuccessOrErrorBottomSheet(!giftExists, 'No request exists', 'Only one request at a time');
     }
+
+    String prescriptionUrl = '';
+    if (showPrescription.value && precriptionImageFile.value.path.isNotEmpty) {
+      prescriptionUrl = await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
+    }
+
+    giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
 
     bool status = await giftAskService.addGift(giftAsk: giftAsk, userId: userId);
     loading.value = false;
