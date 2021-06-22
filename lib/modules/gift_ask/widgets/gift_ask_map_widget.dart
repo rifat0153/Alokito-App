@@ -1,15 +1,11 @@
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
-import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/modules/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class GiftAskMapWidget extends StatefulWidget {
   static const route = '/GiftAskMapWidget';
@@ -29,15 +25,13 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
   final _firestore = FirebaseFirestore.instance;
   late Geoflutterfire geo;
   late Stream<List<DocumentSnapshot>> stream;
-  final radius = BehaviorSubject<double>.seeded(10.0);
+  final radius = BehaviorSubject<double>.seeded(100.0);
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
-
-  late BitmapDescriptor customIcon;
 
   @override
   void initState() {
     super.initState();
-    setMarker();
+
     _latitudeController = TextEditingController();
     _longitudeController = TextEditingController();
 
@@ -55,11 +49,6 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
           .collection(collectionRef: collectionReference)
           .within(center: center, radius: rad, field: 'position', strictMode: true);
     });
-  }
-
-  void setMarker() async {
-    customIcon =
-        await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(10, 10)), 'assets/images/map-dot (1).png');
   }
 
   @override
@@ -86,7 +75,7 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
               margin: EdgeInsets.symmetric(vertical: 8),
               child: SizedBox(
                 width: mediaQuery.size.width,
-                height: mediaQuery.size.height * (1 / 3),
+                height: mediaQuery.size.height * (1 / 2),
                 child: GoogleMap(
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: const CameraPosition(
@@ -136,26 +125,6 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
     ));
   }
 
-  void _addPoint(double lat, double lng) {
-    GeoFirePoint geoFirePoint = geo.point(latitude: lat, longitude: lng);
-    _firestore.collection('locations').add({'name': 'random name', 'position': geoFirePoint.data}).then((_) {
-      print('added ${geoFirePoint.hash} successfully');
-    });
-  }
-
-  //example to add geoFirePoint inside nested object
-  void _addNestedPoint(double lat, double lng) {
-    GeoFirePoint geoFirePoint = geo.point(latitude: lat, longitude: lng);
-    _firestore.collection('nestedLocations').add({
-      'name': 'random name',
-      'address': {
-        'location': {'position': geoFirePoint.data}
-      }
-    }).then((_) {
-      print('added ${geoFirePoint.hash} successfully');
-    });
-  }
-
   void _addMarker(double lat, double lng, double distance) {
     final id = MarkerId(lat.toString() + lng.toString());
     final _marker = Marker(
@@ -174,7 +143,11 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
       // final GeoPoint point =
       // document.data()!['position']['geopoint'] as GeoPoint;
 
+      print('IN update markerts');
+
       final GiftAsk giftAsk = GiftAsk.fromJson(document.data()!);
+      print('In GiftAskRequestViewL');
+      print(giftAsk);
       final GeoPoint point = giftAsk.position.geopoint;
 
       var userPoint = geo.point(

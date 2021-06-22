@@ -14,7 +14,7 @@ class GiftAskRequestView extends StatelessWidget {
         // backgroundColor: ,
       ),
       // body: GiftAskMapWidget(),
-      body: GiftAskMapWidget(),
+      body: MyMapView(),
     );
   }
 }

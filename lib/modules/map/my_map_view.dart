@@ -71,7 +71,7 @@ class _MyMapViewState extends State<MyMapView> {
   @override
   Widget build(BuildContext context) {
     print('user lat: ' + giftController.currentUserLocation.value.latitude.toString());
-    print('user lat: ' + giftController.currentUserLocation.value.longitude.toString());
+    print('user long: ' + giftController.currentUserLocation.value.longitude.toString());
 
     final mediaQuery = MediaQuery.of(context);
     return Container(
