@@ -9,9 +9,9 @@ class GiftAskRequestView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // shadowColor: ,
+        elevation: 5,
         foregroundColor: Colors.grey,
-        // backgroundColor: ,
+        backgroundColor: Colors.grey[400],
       ),
       body: GiftAskMapWidget(),
       // body: MyMapView(),
