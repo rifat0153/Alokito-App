@@ -22,7 +22,7 @@ class GiftAskController extends GetxController {
 
   final geo = Geoflutterfire();
 
-  final RxDouble searchRadius = 10.0.obs;
+  final RxDouble searchRadius = 15.0.obs;
   Rx<List<GiftAsk>> giftRequestList = Rx<List<GiftAsk>>([]);
 
   RxBool loading = false.obs;
@@ -62,6 +62,8 @@ class GiftAskController extends GetxController {
   }
 
   void bindGiftRequestStream() {
+    bindLocationData();
+
     giftRequestList.bindStream(giftAskService.giftAskRequestStream(
         latitude: currentUserPosition.value.latitude,
         longitude: currentUserPosition.value.longitude,
