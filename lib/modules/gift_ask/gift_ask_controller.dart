@@ -30,6 +30,7 @@ class GiftAskController extends GetxController {
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(23, 90).obs;
   var address = ''.obs;
+  var area = ''.obs;
   Rx<LatLng> locationInLatLng = const LatLng(0, 0).obs;
   Rx<Timestamp> requestDate = Timestamp.now().obs;
   final _requestForNoOfPeople = 1.obs;
@@ -83,6 +84,7 @@ class GiftAskController extends GetxController {
 
     GiftAsk giftAsk = GiftAsk(
       address: address.value,
+      area: area.value,
       position: giftPosition,
       reuqestDate: Timestamp.now(),
       requestForNoOfPeople: requestForNoOfPeople,
@@ -135,7 +137,9 @@ class GiftAskController extends GetxController {
 
     var location = first.addressLine;
     address.value = location;
-    var area = first.subLocality ?? 'N/A';
+    area.value = first.adminArea ?? 'N/A';
+
+    print(area.value);
   }
 
   bool get packageSmallFamilty => _packageSmallFamilty.value;

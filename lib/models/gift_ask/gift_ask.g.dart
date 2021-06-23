@@ -10,6 +10,7 @@ _$_GiftAsk _$_$_GiftAskFromJson(Map<String, dynamic> json) {
   return _$_GiftAsk(
     id: json['id'] as String?,
     address: json['address'] as String,
+    area: json['area'] as String,
     position: myPositionFromJson(json['position'] as Map<String, dynamic>),
     reuqestDate: timestampFromJson(json['reuqestDate'] as Timestamp),
     requestForNoOfPeople: json['requestForNoOfPeople'] as int,
@@ -26,6 +27,7 @@ Map<String, dynamic> _$_$_GiftAskToJson(_$_GiftAsk instance) =>
     <String, dynamic>{
       'id': instance.id,
       'address': instance.address,
+      'area': instance.area,
       'position': myPositionToJson(instance.position),
       'reuqestDate': timestampToJson(instance.reuqestDate),
       'requestForNoOfPeople': instance.requestForNoOfPeople,

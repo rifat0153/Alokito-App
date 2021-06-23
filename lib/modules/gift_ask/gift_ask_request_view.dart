@@ -101,7 +101,11 @@ class _GiftAskRequestTile extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
             child: Container(
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.grey.withOpacity(0.3)),
+              ),
               width: 300,
               height: 80,
               child: Row(
@@ -142,6 +146,11 @@ class _GiftAskRequestTile extends StatelessWidget {
                             softWrap: false,
                             overflow: TextOverflow.ellipsis,
                           ),
+                          Row(
+                            children: [
+                              Text('data'),
+                            ],
+                          )
                         ],
                       ),
                     ),

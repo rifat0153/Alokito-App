@@ -13,6 +13,7 @@ class GiftAsk with _$GiftAsk {
   const factory GiftAsk({
     String? id,
     required String address,
+    required String area,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition position,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp reuqestDate,
     required int requestForNoOfPeople,

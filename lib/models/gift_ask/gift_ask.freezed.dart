@@ -23,6 +23,7 @@ class _$GiftAskTearOff {
   _GiftAsk call(
       {String? id,
       required String address,
+      required String area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -39,6 +40,7 @@ class _$GiftAskTearOff {
     return _GiftAsk(
       id: id,
       address: address,
+      area: area,
       position: position,
       reuqestDate: reuqestDate,
       requestForNoOfPeople: requestForNoOfPeople,
@@ -63,6 +65,7 @@ const $GiftAsk = _$GiftAskTearOff();
 mixin _$GiftAsk {
   String? get id => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
+  String get area => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -89,6 +92,7 @@ abstract class $GiftAskCopyWith<$Res> {
   $Res call(
       {String? id,
       String address,
+      String area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -118,6 +122,7 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? address = freezed,
+    Object? area = freezed,
     Object? position = freezed,
     Object? reuqestDate = freezed,
     Object? requestForNoOfPeople = freezed,
@@ -136,6 +141,10 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
               as String,
       position: position == freezed
           ? _value.position
@@ -192,6 +201,7 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
   $Res call(
       {String? id,
       String address,
+      String area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -223,6 +233,7 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? address = freezed,
+    Object? area = freezed,
     Object? position = freezed,
     Object? reuqestDate = freezed,
     Object? requestForNoOfPeople = freezed,
@@ -241,6 +252,10 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
               as String,
       position: position == freezed
           ? _value.position
@@ -288,6 +303,7 @@ class _$_GiftAsk implements _GiftAsk {
   const _$_GiftAsk(
       {this.id,
       required this.address,
+      required this.area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required this.position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -309,6 +325,8 @@ class _$_GiftAsk implements _GiftAsk {
   final String? id;
   @override
   final String address;
+  @override
+  final String area;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   final MyPosition position;
@@ -334,7 +352,7 @@ class _$_GiftAsk implements _GiftAsk {
 
   @override
   String toString() {
-    return 'GiftAsk(id: $id, address: $address, position: $position, reuqestDate: $reuqestDate, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note, createdAt: $createdAt)';
+    return 'GiftAsk(id: $id, address: $address, area: $area, position: $position, reuqestDate: $reuqestDate, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note, createdAt: $createdAt)';
   }
 
   @override
@@ -346,6 +364,8 @@ class _$_GiftAsk implements _GiftAsk {
             (identical(other.address, address) ||
                 const DeepCollectionEquality()
                     .equals(other.address, address)) &&
+            (identical(other.area, area) ||
+                const DeepCollectionEquality().equals(other.area, area)) &&
             (identical(other.position, position) ||
                 const DeepCollectionEquality()
                     .equals(other.position, position)) &&
@@ -379,6 +399,7 @@ class _$_GiftAsk implements _GiftAsk {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(area) ^
       const DeepCollectionEquality().hash(position) ^
       const DeepCollectionEquality().hash(reuqestDate) ^
       const DeepCollectionEquality().hash(requestForNoOfPeople) ^
@@ -404,6 +425,7 @@ abstract class _GiftAsk implements GiftAsk {
   const factory _GiftAsk(
       {String? id,
       required String address,
+      required String area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
           required MyPosition position,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -424,6 +446,8 @@ abstract class _GiftAsk implements GiftAsk {
   String? get id => throw _privateConstructorUsedError;
   @override
   String get address => throw _privateConstructorUsedError;
+  @override
+  String get area => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
   MyPosition get position => throw _privateConstructorUsedError;

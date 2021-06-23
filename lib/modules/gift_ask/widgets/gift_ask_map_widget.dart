@@ -22,7 +22,7 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
   final _firestore = FirebaseFirestore.instance;
   late Geoflutterfire geo;
   late Stream<List<DocumentSnapshot>> stream;
-  final radius = BehaviorSubject<double>.seeded(15.0);
+  final radius = BehaviorSubject<double>.seeded(150.0);
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   @override
