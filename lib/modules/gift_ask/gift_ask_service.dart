@@ -48,6 +48,7 @@ class GiftAskService implements BaseGiftAskService {
         .map((docList) => docList.map(
               (doc) {
                 var gift = GiftAsk.fromJson(doc.data() ?? {});
+                // if (gift.id == 'J4NyNU9NntWrhbE2pMtXDxuSmGB3') retu;
                 return gift;
               },
             ).toList());

@@ -5,6 +5,7 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class GiftAskController extends GetxController {
 
   final RxDouble searchRadius = 15.0.obs;
   Rx<List<GiftAsk>> giftRequestList = Rx<List<GiftAsk>>([]);
+  Rx<List<GiftAsk>> filteredGiftRequestList = Rx<List<GiftAsk>>([]);
 
   RxBool loading = false.obs;
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
@@ -48,6 +50,14 @@ class GiftAskController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onClose() {
+    super.onClose();
+
+    giftRequestList.close();
+    filteredGiftRequestList.close();
+  }
+
   void bindLocationData() async {
     LocationData loc = await Location().getLocation();
     currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
@@ -64,12 +74,19 @@ class GiftAskController extends GetxController {
   }
 
   void bindGiftRequestStream() {
+    print('IN bind gift ask stream');
     bindLocationData();
 
     giftRequestList.bindStream(giftAskService.giftAskRequestStream(
         latitude: currentUserPosition.value.latitude,
         longitude: currentUserPosition.value.longitude,
         searchRadius: searchRadius.value));
+
+    var filteredList = [];
+
+    giftRequestList.value.forEach((doc) {
+      print(doc.id);
+    });
   }
 
   // FIREBASE REQUESTS

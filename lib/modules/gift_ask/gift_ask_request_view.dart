@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask/widgets/gift_ask_map_widget.dart';
@@ -25,8 +26,8 @@ class GiftAskRequestView extends StatelessWidget {
               ),
               onPressed: () => Get.back())
         ],
-        title: Text(
-          'My Request',
+        title: const Text(
+          'Gift Request',
           style: TextStyle(
             color: Colors.black,
           ),
@@ -36,7 +37,7 @@ class GiftAskRequestView extends StatelessWidget {
       ),
 
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
         ),
         child: Column(
@@ -113,9 +114,9 @@ class _GiftAskRequestTile extends StatelessWidget {
                   Container(
                     width: 100,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.blueGrey.shade900,
-                        borderRadius: const BorderRadius.only(
+                    decoration: const BoxDecoration(
+                        color: Color(0xff353445),
+                        borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           bottomLeft: Radius.circular(10),
                         )),
@@ -126,7 +127,7 @@ class _GiftAskRequestTile extends StatelessWidget {
                         Text(
                           '0${giftAskController.giftRequestList.value[index].requestForNoOfPeople}',
                           style: const TextStyle(
-                            color: Colors.blue,
+                            color: Color(0xff11CFE7),
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
                           ),
@@ -139,16 +140,22 @@ class _GiftAskRequestTile extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Request For', style: boldFontStyle),
-                          Text(
-                            giftAskController.giftRequestList.value[index].address,
-                            softWrap: false,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                          Text('Any Retail Item', style: boldFontStyle.copyWith(fontSize: 16)),
+                          const SizedBox(height: 8),
                           Row(
                             children: [
-                              Text('data'),
+                              Expanded(
+                                child: Text(
+                                  convertGiftAskType(
+                                      giftAskType: giftAskController.giftRequestList.value[index].giftAskType),
+                                  softWrap: false,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Text(giftAskController.giftRequestList.value[index].area,
+                                  style: boldFontStyle.copyWith(fontSize: 13)),
                             ],
                           )
                         ],
