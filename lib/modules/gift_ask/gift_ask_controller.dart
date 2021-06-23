@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
@@ -23,7 +24,7 @@ class GiftAskController extends GetxController {
 
   final geo = Geoflutterfire();
 
-  final RxDouble searchRadius = 15.0.obs;
+  final RxDouble searchRadius = 50.0.obs;
   Rx<List<GiftAsk>> giftRequestList = Rx<List<GiftAsk>>([]);
   Rx<List<GiftAsk>> filteredGiftRequestList = Rx<List<GiftAsk>>([]);
 
@@ -43,11 +44,22 @@ class GiftAskController extends GetxController {
   final RxBool _packageSmallFamilty = false.obs;
   var note = ''.obs;
 
+  StreamSubscription? streamSubscription;
+
   @override
   void onInit() async {
+    streamSubscription = giftRequestList.listen((docList) {
+      filteredGiftRequestList.value = [];
+      docList.forEach((doc) {
+        // if (doc.giftTitle == 'Medicine')
+        filteredGiftRequestList.value = [...filteredGiftRequestList.value, doc];
+      });
+    });
+
     bindLocationData();
+    bindGiftRequestStream();
     debounce(searchRadius, (_) => bindGiftRequestStream());
-    debounce(giftRequestList, (_) => bindFilteredList());
+
     super.onInit();
   }
 
@@ -55,17 +67,9 @@ class GiftAskController extends GetxController {
   void onClose() {
     super.onClose();
 
+    streamSubscription?.cancel();
     giftRequestList.close();
     filteredGiftRequestList.close();
-  }
-
-  void bindFilteredList() {
-    giftRequestList.listen((docList) {
-      filteredGiftRequestList.value = [];
-      docList.forEach((doc) {
-        if (doc.giftTitle == 'Pizzza') filteredGiftRequestList.value = [...filteredGiftRequestList.value, doc];
-      });
-    });
   }
 
   void bindLocationData() async {
