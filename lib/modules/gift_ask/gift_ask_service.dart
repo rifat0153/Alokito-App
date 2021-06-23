@@ -21,6 +21,7 @@ abstract class BaseGiftAskService {
     required double latitude,
     required double longitude,
     required double searchRadius,
+    required String userId,
   });
 }
 
@@ -36,6 +37,7 @@ class GiftAskService implements BaseGiftAskService {
     required double latitude,
     required double longitude,
     required double searchRadius,
+    required String userId,
   }) {
     GeoFirePoint center = _geo.point(latitude: latitude, longitude: longitude);
     print('In Service: center is: ' + center.toString());
@@ -45,16 +47,28 @@ class GiftAskService implements BaseGiftAskService {
     var stream = _geo
         .collection(collectionRef: collectionReference)
         .within(center: center, radius: searchRadius, field: 'position', strictMode: true)
-        .map((docList) => docList.map(
-              (doc) {
-                var gift = GiftAsk.fromJson(doc.data() ?? {});
-                // if (gift.id == 'J4NyNU9NntWrhbE2pMtXDxuSmGB3') retu;
-                return gift;
-              },
-            ).toList());
+        .map((docList) {
+      List<GiftAsk> list = [];
+      docList.forEach((doc) {
+        var gift = GiftAsk.fromJson(doc.data() ?? {});
+        if (gift.id != userId) {
+          list.add(gift);
+        }
+      });
+
+      return list;
+    });
 
     return stream;
   }
+
+  // => docList.map(
+  //           (doc) {
+  //             var gift = GiftAsk.fromJson(doc.data() ?? {});
+  //             // if (gift.id == 'J4NyNU9NntWrhbE2pMtXDxuSmGB3') retu;
+  //             return gift;
+  //           },
+  //         ).toList()
 
   @override
   Future<bool> addGift({required GiftAsk giftAsk, required String userId}) async {

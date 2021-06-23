@@ -78,9 +78,11 @@ class GiftAskController extends GetxController {
     bindLocationData();
 
     giftRequestList.bindStream(giftAskService.giftAskRequestStream(
-        latitude: currentUserPosition.value.latitude,
-        longitude: currentUserPosition.value.longitude,
-        searchRadius: searchRadius.value));
+      latitude: currentUserPosition.value.latitude,
+      longitude: currentUserPosition.value.longitude,
+      searchRadius: searchRadius.value,
+      userId: Get.find<AuthController>().auth.currentUser?.uid ?? '',
+    ));
 
     var filteredList = [];
 
