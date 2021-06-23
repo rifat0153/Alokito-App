@@ -16,6 +16,7 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
   final GiftAskController giftAskController = Get.find<GiftAskController>();
   GoogleMapController? _mapController;
   late TextEditingController _latitudeController, _longitudeController;
+  int totalRequestNearby = 0;
 
   // firestore init
   final _firestore = FirebaseFirestore.instance;
@@ -121,6 +122,8 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
 
   void _updateMarkers(List<DocumentSnapshot> documentList) {
     documentList.forEach((DocumentSnapshot document) {
+      if (document.data()!['id'] == 'X9dupwSyi6WcTHaCvcz5o3JkhCK2') return;
+
       final GeoPoint point = document.data()!['position']['geopoint'] as GeoPoint;
 
       var userPoint = geo.point(

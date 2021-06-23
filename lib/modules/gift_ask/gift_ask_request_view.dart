@@ -1,10 +1,13 @@
+import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask/widgets/gift_ask_map_widget.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class GiftAskRequestView extends StatelessWidget {
-  const GiftAskRequestView({Key? key}) : super(key: key);
+  GiftAskRequestView({Key? key}) : super(key: key);
+
+  final GiftAskController giftAskController = Get.find<GiftAskController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,23 @@ class GiftAskRequestView extends StatelessWidget {
         shadowColor: Colors.white,
       ),
 
-      body: GiftAskMapWidget(),
+      body: Column(
+        children: [
+          GiftAskMapWidget(),
+          Obx(
+            () => Text(giftAskController.giftRequestList.value.length.toString()),
+          ),
+          Obx(
+            () => Slider(
+              value: giftAskController.searchRadius.value,
+              min: 0,
+              max: 200,
+              divisions: 199,
+              onChanged: (value) => giftAskController.searchRadius.value = value,
+            ),
+          ),
+        ],
+      ),
       // body: MyMapView(),
     );
   }

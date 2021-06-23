@@ -17,9 +17,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class GiftAskController extends GetxController {
-  final GiftAskService giftAskService = GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance);
+  final GiftAskService giftAskService =
+      GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance, Geoflutterfire());
 
   final geo = Geoflutterfire();
+
+  final RxDouble searchRadius = 10.0.obs;
+  Rx<List<GiftAsk>> giftRequestList = Rx<List<GiftAsk>>([]);
 
   RxBool loading = false.obs;
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
@@ -38,10 +42,30 @@ class GiftAskController extends GetxController {
 
   @override
   void onInit() async {
+    bindLocationData();
+    debounce(searchRadius, (_) => bindGiftRequestStream());
+
+    // bindGiftRequestStream();
     super.onInit();
+  }
+
+  void bindLocationData() async {
     LocationData loc = await Location().getLocation();
     currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
     print('GiftAskController: ' + currentUserPosition.value.toString());
+  }
+
+  void setSearchRadius(double newRadius) {
+    searchRadius.value = newRadius;
+    bindLocationData();
+    bindGiftRequestStream();
+  }
+
+  void bindGiftRequestStream() {
+    giftRequestList.bindStream(giftAskService.giftAskRequestStream(
+        latitude: currentUserPosition.value.latitude,
+        longitude: currentUserPosition.value.longitude,
+        searchRadius: searchRadius.value));
   }
 
   // FIREBASE REQUESTS

@@ -1,23 +1,59 @@
 import 'dart:io';
 
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
+import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:get/get.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 
 abstract class BaseGiftAskService {
   Future<bool> addGift({required GiftAsk giftAsk, required String userId});
+
   Future<String> uploadImageAndGetDownloadUrl(File file);
+
   Future<bool> findGiftById(String id);
+
+  Stream<List<GiftAsk>> giftAskRequestStream({
+    required double latitude,
+    required double longitude,
+    required double searchRadius,
+  });
 }
 
 class GiftAskService implements BaseGiftAskService {
-  GiftAskService(this._firestore, this._storage);
+  GiftAskService(this._firestore, this._storage, this._geo);
 
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
+  final Geoflutterfire _geo;
+
+  @override
+  Stream<List<GiftAsk>> giftAskRequestStream({
+    required double latitude,
+    required double longitude,
+    required double searchRadius,
+  }) {
+    GeoFirePoint center = _geo.point(latitude: latitude, longitude: longitude);
+    print('In Service: center is: ' + center.toString());
+
+    var collectionReference = _firestore.collection('gift_ask');
+    // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
+    var stream = _geo
+        .collection(collectionRef: collectionReference)
+        .within(center: center, radius: searchRadius, field: 'position', strictMode: true)
+        .map((docList) => docList.map(
+              (doc) {
+                var gift = GiftAsk.fromJson(doc.data() ?? {});
+                return gift;
+              },
+            ).toList());
+
+    return stream;
+  }
 
   @override
   Future<bool> addGift({required GiftAsk giftAsk, required String userId}) async {
