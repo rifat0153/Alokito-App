@@ -47,6 +47,7 @@ class GiftAskController extends GetxController {
   void onInit() async {
     bindLocationData();
     debounce(searchRadius, (_) => bindGiftRequestStream());
+    debounce(giftRequestList, (_) => bindFilteredList());
     super.onInit();
   }
 
@@ -56,6 +57,15 @@ class GiftAskController extends GetxController {
 
     giftRequestList.close();
     filteredGiftRequestList.close();
+  }
+
+  void bindFilteredList() {
+    giftRequestList.listen((docList) {
+      filteredGiftRequestList.value = [];
+      docList.forEach((doc) {
+        if (doc.giftTitle == 'Pizzza') filteredGiftRequestList.value = [...filteredGiftRequestList.value, doc];
+      });
+    });
   }
 
   void bindLocationData() async {
@@ -74,7 +84,6 @@ class GiftAskController extends GetxController {
   }
 
   void bindGiftRequestStream() {
-    print('IN bind gift ask stream');
     bindLocationData();
 
     giftRequestList.bindStream(giftAskService.giftAskRequestStream(
@@ -83,12 +92,6 @@ class GiftAskController extends GetxController {
       searchRadius: searchRadius.value,
       userId: Get.find<AuthController>().auth.currentUser?.uid ?? '',
     ));
-
-    var filteredList = [];
-
-    giftRequestList.value.forEach((doc) {
-      print(doc.id);
-    });
   }
 
   // FIREBASE REQUESTS

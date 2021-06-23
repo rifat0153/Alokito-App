@@ -46,7 +46,7 @@ class GiftAskRequestView extends StatelessWidget {
             GiftAskMapWidget(),
             Obx(
               () => Text(
-                '${giftAskController.giftRequestList.value.length} requests around\nyou right now',
+                '${giftAskController.filteredGiftRequestList.value.length} requests around\nyou right now',
                 style: boldFontStyle.copyWith(fontSize: 25),
                 overflow: TextOverflow.ellipsis,
                 softWrap: false,
@@ -56,7 +56,7 @@ class GiftAskRequestView extends StatelessWidget {
             Expanded(
               child: Obx(
                 () => ListView.builder(
-                  itemCount: giftAskController.giftRequestList.value.length,
+                  itemCount: giftAskController.filteredGiftRequestList.value.length,
                   itemBuilder: (_, i) => _GiftAskRequestTile(
                     key: ValueKey(i),
                     giftAskController: giftAskController,
@@ -97,7 +97,7 @@ class _GiftAskRequestTile extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Width is $width');
 
-    return giftAskController.giftRequestList.value[index].id == authController.auth.currentUser?.uid
+    return giftAskController.filteredGiftRequestList.value[index].id == authController.auth.currentUser?.uid
         ? Container()
         : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
@@ -125,7 +125,7 @@ class _GiftAskRequestTile extends StatelessWidget {
                       children: [
                         Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
                         Text(
-                          '0${giftAskController.giftRequestList.value[index].requestForNoOfPeople}',
+                          '0${giftAskController.filteredGiftRequestList.value[index].requestForNoOfPeople}',
                           style: const TextStyle(
                             color: Color(0xff11CFE7),
                             fontSize: 40,
@@ -149,12 +149,12 @@ class _GiftAskRequestTile extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   convertGiftAskType(
-                                      giftAskType: giftAskController.giftRequestList.value[index].giftAskType),
+                                      giftAskType: giftAskController.filteredGiftRequestList.value[index].giftAskType),
                                   softWrap: false,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Text(giftAskController.giftRequestList.value[index].area,
+                              Text(giftAskController.filteredGiftRequestList.value[index].area,
                                   style: boldFontStyle.copyWith(fontSize: 13)),
                             ],
                           )
