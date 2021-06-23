@@ -381,28 +381,20 @@ class _MapWidget extends StatefulWidget {
 class __MapWidgetState extends State<_MapWidget> {
   final GiftAskController giftAskController = Get.find();
   Completer<GoogleMapController> _controller = Completer();
-  double zoom = 11;
+  double zoom = 12;
 
-  late LatLng userPosition = LatLng(23, 90);
+  late LatLng userPosition = LatLng(
+      giftAskController.currentUserPosition.value.latitude, giftAskController.currentUserPosition.value.longitude);
 
   @override
   void initState() {
     super.initState();
-    getLocationtionData();
-  }
-
-  void getLocationtionData() async {
-    var locData = await Location().getLocation();
-    giftAskController.currentUserPosition.value = LatLng(locData.latitude ?? 0, locData.longitude ?? 0);
-    CameraPosition userCameraPosition = CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom);
-    giftAskController.formMarker.value =
-        Marker(markerId: MarkerId('markerId'), position: giftAskController.currentUserPosition.value);
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(userCameraPosition));
   }
 
   @override
   Widget build(BuildContext context) {
+    giftAskController.bindLocationData();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -417,9 +409,7 @@ class __MapWidgetState extends State<_MapWidget> {
               _controller.complete(controller);
             },
             zoomControlsEnabled: false,
-            initialCameraPosition: CameraPosition(
-              target: giftAskController.currentUserPosition.value,
-            ),
+            initialCameraPosition: CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom),
             onTap: (LatLng latLng) async {
               giftAskController.formMarker.value = Marker(markerId: MarkerId('markerId'), position: latLng);
               final GoogleMapController controller = await _controller.future;

@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask/widgets/gift_ask_map_widget.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
@@ -83,64 +84,71 @@ class GiftAskRequestView extends StatelessWidget {
 }
 
 class _GiftAskRequestTile extends StatelessWidget {
-  const _GiftAskRequestTile({Key? key, required this.giftAskController, required this.index, required this.width})
+  _GiftAskRequestTile({Key? key, required this.giftAskController, required this.index, required this.width})
       : super(key: key);
 
   final int index;
   final double width;
   final GiftAskController giftAskController;
+  final AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
     print('Width is $width');
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-      child: Container(
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-        width: 300,
-        height: 80,
-        child: Row(
-          children: [
-            Container(
-              width: 100,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Colors.blueGrey.shade900,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                  )),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+    return giftAskController.giftRequestList.value[index].id == authController.auth.currentUser?.uid
+        ? Container()
+        : Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+            child: Container(
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              width: 300,
+              height: 80,
+              child: Row(
                 children: [
-                  Text('Request For', style: whiteFontStyle),
-                  Text(
-                    giftAskController.giftRequestList.value[index].requestForNoOfPeople.toString(),
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    width: 100,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Colors.blueGrey.shade900,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                        )),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
+                        Text(
+                          '0${giftAskController.giftRequestList.value[index].requestForNoOfPeople}',
+                          style: const TextStyle(
+                            color: Colors.blue,
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Request For', style: boldFontStyle),
+                          Text(
+                            giftAskController.giftRequestList.value[index].address,
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text('Request For', style: boldFontStyle),
-                  Text(
-                    giftAskController.giftRequestList.value[index].address,
-                    softWrap: false,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 }

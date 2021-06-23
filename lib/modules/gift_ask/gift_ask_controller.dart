@@ -44,14 +44,15 @@ class GiftAskController extends GetxController {
   void onInit() async {
     bindLocationData();
     debounce(searchRadius, (_) => bindGiftRequestStream());
-
-    // bindGiftRequestStream();
     super.onInit();
   }
 
   void bindLocationData() async {
     LocationData loc = await Location().getLocation();
     currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
+    formMarker.value = Marker(markerId: MarkerId('123'), position: currentUserPosition.value);
+
+    setLocationFromMapCordinates();
     print('GiftAskController: ' + currentUserPosition.value.toString());
   }
 
