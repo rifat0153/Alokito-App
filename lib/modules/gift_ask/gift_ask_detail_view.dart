@@ -60,35 +60,56 @@ class GiftAskDetailView extends StatelessWidget {
                     _NoteWidget(giftAsk: giftAsk),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Row(
+                      child: Column(
                         children: [
-                          CircleAvatar(
-                            minRadius: 30,
-                            backgroundImage: NetworkImage(
-                              giftAsk.requester.imageUrl ?? PLACEHOLDER_IMAGE_URL,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              Text(giftAsk.requester.userName, style: boldFontStyle.copyWith(fontSize: 18)),
-                              const SizedBox(height: 4),
-                              Row(
+                              CircleAvatar(
+                                minRadius: 30,
+                                backgroundImage: NetworkImage(
+                                  giftAsk.requester.imageUrl ?? PLACEHOLDER_IMAGE_URL,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                      width: 120,
-                                      child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
+                                  Text(giftAsk.requester.userName, style: boldFontStyle.copyWith(fontSize: 18)),
+                                  const SizedBox(height: 4),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SizedBox(width: 30),
-                                      Icon(Icons.location_city),
-                                      Text('$distance km away'),
+                                      Container(
+                                          width: 120,
+                                          child: Text(giftAsk.area,
+                                              overflow: TextOverflow.ellipsis, style: boldFontStyle)),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 30),
+                                          Icon(Icons.location_city),
+                                          Text('$distance km away'),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ],
-                              ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              for (var i = 0; i < 5; i++)
+                                giftAsk.requester.averageRating.toInt() > i
+                                    ? const Icon(
+                                        Icons.star,
+                                        size: 15,
+                                        color: Colors.orange,
+                                      )
+                                    : const Icon(
+                                        Icons.star,
+                                        size: 15,
+                                        color: Colors.black,
+                                      )
                             ],
                           )
                         ],
