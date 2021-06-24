@@ -7,3 +7,5 @@ final GIFT_ADD_FORM_SUBMIT = Colors.blueGrey[700];
 const GOOGLE_API_KEY = 'AIzaSyDEpVNWlsKHsvJHAEjaMjKi1mtVoUFyXU8';
 const APP_BAR_COLOR = Color(0xffE6E7E8);
 const GIFT_ASK_COLOR = Color(0xff353445);
+
+const PLACEHOLDER_IMAGE_URL = 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png';

@@ -26,9 +26,7 @@ class GiftRequestController extends GetxController {
     required String giftId,
   }) async {
     await giftRequestService.updateGiftRequestStatus(
-        requesterId: requesterId,
-        giftId: giftId,
-        giftRequestStatus: GiftRequestStatus.requestCanceledByRequester);
+        requesterId: requesterId, giftId: giftId, giftRequestStatus: GiftRequestStatus.requestCanceledByRequester);
   }
 
   Future<void> updateGiftRequestToComplete({
@@ -36,15 +34,12 @@ class GiftRequestController extends GetxController {
     required String giftId,
   }) async {
     await giftRequestService.updateGiftRequestStatus(
-        requesterId: requesterId,
-        giftId: giftId,
-        giftRequestStatus: GiftRequestStatus.requestComplete);
+        requesterId: requesterId, giftId: giftId, giftRequestStatus: GiftRequestStatus.requestComplete);
   }
 
   //Delete giftRequest
   Future<bool> deleleGiftRequest({required GiftGiver giftGiver}) async {
-    var result =
-        await giftRequestService.deleteGiftRequest(giftGiver: giftGiver);
+    var result = await giftRequestService.deleteGiftRequest(giftGiver: giftGiver);
 
     requestExists.value = false;
     return result;
@@ -66,40 +61,33 @@ class GiftRequestController extends GetxController {
     loading.value = true;
     var exists = await giftRequestService.findGift(giftGiver: giftGiver);
 
-    var requestedMoreThan3Times = await giftRequestService
-        .increaseNoOfTimesGiftRequested(giftGiver: giftGiver);
+    var requestedMoreThan3Times = await giftRequestService.increaseNoOfTimesGiftRequested(giftGiver: giftGiver);
 
     if (!requestedMoreThan3Times) {
       Get.snackbar('Gift Request', 'gift request was made more than 3 times',
-          duration: const Duration(seconds: 5),
-          backgroundColor: Colors.yellow.withOpacity(0.5));
+          duration: const Duration(seconds: 5), backgroundColor: Colors.yellow.withOpacity(0.5));
       loading.value = false;
       return;
     }
 
     if (exists) {
-      Get.snackbar('Gift Request', 'gift request exists',
-          backgroundColor: Colors.yellow.withOpacity(0.5));
+      Get.snackbar('Gift Request', 'gift request exists', backgroundColor: Colors.yellow.withOpacity(0.5));
       loading.value = false;
       return;
     }
 
     var result = await giftRequestService.addGiftRequest(giftGiver: giftGiver);
     if (result) {
-      await Get.find<GiftNotificationController>()
-          .addNotificationForGiftRequest(
-              giftGiver: giftGiver,
-              message: requesterMessage.value,
-              requesterImageUrl:
-                  Get.find<AuthController>().currentUserImageUrl.value);
+      await Get.find<GiftNotificationController>().addNotificationForGiftRequest(
+          giftGiver: giftGiver,
+          message: requesterMessage.value,
+          requesterImageUrl: Get.find<AuthController>().currentUser.value.imageUrl ?? '');
 
-      Get.snackbar('Gift Request', 'gift request succesful',
-          backgroundColor: Colors.green.withOpacity(0.5));
+      Get.snackbar('Gift Request', 'gift request succesful', backgroundColor: Colors.green.withOpacity(0.5));
       loading.value = false;
       requestExists.value = true;
     } else {
-      Get.snackbar('Gift Request', 'gift request failure',
-          backgroundColor: Colors.red.withOpacity(0.5));
+      Get.snackbar('Gift Request', 'gift request failure', backgroundColor: Colors.red.withOpacity(0.5));
       loading.value = false;
     }
 

@@ -6,24 +6,21 @@ class UserEmailWidget extends StatelessWidget {
   const UserEmailWidget({
     Key? key,
     required this.context,
-    required LocalUserInfo this.localUser,
+    required LocalUser this.localUser,
   }) : super(key: key);
 
-  final LocalUserInfo localUser;
+  final LocalUser localUser;
   final BuildContext context;
 
   @override
   Widget build(BuildContext context) {
-    return localUser.when(
-        data: (user) => Text(
-              user.email,
-              style: TextStyle(
-                color: Colors.black,
-                // fontFamily: GoogleFonts.lato().fontFamily,
-                fontSize: 15,
-              ),
-            ),
-        loading: () => const CircularProgressIndicator(),
-        error: (e, s) => const CircularProgressIndicator());
+    return Text(
+      localUser.email,
+      style: const TextStyle(
+        color: Colors.black,
+        // fontFamily: GoogleFonts.lato().fontFamily,
+        fontSize: 15,
+      ),
+    );
   }
 }

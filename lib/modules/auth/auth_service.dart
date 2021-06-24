@@ -19,7 +19,7 @@ abstract class BaseAuthService {
   Future<String> signIn({required String email, required String password});
 
   // For finding out if user is admin or not
-  Stream<LocalUserInfo> loggedInUserStream();
+  Stream<LocalUser> loggedInUserStream();
 
   // Sign Up function
   Future<bool> signUp({
@@ -34,6 +34,7 @@ abstract class BaseAuthService {
   uploadUserAndImage(LocalUser user, bool isUpdating, File localFile);
 
   uploadUser(LocalUser user, bool isUpdating, {String? imageUrl});
+
   Stream<User?> get authStateChanges;
 
   Future<void> signOut();
@@ -60,13 +61,13 @@ class AuthService implements BaseAuthService {
   }
 
   @override
-  Stream<LocalUserInfo> loggedInUserStream() {
+  Stream<LocalUser> loggedInUserStream() {
     return _firestore
         .collection('users')
         .doc(_firebaseAuth.currentUser?.uid)
         .snapshots()
         .map((DocumentSnapshot documentSnapshot) {
-      var retVal = LocalUserInfo.data(LocalUser.fromJson(documentSnapshot.data()!));
+      var retVal = LocalUser.fromJson(documentSnapshot.data()!);
 
       return retVal;
     });
@@ -137,7 +138,6 @@ class AuthService implements BaseAuthService {
         await firebaseStorageRef.putFile(localFile);
       } on firebase_core.FirebaseException catch (e) {
         print('User ImageFile Upload Error: ' + e.message!);
-        return false;
       }
 
       String url = await firebaseStorageRef.getDownloadURL();

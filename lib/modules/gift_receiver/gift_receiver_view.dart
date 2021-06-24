@@ -15,8 +15,7 @@ import 'package:get/get.dart';
 class GiftReceiverView extends StatelessWidget {
   static const route = '/giftreceiverview';
 
-  final GiftRequestController giftRequestController =
-      Get.put(GiftRequestController());
+  final GiftRequestController giftRequestController = Get.put(GiftRequestController());
   final GiftNotificationController giftNotificationController = Get.find();
   final GiftController giftController = Get.put(GiftController());
   final AuthController authController = Get.find();
@@ -46,12 +45,9 @@ class GiftReceiverView extends StatelessWidget {
               children: [
                 Obx(() => Badge(
                       badgeContent:
-                          authController.currentUserHasNotifications.value
-                              ? const Text('!')
-                              : const Text(''),
+                          authController.currentUser.value.hasNotifications ? const Text('!') : const Text(''),
                       badgeColor: Colors.white,
-                      child:
-                          const Icon(Icons.notifications, color: Colors.white),
+                      child: const Icon(Icons.notifications, color: Colors.white),
                     )),
               ],
             ),
@@ -147,10 +143,8 @@ class _MyButtonRowWidget extends StatelessWidget {
       children: [
         ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith(
-                (states) => GIFT_GIVER_BUTTON_COLOR),
-            foregroundColor:
-                MaterialStateProperty.resolveWith((states) => Colors.black),
+            backgroundColor: MaterialStateProperty.resolveWith((states) => GIFT_GIVER_BUTTON_COLOR),
+            foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.black),
           ),
           onPressed: () {
             Get.to(() => GiftAskView());
@@ -163,10 +157,8 @@ class _MyButtonRowWidget extends StatelessWidget {
             // Get.to(() => MyGiftView());
           },
           style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.resolveWith((states) => Colors.grey),
-            foregroundColor:
-                MaterialStateProperty.resolveWith((states) => Colors.black),
+            backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.grey),
+            foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.black),
           ),
           child: const Text('Gift Offer'),
         ),
@@ -197,8 +189,7 @@ class _BannerWidget extends StatelessWidget {
             padding: EdgeInsets.only(left: 8),
             child: Text(
               'Covid - 19 Sharing & Safety Guidelines',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),

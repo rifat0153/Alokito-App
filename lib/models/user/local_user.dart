@@ -24,19 +24,16 @@ abstract class LocalUser with _$LocalUser {
     @Default('user') String role,
     @Default(0) int giftOffered,
     @Default(0) int giftReceived,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition position,
-    @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-        required Timestamp createdAt,
+    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition position,
+    @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson) required Timestamp createdAt,
   }) = _LocalUser;
 
-  factory LocalUser.fromJson(Map<String, dynamic> json) =>
-      _$LocalUserFromJson(json);
+  factory LocalUser.fromJson(Map<String, dynamic> json) => _$LocalUserFromJson(json);
 }
 
-@freezed
-class LocalUserInfo with _$LocalUserInfo {
-  const factory LocalUserInfo.data(LocalUser localUser) = Data;
-  const factory LocalUserInfo.loading() = Loading;
-  const factory LocalUserInfo.error(Object e, StackTrace s) = Error;
-}
+// @freezed
+// class LocalUserInfo with _$LocalUserInfo {
+//   const factory LocalUserInfo.data(LocalUser localUser) = Data;
+//   const factory LocalUserInfo.loading() = Loading;
+//   const factory LocalUserInfo.error(Object e, StackTrace s) = Error;
+// }

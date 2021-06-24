@@ -21,8 +21,7 @@ abstract class BaseGiftGiverService {
 
   Stream<List<GiftGiver>> giftStream();
 
-  Future<bool> updateGiftAcquiredStatus(
-      {required String giftId, required bool acquiredStatus});
+  Future<bool> updateGiftAcquiredStatus({required String giftId, required bool acquiredStatus});
 }
 
 class GiftGiverService implements BaseGiftGiverService {
@@ -31,13 +30,9 @@ class GiftGiverService implements BaseGiftGiverService {
   final _auth = FirebaseAuth.instance;
 
   @override
-  Future<bool> updateGiftAcquiredStatus(
-      {required String giftId, required bool acquiredStatus}) async {
+  Future<bool> updateGiftAcquiredStatus({required String giftId, required bool acquiredStatus}) async {
     try {
-      await _firestore
-          .collection('gifts')
-          .doc(giftId)
-          .update({'giftAcquiredStatus': acquiredStatus});
+      await _firestore.collection('gifts').doc(giftId).update({'giftAcquiredStatus': acquiredStatus});
 
       return true;
     } on FirebaseException catch (e) {
@@ -51,13 +46,10 @@ class GiftGiverService implements BaseGiftGiverService {
     controller.isUploading.value = true;
 
     LatLng giftPosition = controller.markers.first.position;
-    var myLocation = geo.point(
-        latitude: giftPosition.latitude, longitude: giftPosition.longitude);
+    var myLocation = geo.point(latitude: giftPosition.latitude, longitude: giftPosition.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
-    MyPosition myPosition = MyPosition(
-        geohash: pos['geohash'] as String,
-        geopoint: pos['geopoint'] as GeoPoint);
+    MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
     //  same thing as above
     //  MyPosition myPosition = MyPosition.fromJson(pos as Map<String, dynamic>);
 
@@ -68,9 +60,7 @@ class GiftGiverService implements BaseGiftGiverService {
 
     var uuid = const Uuid().v4();
 
-    var firebaseStorageRef = firebase_storage.FirebaseStorage.instance
-        .ref()
-        .child('gifts/images/$uuid$fileExtension');
+    var firebaseStorageRef = firebase_storage.FirebaseStorage.instance.ref().child('gifts/images/$uuid$fileExtension');
 
     try {
       await firebaseStorageRef.putFile(controller.imageFile.value);
@@ -83,27 +73,22 @@ class GiftGiverService implements BaseGiftGiverService {
     var docRef = _firestore.collection('gifts').doc();
     AuthController authController = Get.find();
 
-    var userDoc =
-        await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
+    var userDoc = await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
 
-    var name =
-        userDoc.data() == null ? '' : userDoc.data()!['userName'] as String;
-    var giverImageUrl =
-        userDoc.data() == null ? '' : userDoc.data()!['imageUrl'] as String;
-    MyPosition userPosition = MyPosition.fromJson(
-        userDoc.data()!['position'] as Map<String, dynamic>);
+    var name = userDoc.data() == null ? '' : userDoc.data()!['userName'] as String;
+    var giverImageUrl = userDoc.data() == null ? '' : userDoc.data()!['imageUrl'] as String;
+    MyPosition userPosition = MyPosition.fromJson(userDoc.data()!['position'] as Map<String, dynamic>);
     Timestamp userCreatedAt = userDoc.data()!['createdAt'] as Timestamp;
-    String userFullName = (userDoc.data()!['firstName'] as String) +
-        (userDoc.data()!['lastName'] as String);
+    String userFullName = (userDoc.data()!['firstName'] as String) + (userDoc.data()!['lastName'] as String);
 
     var gift = GiftGiver(
       id: docRef.id,
       userName: name,
       userFullName: userFullName,
       userImageUrl: giverImageUrl,
-      userAvgRating: authController.currentUserRating.value,
-      userTotRating: authController.currentUserTotalRating.value,
-      userRatingSum: authController.currentUserRatingSum.value,
+      userAvgRating: authController.currentUser.value.averageRating,
+      userTotRating: authController.currentUser.value.totalRating,
+      userRatingSum: authController.currentUser.value.ratingSum,
       userPosition: userPosition,
       area: controller.area.value,
       location: controller.location.value,
@@ -143,11 +128,7 @@ class GiftGiverService implements BaseGiftGiverService {
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
     var stream = geo
         .collection(collectionRef: collectionReference)
-        .within(
-            center: center,
-            radius: giftController.searchRadius,
-            field: 'position',
-            strictMode: true)
+        .within(center: center, radius: giftController.searchRadius, field: 'position', strictMode: true)
         .map((event) => event.map(
               (e) {
                 var gift = GiftGiver.fromJson(e.data() ?? {});
@@ -171,11 +152,7 @@ class GiftGiverService implements BaseGiftGiverService {
     List<GiftGiver> list = [];
     geo
         .collection(collectionRef: collectionReference)
-        .within(
-            center: center,
-            radius: giftController.searchRadius,
-            field: 'position',
-            strictMode: true)
+        .within(center: center, radius: giftController.searchRadius, field: 'position', strictMode: true)
         .forEach((element) {
       element.forEach((doc) {
         list = [...list, GiftGiver.fromJson(doc.data() ?? {})];

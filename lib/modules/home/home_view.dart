@@ -17,7 +17,10 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // EasyLoading.dismiss();
+    authController.bindMyUserStream();
+
+    print('IN HOME VIEW: imageURL is' + authController.currentUser.value.imageUrl!);
+
     final media = Get.size;
 
     return SafeArea(
@@ -31,8 +34,7 @@ class HomeView extends StatelessWidget {
           centerTitle: true,
           title: const Text(
             'User',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
           ),
           actions: [
             IconButton(
@@ -46,9 +48,7 @@ class HomeView extends StatelessWidget {
         ),
         body: Container(
           decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/rsz_registration.png'),
-                fit: BoxFit.fill),
+            image: DecorationImage(image: AssetImage('assets/images/rsz_registration.png'), fit: BoxFit.fill),
           ),
           child: Stack(
             children: [
@@ -60,26 +60,24 @@ class HomeView extends StatelessWidget {
                     fit: FlexFit.tight,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 35),
-                      child: authController.currentUser.value.when(
-                        data: (user) => CircleAvatar(
+                      child: Obx(
+                        () => CircleAvatar(
                           radius: 75,
-                          backgroundImage: NetworkImage(user.imageUrl!),
+                          backgroundImage: NetworkImage(authController.currentUser.value.imageUrl ??
+                              'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png'),
                         ),
-                        loading: () =>
-                            const Center(child: CircularProgressIndicator()),
-                        error: (e, s) => const CircularProgressIndicator(),
                       ),
                     ),
                   ),
-                  Flexible(
-                    child: UserNameWidget(
-                        localUser: authController.currentUser.value,
-                        context: context),
+                  Obx(
+                    () => Flexible(
+                      child: UserNameWidget(localUser: authController.currentUser.value, context: context),
+                    ),
                   ),
-                  Flexible(
-                    child: UserEmailWidget(
-                        context: context,
-                        localUser: authController.currentUser.value),
+                  Obx(
+                    () => Flexible(
+                      child: UserEmailWidget(context: context, localUser: authController.currentUser.value),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
@@ -95,19 +93,16 @@ class HomeView extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () => Get.toNamed(GiftGiverView.route),
-                    child: _GiftGiverMenu(
-                        height: media.height * 0.1, width: media.width * 0.7),
+                    child: _GiftGiverMenu(height: media.height * 0.1, width: media.width * 0.7),
                   ),
                   GestureDetector(
                     onTap: () {
                       Get.toNamed(GiftReceiverView.route);
                       // Get.find<GiftController>().bindLocationData();
                     },
-                    child: _GiftRecieverMenu(
-                        height: media.height * 0.1, width: media.width * 0.7),
+                    child: _GiftRecieverMenu(height: media.height * 0.1, width: media.width * 0.7),
                   ),
-                  _CommunityHeroMenu(
-                      height: media.height * 0.1, width: media.width * 0.7),
+                  _CommunityHeroMenu(height: media.height * 0.1, width: media.width * 0.7),
                   _TeamPlayerMenu(
                     height: media.height * 0.1,
                     width: media.width * 0.7,

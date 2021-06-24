@@ -21,6 +21,14 @@ class UserLocationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     print(rating);
 
+    var distance = Geoflutterfire()
+        .point(
+            latitude: giftNotification.requesterPosition.geopoint.latitude,
+            longitude: giftNotification.requesterPosition.geopoint.longitude)
+        .distance(
+            lat: authController.currentUser.value.position.geopoint.latitude,
+            lng: authController.currentUser.value.position.geopoint.longitude);
+
     const double starSize = 12;
 
     return Padding(
@@ -43,23 +51,7 @@ class UserLocationWidget extends StatelessWidget {
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
           const Icon(Icons.arrow_forward_ios),
-          authController.currentUser.value.maybeWhen(
-            data: (data) {
-              final geo = Geoflutterfire();
-              var giftGiverPoint = geo.point(
-                  latitude:
-                      giftNotification.requesterPosition.geopoint.latitude,
-                  longitude:
-                      giftNotification.requesterPosition.geopoint.longitude);
-
-              var distance = giftGiverPoint.distance(
-                  lat: data.position.geopoint.latitude,
-                  lng: data.position.geopoint.longitude);
-
-              return Text('$distance km away');
-            },
-            orElse: () => const Text('0'),
-          ),
+          Text('$distance km away'),
         ],
       ),
     );

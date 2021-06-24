@@ -15,8 +15,7 @@ class GiftNotificationController extends GetxController {
   RxList<GiftNotification> giftNotificationList = RxList.empty();
   RxList<GiftNotification> giftNotList = RxList.empty();
   RxInt notificationIndex = 0.obs;
-  Rx<MyPosition> giftPosition =
-      const MyPosition(geohash: 'a', geopoint: GeoPoint(0, 0)).obs;
+  Rx<MyPosition> giftPosition = const MyPosition(geohash: 'a', geopoint: GeoPoint(0, 0)).obs;
   RxInt totalNotifications = 0.obs;
 
   RxBool loading = false.obs;
@@ -28,8 +27,7 @@ class GiftNotificationController extends GetxController {
   @override
   void onInit() {
     getNotData();
-    totalNotifications
-        .bindStream(giftNotificationService.streamGiftNotificationStatus());
+    totalNotifications.bindStream(giftNotificationService.streamGiftNotificationStatus());
 
     super.onInit();
   }
@@ -48,10 +46,8 @@ class GiftNotificationController extends GetxController {
 
   void bindNotificationStream() {
     getNotData();
-    giftNotificationList
-        .bindStream(giftNotificationService.streamGiftNotification());
-    totalNotifications
-        .bindStream(giftNotificationService.streamGiftNotificationStatus());
+    giftNotificationList.bindStream(giftNotificationService.streamGiftNotification());
+    totalNotifications.bindStream(giftNotificationService.streamGiftNotificationStatus());
   }
 
   // Future<void> updateUserRatingAndInfo(
@@ -67,33 +63,24 @@ class GiftNotificationController extends GetxController {
   }) async {
     loading.value = true;
 
-    await giftNotificationService.giftRequestDoneNotif(
-        giftNotification: giftNotification);
+    await giftNotificationService.giftRequestDoneNotif(giftNotification: giftNotification);
 
     await giftNotificationService.updateUserInfo(
-        userId: giftNotification.requesterUid,
-        giftReceiver: true,
-        rating: ratingForRequester.toDouble());
+        userId: giftNotification.requesterUid, giftReceiver: true, rating: ratingForRequester.toDouble());
 
     await giftNotificationService.updateUserInfo(
-        userId: giftNotification.giverUid,
-        giftReceiver: false,
-        rating: ratingForRequester.toDouble());
+        userId: giftNotification.giverUid, giftReceiver: false, rating: ratingForRequester.toDouble());
 
     Get.back();
   }
 
-  Future<bool> cancelGiftRequestByRequester(
-      {required GiftNotification giftNotification}) async {
+  Future<bool> cancelGiftRequestByRequester({required GiftNotification giftNotification}) async {
     await giftNotificationService.changeRequestStatus(
         giftRequestStatus: GiftRequestStatus.requestCanceledByRequester,
-        giftNotificationTypeForGiver:
-            GiftNotificationType.packageCanceledByRequester,
-        giftNotificationTypeForRequester:
-            GiftNotificationType.packageCanceledByRequester,
+        giftNotificationTypeForGiver: GiftNotificationType.packageCanceledByRequester,
+        giftNotificationTypeForRequester: GiftNotificationType.packageCanceledByRequester,
         giftRequestStatusForGiver: GiftRequestStatus.requestCanceledByRequester,
-        giftRequestStatusForRequester:
-            GiftRequestStatus.requestCanceledByRequester,
+        giftRequestStatusForRequester: GiftRequestStatus.requestCanceledByRequester,
         giftNotification: giftNotification);
 
     return true;
@@ -112,21 +99,18 @@ class GiftNotificationController extends GetxController {
     AuthController authController = Get.find<AuthController>();
 
     GiftNotification giftNotification = GiftNotification(
-      requesterName: authController.currentUserName.value,
+      requesterName: authController.currentUser.value.userName,
       giftImageUrl: giftGiver.imageUrl,
       giftId: giftGiver.id ?? '',
       giftPickUpTime: giftGiver.pickUpTime,
       notificationFor: giftGiver.uid,
       giftRequestStatus: GiftRequestStatus.requestPedning,
       giftPosition: giftGiver.position,
-      notificationForList: [
-        giftGiver.uid,
-        FirebaseAuth.instance.currentUser?.uid ?? ''
-      ],
-      requesterPosition: authController.currentUserPosition.value,
-      requesterAvgRating: authController.currentUserRating.value,
-      requesterRatingSum: authController.currentUserRatingSum.value,
-      requesterTotRating: authController.currentUserTotalRating.value,
+      notificationForList: [giftGiver.uid, FirebaseAuth.instance.currentUser?.uid ?? ''],
+      requesterPosition: authController.currentUser.value.position,
+      requesterAvgRating: authController.currentUser.value.averageRating,
+      requesterRatingSum: authController.currentUser.value.ratingSum,
+      requesterTotRating: authController.currentUser.value.totalRating,
       giverPosition: giftGiver.userPosition,
       giverAvgRating: giftGiver.userAvgRating,
       giverRatingSum: giftGiver.userRatingSum,
@@ -137,7 +121,7 @@ class GiftNotificationController extends GetxController {
       giftArea: giftGiver.area,
       giftLocation: giftGiver.location,
       giverJoinedAt: giftGiver.userCreatedAt,
-      requesterJoinedAt: authController.currentUserCreatedAt.value,
+      requesterJoinedAt: authController.currentUser.value.createdAt,
       requesterMessage: message,
       giverName: giftGiver.userName,
       giverUid: giftGiver.uid,
@@ -146,8 +130,7 @@ class GiftNotificationController extends GetxController {
       createdAt: Timestamp.now(),
     );
 
-    var result = await giftNotificationService.addGiftNotification(
-        giftNotification: giftNotification);
+    var result = await giftNotificationService.addGiftNotification(giftNotification: giftNotification);
     return result;
   }
 }
