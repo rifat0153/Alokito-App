@@ -1,8 +1,11 @@
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
+import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -11,9 +14,16 @@ class GiftAskDetailView extends StatelessWidget {
 
   final GiftAsk giftAsk;
 
+  double calculateDistance(MyPosition posotion1, MyPosition posotion2) {
+    return Geoflutterfire()
+        .point(latitude: posotion1.geopoint.latitude, longitude: posotion1.geopoint.longitude)
+        .distance(lat: posotion2.geopoint.latitude, lng: posotion2.geopoint.longitude);
+  }
+
   @override
   Widget build(BuildContext context) {
     var date = DateFormat.yMd().format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
+    var distance = calculateDistance(giftAsk.requester.position, Get.find<AuthController>().currentUser.value.position);
 
     return SafeArea(
       child: Scaffold(
@@ -48,6 +58,42 @@ class GiftAskDetailView extends StatelessWidget {
                             Text(giftAsk.giftTitle, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
                     _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
                     _NoteWidget(giftAsk: giftAsk),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            minRadius: 30,
+                            backgroundImage: NetworkImage(
+                              giftAsk.requester.imageUrl ?? PLACEHOLDER_IMAGE_URL,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(giftAsk.requester.userName, style: boldFontStyle.copyWith(fontSize: 18)),
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  Container(
+                                      width: 120,
+                                      child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(width: 30),
+                                      Icon(Icons.location_city),
+                                      Text('$distance km away'),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                     const SizedBox(height: 800)
                   ],
                 ),
