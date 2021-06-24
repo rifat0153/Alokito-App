@@ -108,6 +108,7 @@ class GiftAskController extends GetxController {
     MyPosition giftPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
     GiftAsk giftAsk = GiftAsk(
+      requester: Get.find<AuthController>().currentUser.value,
       address: address.value,
       area: area.value,
       position: giftPosition,

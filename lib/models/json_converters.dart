@@ -2,6 +2,7 @@ import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/gift_notification.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,9 @@ GeoPoint geoPointFromJson(GeoPoint json) => json;
 
 Map<String, dynamic> myPositionToJson(MyPosition myPosition) => myPosition.toJson();
 MyPosition myPositionFromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);
+
+Map<String, dynamic> localUserToJson(LocalUser localUser) => localUser.toJson();
+LocalUser localUserFromJson(Map<String, dynamic> json) => LocalUser.fromJson(json);
 
 Timestamp timestampToJson(Timestamp timestamp) => timestamp;
 Timestamp timestampFromJson(Timestamp json) => json;

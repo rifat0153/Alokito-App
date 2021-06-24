@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -12,7 +13,7 @@ part 'gift_ask.g.dart';
 class GiftAsk with _$GiftAsk {
   const factory GiftAsk({
     String? id,
-    String? userImageUrl,
+    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
     required String address,
     required String area,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition position,

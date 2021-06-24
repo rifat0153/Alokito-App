@@ -22,7 +22,8 @@ class _$GiftAskTearOff {
 
   _GiftAsk call(
       {String? id,
-      String? userImageUrl,
+      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+          required LocalUser requester,
       required String address,
       required String area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -40,7 +41,7 @@ class _$GiftAskTearOff {
           required Timestamp createdAt}) {
     return _GiftAsk(
       id: id,
-      userImageUrl: userImageUrl,
+      requester: requester,
       address: address,
       area: area,
       position: position,
@@ -66,7 +67,8 @@ const $GiftAsk = _$GiftAskTearOff();
 /// @nodoc
 mixin _$GiftAsk {
   String? get id => throw _privateConstructorUsedError;
-  String? get userImageUrl => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+  LocalUser get requester => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
   @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -94,7 +96,8 @@ abstract class $GiftAskCopyWith<$Res> {
       _$GiftAskCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      String? userImageUrl,
+      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+          LocalUser requester,
       String address,
       String area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -111,6 +114,7 @@ abstract class $GiftAskCopyWith<$Res> {
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp createdAt});
 
+  $LocalUserCopyWith<$Res> get requester;
   $MyPositionCopyWith<$Res> get position;
 }
 
@@ -125,7 +129,7 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? userImageUrl = freezed,
+    Object? requester = freezed,
     Object? address = freezed,
     Object? area = freezed,
     Object? position = freezed,
@@ -143,10 +147,10 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      userImageUrl: userImageUrl == freezed
-          ? _value.userImageUrl
-          : userImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      requester: requester == freezed
+          ? _value.requester
+          : requester // ignore: cast_nullable_to_non_nullable
+              as LocalUser,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -195,6 +199,13 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
   }
 
   @override
+  $LocalUserCopyWith<$Res> get requester {
+    return $LocalUserCopyWith<$Res>(_value.requester, (value) {
+      return _then(_value.copyWith(requester: value));
+    });
+  }
+
+  @override
   $MyPositionCopyWith<$Res> get position {
     return $MyPositionCopyWith<$Res>(_value.position, (value) {
       return _then(_value.copyWith(position: value));
@@ -209,7 +220,8 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
-      String? userImageUrl,
+      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+          LocalUser requester,
       String address,
       String area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -227,6 +239,8 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
           Timestamp createdAt});
 
   @override
+  $LocalUserCopyWith<$Res> get requester;
+  @override
   $MyPositionCopyWith<$Res> get position;
 }
 
@@ -242,7 +256,7 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? userImageUrl = freezed,
+    Object? requester = freezed,
     Object? address = freezed,
     Object? area = freezed,
     Object? position = freezed,
@@ -260,10 +274,10 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      userImageUrl: userImageUrl == freezed
-          ? _value.userImageUrl
-          : userImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      requester: requester == freezed
+          ? _value.requester
+          : requester // ignore: cast_nullable_to_non_nullable
+              as LocalUser,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -317,7 +331,8 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
 class _$_GiftAsk implements _GiftAsk {
   const _$_GiftAsk(
       {this.id,
-      this.userImageUrl,
+      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+          required this.requester,
       required this.address,
       required this.area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -340,7 +355,8 @@ class _$_GiftAsk implements _GiftAsk {
   @override
   final String? id;
   @override
-  final String? userImageUrl;
+  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+  final LocalUser requester;
   @override
   final String address;
   @override
@@ -370,7 +386,7 @@ class _$_GiftAsk implements _GiftAsk {
 
   @override
   String toString() {
-    return 'GiftAsk(id: $id, userImageUrl: $userImageUrl, address: $address, area: $area, position: $position, reuqestDate: $reuqestDate, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note, createdAt: $createdAt)';
+    return 'GiftAsk(id: $id, requester: $requester, address: $address, area: $area, position: $position, reuqestDate: $reuqestDate, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note, createdAt: $createdAt)';
   }
 
   @override
@@ -379,9 +395,9 @@ class _$_GiftAsk implements _GiftAsk {
         (other is _GiftAsk &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.userImageUrl, userImageUrl) ||
+            (identical(other.requester, requester) ||
                 const DeepCollectionEquality()
-                    .equals(other.userImageUrl, userImageUrl)) &&
+                    .equals(other.requester, requester)) &&
             (identical(other.address, address) ||
                 const DeepCollectionEquality()
                     .equals(other.address, address)) &&
@@ -419,7 +435,7 @@ class _$_GiftAsk implements _GiftAsk {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(userImageUrl) ^
+      const DeepCollectionEquality().hash(requester) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(area) ^
       const DeepCollectionEquality().hash(position) ^
@@ -446,7 +462,8 @@ class _$_GiftAsk implements _GiftAsk {
 abstract class _GiftAsk implements GiftAsk {
   const factory _GiftAsk(
       {String? id,
-      String? userImageUrl,
+      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+          required LocalUser requester,
       required String address,
       required String area,
       @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
@@ -468,7 +485,8 @@ abstract class _GiftAsk implements GiftAsk {
   @override
   String? get id => throw _privateConstructorUsedError;
   @override
-  String? get userImageUrl => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+  LocalUser get requester => throw _privateConstructorUsedError;
   @override
   String get address => throw _privateConstructorUsedError;
   @override

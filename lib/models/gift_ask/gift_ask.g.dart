@@ -9,7 +9,7 @@ part of 'gift_ask.dart';
 _$_GiftAsk _$_$_GiftAskFromJson(Map<String, dynamic> json) {
   return _$_GiftAsk(
     id: json['id'] as String?,
-    userImageUrl: json['userImageUrl'] as String?,
+    requester: localUserFromJson(json['requester'] as Map<String, dynamic>),
     address: json['address'] as String,
     area: json['area'] as String,
     position: myPositionFromJson(json['position'] as Map<String, dynamic>),
@@ -27,7 +27,7 @@ _$_GiftAsk _$_$_GiftAskFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_GiftAskToJson(_$_GiftAsk instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'userImageUrl': instance.userImageUrl,
+      'requester': localUserToJson(instance.requester),
       'address': instance.address,
       'area': instance.area,
       'position': myPositionToJson(instance.position),
