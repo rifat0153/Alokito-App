@@ -38,18 +38,50 @@ class GiftAskDetailView extends StatelessWidget {
             ),
             Container(
               width: Get.width,
-              child: Column(
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child:
-                          Text(giftAsk.giftTitle, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
-                  _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
-                ],
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            Text(giftAsk.giftTitle, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
+                    _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
+                    _NoteWidget(giftAsk: giftAsk),
+                    const SizedBox(height: 800)
+                  ],
+                ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _NoteWidget extends StatelessWidget {
+  const _NoteWidget({
+    Key? key,
+    required this.giftAsk,
+  }) : super(key: key);
+
+  final GiftAsk giftAsk;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [Text('Note', style: boldFontStyle)],
+          ),
+          const SizedBox(height: 4),
+          Text(giftAsk.note)
+        ],
       ),
     );
   }
@@ -67,41 +99,44 @@ class _RequestForAndDateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text('Request For', style: boldFontStyle),
-            Text('${giftAsk.requestForNoOfPeople} people'),
-            MaterialButton(
-              color: Colors.transparent,
-              disabledColor: Colors.transparent,
-              height: 0,
-              padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
-              onPressed: null,
-              child: Text('', style: whiteFontStyle.copyWith(fontSize: 12)),
-            )
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Request Date', style: boldFontStyle),
-            Text(date),
-            MaterialButton(
-              color: GIFT_ASK_COLOR,
-              height: 0,
-              padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
-              onPressed: () {},
-              child: Text('View Prescription', style: whiteFontStyle.copyWith(fontSize: 12)),
-            )
-          ],
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text('Request For', style: boldFontStyle),
+              Text('${giftAsk.requestForNoOfPeople} people'),
+              MaterialButton(
+                color: Colors.transparent,
+                disabledColor: Colors.transparent,
+                height: 0,
+                padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                onPressed: null,
+                child: Text('', style: whiteFontStyle.copyWith(fontSize: 12)),
+              )
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Request Date', style: boldFontStyle),
+              Text(date),
+              MaterialButton(
+                color: GIFT_ASK_COLOR,
+                height: 0,
+                padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+                onPressed: () {},
+                child: Text('View Prescription', style: whiteFontStyle.copyWith(fontSize: 12)),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
