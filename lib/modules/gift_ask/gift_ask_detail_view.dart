@@ -21,6 +21,7 @@ class GiftAskDetailView extends StatelessWidget {
           leading: IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios, color: Colors.black)),
           backgroundColor: APP_BAR_COLOR,
           foregroundColor: APP_BAR_COLOR,
+          elevation: 5,
           title: Text(
             'Gift Request - ${convertGiftAskType(giftAskType: giftAsk.giftAskType)} ',
             style: const TextStyle(color: Colors.black),
@@ -71,9 +72,18 @@ class _RequestForAndDateWidget extends StatelessWidget {
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text('Request For', style: boldFontStyle),
             Text('${giftAsk.requestForNoOfPeople} people'),
+            MaterialButton(
+              color: Colors.transparent,
+              disabledColor: Colors.transparent,
+              height: 0,
+              padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+              onPressed: null,
+              child: Text('', style: whiteFontStyle.copyWith(fontSize: 12)),
+            )
           ],
         ),
         Column(
@@ -81,6 +91,14 @@ class _RequestForAndDateWidget extends StatelessWidget {
           children: [
             Text('Request Date', style: boldFontStyle),
             Text(date),
+            MaterialButton(
+              color: GIFT_ASK_COLOR,
+              height: 0,
+              padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+              onPressed: () {},
+              child: Text('View Prescription', style: whiteFontStyle.copyWith(fontSize: 12)),
+            )
           ],
         ),
       ],
