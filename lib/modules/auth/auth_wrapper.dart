@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
-  final AuthController authController = Get.put(AuthController());
+  final AuthController authController = Get.find<AuthController>();
   final LoginController loginController = Get.put(LoginController());
   final GiftNotificationController giftNotificationController = Get.put(GiftNotificationController());
 

@@ -66,6 +66,7 @@ class GiftAskService implements BaseGiftAskService {
     try {
       var docRef = _firestore.collection('gift_ask').doc(userId);
       giftAsk = giftAsk.copyWith(id: userId);
+      
       await docRef.set(giftAsk.toJson());
 
       return true;

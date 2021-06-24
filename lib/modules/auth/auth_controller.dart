@@ -1,6 +1,7 @@
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -14,15 +15,7 @@ class AuthController extends GetxController {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   Rx<AuthService> authService = AuthService().obs;
-  final currentUser = LocalUser(
-          firstName: '',
-          lastName: '',
-          userName: '',
-          email: '',
-          imageUrl: 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png',
-          position: MyPosition(geohash: '', geopoint: GeoPoint(0, 0)),
-          createdAt: Timestamp.now())
-      .obs;
+  final currentUser = initialUser.obs;
 
   final Rx<String> firebaseUser = ''.obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
@@ -71,8 +64,10 @@ class AuthController extends GetxController {
   Future<void> getUserInfoAndSetCurrentUser() async {
     print('AuthController: getting user form DB call');
     var userDoc = await FirebaseFirestore.instance.collection('users').doc(auth.currentUser?.uid).get();
-    LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
-    currentUser.value = localUser;
+    if (userDoc.exists) {
+      LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
+      currentUser.value = localUser;
+    }
   }
 
   void bindMyUserStream() {

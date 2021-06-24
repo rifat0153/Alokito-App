@@ -1,3 +1,7 @@
+import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/models/user/local_user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 const LOGIN_COLOR = const Color(0xff34fae3);
@@ -9,3 +13,12 @@ const APP_BAR_COLOR = Color(0xffE6E7E8);
 const GIFT_ASK_COLOR = Color(0xff353445);
 
 const PLACEHOLDER_IMAGE_URL = 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png';
+
+final initialUser = LocalUser(
+    firstName: '',
+    lastName: '',
+    userName: '',
+    email: '',
+    imageUrl: 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png',
+    position: MyPosition(geohash: '', geopoint: GeoPoint(0, 0)),
+    createdAt: Timestamp.now());

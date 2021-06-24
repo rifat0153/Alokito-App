@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -67,9 +68,12 @@ class AuthService implements BaseAuthService {
         .doc(_firebaseAuth.currentUser?.uid)
         .snapshots()
         .map((DocumentSnapshot documentSnapshot) {
-      var retVal = LocalUser.fromJson(documentSnapshot.data()!);
-
-      return retVal;
+      if (documentSnapshot.exists) {
+        var retVal = LocalUser.fromJson(documentSnapshot.data()!);
+        return retVal;
+      } else {
+        return initialUser;
+      }
     });
   }
 
