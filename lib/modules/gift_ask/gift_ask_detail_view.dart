@@ -10,10 +10,18 @@ class GiftAskDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: () => Get.back(), icon: Icon(Icons.arrow_back_ios)),
-        title: Text('Gift Request -' + convertGiftAskType(giftAskType: giftAsk.giftAskType)),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(onPressed: () => Get.back(), icon: Icon(Icons.arrow_back_ios)),
+          title: Text('Gift Request -' + convertGiftAskType(giftAskType: giftAsk.giftAskType)),
+        ),
+        body: Container(
+          width: Get.width,
+          child: Column(
+            children: [],
+          ),
+        ),
       ),
     );
   }

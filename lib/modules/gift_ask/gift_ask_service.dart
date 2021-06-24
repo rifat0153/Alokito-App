@@ -40,7 +40,6 @@ class GiftAskService implements BaseGiftAskService {
     required String userId,
   }) {
     GeoFirePoint center = _geo.point(latitude: latitude, longitude: longitude);
-    print('In Service: center is: ' + center.toString());
 
     var collectionReference = _firestore.collection('gift_ask');
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
@@ -61,14 +60,6 @@ class GiftAskService implements BaseGiftAskService {
 
     return stream;
   }
-
-  // => docList.map(
-  //           (doc) {
-  //             var gift = GiftAsk.fromJson(doc.data() ?? {});
-  //             // if (gift.id == 'J4NyNU9NntWrhbE2pMtXDxuSmGB3') retu;
-  //             return gift;
-  //           },
-  //         ).toList()
 
   @override
   Future<bool> addGift({required GiftAsk giftAsk, required String userId}) async {

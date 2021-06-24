@@ -6,6 +6,7 @@ import 'package:alokito_new/modules/gift_ask/widgets/gift_ask_map_widget.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -66,6 +67,7 @@ class GiftAskRequestView extends StatelessWidget {
                     index: i,
                     width: Get.width * 0.8,
                   ),
+                  physics: const BouncingScrollPhysics(),
                 ),
               ),
             ),
@@ -156,7 +158,8 @@ class _GiftAskRequestTile extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     convertGiftAskType(
-                                        giftAskType: giftAskController.filteredGiftRequestList.value[index].giftAskType),
+                                        giftAskType:
+                                            giftAskController.filteredGiftRequestList.value[index].giftAskType),
                                     softWrap: false,
                                     overflow: TextOverflow.ellipsis,
                                   ),
