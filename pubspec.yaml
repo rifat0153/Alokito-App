@@ -28,7 +28,6 @@ dependencies:
   connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^0.3.7
-  
   firebase_auth: ^1.1.0
   firebase_core: null
   firebase_storage: ^8.0.3
@@ -44,6 +43,7 @@ dependencies:
   json_annotation: ^4.0.1
   line_icons: ^2.0.1
   location: ^4.1.1
+  material_design_icons_flutter: ^4.0.5955
   path: ^1.8.0
   uuid: ^3.0.4
   very_good_analysis: null
