@@ -109,6 +109,7 @@ class GiftAskController extends GetxController {
 
     GiftAsk giftAsk = GiftAsk(
       requester: Get.find<AuthController>().currentUser.value,
+      giftAskStatus: GiftAskStatus.pending,
       address: address.value,
       area: area.value,
       position: giftPosition,

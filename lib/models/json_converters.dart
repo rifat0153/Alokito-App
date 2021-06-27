@@ -31,6 +31,44 @@ GiftReqeust giftReqeustFromJson(Map<String, dynamic> json) => GiftReqeust.fromJs
 Map<String, dynamic> giftNotificationToJson(GiftNotification giftNotification) => giftNotification.toJson();
 GiftNotification giftNotificationFromJson(Map<String, dynamic> json) => GiftNotification.fromJson(json);
 
+int giftAskStatusToJson(GiftAskStatus giftAskStatus) {
+  switch (giftAskStatus) {
+    case GiftAskStatus.pending:
+      return 0;
+    case GiftAskStatus.accepted:
+      return 1;
+    case GiftAskStatus.deleted:
+      return 2;
+    case GiftAskStatus.delivered:
+      return 3;
+    case GiftAskStatus.denied:
+      return 4;
+    case GiftAskStatus.error:
+      return 5;
+    default:
+      return -1;
+  }
+}
+
+GiftAskStatus giftAskStatusFromJson(int json) {
+  switch (json) {
+    case 0:
+      return GiftAskStatus.pending;
+    case 1:
+      return GiftAskStatus.accepted;
+    case 2:
+      return GiftAskStatus.deleted;
+    case 3:
+      return GiftAskStatus.delivered;
+    case 4:
+      return GiftAskStatus.denied;
+    case 5:
+      return GiftAskStatus.error;
+    default:
+      return GiftAskStatus.error;
+  }
+}
+
 int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
   switch (giftRequestStatus) {
     case GiftRequestStatus.requestPedning:
