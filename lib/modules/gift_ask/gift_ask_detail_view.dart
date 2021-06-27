@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
@@ -8,6 +10,7 @@ import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -30,6 +33,12 @@ class GiftAskDetailView extends StatelessWidget {
             .difference(DateTime.fromMillisecondsSinceEpoch(giftAsk.requester.createdAt.millisecondsSinceEpoch))
             .inDays ~/
         30;
+
+    var markers = [
+      Marker(
+          markerId: MarkerId('1'),
+          position: LatLng(giftAsk.position.geopoint.latitude, giftAsk.position.geopoint.longitude))
+    ];
 
     return SafeArea(
       child: Scaffold(
@@ -71,7 +80,29 @@ class GiftAskDetailView extends StatelessWidget {
                     _NoteWidget(giftAsk: giftAsk),
                     _UserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
                     _RequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
-                    const SizedBox(height: 800)
+                    const AcceptAndDenyWidget(),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                          child: MyText('Pickup Location', fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          height: 200,
+                          child: GoogleMap(
+                            initialCameraPosition: CameraPosition(
+                              target: LatLng(
+                                giftAsk.position.geopoint.latitude,
+                                giftAsk.position.geopoint.longitude,
+                              ),
+                              zoom: 13,
+                            ),
+                            markers: Set.of(markers),
+                            zoomControlsEnabled: false,
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -79,6 +110,42 @@ class GiftAskDetailView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class AcceptAndDenyWidget extends StatelessWidget {
+  const AcceptAndDenyWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        MaterialButton(
+          onPressed: () {},
+          color: GIFT_ASK_COLOR,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          height: 0,
+          child: MyText(
+            'Accept for confirmation',
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+          ),
+        ),
+        // MaterialButton(
+        //   onPressed: () {},
+        //   color: GIFT_ASK_COLOR,
+        //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        //   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        //   height: 0,
+        //   child: MyText('Deny', color: Colors.white, fontWeight: FontWeight.bold),
+        // ),
+      ],
     );
   }
 }
@@ -106,7 +173,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Joined $userJoinedAt months ago'),
+                MyText('Joined $userJoinedAt months ago', fontSize: 18),
                 const SizedBox(height: 8),
                 Text('Location', style: boldFontStyle),
                 const SizedBox(height: 4),
@@ -134,14 +201,14 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      height: 66,
+                      height: 60,
                       width: 66,
                       decoration: BoxDecoration(
                         color: GIFT_ASK_COLOR,
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(0.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -152,14 +219,14 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: 66,
+                      height: 60,
                       width: 66,
                       decoration: BoxDecoration(
                         color: GIFT_ASK_COLOR,
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(0.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
