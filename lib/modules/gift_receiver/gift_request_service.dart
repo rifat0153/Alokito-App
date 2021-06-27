@@ -18,181 +18,55 @@ abstract class BaseGiftRequestService {
 
   Future<bool> increaseNoOfTimesGiftRequested({required GiftGiver giftGiver});
 
-  Future<bool> deleteGiftRequest({required GiftGiver giftGiver});
+  Future<bool> deleteGiftRequest({required GiftReqeust giftReqeust});
 
-  Future<bool> addGiftRequest({required GiftGiver giftGiver});
+  Future<bool> addGiftRequest({required GiftReqeust giftReqeust});
 
-  Future<GiftReqeust> getGiftRequest({required String id});
+  Future<GiftReqeust> getGiftRequest({required GiftReqeust giftReqeust});
 
-  Future<void> updateGiftRequestStatus(
-      {required String requesterId, required String giftId, required GiftRequestStatus giftRequestStatus});
-
-  Future<bool> changeRequestStatus(
-      {required GiftRequestStatus giftRequestStatus, required GiftNotification giftNotification});
+  Future<bool> changeRequestStatus({required GiftReqeust giftReqeust});
 }
 
 class GiftRequestService implements BaseGiftRequestService {
-  final geo = Geoflutterfire();
-  final _firestore = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
+  GiftRequestService(this.geo, this._firestore, this._auth);
+
+  final Geoflutterfire geo;
+  final _firestore;
+  final _auth;
 
   @override
-  Future<void> updateGiftRequestStatus(
-      {required String requesterId, required String giftId, required GiftRequestStatus giftRequestStatus}) async {
-    await _firestore
-        .collection('gift_requests')
-        .doc('${requesterId}.$giftId')
-        .update({'giftRequestStatus': giftRequestStatusToJson(giftRequestStatus)});
+  Future<bool> addGiftRequest({required GiftReqeust giftReqeust}) {
+    // TODO: implement addGiftRequest
+    throw UnimplementedError();
   }
 
   @override
-  Future<GiftReqeust> getGiftRequest({required String id}) async {
-    var snap = await _firestore.collection('gift_requests').doc(id).get();
-    var giftRequest = GiftReqeust.fromJson(snap.data() ?? {});
-
-    // print('In gift request service: ' + giftRequest.toString());
-
-    return giftRequest;
+  Future<bool> changeRequestStatus({required GiftReqeust giftReqeust}) {
+    // TODO: implement changeRequestStatus
+    throw UnimplementedError();
   }
 
   @override
-  Future<bool> changeRequestStatus(
-      {required GiftRequestStatus giftRequestStatus, required GiftNotification giftNotification}) async {
-    try {
-      var docId = '${giftNotification.requesterUid}.${giftNotification.giftId}';
-      var doc = await _firestore.collection('gift_requests').doc(docId).get();
-
-      if (doc.exists) {
-        GiftReqeust giftReqeust = GiftReqeust.fromJson(doc.data() ?? {});
-
-        GiftReqeust giftReqeust1 = giftReqeust.maybeMap((value) => value.copyWith(giftRequestStatus: giftRequestStatus),
-            orElse: () => giftReqeust);
-
-        await _firestore.collection('gift_requests').doc(docId).update(giftReqeust1.toJson());
-      } else {
-        print('request doc does not exists');
-        return false;
-      }
-
-      return true;
-    } catch (e) {
-      print(e);
-      return false;
-    }
+  Future<bool> deleteGiftRequest({required GiftReqeust giftReqeust}) {
+    // TODO: implement deleteGiftRequest
+    throw UnimplementedError();
   }
 
   @override
-  Future<bool> increaseNoOfTimesGiftRequested({required GiftGiver giftGiver}) async {
-    var currentUserUid = _auth.currentUser?.uid;
-    var docRef = _firestore.collection('gift_requested_data').doc('${currentUserUid}.${giftGiver.id}');
-
-    try {
-      var doc = await docRef.get();
-
-      if (doc.data() == null) {
-        await docRef.set({'requestedNoOfTimes': 1});
-        return true;
-      }
-
-      int requested = doc.data()!['requestedNoOfTimes'] as int;
-
-      if (requested > 20) {
-        return false;
-      }
-
-      await docRef.set({'requestedNoOfTimes': requested + 1});
-
-      return true;
-    } catch (e) {
-      print(e);
-      return false;
-    }
+  Future<bool> findGift({required GiftGiver giftGiver}) {
+    // TODO: implement findGift
+    throw UnimplementedError();
   }
 
   @override
-  Future<bool> deleteGiftRequest({required GiftGiver giftGiver}) async {
-    var currentUserUid = _auth.currentUser?.uid;
-
-    try {
-      var result = await _firestore.collection('gift_requests').doc('${currentUserUid}.${giftGiver.id}').delete();
-
-      print('Service: delete gift request');
-
-      return true;
-    } catch (e) {
-      print(e);
-      return false;
-    }
+  Future<GiftReqeust> getGiftRequest({required GiftReqeust giftReqeust}) {
+    // TODO: implement getGiftRequest
+    throw UnimplementedError();
   }
 
   @override
-  Future<bool> findGift({required GiftGiver giftGiver}) async {
-    var currentUserUid = _auth.currentUser?.uid;
-
-    try {
-      var result = await _firestore.collection('gift_requests').doc('${currentUserUid}.${giftGiver.id}').get();
-
-      print('IN finding gift');
-      print(result.data());
-
-      if (result.data() == null) {
-        return false;
-      }
-      return true;
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
-  @override
-  Future<bool> addGiftRequest({required GiftGiver giftGiver}) async {
-    print('in add gift request');
-    AuthController authController = Get.find();
-    GiftRequestController giftRequestController = Get.find();
-
-    var currentPos = await Location().getLocation();
-
-    var myLocation = geo.point(latitude: currentPos.latitude ?? 23.7590, longitude: currentPos.longitude ?? 90.4119);
-    var pos = myLocation.data as Map<dynamic, dynamic>;
-
-    MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
-    var currentUserUid = _auth.currentUser?.uid;
-
-    try {
-      var docRef = _firestore.collection('gift_requests').doc('${currentUserUid}.${giftGiver.id}');
-
-      GiftReqeust giftReqeust = GiftReqeust(
-          id: '${currentUserUid}.${giftGiver.id}',
-          giftRequestStatus: GiftRequestStatus.requestPedning,
-          giftArea: giftGiver.area,
-          giftPosition: giftGiver.position,
-          giftOfferedByRequester: authController.currentUser.value.giftOffered,
-          giftReceivedByRequester: authController.currentUser.value.giftReceived,
-          requesterAvgRating: authController.currentUser.value.averageRating,
-          requesterRatingSum: authController.currentUser.value.ratingSum,
-          requesterTotRating: authController.currentUser.value.totalRating,
-          giftFor: giftGiver.giftFor,
-          giftId: giftGiver.id!,
-          giverUid: giftGiver.uid,
-          requesterMessage: giftRequestController.requesterMessage.value,
-          requesterUid: _auth.currentUser!.uid,
-          giftType: giftGiver.giftType,
-          giftImageUrl: giftGiver.imageUrl,
-          giftDetails: giftGiver.giftDetails,
-          requesterPosition: myPosition,
-          requesterName: authController.currentUser.value.userName,
-          giftGiverImageUrl: giftGiver.userImageUrl,
-          requesterImageUrl: authController.currentUser.value.imageUrl ?? PLACEHOLDER_IMAGE_URL,
-          createdAt: Timestamp.now());
-
-      await docRef.set(giftReqeust.toJson());
-      // print(giftReqeust);
-
-      return true;
-    } catch (e) {
-      // print(e);
-      return false;
-    }
+  Future<bool> increaseNoOfTimesGiftRequested({required GiftGiver giftGiver}) {
+    // TODO: implement increaseNoOfTimesGiftRequested
+    throw UnimplementedError();
   }
 }

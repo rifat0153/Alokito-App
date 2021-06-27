@@ -71,7 +71,7 @@ GiftAskStatus giftAskStatusFromJson(int json) {
 
 int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
   switch (giftRequestStatus) {
-    case GiftRequestStatus.requestPedning:
+    case GiftRequestStatus.requestPending:
       return 0;
     case GiftRequestStatus.requestConfirmed:
       return 1;
@@ -89,7 +89,7 @@ int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
 GiftRequestStatus giftRequestStatusFromJson(int json) {
   switch (json) {
     case 0:
-      return GiftRequestStatus.requestPedning;
+      return GiftRequestStatus.requestPending;
     case 1:
       return GiftRequestStatus.requestConfirmed;
     case 2:
@@ -99,26 +99,16 @@ GiftRequestStatus giftRequestStatusFromJson(int json) {
     case 4:
       return GiftRequestStatus.requestComplete;
     default:
-      return GiftRequestStatus.requestPedning;
+      return GiftRequestStatus.requestPending;
   }
 }
 
 int giftNotificationTypeToJson(GiftNotificationType giftNotificationType) {
   switch (giftNotificationType) {
-    case GiftNotificationType.packageRequested:
+    case GiftNotificationType.giftGiver:
       return 0;
-    case GiftNotificationType.packageConfirmed:
+    case GiftNotificationType.giftAsk:
       return 1;
-    case GiftNotificationType.packageDelivered:
-      return 2;
-    case GiftNotificationType.packageCanceledByGiver:
-      return 3;
-    case GiftNotificationType.packageCanceledByRequester:
-      return 4;
-    case GiftNotificationType.thanksForGiver:
-      return 5;
-    case GiftNotificationType.commentsForGiver:
-      return 6;
     default:
       return -1;
   }
@@ -127,20 +117,9 @@ int giftNotificationTypeToJson(GiftNotificationType giftNotificationType) {
 GiftNotificationType giftNotificationTypeFromJson(int json) {
   switch (json) {
     case 0:
-      return GiftNotificationType.packageRequested;
-
+      return GiftNotificationType.giftGiver;
     case 1:
-      return GiftNotificationType.packageConfirmed;
-    case 2:
-      return GiftNotificationType.packageDelivered;
-    case 3:
-      return GiftNotificationType.packageCanceledByGiver;
-    case 4:
-      return GiftNotificationType.packageCanceledByRequester;
-    case 5:
-      return GiftNotificationType.thanksForGiver;
-    case 6:
-      return GiftNotificationType.commentsForGiver;
+      return GiftNotificationType.giftAsk;
     default:
       return GiftNotificationType.error;
   }

@@ -3,13 +3,7 @@ import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 enum GiftType { anyRetailItem, packageFor3Days, packageFor7Days, customizedPackage }
 
 enum GiftNotificationType {
-  packageRequested,
-  packageConfirmed,
-  packageDelivered,
-  packageCanceledByGiver,
-  packageCanceledByRequester,
-  thanksForGiver,
-  commentsForGiver,
+  giftGiver,
   giftAsk,
   error,
 }
@@ -17,7 +11,7 @@ enum GiftNotificationType {
 enum GiftAskStatus { pending, accepted, denied, delivered, deleted, error }
 
 enum GiftRequestStatus {
-  requestPedning,
+  requestPending,
   requestConfirmed,
   requestCanceledByGiver,
   requestCanceledByRequester,
@@ -46,20 +40,8 @@ String convertGiftAskType({required GiftAskType giftAskType}) {
 
 String convertGiftNotificationTypeToString({required GiftNotificationType giftNotificationType}) {
   switch (giftNotificationType) {
-    case GiftNotificationType.packageRequested:
-      return 'Requested';
-    case GiftNotificationType.packageConfirmed:
-      return 'Confirmed';
-    case GiftNotificationType.packageDelivered:
-      return 'Delivered';
-    case GiftNotificationType.packageCanceledByGiver:
-      return 'Canceled';
-    case GiftNotificationType.packageCanceledByRequester:
-      return 'Canceled by Reqeuster';
-    case GiftNotificationType.thanksForGiver:
-      return 'Thanks For Giver';
-    case GiftNotificationType.commentsForGiver:
-      return 'Comments For Giver';
+    case GiftNotificationType.giftGiver:
+      return 'Gift Giver';
     case GiftNotificationType.giftAsk:
       return 'Gift Notification';
     default:

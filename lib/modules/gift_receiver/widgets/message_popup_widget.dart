@@ -60,7 +60,7 @@ class MessagePopUpWidget extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
                           onPressed: () {
-                            controller.addGiftRequest(giftGiver: giftGiver);
+                            // controller.addGiftRequest(giftGiver: giftGiver);
                             Get.back();
                           },
                           child: const Padding(

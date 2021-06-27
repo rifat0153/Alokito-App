@@ -10,40 +10,15 @@ part 'gift_request.g.dart';
 
 @freezed
 abstract class GiftReqeust with _$GiftReqeust {
-  const GiftReqeust._();
-
-  factory GiftReqeust.loading() = Loading;
 
   const factory GiftReqeust({
     String? id,
     required String giftId,
     @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
         required GiftRequestStatus giftRequestStatus,
-    required String giverUid,
-    required String giftArea,
-    required int giftOfferedByRequester,
-    required int giftReceivedByRequester,
-    required String requesterUid,
-    required String requesterMessage,
-    required double requesterAvgRating,
-    required double requesterTotRating,
-    required double requesterRatingSum,
-    @Default(0) int giftFor,
-    @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-        required GiftType giftType,
-    required String giftImageUrl,
-    required String giftDetails,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition requesterPosition,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition giftPosition,
-    required String requesterName,
-    required String giftGiverImageUrl,
-    required String requesterImageUrl,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp createdAt,
+    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
   }) = _GiftReqeust;
 
-  factory GiftReqeust.fromJson(Map<String, dynamic> json) =>
-      _$GiftReqeustFromJson(json);
+  factory GiftReqeust.fromJson(Map<String, dynamic> json) => _$GiftReqeustFromJson(json);
 }
+

@@ -26,8 +26,6 @@ class GiftDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     var giftType = convertGiftType(giftGiver.giftType);
 
-    giftRequestController.findGiftReqeust(giftGiver: giftGiver);
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -59,9 +57,7 @@ class GiftDetailsView extends StatelessWidget {
               height: Get.size.height,
               width: Get.size.width,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/gift_details.png'),
-                    fit: BoxFit.fill),
+                image: DecorationImage(image: AssetImage('assets/images/gift_details.png'), fit: BoxFit.fill),
               ),
             ),
             Positioned(
@@ -97,8 +93,7 @@ class GiftDetailsView extends StatelessWidget {
                             onPressed: null,
                             disabledColor: GIFT_ADD_FORM_COLOR,
                             color: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                             child: const Text(
                               'Gift Requested',
                               style: TextStyle(color: Colors.blue),
@@ -110,14 +105,12 @@ class GiftDetailsView extends StatelessWidget {
                                 context: context,
                                 barrierDismissible: true,
                                 builder: (BuildContext context) {
-                                  return RequestDeleteWidget(
-                                      giftGiver: giftGiver);
+                                  return RequestDeleteWidget(giftGiver: giftGiver);
                                 },
                               );
                             },
                             color: Colors.red,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                             child: Text(
                               'Cancel',
                               style: const TextStyle(color: Colors.white),
@@ -136,11 +129,9 @@ class GiftDetailsView extends StatelessWidget {
                           );
                         },
                         color: GIFT_ADD_FORM_SUBMIT,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: Get.size.width * 0.2),
+                          padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
                           child: Text(
                             'Send Request',
                             style: const TextStyle(color: Colors.white),

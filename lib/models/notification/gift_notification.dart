@@ -12,48 +12,10 @@ part 'gift_notification.g.dart';
 class GiftNotification with _$GiftNotification {
   const factory GiftNotification({
     String? id,
-    required String giftId,
-    @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-        required GiftRequestStatus giftRequestStatus,
-    required String giftImageUrl,
-    required String requesterImageUrl,
-    required String requesterName,
-    required String requesterUid,
-    required String requesterMessage,
-    required double requesterAvgRating,
-    required double requesterTotRating,
-    required double requesterRatingSum,
-    required double giverAvgRating,
-    required double giverTotRating,
-    required double giverRatingSum,
-    required String giverName,
-    required String giverImageUrl,
-    required String giverUid,
-    required String giftLocation,
-    required String giftArea,
-    required String notificationFor,
-    @Default('') String commentsForGiver,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp giftPickUpTime,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition giftPosition,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition requesterPosition,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-        required MyPosition giverPosition,
-    required List<String> notificationForList,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp giverJoinedAt,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp requesterJoinedAt,
-    @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-        required GiftType giftType,
-    @JsonKey(fromJson: giftNotificationTypeFromJson, toJson: giftNotificationTypeToJson)
-        required GiftNotificationType notificationType,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-        required Timestamp createdAt,
+    @JsonKey(toJson: giftNotificationTypeToJson, fromJson: giftNotificationTypeFromJson)
+        required GiftNotificationType giftNotificationType,
+    required String notification,
   }) = _GiftNotification;
 
-  factory GiftNotification.fromJson(Map<String, dynamic> json) =>
-      _$GiftNotificationFromJson(json);
+  factory GiftNotification.fromJson(Map<String, dynamic> json) => _$GiftNotificationFromJson(json);
 }

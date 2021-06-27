@@ -4,8 +4,6 @@ import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/auth/login_view.dart';
 import 'package:alokito_new/modules/connection/connection_view.dart';
-import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
-import 'package:alokito_new/modules/notifications/notification_view.dart';
 import 'package:badges/badges.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +14,10 @@ class UserNavbar extends StatelessWidget {
   final height = Get.size.height;
   final width = Get.size.width;
 
-  final GiftNotificationController giftNotificationController = Get.find();
   final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    giftNotificationController.bindNotificationStream();
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -31,21 +26,15 @@ class UserNavbar extends StatelessWidget {
           child: Icon(Icons.home, color: Colors.white, size: height * 0.05),
         ),
         GestureDetector(
-          onTap: () {
-            Get.toNamed(NotificationView.route);
-          },
+          onTap: () {},
           child: Obx(
-            () => giftNotificationController.totalNotifications.value > 0
+            () => true
                 ? Badge(
-                    badgeContent: Text(giftNotificationController
-                        .totalNotifications.value
-                        .toString()),
-                    child: Icon(Icons.notifications,
-                        color: Colors.white, size: height * 0.05),
+                    badgeContent: Text('1'),
+                    child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
                     badgeColor: Colors.white,
                   )
-                : Icon(Icons.notifications,
-                    color: Colors.white, size: height * 0.05),
+                : Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
           ),
         ),
         GestureDetector(

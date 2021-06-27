@@ -5,9 +5,6 @@ import 'package:alokito_new/modules/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/modules/map/geo_controller.dart';
-import 'package:alokito_new/modules/notifications/gift_notification_controller.dart';
-import 'package:alokito_new/modules/notifications/notification_details_view.dart';
-import 'package:alokito_new/modules/notifications/notification_view.dart';
 import 'package:get/get.dart';
 
 import 'modules/gift_giver/gift_add_view.dart';
@@ -34,19 +31,6 @@ class GetPages {
       binding: BindingsBuilder(() {}),
     ),
     //Notification Routes
-    GetPage(
-      name: NotificationView.route,
-      page: () => NotificationView(),
-      binding: BindingsBuilder(() {
-        Get.put(GiftNotificationController());
-        Get.find<GiftNotificationController>().bindNotificationStream();
-      }),
-    ),
-    GetPage(
-      name: NotificationDetailsView.route,
-      page: () => NotificationDetailsView(),
-      binding: BindingsBuilder(() {}),
-    ),
     // Gift Receiver Routes
     GetPage(
       name: GiftReceiverView.route,
@@ -77,7 +61,6 @@ class GetPages {
         Get.lazyPut(() => GiftController());
         Get.lazyPut(() => GiftAddFormController());
         Get.put(GiftRequestController());
-        Get.put(GiftNotificationController());
       }),
     ),
     GetPage(
