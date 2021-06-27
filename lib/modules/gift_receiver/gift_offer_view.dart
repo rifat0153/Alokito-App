@@ -37,30 +37,29 @@ class GiftOfferView extends StatelessWidget {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: Column(
+        body: Stack(
           children: [
             Container(
-              // height: Get.size.height + 500,
+              height: Get.size.height,
               width: Get.size.width,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/gift_offer.png'),
-                    fit: BoxFit.fill),
+                image: DecorationImage(image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
               ),
+            ),
+            Container(
+              height: Get.size.height,
+              width: Get.size.width,
               child: Column(
                 children: [
                   MyMapView(),
                   _SearchWidget(),
                   // _TextWidget(),
-                  Container(
-                    // color: Colors.blue,
-                    height: Get.size.height * 0.3,
-                    width: Get.size.width,
+                  Expanded(
                     child: Obx(
                       () => ListView.builder(
+                        padding: EdgeInsets.zero,
                         itemCount: giftController.giftList.value.length,
-                        itemBuilder: (_, i) => _GiftListTile(
-                            giftController: giftController, index: i),
+                        itemBuilder: (_, i) => _GiftListTile(giftController: giftController, index: i),
                       ),
                     ),
                   ),
@@ -100,15 +99,13 @@ class _GiftListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return giftController.giftList.value[index].uid ==
-            FirebaseAuth.instance.currentUser?.uid
+    return giftController.giftList.value[index].uid == FirebaseAuth.instance.currentUser?.uid
         ? Container()
         : Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
             child: GestureDetector(
               onTap: () => Get.to(
-                () => GiftDetailsView(
-                    giftGiver: giftController.giftList.value[index]),
+                () => GiftDetailsView(giftGiver: giftController.giftList.value[index]),
               ),
               child: Container(
                 decoration: BoxDecoration(
@@ -150,15 +147,12 @@ class _GiftListTile extends StatelessWidget {
                               children: [
                                 Obx(
                                   () => Text(
-                                    convertGiftType(giftController
-                                        .giftList.value[index].giftType),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
+                                    convertGiftType(giftController.giftList.value[index].giftType),
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 const SizedBox(height: 5),
-                                Text(giftController
-                                    .giftList.value[index].userName),
+                                Text(giftController.giftList.value[index].userName),
                               ],
                             ),
                           ),

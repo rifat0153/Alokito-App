@@ -39,11 +39,9 @@ class GiftGiverView extends StatelessWidget {
           actions: [
             Row(
               children: [
-                Obx(
-                  () => Badge(
-                    badgeContent: Text(''),
-                    child: Icon(Icons.notifications),
-                  ),
+                Badge(
+                  badgeContent: Text('!'),
+                  child: Icon(Icons.notifications),
                 ),
               ],
             ),
