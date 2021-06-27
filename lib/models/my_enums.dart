@@ -2,7 +2,7 @@ import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 
 enum GiftType { anyRetailItem, packageFor3Days, packageFor7Days, customizedPackage }
 
-enum GiftNotificationType {
+enum NotificationType {
   giftGiver,
   giftAsk,
   error,
@@ -38,11 +38,11 @@ String convertGiftAskType({required GiftAskType giftAskType}) {
   }
 }
 
-String convertGiftNotificationTypeToString({required GiftNotificationType giftNotificationType}) {
-  switch (giftNotificationType) {
-    case GiftNotificationType.giftGiver:
+String convertGiftNotificationTypeToString({required NotificationType notificationType}) {
+  switch (notificationType) {
+    case NotificationType.giftGiver:
       return 'Gift Giver';
-    case GiftNotificationType.giftAsk:
+    case NotificationType.giftAsk:
       return 'Gift Notification';
     default:
       return 'N/A';

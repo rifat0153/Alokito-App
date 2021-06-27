@@ -13,9 +13,10 @@ abstract class GiftReqeust with _$GiftReqeust {
 
   const factory GiftReqeust({
     String? id,
-    required String giftId,
-    @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-        required GiftRequestStatus giftRequestStatus,
+    @JsonKey( fromJson:   notificationTypeFromJson, toJson: notificationTypeToJson )
+    required NotificationType notificationType,
+    String? giftRequestId,
+    String? giftAskId,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
   }) = _GiftReqeust;
 

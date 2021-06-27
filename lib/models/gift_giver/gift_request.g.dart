@@ -9,9 +9,9 @@ part of 'gift_request.dart';
 _$_GiftReqeust _$_$_GiftReqeustFromJson(Map<String, dynamic> json) {
   return _$_GiftReqeust(
     id: json['id'] as String?,
-    giftId: json['giftId'] as String,
-    giftRequestStatus:
-        giftRequestStatusFromJson(json['giftRequestStatus'] as int),
+    notificationType: notificationTypeFromJson(json['notificationType'] as int),
+    giftRequestId: json['giftRequestId'] as String?,
+    giftAskId: json['giftAskId'] as String?,
     createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
 }
@@ -19,7 +19,8 @@ _$_GiftReqeust _$_$_GiftReqeustFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_GiftReqeustToJson(_$_GiftReqeust instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'giftId': instance.giftId,
-      'giftRequestStatus': giftRequestStatusToJson(instance.giftRequestStatus),
+      'notificationType': notificationTypeToJson(instance.notificationType),
+      'giftRequestId': instance.giftRequestId,
+      'giftAskId': instance.giftAskId,
       'createdAt': timestampToJson(instance.createdAt),
     };

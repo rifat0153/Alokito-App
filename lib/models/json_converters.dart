@@ -1,7 +1,6 @@
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,8 +27,6 @@ Timestamp timestampFromJson(Timestamp json) => json;
 Map<String, dynamic> giftRequestToJson(GiftReqeust giftReqeust) => giftReqeust.toJson();
 GiftReqeust giftReqeustFromJson(Map<String, dynamic> json) => GiftReqeust.fromJson(json);
 //Gift Notifications
-Map<String, dynamic> giftNotificationToJson(GiftNotification giftNotification) => giftNotification.toJson();
-GiftNotification giftNotificationFromJson(Map<String, dynamic> json) => GiftNotification.fromJson(json);
 
 int giftAskStatusToJson(GiftAskStatus giftAskStatus) {
   switch (giftAskStatus) {
@@ -103,25 +100,25 @@ GiftRequestStatus giftRequestStatusFromJson(int json) {
   }
 }
 
-int giftNotificationTypeToJson(GiftNotificationType giftNotificationType) {
-  switch (giftNotificationType) {
-    case GiftNotificationType.giftGiver:
+int notificationTypeToJson(NotificationType notificationType) {
+  switch (notificationType) {
+    case NotificationType.giftGiver:
       return 0;
-    case GiftNotificationType.giftAsk:
+    case NotificationType.giftAsk:
       return 1;
     default:
       return -1;
   }
 }
 
-GiftNotificationType giftNotificationTypeFromJson(int json) {
+NotificationType notificationTypeFromJson(int json) {
   switch (json) {
     case 0:
-      return GiftNotificationType.giftGiver;
+      return NotificationType.giftGiver;
     case 1:
-      return GiftNotificationType.giftAsk;
+      return NotificationType.giftAsk;
     default:
-      return GiftNotificationType.error;
+      return NotificationType.error;
   }
 }
 

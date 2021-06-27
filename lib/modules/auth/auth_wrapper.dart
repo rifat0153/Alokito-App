@@ -1,4 +1,3 @@
-import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/auth/login_controller.dart';
 import 'package:alokito_new/modules/auth/login_view.dart';

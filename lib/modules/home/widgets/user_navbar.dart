@@ -27,15 +27,13 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {},
-          child: Obx(
-            () => true
-                ? Badge(
-                    badgeContent: Text('1'),
-                    child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
-                    badgeColor: Colors.white,
-                  )
-                : Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
-          ),
+          child: true
+              ? Badge(
+                  badgeContent: Text('!'),
+                  child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
+                  badgeColor: Colors.white,
+                )
+              : Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
         ),
         GestureDetector(
           onTap: () {},

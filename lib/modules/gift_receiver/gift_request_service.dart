@@ -5,7 +5,6 @@ import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_request.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
-import 'package:alokito_new/models/notification/gift_notification.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

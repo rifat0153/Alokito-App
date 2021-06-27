@@ -22,15 +22,17 @@ class _$GiftReqeustTearOff {
 
   _GiftReqeust call(
       {String? id,
-      required String giftId,
-      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-          required GiftRequestStatus giftRequestStatus,
+      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+          required NotificationType notificationType,
+      String? giftRequestId,
+      String? giftAskId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp createdAt}) {
     return _GiftReqeust(
       id: id,
-      giftId: giftId,
-      giftRequestStatus: giftRequestStatus,
+      notificationType: notificationType,
+      giftRequestId: giftRequestId,
+      giftAskId: giftAskId,
       createdAt: createdAt,
     );
   }
@@ -46,9 +48,10 @@ const $GiftReqeust = _$GiftReqeustTearOff();
 /// @nodoc
 mixin _$GiftReqeust {
   String? get id => throw _privateConstructorUsedError;
-  String get giftId => throw _privateConstructorUsedError;
-  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+  NotificationType get notificationType => throw _privateConstructorUsedError;
+  String? get giftRequestId => throw _privateConstructorUsedError;
+  String? get giftAskId => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get createdAt => throw _privateConstructorUsedError;
 
@@ -65,9 +68,10 @@ abstract class $GiftReqeustCopyWith<$Res> {
       _$GiftReqeustCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      String giftId,
-      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-          GiftRequestStatus giftRequestStatus,
+      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+          NotificationType notificationType,
+      String? giftRequestId,
+      String? giftAskId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp createdAt});
 }
@@ -83,8 +87,9 @@ class _$GiftReqeustCopyWithImpl<$Res> implements $GiftReqeustCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? giftId = freezed,
-    Object? giftRequestStatus = freezed,
+    Object? notificationType = freezed,
+    Object? giftRequestId = freezed,
+    Object? giftAskId = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -92,14 +97,18 @@ class _$GiftReqeustCopyWithImpl<$Res> implements $GiftReqeustCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      giftId: giftId == freezed
-          ? _value.giftId
-          : giftId // ignore: cast_nullable_to_non_nullable
-              as String,
-      giftRequestStatus: giftRequestStatus == freezed
-          ? _value.giftRequestStatus
-          : giftRequestStatus // ignore: cast_nullable_to_non_nullable
-              as GiftRequestStatus,
+      notificationType: notificationType == freezed
+          ? _value.notificationType
+          : notificationType // ignore: cast_nullable_to_non_nullable
+              as NotificationType,
+      giftRequestId: giftRequestId == freezed
+          ? _value.giftRequestId
+          : giftRequestId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      giftAskId: giftAskId == freezed
+          ? _value.giftAskId
+          : giftAskId // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -117,9 +126,10 @@ abstract class _$GiftReqeustCopyWith<$Res>
   @override
   $Res call(
       {String? id,
-      String giftId,
-      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-          GiftRequestStatus giftRequestStatus,
+      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+          NotificationType notificationType,
+      String? giftRequestId,
+      String? giftAskId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp createdAt});
 }
@@ -137,8 +147,9 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? giftId = freezed,
-    Object? giftRequestStatus = freezed,
+    Object? notificationType = freezed,
+    Object? giftRequestId = freezed,
+    Object? giftAskId = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_GiftReqeust(
@@ -146,14 +157,18 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      giftId: giftId == freezed
-          ? _value.giftId
-          : giftId // ignore: cast_nullable_to_non_nullable
-              as String,
-      giftRequestStatus: giftRequestStatus == freezed
-          ? _value.giftRequestStatus
-          : giftRequestStatus // ignore: cast_nullable_to_non_nullable
-              as GiftRequestStatus,
+      notificationType: notificationType == freezed
+          ? _value.notificationType
+          : notificationType // ignore: cast_nullable_to_non_nullable
+              as NotificationType,
+      giftRequestId: giftRequestId == freezed
+          ? _value.giftRequestId
+          : giftRequestId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      giftAskId: giftAskId == freezed
+          ? _value.giftAskId
+          : giftAskId // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -167,9 +182,10 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
 class _$_GiftReqeust implements _GiftReqeust {
   const _$_GiftReqeust(
       {this.id,
-      required this.giftId,
-      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-          required this.giftRequestStatus,
+      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+          required this.notificationType,
+      this.giftRequestId,
+      this.giftAskId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required this.createdAt});
 
@@ -179,17 +195,19 @@ class _$_GiftReqeust implements _GiftReqeust {
   @override
   final String? id;
   @override
-  final String giftId;
+  @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+  final NotificationType notificationType;
   @override
-  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-  final GiftRequestStatus giftRequestStatus;
+  final String? giftRequestId;
+  @override
+  final String? giftAskId;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp createdAt;
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giftId: $giftId, giftRequestStatus: $giftRequestStatus, createdAt: $createdAt)';
+    return 'GiftReqeust(id: $id, notificationType: $notificationType, giftRequestId: $giftRequestId, giftAskId: $giftAskId, createdAt: $createdAt)';
   }
 
   @override
@@ -198,11 +216,15 @@ class _$_GiftReqeust implements _GiftReqeust {
         (other is _GiftReqeust &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.giftId, giftId) ||
-                const DeepCollectionEquality().equals(other.giftId, giftId)) &&
-            (identical(other.giftRequestStatus, giftRequestStatus) ||
+            (identical(other.notificationType, notificationType) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftRequestStatus, giftRequestStatus)) &&
+                    .equals(other.notificationType, notificationType)) &&
+            (identical(other.giftRequestId, giftRequestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftRequestId, giftRequestId)) &&
+            (identical(other.giftAskId, giftAskId) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftAskId, giftAskId)) &&
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
                     .equals(other.createdAt, createdAt)));
@@ -212,8 +234,9 @@ class _$_GiftReqeust implements _GiftReqeust {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(giftId) ^
-      const DeepCollectionEquality().hash(giftRequestStatus) ^
+      const DeepCollectionEquality().hash(notificationType) ^
+      const DeepCollectionEquality().hash(giftRequestId) ^
+      const DeepCollectionEquality().hash(giftAskId) ^
       const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
@@ -230,9 +253,10 @@ class _$_GiftReqeust implements _GiftReqeust {
 abstract class _GiftReqeust implements GiftReqeust {
   const factory _GiftReqeust(
       {String? id,
-      required String giftId,
-      @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-          required GiftRequestStatus giftRequestStatus,
+      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+          required NotificationType notificationType,
+      String? giftRequestId,
+      String? giftAskId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp createdAt}) = _$_GiftReqeust;
 
@@ -242,10 +266,12 @@ abstract class _GiftReqeust implements GiftReqeust {
   @override
   String? get id => throw _privateConstructorUsedError;
   @override
-  String get giftId => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+  NotificationType get notificationType => throw _privateConstructorUsedError;
   @override
-  @JsonKey(toJson: giftRequestStatusToJson, fromJson: giftRequestStatusFromJson)
-  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
+  String? get giftRequestId => throw _privateConstructorUsedError;
+  @override
+  String? get giftAskId => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get createdAt => throw _privateConstructorUsedError;
