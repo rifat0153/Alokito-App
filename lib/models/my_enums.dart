@@ -10,7 +10,8 @@ enum GiftNotificationType {
   packageCanceledByRequester,
   thanksForGiver,
   commentsForGiver,
-  error
+  giftAsk,
+  error,
 }
 
 enum GiftRequestStatus {
@@ -57,6 +58,8 @@ String convertGiftNotificationTypeToString({required GiftNotificationType giftNo
       return 'Thanks For Giver';
     case GiftNotificationType.commentsForGiver:
       return 'Comments For Giver';
+    case GiftNotificationType.giftAsk:
+      return 'Gift Notification';
     default:
       return 'N/A';
   }

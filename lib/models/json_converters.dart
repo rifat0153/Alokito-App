@@ -7,6 +7,8 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'gift_ask/gift_ask.dart';
+
 GeoPoint geoPointToJson(GeoPoint geoPoint) => geoPoint;
 GeoPoint geoPointFromJson(GeoPoint json) => json;
 
@@ -15,6 +17,9 @@ MyPosition myPositionFromJson(Map<String, dynamic> json) => MyPosition.fromJson(
 
 Map<String, dynamic> localUserToJson(LocalUser localUser) => localUser.toJson();
 LocalUser localUserFromJson(Map<String, dynamic> json) => LocalUser.fromJson(json);
+
+Map<String, dynamic> giftAskToJson(GiftAsk giftAsk) => giftAsk.toJson();
+GiftAsk giftAskFromJson(Map<String, dynamic> json) => GiftAsk.fromJson(json);
 
 Timestamp timestampToJson(Timestamp timestamp) => timestamp;
 Timestamp timestampFromJson(Timestamp json) => json;
