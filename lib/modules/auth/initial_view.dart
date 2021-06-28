@@ -2,7 +2,7 @@ import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/auth/login_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/gift_record/gift_record_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

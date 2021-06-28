@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotificationController extends GetxController {
@@ -7,9 +8,16 @@ class NotificationController extends GetxController {
   final NotificationService notificationService;
 
   RxBool loading = RxBool(false);
-  Rx<List<Notification>> giftList = Rx<List<Notification>>([]);
+  Rx<List<MyNotification>> giftList = Rx<List<MyNotification>>([]);
 
-  Future<void> addNotification({required String userId, required Notification notification}) async {
+  Future<void> addNotification({required String userId, required MyNotification notification}) async {
     var result = await notificationService.add(notification: notification, userId: userId);
+  }
+
+  Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {
+    Get.back();
+    result
+        ? Get.snackbar(title, success, backgroundColor: Colors.green.withOpacity(0.5))
+        : Get.snackbar(title, error, backgroundColor: Colors.red.withOpacity(0.5));
   }
 }

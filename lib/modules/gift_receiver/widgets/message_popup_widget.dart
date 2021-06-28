@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +53,7 @@ class MessagePopUpWidget extends StatelessWidget {
                           color: GIFT_ADD_FORM_SUBMIT,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                           onPressed: () {
-                            controller.addGiftRequest(giftGiver);
+                            controller.addGiftRequestAndNotification(giftGiver);
                           },
                           child: const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 30),

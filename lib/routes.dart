@@ -3,7 +3,7 @@ import 'package:alokito_new/modules/auth/login_view.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_offer_view.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/map/geo_controller.dart';
 import 'package:get/get.dart';
 
@@ -68,6 +68,7 @@ class GetPages {
       transition: Transition.noTransition,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
+        Get.lazyPut(() => GiftAddFormController());
       }),
     ),
 
