@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class RequestDeleteWidget extends StatelessWidget {
   RequestDeleteWidget({required this.giftGiver});
-  final GiftRequestController controller = Get.find();
+  final GiftReceiverController controller = Get.find();
 
   GiftGiver giftGiver;
 

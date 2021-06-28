@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class MessagePopUpWidget extends StatelessWidget {
   MessagePopUpWidget({required this.giftGiver});
-  final GiftRequestController controller = Get.find();
+  final GiftReceiverController controller = Get.find();
 
   final GiftGiver giftGiver;
 

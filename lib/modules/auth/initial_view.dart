@@ -12,7 +12,7 @@ class InitialView extends StatelessWidget {
   final authController = Get.put(AuthController(), permanent: true);
   final loginController = Get.put(LoginController());
   final giftRecordController = Get.put(GiftRecordController());
-  final giftRequestController = Get.put(GiftRequestController());
+  final giftRequestController = Get.put(GiftReceiverController());
 
   final GiftAskController giftAskController = Get.put(GiftAskController(), permanent: true);
 

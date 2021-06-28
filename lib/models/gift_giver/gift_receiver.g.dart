@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'gift_request.dart';
+part of 'gift_receiver.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GiftReqeust _$_$_GiftReqeustFromJson(Map<String, dynamic> json) {
-  return _$_GiftReqeust(
+_$_GiftReceiver _$_$_GiftReceiverFromJson(Map<String, dynamic> json) {
+  return _$_GiftReceiver(
     id: json['id'] as String?,
     giverId: json['giverId'] as String?,
     giftRequestStatus: _$enumDecodeNullable(
@@ -18,7 +18,7 @@ _$_GiftReqeust _$_$_GiftReqeustFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_GiftReqeustToJson(_$_GiftReqeust instance) =>
+Map<String, dynamic> _$_$_GiftReceiverToJson(_$_GiftReceiver instance) =>
     <String, dynamic>{
       'id': instance.id,
       'giverId': instance.giverId,

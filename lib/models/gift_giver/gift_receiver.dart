@@ -6,20 +6,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'gift_request.freezed.dart';
-part 'gift_request.g.dart';
+part 'gift_receiver.freezed.dart';
+part 'gift_receiver.g.dart';
 
 @freezed
-class GiftReqeust with _$GiftReqeust {
-  GiftReqeust._();
-  const factory GiftReqeust({
+class GiftReceiver with _$GiftReceiver {
+  GiftReceiver._();
+
+  const factory GiftReceiver({
     String? id,
     String? giverId,
     @Default(GiftRequestStatus.requestDelivered) GiftRequestStatus giftRequestStatus,
-    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-        required LocalUser requester,
+    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
-  }) = _GiftReqeust;
+  }) = _GiftReceiver;
 
-  factory GiftReqeust.fromJson(Map<String, dynamic> json) => _$GiftReqeustFromJson(json);
+  factory GiftReceiver.fromJson(Map<String, dynamic> json) => _$GiftReceiverFromJson(json);
 }

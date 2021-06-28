@@ -59,8 +59,6 @@ class GetPages {
       transition: Transition.downToUp,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
-        Get.lazyPut(() => GiftAddFormController());
-        Get.put(GiftRequestController());
       }),
     ),
     GetPage(
@@ -70,7 +68,6 @@ class GetPages {
       transition: Transition.noTransition,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
-        Get.lazyPut(() => GiftAddFormController());
       }),
     ),
 

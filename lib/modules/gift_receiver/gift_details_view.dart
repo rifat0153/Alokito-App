@@ -19,7 +19,7 @@ class GiftDetailsView extends StatelessWidget {
   static const route = 'giftdetail';
 
   GiftGiver giftGiver;
-  final GiftRequestController giftRequestController = Get.find();
+  final GiftReceiverController giftRequestController = Get.find();
   GiftController giftController = Get.find();
 
   @override

@@ -1,4 +1,4 @@
-import 'package:alokito_new/models/gift_giver/gift_request.dart';
+import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';

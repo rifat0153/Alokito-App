@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'gift_request.dart';
+part of 'gift_receiver.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,15 +12,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GiftReqeust _$GiftReqeustFromJson(Map<String, dynamic> json) {
-  return _GiftReqeust.fromJson(json);
+GiftReceiver _$GiftReceiverFromJson(Map<String, dynamic> json) {
+  return _GiftReceiver.fromJson(json);
 }
 
 /// @nodoc
-class _$GiftReqeustTearOff {
-  const _$GiftReqeustTearOff();
+class _$GiftReceiverTearOff {
+  const _$GiftReceiverTearOff();
 
-  _GiftReqeust call(
+  _GiftReceiver call(
       {String? id,
       String? giverId,
       GiftRequestStatus giftRequestStatus = GiftRequestStatus.requestDelivered,
@@ -28,7 +28,7 @@ class _$GiftReqeustTearOff {
           required LocalUser requester,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp createdAt}) {
-    return _GiftReqeust(
+    return _GiftReceiver(
       id: id,
       giverId: giverId,
       giftRequestStatus: giftRequestStatus,
@@ -37,16 +37,16 @@ class _$GiftReqeustTearOff {
     );
   }
 
-  GiftReqeust fromJson(Map<String, Object> json) {
-    return GiftReqeust.fromJson(json);
+  GiftReceiver fromJson(Map<String, Object> json) {
+    return GiftReceiver.fromJson(json);
   }
 }
 
 /// @nodoc
-const $GiftReqeust = _$GiftReqeustTearOff();
+const $GiftReceiver = _$GiftReceiverTearOff();
 
 /// @nodoc
-mixin _$GiftReqeust {
+mixin _$GiftReceiver {
   String? get id => throw _privateConstructorUsedError;
   String? get giverId => throw _privateConstructorUsedError;
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
@@ -57,15 +57,15 @@ mixin _$GiftReqeust {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GiftReqeustCopyWith<GiftReqeust> get copyWith =>
+  $GiftReceiverCopyWith<GiftReceiver> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GiftReqeustCopyWith<$Res> {
-  factory $GiftReqeustCopyWith(
-          GiftReqeust value, $Res Function(GiftReqeust) then) =
-      _$GiftReqeustCopyWithImpl<$Res>;
+abstract class $GiftReceiverCopyWith<$Res> {
+  factory $GiftReceiverCopyWith(
+          GiftReceiver value, $Res Function(GiftReceiver) then) =
+      _$GiftReceiverCopyWithImpl<$Res>;
   $Res call(
       {String? id,
       String? giverId,
@@ -79,12 +79,12 @@ abstract class $GiftReqeustCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GiftReqeustCopyWithImpl<$Res> implements $GiftReqeustCopyWith<$Res> {
-  _$GiftReqeustCopyWithImpl(this._value, this._then);
+class _$GiftReceiverCopyWithImpl<$Res> implements $GiftReceiverCopyWith<$Res> {
+  _$GiftReceiverCopyWithImpl(this._value, this._then);
 
-  final GiftReqeust _value;
+  final GiftReceiver _value;
   // ignore: unused_field
-  final $Res Function(GiftReqeust) _then;
+  final $Res Function(GiftReceiver) _then;
 
   @override
   $Res call({
@@ -127,11 +127,11 @@ class _$GiftReqeustCopyWithImpl<$Res> implements $GiftReqeustCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$GiftReqeustCopyWith<$Res>
-    implements $GiftReqeustCopyWith<$Res> {
-  factory _$GiftReqeustCopyWith(
-          _GiftReqeust value, $Res Function(_GiftReqeust) then) =
-      __$GiftReqeustCopyWithImpl<$Res>;
+abstract class _$GiftReceiverCopyWith<$Res>
+    implements $GiftReceiverCopyWith<$Res> {
+  factory _$GiftReceiverCopyWith(
+          _GiftReceiver value, $Res Function(_GiftReceiver) then) =
+      __$GiftReceiverCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? id,
@@ -147,14 +147,14 @@ abstract class _$GiftReqeustCopyWith<$Res>
 }
 
 /// @nodoc
-class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
-    implements _$GiftReqeustCopyWith<$Res> {
-  __$GiftReqeustCopyWithImpl(
-      _GiftReqeust _value, $Res Function(_GiftReqeust) _then)
-      : super(_value, (v) => _then(v as _GiftReqeust));
+class __$GiftReceiverCopyWithImpl<$Res> extends _$GiftReceiverCopyWithImpl<$Res>
+    implements _$GiftReceiverCopyWith<$Res> {
+  __$GiftReceiverCopyWithImpl(
+      _GiftReceiver _value, $Res Function(_GiftReceiver) _then)
+      : super(_value, (v) => _then(v as _GiftReceiver));
 
   @override
-  _GiftReqeust get _value => super._value as _GiftReqeust;
+  _GiftReceiver get _value => super._value as _GiftReceiver;
 
   @override
   $Res call({
@@ -164,7 +164,7 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
     Object? requester = freezed,
     Object? createdAt = freezed,
   }) {
-    return _then(_GiftReqeust(
+    return _then(_GiftReceiver(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -191,8 +191,8 @@ class __$GiftReqeustCopyWithImpl<$Res> extends _$GiftReqeustCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GiftReqeust extends _GiftReqeust {
-  const _$_GiftReqeust(
+class _$_GiftReceiver extends _GiftReceiver {
+  const _$_GiftReceiver(
       {this.id,
       this.giverId,
       this.giftRequestStatus = GiftRequestStatus.requestDelivered,
@@ -202,8 +202,8 @@ class _$_GiftReqeust extends _GiftReqeust {
           required this.createdAt})
       : super._();
 
-  factory _$_GiftReqeust.fromJson(Map<String, dynamic> json) =>
-      _$_$_GiftReqeustFromJson(json);
+  factory _$_GiftReceiver.fromJson(Map<String, dynamic> json) =>
+      _$_$_GiftReceiverFromJson(json);
 
   @override
   final String? id;
@@ -221,13 +221,13 @@ class _$_GiftReqeust extends _GiftReqeust {
 
   @override
   String toString() {
-    return 'GiftReqeust(id: $id, giverId: $giverId, giftRequestStatus: $giftRequestStatus, requester: $requester, createdAt: $createdAt)';
+    return 'GiftReceiver(id: $id, giverId: $giverId, giftRequestStatus: $giftRequestStatus, requester: $requester, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GiftReqeust &&
+        (other is _GiftReceiver &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.giverId, giverId) ||
@@ -255,28 +255,28 @@ class _$_GiftReqeust extends _GiftReqeust {
 
   @JsonKey(ignore: true)
   @override
-  _$GiftReqeustCopyWith<_GiftReqeust> get copyWith =>
-      __$GiftReqeustCopyWithImpl<_GiftReqeust>(this, _$identity);
+  _$GiftReceiverCopyWith<_GiftReceiver> get copyWith =>
+      __$GiftReceiverCopyWithImpl<_GiftReceiver>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GiftReqeustToJson(this);
+    return _$_$_GiftReceiverToJson(this);
   }
 }
 
-abstract class _GiftReqeust extends GiftReqeust {
-  const factory _GiftReqeust(
+abstract class _GiftReceiver extends GiftReceiver {
+  const factory _GiftReceiver(
       {String? id,
       String? giverId,
       GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required LocalUser requester,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp createdAt}) = _$_GiftReqeust;
-  const _GiftReqeust._() : super._();
+          required Timestamp createdAt}) = _$_GiftReceiver;
+  const _GiftReceiver._() : super._();
 
-  factory _GiftReqeust.fromJson(Map<String, dynamic> json) =
-      _$_GiftReqeust.fromJson;
+  factory _GiftReceiver.fromJson(Map<String, dynamic> json) =
+      _$_GiftReceiver.fromJson;
 
   @override
   String? get id => throw _privateConstructorUsedError;
@@ -292,6 +292,6 @@ abstract class _GiftReqeust extends GiftReqeust {
   Timestamp get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GiftReqeustCopyWith<_GiftReqeust> get copyWith =>
+  _$GiftReceiverCopyWith<_GiftReceiver> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -41,3 +41,8 @@ class GiftGiver with _$GiftGiver {
 
   factory GiftGiver.fromJson(Map<String, dynamic> json) => _$GiftGiverFromJson(json);
 }
+
+
+
+Map<String, dynamic> giftGiverToJson(GiftGiver giftGiver) => giftGiver.toJson();
+GiftGiver giftGiverFromJson(Map<String, dynamic> json) => GiftGiver.fromJson(json);
