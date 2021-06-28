@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 abstract class BaseNotificationService {
   Future<bool> add({required Notification notification, required String userId});
 
-  Future<List<Notification>> getAll({required String userId});
+  Stream<List<Notification>> getAll({required String userId});
 }
 
 class NotificationService extends BaseNotificationService {
@@ -26,7 +26,7 @@ class NotificationService extends BaseNotificationService {
   }
 
   @override
-  Future<List<Notification>> getAll({required String userId}) {
+  Stream<List<Notification>> getAll({required String userId}) {
     // TODO: implement getAll
     throw UnimplementedError();
   }

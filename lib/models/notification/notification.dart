@@ -12,9 +12,10 @@ class Notification with _$Notification {
 
   const factory Notification.data({
     String? id,
-    required String title,
+    required String text,
     @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
         required NotificationType notificationType,
+    required String releatedDocId,
   }) = _Notification;
 
   factory Notification.fromJson(Map<String, dynamic> json) => _$NotificationFromJson(json);

@@ -34,13 +34,15 @@ class _$NotificationTearOff {
 
   _Notification data(
       {String? id,
-      required String title,
+      required String text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          required NotificationType notificationType}) {
+          required NotificationType notificationType,
+      required String releatedDocId}) {
     return _Notification(
       id: id,
-      title: title,
+      text: text,
       notificationType: notificationType,
+      releatedDocId: releatedDocId,
     );
   }
 
@@ -59,9 +61,10 @@ mixin _$Notification {
     required TResult Function() loading,
     required TResult Function(
             String? id,
-            String title,
+            String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType)
+                NotificationType notificationType,
+            String releatedDocId)
         data,
   }) =>
       throw _privateConstructorUsedError;
@@ -70,9 +73,10 @@ mixin _$Notification {
     TResult Function()? loading,
     TResult Function(
             String? id,
-            String title,
+            String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType)?
+                NotificationType notificationType,
+            String releatedDocId)?
         data,
     required TResult orElse(),
   }) =>
@@ -152,9 +156,10 @@ class _$Loading implements Loading {
     required TResult Function() loading,
     required TResult Function(
             String? id,
-            String title,
+            String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType)
+                NotificationType notificationType,
+            String releatedDocId)
         data,
   }) {
     return loading();
@@ -166,9 +171,10 @@ class _$Loading implements Loading {
     TResult Function()? loading,
     TResult Function(
             String? id,
-            String title,
+            String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType)?
+                NotificationType notificationType,
+            String releatedDocId)?
         data,
     required TResult orElse(),
   }) {
@@ -219,9 +225,10 @@ abstract class _$NotificationCopyWith<$Res> {
       __$NotificationCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      String title,
+      String text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          NotificationType notificationType});
+          NotificationType notificationType,
+      String releatedDocId});
 }
 
 /// @nodoc
@@ -237,22 +244,27 @@ class __$NotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = freezed,
+    Object? text = freezed,
     Object? notificationType = freezed,
+    Object? releatedDocId = freezed,
   }) {
     return _then(_Notification(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String,
       notificationType: notificationType == freezed
           ? _value.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
               as NotificationType,
+      releatedDocId: releatedDocId == freezed
+          ? _value.releatedDocId
+          : releatedDocId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -262,9 +274,10 @@ class __$NotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
 class _$_Notification implements _Notification {
   const _$_Notification(
       {this.id,
-      required this.title,
+      required this.text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          required this.notificationType});
+          required this.notificationType,
+      required this.releatedDocId});
 
   factory _$_Notification.fromJson(Map<String, dynamic> json) =>
       _$_$_NotificationFromJson(json);
@@ -272,14 +285,16 @@ class _$_Notification implements _Notification {
   @override
   final String? id;
   @override
-  final String title;
+  final String text;
   @override
   @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
   final NotificationType notificationType;
+  @override
+  final String releatedDocId;
 
   @override
   String toString() {
-    return 'Notification.data(id: $id, title: $title, notificationType: $notificationType)';
+    return 'Notification.data(id: $id, text: $text, notificationType: $notificationType, releatedDocId: $releatedDocId)';
   }
 
   @override
@@ -288,19 +303,23 @@ class _$_Notification implements _Notification {
         (other is _Notification &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.text, text) ||
+                const DeepCollectionEquality().equals(other.text, text)) &&
             (identical(other.notificationType, notificationType) ||
                 const DeepCollectionEquality()
-                    .equals(other.notificationType, notificationType)));
+                    .equals(other.notificationType, notificationType)) &&
+            (identical(other.releatedDocId, releatedDocId) ||
+                const DeepCollectionEquality()
+                    .equals(other.releatedDocId, releatedDocId)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(notificationType);
+      const DeepCollectionEquality().hash(text) ^
+      const DeepCollectionEquality().hash(notificationType) ^
+      const DeepCollectionEquality().hash(releatedDocId);
 
   @JsonKey(ignore: true)
   @override
@@ -313,12 +332,13 @@ class _$_Notification implements _Notification {
     required TResult Function() loading,
     required TResult Function(
             String? id,
-            String title,
+            String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType)
+                NotificationType notificationType,
+            String releatedDocId)
         data,
   }) {
-    return data(id, title, notificationType);
+    return data(id, text, notificationType, releatedDocId);
   }
 
   @override
@@ -327,14 +347,15 @@ class _$_Notification implements _Notification {
     TResult Function()? loading,
     TResult Function(
             String? id,
-            String title,
+            String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType)?
+                NotificationType notificationType,
+            String releatedDocId)?
         data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(id, title, notificationType);
+      return data(id, text, notificationType, releatedDocId);
     }
     return orElse();
   }
@@ -370,17 +391,19 @@ class _$_Notification implements _Notification {
 abstract class _Notification implements Notification {
   const factory _Notification(
       {String? id,
-      required String title,
+      required String text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          required NotificationType notificationType}) = _$_Notification;
+          required NotificationType notificationType,
+      required String releatedDocId}) = _$_Notification;
 
   factory _Notification.fromJson(Map<String, dynamic> json) =
       _$_Notification.fromJson;
 
   String? get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  String get text => throw _privateConstructorUsedError;
   @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
   NotificationType get notificationType => throw _privateConstructorUsedError;
+  String get releatedDocId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$NotificationCopyWith<_Notification> get copyWith =>
       throw _privateConstructorUsedError;
