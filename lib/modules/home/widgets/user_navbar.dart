@@ -4,6 +4,7 @@ import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/auth/login_view.dart';
 import 'package:alokito_new/modules/connection/connection_view.dart';
+import 'package:alokito_new/modules/notification/notification_view.dart';
 import 'package:badges/badges.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,9 @@ class UserNavbar extends StatelessWidget {
           child: Icon(Icons.home, color: Colors.white, size: height * 0.05),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Get.to(() => NotificationView());
+          },
           child: true
               ? Badge(
                   badgeContent: Text('!'),
