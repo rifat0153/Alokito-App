@@ -6,13 +6,6 @@ part of 'notification.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$Loading _$_$LoadingFromJson(Map<String, dynamic> json) {
-  return _$Loading();
-}
-
-Map<String, dynamic> _$_$LoadingToJson(_$Loading instance) =>
-    <String, dynamic>{};
-
 _$_MyNotification _$_$_MyNotificationFromJson(Map<String, dynamic> json) {
   return _$_MyNotification(
     id: json['id'] as String?,

@@ -9,8 +9,6 @@ part 'notification.g.dart';
 
 @freezed
 class MyNotification with _$MyNotification {
-  const factory MyNotification.loading() = Loading;
-
   const factory MyNotification.data({
     String? id,
     required String text,

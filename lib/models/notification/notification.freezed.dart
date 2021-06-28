@@ -13,24 +13,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MyNotification _$MyNotificationFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
-    case 'loading':
-      return Loading.fromJson(json);
-    case 'data':
-      return _MyNotification.fromJson(json);
-
-    default:
-      throw FallThroughError();
-  }
+  return _MyNotification.fromJson(json);
 }
 
 /// @nodoc
 class _$MyNotificationTearOff {
   const _$MyNotificationTearOff();
-
-  Loading loading() {
-    return const Loading();
-  }
 
   _MyNotification data(
       {String? id,
@@ -59,9 +47,16 @@ const $MyNotification = _$MyNotificationTearOff();
 
 /// @nodoc
 mixin _$MyNotification {
+  String? get id => throw _privateConstructorUsedError;
+  String get text => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+  NotificationType get notificationType => throw _privateConstructorUsedError;
+  String get releatedDocId => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
     required TResult Function(
             String? id,
             String text,
@@ -75,7 +70,6 @@ mixin _$MyNotification {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function(
             String? id,
             String text,
@@ -90,18 +84,19 @@ mixin _$MyNotification {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
     required TResult Function(_MyNotification value) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
     TResult Function(_MyNotification value)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $MyNotificationCopyWith<MyNotification> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -109,6 +104,14 @@ abstract class $MyNotificationCopyWith<$Res> {
   factory $MyNotificationCopyWith(
           MyNotification value, $Res Function(MyNotification) then) =
       _$MyNotificationCopyWithImpl<$Res>;
+  $Res call(
+      {String? id,
+      String text,
+      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
+          NotificationType notificationType,
+      String releatedDocId,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp createdAt});
 }
 
 /// @nodoc
@@ -119,122 +122,47 @@ class _$MyNotificationCopyWithImpl<$Res>
   final MyNotification _value;
   // ignore: unused_field
   final $Res Function(MyNotification) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? text = freezed,
+    Object? notificationType = freezed,
+    Object? releatedDocId = freezed,
+    Object? createdAt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationType: notificationType == freezed
+          ? _value.notificationType
+          : notificationType // ignore: cast_nullable_to_non_nullable
+              as NotificationType,
+      releatedDocId: releatedDocId == freezed
+          ? _value.releatedDocId
+          : releatedDocId // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$MyNotificationCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
-
-  @override
-  Loading get _value => super._value as Loading;
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$Loading implements Loading {
-  const _$Loading();
-
-  factory _$Loading.fromJson(Map<String, dynamic> json) =>
-      _$_$LoadingFromJson(json);
-
-  @override
-  String toString() {
-    return 'MyNotification.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            String? id,
-            String text,
-            @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType,
-            String releatedDocId,
-            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-                Timestamp createdAt)
-        data,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(
-            String? id,
-            String text,
-            @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType,
-            String releatedDocId,
-            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-                Timestamp createdAt)?
-        data,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(_MyNotification value) data,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(_MyNotification value)? data,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$LoadingToJson(this)..['runtimeType'] = 'loading';
-  }
-}
-
-abstract class Loading implements MyNotification {
-  const factory Loading() = _$Loading;
-
-  factory Loading.fromJson(Map<String, dynamic> json) = _$Loading.fromJson;
-}
-
-/// @nodoc
-abstract class _$MyNotificationCopyWith<$Res> {
+abstract class _$MyNotificationCopyWith<$Res>
+    implements $MyNotificationCopyWith<$Res> {
   factory _$MyNotificationCopyWith(
           _MyNotification value, $Res Function(_MyNotification) then) =
       __$MyNotificationCopyWithImpl<$Res>;
+  @override
   $Res call(
       {String? id,
       String text,
@@ -358,7 +286,6 @@ class _$_MyNotification implements _MyNotification {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
     required TResult Function(
             String? id,
             String text,
@@ -375,7 +302,6 @@ class _$_MyNotification implements _MyNotification {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function(
             String? id,
             String text,
@@ -396,7 +322,6 @@ class _$_MyNotification implements _MyNotification {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
     required TResult Function(_MyNotification value) data,
   }) {
     return data(this);
@@ -405,7 +330,6 @@ class _$_MyNotification implements _MyNotification {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
     TResult Function(_MyNotification value)? data,
     required TResult orElse(),
   }) {
@@ -417,7 +341,7 @@ class _$_MyNotification implements _MyNotification {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MyNotificationToJson(this)..['runtimeType'] = 'data';
+    return _$_$_MyNotificationToJson(this);
   }
 }
 
@@ -434,13 +358,19 @@ abstract class _MyNotification implements MyNotification {
   factory _MyNotification.fromJson(Map<String, dynamic> json) =
       _$_MyNotification.fromJson;
 
+  @override
   String? get id => throw _privateConstructorUsedError;
+  @override
   String get text => throw _privateConstructorUsedError;
+  @override
   @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
   NotificationType get notificationType => throw _privateConstructorUsedError;
+  @override
   String get releatedDocId => throw _privateConstructorUsedError;
+  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp get createdAt => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$MyNotificationCopyWith<_MyNotification> get copyWith =>
       throw _privateConstructorUsedError;

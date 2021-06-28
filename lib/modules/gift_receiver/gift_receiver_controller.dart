@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_service.dart';
@@ -38,14 +39,17 @@ class GiftReceiverController extends GetxController {
     );
 
     var result = await giftRequestService.addGiftRequest(giftReceiver: giftReceiver);
+    if (result) await addNotificationForGiftRequest(giftReceiver);
+
     await showSuccessOrErrorMessage(result, 'Gift Add', 'Request Added', 'Something went wrong');
   }
 
-  Future<void> addNotification(GiftReceiver giftReceiver, GiftGiver giftGiver) async {
+  Future<void> addNotificationForGiftRequest(GiftReceiver giftReceiver) async {
     Uuid uuid = const Uuid();
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
-    String requesterId = Get.find<AuthController>().currentUser.value.id ?? '';
-    String giverId = giftGiver.uid;
+    String requesterId = giftReceiver.requester.id!;
+    String giverId = giftReceiver.giftGiver.uid;
+    String requesterName = giftReceiver.requester.userName;
 
     MyNotification requesterNotification = MyNotification.data(
         id: '${uuid.v4()}.${giftReceiver.id}',
@@ -54,10 +58,11 @@ class GiftReceiverController extends GetxController {
         releatedDocId: giftReceiver.id ?? '',
         createdAt: Timestamp.now());
 
-    MyNotification giverNotification = requesterNotification.maybeWhen(data: (value) => value , orElse: () => requesterNotification)  ;
+    MyNotification giverNotification =
+        requesterNotification.copyWith(text: 'Your gift offer $giftType is requested by $requesterName');
 
     await Get.find<NotificationController>().addNotification(userId: requesterId, notification: requesterNotification);
-    await Get.find<NotificationController>().addNotification(userId: requesterId, notification: requesterNotification);
+    await Get.find<NotificationController>().addNotification(userId: giverId, notification: giverNotification);
   }
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {
