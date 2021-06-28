@@ -13,6 +13,7 @@ _$_GiftReceiver _$_$_GiftReceiverFromJson(Map<String, dynamic> json) {
     giftRequestStatus: _$enumDecodeNullable(
             _$GiftRequestStatusEnumMap, json['giftRequestStatus']) ??
         GiftRequestStatus.requestDelivered,
+    giftGiver: giftGiverFromJson(json['giftGiver'] as Map<String, dynamic>),
     requester: localUserFromJson(json['requester'] as Map<String, dynamic>),
     createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
@@ -24,6 +25,7 @@ Map<String, dynamic> _$_$_GiftReceiverToJson(_$_GiftReceiver instance) =>
       'giverId': instance.giverId,
       'giftRequestStatus':
           _$GiftRequestStatusEnumMap[instance.giftRequestStatus],
+      'giftGiver': giftGiverToJson(instance.giftGiver),
       'requester': localUserToJson(instance.requester),
       'createdAt': timestampToJson(instance.createdAt),
     };

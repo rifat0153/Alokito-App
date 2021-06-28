@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';
@@ -17,6 +18,7 @@ class GiftReceiver with _$GiftReceiver {
     String? id,
     String? giverId,
     @Default(GiftRequestStatus.requestDelivered) GiftRequestStatus giftRequestStatus,
+    @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson) required GiftGiver giftGiver,
     @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
   }) = _GiftReceiver;

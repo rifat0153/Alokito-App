@@ -14,13 +14,13 @@ import 'package:get/get.dart';
 import 'package:location/location.dart';
 
 abstract class BaseGiftReceiverService {
+  Future<bool> addGiftRequest({required GiftReceiver giftReceiver});
+
   Future<bool> findGift({required String id});
 
   Future<bool> increaseNoOfTimesGiftRequested({required GiftGiver giftGiver});
 
   Future<bool> deleteGiftRequest({required GiftReceiver giftReqeust});
-
-  Future<bool> addGiftRequest({required GiftReceiver giftReceiver});
 
   Future<GiftReceiver> getGiftRequest({required GiftReceiver giftReqeust});
 
@@ -37,7 +37,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
   @override
   Future<bool> addGiftRequest({required GiftReceiver giftReceiver}) async {
     try {
-      await _firestore.collection('gift_receiver').add(giftReceiver.toJson());
+      await _firestore.collection('gift_receiver').doc(giftReceiver.id).set(giftReceiver.toJson());
       return true;
     } on FirebaseException catch (e) {
       throw GiftReceiverException(message: e.message);
