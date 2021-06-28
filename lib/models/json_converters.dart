@@ -78,6 +78,8 @@ int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
       return 3;
     case GiftRequestStatus.requestComplete:
       return 4;
+    case GiftRequestStatus.requestDelivered:
+      return 5;
     default:
       return -1;
   }
@@ -95,6 +97,8 @@ GiftRequestStatus giftRequestStatusFromJson(int json) {
       return GiftRequestStatus.requestCanceledByRequester;
     case 4:
       return GiftRequestStatus.requestComplete;
+    case 5:
+      return GiftRequestStatus.requestDelivered;
     default:
       return GiftRequestStatus.requestPending;
   }

@@ -15,7 +15,8 @@ enum GiftRequestStatus {
   requestConfirmed,
   requestCanceledByGiver,
   requestCanceledByRequester,
-  requestComplete
+  requestComplete,
+  requestDelivered,
 }
 
 enum GiftAskType {
