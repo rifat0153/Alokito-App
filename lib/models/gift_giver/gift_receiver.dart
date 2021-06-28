@@ -13,7 +13,7 @@ part 'gift_receiver.g.dart';
 class GiftReceiver with _$GiftReceiver {
   GiftReceiver._();
 
-  const factory GiftReceiver({
+  factory GiftReceiver({
     String? id,
     String? giverId,
     @Default(GiftRequestStatus.requestDelivered) GiftRequestStatus giftRequestStatus,

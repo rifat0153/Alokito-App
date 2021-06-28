@@ -192,7 +192,7 @@ class __$GiftReceiverCopyWithImpl<$Res> extends _$GiftReceiverCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GiftReceiver extends _GiftReceiver {
-  const _$_GiftReceiver(
+  _$_GiftReceiver(
       {this.id,
       this.giverId,
       this.giftRequestStatus = GiftRequestStatus.requestDelivered,
@@ -265,7 +265,7 @@ class _$_GiftReceiver extends _GiftReceiver {
 }
 
 abstract class _GiftReceiver extends GiftReceiver {
-  const factory _GiftReceiver(
+  factory _GiftReceiver(
       {String? id,
       String? giverId,
       GiftRequestStatus giftRequestStatus,
@@ -273,7 +273,7 @@ abstract class _GiftReceiver extends GiftReceiver {
           required LocalUser requester,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           required Timestamp createdAt}) = _$_GiftReceiver;
-  const _GiftReceiver._() : super._();
+  _GiftReceiver._() : super._();
 
   factory _GiftReceiver.fromJson(Map<String, dynamic> json) =
       _$_GiftReceiver.fromJson;

@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_receiver_exception.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_request_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
@@ -13,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:location/location.dart';
 
 abstract class BaseGiftReceiverService {
-  Future<bool> findGift({required GiftGiver giftGiver});
+  Future<bool> findGift({required String id});
 
   Future<bool> increaseNoOfTimesGiftRequested({required GiftGiver giftGiver});
 
@@ -39,7 +40,17 @@ class GiftReceiverService implements BaseGiftReceiverService {
       await _firestore.collection('gift_receiver').add(giftReceiver.toJson());
       return true;
     } on FirebaseException catch (e) {
-      return false;
+      throw GiftReceiverException(message: e.message);
+    }
+  }
+
+  @override
+  Future<bool> findGift({required String id}) async {
+    try {
+      var doc = await _firestore.collection('gift_receiver').doc(id).get();
+      return doc.exists ? true : false;
+    } on FirebaseException catch (e) {
+      throw GiftReceiverException(message: e.message);
     }
   }
 
@@ -52,12 +63,6 @@ class GiftReceiverService implements BaseGiftReceiverService {
   @override
   Future<bool> deleteGiftRequest({required GiftReceiver giftReqeust}) {
     // TODO: implement deleteGiftRequest
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<bool> findGift({required GiftGiver giftGiver}) {
-    // TODO: implement findGift
     throw UnimplementedError();
   }
 
