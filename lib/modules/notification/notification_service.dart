@@ -2,11 +2,12 @@ import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/modules/notification/notification_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
 abstract class BaseNotificationService {
   Future<bool> add({required MyNotification notification, required String userId});
 
-  Stream<List<MyNotification>> getAll({required String userId});
+  Stream<List<MyNotification>> streamAllNotifications({required String userId});
 }
 
 class NotificationService extends BaseNotificationService {
@@ -26,8 +27,16 @@ class NotificationService extends BaseNotificationService {
   }
 
   @override
-  Stream<List<MyNotification>> getAll({required String userId}) {
-    // TODO: implement getAll
-    throw UnimplementedError();
+  Stream<List<MyNotification>> streamAllNotifications({required String userId}) {
+    var stream = _firestore.collection('users').doc(userId).collection('notifications').snapshots().map((docList) {
+      List<MyNotification> list = [];
+      docList.docs.forEach((doc) {
+        MyNotification notification = MyNotification.fromJson(doc.data());
+
+        list.add(notification);
+      });
+      return list;
+    });
+    return stream;
   }
 }

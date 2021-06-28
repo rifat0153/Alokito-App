@@ -1,4 +1,5 @@
 import 'package:alokito_new/models/notification/notification.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,16 @@ class NotificationController extends GetxController {
   final NotificationService notificationService;
 
   RxBool loading = RxBool(false);
-  Rx<List<MyNotification>> giftList = Rx<List<MyNotification>>([]);
+  Rx<List<MyNotification>> notificationList = Rx<List<MyNotification>>([]);
+
+  @override
+  void onInit() async {
+    super.onInit();
+  }
+
+  void bindNotificationStream(String userId) {
+    notificationList.bindStream(notificationService.streamAllNotifications(userId: userId));
+  }
 
   Future<void> addNotification({required String userId, required MyNotification notification}) async {
     var result = await notificationService.add(notification: notification, userId: userId);
