@@ -33,6 +33,7 @@ class NotificationService extends BaseNotificationService {
         .doc(userId)
         .collection('notifications')
         .orderBy('createdAt')
+        .limit(20)
         .snapshots()
         .map((docList) {
       List<MyNotification> list = [];

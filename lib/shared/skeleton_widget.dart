@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SkeletonWidget extends StatelessWidget {
-  SkeletonWidget({required this.title, required this.assetPath, required this.child});
+  SkeletonWidget({required this.titleWidget, required this.assetPath, required this.child});
 
-  String title;
+  Widget titleWidget;
   String assetPath;
   Widget child;
 
@@ -26,7 +26,7 @@ class SkeletonWidget extends StatelessWidget {
             onPressed: () => Get.back(),
           ),
           titleSpacing: 0,
-          title: MyText(title, fontSize: 25, fontWeight: FontWeight.bold),
+          title: titleWidget,
         ),
         body: Stack(
           children: [

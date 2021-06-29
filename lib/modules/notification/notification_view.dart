@@ -19,7 +19,7 @@ class NotificationView extends StatelessWidget {
     controller.bindNotificationStream(Get.find<AuthController>().currentUser.value.id ?? '');
 
     return SkeletonWidget(
-      title: 'Notification',
+      titleWidget: MyText('Notification', fontSize: 20, fontWeight: FontWeight.bold),
       assetPath: 'assets/images/notification-background.png',
       child: Container(
         height: Get.height,
@@ -41,7 +41,10 @@ class NotificationView extends StatelessWidget {
                     itemCount: controller.notificationList.value.length,
                     itemBuilder: (_, i) {
                       if (controller.notificationList.value[i].notificationType == NotificationType.giftGiver) {
-                        return GiftGiverNotification(notification: controller.notificationList.value[i]);
+                        return GiftGiverNotification(
+                          key: ValueKey(controller.notificationList.value[i].id),
+                          notification: controller.notificationList.value[i],
+                        );
                       }
 
                       return Text('gift ask');
