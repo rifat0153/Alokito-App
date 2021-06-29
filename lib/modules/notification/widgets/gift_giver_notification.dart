@@ -72,7 +72,7 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
                 ? Text('empty')
                 : Expanded(
                     child: GestureDetector(
-                      onTap: () => Get.to(() => GiftGiverNotificationDetailsView()),
+                      onTap: () => Get.to(() => GiftGiverNotificationDetailsView(giftReceiver: giftReceiver)),
                       child: Container(
                         decoration: const BoxDecoration(
                           color: Colors.white,
