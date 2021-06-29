@@ -46,7 +46,6 @@ class NotificationView extends StatelessWidget {
                           notification: controller.notificationList.value[i],
                         );
                       }
-
                       return Text('gift ask');
                     }),
               ),

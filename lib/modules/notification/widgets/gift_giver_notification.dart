@@ -84,11 +84,11 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: [
-                              MyText(widget.notification.text, fontSize: 15),
+                              MyText(widget.notification.text, fontWeight: FontWeight.bold, fontSize: 13),
                               Spacer(),
                               Row(
                                 children: [
-                                  Text('$difference hours ago'),
+                                  MyText('$difference hours ago', fontSize: 12),
                                 ],
                               ),
                             ],

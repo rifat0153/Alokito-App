@@ -13,6 +13,9 @@ class MyText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       data,
+      softWrap: true,
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: color,
         fontWeight: fontWeight,
