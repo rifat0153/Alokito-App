@@ -28,7 +28,13 @@ class NotificationService extends BaseNotificationService {
 
   @override
   Stream<List<MyNotification>> streamAllNotifications({required String userId}) {
-    var stream = _firestore.collection('users').doc(userId).collection('notifications').snapshots().map((docList) {
+    var stream = _firestore
+        .collection('users')
+        .doc(userId)
+        .collection('notifications')
+        .orderBy('createdAt')
+        .snapshots()
+        .map((docList) {
       List<MyNotification> list = [];
       docList.docs.forEach((doc) {
         MyNotification notification = MyNotification.fromJson(doc.data());
@@ -37,6 +43,7 @@ class NotificationService extends BaseNotificationService {
       });
       return list;
     });
+
     return stream;
   }
 }

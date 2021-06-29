@@ -22,6 +22,13 @@ class GiftReceiverController extends GetxController {
   RxBool showDialog = RxBool(false);
   RxBool requestExists = RxBool(false);
 
+  Future<GiftReceiver?> getGift(String id) async {
+    print('GiftReceiverController: getGift call made');
+    GiftReceiver? doc = await giftRequestService.getGiftRequest(id: id);
+
+    return doc == null ? null : doc;
+  }
+
   Future<void> addGiftRequestAndNotification(GiftGiver giftGiver) async {
     var found = await giftRequestService.findGift(id: Get.find<AuthController>().currentUser.value.id ?? '');
 

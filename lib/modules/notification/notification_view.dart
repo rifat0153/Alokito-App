@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
@@ -5,6 +6,8 @@ import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import 'widgets/gift_giver_notification.dart';
 
 class NotificationView extends StatelessWidget {
   NotificationView({Key? key}) : super(key: key);
@@ -32,7 +35,18 @@ class NotificationView extends StatelessWidget {
               color: Colors.black,
             ),
             Obx(
-              () => MyText(controller.notificationList.value.length.toString()),
+              () => Expanded(
+                child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: controller.notificationList.value.length,
+                    itemBuilder: (_, i) {
+                      if (controller.notificationList.value[i].notificationType == NotificationType.giftGiver) {
+                        return GiftGiverNotification(notification: controller.notificationList.value[i]);
+                      }
+
+                      return Text('gift ask');
+                    }),
+              ),
             ),
           ],
         ),
