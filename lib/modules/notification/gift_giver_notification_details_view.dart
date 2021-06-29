@@ -32,77 +32,18 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
       assetPath: 'assets/images/gift_details.png',
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.s,
         children: [
           SizedBox(height: context.height * 0.08),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                        width: Get.width * 0.7,
-                        height: 60,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Flexible(
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: CircleAvatar(
-                                      backgroundImage: NetworkImage(giftReceiver!.requester.imageUrl!),
-                                      radius: 30,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Flexible(
-                                flex: 3,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    MyText(giftReceiver!.requester.userName, fontWeight: FontWeight.bold),
-                                    const SizedBox(height: 8),
-                                    MyText('Joined $requesterIdCreatedAgo months ago'),
-                                  ],
-                                ))
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: Get.width * 0.7,
-                        child: Row(
-                          children: [
-                            for (var i = 0; i < 5; i++)
-                              giftReceiver!.requester.averageRating.toInt() > i
-                                  ? const Icon(
-                                      Icons.star,
-                                      size: 15,
-                                      color: Colors.orange,
-                                    )
-                                  : const Icon(
-                                      Icons.star,
-                                      size: 15,
-                                      color: Colors.black,
-                                    ),
-                            Spacer(),
-                            const Icon(MdiIcons.mapMarker),
-                            MyText('$distanceBetweenRequesterAndGiver km away'),
-                            Spacer(),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                  _RequesterDetailWidget(
+                      giftReceiver: giftReceiver,
+                      requesterIdCreatedAgo: requesterIdCreatedAgo,
+                      distanceBetweenRequesterAndGiver: distanceBetweenRequesterAndGiver),
                   const SizedBox(height: 1000),
-                  Text(
-                    "Don't worry...",
-                    style: boldFontStyle.copyWith(fontSize: 24),
-                  ),
                 ],
               ),
             ),
@@ -113,6 +54,82 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class _RequesterDetailWidget extends StatelessWidget {
+  const _RequesterDetailWidget({
+    Key? key,
+    required this.giftReceiver,
+    required this.requesterIdCreatedAgo,
+    required this.distanceBetweenRequesterAndGiver,
+  }) : super(key: key);
+
+  final GiftReceiver? giftReceiver;
+  final int requesterIdCreatedAgo;
+  final double distanceBetweenRequesterAndGiver;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: Get.width * 0.7,
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(giftReceiver!.requester.imageUrl!),
+                        radius: 30,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16),
+              Flexible(
+                  flex: 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MyText(giftReceiver!.requester.userName, fontWeight: FontWeight.bold),
+                      const SizedBox(height: 8),
+                      MyText('Joined $requesterIdCreatedAgo months ago'),
+                    ],
+                  ))
+            ],
+          ),
+        ),
+        Container(
+          width: Get.width * 0.7,
+          child: Row(
+            children: [
+              for (var i = 0; i < 5; i++)
+                giftReceiver!.requester.averageRating.toInt() > i
+                    ? const Icon(
+                        Icons.star,
+                        size: 15,
+                        color: Colors.orange,
+                      )
+                    : const Icon(
+                        Icons.star,
+                        size: 15,
+                        color: Colors.black,
+                      ),
+              const SizedBox(width: 16),
+              const Icon(MdiIcons.mapMarker),
+              MyText('$distanceBetweenRequesterAndGiver km away'),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
