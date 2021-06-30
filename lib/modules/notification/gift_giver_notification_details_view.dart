@@ -32,7 +32,6 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
       assetPath: 'assets/images/gift_details.png',
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.s,
         children: [
           SizedBox(height: context.height * 0.08),
           Expanded(
@@ -43,16 +42,42 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
                       giftReceiver: giftReceiver,
                       requesterIdCreatedAgo: requesterIdCreatedAgo,
                       distanceBetweenRequesterAndGiver: distanceBetweenRequesterAndGiver),
+                  _CommentWidget(giftReceiver: giftReceiver),
+                  
                   const SizedBox(height: 1000),
                 ],
               ),
             ),
           ),
           Container(
-            color: Colors.transparent,
+            color: Colors.blue,
             height: Get.height * 0.08,
           )
         ],
+      ),
+    );
+  }
+}
+
+class _CommentWidget extends StatelessWidget {
+  const _CommentWidget({
+    Key? key,
+    required this.giftReceiver,
+  }) : super(key: key);
+
+  final GiftReceiver? giftReceiver;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(5)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(giftReceiver!.comment),
+        ),
       ),
     );
   }
