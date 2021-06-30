@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
@@ -38,12 +40,14 @@ class AuthController extends GetxController {
         .updateLocalUser(currentUser.value.copyWith(hasGiftAskRequest: !currentUser.value.hasGiftAskRequest));
   }
 
-  Future<void> localUserHasNotification() async {
-    await authService.updateLocalUser(currentUser.value.copyWith(hasNotifications: true));
+  Future<void> userHasNotification(String id) async {
+    await authService.updateUserNotificationStatus(id, true);
   }
 
-  Future<void> localUserDoesNotHaveNotification() async {
-    await authService.updateLocalUser(currentUser.value.copyWith(hasNotifications: false));
+  Future<void> userDoesNotHaveNotification() async {
+    if (currentUser.value.hasNotifications) {
+      await authService.updateUserNotificationStatus(currentUser.value.id!, false);
+    }
   }
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {

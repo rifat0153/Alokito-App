@@ -22,6 +22,7 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
 
   Future<void> getGift() async {
     var data = await giftReceiverController.getGift(widget.notification.releatedDocId);
+
     setState(() {
       giftReceiver = data;
     });

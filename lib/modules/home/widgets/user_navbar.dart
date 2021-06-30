@@ -26,17 +26,19 @@ class UserNavbar extends StatelessWidget {
           onTap: () {},
           child: Icon(Icons.home, color: Colors.white, size: height * 0.05),
         ),
-        GestureDetector(
-          onTap: () {
-            Get.to(() => NotificationView());
-          },
-          child: authController.currentUser.value.hasNotifications
-              ? Badge(
-                  badgeContent: Text('!'),
-                  badgeColor: Colors.white,
-                  child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
-                )
-              : Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
+        Obx(
+          () => GestureDetector(
+            onTap: () {
+              Get.to(() => NotificationView());
+            },
+            child: authController.currentUser.value.hasNotifications
+                ? Badge(
+                    badgeContent: Text('!'),
+                    badgeColor: Colors.white,
+                    child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
+                  )
+                : Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
+          ),
         ),
         GestureDetector(
           onTap: () {},

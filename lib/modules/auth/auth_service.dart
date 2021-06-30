@@ -19,6 +19,8 @@ import '../../models/user/local_user.dart';
 abstract class BaseAuthService {
   Future<bool> updateLocalUser(LocalUser localUser);
 
+  Future<bool> updateUserNotificationStatus(String id, bool notificationStatus);
+
   Future<String> signIn({required String email, required String password});
 
   Stream<LocalUser> loggedInUserStream();
@@ -52,6 +54,17 @@ class AuthService implements BaseAuthService {
   Future<bool> updateLocalUser(LocalUser localUser) async {
     try {
       await _firestore.collection('users').doc(localUser.id).update(localUser.toJson());
+
+      return true;
+    } on FirebaseAuthException catch (e) {
+      throw AuthException(message: e.message);
+    }
+  }
+
+  @override
+  Future<bool> updateUserNotificationStatus(String id, bool notificationStatus) async {
+    try {
+      await _firestore.collection('users').doc(id).update({'hasNotifications': notificationStatus});
 
       return true;
     } on FirebaseAuthException catch (e) {

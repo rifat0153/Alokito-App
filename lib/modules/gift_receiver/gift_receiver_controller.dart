@@ -48,7 +48,6 @@ class GiftReceiverController extends GetxController {
 
     var result = await giftRequestService.addGiftRequest(giftReceiver: giftReceiver);
 
-    
     if (result) await addNotificationForGiftRequest(giftReceiver);
 
     await showSuccessOrErrorMessage(result, 'Gift Add', 'Request Added', 'Something went wrong');
@@ -73,6 +72,9 @@ class GiftReceiverController extends GetxController {
 
     await Get.find<NotificationController>().addNotification(userId: requesterId, notification: requesterNotification);
     await Get.find<NotificationController>().addNotification(userId: giverId, notification: giverNotification);
+
+    await Get.find<AuthController>().userHasNotification(requesterId);
+    await Get.find<AuthController>().userHasNotification(giverId);
   }
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {
