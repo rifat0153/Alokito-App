@@ -17,6 +17,7 @@ class GiftReceiver with _$GiftReceiver {
   factory GiftReceiver({
     String? id,
     String? giverId,
+    required String comment,
     @Default(GiftRequestStatus.requestDelivered) GiftRequestStatus giftRequestStatus,
     @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson) required GiftGiver giftGiver,
     @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,

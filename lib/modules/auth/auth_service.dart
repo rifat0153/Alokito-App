@@ -17,9 +17,10 @@ import 'package:flutter/material.dart';
 import '../../models/user/local_user.dart';
 
 abstract class BaseAuthService {
+  Future<bool> updateLocalUser(LocalUser localUser);
+
   Future<String> signIn({required String email, required String password});
 
-  // For finding out if user is admin or not
   Stream<LocalUser> loggedInUserStream();
 
   // Sign Up function
@@ -32,9 +33,9 @@ abstract class BaseAuthService {
     required File localImageFile,
   });
 
-  uploadUserAndImage(LocalUser user, bool isUpdating, File localFile);
+  Future<void> uploadUserAndImage(LocalUser user, bool isUpdating, File localFile);
 
-  uploadUser(LocalUser user, bool isUpdating, {String? imageUrl});
+  Future<void> uploadUser(LocalUser user, bool isUpdating, {String? imageUrl});
 
   Stream<User?> get authStateChanges;
 
@@ -42,17 +43,26 @@ abstract class BaseAuthService {
 }
 
 class AuthService implements BaseAuthService {
-  final _firebaseAuth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
+  AuthService(this._firebaseAuth, this._firestore);
+
+  final FirebaseAuth _firebaseAuth;
+  final FirebaseFirestore _firestore;
+
+  @override
+  Future<bool> updateLocalUser(LocalUser localUser) async {
+    try {
+      await _firestore.collection('users').doc(localUser.id).update(localUser.toJson());
+
+      return true;
+    } on FirebaseAuthException catch (e) {
+      throw AuthException(message: e.message);
+    }
+  }
 
   @override
   Future<String> signIn({required String email, required String password}) async {
     try {
-      // await EasyLoading.show(status: 'loading...');
-
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-
-      // await EasyLoading.dismiss();
 
       return _firebaseAuth.currentUser!.uid;
     } on FirebaseAuthException catch (e) {
@@ -126,7 +136,8 @@ class AuthService implements BaseAuthService {
     }
   }
 
-  uploadUserAndImage(LocalUser user, bool isUpdating, File localFile) async {
+  @override
+  Future<void> uploadUserAndImage(LocalUser user, bool isUpdating, File localFile) async {
     if (localFile.path.length > 0) {
       print('Uploading Image');
 
@@ -146,20 +157,20 @@ class AuthService implements BaseAuthService {
 
       String url = await firebaseStorageRef.getDownloadURL();
       print('Image DownloadUrl url: $url');
-      uploadUser(user, isUpdating, imageUrl: url);
+      await uploadUser(user, isUpdating, imageUrl: url);
     } else {
       print('Skipping Image Upload');
-      uploadUser(user, isUpdating);
+      await uploadUser(user, isUpdating);
     }
   }
 
-  uploadUser(LocalUser user, bool isUpdating, {String? imageUrl}) async {
+  @override
+  Future<void> uploadUser(LocalUser user, bool isUpdating, {String? imageUrl}) async {
     final CollectionReference userRef = FirebaseFirestore.instance.collection('users');
 
     if (imageUrl != null) {
       user = user.copyWith(imageUrl: imageUrl);
     }
-
     try {
       if (isUpdating) {
         await userRef.doc(user.id).update(user.toJson());
@@ -173,20 +184,15 @@ class AuthService implements BaseAuthService {
         await documentRef.set(user.toJson());
         print('Uploaded user successfully: ${user.toString()}');
       }
-
-      // EasyLoading.showSuccess('Successful!');
-      // EasyLoading.dismiss();
-      // EasyLoading.showToast('Toast');
-    } catch (e) {
-      // EasyLoading.showError('Action Failed');
-      print(e.toString());
+    } on FirebaseException catch (e) {
+      throw AuthException(message: e.message);
     }
-
-    // EasyLoading.dismiss();
   }
 
+  @override
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
+  @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }

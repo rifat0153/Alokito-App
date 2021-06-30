@@ -10,6 +10,7 @@ _$_GiftReceiver _$_$_GiftReceiverFromJson(Map<String, dynamic> json) {
   return _$_GiftReceiver(
     id: json['id'] as String?,
     giverId: json['giverId'] as String?,
+    comment: json['comment'] as String,
     giftRequestStatus: _$enumDecodeNullable(
             _$GiftRequestStatusEnumMap, json['giftRequestStatus']) ??
         GiftRequestStatus.requestDelivered,
@@ -23,6 +24,7 @@ Map<String, dynamic> _$_$_GiftReceiverToJson(_$_GiftReceiver instance) =>
     <String, dynamic>{
       'id': instance.id,
       'giverId': instance.giverId,
+      'comment': instance.comment,
       'giftRequestStatus':
           _$GiftRequestStatusEnumMap[instance.giftRequestStatus],
       'giftGiver': giftGiverToJson(instance.giftGiver),

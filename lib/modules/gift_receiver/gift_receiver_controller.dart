@@ -40,6 +40,7 @@ class GiftReceiverController extends GetxController {
     GiftReceiver giftReceiver = GiftReceiver(
       id: Get.find<AuthController>().currentUser.value.id,
       giftRequestStatus: GiftRequestStatus.requestPending,
+      comment: requesterMessage.value,
       giftGiver: giftGiver,
       requester: Get.find<AuthController>().currentUser.value,
       createdAt: Timestamp.now(),

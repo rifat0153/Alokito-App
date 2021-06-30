@@ -19,6 +19,8 @@ class LocalUser with _$LocalUser {
     @Default(0) double averageRating,
     required String userName,
     required String email,
+    @Default(false) bool hasGiftRequest,
+    @Default(false) bool hasGiftAskRequest,
     String? imageUrl,
     @Default(false) bool hasNotifications,
     @Default('user') String role,

@@ -93,7 +93,7 @@ class GiftAskController extends GetxController {
       latitude: currentUserPosition.value.latitude,
       longitude: currentUserPosition.value.longitude,
       searchRadius: searchRadius.value,
-      userId: Get.find<AuthController>().auth.currentUser?.uid ?? '',
+      userId: Get.find<AuthController>().currentUser.value.id ?? '',
     ));
   }
 
@@ -122,7 +122,7 @@ class GiftAskController extends GetxController {
       createdAt: Timestamp.now(),
     );
 
-    String userId = Get.find<AuthController>().auth.currentUser?.uid ?? '';
+    String userId = Get.find<AuthController>().currentUser.value.id ?? '';
     bool giftExists = await giftAskService.findGiftById(userId);
     if (giftExists) {
       loading.value = false;

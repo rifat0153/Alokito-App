@@ -12,25 +12,11 @@ import '../../models/user/local_user.dart';
 import 'auth_service.dart';
 
 class AuthController extends GetxController {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-
-  Rx<AuthService> authService = AuthService().obs;
-  final currentUser = initialUser.obs;
+  Rx<AuthService> authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance).obs;
+  final Rx<LocalUser> currentUser = initialUser.obs;
 
   final Rx<String> firebaseUser = ''.obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
-
-  // final currentUserName = ''.obs;
-  // final currentUserImageUrl = ''.obs;
-  // final currentUserGiftOffered = 0.obs;
-  // final currentUserGiftReceived = 0.obs;
-  // final currentUserCreatedAt = Timestamp.now().obs;
-  // final currentUserLocation = ''.obs;
-  // final currentUserRating = 0.0.obs;
-  // final currentUserTotalRating = 0.0.obs;
-  // final currentUserRatingSum = 0.0.obs;
-  // final currentUserHasNotifications = false.obs;
-  // final currentUserPosition = const MyPosition(geohash: '', geopoint: GeoPoint(0, 0)).obs;
 
   @override
   void onInit() {
@@ -63,7 +49,8 @@ class AuthController extends GetxController {
 
   Future<void> getUserInfoAndSetCurrentUser() async {
     print('AuthController: getting user form DB call');
-    var userDoc = await FirebaseFirestore.instance.collection('users').doc(auth.currentUser?.uid).get();
+    var userDoc =
+        await FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser?.uid ?? '').get();
     if (userDoc.exists) {
       LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
       currentUser.value = localUser;

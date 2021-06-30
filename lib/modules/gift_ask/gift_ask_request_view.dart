@@ -102,7 +102,7 @@ class _GiftAskRequestTile extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Width is $width');
 
-    return giftAskController.filteredGiftRequestList.value[index].id == authController.auth.currentUser?.uid
+    return giftAskController.filteredGiftRequestList.value[index].id == authController.currentUser.value.id
         ? Container()
         : GestureDetector(
             onTap: () {

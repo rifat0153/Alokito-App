@@ -23,6 +23,7 @@ class _$GiftReceiverTearOff {
   _GiftReceiver call(
       {String? id,
       String? giverId,
+      required String comment,
       GiftRequestStatus giftRequestStatus = GiftRequestStatus.requestDelivered,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           required GiftGiver giftGiver,
@@ -33,6 +34,7 @@ class _$GiftReceiverTearOff {
     return _GiftReceiver(
       id: id,
       giverId: giverId,
+      comment: comment,
       giftRequestStatus: giftRequestStatus,
       giftGiver: giftGiver,
       requester: requester,
@@ -52,6 +54,7 @@ const $GiftReceiver = _$GiftReceiverTearOff();
 mixin _$GiftReceiver {
   String? get id => throw _privateConstructorUsedError;
   String? get giverId => throw _privateConstructorUsedError;
+  String get comment => throw _privateConstructorUsedError;
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
   GiftGiver get giftGiver => throw _privateConstructorUsedError;
@@ -74,6 +77,7 @@ abstract class $GiftReceiverCopyWith<$Res> {
   $Res call(
       {String? id,
       String? giverId,
+      String comment,
       GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           GiftGiver giftGiver,
@@ -98,6 +102,7 @@ class _$GiftReceiverCopyWithImpl<$Res> implements $GiftReceiverCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? giverId = freezed,
+    Object? comment = freezed,
     Object? giftRequestStatus = freezed,
     Object? giftGiver = freezed,
     Object? requester = freezed,
@@ -112,6 +117,10 @@ class _$GiftReceiverCopyWithImpl<$Res> implements $GiftReceiverCopyWith<$Res> {
           ? _value.giverId
           : giverId // ignore: cast_nullable_to_non_nullable
               as String?,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String,
       giftRequestStatus: giftRequestStatus == freezed
           ? _value.giftRequestStatus
           : giftRequestStatus // ignore: cast_nullable_to_non_nullable
@@ -156,6 +165,7 @@ abstract class _$GiftReceiverCopyWith<$Res>
   $Res call(
       {String? id,
       String? giverId,
+      String comment,
       GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           GiftGiver giftGiver,
@@ -184,6 +194,7 @@ class __$GiftReceiverCopyWithImpl<$Res> extends _$GiftReceiverCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? giverId = freezed,
+    Object? comment = freezed,
     Object? giftRequestStatus = freezed,
     Object? giftGiver = freezed,
     Object? requester = freezed,
@@ -198,6 +209,10 @@ class __$GiftReceiverCopyWithImpl<$Res> extends _$GiftReceiverCopyWithImpl<$Res>
           ? _value.giverId
           : giverId // ignore: cast_nullable_to_non_nullable
               as String?,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String,
       giftRequestStatus: giftRequestStatus == freezed
           ? _value.giftRequestStatus
           : giftRequestStatus // ignore: cast_nullable_to_non_nullable
@@ -224,6 +239,7 @@ class _$_GiftReceiver extends _GiftReceiver {
   _$_GiftReceiver(
       {this.id,
       this.giverId,
+      required this.comment,
       this.giftRequestStatus = GiftRequestStatus.requestDelivered,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           required this.giftGiver,
@@ -240,6 +256,8 @@ class _$_GiftReceiver extends _GiftReceiver {
   final String? id;
   @override
   final String? giverId;
+  @override
+  final String comment;
   @JsonKey(defaultValue: GiftRequestStatus.requestDelivered)
   @override
   final GiftRequestStatus giftRequestStatus;
@@ -255,7 +273,7 @@ class _$_GiftReceiver extends _GiftReceiver {
 
   @override
   String toString() {
-    return 'GiftReceiver(id: $id, giverId: $giverId, giftRequestStatus: $giftRequestStatus, giftGiver: $giftGiver, requester: $requester, createdAt: $createdAt)';
+    return 'GiftReceiver(id: $id, giverId: $giverId, comment: $comment, giftRequestStatus: $giftRequestStatus, giftGiver: $giftGiver, requester: $requester, createdAt: $createdAt)';
   }
 
   @override
@@ -267,6 +285,9 @@ class _$_GiftReceiver extends _GiftReceiver {
             (identical(other.giverId, giverId) ||
                 const DeepCollectionEquality()
                     .equals(other.giverId, giverId)) &&
+            (identical(other.comment, comment) ||
+                const DeepCollectionEquality()
+                    .equals(other.comment, comment)) &&
             (identical(other.giftRequestStatus, giftRequestStatus) ||
                 const DeepCollectionEquality()
                     .equals(other.giftRequestStatus, giftRequestStatus)) &&
@@ -286,6 +307,7 @@ class _$_GiftReceiver extends _GiftReceiver {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giverId) ^
+      const DeepCollectionEquality().hash(comment) ^
       const DeepCollectionEquality().hash(giftRequestStatus) ^
       const DeepCollectionEquality().hash(giftGiver) ^
       const DeepCollectionEquality().hash(requester) ^
@@ -306,6 +328,7 @@ abstract class _GiftReceiver extends GiftReceiver {
   factory _GiftReceiver(
       {String? id,
       String? giverId,
+      required String comment,
       GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           required GiftGiver giftGiver,
@@ -322,6 +345,8 @@ abstract class _GiftReceiver extends GiftReceiver {
   String? get id => throw _privateConstructorUsedError;
   @override
   String? get giverId => throw _privateConstructorUsedError;
+  @override
+  String get comment => throw _privateConstructorUsedError;
   @override
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @override
