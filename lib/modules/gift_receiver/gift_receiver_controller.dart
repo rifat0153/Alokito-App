@@ -47,8 +47,9 @@ class GiftReceiverController extends GetxController {
     );
 
     var result = await giftRequestService.addGiftRequest(giftReceiver: giftReceiver);
-
-    if (result) await addNotificationForGiftRequest(giftReceiver);
+    if (result) {
+      await addNotificationForGiftRequest(giftReceiver);
+    }
 
     await showSuccessOrErrorMessage(result, 'Gift Add', 'Request Added', 'Something went wrong');
   }

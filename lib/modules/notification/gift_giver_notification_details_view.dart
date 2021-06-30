@@ -66,12 +66,7 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
               ),
             ),
           ),
-          CovidGuideLines(),
-          // Container(
-          //   // color: Colors.blue,
-          //   height: Get.height * 0.08,
-          //   child: CovidGuideLines(),
-          // )
+          const Padding(padding: EdgeInsets.all(8.0), child: CovidGuideLines()),
         ],
       ),
     );

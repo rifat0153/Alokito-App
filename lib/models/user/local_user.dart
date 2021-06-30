@@ -10,7 +10,7 @@ part 'local_user.g.dart';
 
 @freezed
 class LocalUser with _$LocalUser {
-    const factory LocalUser({
+  const factory LocalUser({
     String? id,
     required String firstName,
     required String lastName,
