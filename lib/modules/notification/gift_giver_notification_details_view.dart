@@ -1,11 +1,13 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class GiftGiverNotificationDetailsView extends StatelessWidget {
@@ -25,6 +27,10 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
         .difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch))
         .inDays;
 
+    var giftLatLng =
+        LatLng(giftReceiver!.giftGiver.position.geopoint.latitude, giftReceiver!.giftGiver.position.geopoint.longitude);
+    var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: giftLatLng)];
+
     var distanceBetweenRequesterAndGiver =
         calculateDistance(giftReceiver!.requester.position, giftReceiver!.giftGiver.userPosition);
 
@@ -43,8 +49,32 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
                       requesterIdCreatedAgo: requesterIdCreatedAgo,
                       distanceBetweenRequesterAndGiver: distanceBetweenRequesterAndGiver),
                   _CommentWidget(giftReceiver: giftReceiver),
-                  
-                  const SizedBox(height: 1000),
+                  _RequesterLocationAndGiftDetailsWidget(giftReceiver: giftReceiver!),
+                  MaterialButton(
+                    onPressed: () {},
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    height: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    color: GIFT_ASK_COLOR,
+                    child: MyText('Accept for confirmation', color: Colors.white),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Container(
+                      height: 200,
+                      width: double.infinity,
+                      child: GoogleMap(
+                        initialCameraPosition: CameraPosition(
+                            target: LatLng(giftReceiver!.giftGiver.position.geopoint.latitude,
+                                giftReceiver!.giftGiver.position.geopoint.longitude),
+                            zoom: 13),
+                        zoomControlsEnabled: false,
+                        zoomGesturesEnabled: false,
+                        markers: Set.of(markers),
+                      ),
+                    ),
+                  ),
+                  // const SizedBox(height: 1000),
                 ],
               ),
             ),
@@ -56,6 +86,99 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
+  const _RequesterLocationAndGiftDetailsWidget({
+    Key? key,
+    required this.giftReceiver,
+  }) : super(key: key);
+
+  final GiftReceiver giftReceiver;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xff707070).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 8),
+                Text('Location', style: boldFontStyle),
+                const SizedBox(height: 4),
+                Text(giftReceiver.giftGiver.location.isEmpty ? 'N/A' : giftReceiver.giftGiver.location),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Gift offered', style: boldFontStyle),
+                    const SizedBox(width: 100),
+                    Text('Gift received', style: boldFontStyle),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    MyText(giftReceiver.requester.giftOffered.toString()),
+                    MyText('All time', fontSize: 14),
+                    MyText(giftReceiver.requester.giftReceived.toString()),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      height: 60,
+                      width: 66,
+                      decoration: BoxDecoration(
+                        color: GIFT_ASK_COLOR,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(MdiIcons.phone, color: Colors.white),
+                            MyText('Voice Call', fontSize: 9, color: Colors.white),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 60,
+                      width: 66,
+                      decoration: BoxDecoration(
+                        color: GIFT_ASK_COLOR,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(MdiIcons.chat, color: Colors.white),
+                            MyText('Conversation', fontSize: 9, color: Colors.white),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }
 
