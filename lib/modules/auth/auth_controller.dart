@@ -35,6 +35,7 @@ class AuthController extends GetxController {
     super.onClose();
   }
 
+
   Future<void> toggleHasGiftReuqest() async {
     await authService
         .updateLocalUser(currentUser.value.copyWith(hasGiftAskRequest: !currentUser.value.hasGiftAskRequest));

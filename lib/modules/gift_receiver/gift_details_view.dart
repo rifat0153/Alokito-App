@@ -20,6 +20,7 @@ class GiftDetailsView extends StatelessWidget {
 
   GiftGiver giftGiver;
   final GiftReceiverController giftRequestController = Get.find();
+  final AuthController authController = Get.find<AuthController>();
   GiftController giftController = Get.find();
 
   @override
@@ -85,7 +86,10 @@ class GiftDetailsView extends StatelessWidget {
             Obx(
               () => Align(
                 alignment: Alignment.bottomCenter,
-                child: giftRequestController.requestExists.value
+                child: authController.currentUser.value.hasGiftAskRequest && true
+
+                    // authController.currentUser.value.id == gif
+
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
