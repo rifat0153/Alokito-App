@@ -83,68 +83,102 @@ class GiftDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            Obx(
-              () => Align(
-                alignment: Alignment.bottomCenter,
-                child: authController.currentUser.value.hasGiftAskRequest && true
+            _DecisionWidget(authController: authController, giftGiver: giftGiver),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-                    // authController.currentUser.value.id == gif
+class _DecisionWidget extends StatelessWidget {
+  const _DecisionWidget({
+    Key? key,
+    required this.authController,
+    required this.giftGiver,
+  }) : super(key: key);
 
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          MaterialButton(
-                            onPressed: null,
-                            disabledColor: GIFT_ADD_FORM_COLOR,
-                            color: Colors.blue,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            child: const Text(
-                              'Gift Requested',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                          ),
-                          MaterialButton(
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                barrierDismissible: true,
-                                builder: (BuildContext context) {
-                                  return RequestDeleteWidget(giftGiver: giftGiver);
-                                },
-                              );
-                            },
-                            color: Colors.red,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            child: Text(
-                              'Cancel',
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      )
-                    : MaterialButton(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            barrierDismissible: true,
-                            builder: (BuildContext context) {
-                              return MessagePopUpWidget(giftGiver: giftGiver);
-                            },
-                          );
-                        },
-                        color: GIFT_ADD_FORM_SUBMIT,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
-                          child: Text(
-                            'Send Request',
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
+  final AuthController authController;
+  final GiftGiver giftGiver;
+
+  @override
+  Widget build(BuildContext context) {
+    if (authController.currentUser.value.hasGiftAskRequest &&
+        authController.currentUser.value.requestedGiftId == giftGiver.id) {
+      return Align(
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            MaterialButton(
+              onPressed: null,
+              disabledColor: GIFT_ADD_FORM_COLOR,
+              color: Colors.blue,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              child: const Text(
+                'Gift Requested',
+                style: TextStyle(color: Colors.blue),
+              ),
+            ),
+            MaterialButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return RequestDeleteWidget(giftGiver: giftGiver);
+                  },
+                );
+              },
+              color: Colors.red,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              child: Text(
+                'Cancel',
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ],
+        ),
+      );
+    }
+    if (authController.currentUser.value.hasGiftAskRequest &&
+        authController.currentUser.value.requestedGiftId != giftGiver.id) {
+      return Align(
+        alignment: Alignment.bottomCenter,
+        child: MaterialButton(
+          onPressed: () {},
+          color: GIFT_ADD_FORM_SUBMIT,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.1),
+            child: Text(
+              'Already have a Request',
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      );
+    }
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: MaterialButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (BuildContext context) {
+              return MessagePopUpWidget(giftGiver: giftGiver);
+            },
+          );
+        },
+        color: GIFT_ADD_FORM_SUBMIT,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
+          child: Text(
+            'Send Request',
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );

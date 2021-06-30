@@ -31,6 +31,8 @@ class _$LocalUserTearOff {
       required String email,
       bool hasGiftRequest = false,
       bool hasGiftAskRequest = false,
+      String? requestedGiftId,
+      String? askedGiftId,
       String? imageUrl,
       bool hasNotifications = false,
       String role = 'user',
@@ -51,6 +53,8 @@ class _$LocalUserTearOff {
       email: email,
       hasGiftRequest: hasGiftRequest,
       hasGiftAskRequest: hasGiftAskRequest,
+      requestedGiftId: requestedGiftId,
+      askedGiftId: askedGiftId,
       imageUrl: imageUrl,
       hasNotifications: hasNotifications,
       role: role,
@@ -81,6 +85,8 @@ mixin _$LocalUser {
   String get email => throw _privateConstructorUsedError;
   bool get hasGiftRequest => throw _privateConstructorUsedError;
   bool get hasGiftAskRequest => throw _privateConstructorUsedError;
+  String? get requestedGiftId => throw _privateConstructorUsedError;
+  String? get askedGiftId => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   bool get hasNotifications => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
@@ -112,6 +118,8 @@ abstract class $LocalUserCopyWith<$Res> {
       String email,
       bool hasGiftRequest,
       bool hasGiftAskRequest,
+      String? requestedGiftId,
+      String? askedGiftId,
       String? imageUrl,
       bool hasNotifications,
       String role,
@@ -145,6 +153,8 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
     Object? email = freezed,
     Object? hasGiftRequest = freezed,
     Object? hasGiftAskRequest = freezed,
+    Object? requestedGiftId = freezed,
+    Object? askedGiftId = freezed,
     Object? imageUrl = freezed,
     Object? hasNotifications = freezed,
     Object? role = freezed,
@@ -194,6 +204,14 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.hasGiftAskRequest
           : hasGiftAskRequest // ignore: cast_nullable_to_non_nullable
               as bool,
+      requestedGiftId: requestedGiftId == freezed
+          ? _value.requestedGiftId
+          : requestedGiftId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      askedGiftId: askedGiftId == freezed
+          ? _value.askedGiftId
+          : askedGiftId // ignore: cast_nullable_to_non_nullable
+              as String?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -250,6 +268,8 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
       String email,
       bool hasGiftRequest,
       bool hasGiftAskRequest,
+      String? requestedGiftId,
+      String? askedGiftId,
       String? imageUrl,
       bool hasNotifications,
       String role,
@@ -285,6 +305,8 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
     Object? email = freezed,
     Object? hasGiftRequest = freezed,
     Object? hasGiftAskRequest = freezed,
+    Object? requestedGiftId = freezed,
+    Object? askedGiftId = freezed,
     Object? imageUrl = freezed,
     Object? hasNotifications = freezed,
     Object? role = freezed,
@@ -334,6 +356,14 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.hasGiftAskRequest
           : hasGiftAskRequest // ignore: cast_nullable_to_non_nullable
               as bool,
+      requestedGiftId: requestedGiftId == freezed
+          ? _value.requestedGiftId
+          : requestedGiftId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      askedGiftId: askedGiftId == freezed
+          ? _value.askedGiftId
+          : askedGiftId // ignore: cast_nullable_to_non_nullable
+              as String?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -380,6 +410,8 @@ class _$_LocalUser implements _LocalUser {
       required this.email,
       this.hasGiftRequest = false,
       this.hasGiftAskRequest = false,
+      this.requestedGiftId,
+      this.askedGiftId,
       this.imageUrl,
       this.hasNotifications = false,
       this.role = 'user',
@@ -419,6 +451,10 @@ class _$_LocalUser implements _LocalUser {
   @override
   final bool hasGiftAskRequest;
   @override
+  final String? requestedGiftId;
+  @override
+  final String? askedGiftId;
+  @override
   final String? imageUrl;
   @JsonKey(defaultValue: false)
   @override
@@ -441,7 +477,7 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   String toString() {
-    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, userName: $userName, email: $email, hasGiftRequest: $hasGiftRequest, hasGiftAskRequest: $hasGiftAskRequest, imageUrl: $imageUrl, hasNotifications: $hasNotifications, role: $role, giftOffered: $giftOffered, giftReceived: $giftReceived, position: $position, createdAt: $createdAt)';
+    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, userName: $userName, email: $email, hasGiftRequest: $hasGiftRequest, hasGiftAskRequest: $hasGiftAskRequest, requestedGiftId: $requestedGiftId, askedGiftId: $askedGiftId, imageUrl: $imageUrl, hasNotifications: $hasNotifications, role: $role, giftOffered: $giftOffered, giftReceived: $giftReceived, position: $position, createdAt: $createdAt)';
   }
 
   @override
@@ -476,6 +512,12 @@ class _$_LocalUser implements _LocalUser {
             (identical(other.hasGiftAskRequest, hasGiftAskRequest) ||
                 const DeepCollectionEquality()
                     .equals(other.hasGiftAskRequest, hasGiftAskRequest)) &&
+            (identical(other.requestedGiftId, requestedGiftId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestedGiftId, requestedGiftId)) &&
+            (identical(other.askedGiftId, askedGiftId) ||
+                const DeepCollectionEquality()
+                    .equals(other.askedGiftId, askedGiftId)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)) &&
@@ -511,6 +553,8 @@ class _$_LocalUser implements _LocalUser {
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(hasGiftRequest) ^
       const DeepCollectionEquality().hash(hasGiftAskRequest) ^
+      const DeepCollectionEquality().hash(requestedGiftId) ^
+      const DeepCollectionEquality().hash(askedGiftId) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(hasNotifications) ^
       const DeepCollectionEquality().hash(role) ^
@@ -542,6 +586,8 @@ abstract class _LocalUser implements LocalUser {
       required String email,
       bool hasGiftRequest,
       bool hasGiftAskRequest,
+      String? requestedGiftId,
+      String? askedGiftId,
       String? imageUrl,
       bool hasNotifications,
       String role,
@@ -575,6 +621,10 @@ abstract class _LocalUser implements LocalUser {
   bool get hasGiftRequest => throw _privateConstructorUsedError;
   @override
   bool get hasGiftAskRequest => throw _privateConstructorUsedError;
+  @override
+  String? get requestedGiftId => throw _privateConstructorUsedError;
+  @override
+  String? get askedGiftId => throw _privateConstructorUsedError;
   @override
   String? get imageUrl => throw _privateConstructorUsedError;
   @override

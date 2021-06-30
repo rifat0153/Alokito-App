@@ -48,7 +48,7 @@ class GiftReceiverController extends GetxController {
 
     var result = await giftRequestService.addGiftRequest(giftReceiver: giftReceiver);
     if (result) {
-      await Get.find<AuthController>().toggleHasGiftReuqest();
+      await Get.find<AuthController>().userHasGiftReuqest(giftGiver.id!);
       await addNotificationForGiftRequest(giftReceiver);
     }
 

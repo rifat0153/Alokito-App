@@ -21,6 +21,8 @@ class LocalUser with _$LocalUser {
     required String email,
     @Default(false) bool hasGiftRequest,
     @Default(false) bool hasGiftAskRequest,
+    String? requestedGiftId,
+    String? askedGiftId,
     String? imageUrl,
     @Default(false) bool hasNotifications,
     @Default('user') String role,

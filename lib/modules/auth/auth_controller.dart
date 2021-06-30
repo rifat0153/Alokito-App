@@ -35,10 +35,11 @@ class AuthController extends GetxController {
     super.onClose();
   }
 
-
-  Future<void> toggleHasGiftReuqest() async {
-    await authService
-        .updateLocalUser(currentUser.value.copyWith(hasGiftAskRequest: !currentUser.value.hasGiftAskRequest));
+  Future<void> userHasGiftReuqest(String giftId) async {
+    await authService.updateLocalUser(currentUser.value.copyWith(
+      hasGiftAskRequest: !currentUser.value.hasGiftAskRequest,
+      requestedGiftId: giftId,
+    ));
   }
 
   Future<void> userHasNotification(String id) async {
