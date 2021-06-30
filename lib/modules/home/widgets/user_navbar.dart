@@ -30,11 +30,11 @@ class UserNavbar extends StatelessWidget {
           onTap: () {
             Get.to(() => NotificationView());
           },
-          child: true
+          child: authController.currentUser.value.hasNotifications
               ? Badge(
                   badgeContent: Text('!'),
-                  child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
                   badgeColor: Colors.white,
+                  child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
                 )
               : Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
         ),
@@ -50,7 +50,7 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.find<AuthController>().authService.value.signOut();
+            Get.find<AuthController>().authService.signOut();
           },
           child: Icon(Icons.map, color: Colors.white, size: height * 0.035),
         ),

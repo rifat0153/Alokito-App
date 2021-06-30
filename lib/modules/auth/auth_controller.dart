@@ -12,7 +12,7 @@ import '../../models/user/local_user.dart';
 import 'auth_service.dart';
 
 class AuthController extends GetxController {
-  Rx<AuthService> authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance).obs;
+  AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
   final Rx<LocalUser> currentUser = initialUser.obs;
 
   final Rx<String> firebaseUser = ''.obs;
@@ -20,7 +20,7 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
-    authStream.bindStream(authService.value.authStateChanges);
+    authStream.bindStream(authService.authStateChanges);
     bindMyUserStream();
     getUserInfoAndSetCurrentUser();
     super.onInit();
@@ -31,6 +31,19 @@ class AuthController extends GetxController {
     authStream.close();
     currentUser.close();
     super.onClose();
+  }
+
+  Future<void> toggleHasGiftReuqest() async {
+    await authService
+        .updateLocalUser(currentUser.value.copyWith(hasGiftAskRequest: !currentUser.value.hasGiftAskRequest));
+  }
+
+  Future<void> localUserHasNotification() async {
+    await authService.updateLocalUser(currentUser.value.copyWith(hasNotifications: true));
+  }
+
+  Future<void> localUserDoesNotHaveNotification() async {
+    await authService.updateLocalUser(currentUser.value.copyWith(hasNotifications: false));
   }
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
@@ -58,7 +71,7 @@ class AuthController extends GetxController {
   }
 
   void bindMyUserStream() {
-    currentUser.bindStream(authService.value.loggedInUserStream());
+    currentUser.bindStream(authService.loggedInUserStream());
   }
 
   void setCurrentUser(LocalUser user) => currentUser.value = user;

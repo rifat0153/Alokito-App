@@ -20,8 +20,7 @@ class LoginController extends GetxController {
     AuthController authController = Get.find();
 
     if (firstName.value.isEmpty) {
-      Get.snackbar('Reg Error', 'First Name cant be empty',
-          backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'First Name cant be empty', backgroundColor: Colors.red);
       return;
     }
     if (!email.value.isEmail) {
@@ -30,22 +29,19 @@ class LoginController extends GetxController {
     }
 
     if (password.value.isEmpty) {
-      Get.snackbar('Reg Error', 'Password can\'t be  empty',
-          backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'Password can\'t be  empty', backgroundColor: Colors.red);
       return;
     }
     if (password.value != confirmPassword.value) {
-      Get.snackbar('Reg Error', 'Password did not match',
-          backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'Password did not match', backgroundColor: Colors.red);
       return;
     }
     if (!aggreedToTermsAndCondition.value) {
-      Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON',
-          backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON', backgroundColor: Colors.red);
       return;
     }
 
-    authController.authService.value.signUp(
+    authController.authService.signUp(
         firstName: firstName.value,
         lastName: lastName.value,
         email: email.value.trim(),
@@ -65,12 +61,11 @@ class LoginController extends GetxController {
     print(password.value);
 
     if (email.value.isEmpty) {
-      Get.snackbar('Login Error', 'Email cant be empty',
-          backgroundColor: Colors.red);
+      Get.snackbar('Login Error', 'Email cant be empty', backgroundColor: Colors.red);
       return;
     }
 
-    await authController.authService.value.signIn(
+    await authController.authService.signIn(
       email: email.value,
       password: password.value,
     );
