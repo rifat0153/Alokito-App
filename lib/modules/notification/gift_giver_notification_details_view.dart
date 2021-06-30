@@ -3,6 +3,7 @@ import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
 import 'package:alokito_new/shared/styles.dart';
+import 'package:alokito_new/shared/widget/covid_guidelines_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -27,9 +28,9 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
         .difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch))
         .inDays;
 
-    var giftLatLng =
-        LatLng(giftReceiver!.giftGiver.position.geopoint.latitude, giftReceiver!.giftGiver.position.geopoint.longitude);
-    var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: giftLatLng)];
+    LatLng requesterLatLng =
+        LatLng(giftReceiver!.requester.position.geopoint.latitude, giftReceiver!.requester.position.geopoint.longitude);
+    var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: requesterLatLng)];
 
     var distanceBetweenRequesterAndGiver =
         calculateDistance(giftReceiver!.requester.position, giftReceiver!.giftGiver.userPosition);
@@ -58,32 +59,48 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
                     color: GIFT_ASK_COLOR,
                     child: MyText('Accept for confirmation', color: Colors.white),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: Container(
-                      height: 200,
-                      width: double.infinity,
-                      child: GoogleMap(
-                        initialCameraPosition: CameraPosition(
-                            target: LatLng(giftReceiver!.giftGiver.position.geopoint.latitude,
-                                giftReceiver!.giftGiver.position.geopoint.longitude),
-                            zoom: 13),
-                        zoomControlsEnabled: false,
-                        zoomGesturesEnabled: false,
-                        markers: Set.of(markers),
-                      ),
-                    ),
-                  ),
+                  _MapWidget(giftReceiver: giftReceiver, markers: markers),
+
                   // const SizedBox(height: 1000),
                 ],
               ),
             ),
           ),
-          Container(
-            color: Colors.blue,
-            height: Get.height * 0.08,
-          )
+          CovidGuideLines(),
+          // Container(
+          //   // color: Colors.blue,
+          //   height: Get.height * 0.08,
+          //   child: CovidGuideLines(),
+          // )
         ],
+      ),
+    );
+  }
+}
+
+class _MapWidget extends StatelessWidget {
+  const _MapWidget({
+    Key? key,
+    required this.giftReceiver,
+    required this.markers,
+  }) : super(key: key);
+
+  final GiftReceiver? giftReceiver;
+  final List<Marker> markers;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Container(
+        height: 200,
+        width: double.infinity,
+        child: GoogleMap(
+          initialCameraPosition: CameraPosition(target: markers[0].position, zoom: 13),
+          zoomControlsEnabled: false,
+          zoomGesturesEnabled: false,
+          markers: Set.of(markers),
+        ),
       ),
     );
   }
