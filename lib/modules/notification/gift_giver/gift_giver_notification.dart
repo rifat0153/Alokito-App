@@ -1,7 +1,7 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
-import 'package:alokito_new/modules/notification/gift_giver_notification_details_view.dart';
+import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_details_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +22,6 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
 
   Future<void> getGift() async {
     var data = await giftReceiverController.getGift(widget.notification.releatedDocId);
-
     setState(() {
       giftReceiver = data;
     });
@@ -70,7 +69,7 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
                       child: Image.network(giftReceiver!.requester.imageUrl!, fit: BoxFit.cover)),
             ),
             giftReceiver == null
-                ? Text('empty')
+                ? Container()
                 : Expanded(
                     child: GestureDetector(
                       onTap: () => Get.to(() => GiftGiverNotificationDetailsView(giftReceiver: giftReceiver)),
@@ -86,7 +85,7 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
                           child: Column(
                             children: [
                               MyText(widget.notification.text, fontWeight: FontWeight.bold, fontSize: 13),
-                              Spacer(),
+                             const Spacer(),
                               Row(
                                 children: [
                                   MyText('$difference hours ago', fontSize: 12),

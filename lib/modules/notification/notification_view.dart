@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'widgets/gift_giver_notification.dart';
+import 'gift_giver/gift_giver_notification.dart';
 
 class NotificationView extends StatelessWidget {
   NotificationView({Key? key}) : super(key: key);

@@ -24,16 +24,12 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var requesterIdCreatedAgo = DateTime.now()
-        .difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch))
-        .inDays;
+    var requesterIdCreatedAgo = DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch)).inDays;
 
-    LatLng requesterLatLng =
-        LatLng(giftReceiver!.requester.position.geopoint.latitude, giftReceiver!.requester.position.geopoint.longitude);
+    LatLng requesterLatLng = LatLng(giftReceiver!.requester.position.geopoint.latitude, giftReceiver!.requester.position.geopoint.longitude);
     var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: requesterLatLng)];
 
-    var distanceBetweenRequesterAndGiver =
-        calculateDistance(giftReceiver!.requester.position, giftReceiver!.giftGiver.userPosition);
+    var distanceBetweenRequesterAndGiver = calculateDistance(giftReceiver!.requester.position, giftReceiver!.giftGiver.userPosition);
 
     return SkeletonWidget(
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
@@ -52,7 +48,9 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
                   _CommentWidget(giftReceiver: giftReceiver),
                   _RequesterLocationAndGiftDetailsWidget(giftReceiver: giftReceiver!),
                   MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      print('gift accepted');
+                    },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
                     padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
