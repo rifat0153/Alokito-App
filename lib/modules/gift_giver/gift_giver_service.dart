@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
@@ -19,9 +20,9 @@ abstract class BaseGiftGiverService {
 
   Stream<List<GiftGiver>> giftStreamByLocation();
 
-  Stream<List<GiftGiver>> giftStream();
+  // Stream<List<GiftGiver>> giftStream();
 
-  Future<bool> updateGiftAcquiredStatus({required String giftId, required bool acquiredStatus});
+  Future<bool> updateGiftGiver({required String giftId, required GiftReceiver giftReceiver});
 }
 
 class GiftGiverService implements BaseGiftGiverService {
@@ -30,9 +31,9 @@ class GiftGiverService implements BaseGiftGiverService {
   final _auth = FirebaseAuth.instance;
 
   @override
-  Future<bool> updateGiftAcquiredStatus({required String giftId, required bool acquiredStatus}) async {
+  Future<bool> updateGiftGiver({required String giftId, required GiftReceiver giftReceiver}) async {
     try {
-      await _firestore.collection('gifts').doc(giftId).update({'giftAcquiredStatus': acquiredStatus});
+      await _firestore.collection('gifts').doc(giftId).update(giftReceiver.toJson());
 
       return true;
     } on FirebaseException catch (e) {
@@ -50,8 +51,6 @@ class GiftGiverService implements BaseGiftGiverService {
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
     MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
-    //  same thing as above
-    //  MyPosition myPosition = MyPosition.fromJson(pos as Map<String, dynamic>);
 
     print('Uploading Image');
 
@@ -119,9 +118,8 @@ class GiftGiverService implements BaseGiftGiverService {
     GiftController giftController = Get.find();
 
 // Create a geoFirePoint
-    GeoFirePoint center = geo.point(
-        latitude: giftController.currentUserLocation.value.latitude,
-        longitude: giftController.currentUserLocation.value.longitude);
+    GeoFirePoint center =
+        geo.point(latitude: giftController.currentUserLocation.value.latitude, longitude: giftController.currentUserLocation.value.longitude);
     print('In Service: center is: ' + center.toString());
 
     var collectionReference = _firestore.collection('gifts');
@@ -139,28 +137,27 @@ class GiftGiverService implements BaseGiftGiverService {
     return stream;
   }
 
-  @override
-  Stream<List<GiftGiver>> giftStream() {
-    GiftController giftController = Get.find();
-    GeoFirePoint center = geo.point(
-        latitude: giftController.currentUserLocation.value.latitude,
-        longitude: giftController.currentUserLocation.value.longitude);
+  // @override
+  // Stream<List<GiftGiver>> giftStream() {
+  //   GiftController giftController = Get.find();
+  //   GeoFirePoint center =
+  //       geo.point(latitude: giftController.currentUserLocation.value.latitude, longitude: giftController.currentUserLocation.value.longitude);
 
-    var collectionReference = _firestore.collection('gifts');
-    // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
+  //   var collectionReference = _firestore.collection('gifts');
+  //   // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
 
-    List<GiftGiver> list = [];
-    geo
-        .collection(collectionRef: collectionReference)
-        .within(center: center, radius: giftController.searchRadius, field: 'position', strictMode: true)
-        .forEach((element) {
-      element.forEach((doc) {
-        list = [...list, GiftGiver.fromJson(doc.data() ?? {})];
-      });
-    });
+  //   List<GiftGiver> list = [];
+  //   geo
+  //       .collection(collectionRef: collectionReference)
+  //       .within(center: center, radius: giftController.searchRadius, field: 'position', strictMode: true)
+  //       .forEach((element) {
+  //     element.forEach((doc) {
+  //       list = [...list, GiftGiver.fromJson(doc.data() ?? {})];
+  //     });
+  //   });
 
-    print(list);
+  //   print(list);
 
-    return Stream.value(list);
-  }
+  //   return Stream.value(list);
+  // }
 }

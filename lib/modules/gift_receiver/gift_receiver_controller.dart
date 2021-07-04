@@ -14,8 +14,7 @@ import 'package:uuid/uuid.dart';
 import '../../models/notification/notification.dart';
 
 class GiftReceiverController extends GetxController {
-  final GiftReceiverService giftRequestService =
-      GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance, FirebaseAuth.instance);
+  final GiftReceiverService giftRequestService = GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance, FirebaseAuth.instance);
 
   RxBool loading = RxBool(false);
   RxString requesterMessage = RxString('');
@@ -27,6 +26,10 @@ class GiftReceiverController extends GetxController {
     GiftReceiver? doc = await giftRequestService.getGiftRequest(id: id);
 
     return doc == null ? null : doc;
+  }
+
+  Future<void> updateGiftRequest() async {
+    // Todo
   }
 
   Future<void> addGiftRequestAndNotification(GiftGiver giftGiver) async {
@@ -69,15 +72,13 @@ class GiftReceiverController extends GetxController {
         releatedDocId: giftReceiver.id ?? '',
         createdAt: Timestamp.now());
 
-    MyNotification giverNotification =
-        requesterNotification.copyWith(text: 'Your gift offer $giftType is requested by $requesterName');
+    MyNotification giverNotification = requesterNotification.copyWith(text: 'Your gift offer $giftType is requested by $requesterName');
 
     await Get.find<NotificationController>().addNotification(userId: requesterId, notification: requesterNotification);
     await Get.find<NotificationController>().addNotification(userId: giverId, notification: giverNotification);
 
     await Get.find<AuthController>().userHasNotification(giverId);
     await Get.find<AuthController>().userHasNotification(requesterId);
-
   }
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {

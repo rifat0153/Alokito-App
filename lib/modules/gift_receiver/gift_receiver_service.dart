@@ -18,13 +18,11 @@ abstract class BaseGiftReceiverService {
 
   Future<bool> findGift({required String id});
 
-  Future<bool> increaseNoOfTimesGiftRequested({required GiftGiver giftGiver});
-
-  Future<bool> deleteGiftRequest({required GiftReceiver giftReqeust});
+  Future<bool> deleteGiftRequest({required GiftReceiver giftReceiver});
 
   Future<GiftReceiver?> getGiftRequest({required String id});
 
-  Future<bool> changeRequestStatus({required GiftReceiver giftReqeust});
+  Future<bool> changeRequestStatus({required GiftReceiver giftReceiver});
 }
 
 class GiftReceiverService implements BaseGiftReceiverService {
@@ -66,20 +64,18 @@ class GiftReceiverService implements BaseGiftReceiverService {
   }
 
   @override
-  Future<bool> changeRequestStatus({required GiftReceiver giftReqeust}) {
-    // TODO: implement changeRequestStatus
-    throw UnimplementedError();
+  Future<bool> changeRequestStatus({required GiftReceiver giftReceiver}) async {
+    try {
+      await _firestore.collection('gift_receiver').doc(giftReceiver.requester.id).update(giftReceiver.toJson());
+      return true;
+    } on FirebaseException catch (e) {
+      throw GiftReceiverException(message: e.message);
+    }
   }
 
   @override
-  Future<bool> deleteGiftRequest({required GiftReceiver giftReqeust}) {
+  Future<bool> deleteGiftRequest({required GiftReceiver giftReceiver}) {
     // TODO: implement deleteGiftRequest
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<bool> increaseNoOfTimesGiftRequested({required GiftGiver giftGiver}) {
-    // TODO: implement increaseNoOfTimesGiftRequested
     throw UnimplementedError();
   }
 }
