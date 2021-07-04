@@ -75,8 +75,9 @@ class GiftReceiverController extends GetxController {
     await Get.find<NotificationController>().addNotification(userId: requesterId, notification: requesterNotification);
     await Get.find<NotificationController>().addNotification(userId: giverId, notification: giverNotification);
 
-    await Get.find<AuthController>().userHasNotification(requesterId);
     await Get.find<AuthController>().userHasNotification(giverId);
+    await Get.find<AuthController>().userHasNotification(requesterId);
+
   }
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {
