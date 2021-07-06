@@ -28,6 +28,10 @@ class GiftReceiverController extends GetxController {
     return doc == null ? null : doc;
   }
 
+  Future<void> cancelGiftRequest(GiftReceiver giftReceiver, GiftRequestStatus giftRequestStatus) async {
+    await giftRequestService.changeRequestStatus(giftReceiver: giftReceiver.copyWith(giftRequestStatus: giftRequestStatus));
+  }
+
   Future<void> confirmGiftRequest(GiftReceiver giftReceiver) async {
     await giftRequestService.changeRequestStatus(
         giftReceiver: giftReceiver.copyWith(giftRequestStatus: GiftRequestStatus.requestConfirmed));

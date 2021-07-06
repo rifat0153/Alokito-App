@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
@@ -79,6 +80,47 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // GIFT CANCELED BY REQUESTER
+    if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
+      return MaterialButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        height: 0,
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        color: GIFT_ASK_COLOR,
+        child: MyText('Request Canceleed', color: Colors.white),
+      );
+    }
+
+    //If its requester notification
+    if (giftReceiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MaterialButton(
+            onPressed: () {},
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            height: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            color: GIFT_ASK_COLOR,
+            child: MyText('Accept Gift', color: Colors.white),
+          ),
+          const SizedBox(width: 30),
+          MaterialButton(
+            onPressed: () {
+              controller.cancelGiftRequestByRequester(giftReceiver!);
+            },
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            height: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+            color: GIFT_ASK_COLOR,
+            child: MyText('Cancel', color: Colors.white),
+          )
+        ],
+      );
+    }
+
+    //If its giver notification
     return giftReceiver!.giftRequestStatus == GiftRequestStatus.requestConfirmed
         ? MaterialButton(
             onPressed: () {},

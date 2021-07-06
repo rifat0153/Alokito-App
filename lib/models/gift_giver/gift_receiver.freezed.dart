@@ -24,7 +24,9 @@ class _$GiftReceiverTearOff {
       {String? id,
       String? giverId,
       required String comment,
-      GiftRequestStatus giftRequestStatus = GiftRequestStatus.requestDelivered,
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          GiftRequestStatus
+              giftRequestStatus = GiftRequestStatus.requestDelivered,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           required GiftGiver giftGiver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
@@ -55,6 +57,7 @@ mixin _$GiftReceiver {
   String? get id => throw _privateConstructorUsedError;
   String? get giverId => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
   GiftGiver get giftGiver => throw _privateConstructorUsedError;
@@ -78,7 +81,8 @@ abstract class $GiftReceiverCopyWith<$Res> {
       {String? id,
       String? giverId,
       String comment,
-      GiftRequestStatus giftRequestStatus,
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           GiftGiver giftGiver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
@@ -166,7 +170,8 @@ abstract class _$GiftReceiverCopyWith<$Res>
       {String? id,
       String? giverId,
       String comment,
-      GiftRequestStatus giftRequestStatus,
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           GiftGiver giftGiver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
@@ -240,7 +245,8 @@ class _$_GiftReceiver extends _GiftReceiver {
       {this.id,
       this.giverId,
       required this.comment,
-      this.giftRequestStatus = GiftRequestStatus.requestDelivered,
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          this.giftRequestStatus = GiftRequestStatus.requestDelivered,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           required this.giftGiver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
@@ -258,8 +264,8 @@ class _$_GiftReceiver extends _GiftReceiver {
   final String? giverId;
   @override
   final String comment;
-  @JsonKey(defaultValue: GiftRequestStatus.requestDelivered)
   @override
+  @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   final GiftRequestStatus giftRequestStatus;
   @override
   @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
@@ -329,7 +335,8 @@ abstract class _GiftReceiver extends GiftReceiver {
       {String? id,
       String? giverId,
       required String comment,
-      GiftRequestStatus giftRequestStatus,
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)
           required GiftGiver giftGiver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
@@ -348,6 +355,7 @@ abstract class _GiftReceiver extends GiftReceiver {
   @override
   String get comment => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson)

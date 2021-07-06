@@ -9,6 +9,10 @@ import 'package:get/get.dart';
 class GiftGiverNotificationController extends GetxController {
   GiftGiverNotificationController();
 
+  Future<void> cancelGiftRequestByRequester(GiftReceiver giftReceiver) async {
+    await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestCanceledByRequester);
+  }
+
   Future<void> confirmGift(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().confirmGiftRequest(giftReceiver);
 

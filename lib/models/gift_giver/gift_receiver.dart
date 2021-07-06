@@ -18,7 +18,9 @@ class GiftReceiver with _$GiftReceiver {
     String? id,
     String? giverId,
     required String comment,
-    @Default(GiftRequestStatus.requestDelivered) GiftRequestStatus giftRequestStatus,
+    @Default(GiftRequestStatus.requestDelivered)
+    @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+        GiftRequestStatus giftRequestStatus,
     @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson) required GiftGiver giftGiver,
     @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
