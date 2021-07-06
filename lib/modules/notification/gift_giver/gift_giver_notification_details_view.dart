@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
+import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
@@ -17,8 +18,7 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
   GiftGiverNotificationDetailsView({Key? key, required this.giftReceiver}) : super(key: key);
   GiftReceiver? giftReceiver;
 
-  final NotificationController notificationController = Get.find<NotificationController>();
-  final GiftController giftController = Get.put(GiftController());
+  final GiftGiverNotificationController controller = Get.put(GiftGiverNotificationController());
 
   double calculateDistance(MyPosition posotion1, MyPosition posotion2) {
     return Geoflutterfire()
@@ -28,9 +28,11 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var requesterIdCreatedAgo = DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch)).inDays;
+    var requesterIdCreatedAgo =
+        DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch)).inDays;
 
-    LatLng requesterLatLng = LatLng(giftReceiver!.requester.position.geopoint.latitude, giftReceiver!.requester.position.geopoint.longitude);
+    LatLng requesterLatLng =
+        LatLng(giftReceiver!.requester.position.geopoint.latitude, giftReceiver!.requester.position.geopoint.longitude);
     var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: requesterLatLng)];
 
     var distanceBetweenRequesterAndGiver = calculateDistance(giftReceiver!.requester.position, giftReceiver!.giftGiver.userPosition);
@@ -53,7 +55,7 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
                   _RequesterLocationAndGiftDetailsWidget(giftReceiver: giftReceiver!),
                   MaterialButton(
                     onPressed: () {
-                      
+                      controller.confirmGift(giftReceiver!);
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
@@ -62,8 +64,6 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
                     child: MyText('Accept for confirmation', color: Colors.white),
                   ),
                   _MapWidget(giftReceiver: giftReceiver, markers: markers),
-
-                  // const SizedBox(height: 1000),
                 ],
               ),
             ),

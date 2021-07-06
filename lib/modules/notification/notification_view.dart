@@ -31,10 +31,6 @@ class NotificationView extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            MyText(
-              'data',
-              color: Colors.black,
-            ),
             Obx(
               () => Expanded(
                 child: ListView.builder(

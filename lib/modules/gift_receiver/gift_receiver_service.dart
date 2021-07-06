@@ -1,17 +1,8 @@
-import 'package:alokito_new/models/json_converters.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_exception.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
-import 'package:alokito_new/models/gift_giver/my_position.dart';
-import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
-import 'package:get/get.dart';
-import 'package:location/location.dart';
 
 abstract class BaseGiftReceiverService {
   Future<bool> addGiftRequest({required GiftReceiver giftReceiver});

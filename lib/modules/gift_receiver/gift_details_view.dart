@@ -103,8 +103,7 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (authController.currentUser.value.hasGiftAskRequest &&
-        authController.currentUser.value.requestedGiftId == giftGiver.id) {
+    if (authController.currentUser.value.hasGiftAskRequest && authController.currentUser.value.requestedGiftId == giftGiver.id) {
       return Align(
         alignment: Alignment.bottomCenter,
         child: Row(
@@ -141,8 +140,7 @@ class _DecisionWidget extends StatelessWidget {
         ),
       );
     }
-    if (authController.currentUser.value.hasGiftAskRequest &&
-        authController.currentUser.value.requestedGiftId != giftGiver.id) {
+    if (authController.currentUser.value.hasGiftAskRequest && authController.currentUser.value.requestedGiftId != giftGiver.id) {
       return Align(
         alignment: Alignment.bottomCenter,
         child: MaterialButton(

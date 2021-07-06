@@ -28,8 +28,9 @@ class GiftReceiverController extends GetxController {
     return doc == null ? null : doc;
   }
 
-  Future<void> updateGiftRequest() async {
-    // Todo
+  Future<void> confirmGiftRequest(GiftReceiver giftReceiver) async {
+    await giftRequestService.changeRequestStatus(
+        giftReceiver: giftReceiver.copyWith(giftRequestStatus: GiftRequestStatus.requestConfirmed));
   }
 
   Future<void> addGiftRequestAndNotification(GiftGiver giftGiver) async {
