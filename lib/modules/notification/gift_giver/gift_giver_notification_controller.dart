@@ -15,12 +15,18 @@ class GiftGiverNotificationController extends GetxController {
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
 
     MyNotification notificationRequester = MyNotification.data(
+      id: giftReceiver.requester.id ?? '',
       text: 'Gift request $giftType has been confirmed by ${giftReceiver.giftGiver.userName}',
       notificationType: NotificationType.giftGiver,
-      releatedDocId: '',
+      releatedDocId: giftReceiver.requester.id ?? '',
       createdAt: Timestamp.now(),
     );
 
-    // Get.find<NotificationController>().addNotification(userId: userId, notification: notification);
+    MyNotification notificationGiver = notificationRequester.copyWith(
+      text: 'You confirmed gift $giftType for ${giftReceiver.requester.userName}',
+    );
+
+    await Get.find<NotificationController>().addNotification(userId: giftReceiver.requester.id ?? '', notification: notificationRequester);
+    await Get.find<NotificationController>().addNotification(userId: giftReceiver.giftGiver.uid, notification: notificationGiver);
   }
 }

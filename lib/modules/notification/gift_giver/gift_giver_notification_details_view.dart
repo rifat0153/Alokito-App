@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
+import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
@@ -53,16 +54,7 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
                       distanceBetweenRequesterAndGiver: distanceBetweenRequesterAndGiver),
                   _CommentWidget(giftReceiver: giftReceiver),
                   _RequesterLocationAndGiftDetailsWidget(giftReceiver: giftReceiver!),
-                  MaterialButton(
-                    onPressed: () {
-                      controller.confirmGift(giftReceiver!);
-                    },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                    height: 0,
-                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                    color: GIFT_ASK_COLOR,
-                    child: MyText('Accept for confirmation', color: Colors.white),
-                  ),
+                  _DecisionWidget(controller: controller, giftReceiver: giftReceiver),
                   _MapWidget(giftReceiver: giftReceiver, markers: markers),
                 ],
               ),
@@ -72,6 +64,40 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _DecisionWidget extends StatelessWidget {
+  const _DecisionWidget({
+    Key? key,
+    required this.controller,
+    required this.giftReceiver,
+  }) : super(key: key);
+
+  final GiftGiverNotificationController controller;
+  final GiftReceiver? giftReceiver;
+
+  @override
+  Widget build(BuildContext context) {
+    return giftReceiver!.giftRequestStatus == GiftRequestStatus.requestConfirmed
+        ? MaterialButton(
+            onPressed: () {},
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            height: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            color: GIFT_ASK_COLOR,
+            child: MyText('Gift Accepted', color: Colors.white),
+          )
+        : MaterialButton(
+            onPressed: () {
+              controller.confirmGift(giftReceiver!);
+            },
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            height: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            color: GIFT_ASK_COLOR,
+            child: MyText('Accept for confirmation', color: Colors.white),
+          );
   }
 }
 
