@@ -80,11 +80,15 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //If its requester notification
+    // *If its requester notification
     if (giftReceiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
+      // Gift Delivered BY Giver
+      if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
+        return MyText('Delivered', fontSize: 20, color: Colors.blueAccent);
+      }
       // Gift ACCEPTED BY REQUESTER
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
-        return MyText('Gift Aceepted by You', textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
+        return MyText('Gift Accepted by You', textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
       }
       // GIFT CANCELED BY REQUESTER
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
@@ -119,11 +123,29 @@ class _DecisionWidget extends StatelessWidget {
       );
     }
 
-    //If its giver notification
+    //* If its giver notification
+    // Gift Delivered BY Giver
+    if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
+      return MyText('Delivered', fontSize: 20, color: Colors.blueAccent);
+    }
     // Gift ACCEPTED BY REQUESTER
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
-      return MyText('Gift Aceepted by ${giftReceiver!.requester.userName}',
-          textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
+      return Column(
+        children: [
+          MyText('Gift Accepted by ${giftReceiver!.requester.userName}',
+              textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
+          MaterialButton(
+            onPressed: () {
+              controller.doneGiftRequestByGiver(giftReceiver!);
+            },
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            height: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            color: GIFT_ASK_COLOR,
+            child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ],
+      );
     }
     // GIFT CANCELED BY REQUESTER
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
