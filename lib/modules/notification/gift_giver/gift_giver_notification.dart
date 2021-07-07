@@ -35,9 +35,8 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
 
   @override
   Widget build(BuildContext context) {
-    var difference = DateTime.now()
-        .difference(DateTime.fromMillisecondsSinceEpoch(widget.notification.createdAt.millisecondsSinceEpoch))
-        .inHours;
+    var difference =
+        DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(widget.notification.createdAt.millisecondsSinceEpoch)).inHours;
 
     return Container(
       width: Get.width,
@@ -84,8 +83,14 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: [
-                              MyText(widget.notification.text, fontWeight: FontWeight.bold, fontSize: 13),
-                             const Spacer(),
+                              MyText(
+                                widget.notification.text,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                                maxLines: 2,
+                                textAlign: TextAlign.start,
+                              ),
+                              const Spacer(),
                               Row(
                                 children: [
                                   MyText('$difference hours ago', fontSize: 12),

@@ -80,20 +80,13 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // GIFT CANCELED BY REQUESTER
-    if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
-      return MaterialButton(
-        onPressed: () {},
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        height: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        color: GIFT_ASK_COLOR,
-        child: MyText('Request Canceleed', color: Colors.white),
-      );
-    }
-
     //If its requester notification
     if (giftReceiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
+      // GIFT CANCELED BY REQUESTER
+      if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
+        return MyText('Request Canceled by You', textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
+      }
+
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -121,6 +114,21 @@ class _DecisionWidget extends StatelessWidget {
     }
 
     //If its giver notification
+    // GIFT CANCELED BY REQUESTER
+    if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+          MyText(
+            giftReceiver!.requester.userName,
+            textAlign: TextAlign.center,
+            fontSize: 25,
+          ),
+        ],
+      );
+    }
+
     return giftReceiver!.giftRequestStatus == GiftRequestStatus.requestConfirmed
         ? MaterialButton(
             onPressed: () {},
