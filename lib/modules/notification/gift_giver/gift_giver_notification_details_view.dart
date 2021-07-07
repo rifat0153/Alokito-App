@@ -80,7 +80,7 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // *If its requester notification
+    //If its requester notification
     if (giftReceiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
       // Gift Delivered BY Giver
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
@@ -95,6 +95,7 @@ class _DecisionWidget extends StatelessWidget {
         return MyText('Request Canceled by You', textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
       }
 
+      //Gift ACCEPTEd by GIVER
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -123,7 +124,7 @@ class _DecisionWidget extends StatelessWidget {
       );
     }
 
-    //* If its giver notification
+    // If its giver notification
     // Gift Delivered BY Giver
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
       return MyText('Delivered', fontSize: 20, color: Colors.blueAccent);
@@ -162,6 +163,7 @@ class _DecisionWidget extends StatelessWidget {
       );
     }
 
+    // GIFT CONFIRMED BY GIVER/ WAITING FOR ACCEPTCNCE FROM REQUESTER
     return giftReceiver!.giftRequestStatus == GiftRequestStatus.requestConfirmed
         ? MaterialButton(
             onPressed: () {},

@@ -11,6 +11,7 @@ class GiftGiverNotificationController extends GetxController {
 
   Future<void> thanksGiftRequester(GiftReceiver giftReceiver, String message) async {}
 
+  // MARKED AS DONE BY GIVER
   Future<void> doneGiftRequestByGiver(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestDelivered);
 
@@ -22,6 +23,7 @@ class GiftGiverNotificationController extends GetxController {
         'Delivered: $giftType delivered to ${giftReceiver.requester.userName}');
   }
 
+  // AFTER CONFIRMATION BY GIVER ACCEPTED BY REUQESTER, makes no sense IK, BUT its the app was made :3
   Future<void> aceeptGiftRequestByRequester(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestAccepted);
 
@@ -34,6 +36,7 @@ class GiftGiverNotificationController extends GetxController {
     );
   }
 
+  // CANCELED BY REQUESTER
   Future<void> cancelGiftRequestByRequester(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestCanceledByRequester);
 
@@ -45,6 +48,7 @@ class GiftGiverNotificationController extends GetxController {
     );
   }
 
+  // CONFIRMED BY GIVER
   Future<void> confirmGift(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().confirmGiftRequest(giftReceiver);
 
