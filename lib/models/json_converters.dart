@@ -17,8 +17,6 @@ MyPosition myPositionFromJson(Map<String, dynamic> json) => MyPosition.fromJson(
 Map<String, dynamic> localUserToJson(LocalUser localUser) => localUser.toJson();
 LocalUser localUserFromJson(Map<String, dynamic> json) => LocalUser.fromJson(json);
 
-
-
 Map<String, dynamic> giftAskToJson(GiftAsk giftAsk) => giftAsk.toJson();
 GiftAsk giftAskFromJson(Map<String, dynamic> json) => GiftAsk.fromJson(json);
 
@@ -78,7 +76,7 @@ int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
       return 2;
     case GiftRequestStatus.requestCanceledByRequester:
       return 3;
-    case GiftRequestStatus.requestComplete:
+    case GiftRequestStatus.requestAccepted:
       return 4;
     case GiftRequestStatus.requestDelivered:
       return 5;
@@ -98,7 +96,7 @@ GiftRequestStatus giftRequestStatusFromJson(int json) {
     case 3:
       return GiftRequestStatus.requestCanceledByRequester;
     case 4:
-      return GiftRequestStatus.requestComplete;
+      return GiftRequestStatus.requestAccepted;
     case 5:
       return GiftRequestStatus.requestDelivered;
     default:

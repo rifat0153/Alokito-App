@@ -82,6 +82,10 @@ class _DecisionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //If its requester notification
     if (giftReceiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
+      // Gift ACCEPTED BY REQUESTER
+      if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
+        return MyText('Gift Aceepted by You', textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
+      }
       // GIFT CANCELED BY REQUESTER
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
         return MyText('Request Canceled by You', textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
@@ -91,7 +95,9 @@ class _DecisionWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              controller.aceeptGiftRequestByRequester(giftReceiver!);
+            },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -114,6 +120,11 @@ class _DecisionWidget extends StatelessWidget {
     }
 
     //If its giver notification
+    // Gift ACCEPTED BY REQUESTER
+    if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
+      return MyText('Gift Aceepted by ${giftReceiver!.requester.userName}',
+          textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
+    }
     // GIFT CANCELED BY REQUESTER
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
       return Column(

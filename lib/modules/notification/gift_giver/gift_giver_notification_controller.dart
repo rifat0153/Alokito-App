@@ -9,6 +9,27 @@ import 'package:get/get.dart';
 class GiftGiverNotificationController extends GetxController {
   GiftGiverNotificationController();
 
+  Future<void> aceeptGiftRequestByRequester(GiftReceiver giftReceiver) async {
+    await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestAccepted);
+
+    String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
+
+    MyNotification notificationRequester = MyNotification.data(
+      id: giftReceiver.requester.id ?? '',
+      text: 'Gift request $giftType from ${giftReceiver.giftGiver.userName} has been accepted by you',
+      notificationType: NotificationType.giftGiver,
+      releatedDocId: giftReceiver.requester.id ?? '',
+      createdAt: Timestamp.now(),
+    );
+
+    MyNotification notificationGiver = notificationRequester.copyWith(
+      text: '$giftType accepted by ${giftReceiver.requester.userName}',
+    );
+
+    await Get.find<NotificationController>().addNotification(userId: giftReceiver.requester.id ?? '', notification: notificationRequester);
+    await Get.find<NotificationController>().addNotification(userId: giftReceiver.giftGiver.uid, notification: notificationGiver);
+  }
+
   Future<void> cancelGiftRequestByRequester(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestCanceledByRequester);
 
