@@ -39,7 +39,6 @@ class NotificationService extends BaseNotificationService {
       List<MyNotification> list = [];
       docList.docs.forEach((doc) {
         MyNotification notification = MyNotification.fromJson(doc.data());
-
         list.add(notification);
       });
       return list;

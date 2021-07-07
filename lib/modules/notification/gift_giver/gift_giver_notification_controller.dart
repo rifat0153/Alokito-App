@@ -9,25 +9,17 @@ import 'package:get/get.dart';
 class GiftGiverNotificationController extends GetxController {
   GiftGiverNotificationController();
 
+  Future<void> thanksGiftRequester(GiftReceiver giftReceiver, String message) async {}
+
   Future<void> doneGiftRequestByGiver(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestDelivered);
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
 
-    MyNotification notificationRequester = MyNotification.data(
-      id: giftReceiver.requester.id ?? '',
-      text: 'Delivered: Gift request $giftType from ${giftReceiver.giftGiver.userName} has been delivered to you',
-      notificationType: NotificationType.giftGiver,
-      releatedDocId: giftReceiver.requester.id ?? '',
-      createdAt: Timestamp.now(),
-    );
-
-    MyNotification notificationGiver = notificationRequester.copyWith(
-      text: 'Delivered: $giftType delivered to ${giftReceiver.requester.userName}',
-    );
-
-    await Get.find<NotificationController>().addNotification(userId: giftReceiver.requester.id ?? '', notification: notificationRequester);
-    await Get.find<NotificationController>().addNotification(userId: giftReceiver.giftGiver.uid, notification: notificationGiver);
+    await addNotificationRequesterAndGiver(
+        giftReceiver,
+        'Delivered: Gift request $giftType from ${giftReceiver.giftGiver.userName} has been delivered to you',
+        'Delivered: $giftType delivered to ${giftReceiver.requester.userName}');
   }
 
   Future<void> aceeptGiftRequestByRequester(GiftReceiver giftReceiver) async {
@@ -35,58 +27,46 @@ class GiftGiverNotificationController extends GetxController {
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
 
-    MyNotification notificationRequester = MyNotification.data(
-      id: giftReceiver.requester.id ?? '',
-      text: 'Gift request $giftType from ${giftReceiver.giftGiver.userName} has been accepted by you',
-      notificationType: NotificationType.giftGiver,
-      releatedDocId: giftReceiver.requester.id ?? '',
-      createdAt: Timestamp.now(),
+    await addNotificationRequesterAndGiver(
+      giftReceiver,
+      'Gift request $giftType from ${giftReceiver.giftGiver.userName} has been accepted by you',
+      '$giftType accepted by ${giftReceiver.requester.userName}',
     );
-
-    MyNotification notificationGiver = notificationRequester.copyWith(
-      text: '$giftType accepted by ${giftReceiver.requester.userName}',
-    );
-
-    await Get.find<NotificationController>().addNotification(userId: giftReceiver.requester.id ?? '', notification: notificationRequester);
-    await Get.find<NotificationController>().addNotification(userId: giftReceiver.giftGiver.uid, notification: notificationGiver);
   }
 
   Future<void> cancelGiftRequestByRequester(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestCanceledByRequester);
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
-
-    MyNotification notificationRequester = MyNotification.data(
-      id: giftReceiver.requester.id ?? '',
-      text: 'Gift request $giftType from ${giftReceiver.giftGiver.userName} has been canceled by you',
-      notificationType: NotificationType.giftGiver,
-      releatedDocId: giftReceiver.requester.id ?? '',
-      createdAt: Timestamp.now(),
+    await addNotificationRequesterAndGiver(
+      giftReceiver,
+      'Gift request $giftType from ${giftReceiver.giftGiver.userName} has been canceled by you',
+      '$giftType canceled by ${giftReceiver.requester.userName}',
     );
-
-    MyNotification notificationGiver = notificationRequester.copyWith(
-      text: '$giftType canceled by ${giftReceiver.requester.userName}',
-    );
-
-    await Get.find<NotificationController>().addNotification(userId: giftReceiver.requester.id ?? '', notification: notificationRequester);
-    await Get.find<NotificationController>().addNotification(userId: giftReceiver.giftGiver.uid, notification: notificationGiver);
   }
 
   Future<void> confirmGift(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().confirmGiftRequest(giftReceiver);
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
+    await addNotificationRequesterAndGiver(
+      giftReceiver,
+      'Gift request $giftType has been confirmed by ${giftReceiver.giftGiver.userName}',
+      'You confirmed gift $giftType for ${giftReceiver.requester.userName}',
+    );
+  }
 
+  Future<void> addNotificationRequesterAndGiver(GiftReceiver giftReceiver, String requesterText, String giverText) async {
     MyNotification notificationRequester = MyNotification.data(
       id: giftReceiver.requester.id ?? '',
-      text: 'Gift request $giftType has been confirmed by ${giftReceiver.giftGiver.userName}',
+      text: requesterText,
       notificationType: NotificationType.giftGiver,
       releatedDocId: giftReceiver.requester.id ?? '',
       createdAt: Timestamp.now(),
     );
 
     MyNotification notificationGiver = notificationRequester.copyWith(
-      text: 'You confirmed gift $giftType for ${giftReceiver.requester.userName}',
+      text: giverText,
     );
 
     await Get.find<NotificationController>().addNotification(userId: giftReceiver.requester.id ?? '', notification: notificationRequester);
