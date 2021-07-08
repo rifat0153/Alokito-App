@@ -9,6 +9,9 @@ import 'package:get/get.dart';
 class GiftGiverNotificationController extends GetxController {
   GiftGiverNotificationController();
 
+  RxInt requesterRating = 0.obs;
+  RxInt giverRating = 0.obs;
+
   Future<void> thanksGiftRequester(GiftReceiver giftReceiver, String message) async {}
 
   // MARKED AS DONE BY GIVER

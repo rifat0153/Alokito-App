@@ -3,7 +3,9 @@ import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/widgets/message_popup_widget.dart';
 import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
+import 'package:alokito_new/modules/notification/gift_giver/widgets/feedback_widget.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
@@ -127,7 +129,21 @@ class _DecisionWidget extends StatelessWidget {
     // If its giver notification
     // Gift Delivered BY Giver
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
-      return MyText('Delivered', fontSize: 20, color: Colors.blueAccent);
+      return Column(
+        children: [
+          MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
+          MaterialButton(
+            onPressed: () {
+              Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: false));
+            },
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            height: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            color: GIFT_ASK_COLOR,
+            child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ],
+      );
     }
     // Gift ACCEPTED BY REQUESTER
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
