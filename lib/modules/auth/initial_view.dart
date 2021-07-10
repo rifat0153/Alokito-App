@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 
 class InitialView extends StatelessWidget {
   InitialView({Key? key}) : super(key: key);
-  final authController = Get.put(AuthController(), permanent: true);
+  final authController = Get.put(AuthController());
   final loginController = Get.put(LoginController());
   final giftRecordController = Get.put(GiftRecordController());
   final giftRequestController = Get.put(GiftReceiverController());

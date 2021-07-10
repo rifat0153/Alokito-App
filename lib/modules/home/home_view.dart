@@ -1,5 +1,4 @@
 import 'package:alokito_new/modules/auth/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
 import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
@@ -10,18 +9,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icon.dart';
 
 class HomeView extends StatelessWidget {
+  HomeView({Key? key}) : super(key: key);
+
   final AuthController authController = Get.find<AuthController>();
+  final media = Get.size;
 
   @override
   Widget build(BuildContext context) {
     authController.bindMyUserStream();
-
-    print('IN HOME VIEW: imageURL is' + authController.currentUser.value.imageUrl!);
-
-    final media = Get.size;
 
     return SafeArea(
       child: Scaffold(
@@ -46,76 +43,109 @@ class HomeView extends StatelessWidget {
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/rsz_registration.png'), fit: BoxFit.fill),
-          ),
-          child: Stack(
-            children: [
-              Column(
-                children: <Widget>[
-                  SizedBox(height: media.height * 0.1, width: 0),
-                  Flexible(
-                    flex: 6,
-                    fit: FlexFit.tight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 35),
-                      child: Obx(
-                        () => CircleAvatar(
-                          radius: 75,
-                          backgroundImage: NetworkImage(authController.currentUser.value.imageUrl ??
-                              'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png'),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Obx(
-                    () => Flexible(
-                      child: UserNameWidget(localUser: authController.currentUser.value, context: context),
-                    ),
-                  ),
-                  Obx(
-                    () => Flexible(
-                      child: UserEmailWidget(context: context, localUser: authController.currentUser.value),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      children: [
-                        SizedBox(width: media.width * 0.18, height: 0),
-                        const Text(
-                          'and you are a...',
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => Get.toNamed(GiftGiverView.route),
-                    child: _GiftGiverMenu(height: media.height * 0.1, width: media.width * 0.7),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(GiftReceiverView.route);
-                      // Get.find<GiftController>().bindLocationData();
-                    },
-                    child: _GiftRecieverMenu(height: media.height * 0.1, width: media.width * 0.7),
-                  ),
-                  _CommunityHeroMenu(height: media.height * 0.1, width: media.width * 0.7),
-                  _TeamPlayerMenu(
-                    height: media.height * 0.1,
-                    width: media.width * 0.7,
-                  ),
-                  Flexible(flex: 2, child: Container()),
-                ],
+        body: _buildBody(media: media, authController: authController),
+      ),
+    );
+  }
+}
+
+class _buildBody extends StatelessWidget {
+  const _buildBody({
+    Key? key,
+    required this.media,
+    required this.authController,
+  }) : super(key: key);
+
+  final Size media;
+  final AuthController authController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(image: AssetImage('assets/images/rsz_registration.png'), fit: BoxFit.fill),
+      ),
+      child: Stack(
+        children: [
+          Column(
+            children: <Widget>[
+              SizedBox(height: media.height * 0.1, width: 0),
+              _userImageWidget(authController: authController),
+              Obx(
+                () => Flexible(
+                  child: UserNameWidget(localUser: authController.currentUser.value, context: context),
+                ),
               ),
-              Positioned(
-                width: Get.size.width,
-                bottom: 0,
-                child: UserNavbar(),
-              )
+              Obx(
+                () => Flexible(
+                  child: UserEmailWidget(context: context, localUser: authController.currentUser.value),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  children: [
+                    SizedBox(width: media.width * 0.18, height: 0),
+                    const Text(
+                      'and you are a...',
+                      style: TextStyle(fontSize: 17),
+                    ),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () => Get.toNamed(GiftGiverView.route),
+                child: _GiftGiverMenu(height: media.height * 0.1, width: media.width * 0.7),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(GiftReceiverView.route);
+                  // Get.find<GiftController>().bindLocationData();
+                },
+                child: _GiftRecieverMenu(height: media.height * 0.1, width: media.width * 0.7),
+              ),
+              _CommunityHeroMenu(height: media.height * 0.1, width: media.width * 0.7),
+              _TeamPlayerMenu(
+                height: media.height * 0.1,
+                width: media.width * 0.7,
+              ),
+              Flexible(flex: 2, child: Container()),
             ],
+          ),
+          Positioned(
+            width: Get.size.width,
+            bottom: 0,
+            child: UserNavbar(),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _userImageWidget extends StatefulWidget {
+  const _userImageWidget({Key? key, required this.authController}) : super(key: key);
+
+  final AuthController authController;
+
+  @override
+  __userImageWidgetState createState() => __userImageWidgetState();
+}
+
+class __userImageWidgetState extends State<_userImageWidget> {
+  String? userImageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      flex: 6,
+      fit: FlexFit.tight,
+      child: Obx(
+        () => Padding(
+          padding: const EdgeInsets.only(top: 35),
+          child: CircleAvatar(
+            radius: 75,
+            backgroundImage: NetworkImage(widget.authController.currentUser.value.imageUrl ?? ''),
           ),
         ),
       ),

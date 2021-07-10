@@ -52,7 +52,7 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.find<AuthController>().authService.signOut();
+            Get.find<AuthController>().signOut();
           },
           child: Icon(Icons.map, color: Colors.white, size: height * 0.035),
         ),
