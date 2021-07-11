@@ -13,6 +13,8 @@ class FeedbackWidget extends StatelessWidget {
   bool isRequester;
   GiftReceiver? giftReceiver;
 
+  final GiftGiverNotificationController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
@@ -23,7 +25,8 @@ class FeedbackWidget extends StatelessWidget {
           // height: 800,
           // width: Get.size.width,
           decoration: BoxDecoration(
-            image: const DecorationImage(image: AssetImage('assets/images/submit-feedback.png'), fit: BoxFit.fill),
+            image: const DecorationImage(
+                image: AssetImage('assets/images/submit-feedback.png'), fit: BoxFit.fill),
             borderRadius: BorderRadius.circular(10),
           ),
           child: SingleChildScrollView(
@@ -57,7 +60,9 @@ class FeedbackWidget extends StatelessWidget {
                 MaterialButton(
                   color: GIFT_ADD_FORM_SUBMIT,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.messageForRequesterAndRating(giftReceiver!);
+                  },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     child: Text('send'),
@@ -92,6 +97,9 @@ class _RatingWidget extends StatelessWidget {
               key: ValueKey(i.toString()),
               onPressed: () {
                 isRequester ? controller.giverRating.value = i + 1 : controller.requesterRating.value = i + 1;
+
+                print(controller.giverRating.value);
+                print(controller.requesterRating.value);
               },
               icon: Icon(
                 Icons.star,

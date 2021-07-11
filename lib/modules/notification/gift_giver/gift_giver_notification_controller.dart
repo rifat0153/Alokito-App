@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/notification.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,11 +13,17 @@ class GiftGiverNotificationController extends GetxController {
   RxInt requesterRating = 0.obs;
   RxInt giverRating = 0.obs;
 
-  Future<void> thanksGiftRequester(GiftReceiver giftReceiver, String message) async {}
+  //Message for Requester and Rating
+  Future<void> messageForRequesterAndRating(GiftReceiver giftReceiver) async {
+    await Get.find<AuthController>()
+        .authService
+        .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);
+  }
 
   // MARKED AS DONE BY GIVER
   Future<void> doneGiftRequestByGiver(GiftReceiver giftReceiver) async {
-    await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestDelivered);
+    await Get.find<GiftReceiverController>()
+        .cancelGiftRequest(giftReceiver, GiftRequestStatus.requestDelivered);
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
 
@@ -28,7 +35,8 @@ class GiftGiverNotificationController extends GetxController {
 
   // AFTER CONFIRMATION BY GIVER ACCEPTED BY REUQESTER, makes no sense IK, BUT its the app was made :3
   Future<void> aceeptGiftRequestByRequester(GiftReceiver giftReceiver) async {
-    await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestAccepted);
+    await Get.find<GiftReceiverController>()
+        .cancelGiftRequest(giftReceiver, GiftRequestStatus.requestAccepted);
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
 
@@ -41,7 +49,8 @@ class GiftGiverNotificationController extends GetxController {
 
   // CANCELED BY REQUESTER
   Future<void> cancelGiftRequestByRequester(GiftReceiver giftReceiver) async {
-    await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, GiftRequestStatus.requestCanceledByRequester);
+    await Get.find<GiftReceiverController>()
+        .cancelGiftRequest(giftReceiver, GiftRequestStatus.requestCanceledByRequester);
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
     await addNotificationRequesterAndGiver(
@@ -63,7 +72,8 @@ class GiftGiverNotificationController extends GetxController {
     );
   }
 
-  Future<void> addNotificationRequesterAndGiver(GiftReceiver giftReceiver, String requesterText, String giverText) async {
+  Future<void> addNotificationRequesterAndGiver(
+      GiftReceiver giftReceiver, String requesterText, String giverText) async {
     MyNotification notificationRequester = MyNotification.data(
       id: giftReceiver.requester.id ?? '',
       text: requesterText,
@@ -76,7 +86,9 @@ class GiftGiverNotificationController extends GetxController {
       text: giverText,
     );
 
-    await Get.find<NotificationController>().addNotification(userId: giftReceiver.requester.id ?? '', notification: notificationRequester);
-    await Get.find<NotificationController>().addNotification(userId: giftReceiver.giftGiver.uid, notification: notificationGiver);
+    await Get.find<NotificationController>()
+        .addNotification(userId: giftReceiver.requester.id ?? '', notification: notificationRequester);
+    await Get.find<NotificationController>()
+        .addNotification(userId: giftReceiver.giftGiver.uid, notification: notificationGiver);
   }
 }

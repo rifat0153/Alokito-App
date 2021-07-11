@@ -42,6 +42,8 @@ abstract class BaseAuthService {
   Stream<User?> get authStateChanges;
 
   Future<void> signOut();
+
+  Future<void> updateUserRating(String userId, int rating);
 }
 
 class AuthService implements BaseAuthService {
@@ -49,6 +51,35 @@ class AuthService implements BaseAuthService {
 
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
+
+  @override
+  Future<void> updateUserRating(String userId, int rating) async {
+    DocumentReference documentReference = _firestore.collection('users').doc(userId);
+
+    try {
+      await _firestore.runTransaction((transaction) async {
+        DocumentSnapshot snapshot = await transaction.get(documentReference);
+
+        if (!snapshot.exists) {
+          throw AuthException(message: 'User $userId does not exists');
+        }
+        LocalUser localUser = LocalUser.fromJson(snapshot.data()!);
+
+        var newRating = (localUser.ratingSum + rating) / (localUser.totalRating + 1);
+
+        var updatedUser = localUser.copyWith(
+          ratingSum: localUser.ratingSum + rating,
+          totalRating: localUser.totalRating + 1,
+          averageRating: newRating,
+        );
+
+        // Perform an update on the document
+        transaction.update(documentReference, updatedUser.toJson());
+      });
+    } on FirebaseException catch (e) {
+      throw AuthException(message: e.message);
+    }
+  }
 
   @override
   Future<bool> updateLocalUser(LocalUser localUser) async {
@@ -124,7 +155,8 @@ class AuthService implements BaseAuthService {
       var myLocation = geo.point(latitude: userPosition.latitude, longitude: userPosition.longitude);
       var pos = myLocation.data as Map<dynamic, dynamic>;
 
-      MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
+      MyPosition myPosition =
+          MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
       LocalUser myUser = LocalUser(
         id: firebaseUser.user?.uid,
