@@ -110,6 +110,8 @@ int notificationTypeToJson(NotificationType notificationType) {
       return 0;
     case NotificationType.giftAsk:
       return 1;
+    case NotificationType.text:
+      return 2;
     default:
       return -1;
   }
@@ -121,6 +123,8 @@ NotificationType notificationTypeFromJson(int json) {
       return NotificationType.giftGiver;
     case 1:
       return NotificationType.giftAsk;
+    case 2:
+      return NotificationType.text;
     default:
       return NotificationType.error;
   }

@@ -18,7 +18,7 @@ class FeedbackWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+      filter: ImageFilter.blur(sigmaX: 10.5, sigmaY: 10.5),
       child: Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
@@ -52,7 +52,13 @@ class FeedbackWidget extends StatelessWidget {
                         filled: true,
                         hintText: 'e.g. Thanks in advance for your kind consideration'),
                     maxLines: 3,
-                    onChanged: (value) => {},
+                    onChanged: (value) => {
+                      isRequester
+                          ? controller.messageForGiver.value = value
+                          : controller.messageForRequester.value = value,
+                      print(controller.messageForGiver.value),
+                      print(controller.messageForRequester.value),
+                    },
                     onSubmitted: (value) => {},
                   ),
                 ),

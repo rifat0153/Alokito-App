@@ -10,11 +10,22 @@ import 'package:get/get.dart';
 class GiftGiverNotificationController extends GetxController {
   GiftGiverNotificationController();
 
+  RxString messageForRequester = ''.obs;
+  RxString messageForGiver = ''.obs;
   RxInt requesterRating = 0.obs;
   RxInt giverRating = 0.obs;
 
   //Message for Requester and Rating
   Future<void> messageForRequesterAndRating(GiftReceiver giftReceiver) async {
+    MyNotification requesterNotification = MyNotification.data(
+        text: messageForRequester.value,
+        notificationType: NotificationType.text,
+        releatedDocId: giftReceiver.requester.id!,
+        createdAt: Timestamp.now());
+
+    await Get.find<NotificationController>()
+        .addNotification(userId: giftReceiver.requester.id ?? '', notification: requesterNotification);
+
     await Get.find<AuthController>()
         .authService
         .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);

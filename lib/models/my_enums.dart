@@ -5,6 +5,7 @@ enum GiftType { anyRetailItem, packageFor3Days, packageFor7Days, customizedPacka
 enum NotificationType {
   giftGiver,
   giftAsk,
+  text,
   error,
 }
 

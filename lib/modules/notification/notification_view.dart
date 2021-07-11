@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
+import 'package:alokito_new/modules/notification/widgets/text_notification_widget.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
@@ -34,17 +35,24 @@ class NotificationView extends StatelessWidget {
             Obx(
               () => Expanded(
                 child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: controller.notificationList.value.length,
-                    itemBuilder: (_, i) {
-                      if (controller.notificationList.value[i].notificationType == NotificationType.giftGiver) {
-                        return GiftGiverNotification(
-                          key: ValueKey(controller.notificationList.value[i].id),
-                          notification: controller.notificationList.value[i],
-                        );
-                      }
-                      return Text('gift ask');
-                    }),
+                  padding: EdgeInsets.zero,
+                  itemCount: controller.notificationList.value.length,
+                  itemBuilder: (_, i) {
+                    if (controller.notificationList.value[i].notificationType == NotificationType.giftGiver) {
+                      return GiftGiverNotification(
+                        key: ValueKey(controller.notificationList.value[i].id),
+                        notification: controller.notificationList.value[i],
+                      );
+                    }
+                    if (controller.notificationList.value[i].notificationType == NotificationType.text) {
+                      return TextNotificationWidget(
+                        key: ValueKey(controller.notificationList.value[i].id),
+                        notification: controller.notificationList.value[i],
+                      );
+                    }
+                    return Text('data');
+                  },
+                ),
               ),
             ),
           ],
