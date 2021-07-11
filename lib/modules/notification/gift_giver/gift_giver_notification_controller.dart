@@ -23,6 +23,9 @@ class GiftGiverNotificationController extends GetxController {
         releatedDocId: giftReceiver.requester.id!,
         createdAt: Timestamp.now());
 
+    await Get.find<GiftReceiverController>()
+        .cancelGiftRequest(giftReceiver, GiftRequestStatus.messageForRequesterSent);
+
     await Get.find<NotificationController>()
         .addNotification(userId: giftReceiver.requester.id ?? '', notification: requesterNotification);
 

@@ -32,14 +32,16 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var requesterIdCreatedAgo =
-        DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch)).inDays;
+    var requesterIdCreatedAgo = DateTime.now()
+        .difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch))
+        .inDays;
 
-    LatLng requesterLatLng =
-        LatLng(giftReceiver!.requester.position.geopoint.latitude, giftReceiver!.requester.position.geopoint.longitude);
+    LatLng requesterLatLng = LatLng(giftReceiver!.requester.position.geopoint.latitude,
+        giftReceiver!.requester.position.geopoint.longitude);
     var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: requesterLatLng)];
 
-    var distanceBetweenRequesterAndGiver = calculateDistance(giftReceiver!.requester.position, giftReceiver!.giftGiver.userPosition);
+    var distanceBetweenRequesterAndGiver =
+        calculateDistance(giftReceiver!.requester.position, giftReceiver!.giftGiver.userPosition);
 
     return SkeletonWidget(
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
@@ -90,11 +92,13 @@ class _DecisionWidget extends StatelessWidget {
       }
       // Gift ACCEPTED BY REQUESTER
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
-        return MyText('Gift Accepted by You', textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
+        return MyText('Gift Accepted by You',
+            textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
       }
       // GIFT CANCELED BY REQUESTER
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
-        return MyText('Request Canceled by You', textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
+        return MyText('Request Canceled by You',
+            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
       }
 
       //Gift ACCEPTEd by GIVER
@@ -128,6 +132,13 @@ class _DecisionWidget extends StatelessWidget {
 
     // If its giver notification
     // Gift Delivered BY Giver
+    if (giftReceiver!.giftRequestStatus == GiftRequestStatus.messageForRequesterSent) {
+      return Column(
+        children: [
+          MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
+        ],
+      );
+    }
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
       return Column(
         children: [
@@ -337,7 +348,8 @@ class _CommentWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       child: Container(
         width: double.infinity,
-        decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(5)),
+        decoration:
+            BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(5)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(giftReceiver!.comment),
