@@ -5,10 +5,12 @@ import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_navbar.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
@@ -135,6 +137,15 @@ class _userImageWidget extends StatefulWidget {
 class __userImageWidgetState extends State<_userImageWidget> {
   String? userImageUrl;
 
+  late String myKey;
+
+  @override
+  void initState() {
+    super.initState();
+
+    myKey = FirebaseAuth.instance.currentUser?.uid ?? Uuid().v4();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -142,6 +153,7 @@ class __userImageWidgetState extends State<_userImageWidget> {
       fit: FlexFit.tight,
       child: Obx(
         () => Padding(
+          key: ValueKey(widget.authController.currentUser.value.id ?? myKey),
           padding: const EdgeInsets.only(top: 35),
           child: CircleAvatar(
             radius: 75,

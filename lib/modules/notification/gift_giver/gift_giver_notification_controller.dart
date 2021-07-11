@@ -5,6 +5,7 @@ import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class GiftGiverNotificationController extends GetxController {
@@ -18,20 +19,26 @@ class GiftGiverNotificationController extends GetxController {
   //Message for Requester and Rating
   Future<void> messageForRequesterAndRating(GiftReceiver giftReceiver) async {
     MyNotification requesterNotification = MyNotification.data(
+        id: '',
         text: messageForRequester.value,
         notificationType: NotificationType.text,
         releatedDocId: giftReceiver.requester.id!,
         createdAt: Timestamp.now());
 
-    await Get.find<GiftReceiverController>()
-        .cancelGiftRequest(giftReceiver, GiftRequestStatus.messageForRequesterSent);
+    // await Get.find<GiftReceiverController>()
+    //     .cancelGiftRequest(giftReceiver, GiftRequestStatus.messageForRequesterSent);
 
-    await Get.find<NotificationController>()
-        .addNotification(userId: giftReceiver.requester.id ?? '', notification: requesterNotification);
+    // await Get.find<NotificationController>()
+    //     .addNotification(userId: giftReceiver.requester.id ?? '', notification: requesterNotification);
+
+    //***  THIS CALL IS CAUSING USER TO CHANGE ***
 
     await Get.find<AuthController>()
         .authService
         .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);
+
+    print(FirebaseAuth.instance.currentUser?.uid);
+    print(Get.find<AuthController>().currentUser.value.id);
   }
 
   // MARKED AS DONE BY GIVER

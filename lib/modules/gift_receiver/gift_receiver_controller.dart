@@ -14,7 +14,8 @@ import 'package:uuid/uuid.dart';
 import '../../models/notification/notification.dart';
 
 class GiftReceiverController extends GetxController {
-  final GiftReceiverService giftRequestService = GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance, FirebaseAuth.instance);
+  final GiftReceiverService giftReceiverService =
+      GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance, FirebaseAuth.instance);
 
   RxBool loading = RxBool(false);
   RxString requesterMessage = RxString('');
@@ -23,22 +24,23 @@ class GiftReceiverController extends GetxController {
 
   Future<GiftReceiver?> getGift(String id) async {
     print('GiftReceiverController: getGift call made');
-    GiftReceiver? doc = await giftRequestService.getGiftRequest(id: id);
+    GiftReceiver? doc = await giftReceiverService.getGiftRequest(id: id);
 
-    return doc == null ? null : doc;
+    return doc;
   }
 
   Future<void> cancelGiftRequest(GiftReceiver giftReceiver, GiftRequestStatus giftRequestStatus) async {
-    await giftRequestService.changeRequestStatus(giftReceiver: giftReceiver.copyWith(giftRequestStatus: giftRequestStatus));
+    await giftReceiverService.changeRequestStatus(
+        giftReceiver: giftReceiver.copyWith(giftRequestStatus: giftRequestStatus));
   }
 
   Future<void> confirmGiftRequest(GiftReceiver giftReceiver) async {
-    await giftRequestService.changeRequestStatus(
+    await giftReceiverService.changeRequestStatus(
         giftReceiver: giftReceiver.copyWith(giftRequestStatus: GiftRequestStatus.requestConfirmed));
   }
 
   Future<void> addGiftRequestAndNotification(GiftGiver giftGiver) async {
-    var found = await giftRequestService.findGift(id: Get.find<AuthController>().currentUser.value.id ?? '');
+    var found = await giftReceiverService.findGift(id: Get.find<AuthController>().currentUser.value.id ?? '');
 
     if (found) {
       await showSuccessOrErrorMessage(false, 'Request Already Found', '', 'One request per user at a time');
@@ -54,7 +56,7 @@ class GiftReceiverController extends GetxController {
       createdAt: Timestamp.now(),
     );
 
-    var result = await giftRequestService.addGiftRequest(giftReceiver: giftReceiver);
+    var result = await giftReceiverService.addGiftRequest(giftReceiver: giftReceiver);
     if (result) {
       await Get.find<AuthController>().userHasGiftReuqest(giftGiver.id!);
       await addNotificationForGiftRequest(giftReceiver);
@@ -77,10 +79,13 @@ class GiftReceiverController extends GetxController {
         releatedDocId: giftReceiver.id ?? '',
         createdAt: Timestamp.now());
 
-    MyNotification giverNotification = requesterNotification.copyWith(text: 'Your gift offer $giftType is requested by $requesterName');
+    MyNotification giverNotification =
+        requesterNotification.copyWith(text: 'Your gift offer $giftType is requested by $requesterName');
 
-    await Get.find<NotificationController>().addNotification(userId: requesterId, notification: requesterNotification);
-    await Get.find<NotificationController>().addNotification(userId: giverId, notification: giverNotification);
+    await Get.find<NotificationController>()
+        .addNotification(userId: requesterId, notification: requesterNotification);
+    await Get.find<NotificationController>()
+        .addNotification(userId: giverId, notification: giverNotification);
 
     await Get.find<AuthController>().userHasNotification(giverId);
     await Get.find<AuthController>().userHasNotification(requesterId);

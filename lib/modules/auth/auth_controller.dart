@@ -33,6 +33,7 @@ class AuthController extends GetxController {
   void signOut() async {
     await authService.signOut();
     currentUser.value = initialUser;
+    
   }
 
   Future<void> userHasGiftReuqest(String giftId) async {
