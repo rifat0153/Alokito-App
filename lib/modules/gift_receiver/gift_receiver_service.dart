@@ -38,6 +38,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
   Future<bool> addGiftRequest({required GiftReceiver giftReceiver}) async {
     try {
       await _firestore.collection('gift_receiver').doc(giftReceiver.id).set(giftReceiver.toJson());
+
       return true;
     } on FirebaseException catch (e) {
       throw GiftReceiverException(message: e.message);
@@ -55,9 +56,9 @@ class GiftReceiverService implements BaseGiftReceiverService {
   }
 
   @override
-  Future<bool>  updateGiftReceiver({required GiftReceiver giftReceiver}) async {
+  Future<bool> updateGiftReceiver({required GiftReceiver giftReceiver}) async {
     try {
-      await _firestore.collection('gift_receiver').doc(giftReceiver.requester.id).update(giftReceiver.toJson());
+      await _firestore.collection('gift_receiver').doc(giftReceiver.id).update(giftReceiver.toJson());
       return true;
     } on FirebaseException catch (e) {
       throw GiftReceiverException(message: e.message);

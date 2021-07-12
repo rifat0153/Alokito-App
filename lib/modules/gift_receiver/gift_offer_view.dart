@@ -4,7 +4,7 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/shared/config.dart';
 
-import 'package:alokito_new/modules/gift_receiver/gift_details_view.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_receiver_details_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -105,7 +105,7 @@ class _GiftListTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
             child: GestureDetector(
               onTap: () => Get.to(
-                () => GiftDetailsView(giftGiver: giftController.giftList.value[index]),
+                () => GiftReceiverDetailsView(giftGiver: giftController.giftList.value[index]),
               ),
               child: Container(
                 decoration: BoxDecoration(

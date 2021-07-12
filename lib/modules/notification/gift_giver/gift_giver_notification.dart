@@ -6,16 +6,16 @@ import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class GiftGiverNotification extends StatefulWidget {
-  GiftGiverNotification({Key? key, required this.notification}) : super(key: key);
+class GiftGiverNotificationView extends StatefulWidget {
+  GiftGiverNotificationView({Key? key, required this.notification}) : super(key: key);
 
   MyNotification notification;
 
   @override
-  _GiftGiverNotificationState createState() => _GiftGiverNotificationState();
+  _GiftGiverNotificationViewState createState() => _GiftGiverNotificationViewState();
 }
 
-class _GiftGiverNotificationState extends State<GiftGiverNotification> {
+class _GiftGiverNotificationViewState extends State<GiftGiverNotificationView> {
   GiftReceiverController giftReceiverController = Get.find<GiftReceiverController>();
 
   GiftReceiver? giftReceiver;

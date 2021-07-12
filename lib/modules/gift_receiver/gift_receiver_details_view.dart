@@ -13,8 +13,8 @@ import './widgets/gift_detail_map_widget.dart';
 import './widgets/message_popup_widget.dart';
 import './widgets/request_delete_widget.dart';
 
-class GiftDetailsView extends StatelessWidget {
-  GiftDetailsView({required this.giftGiver});
+class GiftReceiverDetailsView extends StatelessWidget {
+  GiftReceiverDetailsView({required this.giftGiver});
 
   static const route = 'giftdetail';
 
@@ -103,7 +103,8 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (authController.currentUser.value.hasGiftAskRequest && authController.currentUser.value.requestedGiftId == giftGiver.id) {
+    if (authController.currentUser.value.hasGiftAskRequest &&
+        authController.currentUser.value.requestedGiftId == giftGiver.id) {
       return Align(
         alignment: Alignment.bottomCenter,
         child: Row(
@@ -131,16 +132,17 @@ class _DecisionWidget extends StatelessWidget {
               },
               color: Colors.red,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-              child: Text(
+              child: const Text(
                 'Cancel',
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ],
         ),
       );
     }
-    if (authController.currentUser.value.hasGiftAskRequest && authController.currentUser.value.requestedGiftId != giftGiver.id) {
+    if (authController.currentUser.value.hasGiftAskRequest &&
+        authController.currentUser.value.requestedGiftId != giftGiver.id) {
       return Align(
         alignment: Alignment.bottomCenter,
         child: MaterialButton(
@@ -149,9 +151,9 @@ class _DecisionWidget extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.1),
-            child: Text(
+            child: const Text(
               'Already have a Request',
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white),
             ),
           ),
         ),
@@ -173,9 +175,9 @@ class _DecisionWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
-          child: Text(
+          child: const Text(
             'Send Request',
-            style: const TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),

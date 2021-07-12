@@ -39,7 +39,7 @@ class NotificationView extends StatelessWidget {
                   itemCount: controller.notificationList.value.length,
                   itemBuilder: (_, i) {
                     if (controller.notificationList.value[i].notificationType == NotificationType.giftGiver) {
-                      return GiftGiverNotification(
+                      return GiftGiverNotificationView(
                         key: ValueKey(controller.notificationList.value[i].id),
                         notification: controller.notificationList.value[i],
                       );

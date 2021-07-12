@@ -84,19 +84,21 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //***                                  If its requester notification              ***         
+    //***             If its requester notification              ***
     if (giftReceiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
-      if (giftReceiver!.messageForGiverrSent == true) {
+      if (giftReceiver!.messageForGiverrSent == true &&
+          giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
         return Column(
           children: [
-            MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
+            MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
           ],
         );
       }
-      if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
+      if (giftReceiver!.messageForGiverrSent == false &&
+          giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
         return Column(
           children: [
-            MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
+            MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
             MaterialButton(
               onPressed: () {
                 Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: true));
@@ -105,56 +107,69 @@ class _DecisionWidget extends StatelessWidget {
               height: 0,
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               color: GIFT_ASK_COLOR,
-              child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
+              child: MyText('r Done', color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ],
         );
       }
       // Gift Delivered BY Giver
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
-        return MyText('Delivered', fontSize: 20, color: Colors.blueAccent);
+        return MyText('r Delivered', fontSize: 20, color: Colors.blueAccent);
       }
       // Gift ACCEPTED BY REQUESTER
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
-        return MyText('Gift Accepted by You',
+        return MyText('r Gift Accepted by You',
             textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
       }
       // GIFT CANCELED BY REQUESTER
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
-        return MyText('Request Canceled by You',
+        return MyText('r Request Canceled by You',
             textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
       }
 
       //Gift ACCEPTEd by GIVER
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          MaterialButton(
-            onPressed: () {
-              controller.aceeptGiftRequestByRequester(giftReceiver!);
-            },
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            height: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            color: GIFT_ASK_COLOR,
-            child: MyText('Accept Gift', color: Colors.white),
-          ),
-          const SizedBox(width: 30),
-          MaterialButton(
-            onPressed: () {
-              controller.cancelGiftRequestByRequester(giftReceiver!);
-            },
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            height: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-            color: GIFT_ASK_COLOR,
-            child: MyText('Cancel', color: Colors.white),
-          )
-        ],
+      if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MaterialButton(
+              onPressed: () {
+                controller.aceeptGiftRequestByRequester(giftReceiver!);
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              height: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              color: GIFT_ASK_COLOR,
+              child: MyText('r Accept Gift', color: Colors.white),
+            ),
+            const SizedBox(width: 30),
+            MaterialButton(
+              onPressed: () {
+                controller.cancelGiftRequestByRequester(giftReceiver!);
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              height: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+              color: GIFT_ASK_COLOR,
+              child: MyText('r Cancel', color: Colors.white),
+            )
+          ],
+        );
+      }
+
+      return MaterialButton(
+        onPressed: () {
+          controller.cancelGiftRequestByRequester(giftReceiver!);
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        height: 0,
+        padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+        color: GIFT_ASK_COLOR,
+        child: MyText('r Cancel', color: Colors.white),
       );
     }
 
-    // ***                    If its giver notification                       ***
+    // ***                    If its giver notification                  ***
     // Gift Delivered BY Giver
     if (giftReceiver!.messageForRequesterSent == true) {
       return Column(
@@ -203,7 +218,7 @@ class _DecisionWidget extends StatelessWidget {
     // GIFT CANCELED BY REQUESTER
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
           MyText(
