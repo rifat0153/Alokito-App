@@ -84,7 +84,7 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //If its requester notification
+    //***                                  If its requester notification              ***         
     if (giftReceiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
       if (giftReceiver!.messageForGiverrSent == true) {
         return Column(
@@ -154,7 +154,7 @@ class _DecisionWidget extends StatelessWidget {
       );
     }
 
-    // If its giver notification
+    // ***                    If its giver notification                       ***
     // Gift Delivered BY Giver
     if (giftReceiver!.messageForRequesterSent == true) {
       return Column(
@@ -163,6 +163,7 @@ class _DecisionWidget extends StatelessWidget {
         ],
       );
     }
+    // Gift Delivered BY Giver But not message sent for Requester
     if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
       return Column(
         children: [

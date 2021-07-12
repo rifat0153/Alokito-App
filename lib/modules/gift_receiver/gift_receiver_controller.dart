@@ -31,7 +31,7 @@ class GiftReceiverController extends GetxController {
 
   Future<void> changeMessageSentStatus({
     required GiftReceiver giftReceiver,
-    bool isRequester = false,
+    required bool isRequester,
   }) async {
     isRequester
         ? await giftReceiverService.updateGiftReceiver(

@@ -33,12 +33,18 @@ class AuthController extends GetxController {
   void signOut() async {
     await authService.signOut();
     currentUser.value = initialUser;
-    
   }
 
   Future<void> userHasGiftReuqest(String giftId) async {
     await authService.updateLocalUser(currentUser.value.copyWith(
-      hasGiftAskRequest: !currentUser.value.hasGiftAskRequest,
+      hasGiftAskRequest: true,
+      requestedGiftId: giftId,
+    ));
+  }
+
+  Future<void> userDoesNotHaveGiftReuqest(String giftId) async {
+    await authService.updateLocalUser(currentUser.value.copyWith(
+      hasGiftAskRequest: false,
       requestedGiftId: giftId,
     ));
   }
