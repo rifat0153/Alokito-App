@@ -35,8 +35,9 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
 
   @override
   Widget build(BuildContext context) {
-    var difference =
-        DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(widget.notification.createdAt.millisecondsSinceEpoch)).inHours;
+    var difference = DateTime.now()
+        .difference(DateTime.fromMillisecondsSinceEpoch(widget.notification.createdAt.millisecondsSinceEpoch))
+        .inHours;
 
     return Container(
       width: Get.width,
@@ -65,7 +66,7 @@ class _GiftGiverNotificationState extends State<GiftGiverNotification> {
                         bottomLeft: Radius.circular(5),
                         topLeft: Radius.circular(5),
                       ),
-                      child: Image.network(giftReceiver!.requester.imageUrl!, fit: BoxFit.cover)),
+                      child: Image.network(giftReceiver!.giftGiver.imageUrl, fit: BoxFit.cover)),
             ),
             giftReceiver == null
                 ? Container()

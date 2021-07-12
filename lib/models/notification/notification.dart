@@ -10,7 +10,7 @@ part 'notification.g.dart';
 @freezed
 class MyNotification with _$MyNotification {
   const factory MyNotification.data({
-    String? id,
+    required String id,
     required String text,
     @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
         required NotificationType notificationType,

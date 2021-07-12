@@ -67,7 +67,9 @@ class FeedbackWidget extends StatelessWidget {
                   color: GIFT_ADD_FORM_SUBMIT,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   onPressed: () {
-                    controller.messageForRequesterAndRating(giftReceiver!);
+                    isRequester
+                        ? controller.messageForGiverAndRating(giftReceiver!)
+                        : controller.messageForRequesterAndRating(giftReceiver!);
                   },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30),

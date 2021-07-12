@@ -18,6 +18,8 @@ class GiftReceiver with _$GiftReceiver {
     String? id,
     String? giverId,
     required String comment,
+    @Default(false) bool messageForRequesterSent,
+    @Default(false) bool messageForGiverrSent,
     @Default(GiftRequestStatus.requestDelivered)
     @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
         GiftRequestStatus giftRequestStatus,

@@ -16,6 +16,29 @@ class GiftGiverNotificationController extends GetxController {
   RxInt requesterRating = 0.obs;
   RxInt giverRating = 0.obs;
 
+  //Message for Giver and Rating
+  Future<void> messageForGiverAndRating(GiftReceiver giftReceiver) async {
+    print('IN adding giver message');
+
+    MyNotification giverNotification = MyNotification.data(
+        id: '',
+        text: messageForGiver.value,
+        notificationType: NotificationType.text,
+        releatedDocId: giftReceiver.giftGiver.uid,
+        createdAt: Timestamp.now());
+
+    await Get.find<GiftReceiverController>()
+        .changeMessageSentStatus(giftReceiver: giftReceiver, isRequester: true);
+
+    await Get.find<NotificationController>()
+        .addNotification(userId: giftReceiver.giftGiver.uid, notification: giverNotification);
+
+    //***  THIS CALL Used to change user it has been fixed for now ***
+    await Get.find<AuthController>()
+        .authService
+        .updateUserRating(giftReceiver.giftGiver.uid, giverRating.value);
+  }
+
   //Message for Requester and Rating
   Future<void> messageForRequesterAndRating(GiftReceiver giftReceiver) async {
     MyNotification requesterNotification = MyNotification.data(
@@ -25,20 +48,16 @@ class GiftGiverNotificationController extends GetxController {
         releatedDocId: giftReceiver.requester.id!,
         createdAt: Timestamp.now());
 
-    // await Get.find<GiftReceiverController>()
-    //     .cancelGiftRequest(giftReceiver, GiftRequestStatus.messageForRequesterSent);
+    await Get.find<GiftReceiverController>()
+        .changeMessageSentStatus(giftReceiver: giftReceiver, isRequester: false);
 
-    // await Get.find<NotificationController>()
-    //     .addNotification(userId: giftReceiver.requester.id ?? '', notification: requesterNotification);
+    await Get.find<NotificationController>()
+        .addNotification(userId: giftReceiver.requester.id ?? '', notification: requesterNotification);
 
-    //***  THIS CALL IS CAUSING USER TO CHANGE ***
-
+    //***  THIS CALL Used to change user it has been fixed for now ***
     await Get.find<AuthController>()
         .authService
         .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);
-
-    print(FirebaseAuth.instance.currentUser?.uid);
-    print(Get.find<AuthController>().currentUser.value.id);
   }
 
   // MARKED AS DONE BY GIVER

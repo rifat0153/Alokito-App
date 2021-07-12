@@ -86,6 +86,30 @@ class _DecisionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //If its requester notification
     if (giftReceiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
+      if (giftReceiver!.messageForGiverrSent == true) {
+        return Column(
+          children: [
+            MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
+          ],
+        );
+      }
+      if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
+        return Column(
+          children: [
+            MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
+            MaterialButton(
+              onPressed: () {
+                Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: true));
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              height: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              color: GIFT_ASK_COLOR,
+              child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ],
+        );
+      }
       // Gift Delivered BY Giver
       if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
         return MyText('Delivered', fontSize: 20, color: Colors.blueAccent);
@@ -132,7 +156,7 @@ class _DecisionWidget extends StatelessWidget {
 
     // If its giver notification
     // Gift Delivered BY Giver
-    if (giftReceiver!.giftRequestStatus == GiftRequestStatus.messageForRequesterSent) {
+    if (giftReceiver!.messageForRequesterSent == true) {
       return Column(
         children: [
           MyText('Delivered', fontSize: 20, color: Colors.blueAccent),

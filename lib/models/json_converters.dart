@@ -80,10 +80,6 @@ int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
       return 4;
     case GiftRequestStatus.requestDelivered:
       return 5;
-    case GiftRequestStatus.messageForGiverSent:
-      return 6;
-    case GiftRequestStatus.messageForRequesterSent:
-      return 7;
     default:
       return -1;
   }
@@ -103,10 +99,6 @@ GiftRequestStatus giftRequestStatusFromJson(int json) {
       return GiftRequestStatus.requestAccepted;
     case 5:
       return GiftRequestStatus.requestDelivered;
-    case 6:
-      return GiftRequestStatus.messageForGiverSent;
-    case 7:
-      return GiftRequestStatus.messageForRequesterSent;
     default:
       return GiftRequestStatus.requestPending;
   }

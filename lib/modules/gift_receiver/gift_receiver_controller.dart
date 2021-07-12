@@ -29,13 +29,24 @@ class GiftReceiverController extends GetxController {
     return doc;
   }
 
+  Future<void> changeMessageSentStatus({
+    required GiftReceiver giftReceiver,
+    bool isRequester = false,
+  }) async {
+    isRequester
+        ? await giftReceiverService.updateGiftReceiver(
+            giftReceiver: giftReceiver.copyWith(messageForGiverrSent: true))
+        : await giftReceiverService.updateGiftReceiver(
+            giftReceiver: giftReceiver.copyWith(messageForRequesterSent: true));
+  }
+
   Future<void> cancelGiftRequest(GiftReceiver giftReceiver, GiftRequestStatus giftRequestStatus) async {
-    await giftReceiverService.changeRequestStatus(
+    await giftReceiverService.updateGiftReceiver(
         giftReceiver: giftReceiver.copyWith(giftRequestStatus: giftRequestStatus));
   }
 
   Future<void> confirmGiftRequest(GiftReceiver giftReceiver) async {
-    await giftReceiverService.changeRequestStatus(
+    await giftReceiverService.updateGiftReceiver(
         giftReceiver: giftReceiver.copyWith(giftRequestStatus: GiftRequestStatus.requestConfirmed));
   }
 

@@ -13,7 +13,7 @@ abstract class BaseGiftReceiverService {
 
   Future<GiftReceiver?> getGiftRequest({required String id});
 
-  Future<bool> changeRequestStatus({required GiftReceiver giftReceiver});
+  Future<bool> updateGiftReceiver({required GiftReceiver giftReceiver});
 }
 
 class GiftReceiverService implements BaseGiftReceiverService {
@@ -55,7 +55,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
   }
 
   @override
-  Future<bool> changeRequestStatus({required GiftReceiver giftReceiver}) async {
+  Future<bool>  updateGiftReceiver({required GiftReceiver giftReceiver}) async {
     try {
       await _firestore.collection('gift_receiver').doc(giftReceiver.requester.id).update(giftReceiver.toJson());
       return true;

@@ -21,7 +21,7 @@ class _$MyNotificationTearOff {
   const _$MyNotificationTearOff();
 
   _MyNotification data(
-      {String? id,
+      {required String id,
       required String text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           required NotificationType notificationType,
@@ -47,7 +47,7 @@ const $MyNotification = _$MyNotificationTearOff();
 
 /// @nodoc
 mixin _$MyNotification {
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
   NotificationType get notificationType => throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ mixin _$MyNotification {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String? id,
+            String id,
             String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
                 NotificationType notificationType,
@@ -71,7 +71,7 @@ mixin _$MyNotification {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String? id,
+            String id,
             String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
                 NotificationType notificationType,
@@ -105,7 +105,7 @@ abstract class $MyNotificationCopyWith<$Res> {
           MyNotification value, $Res Function(MyNotification) then) =
       _$MyNotificationCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
+      {String id,
       String text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           NotificationType notificationType,
@@ -135,7 +135,7 @@ class _$MyNotificationCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,7 @@ abstract class _$MyNotificationCopyWith<$Res>
       __$MyNotificationCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
+      {String id,
       String text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           NotificationType notificationType,
@@ -196,7 +196,7 @@ class __$MyNotificationCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -221,7 +221,7 @@ class __$MyNotificationCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MyNotification implements _MyNotification {
   const _$_MyNotification(
-      {this.id,
+      {required this.id,
       required this.text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           required this.notificationType,
@@ -233,7 +233,7 @@ class _$_MyNotification implements _MyNotification {
       _$_$_MyNotificationFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
   final String text;
   @override
@@ -287,7 +287,7 @@ class _$_MyNotification implements _MyNotification {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String? id,
+            String id,
             String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
                 NotificationType notificationType,
@@ -303,7 +303,7 @@ class _$_MyNotification implements _MyNotification {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String? id,
+            String id,
             String text,
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
                 NotificationType notificationType,
@@ -347,7 +347,7 @@ class _$_MyNotification implements _MyNotification {
 
 abstract class _MyNotification implements MyNotification {
   const factory _MyNotification(
-      {String? id,
+      {required String id,
       required String text,
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           required NotificationType notificationType,
@@ -359,7 +359,7 @@ abstract class _MyNotification implements MyNotification {
       _$_MyNotification.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @override
   String get text => throw _privateConstructorUsedError;
   @override

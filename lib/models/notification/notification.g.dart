@@ -8,7 +8,7 @@ part of 'notification.dart';
 
 _$_MyNotification _$_$_MyNotificationFromJson(Map<String, dynamic> json) {
   return _$_MyNotification(
-    id: json['id'] as String?,
+    id: json['id'] as String,
     text: json['text'] as String,
     notificationType: notificationTypeFromJson(json['notificationType'] as int),
     releatedDocId: json['releatedDocId'] as String,
