@@ -13,8 +13,10 @@ part 'gift_ask.g.dart';
 class GiftAsk with _$GiftAsk {
   const factory GiftAsk({
     String? id,
-    @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson) required GiftAskStatus giftAskStatus,
-    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
+    @Default(GiftAskStatus.requestPending)
+    @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
+         GiftAskStatus giftAskStatus,
+    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)required LocalUser requester,
     required String address,
     required String area,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition position,

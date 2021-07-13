@@ -40,51 +40,65 @@ class GiftAskRequestView extends StatelessWidget {
         shadowColor: Colors.white,
       ),
 
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GiftAskMapWidget(),
-            Obx(
-              () => Text(
-                '${giftAskController.filteredGiftRequestList.value.length} requests around\nyou right now',
-                style: boldFontStyle.copyWith(fontSize: 25),
-                overflow: TextOverflow.ellipsis,
-                softWrap: false,
-                maxLines: 2,
-              ),
-            ),
-            Expanded(
-              child: Obx(
-                () => ListView.builder(
-                  itemCount: giftAskController.filteredGiftRequestList.value.length,
-                  itemBuilder: (_, i) => _GiftAskRequestTile(
-                    key: ValueKey(i),
-                    giftAskController: giftAskController,
-                    index: i,
-                    width: Get.width * 0.8,
-                  ),
-                  physics: const BouncingScrollPhysics(),
-                ),
-              ),
-            ),
-            Obx(
-              () => Slider(
-                value: giftAskController.searchRadius.value,
-                label: giftAskController.searchRadius.value.toInt().toString(),
-                min: 0,
-                max: 200,
-                divisions: 200,
-                onChanged: (value) => giftAskController.searchRadius.value = value,
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: _buildBody(giftAskController: giftAskController),
       // body: MyMapView(),
+    );
+  }
+}
+
+class _buildBody extends StatelessWidget {
+  const _buildBody({
+    Key? key,
+    required this.giftAskController,
+  }) : super(key: key);
+
+  final GiftAskController giftAskController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          GiftAskMapWidget(),
+          Obx(
+            () => Text(
+              '${giftAskController.filteredGiftRequestList.value.length} requests around\nyou right now',
+              style: boldFontStyle.copyWith(fontSize: 25),
+              overflow: TextOverflow.ellipsis,
+              softWrap: false,
+              maxLines: 2,
+            ),
+          ),
+          Expanded(
+            child: Obx(
+              () => ListView.builder(
+                itemCount: giftAskController.filteredGiftRequestList.value.length,
+                itemBuilder: (_, i) => _GiftAskRequestTile(
+                  key: ValueKey(i),
+                  giftAskController: giftAskController,
+                  index: i,
+                  width: Get.width * 0.8,
+                ),
+                physics: const BouncingScrollPhysics(),
+              ),
+            ),
+          ),
+          Obx(
+            () => Slider(
+              value: giftAskController.searchRadius.value,
+              label: giftAskController.searchRadius.value.toInt().toString(),
+              min: 0,
+              max: 200,
+              divisions: 200,
+              onChanged: (value) => giftAskController.searchRadius.value = value,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -106,7 +120,8 @@ class _GiftAskRequestTile extends StatelessWidget {
         ? Container()
         : GestureDetector(
             onTap: () {
-              Get.to(() => GiftAskDetailView(giftAsk: giftAskController.filteredGiftRequestList.value[index]));
+              Get.to(
+                  () => GiftAskDetailView(giftAsk: giftAskController.filteredGiftRequestList.value[index]));
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
@@ -158,8 +173,8 @@ class _GiftAskRequestTile extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     convertGiftAskType(
-                                        giftAskType:
-                                            giftAskController.filteredGiftRequestList.value[index].giftAskType),
+                                        giftAskType: giftAskController
+                                            .filteredGiftRequestList.value[index].giftAskType),
                                     softWrap: false,
                                     overflow: TextOverflow.ellipsis,
                                   ),

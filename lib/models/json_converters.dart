@@ -30,17 +30,17 @@ GiftReceiver giftReceiverFromJson(Map<String, dynamic> json) => GiftReceiver.fro
 
 int giftAskStatusToJson(GiftAskStatus giftAskStatus) {
   switch (giftAskStatus) {
-    case GiftAskStatus.pending:
+    case GiftAskStatus.requestPending:
       return 0;
-    case GiftAskStatus.accepted:
+    case GiftAskStatus.requestConfirmed:
       return 1;
-    case GiftAskStatus.deleted:
+    case GiftAskStatus.requestCanceledByGiver:
       return 2;
-    case GiftAskStatus.delivered:
+    case GiftAskStatus.requestCanceledByRequester:
       return 3;
-    case GiftAskStatus.denied:
+    case GiftAskStatus.requestAccepted:
       return 4;
-    case GiftAskStatus.error:
+    case GiftAskStatus.requestDelivered:
       return 5;
     default:
       return -1;
@@ -50,19 +50,19 @@ int giftAskStatusToJson(GiftAskStatus giftAskStatus) {
 GiftAskStatus giftAskStatusFromJson(int json) {
   switch (json) {
     case 0:
-      return GiftAskStatus.pending;
+      return GiftAskStatus.requestPending;
     case 1:
-      return GiftAskStatus.accepted;
+      return GiftAskStatus.requestConfirmed;
     case 2:
-      return GiftAskStatus.deleted;
+      return GiftAskStatus.requestCanceledByGiver;
     case 3:
-      return GiftAskStatus.delivered;
+      return GiftAskStatus.requestCanceledByRequester;
     case 4:
-      return GiftAskStatus.denied;
+      return GiftAskStatus.requestAccepted;
     case 5:
-      return GiftAskStatus.error;
+      return GiftAskStatus.requestDelivered;
     default:
-      return GiftAskStatus.error;
+      return GiftAskStatus.requestPending;
   }
 }
 

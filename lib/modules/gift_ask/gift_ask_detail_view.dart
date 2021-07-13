@@ -27,10 +27,13 @@ class GiftAskDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var date = DateFormat.yMd().format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
-    var distance = calculateDistance(giftAsk.requester.position, Get.find<AuthController>().currentUser.value.position);
+    var date = DateFormat.yMd()
+        .format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
+    var distance =
+        calculateDistance(giftAsk.requester.position, Get.find<AuthController>().currentUser.value.position);
     var userJoinedAt = DateTime.now()
-            .difference(DateTime.fromMillisecondsSinceEpoch(giftAsk.requester.createdAt.millisecondsSinceEpoch))
+            .difference(
+                DateTime.fromMillisecondsSinceEpoch(giftAsk.requester.createdAt.millisecondsSinceEpoch))
             .inDays ~/
         30;
 
@@ -43,7 +46,8 @@ class GiftAskDetailView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios, color: Colors.black)),
+          leading: IconButton(
+              onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios, color: Colors.black)),
           backgroundColor: APP_BAR_COLOR,
           foregroundColor: APP_BAR_COLOR,
           elevation: 5,
@@ -58,53 +62,52 @@ class GiftAskDetailView extends StatelessWidget {
               width: Get.width,
               height: Get.height,
               decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
+                image:
+                    DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
-            Container(
-              width: Get.width,
-              child: SingleChildScrollView(
-                // physics: const BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(giftAsk.giftTitle, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          ],
-                        )),
-                    _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
-                    _NoteWidget(giftAsk: giftAsk),
-                    _UserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
-                    _RequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
-                    const AcceptAndDenyWidget(),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-                          child: MyText('Pickup Location', fontWeight: FontWeight.bold),
-                        ),
-                        Container(
-                          height: 200,
-                          child: GoogleMap(
-                            initialCameraPosition: CameraPosition(
-                              target: LatLng(
-                                giftAsk.position.geopoint.latitude,
-                                giftAsk.position.geopoint.longitude,
-                              ),
-                              zoom: 13,
+            SingleChildScrollView(
+              // physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(giftAsk.giftTitle,
+                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                      )),
+                  _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
+                  _NoteWidget(giftAsk: giftAsk),
+                  _UserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
+                  _RequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
+                  const AcceptAndDenyWidget(),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                        child: MyText('Pickup Location', fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        height: 200,
+                        child: GoogleMap(
+                          initialCameraPosition: CameraPosition(
+                            target: LatLng(
+                              giftAsk.position.geopoint.latitude,
+                              giftAsk.position.geopoint.longitude,
                             ),
-                            markers: Set.of(markers),
-                            zoomControlsEnabled: false,
+                            zoom: 13,
                           ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+                          markers: Set.of(markers),
+                          zoomControlsEnabled: false,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
@@ -278,7 +281,8 @@ class _UserNameAndLocationWidget extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                          width: 120, child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
+                          width: 120,
+                          child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

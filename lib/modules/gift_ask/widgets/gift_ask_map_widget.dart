@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -59,38 +60,37 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Center(
-            child: Card(
-              elevation: 4,
-              margin: EdgeInsets.symmetric(vertical: 8),
-              child: SizedBox(
-                width: mediaQuery.size.width,
-                height: mediaQuery.size.height * (1 / 3),
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(giftAskController.currentUserPosition.value.latitude,
-                        giftAskController.currentUserPosition.value.longitude),
-                    zoom: 9.0,
-                  ),
-                  markers: Set<Marker>.of(markers.values),
+          Card(
+            elevation: 4,
+            margin: EdgeInsets.symmetric(vertical: 8),
+            child: SizedBox(
+              width: mediaQuery.size.width,
+              height: mediaQuery.size.height * (1 / 3),
+              child: GoogleMap(
+                onMapCreated: _onMapCreated,
+                // zoomControlsEnabled: false,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(giftAskController.currentUserPosition.value.latitude,
+                      giftAskController.currentUserPosition.value.longitude),
+                  zoom: 9.0,
                 ),
+                markers: Set<Marker>.of(markers.values),
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 8.0),
-          //   child: Slider(
-          //     min: 1,
-          //     max: 200,
-          //     divisions: 199,
-          //     value: _value,
-          //     label: _label,
-          //     activeColor: Colors.blue,
-          //     inactiveColor: Colors.blue.withOpacity(0.2),
-          //     onChanged: (double value) => changed(value),
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Slider(
+              min: 1,
+              max: 200,
+              divisions: 199,
+              value: _value,
+              label: _label,
+              activeColor: Colors.blue,
+              inactiveColor: Colors.blue.withOpacity(0.2),
+              onChanged: (double value) => changed(value),
+            ),
+          ),
         ],
       ),
     );
@@ -122,7 +122,7 @@ class _GiftAskMapWidgetState extends State<GiftAskMapWidget> {
 
   void _updateMarkers(List<DocumentSnapshot> documentList) {
     documentList.forEach((DocumentSnapshot document) {
-      if (document.data()!['id'] == 'X9dupwSyi6WcTHaCvcz5o3JkhCK2') return;
+      if (document.data()!['id'] == Get.find<AuthController>().currentUser.value.id) return;
 
       final GeoPoint point = document.data()!['position']['geopoint'] as GeoPoint;
 

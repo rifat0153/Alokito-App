@@ -23,7 +23,7 @@ class _$GiftAskTearOff {
   _GiftAsk call(
       {String? id,
       @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-          required GiftAskStatus giftAskStatus,
+          GiftAskStatus giftAskStatus = GiftAskStatus.requestPending,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required LocalUser requester,
       required String address,
@@ -351,7 +351,7 @@ class _$_GiftAsk implements _GiftAsk {
   const _$_GiftAsk(
       {this.id,
       @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-          required this.giftAskStatus,
+          this.giftAskStatus = GiftAskStatus.requestPending,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required this.requester,
       required this.address,
@@ -491,7 +491,7 @@ abstract class _GiftAsk implements GiftAsk {
   const factory _GiftAsk(
       {String? id,
       @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-          required GiftAskStatus giftAskStatus,
+          GiftAskStatus giftAskStatus,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required LocalUser requester,
       required String address,

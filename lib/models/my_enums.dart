@@ -9,7 +9,14 @@ enum NotificationType {
   error,
 }
 
-enum GiftAskStatus { pending, accepted, denied, delivered, deleted, error }
+enum GiftAskStatus {
+  requestPending,
+  requestConfirmed,
+  requestCanceledByGiver,
+  requestCanceledByRequester,
+  requestAccepted,
+  requestDelivered
+}
 
 enum GiftRequestStatus {
   requestPending,

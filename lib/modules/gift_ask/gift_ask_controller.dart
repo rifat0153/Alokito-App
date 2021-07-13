@@ -101,15 +101,16 @@ class GiftAskController extends GetxController {
   Future<void> addGift() async {
     loading.value = true;
 
-    var myLocation =
-        geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
+    var myLocation = geo.point(
+        latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
-    MyPosition giftPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
+    MyPosition giftPosition =
+        MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
     GiftAsk giftAsk = GiftAsk(
       requester: Get.find<AuthController>().currentUser.value,
-      giftAskStatus: GiftAskStatus.pending,
+      giftAskStatus: GiftAskStatus.requestPending,
       address: address.value,
       area: area.value,
       position: giftPosition,
@@ -157,7 +158,8 @@ class GiftAskController extends GetxController {
 
   void setLocationFromMapCordinates() async {
     // From coordinates
-    final coordinates = geocoder.Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
+    final coordinates =
+        geocoder.Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
     var addresses1 = await geocoder.Geocoder.local.findAddressesFromCoordinates(coordinates);
     var first = addresses1.first;
     address.value = ' ${first.addressLine}  ${first.subLocality}';

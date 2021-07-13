@@ -372,7 +372,7 @@ class _InsertLocationWidget extends StatelessWidget {
 }
 
 class _MapWidget extends StatefulWidget {
-  _MapWidget({Key? key}) : super(key: key);
+  const _MapWidget({Key? key}) : super(key: key);
 
   @override
   __MapWidgetState createState() => __MapWidgetState();
@@ -380,11 +380,11 @@ class _MapWidget extends StatefulWidget {
 
 class __MapWidgetState extends State<_MapWidget> {
   final GiftAskController giftAskController = Get.find();
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
   double zoom = 12;
 
-  late LatLng userPosition = LatLng(
-      giftAskController.currentUserPosition.value.latitude, giftAskController.currentUserPosition.value.longitude);
+  late LatLng userPosition = LatLng(giftAskController.currentUserPosition.value.latitude,
+      giftAskController.currentUserPosition.value.longitude);
 
   @override
   void initState() {
@@ -409,7 +409,8 @@ class __MapWidgetState extends State<_MapWidget> {
               _controller.complete(controller);
             },
             zoomControlsEnabled: false,
-            initialCameraPosition: CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom),
+            initialCameraPosition:
+                CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom),
             onTap: (LatLng latLng) async {
               giftAskController.formMarker.value = Marker(markerId: MarkerId('markerId'), position: latLng);
               final GoogleMapController controller = await _controller.future;
