@@ -54,88 +54,113 @@ class GiftGiverView extends StatelessWidget {
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
-        body: Stack(
-          children: [
-            Container(
-              height: Get.size.height,
-              width: Get.size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/rsz_background.png'), fit: BoxFit.fill),
-              ),
-            ),
-            Positioned(
-              top: media.height * 0.14,
-              left: 0,
-              child: Container(
-                // height: media.height,
-                width: media.width,
-                child: _BannerWidget(size: media),
-              ),
-            ),
-            Positioned(
-              top: media.height * 0.18,
-              child: Container(width: media.width, child: _MyButtonRowWidget()),
-            ),
-            Positioned(
-              top: media.height * 0.24,
-              left: 0,
-              child: Container(
-                height: media.height * 0.6,
-                width: media.width,
-                child: ListView(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
-                      child: GestureDetector(
-                        onTap: () {
-                          giftAddFormController.giftType.value = GiftType.anyRetailItem;
-                          Get.toNamed(GiftAddView.route);
-                        },
-                        child: _AnyRetailItemMenu(height: menuHeight, width: menuWidth),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
-                      child: GestureDetector(
-                        onTap: () {
-                          giftAddFormController.giftType.value = GiftType.packageFor3Days;
-                          Get.toNamed(GiftAddView.route);
-                        },
-                        child: _Package3DaysMenu(height: menuHeight, width: menuWidth),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
-                      child: GestureDetector(
-                        onTap: () {
-                          giftAddFormController.giftType.value = GiftType.packageFor7Days;
-                          Get.toNamed(GiftAddView.route);
-                        },
-                        child: _Package7DaysMenu(height: menuHeight, width: menuWidth),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
-                      child: GestureDetector(
-                        onTap: () {
-                          giftAddFormController.giftType.value = GiftType.customizedPackage;
-                          Get.toNamed(GiftAddView.route);
-                        },
-                        child: _PackageCustomMenu(height: menuHeight, width: menuWidth),
-                      ),
-                    ),
-                    const SizedBox(height: 40)
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              child: _ThankYouBannerWidget(height: 30, width: media.width),
-            )
-          ],
-        ),
+        body: _buildBody(
+            media: media,
+            giftAddFormController: giftAddFormController,
+            menuHeight: menuHeight,
+            menuWidth: menuWidth),
       ),
+    );
+  }
+}
+
+class _buildBody extends StatelessWidget {
+  const _buildBody({
+    Key? key,
+    required this.media,
+    required this.giftAddFormController,
+    required this.menuHeight,
+    required this.menuWidth,
+  }) : super(key: key);
+
+  final Size media;
+  final GiftAddFormController giftAddFormController;
+  final double menuHeight;
+  final double menuWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: Get.size.height,
+          width: Get.size.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/images/rsz_background.png'), fit: BoxFit.fill),
+          ),
+        ),
+        Positioned(
+          top: media.height * 0.14,
+          left: 0,
+          child: Container(
+            // height: media.height,
+            width: media.width,
+            child: _BannerWidget(size: media),
+          ),
+        ),
+        Positioned(
+          top: media.height * 0.18,
+          child: SizedBox(width: media.width, child: const _MyButtonRowWidget()),
+        ),
+        Positioned(
+          top: media.height * 0.24,
+          left: 0,
+          child: SizedBox(
+            height: media.height * 0.6,
+            width: media.width,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                  child: GestureDetector(
+                    onTap: () {
+                      giftAddFormController.giftType.value = GiftType.anyRetailItem;
+                      Get.toNamed(GiftAddView.route);
+                    },
+                    child: _AnyRetailItemMenu(height: menuHeight, width: menuWidth),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                  child: GestureDetector(
+                    onTap: () {
+                      giftAddFormController.giftType.value = GiftType.packageFor3Days;
+                      Get.toNamed(GiftAddView.route);
+                    },
+                    child: _Package3DaysMenu(height: menuHeight, width: menuWidth),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                  child: GestureDetector(
+                    onTap: () {
+                      giftAddFormController.giftType.value = GiftType.packageFor7Days;
+                      Get.toNamed(GiftAddView.route);
+                    },
+                    child: _Package7DaysMenu(height: menuHeight, width: menuWidth),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: media.width * 0.1),
+                  child: GestureDetector(
+                    onTap: () {
+                      giftAddFormController.giftType.value = GiftType.customizedPackage;
+                      Get.toNamed(GiftAddView.route);
+                    },
+                    child: _PackageCustomMenu(height: menuHeight, width: menuWidth),
+                  ),
+                ),
+                const SizedBox(height: 40)
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          child: _ThankYouBannerWidget(height: 30, width: media.width),
+        )
+      ],
     );
   }
 }

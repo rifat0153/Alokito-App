@@ -12,6 +12,7 @@ class MyGiftView extends StatelessWidget {
     return Scaffold(
       body: Obx(
         () => ListView.builder(
+          padding: EdgeInsets.zero,
           itemCount: giftController.giftList.value.length,
           itemBuilder: (_, i) => ListTile(
             title: Text(giftController.giftList.value[i].uid.toString()),
