@@ -89,10 +89,7 @@ class _buildBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Hero(
-                    tag: giftGiver.imageUrl,
-                    child: _Image(giftGiver: giftGiver),
-                  ),
+                  _Image(giftGiver: giftGiver),
                   _PackageName(giftGiver: giftGiver),
                   _GiftDetails(giftGiver: giftGiver),
                   UserDetail(giftGiver: giftGiver),
@@ -238,12 +235,15 @@ class _Image extends StatelessWidget {
       child: Container(
         height: 200,
         width: Get.size.width * 0.9,
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              giftGiver.imageUrl,
-              fit: BoxFit.fill,
-            )),
+        child: Hero(
+          tag: giftGiver.imageUrl,
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                giftGiver.imageUrl,
+                fit: BoxFit.fill,
+              )),
+        ),
       ),
     );
   }
