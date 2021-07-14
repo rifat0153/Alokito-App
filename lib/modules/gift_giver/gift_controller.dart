@@ -39,7 +39,7 @@ class GiftController extends GetxController {
 
       docList.forEach((GiftGiver doc) {
         //filtering logic goes here
-        if (doc.giftType == GiftType.packageFor7Days) {
+        if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
           filteredGiftList.value = [...filteredGiftList.value, doc];
         }
       });
@@ -94,6 +94,8 @@ class GiftController extends GetxController {
   }
 
   void bindGiftStream() {
+    bindLocationData();
+
     giftList.bindStream(giftService.giftStreamByLocation());
   }
 

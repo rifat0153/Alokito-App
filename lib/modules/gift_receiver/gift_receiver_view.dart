@@ -4,7 +4,7 @@ import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_offer_view.dart';
+import 'package:alokito_new/modules/gift_receiver/gif_receiver_offer_list_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
@@ -151,7 +151,7 @@ class _MyButtonRowWidget extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            Get.toNamed(GiftOfferView.route);
+            Get.toNamed(GiftReceiverOfferListView.route);
             // Get.to(() => MyGiftView());
           },
           style: ButtonStyle(

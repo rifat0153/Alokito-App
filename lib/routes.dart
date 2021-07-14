@@ -1,7 +1,7 @@
 import 'package:alokito_new/modules/auth/initial_view.dart';
 import 'package:alokito_new/modules/auth/login_view.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_offer_view.dart';
+import 'package:alokito_new/modules/gift_receiver/gif_receiver_offer_list_view.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/map/geo_controller.dart';
@@ -53,8 +53,8 @@ class GetPages {
       }),
     ),
     GetPage(
-      name: GiftOfferView.route,
-      page: () => GiftOfferView(),
+      name: GiftReceiverOfferListView.route,
+      page: () => GiftReceiverOfferListView(),
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.downToUp,
       binding: BindingsBuilder(() {
