@@ -15,8 +15,10 @@ class GiftAsk with _$GiftAsk {
     String? id,
     @Default(GiftAskStatus.requestPending)
     @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-         GiftAskStatus giftAskStatus,
-    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)required LocalUser requester,
+        GiftAskStatus giftAskStatus,
+    @Default(false) bool messageForRequesterSent,
+    @Default(false) bool messageForGiverrSent,
+    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
     required String address,
     required String area,
     @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition position,
