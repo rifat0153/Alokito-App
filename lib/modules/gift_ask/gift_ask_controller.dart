@@ -20,13 +20,14 @@ import 'package:location/location.dart';
 class GiftAskController extends GetxController {
   final GiftAskService giftAskService =
       GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance, Geoflutterfire());
-
   final geo = Geoflutterfire();
 
+  RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   final RxDouble searchRadius = 50.0.obs;
   Rx<List<GiftAsk>> giftRequestList = Rx<List<GiftAsk>>([]);
   Rx<List<GiftAsk>> filteredGiftRequestList = Rx<List<GiftAsk>>([]);
 
+  // GiftASk Form data control value
   RxBool loading = false.obs;
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
@@ -49,10 +50,13 @@ class GiftAskController extends GetxController {
   void onInit() async {
     streamSubscription = giftRequestList.listen((docList) {
       filteredGiftRequestList.value = [];
+
       docList.forEach((doc) {
         // if (doc.giftTitle == 'Medicine')
         filteredGiftRequestList.value = [...filteredGiftRequestList.value, doc];
       });
+
+      _updateMarkers(docList);
     });
 
     bindLocationData();
@@ -69,6 +73,42 @@ class GiftAskController extends GetxController {
     streamSubscription?.cancel();
     giftRequestList.close();
     filteredGiftRequestList.close();
+  }
+
+  void _updateMarkers(List<GiftAsk> documentList) {
+    print('Update markers called');
+    print('markers length before');
+    print(markers.length);
+
+    markers.value = <MarkerId, Marker>{};
+
+    documentList.forEach((GiftAsk giftAsk) {
+      if (giftAsk.id == Get.find<AuthController>().currentUser.value.id) return;
+
+      final GeoPoint point = giftAsk.position.geopoint;
+
+      var userPoint = geo.point(
+          latitude: currentUserPosition.value.latitude, longitude: currentUserPosition.value.longitude);
+
+      var distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
+
+      _addMarker(point.latitude, point.longitude, distance);
+    });
+
+    print('markers length after');
+    print(markers.length);
+  }
+
+  void _addMarker(double lat, double lng, double distance) {
+    final id = MarkerId(lat.toString() + lng.toString());
+    final _marker = Marker(
+      markerId: id,
+      position: LatLng(lat, lng),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
+      infoWindow: InfoWindow(title: 'latLng', snippet: '$distance km'),
+    );
+
+    markers[id] = _marker;
   }
 
   void bindLocationData() async {
