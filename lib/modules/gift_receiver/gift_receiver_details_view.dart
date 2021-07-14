@@ -52,41 +52,61 @@ class GiftReceiverDetailsView extends StatelessWidget {
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
         ),
-        body: Stack(
-          children: [
-            Container(
-              height: Get.size.height,
-              width: Get.size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/gift_details.png'), fit: BoxFit.fill),
-              ),
-            ),
-            Positioned(
-              // top: 10,
-              child: Container(
-                height: Get.size.height - 170,
-                width: Get.size.width,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _Image(giftGiver: giftGiver),
-                      _PackageName(giftGiver: giftGiver),
-                      _GiftDetails(giftGiver: giftGiver),
-                      UserDetail(giftGiver: giftGiver),
-                      UserRatingAndDistance(giftGiver: giftGiver),
-                      _Location(giftGiver: giftGiver),
-                      GiftDetailMapWidget(giftGiver: giftGiver),
-                      // SizedBox(height: 100)
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            _DecisionWidget(authController: authController, giftGiver: giftGiver),
-          ],
-        ),
+        body: _buildBody(giftGiver: giftGiver, authController: authController),
       ),
+    );
+  }
+}
+
+class _buildBody extends StatelessWidget {
+  const _buildBody({
+    Key? key,
+    required this.giftGiver,
+    required this.authController,
+  }) : super(key: key);
+
+  final GiftGiver giftGiver;
+  final AuthController authController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: Get.size.height,
+          width: Get.size.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/gift_details.png'), fit: BoxFit.fill),
+          ),
+        ),
+        Positioned(
+          // top: 10,
+          child: SizedBox(
+            height: Get.size.height - 170,
+            width: Get.size.width,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Hero(
+                    tag: giftGiver.imageUrl,
+                    child: _Image(giftGiver: giftGiver),
+                  ),
+                  _PackageName(giftGiver: giftGiver),
+                  _GiftDetails(giftGiver: giftGiver),
+                  UserDetail(giftGiver: giftGiver),
+                  UserRatingAndDistance(giftGiver: giftGiver),
+                  _Location(giftGiver: giftGiver),
+                  GiftDetailMapWidget(giftGiver: giftGiver),
+                  // SizedBox(height: 100)
+                ],
+              ),
+            ),
+          ),
+        ),
+        _DecisionWidget(authController: authController, giftGiver: giftGiver),
+      ],
     );
   }
 }

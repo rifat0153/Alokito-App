@@ -114,86 +114,87 @@ class _GiftListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return giftController.filteredGiftList.value[index].uid ==
-            FirebaseAuth.instance.currentUser?.uid
-        ? Container()
-        : Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
-            child: GestureDetector(
-              onTap: () => Get.to(
-                () => GiftReceiverDetailsView(
-                    giftGiver: giftController.filteredGiftList.value[index]),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: GIFT_ADD_FORM_COLOR,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    Obx(
-                      () => Container(
-                        decoration: BoxDecoration(
-                          color: GIFT_ADD_FORM_COLOR,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            bottomLeft: Radius.circular(20),
-                          ),
-                        ),
-                        width: Get.size.width * 0.2,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                          ),
-                          child: Image.network(
-                            giftController.filteredGiftList.value[index].imageUrl,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
+      child: GestureDetector(
+        onTap: () => Get.to(
+          () => GiftReceiverDetailsView(giftGiver: giftController.filteredGiftList.value[index]),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            color: GIFT_ADD_FORM_COLOR,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            children: [
+              Obx(
+                () => Container(
+                  decoration: BoxDecoration(
+                    color: GIFT_ADD_FORM_COLOR,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                  ),
+                  width: Get.width * 0.25,
+                  height: Get.height * 0.1,
+                  child: Hero(
+                    tag: giftController.filteredGiftList.value[index].imageUrl,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                      child: Image.network(
+                        giftController.filteredGiftList.value[index].imageUrl,
+                        fit: BoxFit.cover,
+                        alignment: Alignment.center,
                       ),
                     ),
-                    Expanded(
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Obx(
-                                  () => Text(
-                                    convertGiftType(
-                                        giftController.filteredGiftList.value[index].giftType),
-                                    style: const TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(giftController.filteredGiftList.value[index].userName),
-                              ],
+                          Obx(
+                            () => Text(
+                              convertGiftType(
+                                  giftController.filteredGiftList.value[index].giftType),
+                              style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  giftController.filteredGiftList.value[index].area,
-                                  softWrap: true,
-                                ),
-                              ),
-                            ],
-                          ),
+                          const SizedBox(height: 5),
+                          Text(giftController.filteredGiftList.value[index].userName),
                         ],
                       ),
-                    )
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            giftController.filteredGiftList.value[index].area,
+                            softWrap: true,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ),
-            ),
-          );
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
