@@ -76,10 +76,6 @@ class GiftAskController extends GetxController {
   }
 
   void _updateMarkers(List<GiftAsk> documentList) {
-    print('Update markers called');
-    print('markers length before');
-    print(markers.length);
-
     markers.value = <MarkerId, Marker>{};
 
     documentList.forEach((GiftAsk giftAsk) {
@@ -94,9 +90,6 @@ class GiftAskController extends GetxController {
 
       _addMarker(point.latitude, point.longitude, distance);
     });
-
-    print('markers length after');
-    print(markers.length);
   }
 
   void _addMarker(double lat, double lng, double distance) {

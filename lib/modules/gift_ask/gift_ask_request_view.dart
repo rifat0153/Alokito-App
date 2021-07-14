@@ -2,13 +2,12 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_detail_view.dart';
-import 'package:alokito_new/modules/gift_ask/widgets/gift_ask_map_widget.dart';
-import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
-import 'package:flutter/gestures.dart';
+import 'package:alokito_new/shared/widget/map_with_markers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftAskRequestView extends StatelessWidget {
   GiftAskRequestView({Key? key}) : super(key: key);
@@ -63,7 +62,16 @@ class _buildBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          GiftAskMapWidget(),
+          Obx(
+            () => MapWithMarkersWidget(
+              markers: giftAskController.markers,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(giftAskController.currentUserPosition.value.latitude,
+                    giftAskController.currentUserPosition.value.longitude),
+                zoom: 9.0,
+              ),
+            ),
+          ),
           Obx(
             () => Text(
               '${giftAskController.filteredGiftRequestList.value.length} requests around\nyou right now',

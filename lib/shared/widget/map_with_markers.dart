@@ -1,11 +1,18 @@
-import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class GiftAskMapWidget extends StatelessWidget {
-  final GiftAskController giftAskController = Get.find<GiftAskController>();
-  GoogleMapController? _mapController;
+import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
+
+class MapWithMarkersWidget extends StatelessWidget {
+  MapWithMarkersWidget({
+    Key? key,
+    required this.markers,
+    required this.initialCameraPosition,
+  }) : super(key: key);
+
+  Map<MarkerId, Marker> markers;
+  CameraPosition initialCameraPosition;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +29,9 @@ class GiftAskMapWidget extends StatelessWidget {
               height: mediaQuery.size.height * (1 / 3),
               child: Obx(
                 () => GoogleMap(
-                  onMapCreated: _onMapCreated,
                   // zoomControlsEnabled: false,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(giftAskController.currentUserPosition.value.latitude,
-                        giftAskController.currentUserPosition.value.longitude),
-                    zoom: 9.0,
-                  ),
-                  markers: Set<Marker>.of(giftAskController.markers.values),
+                  initialCameraPosition: initialCameraPosition,
+                  markers: Set<Marker>.of(markers.values),
                 ),
               ),
             ),
@@ -37,9 +39,5 @@ class GiftAskMapWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _onMapCreated(GoogleMapController controller) {
-    _mapController = controller;
   }
 }
