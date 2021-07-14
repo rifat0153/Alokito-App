@@ -13,11 +13,7 @@ part 'gift_ask.g.dart';
 class GiftAsk with _$GiftAsk {
   const factory GiftAsk({
     String? id,
-    @Default(GiftAskStatus.requestPending)
-    @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-        GiftAskStatus giftAskStatus,
-    @Default(false) bool messageForRequesterSent,
-    @Default(false) bool messageForGiverrSent,
+    @Default(false) bool giftGiven,
     @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
     required String address,
     required String area,
@@ -25,7 +21,8 @@ class GiftAsk with _$GiftAsk {
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp reuqestDate,
     required int requestForNoOfPeople,
     String? prescriptionImageUrl,
-    @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson) required GiftAskType giftAskType,
+    @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
+        required GiftAskType giftAskType,
     required String giftTitle,
     required bool giftForSmallFamily,
     required String note,
