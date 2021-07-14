@@ -57,7 +57,7 @@ class GiftAskController extends GetxController {
         filteredGiftRequestList.value = [...filteredGiftRequestList.value, doc];
       });
 
-      _updateMarkers(docList);
+      _updateMarkers(filteredGiftRequestList.value);
     });
 
     bindLocationData();
@@ -116,8 +116,6 @@ class GiftAskController extends GetxController {
 
   void setSearchRadius(double newRadius) {
     searchRadius.value = newRadius;
-    bindLocationData();
-    bindGiftRequestStream();
   }
 
   void bindGiftRequestStream() {

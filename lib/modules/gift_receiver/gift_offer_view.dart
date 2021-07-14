@@ -4,9 +4,11 @@ import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/shared/config.dart';
 
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_details_view.dart';
+import 'package:alokito_new/shared/widget/map_with_markers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftOfferView extends StatelessWidget {
   static const route = 'giftoffer';
@@ -15,6 +17,8 @@ class GiftOfferView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    giftController.bindGiftStream();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -27,52 +31,71 @@ class GiftOfferView extends StatelessWidget {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: Stack(
-          children: [
-            Container(
-              height: Get.size.height,
-              width: Get.size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
-              ),
-            ),
-            Container(
-              height: Get.size.height,
-              width: Get.size.width,
-              child: Column(
-                children: [
-                  MyMapView(),
-                  _SearchWidget(),
-                  // _TextWidget(),
-                  Expanded(
-                    child: Obx(
-                      () => ListView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: giftController.giftList.value.length,
-                        itemBuilder: (_, i) =>
-                            _GiftListTile(giftController: giftController, index: i),
-                      ),
-                    ),
-                  ),
-                  Obx(
-                    () => Slider(
-                      label: giftController.searchRadius.toInt().toString(),
-                      divisions: 199,
-                      min: 1.0,
-                      max: 200.0,
-                      value: giftController.searchRadius,
-                      onChanged: (value) {
-                        giftController.setSearchRadius(value);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+        body: _buildBody(giftController: giftController),
       ),
+    );
+  }
+}
+
+class _buildBody extends StatelessWidget {
+  const _buildBody({
+    Key? key,
+    required this.giftController,
+  }) : super(key: key);
+
+  final GiftController giftController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: Get.size.height,
+          width: Get.size.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
+          ),
+        ),
+        Container(
+          height: Get.size.height,
+          width: Get.size.width,
+          child: Column(
+            children: [
+              Obx(
+                () => MapWithMarkersWidget(
+                  markers: giftController.markers,
+                  initialCameraPosition:
+                      CameraPosition(target: giftController.currentUserLocation.value, zoom: 9),
+                ),
+              ),
+              _SearchWidget(),
+              // _TextWidget(),
+              Expanded(
+                child: Obx(
+                  () => ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: giftController.filteredGiftList.value.length,
+                    itemBuilder: (_, i) => _GiftListTile(giftController: giftController, index: i),
+                  ),
+                ),
+              ),
+              Obx(
+                () => Slider(
+                  label: giftController.searchRadius.toInt().toString(),
+                  divisions: 199,
+                  min: 1.0,
+                  max: 200.0,
+                  value: giftController.searchRadius,
+                  onChanged: (value) {
+                    giftController.setSearchRadius(value);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -91,13 +114,15 @@ class _GiftListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return giftController.giftList.value[index].uid == FirebaseAuth.instance.currentUser?.uid
+    return giftController.filteredGiftList.value[index].uid ==
+            FirebaseAuth.instance.currentUser?.uid
         ? Container()
         : Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
             child: GestureDetector(
               onTap: () => Get.to(
-                () => GiftReceiverDetailsView(giftGiver: giftController.giftList.value[index]),
+                () => GiftReceiverDetailsView(
+                    giftGiver: giftController.filteredGiftList.value[index]),
               ),
               child: Container(
                 decoration: BoxDecoration(
@@ -122,7 +147,7 @@ class _GiftListTile extends StatelessWidget {
                             bottomLeft: Radius.circular(10),
                           ),
                           child: Image.network(
-                            giftController.giftList.value[index].imageUrl,
+                            giftController.filteredGiftList.value[index].imageUrl,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -139,12 +164,13 @@ class _GiftListTile extends StatelessWidget {
                               children: [
                                 Obx(
                                   () => Text(
-                                    convertGiftType(giftController.giftList.value[index].giftType),
+                                    convertGiftType(
+                                        giftController.filteredGiftList.value[index].giftType),
                                     style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 const SizedBox(height: 5),
-                                Text(giftController.giftList.value[index].userName),
+                                Text(giftController.filteredGiftList.value[index].userName),
                               ],
                             ),
                           ),
@@ -154,7 +180,7 @@ class _GiftListTile extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  giftController.giftList.value[index].area,
+                                  giftController.filteredGiftList.value[index].area,
                                   softWrap: true,
                                 ),
                               ),

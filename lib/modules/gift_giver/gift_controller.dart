@@ -30,26 +30,30 @@ class GiftController extends GetxController {
 
   @override
   void onInit() async {
-    bindLocationData();
+    super.onInit();
+
+    debounce(_searchRadius, (_) => bindGiftStream());
 
     streamSubscription = giftList.listen((docList) {
       filteredGiftList.value = [];
 
       docList.forEach((GiftGiver doc) {
         //filtering logic goes here
-        // if (doc.giftTitle == 'Medicine')
-        filteredGiftList.value = [...filteredGiftList.value, doc];
+        if (doc.giftType == GiftType.packageFor7Days) {
+          filteredGiftList.value = [...filteredGiftList.value, doc];
+        }
       });
 
-      _updateMarkers(docList);
+      _updateMarkers(filteredGiftList.value);
     });
 
-    debounce(_searchRadius, (_) => bindGiftStream());
-    super.onInit();
+    bindLocationData();
   }
 
   @override
   void onClose() {
+    streamSubscription?.cancel();
+    filteredGiftList.close();
     giftList.close();
     super.onClose();
   }
