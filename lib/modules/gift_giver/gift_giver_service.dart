@@ -50,7 +50,8 @@ class GiftGiverService implements BaseGiftGiverService {
     var myLocation = geo.point(latitude: giftPosition.latitude, longitude: giftPosition.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
-    MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
+    MyPosition myPosition =
+        MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
     print('Uploading Image');
 
@@ -59,7 +60,8 @@ class GiftGiverService implements BaseGiftGiverService {
 
     var uuid = const Uuid().v4();
 
-    var firebaseStorageRef = firebase_storage.FirebaseStorage.instance.ref().child('gifts/images/$uuid$fileExtension');
+    var firebaseStorageRef =
+        firebase_storage.FirebaseStorage.instance.ref().child('gifts/images/$uuid$fileExtension');
 
     try {
       await firebaseStorageRef.putFile(controller.imageFile.value);
@@ -76,9 +78,11 @@ class GiftGiverService implements BaseGiftGiverService {
 
     var name = userDoc.data() == null ? '' : userDoc.data()!['userName'] as String;
     var giverImageUrl = userDoc.data() == null ? '' : userDoc.data()!['imageUrl'] as String;
-    MyPosition userPosition = MyPosition.fromJson(userDoc.data()!['position'] as Map<String, dynamic>);
+    MyPosition userPosition =
+        MyPosition.fromJson(userDoc.data()!['position'] as Map<String, dynamic>);
     Timestamp userCreatedAt = userDoc.data()!['createdAt'] as Timestamp;
-    String userFullName = (userDoc.data()!['firstName'] as String) + (userDoc.data()!['lastName'] as String);
+    String userFullName =
+        (userDoc.data()!['firstName'] as String) + (userDoc.data()!['lastName'] as String);
 
     var gift = GiftGiver(
       id: docRef.id,
@@ -118,18 +122,22 @@ class GiftGiverService implements BaseGiftGiverService {
     GiftController giftController = Get.find();
 
 // Create a geoFirePoint
-    GeoFirePoint center =
-        geo.point(latitude: giftController.currentUserLocation.value.latitude, longitude: giftController.currentUserLocation.value.longitude);
-    print('In Service: center is: ' + center.toString());
+    GeoFirePoint center = geo.point(
+        latitude: giftController.currentUserLocation.value.latitude,
+        longitude: giftController.currentUserLocation.value.longitude);
 
     var collectionReference = _firestore.collection('gifts');
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
     var stream = geo
         .collection(collectionRef: collectionReference)
-        .within(center: center, radius: giftController.searchRadius, field: 'position', strictMode: true)
+        .within(
+            center: center,
+            radius: giftController.searchRadius,
+            field: 'position',
+            strictMode: true)
         .map((event) => event.map(
               (e) {
-                var gift = GiftGiver.fromJson(e.data() ?? {});
+                var gift = GiftGiver.fromJson(e.data()!);
                 return gift;
               },
             ).toList());

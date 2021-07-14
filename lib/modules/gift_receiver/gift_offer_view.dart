@@ -1,5 +1,4 @@
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -8,7 +7,6 @@ import 'package:alokito_new/modules/gift_receiver/gift_receiver_details_view.dar
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icon.dart';
 
 class GiftOfferView extends StatelessWidget {
   static const route = 'giftoffer';
@@ -17,14 +15,6 @@ class GiftOfferView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('IN offer view');
-    print(giftController.giftList.value.length);
-    giftController.bindGiftStream();
-
-    print(giftController.giftList.value.length);
-
-    giftController.bindLocationData();
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -33,7 +23,7 @@ class GiftOfferView extends StatelessWidget {
           shadowColor: Colors.transparent,
           leading: IconButton(
             onPressed: () => Get.back(),
-            icon: LineIcon.arrowLeft(color: Colors.black),
+            icon: Icon(Icons.keyboard_arrow_left, color: Colors.black),
           ),
         ),
         extendBodyBehindAppBar: true,
@@ -43,7 +33,8 @@ class GiftOfferView extends StatelessWidget {
               height: Get.size.height,
               width: Get.size.width,
               decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
+                image: DecorationImage(
+                    image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
               ),
             ),
             Container(
@@ -59,7 +50,8 @@ class GiftOfferView extends StatelessWidget {
                       () => ListView.builder(
                         padding: EdgeInsets.zero,
                         itemCount: giftController.giftList.value.length,
-                        itemBuilder: (_, i) => _GiftListTile(giftController: giftController, index: i),
+                        itemBuilder: (_, i) =>
+                            _GiftListTile(giftController: giftController, index: i),
                       ),
                     ),
                   ),

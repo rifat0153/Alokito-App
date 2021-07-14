@@ -52,6 +52,7 @@ class GiftAskController extends GetxController {
       filteredGiftRequestList.value = [];
 
       docList.forEach((doc) {
+        //filtering logic goes here
         // if (doc.giftTitle == 'Medicine')
         filteredGiftRequestList.value = [...filteredGiftRequestList.value, doc];
       });
