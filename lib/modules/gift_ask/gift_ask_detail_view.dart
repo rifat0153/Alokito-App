@@ -15,7 +15,7 @@ import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class GiftAskDetailView extends StatelessWidget {
-  GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
+ const GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
 
   final GiftAsk giftAsk;
 
@@ -39,7 +39,7 @@ class GiftAskDetailView extends StatelessWidget {
 
     var markers = [
       Marker(
-          markerId: MarkerId('1'),
+          markerId:const MarkerId('1'),
           position: LatLng(giftAsk.position.geopoint.latitude, giftAsk.position.geopoint.longitude))
     ];
 
@@ -131,7 +131,7 @@ class AcceptAndDenyWidget extends StatelessWidget {
           onPressed: () {},
           color: GIFT_ASK_COLOR,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          padding:const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           height: 0,
           child: MyText(
             'Accept for confirmation',
@@ -286,8 +286,8 @@ class _UserNameAndLocationWidget extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(width: 30),
-                          Icon(MdiIcons.mapMarker),
+                         const SizedBox(width: 30),
+                         const Icon(MdiIcons.mapMarker),
                           Text('$distance km away'),
                         ],
                       ),
@@ -373,7 +373,7 @@ class _RequestForAndDateWidget extends StatelessWidget {
                 color: Colors.transparent,
                 disabledColor: Colors.transparent,
                 height: 0,
-                padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                padding:const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
                 onPressed: null,
                 child: Text('', style: whiteFontStyle.copyWith(fontSize: 12)),
               )
@@ -387,7 +387,7 @@ class _RequestForAndDateWidget extends StatelessWidget {
               MaterialButton(
                 color: GIFT_ASK_COLOR,
                 height: 0,
-                padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                padding:const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
                 onPressed: () {},
                 child: Text('View Prescription', style: whiteFontStyle.copyWith(fontSize: 12)),

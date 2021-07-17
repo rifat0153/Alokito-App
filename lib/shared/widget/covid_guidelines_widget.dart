@@ -10,11 +10,11 @@ class CovidGuideLines extends StatelessWidget {
     return SizedBox(
       child: Row(
         children: [
-       const   SizedBox(width: 16),
-         const Icon(FontAwesomeIcons.bullhorn),
+          const SizedBox(width: 16),
+          const Icon(FontAwesomeIcons.bullhorn),
           Expanded(
             child: Padding(
-              padding:const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -23,11 +23,15 @@ class CovidGuideLines extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '* Please see the ',
-                          style: whiteFontStyle.copyWith(fontSize: notificationFontSize, color: Colors.black),
+                          style: whiteFontStyle.copyWith(
+                              fontSize: notificationFontSize,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text: 'Guideline for Food Adding',
-                          style: boldFontStyle.copyWith(color: Colors.red, fontSize: notificationFontSize),
+                          style: boldFontStyle.copyWith(
+                              color: Colors.red,
+                              fontSize: notificationFontSize),
                         ),
                       ],
                     ),
@@ -37,7 +41,9 @@ class CovidGuideLines extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '* Request to follow ',
-                          style: whiteFontStyle.copyWith(fontSize: notificationFontSize, color: Colors.black),
+                          style: whiteFontStyle.copyWith(
+                              fontSize: notificationFontSize,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text: 'Covid - 19: Sharing & Safety Guidelines',
