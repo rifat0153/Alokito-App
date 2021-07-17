@@ -7,15 +7,14 @@ class CovidGuideLines extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // width: Get.width,
+    return SizedBox(
       child: Row(
         children: [
-          SizedBox(width: 16),
-          Icon(FontAwesomeIcons.bullhorn),
+       const   SizedBox(width: 16),
+         const Icon(FontAwesomeIcons.bullhorn),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding:const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
