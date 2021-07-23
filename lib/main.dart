@@ -3,6 +3,7 @@
 import 'package:alokito_new/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
@@ -52,17 +53,24 @@ class _AlokitoAppState extends State<AlokitoApp> {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
 
-    return GetMaterialApp(
-      // darkTheme: ThemeData.dark(),
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: GoogleFonts.montserrat().fontFamily,
-        primarySwatch: Colors.teal,
-        accentColor: const Color(0xff1b2e59),
+    print('Size is');
+    print(Get.width);
+    print(Get.height);
+
+    return ScreenUtilInit(
+      designSize: const Size(392, 781),
+      builder: () => GetMaterialApp(
+        // darkTheme: ThemeData.dark(),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          fontFamily: GoogleFonts.montserrat().fontFamily,
+          primarySwatch: Colors.teal,
+          accentColor: const Color(0xff1b2e59),
+        ),
+        initialRoute: '/',
+        getPages: GetPages().getPages,
       ),
-      initialRoute: '/',
-      getPages: GetPages().getPages,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'dart:io';
 
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
@@ -9,8 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:location/location.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
@@ -40,78 +40,79 @@ class GiftAskView extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: Stack(
+        body: _buildBody(context),
+      ),
+    );
+  }
+
+  Stack _buildBody(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: Get.size.height,
+          width: Get.size.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                // image: AssetImage(
+                //     'assets/images/gift_receiver_background.png'),
+                image: AssetImage('assets/images/rsz_1gift_receiver.png'),
+                fit: BoxFit.fill),
+          ),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: Get.size.height,
-              width: Get.size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    // image: AssetImage(
-                    //     'assets/images/gift_receiver_background.png'),
-                    image: AssetImage('assets/images/rsz_1gift_receiver.png'),
-                    fit: BoxFit.fill),
+            SizedBox(height: context.height * 0.14),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text(
+                      "Don't worry...",
+                      style: boldFontStyle.copyWith(fontSize: 24.sp),
+                    ),
+                    SizedBox(height: 8.h),
+                    Text('there are many people', style: boldFontStyle),
+                    SizedBox(height: 8.h),
+                    Text('around you ready to help', style: boldFontStyle),
+                    SizedBox(height: 8.h),
+                    _InsertLocationWidget(),
+                    SizedBox(height: 8.h),
+                    _RequestForAndImageRow(),
+                    _FormWidget(key: const ValueKey('formWidget')),
+                    SizedBox(height: 16.h),
+                    Obx(
+                      () => giftAskController.loading.value
+                          ? const CircularProgressIndicator()
+                          : MaterialButton(
+                              onPressed: () async {
+                                await giftAskController.addGift();
+                              },
+                              shape:
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+                              color: GIFT_ADD_FORM_SUBMIT,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 50.w),
+                                child: Text(
+                                  'Place a Request',
+                                  style: boldFontStyle.copyWith(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                    ),
+                    SizedBox(height: 16.h),
+                    const _GuideLines(),
+                    SizedBox(height: 100.h),
+                  ],
+                ),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: context.height * 0.14),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Text(
-                          "Don't worry...",
-                          style: boldFontStyle.copyWith(fontSize: 24),
-                        ),
-                        const SizedBox(height: 8),
-                        Text('there are many people', style: boldFontStyle),
-                        const SizedBox(height: 8),
-                        Text('around you ready to help', style: boldFontStyle),
-                        const SizedBox(height: 8),
-                        _InsertLocationWidget(),
-                        const SizedBox(height: 8),
-                        _RequestForAndImageRow(),
-                        _FormWidget(key: ValueKey('formWidget')),
-                        const SizedBox(height: 16),
-                        Obx(
-                          () => giftAskController.loading.value
-                              ? CircularProgressIndicator()
-                              : MaterialButton(
-                                  onPressed: () async {
-                                    print('clicked');
-                                    // await giftAskController.findGiftExistsOrNot(
-                                    // giftAskId: 'X9dupwSyi6WcTHaCvcz5o3JkhCK');
-                                    await giftAskController.addGift();
-                                  },
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                                  color: GIFT_ADD_FORM_SUBMIT,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                                    child: Text(
-                                      'Place a Request',
-                                      style: boldFontStyle.copyWith(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                        ),
-                        const SizedBox(height: 16),
-                        _GuideLines(),
-                        const SizedBox(height: 300),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.transparent,
-                  height: Get.height * 0.08,
-                )
-              ],
-            ),
+            SizedBox(
+              height: 60.h,
+            )
           ],
         ),
-      ),
+      ],
     );
   }
 }
@@ -120,8 +121,7 @@ class _FormWidget extends StatelessWidget {
   _FormWidget({Key? key}) : super(key: key);
 
   final GiftAskController giftAskController = Get.find<GiftAskController>();
-
-  FocusNode focusNode = FocusNode();
+  final FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +239,8 @@ class _RequestForAndImageRow extends StatelessWidget {
 
   void _getLocalImage() async {
     ImagePicker _picker = ImagePicker();
-    var pickedFile = await _picker.getImage(source: ImageSource.gallery, imageQuality: 50, maxWidth: 400);
+    var pickedFile =
+        await _picker.getImage(source: ImageSource.gallery, imageQuality: 50, maxWidth: 400);
 
     File imageFile = File(pickedFile != null ? pickedFile.path : "");
 
@@ -250,9 +251,9 @@ class _RequestForAndImageRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: Get.width,
-      height: 140,
+    return SizedBox(
+      width: double.infinity,
+      height: 140.h,
       child: Row(
         children: [
           Expanded(
@@ -266,12 +267,12 @@ class _RequestForAndImageRow extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: EdgeInsets.symmetric(horizontal: 30.w),
                 child: Container(
-                  height: 60,
-                  width: 60,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  height: 60.h,
+                  width: 60.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5.r)),
                   ),
                   child: Obx(
                     () => ColorFiltered(
@@ -279,7 +280,7 @@ class _RequestForAndImageRow extends StatelessWidget {
                         giftAskController.showPrescription.value ? Colors.white : Colors.grey,
                         BlendMode.modulate,
                       ),
-                      child: giftAskController.precriptionImageFile.value.path.length > 0
+                      child: giftAskController.precriptionImageFile.value.path.isNotEmpty
                           ? Image.file(
                               giftAskController.precriptionImageFile.value,
                               fit: BoxFit.cover,
@@ -292,12 +293,12 @@ class _RequestForAndImageRow extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 2),
+              SizedBox(height: 2.h),
               Obx(
                 () => Container(
                   decoration: BoxDecoration(
                       color: giftAskController.showPrescription.value ? Colors.black : Colors.grey,
-                      borderRadius: BorderRadius.circular(5)),
+                      borderRadius: BorderRadius.circular(5.r)),
                   child: ColorFiltered(
                     colorFilter: ColorFilter.mode(
                       giftAskController.showPrescription.value ? Colors.white : Colors.grey,
@@ -307,13 +308,15 @@ class _RequestForAndImageRow extends StatelessWidget {
                       onTap: !giftAskController.showPrescription.value ? null : _getLocalImage,
                       child: Text(' Add Prescription ',
                           style: whiteFontStyle.copyWith(
-                              fontSize: 10,
-                              color: giftAskController.showPrescription.value ? Colors.white : Colors.grey)),
+                              fontSize: 10.sp,
+                              color: giftAskController.showPrescription.value
+                                  ? Colors.white
+                                  : Colors.grey)),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
             ],
           )
         ],
@@ -412,7 +415,8 @@ class __MapWidgetState extends State<_MapWidget> {
             initialCameraPosition:
                 CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom),
             onTap: (LatLng latLng) async {
-              giftAskController.formMarker.value = Marker(markerId: MarkerId('markerId'), position: latLng);
+              giftAskController.formMarker.value =
+                  Marker(markerId: MarkerId('markerId'), position: latLng);
               final GoogleMapController controller = await _controller.future;
               await controller.animateCamera(
                 CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: zoom)),
@@ -458,28 +462,28 @@ class _RequestDateWidget extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 30.w),
+            child: SizedBox(
               width: double.infinity,
               child: Row(
                 children: [
                   Text('Request For', style: boldFontStyle),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.w),
                   GestureDetector(
-                    onTap: () => giftAskController.decreseRequestForNoOfPeople(),
+                    onTap: giftAskController.decreseRequestForNoOfPeople,
                     child: _StyledContainer(
                       widget: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text('-', style: boldFontStyle.copyWith(fontSize: 20)),
+                        padding: EdgeInsets.symmetric(horizontal: 8.w),
+                        child: Text('-', style: boldFontStyle.copyWith(fontSize: 20.sp)),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.w),
                   _StyledContainer(
                     widget: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 2.h),
                       child: Obx(
                         () => Text(
                           giftAskController.requestForNoOfPeople.toString(),
@@ -487,13 +491,13 @@ class _RequestDateWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.w),
                   GestureDetector(
-                    onTap: () => giftAskController.increaseRequestForNoOfPeople(),
+                    onTap: giftAskController.increaseRequestForNoOfPeople,
                     child: _StyledContainer(
                       widget: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text('+', style: boldFontStyle.copyWith(fontSize: 20)),
+                        padding: EdgeInsets.symmetric(horizontal: 8.w),
+                        child: Text('+', style: boldFontStyle.copyWith(fontSize: 20.sp)),
                       ),
                     ),
                   ),
@@ -502,20 +506,21 @@ class _RequestDateWidget extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.h),
             child: Row(
               children: [
                 Container(
                   height: 10,
                   width: 10,
-                  decoration: BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(30)),
+                  decoration:
+                      BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(30)),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 Text(
                   'Any Retail Item',
-                  style: boldFontStyle,
+                  style: boldFontStyle.copyWith(fontSize: 13.sp),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 _StyledContainer(
                   widget: _GiftTypeDropdownButton(),
                 )
@@ -542,10 +547,11 @@ class _GiftTypeDropdownButton extends StatelessWidget {
         isDense: true,
         value: giftAskController.selectedGiftType,
         icon: const Icon(Icons.arrow_downward),
-        iconSize: 20,
+        iconSize: 20.sp,
         elevation: 16,
-        style: const TextStyle(
+        style: TextStyle(
           color: Colors.black,
+          fontSize: 14.sp,
         ),
         underline: Container(
           height: 0,
@@ -591,11 +597,11 @@ class _GuideLines extends StatelessWidget {
       // width: Get.width,
       child: Row(
         children: [
-          SizedBox(width: 16),
-          Icon(FontAwesomeIcons.bullhorn),
+          SizedBox(width: 16.w),
+          const Icon(FontAwesomeIcons.bullhorn),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -604,11 +610,13 @@ class _GuideLines extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '* Please see the ',
-                          style: whiteFontStyle.copyWith(fontSize: notificationFontSize, color: Colors.black),
+                          style: whiteFontStyle.copyWith(
+                              fontSize: notificationFontSize, color: Colors.black),
                         ),
                         TextSpan(
                           text: 'Guideline for Food Adding',
-                          style: boldFontStyle.copyWith(color: Colors.red, fontSize: notificationFontSize),
+                          style: boldFontStyle.copyWith(
+                              color: Colors.red, fontSize: notificationFontSize),
                         ),
                       ],
                     ),
@@ -618,7 +626,8 @@ class _GuideLines extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '* Request to follow ',
-                          style: whiteFontStyle.copyWith(fontSize: notificationFontSize, color: Colors.black),
+                          style: whiteFontStyle.copyWith(
+                              fontSize: notificationFontSize, color: Colors.black),
                         ),
                         TextSpan(
                           text: 'Covid - 19: Sharing & Safety Guidelines',
