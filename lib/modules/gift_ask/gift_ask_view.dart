@@ -46,6 +46,18 @@ class GiftAskView extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
+    List<Widget> textWidgets = [
+      Text(
+        "Don't worry...",
+        style: boldFontStyle.copyWith(fontSize: 24.sp),
+      ),
+      SizedBox(height: 8.h),
+      Text('there are many people', style: boldFontStyle),
+      SizedBox(height: 8.h),
+      Text('around you ready to help', style: boldFontStyle),
+      SizedBox(height: 8.h),
+    ];
+
     return Stack(
       children: [
         Container(
@@ -59,20 +71,12 @@ class GiftAskView extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 100.h),
+            SizedBox(height: 110.h),
+            ...textWidgets,
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text(
-                      "Don't worry...",
-                      style: boldFontStyle.copyWith(fontSize: 24.sp),
-                    ),
-                    SizedBox(height: 8.h),
-                    Text('there are many people', style: boldFontStyle),
-                    SizedBox(height: 8.h),
-                    Text('around you ready to help', style: boldFontStyle),
-                    SizedBox(height: 8.h),
                     _InsertLocationWidget(),
                     SizedBox(height: 8.h),
                     _RequestForAndImageRow(),
@@ -246,76 +250,72 @@ class _RequestForAndImageRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 140.h,
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              children: [
-                _RequestDateWidget(),
-              ],
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.w),
-                child: Container(
-                  height: 60.h,
-                  width: 60.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5.r)),
-                  ),
-                  child: Obx(
-                    () => ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                        giftAskController.showPrescription.value ? Colors.white : Colors.grey,
-                        BlendMode.modulate,
-                      ),
-                      child: giftAskController.precriptionImageFile.value.path.isNotEmpty
-                          ? Image.file(
-                              giftAskController.precriptionImageFile.value,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.asset(
-                              'assets/images/add_prescription.png',
-                              fit: BoxFit.fill,
-                            ),
-                    ),
-                  ),
+              _RequestDateWidget(),
+            ],
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.w),
+              child: Container(
+                height: 60.h,
+                width: 60.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5.r)),
                 ),
-              ),
-              SizedBox(height: 2.h),
-              Obx(
-                () => Container(
-                  decoration: BoxDecoration(
-                      color: giftAskController.showPrescription.value ? Colors.black : Colors.grey,
-                      borderRadius: BorderRadius.circular(5.r)),
-                  child: ColorFiltered(
+                child: Obx(
+                  () => ColorFiltered(
                     colorFilter: ColorFilter.mode(
                       giftAskController.showPrescription.value ? Colors.white : Colors.grey,
                       BlendMode.modulate,
                     ),
-                    child: GestureDetector(
-                      onTap: !giftAskController.showPrescription.value ? null : _getLocalImage,
-                      child: Text(' Add Prescription ',
-                          style: whiteFontStyle.copyWith(
-                              fontSize: 10.sp,
-                              color: giftAskController.showPrescription.value
-                                  ? Colors.white
-                                  : Colors.grey)),
-                    ),
+                    child: giftAskController.precriptionImageFile.value.path.isNotEmpty
+                        ? Image.file(
+                            giftAskController.precriptionImageFile.value,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(
+                            'assets/images/add_prescription.png',
+                            fit: BoxFit.fill,
+                          ),
                   ),
                 ),
               ),
-              SizedBox(height: 16.h),
-            ],
-          )
-        ],
-      ),
+            ),
+            SizedBox(height: 2.sp),
+            Obx(
+              () => Container(
+                decoration: BoxDecoration(
+                    color: giftAskController.showPrescription.value ? Colors.black : Colors.grey,
+                    borderRadius: BorderRadius.circular(5.r)),
+                child: ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    giftAskController.showPrescription.value ? Colors.white : Colors.grey,
+                    BlendMode.modulate,
+                  ),
+                  child: GestureDetector(
+                    onTap: !giftAskController.showPrescription.value ? null : _getLocalImage,
+                    child: Text(' Add Prescription ',
+                        style: whiteFontStyle.copyWith(
+                            fontSize: 10.sp,
+                            color: giftAskController.showPrescription.value
+                                ? Colors.white
+                                : Colors.grey)),
+                  ),
+                ),
+              ),
+            ),
+            // SizedBox(height: 16.h),
+          ],
+        )
+      ],
     );
   }
 }
@@ -478,7 +478,7 @@ class _RequestDateWidget extends StatelessWidget {
                   SizedBox(width: 8.w),
                   _StyledContainer(
                     widget: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 2.h),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       child: Obx(
                         () => Text(
                           giftAskController.requestForNoOfPeople.toString(),
@@ -576,7 +576,7 @@ class _StyledContainer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: GIFT_ADD_FORM_COLOR,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(5.r),
       ),
       child: widget,
     );
