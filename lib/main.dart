@@ -53,10 +53,6 @@ class _AlokitoAppState extends State<AlokitoApp> {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
 
-    print('Size is');
-    print(Get.width);
-    print(Get.height);
-
     return ScreenUtilInit(
       designSize: const Size(392, 781),
       builder: () => GetMaterialApp(

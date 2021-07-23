@@ -28,7 +28,7 @@ class GiftAskView extends StatelessWidget {
           shadowColor: Colors.transparent,
           foregroundColor: Colors.transparent,
           leading: IconButton(
-            onPressed: () => Get.back(),
+            onPressed: Get.back,
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.black,
@@ -45,7 +45,7 @@ class GiftAskView extends StatelessWidget {
     );
   }
 
-  Stack _buildBody(BuildContext context) {
+  Widget _buildBody(BuildContext context) {
     return Stack(
       children: [
         Container(
@@ -53,16 +53,13 @@ class GiftAskView extends StatelessWidget {
           width: Get.size.width,
           decoration: const BoxDecoration(
             image: DecorationImage(
-                // image: AssetImage(
-                //     'assets/images/gift_receiver_background.png'),
-                image: AssetImage('assets/images/rsz_1gift_receiver.png'),
-                fit: BoxFit.fill),
+                image: AssetImage('assets/images/rsz_1gift_receiver.png'), fit: BoxFit.fill),
           ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: context.height * 0.14),
+            SizedBox(height: 100.h),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -80,7 +77,7 @@ class GiftAskView extends StatelessWidget {
                     SizedBox(height: 8.h),
                     _RequestForAndImageRow(),
                     _FormWidget(key: const ValueKey('formWidget')),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 1.h),
                     Obx(
                       () => giftAskController.loading.value
                           ? const CircularProgressIndicator()
@@ -100,16 +97,14 @@ class GiftAskView extends StatelessWidget {
                               ),
                             ),
                     ),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 8.h),
                     const _GuideLines(),
-                    SizedBox(height: 100.h),
+                    // SizedBox(height: 100.h),
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              height: 60.h,
-            )
+            SizedBox(height: 60.h)
           ],
         ),
       ],
