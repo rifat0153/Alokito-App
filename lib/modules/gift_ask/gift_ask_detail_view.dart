@@ -15,7 +15,7 @@ import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class GiftAskDetailView extends StatelessWidget {
- const GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
+  const GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
 
   final GiftAsk giftAsk;
 
@@ -29,17 +29,17 @@ class GiftAskDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     var date = DateFormat.yMd()
         .format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
-    var distance =
-        calculateDistance(giftAsk.requester.position, Get.find<AuthController>().currentUser.value.position);
+    var distance = calculateDistance(
+        giftAsk.requester.position, Get.find<AuthController>().currentUser.value.position);
     var userJoinedAt = DateTime.now()
-            .difference(
-                DateTime.fromMillisecondsSinceEpoch(giftAsk.requester.createdAt.millisecondsSinceEpoch))
+            .difference(DateTime.fromMillisecondsSinceEpoch(
+                giftAsk.requester.createdAt.millisecondsSinceEpoch))
             .inDays ~/
         30;
 
     var markers = [
       Marker(
-          markerId:const MarkerId('1'),
+          markerId: const MarkerId('1'),
           position: LatLng(giftAsk.position.geopoint.latitude, giftAsk.position.geopoint.longitude))
     ];
 
@@ -47,7 +47,8 @@ class GiftAskDetailView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-              onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios, color: Colors.black)),
+              onPressed: () => Get.back(),
+              icon: const Icon(Icons.arrow_back_ios, color: Colors.black)),
           backgroundColor: APP_BAR_COLOR,
           foregroundColor: APP_BAR_COLOR,
           elevation: 5,
@@ -62,8 +63,8 @@ class GiftAskDetailView extends StatelessWidget {
               width: Get.width,
               height: Get.height,
               decoration: const BoxDecoration(
-                image:
-                    DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
+                image: DecorationImage(
+                    image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
             SingleChildScrollView(
@@ -83,7 +84,8 @@ class GiftAskDetailView extends StatelessWidget {
                   _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
                   _NoteWidget(giftAsk: giftAsk),
                   _UserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
-                  _RequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
+                  _RequesterLocationAndGiftDetailsWidget(
+                      userJoinedAt: userJoinedAt, giftAsk: giftAsk),
                   const AcceptAndDenyWidget(),
                   Column(
                     children: [
@@ -131,7 +133,7 @@ class AcceptAndDenyWidget extends StatelessWidget {
           onPressed: () {},
           color: GIFT_ASK_COLOR,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          padding:const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           height: 0,
           child: MyText(
             'Accept for confirmation',
@@ -280,14 +282,15 @@ class _UserNameAndLocationWidget extends StatelessWidget {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                           width: 120,
-                          child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
+                          child: Text(giftAsk.area,
+                              overflow: TextOverflow.ellipsis, style: boldFontStyle)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                         const SizedBox(width: 30),
-                         const Icon(MdiIcons.mapMarker),
+                          const SizedBox(width: 30),
+                          const Icon(MdiIcons.mapMarker),
                           Text('$distance km away'),
                         ],
                       ),
@@ -373,7 +376,7 @@ class _RequestForAndDateWidget extends StatelessWidget {
                 color: Colors.transparent,
                 disabledColor: Colors.transparent,
                 height: 0,
-                padding:const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
                 onPressed: null,
                 child: Text('', style: whiteFontStyle.copyWith(fontSize: 12)),
               )
@@ -387,7 +390,7 @@ class _RequestForAndDateWidget extends StatelessWidget {
               MaterialButton(
                 color: GIFT_ASK_COLOR,
                 height: 0,
-                padding:const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
                 onPressed: () {},
                 child: Text('View Prescription', style: whiteFontStyle.copyWith(fontSize: 12)),
