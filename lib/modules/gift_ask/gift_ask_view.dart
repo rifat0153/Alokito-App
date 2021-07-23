@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
@@ -152,9 +153,7 @@ class _FormWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
           child: GestureDetector(
-            onTap: () {
-              giftAskController.togglePackageSmallFamilty();
-            },
+            onTap: giftAskController.togglePackageSmallFamilty,
             child: Row(
               children: [
                 Obx(
@@ -175,21 +174,19 @@ class _FormWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 4),
           child: GestureDetector(
-            onTap: () {
-              giftAskController.togglePackageSmallFamilty();
-            },
+            onTap: giftAskController.togglePackageSmallFamilty,
             child: Row(
               children: [
                 Obx(
                   () => Container(
-                    height: 10,
-                    width: 10,
+                    height: 10.h,
+                    width: 10.w,
                     decoration: BoxDecoration(
                         color: !giftAskController.packageSmallFamilty ? Colors.teal : Colors.grey,
                         borderRadius: BorderRadius.circular(30)),
                   ),
                 ),
-                SizedBox(width: 16),
+                SizedBox(width: 16.w),
                 Text('Large Family Package', style: boldFontStyle),
               ],
             ),
@@ -403,15 +400,13 @@ class __MapWidgetState extends State<_MapWidget> {
         extendBodyBehindAppBar: true,
         body: Obx(
           () => GoogleMap(
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
+            onMapCreated: _controller.complete,
             zoomControlsEnabled: false,
             initialCameraPosition:
                 CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom),
             onTap: (LatLng latLng) async {
               giftAskController.formMarker.value =
-                  Marker(markerId: MarkerId('markerId'), position: latLng);
+                  Marker(markerId: const MarkerId('markerId'), position: latLng);
               final GoogleMapController controller = await _controller.future;
               await controller.animateCamera(
                 CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: zoom)),
@@ -430,100 +425,98 @@ class _RequestDateWidget extends StatelessWidget {
   _RequestDateWidget();
 
   final GiftAskController giftAskController = Get.find<GiftAskController>();
+  var date = DateFormat.yMd().format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // width: Get.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-            child: Text('Request Date', style: boldFontStyle),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Row(
-              children: [
-                const Icon(Icons.calendar_today),
-                Container(
-                  color: GIFT_ADD_FORM_COLOR,
-                  height: 30,
-                  width: 100,
-                  alignment: Alignment.center,
-                  child: Text('11/22/2020'),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 8.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w),
-            child: SizedBox(
-              width: double.infinity,
-              child: Row(
-                children: [
-                  Text('Request For', style: boldFontStyle),
-                  SizedBox(width: 8.w),
-                  GestureDetector(
-                    onTap: giftAskController.decreseRequestForNoOfPeople,
-                    child: _StyledContainer(
-                      widget: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.w),
-                        child: Text('-', style: boldFontStyle.copyWith(fontSize: 20.sp)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8.w),
-                  _StyledContainer(
-                    widget: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
-                      child: Obx(
-                        () => Text(
-                          giftAskController.requestForNoOfPeople.toString(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8.w),
-                  GestureDetector(
-                    onTap: giftAskController.increaseRequestForNoOfPeople,
-                    child: _StyledContainer(
-                      widget: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.w),
-                        child: Text('+', style: boldFontStyle.copyWith(fontSize: 20.sp)),
-                      ),
-                    ),
-                  ),
-                ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+          child: Text('Request Date', style: boldFontStyle),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Row(
+            children: [
+              const Icon(Icons.calendar_today),
+              Container(
+                color: GIFT_ADD_FORM_COLOR,
+                height: 30,
+                width: 100,
+                alignment: Alignment.center,
+                child: Text(date),
               ),
-            ),
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.h),
+        ),
+        SizedBox(height: 8.h),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.w),
+          child: SizedBox(
+            width: double.infinity,
             child: Row(
               children: [
-                Container(
-                  height: 10,
-                  width: 10,
-                  decoration:
-                      BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(30)),
-                ),
+                Text('Request For', style: boldFontStyle),
                 SizedBox(width: 8.w),
-                Text(
-                  'Any Retail Item',
-                  style: boldFontStyle.copyWith(fontSize: 13.sp),
+                GestureDetector(
+                  onTap: giftAskController.decreseRequestForNoOfPeople,
+                  child: _StyledContainer(
+                    widget: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.w),
+                      child: Text('-', style: boldFontStyle.copyWith(fontSize: 20.sp)),
+                    ),
+                  ),
                 ),
                 SizedBox(width: 8.w),
                 _StyledContainer(
-                  widget: _GiftTypeDropdownButton(),
-                )
+                  widget: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+                    child: Obx(
+                      () => Text(
+                        giftAskController.requestForNoOfPeople.toString(),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                GestureDetector(
+                  onTap: giftAskController.increaseRequestForNoOfPeople,
+                  child: _StyledContainer(
+                    widget: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.w),
+                      child: Text('+', style: boldFontStyle.copyWith(fontSize: 20.sp)),
+                    ),
+                  ),
+                ),
               ],
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.h),
+          child: Row(
+            children: [
+              Container(
+                height: 10.h,
+                width: 10.w,
+                decoration:
+                    BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(30)),
+              ),
+              SizedBox(width: 8.w),
+              Text(
+                'Any Retail Item',
+                style: boldFontStyle.copyWith(fontSize: 13.sp),
+              ),
+              SizedBox(width: 8.w),
+              _StyledContainer(
+                widget: _GiftTypeDropdownButton(),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }
@@ -588,58 +581,55 @@ class _GuideLines extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // width: Get.width,
-      child: Row(
-        children: [
-          SizedBox(width: 16.w),
-          const Icon(FontAwesomeIcons.bullhorn),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '* Please see the ',
-                          style: whiteFontStyle.copyWith(
-                              fontSize: notificationFontSize, color: Colors.black),
-                        ),
-                        TextSpan(
-                          text: 'Guideline for Food Adding',
-                          style: boldFontStyle.copyWith(
-                              color: Colors.red, fontSize: notificationFontSize),
-                        ),
-                      ],
-                    ),
+    return Row(
+      children: [
+        SizedBox(width: 16.w),
+        const Icon(FontAwesomeIcons.bullhorn),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '* Please see the ',
+                        style: whiteFontStyle.copyWith(
+                            fontSize: notificationFontSize, color: Colors.black),
+                      ),
+                      TextSpan(
+                        text: 'Guideline for Food Adding',
+                        style: boldFontStyle.copyWith(
+                            color: Colors.red, fontSize: notificationFontSize),
+                      ),
+                    ],
                   ),
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '* Request to follow ',
-                          style: whiteFontStyle.copyWith(
-                              fontSize: notificationFontSize, color: Colors.black),
+                ),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '* Request to follow ',
+                        style: whiteFontStyle.copyWith(
+                            fontSize: notificationFontSize, color: Colors.black),
+                      ),
+                      TextSpan(
+                        text: 'Covid - 19: Sharing & Safety Guidelines',
+                        style: boldFontStyle.copyWith(
+                          color: Colors.red,
+                          fontSize: notificationFontSize,
                         ),
-                        TextSpan(
-                          text: 'Covid - 19: Sharing & Safety Guidelines',
-                          style: boldFontStyle.copyWith(
-                            color: Colors.red,
-                            fontSize: notificationFontSize,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
