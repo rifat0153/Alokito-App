@@ -18,6 +18,6 @@ final LocalUser initialUser = LocalUser(
     lastName: '',
     userName: '',
     email: '',
-    imageUrl: 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png',
+    // imageUrl: 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png',
     position: MyPosition(geohash: '', geopoint: GeoPoint(0, 0)),
     createdAt: Timestamp.now());

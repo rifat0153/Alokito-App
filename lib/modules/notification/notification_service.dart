@@ -27,22 +27,26 @@ class NotificationService extends BaseNotificationService {
 
   @override
   Stream<List<MyNotification>> streamAllNotifications({required String userId}) {
-    var stream = _firestore
-        .collection('users')
-        .doc(userId)
-        .collection('notifications')
-        .orderBy('createdAt', descending: true)
-        .limit(30)
-        .snapshots()
-        .map((docList) {
-      List<MyNotification> list = [];
-      docList.docs.forEach((doc) {
-        MyNotification notification = MyNotification.fromJson(doc.data());
-        list.add(notification);
+    try {
+      var stream = _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('notifications')
+          .orderBy('createdAt', descending: true)
+          .limit(30)
+          .snapshots()
+          .map((docList) {
+        List<MyNotification> list = [];
+        docList.docs.forEach((doc) {
+          MyNotification notification = MyNotification.fromJson(doc.data());
+          list.add(notification);
+        });
+        return list;
       });
-      return list;
-    });
 
-    return stream;
+      return stream;
+    } catch (e) {
+      throw NotificationException(message: 'Something went wrong');
+    }
   }
 }

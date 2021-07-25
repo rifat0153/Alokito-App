@@ -117,18 +117,22 @@ class AuthService implements BaseAuthService {
 
   @override
   Stream<LocalUser> loggedInUserStream() {
-    return _firestore
-        .collection('users')
-        .doc(_firebaseAuth.currentUser?.uid)
-        .snapshots()
-        .map((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        var retVal = LocalUser.fromJson(documentSnapshot.data()!);
-        return retVal;
-      } else {
-        return initialUser;
-      }
-    });
+    try {
+      return _firestore
+          .collection('users')
+          .doc(_firebaseAuth.currentUser?.uid)
+          .snapshots()
+          .map((DocumentSnapshot documentSnapshot) {
+        if (documentSnapshot.exists) {
+          var retVal = LocalUser.fromJson(documentSnapshot.data()!);
+          return retVal;
+        } else {
+          return initialUser;
+        }
+      });
+    } catch (e) {
+      throw AuthException(message: 'No network');
+    }
   }
 
   @override
@@ -235,7 +239,13 @@ class AuthService implements BaseAuthService {
   }
 
   @override
-  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
+  Stream<User?> get authStateChanges {
+    try {
+      return _firebaseAuth.authStateChanges();
+    } catch (e) {
+      return Stream.value(null);
+    }
+  }
 
   @override
   Future<void> signOut() async {

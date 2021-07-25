@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/auth/auth_exception.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -62,8 +63,7 @@ class AuthController extends GetxController {
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();
     var giftGiverPoint = geo.point(
-        latitude: giftGiver.position.geopoint.latitude,
-        longitude: giftGiver.position.geopoint.longitude);
+        latitude: giftGiver.position.geopoint.latitude, longitude: giftGiver.position.geopoint.longitude);
 
     final GiftController giftController = Get.find();
 
@@ -86,8 +86,8 @@ class AuthController extends GetxController {
         LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
         currentUser.value = localUser;
       }
-    } on FirebaseException catch (e) {
-      print(e.message);
+    } catch (e) {
+      throw AuthException(message: 'Something went wrong');
     }
   }
 

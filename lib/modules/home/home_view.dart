@@ -72,7 +72,7 @@ class _buildBody extends StatelessWidget {
           Column(
             children: <Widget>[
               SizedBox(height: media.height * 0.1, width: 0),
-              _userImageWidget(authController: authController),
+              _UserImageWidget(authController: authController),
               Obx(
                 () => Flexible(
                   child: UserNameWidget(localUser: authController.currentUser.value, context: context),
@@ -125,16 +125,16 @@ class _buildBody extends StatelessWidget {
   }
 }
 
-class _userImageWidget extends StatefulWidget {
-  const _userImageWidget({Key? key, required this.authController}) : super(key: key);
+class _UserImageWidget extends StatefulWidget {
+  const _UserImageWidget({Key? key, required this.authController}) : super(key: key);
 
   final AuthController authController;
 
   @override
-  __userImageWidgetState createState() => __userImageWidgetState();
+  __UserImageWidgetState createState() => __UserImageWidgetState();
 }
 
-class __userImageWidgetState extends State<_userImageWidget> {
+class __UserImageWidgetState extends State<_UserImageWidget> {
   String? userImageUrl;
 
   late String myKey;
@@ -143,7 +143,7 @@ class __userImageWidgetState extends State<_userImageWidget> {
   void initState() {
     super.initState();
 
-    myKey = FirebaseAuth.instance.currentUser?.uid ?? Uuid().v4();
+    myKey = FirebaseAuth.instance.currentUser?.uid ?? const Uuid().v4();
   }
 
   @override
@@ -155,10 +155,14 @@ class __userImageWidgetState extends State<_userImageWidget> {
         () => Padding(
           key: ValueKey(widget.authController.currentUser.value.id ?? myKey),
           padding: const EdgeInsets.only(top: 35),
-          child: CircleAvatar(
-            radius: 75,
-            backgroundImage: NetworkImage(widget.authController.currentUser.value.imageUrl ?? ''),
-          ),
+          child: widget.authController.currentUser.value.imageUrl != null
+              ? CircleAvatar(
+                  radius: 75,
+                  backgroundImage: NetworkImage(
+                    widget.authController.currentUser.value.imageUrl ?? '',
+                  ),
+                )
+              : const SizedBox(),
         ),
       ),
     );
@@ -166,7 +170,7 @@ class __userImageWidgetState extends State<_userImageWidget> {
 }
 
 class _GiftGiverMenu extends StatelessWidget {
-  _GiftGiverMenu({required this.height, required this.width});
+  const _GiftGiverMenu({required this.height, required this.width});
 
   final double height;
   final double width;
