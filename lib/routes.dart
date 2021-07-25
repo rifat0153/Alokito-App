@@ -3,7 +3,6 @@ import 'package:alokito_new/modules/auth/login_view.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gif_receiver_offer_list_view.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/map/geo_controller.dart';
 import 'package:get/get.dart';
 
@@ -19,11 +18,7 @@ class GetPages {
     GetPage(
       name: '/',
       page: () => InitialView(),
-      // binding: BindingsBuilder(() {
-      //   Get.put(AuthController());
-      //   Get.put(LoginController());
-      //   Get.put(GiftNotificationController());
-      // }),
+
     ),
     GetPage(
       name: LoginView.route,
