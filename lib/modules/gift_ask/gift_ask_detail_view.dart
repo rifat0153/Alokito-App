@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
@@ -13,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftAskDetailView extends StatelessWidget {
   const GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
@@ -30,10 +29,14 @@ class GiftAskDetailView extends StatelessWidget {
     var date = DateFormat.yMd()
         .format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
     var distance = calculateDistance(
-        giftAsk.requester.position, Get.find<AuthController>().currentUser.value.position);
+      giftAsk.requester.position,
+      Get.find<AuthController>().currentUser.value.position,
+    );
     var userJoinedAt = DateTime.now()
-            .difference(DateTime.fromMillisecondsSinceEpoch(
-                giftAsk.requester.createdAt.millisecondsSinceEpoch))
+            .difference(
+              DateTime.fromMillisecondsSinceEpoch(
+                  giftAsk.requester.createdAt.millisecondsSinceEpoch),
+            )
             .inDays ~/
         30;
 
@@ -47,8 +50,9 @@ class GiftAskDetailView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-              onPressed: () => Get.back(),
-              icon: const Icon(Icons.arrow_back_ios, color: Colors.black)),
+            onPressed: Get.back,
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          ),
           backgroundColor: APP_BAR_COLOR,
           foregroundColor: APP_BAR_COLOR,
           elevation: 5,
@@ -67,53 +71,61 @@ class GiftAskDetailView extends StatelessWidget {
                     image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
-            SingleChildScrollView(
-              // physics: const BouncingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(giftAsk.giftTitle,
-                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        ],
-                      )),
-                  _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
-                  _NoteWidget(giftAsk: giftAsk),
-                  _UserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
-                  _RequesterLocationAndGiftDetailsWidget(
-                      userJoinedAt: userJoinedAt, giftAsk: giftAsk),
-                  const AcceptAndDenyWidget(),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-                        child: MyText('Pickup Location', fontWeight: FontWeight.bold),
-                      ),
-                      Container(
-                        height: 200,
-                        child: GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                            target: LatLng(
-                              giftAsk.position.geopoint.latitude,
-                              giftAsk.position.geopoint.longitude,
-                            ),
-                            zoom: 13,
-                          ),
-                          markers: Set.of(markers),
-                          zoomControlsEnabled: false,
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            _buildBody(date, distance, userJoinedAt, markers),
           ],
         ),
+      ),
+    );
+  }
+
+  SingleChildScrollView _buildBody(
+    String date,
+    double distance,
+    int userJoinedAt,
+    List<Marker> markers,
+  ) {
+    return SingleChildScrollView(
+      // physics: const BouncingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+              padding: EdgeInsets.all(8.sp),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(giftAsk.giftTitle,
+                      style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                ],
+              )),
+          _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
+          _NoteWidget(giftAsk: giftAsk),
+          _UserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
+          _RequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
+          const AcceptAndDenyWidget(),
+          Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.h),
+                child: MyText('Pickup Location', fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 200.h,
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(
+                      giftAsk.position.geopoint.latitude,
+                      giftAsk.position.geopoint.longitude,
+                    ),
+                    zoom: 13,
+                  ),
+                  markers: Set.of(markers),
+                  zoomControlsEnabled: false,
+                ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -133,23 +145,15 @@ class AcceptAndDenyWidget extends StatelessWidget {
           onPressed: () {},
           color: GIFT_ASK_COLOR,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
           height: 0,
           child: MyText(
             'Accept for confirmation',
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 12,
+            fontSize: 12.sp,
           ),
         ),
-        // MaterialButton(
-        //   onPressed: () {},
-        //   color: GIFT_ASK_COLOR,
-        //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        //   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        //   height: 0,
-        //   child: MyText('Deny', color: Colors.white, fontWeight: FontWeight.bold),
-        // ),
       ],
     );
   }

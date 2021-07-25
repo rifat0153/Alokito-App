@@ -2,9 +2,7 @@ import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 import 'gift_ask/gift_ask.dart';
 
