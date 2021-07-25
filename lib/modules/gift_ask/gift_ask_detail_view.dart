@@ -138,31 +138,53 @@ class AcceptAndDenyWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  GiftAsk giftAsk;
+  final GiftAsk giftAsk;
 
-  GiftAskGiverController giftAskGiverController = Get.find();
+  final GiftAskGiverController giftAskGiverController = Get.find<GiftAskGiverController>();
+  final AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        MaterialButton(
-          onPressed: () async {
-            await giftAskGiverController.acceptGiftAskRequest(giftAsk);
-          },
-          color: GIFT_ASK_COLOR,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-          height: 0,
-          child: MyText(
-            'Accept for confirmation',
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 12.sp,
-          ),
-        ),
-      ],
+    return SizedBox(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (authController.currentUser.value.acceptedGiftId != giftAsk.id &&
+              authController.currentUser.value.acceptedGiftId.isEmpty)
+            MaterialButton(
+              onPressed: () async {
+                await giftAskGiverController.acceptGiftAskRequest(giftAsk);
+              },
+              color: GIFT_ASK_COLOR,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+              height: 0,
+              child: MyText(
+                'Accept for confirmation',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 15.sp,
+              ),
+            ),
+          if (authController.currentUser.value.acceptedGiftId != giftAsk.id &&
+              authController.currentUser.value.acceptedGiftId.isNotEmpty)
+            MyText(
+              'Another Request Ongoing',
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+              fontSize: 20.sp,
+            ),
+          if (authController.currentUser.value.acceptedGiftId == giftAsk.id &&
+              authController.currentUser.value.acceptedGiftId.isNotEmpty)
+            MyText(
+              'Rquest Accepted',
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+              fontSize: 20.sp,
+            ),
+        ],
+      ),
     );
   }
 }

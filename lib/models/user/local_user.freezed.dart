@@ -31,8 +31,8 @@ class _$LocalUserTearOff {
       required String email,
       bool hasGiftRequest = false,
       bool hasGiftAskRequest = false,
-      String? requestedGiftId,
-      String? acceptedGiftId,
+      String requestedGiftId = '',
+      String acceptedGiftId = '',
       String? imageUrl,
       bool hasNotifications = false,
       String role = 'user',
@@ -85,8 +85,8 @@ mixin _$LocalUser {
   String get email => throw _privateConstructorUsedError;
   bool get hasGiftRequest => throw _privateConstructorUsedError;
   bool get hasGiftAskRequest => throw _privateConstructorUsedError;
-  String? get requestedGiftId => throw _privateConstructorUsedError;
-  String? get acceptedGiftId => throw _privateConstructorUsedError;
+  String get requestedGiftId => throw _privateConstructorUsedError;
+  String get acceptedGiftId => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   bool get hasNotifications => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
@@ -118,8 +118,8 @@ abstract class $LocalUserCopyWith<$Res> {
       String email,
       bool hasGiftRequest,
       bool hasGiftAskRequest,
-      String? requestedGiftId,
-      String? acceptedGiftId,
+      String requestedGiftId,
+      String acceptedGiftId,
       String? imageUrl,
       bool hasNotifications,
       String role,
@@ -207,11 +207,11 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
       requestedGiftId: requestedGiftId == freezed
           ? _value.requestedGiftId
           : requestedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       acceptedGiftId: acceptedGiftId == freezed
           ? _value.acceptedGiftId
           : acceptedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -268,8 +268,8 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
       String email,
       bool hasGiftRequest,
       bool hasGiftAskRequest,
-      String? requestedGiftId,
-      String? acceptedGiftId,
+      String requestedGiftId,
+      String acceptedGiftId,
       String? imageUrl,
       bool hasNotifications,
       String role,
@@ -359,11 +359,11 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
       requestedGiftId: requestedGiftId == freezed
           ? _value.requestedGiftId
           : requestedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       acceptedGiftId: acceptedGiftId == freezed
           ? _value.acceptedGiftId
           : acceptedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -410,8 +410,8 @@ class _$_LocalUser implements _LocalUser {
       required this.email,
       this.hasGiftRequest = false,
       this.hasGiftAskRequest = false,
-      this.requestedGiftId,
-      this.acceptedGiftId,
+      this.requestedGiftId = '',
+      this.acceptedGiftId = '',
       this.imageUrl,
       this.hasNotifications = false,
       this.role = 'user',
@@ -450,10 +450,12 @@ class _$_LocalUser implements _LocalUser {
   @JsonKey(defaultValue: false)
   @override
   final bool hasGiftAskRequest;
+  @JsonKey(defaultValue: '')
   @override
-  final String? requestedGiftId;
+  final String requestedGiftId;
+  @JsonKey(defaultValue: '')
   @override
-  final String? acceptedGiftId;
+  final String acceptedGiftId;
   @override
   final String? imageUrl;
   @JsonKey(defaultValue: false)
@@ -586,8 +588,8 @@ abstract class _LocalUser implements LocalUser {
       required String email,
       bool hasGiftRequest,
       bool hasGiftAskRequest,
-      String? requestedGiftId,
-      String? acceptedGiftId,
+      String requestedGiftId,
+      String acceptedGiftId,
       String? imageUrl,
       bool hasNotifications,
       String role,
@@ -622,9 +624,9 @@ abstract class _LocalUser implements LocalUser {
   @override
   bool get hasGiftAskRequest => throw _privateConstructorUsedError;
   @override
-  String? get requestedGiftId => throw _privateConstructorUsedError;
+  String get requestedGiftId => throw _privateConstructorUsedError;
   @override
-  String? get acceptedGiftId => throw _privateConstructorUsedError;
+  String get acceptedGiftId => throw _privateConstructorUsedError;
   @override
   String? get imageUrl => throw _privateConstructorUsedError;
   @override

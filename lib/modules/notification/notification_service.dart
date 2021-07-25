@@ -11,10 +11,9 @@ abstract class BaseNotificationService {
 }
 
 class NotificationService extends BaseNotificationService {
-  NotificationService(this._firestore, this._auth);
+  NotificationService(this._firestore);
 
   final FirebaseFirestore _firestore;
-  final FirebaseAuth _auth;
 
   @override
   Future<bool> add({required MyNotification notification, required String userId}) async {

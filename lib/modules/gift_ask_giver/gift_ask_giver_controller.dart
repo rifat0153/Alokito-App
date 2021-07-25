@@ -1,9 +1,13 @@
 import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_service.dart';
+import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../models/gift_ask/gift_ask.dart';
 import 'package:get/get.dart';
@@ -32,11 +36,55 @@ class GiftAskGiverController extends GetxController {
     try {
       await giftAskGiverService.add(giftAskGiver);
 
-      await Get.find<AuthController>()
-          .authService
-          .updateLocalUser(currentUser.copyWith(acceptedGiftId: giftAsk.id));
+      await Get.find<AuthController>().authService.updateLocalUser(currentUser.copyWith(
+            acceptedGiftId: giftAsk.id ?? '',
+          ));
+
+      await addNotification(
+        giftAskGiver: giftAskGiver,
+        textForRequester: 'Gift Request accepted by ${giftAskGiver.giver.userName}',
+      );
+      await addNotification(
+        giftAskGiver: giftAskGiver,
+        textForGiver: 'You confirmed request of ${giftAskGiver.giftAsk.requester.userName}',
+      );
     } on FirebaseException catch (e) {
-      ShowSuccessOrError.showSuccessOrErrorBottomSheet(false, '', e.message ?? '');
+      ShowSuccessOrError.showSuccessOrErrorBottomSheet(false, '', 'Something went wrong');
+    }
+  }
+
+  // Add notification for both requester and giver
+  Future<void> addNotification({
+    String? textForRequester,
+    String? textForGiver,
+    required GiftAskGiver giftAskGiver,
+  }) async {
+    final String uuid = const Uuid().v4();
+    final NotificationController notificationController = Get.find();
+
+    if (textForRequester != null) {
+      MyNotification notificationForRequester = MyNotification.data(
+        id: uuid,
+        text: textForRequester,
+        notificationType: NotificationType.giftAsk,
+        releatedDocId: giftAskGiver.id ?? '',
+        createdAt: Timestamp.now(),
+      );
+
+      await notificationController.notificationService.add(
+          notification: notificationForRequester, userId: giftAskGiver.giftAsk.requester.id ?? '');
+    }
+    if (textForGiver != null) {
+      MyNotification notificationForGiver = MyNotification.data(
+        id: uuid,
+        text: textForGiver,
+        notificationType: NotificationType.giftAsk,
+        releatedDocId: giftAskGiver.id ?? '',
+        createdAt: Timestamp.now(),
+      );
+
+      await notificationController.notificationService
+          .add(notification: notificationForGiver, userId: giftAskGiver.giver.id ?? '');
     }
   }
 }

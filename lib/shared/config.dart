@@ -1,7 +1,6 @@
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 const LOGIN_COLOR = const Color(0xff34fae3);
