@@ -25,13 +25,15 @@ class _$GiftAskGiverTearOff {
       @JsonKey(fromJson: giftAskFromJson, toJson: giftAskToJson)
           required GiftAsk giftAsk,
       @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-          GiftAskStatus giftAskStatus = GiftAskStatus.requestPending,
+          required GiftAskStatus giftAskStatus,
       bool messageForRequesterSent = false,
       bool messageForGiverrSent = false,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required LocalUser giver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required LocalUser requester}) {
+          required LocalUser requester,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp createdAt}) {
     return _GiftAskGiver(
       id: id,
       giftAsk: giftAsk,
@@ -40,6 +42,7 @@ class _$GiftAskGiverTearOff {
       messageForGiverrSent: messageForGiverrSent,
       giver: giver,
       requester: requester,
+      createdAt: createdAt,
     );
   }
 
@@ -64,6 +67,8 @@ mixin _$GiftAskGiver {
   LocalUser get giver => throw _privateConstructorUsedError;
   @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
   LocalUser get requester => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -87,7 +92,9 @@ abstract class $GiftAskGiverCopyWith<$Res> {
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           LocalUser giver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          LocalUser requester});
+          LocalUser requester,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp createdAt});
 
   $GiftAskCopyWith<$Res> get giftAsk;
   $LocalUserCopyWith<$Res> get giver;
@@ -111,6 +118,7 @@ class _$GiftAskGiverCopyWithImpl<$Res> implements $GiftAskGiverCopyWith<$Res> {
     Object? messageForGiverrSent = freezed,
     Object? giver = freezed,
     Object? requester = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -141,6 +149,10 @@ class _$GiftAskGiverCopyWithImpl<$Res> implements $GiftAskGiverCopyWith<$Res> {
           ? _value.requester
           : requester // ignore: cast_nullable_to_non_nullable
               as LocalUser,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 
@@ -184,7 +196,9 @@ abstract class _$GiftAskGiverCopyWith<$Res>
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           LocalUser giver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          LocalUser requester});
+          LocalUser requester,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          Timestamp createdAt});
 
   @override
   $GiftAskCopyWith<$Res> get giftAsk;
@@ -213,6 +227,7 @@ class __$GiftAskGiverCopyWithImpl<$Res> extends _$GiftAskGiverCopyWithImpl<$Res>
     Object? messageForGiverrSent = freezed,
     Object? giver = freezed,
     Object? requester = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_GiftAskGiver(
       id: id == freezed
@@ -243,6 +258,10 @@ class __$GiftAskGiverCopyWithImpl<$Res> extends _$GiftAskGiverCopyWithImpl<$Res>
           ? _value.requester
           : requester // ignore: cast_nullable_to_non_nullable
               as LocalUser,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 }
@@ -255,13 +274,15 @@ class _$_GiftAskGiver implements _GiftAskGiver {
       @JsonKey(fromJson: giftAskFromJson, toJson: giftAskToJson)
           required this.giftAsk,
       @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-          this.giftAskStatus = GiftAskStatus.requestPending,
+          required this.giftAskStatus,
       this.messageForRequesterSent = false,
       this.messageForGiverrSent = false,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required this.giver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required this.requester});
+          required this.requester,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required this.createdAt});
 
   factory _$_GiftAskGiver.fromJson(Map<String, dynamic> json) =>
       _$_$_GiftAskGiverFromJson(json);
@@ -286,10 +307,13 @@ class _$_GiftAskGiver implements _GiftAskGiver {
   @override
   @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
   final LocalUser requester;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  final Timestamp createdAt;
 
   @override
   String toString() {
-    return 'GiftAskGiver(id: $id, giftAsk: $giftAsk, giftAskStatus: $giftAskStatus, messageForRequesterSent: $messageForRequesterSent, messageForGiverrSent: $messageForGiverrSent, giver: $giver, requester: $requester)';
+    return 'GiftAskGiver(id: $id, giftAsk: $giftAsk, giftAskStatus: $giftAskStatus, messageForRequesterSent: $messageForRequesterSent, messageForGiverrSent: $messageForGiverrSent, giver: $giver, requester: $requester, createdAt: $createdAt)';
   }
 
   @override
@@ -315,7 +339,10 @@ class _$_GiftAskGiver implements _GiftAskGiver {
                 const DeepCollectionEquality().equals(other.giver, giver)) &&
             (identical(other.requester, requester) ||
                 const DeepCollectionEquality()
-                    .equals(other.requester, requester)));
+                    .equals(other.requester, requester)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -327,7 +354,8 @@ class _$_GiftAskGiver implements _GiftAskGiver {
       const DeepCollectionEquality().hash(messageForRequesterSent) ^
       const DeepCollectionEquality().hash(messageForGiverrSent) ^
       const DeepCollectionEquality().hash(giver) ^
-      const DeepCollectionEquality().hash(requester);
+      const DeepCollectionEquality().hash(requester) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -346,13 +374,15 @@ abstract class _GiftAskGiver implements GiftAskGiver {
       @JsonKey(fromJson: giftAskFromJson, toJson: giftAskToJson)
           required GiftAsk giftAsk,
       @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-          GiftAskStatus giftAskStatus,
+          required GiftAskStatus giftAskStatus,
       bool messageForRequesterSent,
       bool messageForGiverrSent,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required LocalUser giver,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required LocalUser requester}) = _$_GiftAskGiver;
+          required LocalUser requester,
+      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+          required Timestamp createdAt}) = _$_GiftAskGiver;
 
   factory _GiftAskGiver.fromJson(Map<String, dynamic> json) =
       _$_GiftAskGiver.fromJson;
@@ -375,6 +405,9 @@ abstract class _GiftAskGiver implements GiftAskGiver {
   @override
   @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
   LocalUser get requester => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
+  Timestamp get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GiftAskGiverCopyWith<_GiftAskGiver> get copyWith =>

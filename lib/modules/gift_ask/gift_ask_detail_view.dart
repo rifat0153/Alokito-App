@@ -2,6 +2,7 @@ import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
@@ -102,7 +103,7 @@ class GiftAskDetailView extends StatelessWidget {
           _NoteWidget(giftAsk: giftAsk),
           _UserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
           _RequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
-          const AcceptAndDenyWidget(),
+          AcceptAndDenyWidget(giftAsk: giftAsk),
           Column(
             children: [
               Padding(
@@ -132,9 +133,14 @@ class GiftAskDetailView extends StatelessWidget {
 }
 
 class AcceptAndDenyWidget extends StatelessWidget {
-  const AcceptAndDenyWidget({
+  AcceptAndDenyWidget({
+    required this.giftAsk,
     Key? key,
   }) : super(key: key);
+
+  GiftAsk giftAsk;
+
+  GiftAskGiverController giftAskGiverController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +148,9 @@ class AcceptAndDenyWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MaterialButton(
-          onPressed: () {},
+          onPressed: () async {
+            await giftAskGiverController.acceptGiftAskRequest(giftAsk);
+          },
           color: GIFT_ASK_COLOR,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),

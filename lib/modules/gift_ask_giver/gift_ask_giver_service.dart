@@ -12,10 +12,6 @@ class GiftAskGiverService implements BaseGiftAskGiverService {
 
   @override
   Future<void> add(GiftAskGiver giftAskGiver) async {
-    try {
-      await _firestore.collection('gift_ask_giver').doc(giftAskGiver.id).set(giftAskGiver.toJson());
-    } on FirebaseException catch (e) {
-      print(e.message);
-    }
+    await _firestore.collection('gift_ask_giver').doc(giftAskGiver.id).set(giftAskGiver.toJson());
   }
 }

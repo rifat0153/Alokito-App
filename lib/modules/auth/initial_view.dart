@@ -2,6 +2,7 @@ import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/auth/login_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
+import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/gift_record/gift_record_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
@@ -17,8 +18,9 @@ class InitialView extends StatelessWidget {
   final loginController = Get.put(LoginController());
   final giftRecordController = Get.put(GiftRecordController());
   final giftRequestController = Get.put(GiftReceiverController());
-  final notificationController =
-      Get.put(NotificationController(NotificationService(FirebaseFirestore.instance, FirebaseAuth.instance)));
+  final giftAskGiverController = Get.put(GiftAskGiverController());
+  final notificationController = Get.put(NotificationController(
+      NotificationService(FirebaseFirestore.instance, FirebaseAuth.instance)));
 
   final GiftAskController giftAskController = Get.put(GiftAskController(), permanent: true);
 

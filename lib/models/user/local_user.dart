@@ -22,7 +22,7 @@ class LocalUser with _$LocalUser {
     @Default(false) bool hasGiftRequest,
     @Default(false) bool hasGiftAskRequest,
     String? requestedGiftId,
-    String? askedGiftId,
+    String? acceptedGiftId,
     String? imageUrl,
     @Default(false) bool hasNotifications,
     @Default('user') String role,

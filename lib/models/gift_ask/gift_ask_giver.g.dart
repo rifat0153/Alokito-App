@@ -15,6 +15,7 @@ _$_GiftAskGiver _$_$_GiftAskGiverFromJson(Map<String, dynamic> json) {
     messageForGiverrSent: json['messageForGiverrSent'] as bool? ?? false,
     giver: localUserFromJson(json['giver'] as Map<String, dynamic>),
     requester: localUserFromJson(json['requester'] as Map<String, dynamic>),
+    createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
 }
 
@@ -27,4 +28,5 @@ Map<String, dynamic> _$_$_GiftAskGiverToJson(_$_GiftAskGiver instance) =>
       'messageForGiverrSent': instance.messageForGiverrSent,
       'giver': localUserToJson(instance.giver),
       'requester': localUserToJson(instance.requester),
+      'createdAt': timestampToJson(instance.createdAt),
     };
