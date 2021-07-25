@@ -8,7 +8,6 @@ import 'package:alokito_new/modules/gift_record/gift_record_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,8 +18,8 @@ class InitialView extends StatelessWidget {
   final giftRecordController = Get.put(GiftRecordController());
   final giftRequestController = Get.put(GiftReceiverController());
   final giftAskGiverController = Get.put(GiftAskGiverController());
-  final notificationController = Get.put(NotificationController(
-      NotificationService(FirebaseFirestore.instance)));
+  final notificationController =
+      Get.put(NotificationController(NotificationService(FirebaseFirestore.instance)));
 
   final GiftAskController giftAskController = Get.put(GiftAskController(), permanent: true);
 

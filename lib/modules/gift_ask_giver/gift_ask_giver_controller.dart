@@ -8,9 +8,9 @@ import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:uuid/uuid.dart';
+import 'package:get/get.dart';
 
 import '../../models/gift_ask/gift_ask.dart';
-import 'package:get/get.dart';
 import '../../shared/success_error_sheet.dart';
 
 class GiftAskGiverController extends GetxController {
@@ -19,6 +19,14 @@ class GiftAskGiverController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    // 
+  }
+
+   Future<GiftAskGiver?> getGift(String id) async {
+    print('GiftAskGiverController: getGiftAskGiver call made');
+    GiftAskGiver? doc = await giftAskGiverService.getGiftAskRequest(id: id);
+
+    return doc;
   }
 
   Future<void> acceptGiftAskRequest(GiftAsk giftAsk) async {
