@@ -14,7 +14,7 @@ import 'gift_giver/gift_giver_notification_view.dart';
 class NotificationView extends StatelessWidget {
   NotificationView({Key? key}) : super(key: key);
 
-  NotificationController controller = Get.find<NotificationController>();
+  final NotificationController controller = Get.find<NotificationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class NotificationView extends StatelessWidget {
     return SkeletonWidget(
       titleWidget: MyText('Notification', fontSize: 20, fontWeight: FontWeight.bold),
       assetPath: 'assets/images/notification-background.png',
-      child: Container(
+      child: SizedBox(
         height: Get.height,
         width: Get.width,
         child: Column(

@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftAskNotificationView extends StatefulWidget {
-  GiftAskNotificationView({Key? key, required this.notification}) : super(key: key);
+  const GiftAskNotificationView({Key? key, required this.notification}) : super(key: key);
 
   final MyNotification notification;
 

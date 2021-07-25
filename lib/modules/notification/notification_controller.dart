@@ -1,6 +1,7 @@
 import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,11 @@ class NotificationController extends GetxController {
   }
 
   void bindNotificationStream(String userId) {
-    notificationList.bindStream(notificationService.streamAllNotifications(userId: userId));
+    try {
+      notificationList.bindStream(notificationService.streamAllNotifications(userId: userId));
+    } on FirebaseException catch (e) {
+      showSuccessOrErrorMessage(false, 'Check Internet', '', 'something went wrong');
+    }
   }
 
   Future<void> addNotification({required String userId, required MyNotification notification}) async {

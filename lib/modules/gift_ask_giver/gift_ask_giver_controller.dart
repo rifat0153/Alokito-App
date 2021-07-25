@@ -19,16 +19,17 @@ class GiftAskGiverController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // 
+    //
   }
 
-   Future<GiftAskGiver?> getGift(String id) async {
+  Future<GiftAskGiver?> getGift(String id) async {
     print('GiftAskGiverController: getGiftAskGiver call made');
     GiftAskGiver? doc = await giftAskGiverService.getGiftAskRequest(id: id);
 
     return doc;
   }
 
+  // Accept GiftAsk Request
   Future<void> acceptGiftAskRequest(GiftAsk giftAsk) async {
     LocalUser currentUser = Get.find<AuthController>().currentUser.value;
 
@@ -56,7 +57,7 @@ class GiftAskGiverController extends GetxController {
         giftAskGiver: giftAskGiver,
         textForGiver: 'You confirmed request of ${giftAskGiver.giftAsk.requester.userName}',
       );
-    } on FirebaseException catch (e) {
+    } on FirebaseException {
       ShowSuccessOrError.showSuccessOrErrorBottomSheet(false, '', 'Something went wrong');
     }
   }
@@ -79,8 +80,8 @@ class GiftAskGiverController extends GetxController {
         createdAt: Timestamp.now(),
       );
 
-      await notificationController.notificationService.add(
-          notification: notificationForRequester, userId: giftAskGiver.giftAsk.requester.id ?? '');
+      await notificationController.notificationService
+          .add(notification: notificationForRequester, userId: giftAskGiver.giftAsk.requester.id ?? '');
     }
     if (textForGiver != null) {
       MyNotification notificationForGiver = MyNotification.data(

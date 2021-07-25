@@ -33,7 +33,7 @@ class UserNavbar extends StatelessWidget {
             },
             child: authController.currentUser.value.hasNotifications
                 ? Badge(
-                    badgeContent: Text('!'),
+                    badgeContent:const Text('!'),
                     badgeColor: Colors.white,
                     child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
                   )
