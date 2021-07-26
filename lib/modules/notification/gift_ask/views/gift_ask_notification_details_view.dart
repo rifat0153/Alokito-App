@@ -83,7 +83,7 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //***             If its requester notification              ***
+    //*********************       If its requester notification          ********************
     if (giftAskGiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
       if (giftAskGiver!.messageForGiverrSent == true &&
           giftAskGiver!.giftAskStatus == GiftAskStatus.requestDelivered) {
@@ -186,13 +186,13 @@ class _DecisionWidget extends StatelessWidget {
 
       return MaterialButton(
         onPressed: () {
-          // controller.cancelGiftRequestByRequester(giftAskGiver!);
+          //Todo
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         height: 0,
         padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
         color: GIFT_ASK_COLOR,
-        child: MyText('r Cancel', color: Colors.white),
+        child: MyText('r Cancel Request', color: Colors.white),
       );
     }
 

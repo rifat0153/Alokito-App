@@ -5,6 +5,8 @@ abstract class BaseGiftAskGiverService {
   Future<void> add(GiftAskGiver giftAskGiver);
 
   Future<GiftAskGiver?> getGiftAskGiver({required String id});
+
+  Future<void> updateGiftAskGiver(GiftAskGiver giftAskGiver);
 }
 
 class GiftAskGiverService implements BaseGiftAskGiverService {
@@ -22,5 +24,10 @@ class GiftAskGiverService implements BaseGiftAskGiverService {
     var doc = await _firestore.collection('gift_ask_giver').doc(id).get();
 
     return doc.exists ? GiftAskGiver.fromJson(doc.data()!) : null;
+  }
+
+  @override
+  Future<void> updateGiftAskGiver(GiftAskGiver giftAskGiver) async {
+    await _firestore.collection('gift_ask_giver').doc(giftAskGiver.id).update(giftAskGiver.toJson());
   }
 }

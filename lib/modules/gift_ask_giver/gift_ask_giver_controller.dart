@@ -29,6 +29,13 @@ class GiftAskGiverController extends GetxController {
     return doc;
   }
 
+  // Change GiftAskGiver status
+  Future<void> changeGiftAskGiverStatus(GiftAskGiver giftAskGiver, GiftAskStatus giftAskStatus) async {
+    var updatedGiftAskGiver = giftAskGiver.copyWith(giftAskStatus: giftAskStatus);
+
+    await giftAskGiverService.updateGiftAskGiver(updatedGiftAskGiver);
+  }
+
   // Accept GiftAsk Request
   Future<void> acceptGiftAskRequest(GiftAsk giftAsk) async {
     LocalUser currentUser = Get.find<AuthController>().currentUser.value;
