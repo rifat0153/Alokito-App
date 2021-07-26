@@ -24,7 +24,7 @@ class GiftAskGiverController extends GetxController {
 
   Future<GiftAskGiver?> getGift(String id) async {
     print('GiftAskGiverController: getGiftAskGiver call made');
-    GiftAskGiver? doc = await giftAskGiverService.getGiftAskRequest(id: id);
+    GiftAskGiver? doc = await giftAskGiverService.getGiftAskGiver(id: id);
 
     return doc;
   }
