@@ -29,26 +29,29 @@ class GiftAskNotificationController extends GetxController {
         releatedDocId: giftAskGiver.giftAsk.id!,
         createdAt: Timestamp.now());
 
+    await Get.find<NotificationController>()
+        .addNotification(userId: giftAskGiver.giver.id ?? '', notification: giverNotification);
+
     //***  THIS CALL Used to change user it has been fixed for now ***
     await Get.find<AuthController>().authService.updateUserRating(giftAskGiver.giver.id!, giverRating.value);
   }
 
   //*Message for Requester and Rating
-  Future<void> messageForRequesterAndRating(GiftReceiver giftReceiver) async {
+  Future<void> messageForRequesterAndRating(GiftAskGiver giftAskGiver) async {
     MyNotification requesterNotification = MyNotification.data(
         id: '',
         text: messageForRequester.value,
         notificationType: NotificationType.text,
-        releatedDocId: giftReceiver.requester.id!,
+        releatedDocId: giftAskGiver.id!,
         createdAt: Timestamp.now());
 
     await Get.find<NotificationController>()
-        .addNotification(userId: giftReceiver.requester.id ?? '', notification: requesterNotification);
+        .addNotification(userId: giftAskGiver.requester.id ?? '', notification: requesterNotification);
 
     //***  THIS CALL Used to change user it has been fixed for now ***
     await Get.find<AuthController>()
         .authService
-        .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);
+        .updateUserRating(giftAskGiver.requester.id ?? '', requesterRating.value);
   }
 
   //* MARKED AS DONE BY GIVER

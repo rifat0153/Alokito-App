@@ -73,9 +73,9 @@ class GiftAskFeedbackWidget extends StatelessWidget {
                   color: GIFT_ADD_FORM_SUBMIT,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   onPressed: () {
-                    // isRequester
-                    //     ? controller.messageForGiverAndRating(giftAskGiver!)
-                    //     : controller.messageForRequesterAndRating(giftAskGiver!);
+                    isRequester
+                        ? controller.messageForGiverAndRating(giftAskGiver!)
+                        : controller.messageForRequesterAndRating(giftAskGiver!);
                   },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30),
