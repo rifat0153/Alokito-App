@@ -1,6 +1,6 @@
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
-import 'package:alokito_new/modules/notification/gift_ask/gift_ask_notification_view.dart';
+import 'package:alokito_new/modules/notification/gift_ask/views/gift_ask_notification_view.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/modules/notification/widgets/text_notification_widget.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';

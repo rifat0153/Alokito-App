@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/notification.dart';
@@ -17,26 +18,18 @@ class GiftAskNotificationController extends GetxController {
   RxInt giverRating = 0.obs;
 
   //Message for Giver and Rating
-  Future<void> messageForGiverAndRating(GiftReceiver giftReceiver) async {
+  Future<void> messageForGiverAndRating(GiftAskGiver giftAskGiver) async {
     print('IN adding giver message');
 
     MyNotification giverNotification = MyNotification.data(
         id: '',
         text: messageForGiver.value,
         notificationType: NotificationType.text,
-        releatedDocId: giftReceiver.giftGiver.uid,
+        releatedDocId: giftAskGiver.giftAsk.id!,
         createdAt: Timestamp.now());
 
-    await Get.find<GiftReceiverController>()
-        .changeMessageSentStatus(giftReceiver: giftReceiver, isRequester: true);
-
-    await Get.find<NotificationController>()
-        .addNotification(userId: giftReceiver.giftGiver.uid, notification: giverNotification);
-
     //***  THIS CALL Used to change user it has been fixed for now ***
-    await Get.find<AuthController>()
-        .authService
-        .updateUserRating(giftReceiver.giftGiver.uid, giverRating.value);
+    await Get.find<AuthController>().authService.updateUserRating(giftAskGiver.giver.id!, giverRating.value);
   }
 
   //Message for Requester and Rating

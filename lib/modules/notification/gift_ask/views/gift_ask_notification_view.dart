@@ -2,7 +2,7 @@ import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
 
 import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_controller.dart';
-import 'package:alokito_new/modules/notification/gift_ask/gift_ask_notification_details.dart';
+import 'package:alokito_new/modules/notification/gift_ask/views/gift_ask_notification_details_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
