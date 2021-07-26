@@ -96,7 +96,7 @@ class _RatingWidget extends StatelessWidget {
 
   bool isRequester;
 
-  final GiftGiverNotificationController controller = Get.find();
+  final GiftAskNotificationController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/notification/gift_ask/widgets/gift_ask_feedback_widget.dart';
 import 'package:alokito_new/modules/notification/gift_giver/widgets/feedback_widget.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
@@ -222,7 +223,7 @@ class _DecisionWidget extends StatelessWidget {
           MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
           MaterialButton(
             onPressed: () {
-              // Get.dialog(FeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              Get.dialog(GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -241,7 +242,7 @@ class _DecisionWidget extends StatelessWidget {
               textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
           MaterialButton(
             onPressed: () {
-              // controller.doneGiftRequestByGiver(giftAskGiver!);
+              Get.dialog(GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
