@@ -73,8 +73,8 @@ class GiftAskNotificationController extends GetxController {
 
     await addNotificationRequesterAndGiver(
       giftAskGiver,
-      'Gift request $giftType from ${giftAskGiver.giver.userName} has been accepted by you',
-      '$giftType accepted by ${giftAskGiver.requester.userName}',
+      'Gift request $giftType accepted by you',
+      'Gift request $giftType has been accepted by ${giftAskGiver.requester.userName}',
     );
   }
 
@@ -97,14 +97,14 @@ class GiftAskNotificationController extends GetxController {
   //* CONFIRMED BY GIVER
   Future<void> confirmGift(GiftAskGiver giftAskGiver) async {
     await Get.find<GiftAskGiverController>()
-        .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestCanceledByRequester);
+        .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestConfirmed);
 
     String giftType = convertGiftAskType(giftAskType: giftAskGiver.giftAsk.giftAskType);
 
     await addNotificationRequesterAndGiver(
       giftAskGiver,
       'Gift request $giftType has been confirmed by ${giftAskGiver.giver.userName}',
-      'You confirmed gift $giftType for ${giftAskGiver.requester.userName}',
+      'You confirmed gift request $giftType for ${giftAskGiver.requester.userName}',
     );
   }
 

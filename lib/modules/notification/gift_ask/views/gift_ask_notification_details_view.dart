@@ -136,6 +136,16 @@ class _DecisionWidget extends StatelessWidget {
               textAlign: TextAlign.center,
               fontSize: 25,
             ),
+            MaterialButton(
+              onPressed: () {
+                controller.aceeptGiftRequestByRequester(giftAskGiver!);
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              height: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              color: GIFT_ASK_COLOR,
+              child: MyText('Accept Gift', color: Colors.white),
+            ),
           ],
         );
       }
@@ -282,7 +292,7 @@ class _DecisionWidget extends StatelessWidget {
           )
         : MaterialButton(
             onPressed: () {
-              // controller.confirmGift(giftAskGiver!);
+              controller.confirmGift(giftAskGiver!);
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
