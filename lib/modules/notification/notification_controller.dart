@@ -26,7 +26,7 @@ class NotificationController extends GetxController {
   }
 
   Future<void> addNotification({required String userId, required MyNotification notification}) async {
-    var result = await notificationService.add(notification: notification, userId: userId);
+    await notificationService.add(notification: notification, userId: userId);
   }
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {

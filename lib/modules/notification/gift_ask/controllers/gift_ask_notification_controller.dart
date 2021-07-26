@@ -33,7 +33,7 @@ class GiftAskNotificationController extends GetxController {
     await Get.find<AuthController>().authService.updateUserRating(giftAskGiver.giver.id!, giverRating.value);
   }
 
-  //Message for Requester and Rating
+  //*Message for Requester and Rating
   Future<void> messageForRequesterAndRating(GiftReceiver giftReceiver) async {
     MyNotification requesterNotification = MyNotification.data(
         id: '',
@@ -51,7 +51,7 @@ class GiftAskNotificationController extends GetxController {
         .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);
   }
 
-  // MARKED AS DONE BY GIVER
+  //* MARKED AS DONE BY GIVER
   Future<void> doneGiftRequestByGiver(GiftAskGiver giftAskGiver) async {
     await Get.find<GiftAskGiverController>()
         .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestDelivered);
@@ -64,7 +64,7 @@ class GiftAskNotificationController extends GetxController {
         'Delivered: $giftType delivered to ${giftAskGiver.requester.userName}');
   }
 
-  // AFTER CONFIRMATION BY GIVER ACCEPTED BY REUQESTER, makes no sense IK, BUT its the app was made :3
+  //* AFTER CONFIRMATION BY GIVER, Gift ACCEPTED BY REUQESTER, makes no sense IK, BUT its how app was made :3
   Future<void> aceeptGiftRequestByRequester(GiftAskGiver giftAskGiver) async {
     await Get.find<GiftAskGiverController>()
         .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestAccepted);
@@ -78,23 +78,23 @@ class GiftAskNotificationController extends GetxController {
     );
   }
 
-  // CANCELED BY REQUESTER
+  //* CANCELED BY REQUESTER
   Future<void> cancelGiftRequestByRequester(GiftAskGiver giftAskGiver) async {
     await Get.find<GiftAskGiverController>()
         .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestCanceledByRequester);
 
-    await Get.find<AuthController>().userDoesNotHaveGiftReuqest(giftAskGiver.giver.id ?? '');
+    await Get.find<AuthController>().userDoesNotHaveGiftReuqest(giftAskGiver.requester.id ?? '');
 
     String giftType = convertGiftAskType(giftAskType: giftAskGiver.giftAsk.giftAskType);
 
     await addNotificationRequesterAndGiver(
       giftAskGiver,
-      'Gift request $giftType from ${giftAskGiver.giver.userName} has been canceled by you',
-      '$giftType canceled by ${giftAskGiver.requester.userName}',
+      'Gift request $giftType has been canceled by you',
+      'Gift Request type $giftType from ${giftAskGiver.requester.userName} was canceled',
     );
   }
 
-  // CONFIRMED BY GIVER
+  //* CONFIRMED BY GIVER
   Future<void> confirmGift(GiftAskGiver giftAskGiver) async {
     await Get.find<GiftAskGiverController>()
         .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestCanceledByRequester);
@@ -116,7 +116,7 @@ class GiftAskNotificationController extends GetxController {
     MyNotification notificationRequester = MyNotification.data(
       id: giftAskGiver.requester.id ?? '',
       text: requesterText,
-      notificationType: NotificationType.giftGiver,
+      notificationType: NotificationType.giftAsk,
       releatedDocId: giftAskGiver.id ?? '',
       createdAt: Timestamp.now(),
     );

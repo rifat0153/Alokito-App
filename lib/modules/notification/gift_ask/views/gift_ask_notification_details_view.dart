@@ -139,22 +139,22 @@ class _DecisionWidget extends StatelessWidget {
           ],
         );
       }
-      // Gift Delivered BY Giver
+      //* Gift Delivered BY Giver
       if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestDelivered) {
         return MyText('r Delivered', fontSize: 20, color: Colors.blueAccent);
       }
-      // Gift ACCEPTED BY REQUESTER
+      //* Gift ACCEPTED BY REQUESTER
       if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestAccepted) {
         return MyText('r Gift Accepted by You',
             textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
       }
-      // GIFT CANCELED BY REQUESTER
+      //* GIFT CANCELED BY REQUESTER
       if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestCanceledByRequester) {
         return MyText('r Request Canceled by You',
             textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
       }
 
-      //Gift ACCEPTEd by GIVER
+      //* Gift ACCEPTEd by GIVER
       if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestAccepted) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -186,7 +186,7 @@ class _DecisionWidget extends StatelessWidget {
 
       return MaterialButton(
         onPressed: () {
-          //Todo
+          controller.cancelGiftRequestByRequester(giftAskGiver!);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         height: 0,
