@@ -16,25 +16,33 @@ class ConnectionController extends GetxController {
   @override
   void onInit() {
     streamSubscription = connectionStatus.listen((connectionType) {
+      print(connectionStatus.value);
+
+      if (connectionType == ConnectivityResult.none || connectionType == ConnectivityResult.none) {
+        bool? bottomSheetOpen = Get.isBottomSheetOpen;
+
+        if (bottomSheetOpen != null) {
+          print('Bottom Sheet is open');
+           Get.back();
+        } else {
+          print('Bottom Sheet is not open');
+        }
+      }
+
       if (connectionType == ConnectivityResult.none) {
         print('NOOOOOOOOOO INtene ******************************************');
 
-        // var snackbar = Get.snackbar('Internet Error', 'No internet connection');
-
-        // Get.snackbar('Internet Error', 'No internet connection',
-        //     backgroundColor: Colors.green.withOpacity(0.5));
-
-        // Get.to(
-        //   Get.dialog(
-        //     Container(
-        //       color: Colors.orange,
-        //       height: 200,
-        //       width: 200,
-
-        //       child: const Text('No Internet'),
-        //     ),
-        //   ),
-        // );
+        Get.bottomSheet(
+          Container(
+              height: 150,
+              color: Colors.greenAccent,
+              child: const Text('No Internet Connection', textScaleFactor: 2)),
+          // barrierColor: Colors.red[50],
+          isDismissible: false,
+          // shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.circular(35), side: const BorderSide(width: 5, color: Colors.black)),
+          enableDrag: false,
+        );
       }
     });
 

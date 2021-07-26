@@ -172,7 +172,7 @@ class AuthService implements BaseAuthService {
         createdAt: Timestamp.now(),
       );
 
-      uploadUserAndImage(myUser, false, localImageFile);
+      await uploadUserAndImage(myUser, false, localImageFile);
 
       print("Signed up");
       return true;
