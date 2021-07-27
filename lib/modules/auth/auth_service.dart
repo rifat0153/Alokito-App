@@ -57,10 +57,7 @@ class AuthService implements BaseAuthService {
   @override
   Future<LocalUser?> getLocalUserInfo(String uid) async {
     try {
-      var userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(uid)
-          .get();
+      var userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
       if (userDoc.exists) {
         LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
         return localUser;
@@ -262,7 +259,7 @@ class AuthService implements BaseAuthService {
     try {
       return _firebaseAuth.authStateChanges();
     } catch (e) {
-      return Stream.value(null);
+      throw AuthException(message: 'Auth Stream not connected to internet');
     }
   }
 

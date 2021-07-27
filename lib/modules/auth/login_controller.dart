@@ -55,11 +55,6 @@ class LoginController extends GetxController {
   void verifyLogin() async {
     AuthController authController = Get.find();
 
-    print(email.value);
-    print(userName.value);
-
-    print(password.value);
-
     if (email.value.isEmpty) {
       Get.snackbar('Login Error', 'Email cant be empty', backgroundColor: Colors.red);
       return;

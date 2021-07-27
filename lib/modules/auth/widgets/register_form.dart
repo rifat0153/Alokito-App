@@ -100,7 +100,7 @@ class RegisterForm extends StatelessWidget {
                       MaterialButton(
                         onPressed: () => Get.to(LoginForm()),
                         child: RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             text: 'Back to ',
                             style: TextStyle(color: Colors.black),
                             children: <TextSpan>[
@@ -125,7 +125,7 @@ class RegisterForm extends StatelessWidget {
                           ),
                           Expanded(
                             child: RichText(
-                              text: TextSpan(
+                              text: const TextSpan(
                                 text: 'I agree to the ',
                                 style: TextStyle(color: Colors.black),
                                 children: <TextSpan>[
@@ -140,16 +140,16 @@ class RegisterForm extends StatelessWidget {
                         ],
                       ),
                       MaterialButton(
+                        onPressed: _register,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                         color: Colors.blue,
-                        onPressed: () => _register(),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 20.sp),
                           child: Text(
                             'Sign Up',
-                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            style: TextStyle(fontSize: 13.sp, color: Colors.white),
                           ),
                         ),
                       ),
