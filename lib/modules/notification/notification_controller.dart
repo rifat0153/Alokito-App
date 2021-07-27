@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/notification/notification_exception.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ class NotificationController extends GetxController {
   final NotificationService notificationService;
 
   RxBool loading = RxBool(false);
+  RxBool errors = false.obs;
+
   Rx<List<MyNotification>> notificationList = Rx<List<MyNotification>>([]);
 
   @override
@@ -20,8 +23,10 @@ class NotificationController extends GetxController {
   void bindNotificationStream(String userId) {
     try {
       notificationList.bindStream(notificationService.streamAllNotifications(userId: userId));
-    } on FirebaseException catch (e) {
-      showSuccessOrErrorMessage(false, 'Check Internet', '', 'something went wrong');
+      errors.value = false;
+    } on NotificationException catch (e) {
+      errors.value = true;
+      // showSuccessOrErrorMessage(false, 'Check Internet', '', 'something went wrong');
     }
   }
 

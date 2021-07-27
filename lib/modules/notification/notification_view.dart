@@ -21,6 +21,8 @@ class NotificationView extends StatelessWidget {
     controller.bindNotificationStream(Get.find<AuthController>().currentUser.value.id ?? '');
     Get.find<AuthController>().userDoesNotHaveNotification();
 
+    final notificationController = Get.find<NotificationController>();
+
     return SkeletonWidget(
       titleWidget: MyText('Notification', fontSize: 20, fontWeight: FontWeight.bold),
       assetPath: 'assets/images/notification-background.png',
@@ -34,34 +36,41 @@ class NotificationView extends StatelessWidget {
               height: 50,
             ),
             Obx(
-              () => Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: controller.notificationList.value.length,
-                  itemBuilder: (_, i) {
-                    if (controller.notificationList.value[i].notificationType == NotificationType.giftGiver) {
-                      return GiftGiverNotificationView(
-                        key: ValueKey(controller.notificationList.value[i].id),
-                        notification: controller.notificationList.value[i],
-                      );
-                    }
-                    if (controller.notificationList.value[i].notificationType == NotificationType.giftAsk) {
-                      return GiftAskNotificationView(
-                        key: ValueKey(controller.notificationList.value[i].id),
-                        notification: controller.notificationList.value[i],
-                      );
-                    }
-                    if (controller.notificationList.value[i].notificationType == NotificationType.text) {
-                      return TextNotificationWidget(
-                        key: ValueKey(controller.notificationList.value[i].id),
-                        notification: controller.notificationList.value[i],
-                      );
-                    }
+              () => notificationController.errors.value
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Expanded(
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: controller.notificationList.value.length,
+                        itemBuilder: (_, i) {
+                          if (controller.notificationList.value[i].notificationType ==
+                              NotificationType.giftGiver) {
+                            return GiftGiverNotificationView(
+                              key: ValueKey(controller.notificationList.value[i].id),
+                              notification: controller.notificationList.value[i],
+                            );
+                          }
+                          if (controller.notificationList.value[i].notificationType ==
+                              NotificationType.giftAsk) {
+                            return GiftAskNotificationView(
+                              key: ValueKey(controller.notificationList.value[i].id),
+                              notification: controller.notificationList.value[i],
+                            );
+                          }
+                          if (controller.notificationList.value[i].notificationType ==
+                              NotificationType.text) {
+                            return TextNotificationWidget(
+                              key: ValueKey(controller.notificationList.value[i].id),
+                              notification: controller.notificationList.value[i],
+                            );
+                          }
 
-                    return Text('data');
-                  },
-                ),
-              ),
+                          return Text('data');
+                        },
+                      ),
+                    ),
             ),
           ],
         ),
