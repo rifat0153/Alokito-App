@@ -35,30 +35,30 @@ class GiftController extends GetxController {
     debounce(_searchRadius, (_) => bindGiftStream());
 
     streamSubscription = giftList.listen((docListUnion) {
-      docListUnion.when(
-          data: (docList) {
-            filteredGiftList.value = const GiftGiverListUnion.loading();
+      docListUnion.when(data: (docList) {
+        filteredGiftList.value = const GiftGiverListUnion.loading();
 
-            docList.forEach((GiftGiver doc) {
-              //filtering logic goes here
-              if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
-                List<GiftGiver> tempFilteredList = [
-                  ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
-                  doc
-                ];
-                filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
-              }
-            });
-
-            _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
-          },
-          empty: () {},
-          loading: () {
-            filteredGiftList.value = const GiftGiverListUnion.loading();
-          },
-          error: (error) {
-            filteredGiftList.value = GiftGiverListUnion.error(error);
-          });
+        docList.forEach((GiftGiver doc) {
+          //filtering logic goes here
+          if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
+            List<GiftGiver> tempFilteredList = [
+              ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
+              doc
+            ];
+            filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
+          }
+        });
+        _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
+      }, empty: () {
+        filteredGiftList.value = const GiftGiverListUnion.empty();
+        _updateMarkers([]);
+      }, loading: () {
+        filteredGiftList.value = const GiftGiverListUnion.loading();
+        _updateMarkers([]);
+      }, error: (error) {
+        filteredGiftList.value = GiftGiverListUnion.error(error);
+        _updateMarkers([]);
+      });
     });
 
     bindLocationData();

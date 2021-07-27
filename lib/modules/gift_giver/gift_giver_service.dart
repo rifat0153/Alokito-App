@@ -120,9 +120,9 @@ class GiftGiverService implements BaseGiftGiverService {
     var collectionReference = _firestore.collection('gifts');
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
 
-    return Stream.value(
-      GiftGiverListUnion.error(GiftGiverException(message: 'Test Error')),
-    );
+    // return Stream.value(
+    //   GiftGiverListUnion.error(GiftGiverException(message: 'Test Error')),
+    // );
 
     try {
       var stream = geo
@@ -140,27 +140,12 @@ class GiftGiverService implements BaseGiftGiverService {
           list.add(GiftGiver.fromJson(docSnap.data()!));
         });
 
-        return GiftGiverListUnion.data(list);
+        print('Service: list size ${list.length}');
+
+        return list.length == 0 ? const GiftGiverListUnion.empty() : GiftGiverListUnion.data(list);
       });
 
       return stream;
-
-      // var stream = geo
-      //     .collection(collectionRef: collectionReference)
-      //     .within(
-      //       center: center,
-      //       radius: giftController.searchRadius,
-      //       field: 'position',
-      //       strictMode: true,
-      //     )
-      //     .map((event) => event.map(
-      //           (e) {
-      //             var gift = GiftGiver.fromJson(e.data()!);
-      //             return gift;
-      //           },
-      //         ).toList());
-
-      // return GiftGiverListUnion.data(stream);
     } catch (e) {
       return Stream.value(
         GiftGiverListUnion.error(GiftGiverException(message: e.toString())),

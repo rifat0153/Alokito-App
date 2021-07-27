@@ -71,11 +71,13 @@ class _buildBody extends StatelessWidget {
               ),
               _SearchWidget(),
               // _TextWidget(),
-              Expanded(
-                child: Obx(
-                  () => giftController.filteredGiftList.value.when(
-                    data: (list) {
-                      return ListView.builder(
+              Obx(
+                () => giftController.filteredGiftList.value.when(
+                  data: (list) {
+                    print('List full CASE');
+
+                    return Expanded(
+                      child: ListView.builder(
                         padding: EdgeInsets.zero,
                         itemCount: list.length,
                         itemBuilder: (_, i) => _GiftListTile(
@@ -83,16 +85,21 @@ class _buildBody extends StatelessWidget {
                           filteredGiftList: list,
                           index: i,
                         ),
-                      );
-                    },
-                    empty: () => const Center(
+                      ),
+                    );
+                  },
+                  empty: () {
+                    print('List empty CASE');
+                    return const Expanded(
                       child: Text('No Gift'),
-                    ),
-                    loading: () => const CircularProgressIndicator(),
-                    error: (e) => Text(e.toString()),
-                  ),
+                    );
+                  },
+                  loading: () =>
+                      const SizedBox(height: 10, width: double.infinity, child: LinearProgressIndicator()),
+                  error: (e) => Text(e.toString()),
                 ),
               ),
+
               Obx(
                 () => Slider(
                   label: giftController.searchRadius.toInt().toString(),
@@ -100,9 +107,7 @@ class _buildBody extends StatelessWidget {
                   min: 1.0,
                   max: 200.0,
                   value: giftController.searchRadius,
-                  onChanged: (value) {
-                    giftController.setSearchRadius(value);
-                  },
+                  onChanged: giftController.setSearchRadius,
                 ),
               ),
             ],
@@ -219,7 +224,7 @@ class _SearchWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         color: GIFT_ADD_FORM_COLOR,
       ),
-      child:const TextField(
+      child: const TextField(
         decoration: InputDecoration(
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
