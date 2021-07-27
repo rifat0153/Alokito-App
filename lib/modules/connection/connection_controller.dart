@@ -11,24 +11,14 @@ class ConnectionController extends GetxController {
 
   Rx<ConnectivityResult> connectionStatus = ConnectivityResult.none.obs;
 
+  RxBool dismissible = false.obs;
+
   StreamSubscription? streamSubscription;
 
   @override
   void onInit() {
     streamSubscription = connectionStatus.listen((connectionType) {
       print(connectionStatus.value);
-
-      if (connectionType == ConnectivityResult.none || connectionType == ConnectivityResult.none) {
-        bool? bottomSheetOpen = Get.isBottomSheetOpen;
-
-        if (bottomSheetOpen != null) {
-          print('Bottom Sheet is open');
-           Get.back();
-        } else {
-          print('Bottom Sheet is not open');
-        }
-      }
-
       if (connectionType == ConnectivityResult.none) {
         print('NOOOOOOOOOO INtene ******************************************');
 
@@ -43,6 +33,16 @@ class ConnectionController extends GetxController {
           //     borderRadius: BorderRadius.circular(35), side: const BorderSide(width: 5, color: Colors.black)),
           enableDrag: false,
         );
+      }
+      if (connectionType == ConnectivityResult.mobile || connectionType == ConnectivityResult.wifi) {
+        bool? bottomSheetOpen = Get.isBottomSheetOpen;
+
+        if (bottomSheetOpen != null) {
+          print('Bottom Sheet is open');
+          Get.back();
+        } else {
+          print('Bottom Sheet is not open');
+        }
       }
     });
 

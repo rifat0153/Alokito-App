@@ -29,6 +29,8 @@ class GiftAskController extends GetxController {
 
   // GiftASk Form data control value
   RxBool loading = false.obs;
+  RxBool hasError = false.obs;
+
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(23, 90).obs;
@@ -85,8 +87,7 @@ class GiftAskController extends GetxController {
       final GeoPoint point = giftAsk.position.geopoint;
 
       var userPoint = geo.point(
-          latitude: currentUserPosition.value.latitude,
-          longitude: currentUserPosition.value.longitude);
+          latitude: currentUserPosition.value.latitude, longitude: currentUserPosition.value.longitude);
 
       var distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
 
@@ -135,8 +136,7 @@ class GiftAskController extends GetxController {
     loading.value = true;
 
     var myLocation = geo.point(
-        latitude: formMarker.value.position.latitude,
-        longitude: formMarker.value.position.longitude);
+        latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
     MyPosition giftPosition =
@@ -160,14 +160,12 @@ class GiftAskController extends GetxController {
     bool giftExists = await giftAskService.findGiftById(userId);
     if (giftExists) {
       loading.value = false;
-      return showSuccessOrErrorBottomSheet(
-          !giftExists, 'No request exists', 'Only one request at a time');
+      return showSuccessOrErrorBottomSheet(!giftExists, 'No request exists', 'Only one request at a time');
     }
 
     String prescriptionUrl = '';
     if (showPrescription.value && precriptionImageFile.value.path.isNotEmpty) {
-      prescriptionUrl =
-          await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
+      prescriptionUrl = await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
     }
 
     giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
@@ -193,17 +191,21 @@ class GiftAskController extends GetxController {
 
   void setLocationFromMapCordinates() async {
     // From coordinates
-    final coordinates = geocoder.Coordinates(
-        formMarker.value.position.latitude, formMarker.value.position.longitude);
-    var addresses1 = await geocoder.Geocoder.local.findAddressesFromCoordinates(coordinates);
-    var first = addresses1.first;
-    address.value = ' ${first.addressLine}  ${first.subLocality}';
+    final coordinates =
+        geocoder.Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
+    try {
+      var addresses1 = await geocoder.Geocoder.local.findAddressesFromCoordinates(coordinates);
+      var first = addresses1.first;
+      address.value = ' ${first.addressLine}  ${first.subLocality}';
 
-    var location = first.addressLine;
-    address.value = location;
-    area.value = first.adminArea ?? 'N/A';
+      var location = first.addressLine;
+      address.value = location;
+      area.value = first.adminArea ?? 'N/A';
 
-    print(area.value);
+      print(area.value);
+    } catch (e) {
+      print(e);
+    }
   }
 
   bool get packageSmallFamilty => _packageSmallFamilty.value;
@@ -214,14 +216,12 @@ class GiftAskController extends GetxController {
   int get requestForNoOfPeople => _requestForNoOfPeople.value;
 
   void decreseRequestForNoOfPeople() {
-    _requestForNoOfPeople.value =
-        _requestForNoOfPeople.value < 1 ? 0 : _requestForNoOfPeople.value - 1;
+    _requestForNoOfPeople.value = _requestForNoOfPeople.value < 1 ? 0 : _requestForNoOfPeople.value - 1;
   }
 
   void increaseRequestForNoOfPeople() {
-    _requestForNoOfPeople.value = _requestForNoOfPeople.value > 9
-        ? _requestForNoOfPeople.value
-        : _requestForNoOfPeople.value + 1;
+    _requestForNoOfPeople.value =
+        _requestForNoOfPeople.value > 9 ? _requestForNoOfPeople.value : _requestForNoOfPeople.value + 1;
   }
 
   String get selectedGiftType => _selectedGiftType.value;
