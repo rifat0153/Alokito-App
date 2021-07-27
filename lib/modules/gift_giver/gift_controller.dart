@@ -20,11 +20,11 @@ class GiftController extends GetxController {
 
   RxBool loading = false.obs;
 
-  Rx<List<GiftGiver>> giftList = Rx<List<GiftGiver>>([]);
-  Rx<List<GiftGiver>> filteredGiftList = Rx<List<GiftGiver>>([]);
+  Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.loading().obs;
+  Rx<GiftGiverListUnion> filteredGiftList = const GiftGiverListUnion.loading().obs;
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
 
-  var _searchRadius = 100.0.obs;
+  final _searchRadius = 100.0.obs;
   var currentUserLocation = const LatLng(0, 0).obs;
   StreamSubscription? streamSubscription;
 
@@ -34,17 +34,31 @@ class GiftController extends GetxController {
 
     debounce(_searchRadius, (_) => bindGiftStream());
 
-    streamSubscription = giftList.listen((docList) {
-      filteredGiftList.value = [];
+    streamSubscription = giftList.listen((docListUnion) {
+      docListUnion.when(
+          data: (docList) {
+            filteredGiftList.value = const GiftGiverListUnion.loading();
 
-      docList.forEach((GiftGiver doc) {
-        //filtering logic goes here
-        if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
-          filteredGiftList.value = [...filteredGiftList.value, doc];
-        }
-      });
+            docList.forEach((GiftGiver doc) {
+              //filtering logic goes here
+              if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
+                List<GiftGiver> tempFilteredList = [
+                  ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
+                  doc
+                ];
+                filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
+              }
+            });
 
-      _updateMarkers(filteredGiftList.value);
+            _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
+          },
+          empty: () {},
+          loading: () {
+            filteredGiftList.value = const GiftGiverListUnion.loading();
+          },
+          error: (error) {
+            filteredGiftList.value = GiftGiverListUnion.error(error);
+          });
     });
 
     bindLocationData();
@@ -67,8 +81,7 @@ class GiftController extends GetxController {
       final GeoPoint point = giftAsk.position.geopoint;
 
       var userPoint = geo.point(
-          latitude: currentUserLocation.value.latitude,
-          longitude: currentUserLocation.value.longitude);
+          latitude: currentUserLocation.value.latitude, longitude: currentUserLocation.value.longitude);
 
       var distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
 

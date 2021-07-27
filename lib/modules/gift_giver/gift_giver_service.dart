@@ -3,6 +3,7 @@ import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -18,9 +19,7 @@ import './widgets/gift_error.dart';
 abstract class BaseGiftGiverService {
   Future<void> addGift();
 
-  Stream<List<GiftGiver>> giftStreamByLocation();
-
-  // Stream<List<GiftGiver>> giftStream();
+  Stream<GiftGiverListUnion> giftStreamByLocation();
 
   Future<bool> updateGiftGiver({required String giftId, required GiftReceiver giftReceiver});
 }
@@ -53,10 +52,7 @@ class GiftGiverService implements BaseGiftGiverService {
     MyPosition myPosition =
         MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
-    print('Uploading Image');
-
     var fileExtension = path.extension(controller.imageFile.value.path);
-    print('FileExtension: ' + fileExtension);
 
     var uuid = const Uuid().v4();
 
@@ -65,8 +61,8 @@ class GiftGiverService implements BaseGiftGiverService {
 
     try {
       await firebaseStorageRef.putFile(controller.imageFile.value);
-    } on firebase_core.FirebaseException catch (e) {
-      print('User ImageFile Upload Error: ' + e.message!);
+    } on FirebaseException catch (e) {
+      throw Exception(e.toString());
     }
 
     String url = await firebaseStorageRef.getDownloadURL();
@@ -78,11 +74,9 @@ class GiftGiverService implements BaseGiftGiverService {
 
     var name = userDoc.data() == null ? '' : userDoc.data()!['userName'] as String;
     var giverImageUrl = userDoc.data() == null ? '' : userDoc.data()!['imageUrl'] as String;
-    MyPosition userPosition =
-        MyPosition.fromJson(userDoc.data()!['position'] as Map<String, dynamic>);
+    MyPosition userPosition = MyPosition.fromJson(userDoc.data()!['position'] as Map<String, dynamic>);
     Timestamp userCreatedAt = userDoc.data()!['createdAt'] as Timestamp;
-    String userFullName =
-        (userDoc.data()!['firstName'] as String) + (userDoc.data()!['lastName'] as String);
+    String userFullName = (userDoc.data()!['firstName'] as String) + (userDoc.data()!['lastName'] as String);
 
     var gift = GiftGiver(
       id: docRef.id,
@@ -111,61 +105,66 @@ class GiftGiverService implements BaseGiftGiverService {
       createdAt: Timestamp.now(),
     );
 
-    print(gift.toJson());
     await docRef.set(gift.toJson());
-    print('Added gift');
     controller.isUploading.value = false;
   }
 
   @override
-  Stream<List<GiftGiver>> giftStreamByLocation() {
+  Stream<GiftGiverListUnion> giftStreamByLocation() {
     GiftController giftController = Get.find();
 
-// Create a geoFirePoint
     GeoFirePoint center = geo.point(
         latitude: giftController.currentUserLocation.value.latitude,
         longitude: giftController.currentUserLocation.value.longitude);
 
     var collectionReference = _firestore.collection('gifts');
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
-    var stream = geo
-        .collection(collectionRef: collectionReference)
-        .within(
+
+    return Stream.value(
+      GiftGiverListUnion.error(GiftGiverException(message: 'Test Error')),
+    );
+
+    try {
+      var stream = geo
+          .collection(collectionRef: collectionReference)
+          .within(
             center: center,
             radius: giftController.searchRadius,
             field: 'position',
-            strictMode: true)
-        .map((event) => event.map(
-              (e) {
-                var gift = GiftGiver.fromJson(e.data()!);
-                return gift;
-              },
-            ).toList());
+            strictMode: true,
+          )
+          .map((docList) {
+        List<GiftGiver> list = [];
 
-    return stream;
+        docList.forEach((docSnap) {
+          list.add(GiftGiver.fromJson(docSnap.data()!));
+        });
+
+        return GiftGiverListUnion.data(list);
+      });
+
+      return stream;
+
+      // var stream = geo
+      //     .collection(collectionRef: collectionReference)
+      //     .within(
+      //       center: center,
+      //       radius: giftController.searchRadius,
+      //       field: 'position',
+      //       strictMode: true,
+      //     )
+      //     .map((event) => event.map(
+      //           (e) {
+      //             var gift = GiftGiver.fromJson(e.data()!);
+      //             return gift;
+      //           },
+      //         ).toList());
+
+      // return GiftGiverListUnion.data(stream);
+    } catch (e) {
+      return Stream.value(
+        GiftGiverListUnion.error(GiftGiverException(message: e.toString())),
+      );
+    }
   }
-
-  // @override
-  // Stream<List<GiftGiver>> giftStream() {
-  //   GiftController giftController = Get.find();
-  //   GeoFirePoint center =
-  //       geo.point(latitude: giftController.currentUserLocation.value.latitude, longitude: giftController.currentUserLocation.value.longitude);
-
-  //   var collectionReference = _firestore.collection('gifts');
-  //   // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
-
-  //   List<GiftGiver> list = [];
-  //   geo
-  //       .collection(collectionRef: collectionReference)
-  //       .within(center: center, radius: giftController.searchRadius, field: 'position', strictMode: true)
-  //       .forEach((element) {
-  //     element.forEach((doc) {
-  //       list = [...list, GiftGiver.fromJson(doc.data() ?? {})];
-  //     });
-  //   });
-
-  //   print(list);
-
-  //   return Stream.value(list);
-  // }
 }

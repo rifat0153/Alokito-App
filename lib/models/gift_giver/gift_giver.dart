@@ -42,6 +42,13 @@ class GiftGiver with _$GiftGiver {
   factory GiftGiver.fromJson(Map<String, dynamic> json) => _$GiftGiverFromJson(json);
 }
 
+@freezed
+class GiftGiverListUnion with _$GiftGiverListUnion{
+  const factory GiftGiverListUnion.data(List<GiftGiver> giftGiverList) =  Data;
+  const factory GiftGiverListUnion.empty() =  Empty;
+  const factory GiftGiverListUnion.loading() =  Loading;
+  const factory GiftGiverListUnion.error(Object error) =  Error;
+}
 
 
 Map<String, dynamic> giftGiverToJson(GiftGiver giftGiver) => giftGiver.toJson();

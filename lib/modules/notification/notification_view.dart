@@ -69,6 +69,9 @@ class NotificationView extends StatelessWidget {
                       ),
                     );
                   },
+                  empty: () => const Center(
+                        child: Text('No Notification'),
+                      ),
                   loading: () => const CircularProgressIndicator(),
                   error: (err) => Text(err)),
             ),

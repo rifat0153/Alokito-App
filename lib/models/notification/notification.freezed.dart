@@ -386,6 +386,10 @@ class _$NotificationListStatusTearOff {
     );
   }
 
+  Empty empty() {
+    return const Empty();
+  }
+
   Loading loading() {
     return const Loading();
   }
@@ -405,6 +409,7 @@ mixin _$NotificationListStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<MyNotification> myNotification) data,
+    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
   }) =>
@@ -412,6 +417,7 @@ mixin _$NotificationListStatus {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<MyNotification> myNotification)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -420,6 +426,7 @@ mixin _$NotificationListStatus {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
   }) =>
@@ -427,6 +434,7 @@ mixin _$NotificationListStatus {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -517,6 +525,7 @@ class _$Data implements Data {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<MyNotification> myNotification) data,
+    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
   }) {
@@ -527,6 +536,7 @@ class _$Data implements Data {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<MyNotification> myNotification)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -541,6 +551,7 @@ class _$Data implements Data {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
   }) {
@@ -551,6 +562,7 @@ class _$Data implements Data {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -568,6 +580,98 @@ abstract class Data implements NotificationListStatus {
   List<MyNotification> get myNotification => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EmptyCopyWith<$Res> {
+  factory $EmptyCopyWith(Empty value, $Res Function(Empty) then) =
+      _$EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EmptyCopyWithImpl<$Res>
+    extends _$NotificationListStatusCopyWithImpl<$Res>
+    implements $EmptyCopyWith<$Res> {
+  _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
+      : super(_value, (v) => _then(v as Empty));
+
+  @override
+  Empty get _value => super._value as Empty;
+}
+
+/// @nodoc
+
+class _$Empty implements Empty {
+  const _$Empty();
+
+  @override
+  String toString() {
+    return 'NotificationListStatus.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<MyNotification> myNotification) data,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<MyNotification> myNotification)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Error value) error,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Empty implements NotificationListStatus {
+  const factory Empty() = _$Empty;
 }
 
 /// @nodoc
@@ -609,6 +713,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<MyNotification> myNotification) data,
+    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
   }) {
@@ -619,6 +724,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<MyNotification> myNotification)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -633,6 +739,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
   }) {
@@ -643,6 +750,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -722,6 +830,7 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<MyNotification> myNotification) data,
+    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
   }) {
@@ -732,6 +841,7 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<MyNotification> myNotification)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -746,6 +856,7 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
   }) {
@@ -756,6 +867,7 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
     required TResult orElse(),

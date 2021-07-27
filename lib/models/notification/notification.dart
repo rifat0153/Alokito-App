@@ -24,6 +24,7 @@ class MyNotification with _$MyNotification {
 @freezed
 class NotificationListStatus with _$NotificationListStatus {
   const factory NotificationListStatus.data(List<MyNotification> myNotification) = Data;
+  const factory NotificationListStatus.empty() = Empty;
   const factory NotificationListStatus.loading() = Loading;
   const factory NotificationListStatus.error(String message) = Error;
 }

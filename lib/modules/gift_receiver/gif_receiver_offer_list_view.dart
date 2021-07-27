@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/map/my_map_view.dart';
@@ -53,8 +54,7 @@ class _buildBody extends StatelessWidget {
           height: Get.size.height,
           width: Get.size.width,
           decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
+            image: DecorationImage(image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
           ),
         ),
         Container(
@@ -73,10 +73,23 @@ class _buildBody extends StatelessWidget {
               // _TextWidget(),
               Expanded(
                 child: Obx(
-                  () => ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: giftController.filteredGiftList.value.length,
-                    itemBuilder: (_, i) => _GiftListTile(giftController: giftController, index: i),
+                  () => giftController.filteredGiftList.value.when(
+                    data: (list) {
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: list.length,
+                        itemBuilder: (_, i) => _GiftListTile(
+                          giftController: giftController,
+                          filteredGiftList: list,
+                          index: i,
+                        ),
+                      );
+                    },
+                    empty: () => const Center(
+                      child: Text('No Gift'),
+                    ),
+                    loading: () => const CircularProgressIndicator(),
+                    error: (e) => Text(e.toString()),
                   ),
                 ),
               ),
@@ -104,10 +117,12 @@ class _GiftListTile extends StatelessWidget {
   _GiftListTile({
     Key? key,
     required this.giftController,
+    required this.filteredGiftList,
     required this.index,
   }) : super(key: key);
 
   final GiftController giftController;
+  final List<GiftGiver> filteredGiftList;
   final int index;
 
   String giftType = '';
@@ -118,7 +133,7 @@ class _GiftListTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
       child: GestureDetector(
         onTap: () => Get.to(
-          () => GiftReceiverDetailsView(giftGiver: giftController.filteredGiftList.value[index]),
+          () => GiftReceiverDetailsView(giftGiver: filteredGiftList[index]),
         ),
         child: Container(
           decoration: BoxDecoration(
@@ -127,29 +142,27 @@ class _GiftListTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Obx(
-                () => Container(
-                  decoration: BoxDecoration(
-                    color: GIFT_ADD_FORM_COLOR,
+              Container(
+                decoration: BoxDecoration(
+                  color: GIFT_ADD_FORM_COLOR,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    bottomLeft: Radius.circular(20),
+                  ),
+                ),
+                width: Get.width * 0.25,
+                height: Get.height * 0.1,
+                child: Hero(
+                  tag: filteredGiftList[index].imageUrl,
+                  child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       bottomLeft: Radius.circular(20),
                     ),
-                  ),
-                  width: Get.width * 0.25,
-                  height: Get.height * 0.1,
-                  child: Hero(
-                    tag: giftController.filteredGiftList.value[index].imageUrl,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                      ),
-                      child: Image.network(
-                        giftController.filteredGiftList.value[index].imageUrl,
-                        fit: BoxFit.cover,
-                        alignment: Alignment.center,
-                      ),
+                    child: Image.network(
+                      filteredGiftList[index].imageUrl,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.center,
                     ),
                   ),
                 ),
@@ -163,15 +176,12 @@ class _GiftListTile extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Obx(
-                            () => Text(
-                              convertGiftType(
-                                  giftController.filteredGiftList.value[index].giftType),
-                              style: const TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                          Text(
+                            convertGiftType(filteredGiftList[index].giftType),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 5),
-                          Text(giftController.filteredGiftList.value[index].userName),
+                          Text(filteredGiftList[index].userName),
                         ],
                       ),
                     ),
@@ -181,7 +191,7 @@ class _GiftListTile extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            giftController.filteredGiftList.value[index].area,
+                            filteredGiftList[index].area,
                             softWrap: true,
                           ),
                         ),
@@ -209,7 +219,7 @@ class _SearchWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         color: GIFT_ADD_FORM_COLOR,
       ),
-      child: TextField(
+      child:const TextField(
         decoration: InputDecoration(
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
