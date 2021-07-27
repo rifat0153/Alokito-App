@@ -13,6 +13,8 @@ class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
   final Rx<LocalUser> currentUser = initialUser.obs;
 
+  final RxBool errors = false.obs;
+
   final Rx<String> firebaseUser = ''.obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
@@ -78,16 +80,14 @@ class AuthController extends GetxController {
     print('AuthController: getting user form DB call');
 
     try {
-      var userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(FirebaseAuth.instance.currentUser?.uid)
-          .get();
-      if (userDoc.exists) {
-        LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
-        currentUser.value = localUser;
+      LocalUser? userInfo = await authService.getLocalUserInfo(FirebaseAuth.instance.currentUser?.uid ?? '');
+
+      if (userInfo != null) {
+        currentUser.value = userInfo;
+        errors.value = false;
       }
-    } catch (e) {
-      throw AuthException(message: 'Something went wrong');
+    } on AuthException catch (e) {
+      errors.value = true;
     }
   }
 

@@ -8,6 +8,7 @@ import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -152,18 +153,20 @@ class __UserImageWidgetState extends State<_UserImageWidget> {
       flex: 6,
       fit: FlexFit.tight,
       child: Obx(
-        () => Padding(
-          key: ValueKey(widget.authController.currentUser.value.id ?? myKey),
-          padding: const EdgeInsets.only(top: 35),
-          child: widget.authController.currentUser.value.imageUrl != null
-              ? CircleAvatar(
-                  radius: 75,
-                  backgroundImage: NetworkImage(
-                    widget.authController.currentUser.value.imageUrl ?? '',
-                  ),
-                )
-              : const SizedBox(),
-        ),
+        () => widget.authController.errors.value
+            ? Center(child: const Text('something went wrong'))
+            : Padding(
+                key: ValueKey(widget.authController.currentUser.value.id ?? myKey),
+                padding: const EdgeInsets.only(top: 35),
+                child: widget.authController.currentUser.value.imageUrl != null
+                    ? CircleAvatar(
+                        radius: 75,
+                        backgroundImage: NetworkImage(
+                          widget.authController.currentUser.value.imageUrl ?? '',
+                        ),
+                      )
+                    : const SizedBox(),
+              ),
       ),
     );
   }

@@ -41,6 +41,8 @@ abstract class BaseAuthService {
 
   Stream<User?> get authStateChanges;
 
+  Future<LocalUser?> getLocalUserInfo(String uid);
+
   Future<void> signOut();
 
   Future<void> updateUserRating(String userId, int rating);
@@ -51,6 +53,23 @@ class AuthService implements BaseAuthService {
 
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
+
+  @override
+  Future<LocalUser?> getLocalUserInfo(String uid) async {
+    try {
+      var userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .get();
+      if (userDoc.exists) {
+        LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
+        return localUser;
+      }
+      return null;
+    } catch (e) {
+      throw AuthException(message: 'Something went wrong');
+    }
+  }
 
   @override
   Future<void> updateUserRating(String userId, int rating) async {

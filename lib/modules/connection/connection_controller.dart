@@ -59,4 +59,20 @@ class ConnectionController extends GetxController {
 
     super.onInit();
   }
+
+  @override
+  void onReady() {
+    if (connectionStatus.value == ConnectivityResult.none) {
+      Get.bottomSheet(
+        Container(
+            height: 50,
+            color: Colors.white,
+            child:
+                const Text('No Internet Connection 😢', textAlign: TextAlign.center, textScaleFactor: 1.5)),
+        isDismissible: true,
+        enableDrag: false,
+      );
+    }
+    super.onReady();
+  }
 }
