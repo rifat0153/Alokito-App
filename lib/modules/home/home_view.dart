@@ -142,7 +142,7 @@ class __UserImageWidgetState extends State<_UserImageWidget> {
   @override
   void initState() {
     super.initState();
-
+    widget.authController.getUserInfoAndSetCurrentUser();
     myKey = FirebaseAuth.instance.currentUser?.uid ?? const Uuid().v4();
   }
 

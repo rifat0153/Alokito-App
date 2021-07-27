@@ -10,8 +10,9 @@ class ConnectionController extends GetxController {
   ConnectionService connectionService = ConnectionService();
 
   Rx<ConnectivityResult> connectionStatus = ConnectivityResult.none.obs;
+  Rx<ConnectivityResult> previousStatus = ConnectivityResult.none.obs;
 
-  RxBool dismissible = false.obs;
+  bool firstStart = true;
 
   StreamSubscription? streamSubscription;
 
@@ -39,15 +40,20 @@ class ConnectionController extends GetxController {
           Get.back();
         }
 
-        Get.bottomSheet(
-          Container(
-              height: 50,
-              color: Colors.white,
-              child: const Text('Interet is back', textAlign: TextAlign.center, textScaleFactor: 1)),
-          isDismissible: true,
-          enableDrag: true,
-          persistent: false,
-        );
+        if (!firstStart) {
+          Get.bottomSheet(
+            Container(
+                height: 50,
+                color: Colors.white,
+                child: const Text('Interet is back', textAlign: TextAlign.center, textScaleFactor: 1)),
+            isDismissible: true,
+            enableDrag: true,
+            persistent: false,
+          );
+          firstStart = false;
+        } else {
+          firstStart = false;
+        }
       }
     });
 
