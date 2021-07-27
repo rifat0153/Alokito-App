@@ -20,3 +20,10 @@ class MyNotification with _$MyNotification {
 
   factory MyNotification.fromJson(Map<String, dynamic> json) => _$MyNotificationFromJson(json);
 }
+
+@freezed
+class NotificationListStatus with _$NotificationListStatus {
+  const factory NotificationListStatus.data(List<MyNotification> myNotification) = Data;
+  const factory NotificationListStatus.loading() = Loading;
+  const factory NotificationListStatus.error(String message) = Error;
+}

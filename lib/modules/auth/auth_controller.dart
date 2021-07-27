@@ -16,6 +16,7 @@ class AuthController extends GetxController {
   final RxBool errors = false.obs;
 
   final Rx<String> firebaseUser = ''.obs;
+  final Rx<LocalUserInfo> currentUserInfo = const LocalUserInfo.loading().obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
   @override
@@ -85,9 +86,11 @@ class AuthController extends GetxController {
       if (userInfo != null) {
         currentUser.value = userInfo;
         errors.value = false;
+        currentUserInfo.value = LocalUserInfo.data(userInfo);
       }
     } on AuthException catch (e) {
       errors.value = true;
+      currentUserInfo.value = LocalUserInfo.error(e.toString());
     }
   }
 

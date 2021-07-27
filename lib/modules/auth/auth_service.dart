@@ -63,6 +63,8 @@ class AuthService implements BaseAuthService {
         return localUser;
       }
       return null;
+    } on FirebaseException catch (e) {
+      throw AuthException(message: e.message);
     } catch (e) {
       throw AuthException(message: 'Something went wrong');
     }
@@ -147,7 +149,7 @@ class AuthService implements BaseAuthService {
         }
       });
     } catch (e) {
-      throw AuthException(message: 'No network');
+      throw AuthException(message: e.toString());
     }
   }
 
@@ -203,28 +205,21 @@ class AuthService implements BaseAuthService {
 
   @override
   Future<void> uploadUserAndImage(LocalUser user, bool isUpdating, File localFile) async {
-    if (localFile.path.length > 0) {
-      print('Uploading Image');
-
+    if (localFile.path.isNotEmpty) {
       var fileExtension = path.extension(localFile.path);
-      print('FileExtension: ' + fileExtension);
 
-      var uuid = Uuid().v4();
+      var uuid = const Uuid().v4();
 
       firebase_storage.Reference firebaseStorageRef =
           firebase_storage.FirebaseStorage.instance.ref().child('users/images/$uuid$fileExtension');
 
       try {
         await firebaseStorageRef.putFile(localFile);
-      } on firebase_core.FirebaseException catch (e) {
-        print('User ImageFile Upload Error: ' + e.message!);
-      }
+      } on firebase_core.FirebaseException catch (e) {}
 
       String url = await firebaseStorageRef.getDownloadURL();
-      print('Image DownloadUrl url: $url');
       await uploadUser(user, isUpdating, imageUrl: url);
     } else {
-      print('Skipping Image Upload');
       await uploadUser(user, isUpdating);
     }
   }

@@ -30,7 +30,6 @@ class GiftAskController extends GetxController {
   // GiftASk Form data control value
   RxBool loading = false.obs;
   RxBool hasError = false.obs;
-
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(23, 90).obs;
@@ -204,7 +203,7 @@ class GiftAskController extends GetxController {
 
       print(area.value);
     } catch (e) {
-      print(e);
+
     }
   }
 

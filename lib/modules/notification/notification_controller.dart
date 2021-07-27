@@ -13,7 +13,8 @@ class NotificationController extends GetxController {
   RxBool loading = RxBool(false);
   RxBool errors = false.obs;
 
-  Rx<List<MyNotification>> notificationList = Rx<List<MyNotification>>([]);
+  Rx<NotificationListStatus> notificationList = const NotificationListStatus.loading().obs;
+  // Rx<List<MyNotification>> notificationList = Rx<List<MyNotification>>([]);
 
   @override
   void onInit() async {

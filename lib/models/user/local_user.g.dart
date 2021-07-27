@@ -6,23 +6,6 @@ part of 'local_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$Loading _$_$LoadingFromJson(Map<String, dynamic> json) {
-  return _$Loading();
-}
-
-Map<String, dynamic> _$_$LoadingToJson(_$Loading instance) =>
-    <String, dynamic>{};
-
-_$Error _$_$ErrorFromJson(Map<String, dynamic> json) {
-  return _$Error(
-    json['message'] as String?,
-  );
-}
-
-Map<String, dynamic> _$_$ErrorToJson(_$Error instance) => <String, dynamic>{
-      'message': instance.message,
-    };
-
 _$_LocalUser _$_$_LocalUserFromJson(Map<String, dynamic> json) {
   return _$_LocalUser(
     id: json['id'] as String?,

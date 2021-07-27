@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 abstract class BaseNotificationService {
   Future<bool> add({required MyNotification notification, required String userId});
 
-  Stream<List<MyNotification>> streamAllNotifications({required String userId});
+  Stream<NotificationListStatus> streamAllNotifications({required String userId});
 }
 
 class NotificationService extends BaseNotificationService {
@@ -26,7 +26,7 @@ class NotificationService extends BaseNotificationService {
   }
 
   @override
-  Stream<List<MyNotification>> streamAllNotifications({required String userId}) {
+  Stream<NotificationListStatus> streamAllNotifications({required String userId}) {
     try {
       var stream = _firestore
           .collection('users')
@@ -41,12 +41,40 @@ class NotificationService extends BaseNotificationService {
           MyNotification notification = MyNotification.fromJson(doc.data());
           list.add(notification);
         });
-        return list;
+        return NotificationListStatus.data(list);
       });
 
       return stream;
+    } on FirebaseException catch (e) {
+      return Stream.value(NotificationListStatus.error(e.message ?? ''));
     } catch (e) {
-      throw NotificationException(message: 'Something went wrong');
+      return Stream.value(NotificationListStatus.error(e.toString()));
     }
   }
+  // @override
+  // Stream<List<MyNotification>> streamAllNotifications({required String userId}) {
+  //   try {
+  //     var stream = _firestore
+  //         .collection('users')
+  //         .doc(userId)
+  //         .collection('notifications')
+  //         .orderBy('createdAt', descending: true)
+  //         .limit(30)
+  //         .snapshots()
+  //         .map((docList) {
+  //       List<MyNotification> list = [];
+  //       docList.docs.forEach((doc) {
+  //         MyNotification notification = MyNotification.fromJson(doc.data());
+  //         list.add(notification);
+  //       });
+  //       return list;
+  //     });
+
+  //     return stream;
+  //   } on FirebaseException catch (e) {
+  //     throw NotificationException(message: e.message);
+  //   } catch (e) {
+  //     throw NotificationException(message: e.toString());
+  //   }
+  // }
 }

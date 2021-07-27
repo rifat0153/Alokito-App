@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/notification/gift_ask/views/gift_ask_notification_view.dart';
@@ -36,41 +38,39 @@ class NotificationView extends StatelessWidget {
               height: 50,
             ),
             Obx(
-              () => notificationController.errors.value
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : Expanded(
+              () => notificationController.notificationList.value.when(
+                  data: (list) {
+                    return Expanded(
                       child: ListView.builder(
                         padding: EdgeInsets.zero,
-                        itemCount: controller.notificationList.value.length,
+                        itemCount: list.length,
                         itemBuilder: (_, i) {
-                          if (controller.notificationList.value[i].notificationType ==
-                              NotificationType.giftGiver) {
+                          if (list[i].notificationType == NotificationType.giftGiver) {
                             return GiftGiverNotificationView(
-                              key: ValueKey(controller.notificationList.value[i].id),
-                              notification: controller.notificationList.value[i],
+                              key: ValueKey(list[i].id),
+                              notification: list[i],
                             );
                           }
-                          if (controller.notificationList.value[i].notificationType ==
-                              NotificationType.giftAsk) {
+                          if (list[i].notificationType == NotificationType.giftAsk) {
                             return GiftAskNotificationView(
-                              key: ValueKey(controller.notificationList.value[i].id),
-                              notification: controller.notificationList.value[i],
+                              key: ValueKey(list[i].id),
+                              notification: list[i],
                             );
                           }
-                          if (controller.notificationList.value[i].notificationType ==
-                              NotificationType.text) {
+                          if (list[i].notificationType == NotificationType.text) {
                             return TextNotificationWidget(
-                              key: ValueKey(controller.notificationList.value[i].id),
-                              notification: controller.notificationList.value[i],
+                              key: ValueKey(list[i].id),
+                              notification: list[i],
                             );
                           }
 
                           return Text('data');
                         },
                       ),
-                    ),
+                    );
+                  },
+                  loading: () => const CircularProgressIndicator(),
+                  error: (err) => Text(err)),
             ),
           ],
         ),
