@@ -17,20 +17,18 @@ class ConnectionController extends GetxController {
 
   @override
   void onInit() {
+    connectionStatus.bindStream(connectionService.streamConnectionResult());
+
     streamSubscription = connectionStatus.listen((connectionType) {
       print(connectionStatus.value);
       if (connectionType == ConnectivityResult.none) {
-        print('NOOOOOOOOOO INtene ******************************************');
-
         Get.bottomSheet(
           Container(
-              height: 150,
-              color: Colors.greenAccent,
-              child: const Text('No Internet Connection', textScaleFactor: 2)),
-          // barrierColor: Colors.red[50],
-          isDismissible: false,
-          // shape: RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.circular(35), side: const BorderSide(width: 5, color: Colors.black)),
+              height: 50,
+              color: Colors.white,
+              child:
+                  const Text('No Internet Connection 😢', textAlign: TextAlign.center, textScaleFactor: 1.5)),
+          isDismissible: true,
           enableDrag: false,
         );
       }
@@ -38,15 +36,21 @@ class ConnectionController extends GetxController {
         bool? bottomSheetOpen = Get.isBottomSheetOpen;
 
         if (bottomSheetOpen != null) {
-          print('Bottom Sheet is open');
           Get.back();
-        } else {
-          print('Bottom Sheet is not open');
         }
+
+        Get.bottomSheet(
+          Container(
+              height: 50,
+              color: Colors.white,
+              child: const Text('Interet is back', textAlign: TextAlign.center, textScaleFactor: 1)),
+          isDismissible: true,
+          enableDrag: true,
+          persistent: false,
+        );
       }
     });
 
-    connectionStatus.bindStream(connectionService.streamConnectionResult());
     super.onInit();
   }
 }
