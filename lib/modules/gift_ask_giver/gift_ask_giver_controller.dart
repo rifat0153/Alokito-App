@@ -16,7 +16,6 @@ import '../../shared/success_error_sheet.dart';
 class GiftAskGiverController extends GetxController {
   GiftAskGiverService giftAskGiverService = GiftAskGiverService(FirebaseFirestore.instance);
 
-
   Future<GiftAskGiver?> getGift(String id) async {
     print('GiftAskGiverController: getGiftAskGiver call made');
     GiftAskGiver? doc = await giftAskGiverService.getGiftAskGiver(id: id);

@@ -5,7 +5,7 @@ import 'login_controller.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../shared/my_name_input.dart';
 import 'widgets/login_form.dart';
-import 'widgets/register-form.dart';
+import 'widgets/register_form.dart';
 
 class LoginView extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();

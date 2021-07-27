@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/auth/widgets/register-form.dart';
+import 'package:alokito_new/modules/auth/widgets/register_form.dart';
 
 import '../../../shared/config.dart';
 import 'package:flutter/material.dart';

@@ -21,3 +21,4 @@ linter:
     use_key_in_widget_constructors: false
     prefer_const_literals_to_create_immutables: false
     lowercase_with_underscores: false
+    directives_ordering: false
