@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
 import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
@@ -73,7 +74,12 @@ class _buildBody extends StatelessWidget {
           Column(
             children: <Widget>[
               SizedBox(height: media.height * 0.1, width: 0),
-              _UserImageWidget(authController: authController),
+              Obx(
+                () => _UserImageWidget(
+                  authController: authController,
+                  localUser: authController.currentUser.value,
+                ),
+              ),
               Obx(
                 () => Flexible(
                   child: UserNameWidget(localUser: authController.currentUser.value, context: context),
@@ -126,42 +132,33 @@ class _buildBody extends StatelessWidget {
   }
 }
 
-class _UserImageWidget extends StatefulWidget {
-  const _UserImageWidget({Key? key, required this.authController}) : super(key: key);
+class _UserImageWidget extends StatelessWidget {
+  const _UserImageWidget({Key? key, required this.authController, required this.localUser}) : super(key: key);
 
   final AuthController authController;
-
-  @override
-  __UserImageWidgetState createState() => __UserImageWidgetState();
-}
-
-class __UserImageWidgetState extends State<_UserImageWidget> {
-  String? userImageUrl;
-
-  late String myKey;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.authController.getUserInfoAndSetCurrentUser();
-    myKey = FirebaseAuth.instance.currentUser?.uid ?? const Uuid().v4();
-  }
+  final LocalUser localUser;
 
   @override
   Widget build(BuildContext context) {
+    authController.getUserInfoAndSetCurrentUser();
+
     return Flexible(
       flex: 6,
       fit: FlexFit.tight,
       child: Obx(
-        () => widget.authController.currentUserInfo.value.when(
+        () => authController.currentUserInfo.value.when(
             data: (data) => Padding(
-                  key: ValueKey(widget.authController.currentUser.value.id ?? myKey),
+                  key: ValueKey(authController.currentUser.value.id),
                   padding: const EdgeInsets.only(top: 35),
-                  child: widget.authController.currentUser.value.imageUrl != null
-                      ? CircleAvatar(
-                          radius: 75,
-                          backgroundImage: NetworkImage(
-                            widget.authController.currentUser.value.imageUrl ?? '',
+                  child: localUser.imageUrl != null
+                      ? Obx(
+                          () => CircleAvatar(
+                            radius: 75,
+                            backgroundImage: NetworkImage(
+                              authController.currentUserInfo.value
+                                      .maybeWhen(data: (data) => data.imageUrl, orElse: () => '') ??
+                                  '',
+                            ),
                           ),
                         )
                       : const SizedBox(),

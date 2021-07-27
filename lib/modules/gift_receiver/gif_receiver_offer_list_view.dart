@@ -90,8 +90,14 @@ class _buildBody extends StatelessWidget {
                   },
                   empty: () {
                     print('List empty CASE');
-                    return const Expanded(
-                      child: Text('No Gift'),
+                    return Expanded(
+                      child: Column(
+                        children: [
+                          const Text('No Gift'),
+                          ElevatedButton(
+                              onPressed: giftController.bindGiftStream, child: const Text('Retry')),
+                        ],
+                      ),
                     );
                   },
                   loading: () =>
@@ -166,6 +172,9 @@ class _GiftListTile extends StatelessWidget {
                     ),
                     child: Image.network(
                       filteredGiftList[index].imageUrl,
+                      errorBuilder: (_, obj, st) {
+                        return const SizedBox();
+                      },
                       fit: BoxFit.cover,
                       alignment: Alignment.center,
                     ),

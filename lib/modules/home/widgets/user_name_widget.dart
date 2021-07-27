@@ -5,7 +5,7 @@ class UserNameWidget extends StatelessWidget {
   const UserNameWidget({
     Key? key,
     required this.context,
-    required LocalUser this.localUser,
+    required this.localUser,
   }) : super(key: key);
 
   final LocalUser localUser;
