@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 
 class MapWithMarkersWidget extends StatelessWidget {
   MapWithMarkersWidget({
@@ -17,27 +16,25 @@ class MapWithMarkersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Card(
-            elevation: 4,
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            child: SizedBox(
-              width: mediaQuery.size.width,
-              height: mediaQuery.size.height * (1 / 3),
-              child: Obx(
-                () => GoogleMap(
-                  // zoomControlsEnabled: false,
-                  initialCameraPosition: initialCameraPosition,
-                  markers: Set<Marker>.of(markers.values),
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Card(
+          elevation: 4,
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          child: SizedBox(
+            width: mediaQuery.size.width,
+            height: mediaQuery.size.height * (1 / 3),
+            child: Obx(
+              () => GoogleMap(
+                // zoomControlsEnabled: false,
+                initialCameraPosition: initialCameraPosition,
+                markers: Set<Marker>.of(markers.values),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

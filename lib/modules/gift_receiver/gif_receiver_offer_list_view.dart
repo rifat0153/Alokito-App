@@ -1,12 +1,10 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/map/my_map_view.dart';
 import 'package:alokito_new/shared/config.dart';
-
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_details_view.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,7 +12,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class GiftReceiverOfferListView extends StatelessWidget {
   static const route = 'giftoffer';
 
-  GiftController giftController = Get.find();
+  final GiftController giftController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -27,24 +25,25 @@ class GiftReceiverOfferListView extends StatelessWidget {
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           leading: IconButton(
-            onPressed: () => Get.back(),
-            icon: Icon(Icons.keyboard_arrow_left, color: Colors.black),
+            onPressed: Get.back,
+            icon: const Icon(Icons.keyboard_arrow_left, color: Colors.black),
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: _buildBody(giftController: giftController),
+        body: BuildBody(giftController: giftController),
       ),
     );
   }
 }
 
-class _buildBody extends StatelessWidget {
-  const _buildBody({
+class BuildBody extends StatelessWidget {
+  BuildBody({
     Key? key,
     required this.giftController,
   }) : super(key: key);
 
   final GiftController giftController;
+  final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +56,7 @@ class _buildBody extends StatelessWidget {
             image: DecorationImage(image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
           ),
         ),
-        Container(
+        SizedBox(
           height: Get.size.height,
           width: Get.size.width,
           child: Column(
@@ -66,7 +65,7 @@ class _buildBody extends StatelessWidget {
                 () => MapWithMarkersWidget(
                   markers: giftController.markers,
                   initialCameraPosition:
-                      CameraPosition(target: giftController.currentUserLocation.value, zoom: 9),
+                      CameraPosition(target: authController.currentUserPosition.value, zoom: 9),
                 ),
               ),
               _SearchWidget(),
@@ -125,7 +124,7 @@ class _buildBody extends StatelessWidget {
 }
 
 class _GiftListTile extends StatelessWidget {
-  _GiftListTile({
+  const _GiftListTile({
     Key? key,
     required this.giftController,
     required this.filteredGiftList,
@@ -136,7 +135,7 @@ class _GiftListTile extends StatelessWidget {
   final List<GiftGiver> filteredGiftList;
   final int index;
 
-  String giftType = '';
+  final String giftType = '';
 
   @override
   Widget build(BuildContext context) {

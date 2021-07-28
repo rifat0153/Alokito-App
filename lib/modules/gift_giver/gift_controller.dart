@@ -38,16 +38,28 @@ class GiftController extends GetxController {
       docListUnion.when(data: (docList) {
         filteredGiftList.value = const GiftGiverListUnion.loading();
 
-        docList.forEach((GiftGiver doc) {
-          //filtering logic goes here
-          if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
-            List<GiftGiver> tempFilteredList = [
-              ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
-              doc
-            ];
-            filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
-          }
-        });
+        // for (var doc in docList) {
+        //   if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
+        //     List<GiftGiver> tempFilteredList = [
+        //       ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
+        //       doc
+        //     ];
+        //     filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
+        //   }
+        // }
+
+        docList.forEach(
+          (GiftGiver doc) {
+            //filtering logic goes here
+            if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
+              List<GiftGiver> tempFilteredList = [
+                ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
+                doc
+              ];
+              filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
+            }
+          },
+        );
         _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
       }, empty: () {
         filteredGiftList.value = const GiftGiverListUnion.empty();
@@ -61,7 +73,7 @@ class GiftController extends GetxController {
       });
     });
 
-    bindLocationData();
+    // bindLocationData();
   }
 
   @override
@@ -101,13 +113,13 @@ class GiftController extends GetxController {
     markers[id] = _marker;
   }
 
-  void bindLocationData() async {
-    var locData = await Location().getLocation();
-    currentUserLocation.value = LatLng(locData.latitude!, locData.longitude!);
-  }
+  // void bindLocationData() async {
+  //   var locData = await Location().getLocation();
+  //   currentUserLocation.value = LatLng(locData.latitude!, locData.longitude!);
+  // }
 
   void bindGiftStream() {
-    bindLocationData();
+    Get.find<AuthController>().bindLocationData();
 
     giftList.bindStream(giftService.giftStreamByLocation());
   }

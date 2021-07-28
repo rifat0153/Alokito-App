@@ -43,6 +43,10 @@ class ConnectionController extends GetxController {
         //   Get.back();
         // }
 
+        if (firstStart) {
+          Get.back();
+        }
+
         if (!firstStart) {
           Get.bottomSheet(
             Container(
