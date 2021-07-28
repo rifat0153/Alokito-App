@@ -24,24 +24,18 @@ class GiftAskController extends GetxController {
 
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   final RxDouble searchRadius = 50.0.obs;
-  Rx<List<GiftAsk>> giftRequestList = Rx<List<GiftAsk>>([]);
-  Rx<List<GiftAsk>> filteredGiftRequestList = Rx<List<GiftAsk>>([]);
+  Rx<GiftAskListUnion> giftRequestList = const GiftAskListUnion.loading().obs;
+  Rx<GiftAskListUnion> filteredGiftRequestList = const GiftAskListUnion.loading().obs;
 
   // GiftASk Form data control value
   RxBool loading = false.obs;
-
   RxBool hasError = false.obs;
 
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
-
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
-
   var currentUserPosition = const LatLng(23, 90).obs;
-
   var address = ''.obs;
-
   var area = ''.obs;
-
   Rx<LatLng> locationInLatLng = const LatLng(0, 0).obs;
   Rx<Timestamp> requestDate = Timestamp.now().obs;
   final _requestForNoOfPeople = 1.obs;
@@ -57,16 +51,30 @@ class GiftAskController extends GetxController {
 
   @override
   void onInit() async {
-    streamSubscription = giftRequestList.listen((docList) {
-      filteredGiftRequestList.value = [];
+    streamSubscription = giftRequestList.listen((docListUnion) {
+      docListUnion.when(data: (docList) {
+        filteredGiftRequestList.value = const GiftAskListUnion.loading();
 
-      docList.forEach((doc) {
-        //filtering logic goes here
-        // if (doc.giftTitle == 'Medicine')
-        filteredGiftRequestList.value = [...filteredGiftRequestList.value, doc];
+        for (var doc in docList) {
+          if (doc.id != Get.find<AuthController>().currentUser.value.id) {
+            List<GiftAsk> tempFilteredList = [
+              ...filteredGiftRequestList.value.maybeWhen(data: (data) => data, orElse: () => []),
+              doc
+            ];
+            filteredGiftRequestList.value = GiftAskListUnion.data(tempFilteredList);
+          }
+        }
+        _updateMarkers(filteredGiftRequestList.value.maybeWhen(data: (data) => data, orElse: () => []));
+      }, empty: () {
+        filteredGiftRequestList.value = const GiftAskListUnion.empty();
+        _updateMarkers([]);
+      }, loading: () {
+        filteredGiftRequestList.value = const GiftAskListUnion.loading();
+        _updateMarkers([]);
+      }, error: (error) {
+        filteredGiftRequestList.value = GiftAskListUnion.error(error);
+        _updateMarkers([]);
       });
-
-      _updateMarkers(filteredGiftRequestList.value);
     });
 
     bindLocationData();
@@ -115,9 +123,10 @@ class GiftAskController extends GetxController {
   }
 
   void bindLocationData() async {
-    LocationData loc = await Location().getLocation();
-    currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
-    formMarker.value = Marker(markerId: MarkerId('123'), position: currentUserPosition.value);
+    // LocationData loc = await Location().getLocation();
+    var userLocation = Get.find<AuthController>().currentUserPosition.value;
+    currentUserPosition.value = userLocation;
+    formMarker.value = Marker(markerId: const MarkerId('123'), position: currentUserPosition.value);
 
     setLocationFromMapCordinates();
     print('GiftAskController: ' + currentUserPosition.value.toString());

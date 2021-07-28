@@ -31,3 +31,14 @@ class GiftAsk with _$GiftAsk {
 
   factory GiftAsk.fromJson(Map<String, dynamic> json) => _$GiftAskFromJson(json);
 }
+
+
+@freezed
+class GiftAskListUnion with _$GiftAskListUnion{
+
+  const factory GiftAskListUnion.data(List<GiftAsk> giftAskList) = Data;
+  const factory GiftAskListUnion.empty() = Empty;
+  const factory GiftAskListUnion.loading() = Loading;
+  const factory GiftAskListUnion.error(Object error) = Error;
+
+}

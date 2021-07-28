@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
@@ -23,11 +24,12 @@ class GiftAskRequestView extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              icon: const Icon(
-                Icons.cancel,
-                color: Colors.black,
-              ),
-              onPressed: () => Get.back())
+            icon: const Icon(
+              Icons.cancel,
+              color: Colors.black,
+            ),
+            onPressed: Get.back,
+          )
         ],
         title: const Text(
           'Gift Request',
@@ -39,14 +41,14 @@ class GiftAskRequestView extends StatelessWidget {
         shadowColor: Colors.white,
       ),
 
-      body: _buildBody(giftAskController: giftAskController),
+      body: _BuildBody(giftAskController: giftAskController),
       // body: MyMapView(),
     );
   }
 }
 
-class _buildBody extends StatelessWidget {
-  const _buildBody({
+class _BuildBody extends StatelessWidget {
+  const _BuildBody({
     Key? key,
     required this.giftAskController,
   }) : super(key: key);
@@ -74,7 +76,7 @@ class _buildBody extends StatelessWidget {
           ),
           Obx(
             () => Text(
-              '${giftAskController.filteredGiftRequestList.value.length} requests around\nyou right now',
+              '${giftAskController.filteredGiftRequestList.value.maybeWhen(data: (data) => data.length, orElse: () => 0)} requests around\nyou right now',
               style: boldFontStyle.copyWith(fontSize: 25),
               overflow: TextOverflow.ellipsis,
               softWrap: false,
@@ -82,18 +84,23 @@ class _buildBody extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Obx(
-              () => ListView.builder(
-                itemCount: giftAskController.filteredGiftRequestList.value.length,
-                itemBuilder: (_, i) => _GiftAskRequestTile(
-                  key: ValueKey(i),
-                  giftAskController: giftAskController,
-                  index: i,
-                  width: Get.width * 0.8,
-                ),
-                physics: const BouncingScrollPhysics(),
-              ),
-            ),
+            child: Obx(() => giftAskController.filteredGiftRequestList.value.when(
+                data: (giftAskList) => ListView.builder(
+                      itemCount: giftAskList.length,
+                      itemBuilder: (_, i) => _GiftAskRequestTile(
+                        key: ValueKey(i),
+                        giftAskList: giftAskList,
+                        giftAskController: giftAskController,
+                        index: i,
+                        width: Get.width * 0.8,
+                      ),
+                      physics: const BouncingScrollPhysics(),
+                    ),
+                empty: () => Text('data'),
+                loading: () => LinearProgressIndicator(),
+                error: (error) {
+                  return Text(error.toString());
+                })),
           ),
           Obx(
             () => Slider(
@@ -112,9 +119,15 @@ class _buildBody extends StatelessWidget {
 }
 
 class _GiftAskRequestTile extends StatelessWidget {
-  _GiftAskRequestTile({Key? key, required this.giftAskController, required this.index, required this.width})
-      : super(key: key);
+  _GiftAskRequestTile({
+    Key? key,
+    required this.giftAskList,
+    required this.giftAskController,
+    required this.index,
+    required this.width,
+  }) : super(key: key);
 
+  final List<GiftAsk> giftAskList;
   final int index;
   final double width;
   final GiftAskController giftAskController;
@@ -124,12 +137,11 @@ class _GiftAskRequestTile extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Width is $width');
 
-    return giftAskController.filteredGiftRequestList.value[index].id == authController.currentUser.value.id
+    return giftAskList[index].id == authController.currentUser.value.id
         ? Container()
         : GestureDetector(
             onTap: () {
-              Get.to(
-                  () => GiftAskDetailView(giftAsk: giftAskController.filteredGiftRequestList.value[index]));
+              Get.to(() => GiftAskDetailView(giftAsk: giftAskList[index]));
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
@@ -157,7 +169,7 @@ class _GiftAskRequestTile extends StatelessWidget {
                         children: [
                           Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
                           Text(
-                            '0${giftAskController.filteredGiftRequestList.value[index].requestForNoOfPeople}',
+                            '0${giftAskList[index].requestForNoOfPeople}',
                             style: const TextStyle(
                               color: Color(0xff11CFE7),
                               fontSize: 40,
@@ -180,15 +192,12 @@ class _GiftAskRequestTile extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    convertGiftAskType(
-                                        giftAskType: giftAskController
-                                            .filteredGiftRequestList.value[index].giftAskType),
+                                    convertGiftAskType(giftAskType: giftAskList[index].giftAskType),
                                     softWrap: false,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                Text(giftAskController.filteredGiftRequestList.value[index].area,
-                                    style: boldFontStyle.copyWith(fontSize: 13)),
+                                Text(giftAskList[index].area, style: boldFontStyle.copyWith(fontSize: 13)),
                               ],
                             )
                           ],

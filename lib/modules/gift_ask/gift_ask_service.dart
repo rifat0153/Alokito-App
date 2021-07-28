@@ -15,7 +15,7 @@ abstract class BaseGiftAskService {
 
   Future<bool> findGiftById(String id);
 
-  Stream<List<GiftAsk>> giftAskRequestStream({
+  Stream<GiftAskListUnion> giftAskRequestStream({
     required double latitude,
     required double longitude,
     required double searchRadius,
@@ -31,7 +31,7 @@ class GiftAskService implements BaseGiftAskService {
   final Geoflutterfire _geo;
 
   @override
-  Stream<List<GiftAsk>> giftAskRequestStream({
+  Stream<GiftAskListUnion> giftAskRequestStream({
     required double latitude,
     required double longitude,
     required double searchRadius,
@@ -41,22 +41,30 @@ class GiftAskService implements BaseGiftAskService {
 
     var collectionReference = _firestore.collection('gift_ask');
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
-    var stream = _geo
-        .collection(collectionRef: collectionReference)
-        .within(center: center, radius: searchRadius, field: 'position', strictMode: true)
-        .map((docList) {
-      List<GiftAsk> list = [];
-      docList.forEach((doc) {
-        var gift = GiftAsk.fromJson(doc.data() ?? {});
-        if (gift.id != userId) {
-          list.add(gift);
-        }
+
+    // return Stream.value(
+    //   GiftAskListUnion.error(GiftAskException(message: 'Test Error')),
+    // );
+
+    try {
+      var stream = _geo
+          .collection(collectionRef: collectionReference)
+          .within(center: center, radius: searchRadius, field: 'position', strictMode: true)
+          .map((docList) {
+        List<GiftAsk> list = [];
+        docList.forEach((doc) {
+          var gift = GiftAsk.fromJson(doc.data() ?? {});
+          if (gift.id != userId) {
+            list.add(gift);
+          }
+        });
+        return list.isEmpty ? const GiftAskListUnion.empty() : GiftAskListUnion.data(list);
       });
 
-      return list;
-    });
-
-    return stream;
+      return stream;
+    } catch (e) {
+      return Stream.value(GiftAskListUnion.error(GiftAskException(message: e.toString())));
+    }
   }
 
   @override

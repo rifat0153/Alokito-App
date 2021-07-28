@@ -544,3 +544,509 @@ abstract class _GiftAsk implements GiftAsk {
   _$GiftAskCopyWith<_GiftAsk> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$GiftAskListUnionTearOff {
+  const _$GiftAskListUnionTearOff();
+
+  Data data(List<GiftAsk> giftAskList) {
+    return Data(
+      giftAskList,
+    );
+  }
+
+  Empty empty() {
+    return const Empty();
+  }
+
+  Loading loading() {
+    return const Loading();
+  }
+
+  Error error(Object error) {
+    return Error(
+      error,
+    );
+  }
+}
+
+/// @nodoc
+const $GiftAskListUnion = _$GiftAskListUnionTearOff();
+
+/// @nodoc
+mixin _$GiftAskListUnion {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftAsk> giftAskList) data,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(Object error) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftAskListUnionCopyWith<$Res> {
+  factory $GiftAskListUnionCopyWith(
+          GiftAskListUnion value, $Res Function(GiftAskListUnion) then) =
+      _$GiftAskListUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftAskListUnionCopyWithImpl<$Res>
+    implements $GiftAskListUnionCopyWith<$Res> {
+  _$GiftAskListUnionCopyWithImpl(this._value, this._then);
+
+  final GiftAskListUnion _value;
+  // ignore: unused_field
+  final $Res Function(GiftAskListUnion) _then;
+}
+
+/// @nodoc
+abstract class $DataCopyWith<$Res> {
+  factory $DataCopyWith(Data value, $Res Function(Data) then) =
+      _$DataCopyWithImpl<$Res>;
+  $Res call({List<GiftAsk> giftAskList});
+}
+
+/// @nodoc
+class _$DataCopyWithImpl<$Res> extends _$GiftAskListUnionCopyWithImpl<$Res>
+    implements $DataCopyWith<$Res> {
+  _$DataCopyWithImpl(Data _value, $Res Function(Data) _then)
+      : super(_value, (v) => _then(v as Data));
+
+  @override
+  Data get _value => super._value as Data;
+
+  @override
+  $Res call({
+    Object? giftAskList = freezed,
+  }) {
+    return _then(Data(
+      giftAskList == freezed
+          ? _value.giftAskList
+          : giftAskList // ignore: cast_nullable_to_non_nullable
+              as List<GiftAsk>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Data implements Data {
+  const _$Data(this.giftAskList);
+
+  @override
+  final List<GiftAsk> giftAskList;
+
+  @override
+  String toString() {
+    return 'GiftAskListUnion.data(giftAskList: $giftAskList)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Data &&
+            (identical(other.giftAskList, giftAskList) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftAskList, giftAskList)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftAskList);
+
+  @JsonKey(ignore: true)
+  @override
+  $DataCopyWith<Data> get copyWith =>
+      _$DataCopyWithImpl<Data>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftAsk> giftAskList) data,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(Object error) error,
+  }) {
+    return data(giftAskList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(giftAskList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Error value) error,
+  }) {
+    return data(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Data implements GiftAskListUnion {
+  const factory Data(List<GiftAsk> giftAskList) = _$Data;
+
+  List<GiftAsk> get giftAskList => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EmptyCopyWith<$Res> {
+  factory $EmptyCopyWith(Empty value, $Res Function(Empty) then) =
+      _$EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EmptyCopyWithImpl<$Res> extends _$GiftAskListUnionCopyWithImpl<$Res>
+    implements $EmptyCopyWith<$Res> {
+  _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
+      : super(_value, (v) => _then(v as Empty));
+
+  @override
+  Empty get _value => super._value as Empty;
+}
+
+/// @nodoc
+
+class _$Empty implements Empty {
+  const _$Empty();
+
+  @override
+  String toString() {
+    return 'GiftAskListUnion.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftAsk> giftAskList) data,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(Object error) error,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Error value) error,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Empty implements GiftAskListUnion {
+  const factory Empty() = _$Empty;
+}
+
+/// @nodoc
+abstract class $LoadingCopyWith<$Res> {
+  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
+      _$LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoadingCopyWithImpl<$Res> extends _$GiftAskListUnionCopyWithImpl<$Res>
+    implements $LoadingCopyWith<$Res> {
+  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
+      : super(_value, (v) => _then(v as Loading));
+
+  @override
+  Loading get _value => super._value as Loading;
+}
+
+/// @nodoc
+
+class _$Loading implements Loading {
+  const _$Loading();
+
+  @override
+  String toString() {
+    return 'GiftAskListUnion.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftAsk> giftAskList) data,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(Object error) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Error value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Loading implements GiftAskListUnion {
+  const factory Loading() = _$Loading;
+}
+
+/// @nodoc
+abstract class $ErrorCopyWith<$Res> {
+  factory $ErrorCopyWith(Error value, $Res Function(Error) then) =
+      _$ErrorCopyWithImpl<$Res>;
+  $Res call({Object error});
+}
+
+/// @nodoc
+class _$ErrorCopyWithImpl<$Res> extends _$GiftAskListUnionCopyWithImpl<$Res>
+    implements $ErrorCopyWith<$Res> {
+  _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
+      : super(_value, (v) => _then(v as Error));
+
+  @override
+  Error get _value => super._value as Error;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(Error(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Error implements Error {
+  const _$Error(this.error);
+
+  @override
+  final Object error;
+
+  @override
+  String toString() {
+    return 'GiftAskListUnion.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Error &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $ErrorCopyWith<Error> get copyWith =>
+      _$ErrorCopyWithImpl<Error>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftAsk> giftAskList) data,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(Object error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Data value) data,
+    required TResult Function(Empty value) empty,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Error implements GiftAskListUnion {
+  const factory Error(Object error) = _$Error;
+
+  Object get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
+}
