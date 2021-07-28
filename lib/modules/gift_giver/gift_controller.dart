@@ -38,29 +38,30 @@ class GiftController extends GetxController {
       docListUnion.when(data: (docList) {
         filteredGiftList.value = const GiftGiverListUnion.loading();
 
-        // for (var doc in docList) {
-        //   if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
-        //     List<GiftGiver> tempFilteredList = [
-        //       ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
-        //       doc
-        //     ];
-        //     filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
-        //   }
-        // }
-
-        docList.forEach(
-          (GiftGiver doc) {
-            //filtering logic goes here
-            if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
-              List<GiftGiver> tempFilteredList = [
-                ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
-                doc
-              ];
-              filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
-            }
-          },
-        );
+        for (var doc in docList) {
+          if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
+            List<GiftGiver> tempFilteredList = [
+              ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
+              doc
+            ];
+            filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
+          }
+        }
         _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
+
+        // docList.forEach(
+        //   (GiftGiver doc) {
+        //     //filtering logic goes here
+        //     if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
+        //       List<GiftGiver> tempFilteredList = [
+        //         ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
+        //         doc
+        //       ];
+        //       filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
+        //     }
+        //   },
+        // );
+        // _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
       }, empty: () {
         filteredGiftList.value = const GiftGiverListUnion.empty();
         _updateMarkers([]);

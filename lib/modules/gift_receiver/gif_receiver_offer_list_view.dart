@@ -4,10 +4,12 @@ import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_details_view.dart';
+import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftReceiverOfferListView extends StatelessWidget {
   static const route = 'giftoffer';
@@ -91,17 +93,33 @@ class BuildBody extends StatelessWidget {
                     print('List empty CASE');
                     return Expanded(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('No Gift'),
-                          ElevatedButton(
-                              onPressed: giftController.bindGiftStream, child: const Text('Retry')),
+                          Text(
+                            'No Gift Nearby',
+                            style: boldFontStyle.copyWith(fontSize: 20.sp),
+                          ),
                         ],
                       ),
                     );
                   },
                   loading: () =>
-                      const SizedBox(height: 10, width: double.infinity, child: LinearProgressIndicator()),
-                  error: (e) => Text(e.toString()),
+                      SizedBox(height: 5.h, width: double.infinity, child: const LinearProgressIndicator()),
+                  error: (e) => Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(e.toString()),
+                        ElevatedButton(
+                          onPressed: giftController.bindGiftStream,
+                          child: Text(
+                            'Retry',
+                            style: boldFontStyle.copyWith(color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
 
