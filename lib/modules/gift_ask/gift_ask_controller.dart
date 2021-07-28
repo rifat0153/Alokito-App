@@ -29,12 +29,19 @@ class GiftAskController extends GetxController {
 
   // GiftASk Form data control value
   RxBool loading = false.obs;
+
   RxBool hasError = false.obs;
+
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
+
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
+
   var currentUserPosition = const LatLng(23, 90).obs;
+
   var address = ''.obs;
+
   var area = ''.obs;
+
   Rx<LatLng> locationInLatLng = const LatLng(0, 0).obs;
   Rx<Timestamp> requestDate = Timestamp.now().obs;
   final _requestForNoOfPeople = 1.obs;
@@ -43,6 +50,7 @@ class GiftAskController extends GetxController {
   RxBool showPrescription = false.obs;
   var precriptionImageFile = File('').obs;
   final RxBool _packageSmallFamilty = false.obs;
+
   var note = ''.obs;
 
   StreamSubscription? streamSubscription;
@@ -202,9 +210,7 @@ class GiftAskController extends GetxController {
       area.value = first.adminArea ?? 'N/A';
 
       print(area.value);
-    } catch (e) {
-
-    }
+    } catch (e) {}
   }
 
   bool get packageSmallFamilty => _packageSmallFamilty.value;

@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 import '../../models/user/local_user.dart';
 import 'auth_service.dart';
 
@@ -19,11 +21,14 @@ class AuthController extends GetxController {
   final Rx<LocalUserInfo> currentUserInfo = const LocalUserInfo.loading().obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
+  final currentUserPosition = const LatLng(0, 0).obs;
+
   @override
   void onInit() {
     authStream.bindStream(authService.authStateChanges);
     bindMyUserStream();
     // getUserInfoAndSetCurrentUser();
+    bindLocationData();
     super.onInit();
   }
 
@@ -92,6 +97,13 @@ class AuthController extends GetxController {
       errors.value = true;
       currentUserInfo.value = LocalUserInfo.error(e.toString());
     }
+  }
+
+  void bindLocationData() async {
+    LocationData loc = await Location().getLocation();
+    currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
+
+    print('AuthController: ' + currentUserPosition.value.toString());
   }
 
   void bindMyUserStream() {

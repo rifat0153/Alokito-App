@@ -5,6 +5,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'connection_service.dart';
 
 class ConnectionController extends GetxController {
@@ -26,7 +27,8 @@ class ConnectionController extends GetxController {
       if (connectionType == ConnectivityResult.none) {
         Get.bottomSheet(
           Container(
-              height: 50,
+              height: 50.sp,
+              width: 0.8.sw,
               color: Colors.white,
               child:
                   const Text('No Internet Connection 😢', textAlign: TextAlign.center, textScaleFactor: 1.5)),
@@ -37,14 +39,15 @@ class ConnectionController extends GetxController {
       if (connectionType == ConnectivityResult.mobile || connectionType == ConnectivityResult.wifi) {
         bool? bottomSheetOpen = Get.isBottomSheetOpen;
 
-        if (bottomSheetOpen != null) {
-          Get.back();
-        }
+        // if (bottomSheetOpen != null) {
+        //   Get.back();
+        // }
 
         if (!firstStart) {
           Get.bottomSheet(
             Container(
-                height: 50,
+                height: 50.sp,
+                width: 0.8.sw,
                 color: Colors.white,
                 child: const Text('Interet is back', textAlign: TextAlign.center, textScaleFactor: 1)),
             isDismissible: true,

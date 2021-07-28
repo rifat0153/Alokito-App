@@ -37,47 +37,51 @@ class NotificationView extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            Obx(
-              () => notificationController.notificationList.value.when(
-                  data: (list) {
-                    return Expanded(
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: list.length,
-                        itemBuilder: (_, i) {
-                          if (list[i].notificationType == NotificationType.giftGiver) {
-                            return GiftGiverNotificationView(
-                              key: ValueKey(list[i].id),
-                              notification: list[i],
-                            );
-                          }
-                          if (list[i].notificationType == NotificationType.giftAsk) {
-                            return GiftAskNotificationView(
-                              key: ValueKey(list[i].id),
-                              notification: list[i],
-                            );
-                          }
-                          if (list[i].notificationType == NotificationType.text) {
-                            return TextNotificationWidget(
-                              key: ValueKey(list[i].id),
-                              notification: list[i],
-                            );
-                          }
-
-                          return Text('data');
-                        },
-                      ),
-                    );
-                  },
-                  empty: () => const Center(
-                        child: Text('No Notification'),
-                      ),
-                  loading: () => const CircularProgressIndicator(),
-                  error: (err) => Text(err)),
-            ),
+            _buildNotificationTile(notificationController),
           ],
         ),
       ),
+    );
+  }
+
+  Obx _buildNotificationTile(NotificationController notificationController) {
+    return Obx(
+      () => notificationController.notificationList.value.when(
+          data: (list) {
+            return Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.zero,
+                itemCount: list.length,
+                itemBuilder: (_, i) {
+                  if (list[i].notificationType == NotificationType.giftGiver) {
+                    return GiftGiverNotificationView(
+                      key: ValueKey(list[i].createdAt),
+                      notification: list[i],
+                    );
+                  }
+                  if (list[i].notificationType == NotificationType.giftAsk) {
+                    return GiftAskNotificationView(
+                      key: ValueKey(list[i].createdAt),
+                      notification: list[i],
+                    );
+                  }
+                  if (list[i].notificationType == NotificationType.text) {
+                    return TextNotificationWidget(
+                      key: ValueKey(list[i].createdAt),
+                      notification: list[i],
+                    );
+                  }
+
+                  return Text('data');
+                },
+              ),
+            );
+          },
+          empty: () => const Center(
+                child: Text('No Notification'),
+              ),
+          loading: () => const CircularProgressIndicator(),
+          error: (err) => Text(err)),
     );
   }
 }

@@ -113,9 +113,10 @@ class GiftGiverService implements BaseGiftGiverService {
   Stream<GiftGiverListUnion> giftStreamByLocation() {
     GiftController giftController = Get.find();
 
-    GeoFirePoint center = geo.point(
-        latitude: giftController.currentUserLocation.value.latitude,
-        longitude: giftController.currentUserLocation.value.longitude);
+    final LatLng currentUserLatLng = Get.find<AuthController>().currentUserPosition.value;
+
+    GeoFirePoint center =
+        geo.point(latitude: currentUserLatLng.latitude, longitude: currentUserLatLng.longitude);
 
     var collectionReference = _firestore.collection('gifts');
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
@@ -142,7 +143,7 @@ class GiftGiverService implements BaseGiftGiverService {
 
         print('Service: list size ${list.length}');
 
-        return list.length == 0 ? const GiftGiverListUnion.empty() : GiftGiverListUnion.data(list);
+        return list.isEmpty ? const GiftGiverListUnion.empty() : GiftGiverListUnion.data(list);
       });
 
       return stream;
