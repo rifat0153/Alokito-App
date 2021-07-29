@@ -8,22 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GiftAskNotificationView extends StatefulWidget {
-  const GiftAskNotificationView({Key? key, required this.notification}) : super(key: key);
+class GiftAskNotificationView extends StatelessWidget {
+  GiftAskNotificationView({Key? key, required this.notification}) : super(key: key);
 
   final MyNotification notification;
-
-  @override
-  _GiftAskNotificationViewState createState() => _GiftAskNotificationViewState();
-}
-
-class _GiftAskNotificationViewState extends State<GiftAskNotificationView> {
-  GiftAskGiverController giftAskGiverController = Get.find<GiftAskGiverController>();
+  final GiftAskGiverController giftAskGiverController = Get.find<GiftAskGiverController>();
 
   @override
   Widget build(BuildContext context) {
     var difference = DateTime.now()
-        .difference(DateTime.fromMillisecondsSinceEpoch(widget.notification.createdAt.millisecondsSinceEpoch))
+        .difference(DateTime.fromMillisecondsSinceEpoch(notification.createdAt.millisecondsSinceEpoch))
         .inHours;
 
     return Container(
@@ -33,8 +27,8 @@ class _GiftAskNotificationViewState extends State<GiftAskNotificationView> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: FutureBuilder<GiftAskGiver>(
-          future: giftAskGiverController
-              .getGift(widget.notification.releatedDocId), // function where you call your api
+          future:
+              giftAskGiverController.getGift(notification.releatedDocId), // function where you call your api
           builder: (BuildContext context, AsyncSnapshot<GiftAskGiver> snapshot) {
             // AsyncSnapshot<Your object type>
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -43,75 +37,7 @@ class _GiftAskNotificationViewState extends State<GiftAskNotificationView> {
               if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else {
-                return Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      Get.to(() => GiftAskNotificationDetailsView(giftAskGiver: snapshot.data));
-                    },
-                    child: Row(
-                      children: [
-                        Container(
-                            height: 100,
-                            width: Get.width * 0.2,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(5),
-                                  topLeft: Radius.circular(5),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(color: Colors.grey, blurRadius: 3.0),
-                                ],
-                                color: Colors.blue),
-                            child: snapshot.data != null
-                                ? ClipRRect(
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(5),
-                                      topLeft: Radius.circular(5),
-                                    ),
-                                    // Todo
-                                    child: Image.asset('assets/images/map-dot (1).png', fit: BoxFit.cover))
-                                : const SizedBox()),
-                        snapshot.data == null
-                            ? Container()
-                            : Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Get.to(() => GiftAskNotificationDetailsView(giftAskGiver: snapshot.data));
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(color: Colors.grey, blurRadius: 10.0.r),
-                                      ],
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0.w),
-                                      child: Column(
-                                        children: [
-                                          MyText(
-                                            widget.notification.text,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13,
-                                            maxLines: 2,
-                                            // textAlign: TextAlign.start,
-                                          ),
-                                          const Spacer(),
-                                          Row(
-                                            children: [
-                                              MyText('$difference hours ago', fontSize: 12.sp),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                      ],
-                    ),
-                  ),
-                );
+                return _buildNotificationTile(snapshot, difference);
               }
             }
           },
@@ -120,25 +46,73 @@ class _GiftAskNotificationViewState extends State<GiftAskNotificationView> {
     );
   }
 
-//   Widget _buildNotificationRow(int difference, GiftAskGiver? giftAskGiver) {
-//     return FutureBuilder<GiftAskGiver>(
-//       future: giftAskGiverController
-//           .getGift(widget.notification.releatedDocId), // function where you call your api
-//       builder: (BuildContext context, AsyncSnapshot<GiftAskGiver> snapshot) {
-//         // AsyncSnapshot<Your object type>
-//         if (snapshot.connectionState == ConnectionState.waiting) {
-//           return const Center(child: Text('Please wait its loading...'));
-//         } else {
-//           if (snapshot.hasError) {
-//             return Center(child: Text('Error: ${snapshot.error}'));
-//           } else {
-//             return Center(
-//               child: Text('${snapshot.data?.createdAt}'),
-//             );
-//           }
-//         }
-//       },
-//     );
-//   }
-// }
+  GestureDetector _buildNotificationTile(AsyncSnapshot<GiftAskGiver> snapshot, int difference) {
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => GiftAskNotificationDetailsView(giftAskGiver: snapshot.data));
+      },
+      child: Row(
+        children: [
+          Container(
+              height: 100,
+              width: Get.width * 0.2,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(5),
+                    topLeft: Radius.circular(5),
+                  ),
+                  boxShadow: [
+                    BoxShadow(color: Colors.grey, blurRadius: 3.0),
+                  ],
+                  color: Colors.blue),
+              child: snapshot.data != null
+                  ? ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(5),
+                        topLeft: Radius.circular(5),
+                      ),
+                      // Todo
+                      child: Image.asset('assets/images/map-dot (1).png', fit: BoxFit.cover))
+                  : const SizedBox()),
+          snapshot.data == null
+              ? Container()
+              : Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(() => GiftAskNotificationDetailsView(giftAskGiver: snapshot.data));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(color: Colors.grey, blurRadius: 10.0.r),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0.w),
+                        child: Column(
+                          children: [
+                            MyText(
+                              notification.text,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                              maxLines: 2,
+                              // textAlign: TextAlign.start,
+                            ),
+                            const Spacer(),
+                            Row(
+                              children: [
+                                MyText('$difference hours ago', fontSize: 12.sp),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+        ],
+      ),
+    );
+  }
 }

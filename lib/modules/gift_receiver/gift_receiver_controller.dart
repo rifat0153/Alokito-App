@@ -22,9 +22,9 @@ class GiftReceiverController extends GetxController {
   RxBool showDialog = RxBool(false);
   RxBool requestExists = RxBool(false);
 
-  Future<GiftReceiver?> getGift(String id) async {
+  Future<GiftReceiver> getGift(String id) async {
     print('GiftReceiverController: getGift call made');
-    GiftReceiver? doc = await giftReceiverService.getGiftRequest(id: id);
+    GiftReceiver doc = await giftReceiverService.getGiftRequest(id: id);
 
     return doc;
   }

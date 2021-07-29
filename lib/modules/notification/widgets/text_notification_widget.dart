@@ -48,17 +48,12 @@ class _TextNotificationWidgetState extends State<TextNotificationWidget> {
                   ],
                   color: Colors.blue),
               child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(5),
-                    topLeft: Radius.circular(5),
-                  ),
-                  child: Image.network(
-                    '',
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, obj, st) {
-                      return SizedBox();
-                    },
-                  )),
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(5),
+                  topLeft: Radius.circular(5),
+                ),
+                child: Image.asset('assets/images/map-dot (1).png', fit: BoxFit.cover),
+              ),
             ),
             Expanded(
               child: Container(

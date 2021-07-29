@@ -24,11 +24,11 @@ class GiftReceiverService implements BaseGiftReceiverService {
   final FirebaseAuth _auth;
 
   @override
-  Future<GiftReceiver?> getGiftRequest({required String id}) async {
+  Future<GiftReceiver> getGiftRequest({required String id}) async {
     try {
       var doc = await _firestore.collection('gift_receiver').doc(id).get();
 
-      return doc.exists ? GiftReceiver.fromJson(doc.data()!) : null;
+      return GiftReceiver.fromJson(doc.data()!);
     } on FirebaseException catch (e) {
       throw GiftReceiverException(message: e.message);
     }

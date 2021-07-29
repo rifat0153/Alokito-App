@@ -6,39 +6,36 @@ import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class GiftGiverNotificationView extends StatefulWidget {
+class GiftGiverNotificationView extends StatelessWidget {
   GiftGiverNotificationView({Key? key, required this.notification}) : super(key: key);
 
-  MyNotification notification;
+  final MyNotification notification;
 
-  @override
-  _GiftGiverNotificationViewState createState() => _GiftGiverNotificationViewState();
-}
-
-class _GiftGiverNotificationViewState extends State<GiftGiverNotificationView> {
-  GiftReceiverController giftReceiverController = Get.find<GiftReceiverController>();
-
-  GiftReceiver? giftReceiver;
-
-  Future<void> getGift() async {
-    var data = await giftReceiverController.getGift(widget.notification.releatedDocId);
-    setState(() {
-      giftReceiver = data;
-    });
-  }
-
-  @override
-  void initState() {
-    getGift();
-    super.initState();
-  }
+  final GiftReceiverController giftReceiverController = Get.find<GiftReceiverController>();
 
   @override
   Widget build(BuildContext context) {
     var difference = DateTime.now()
-        .difference(DateTime.fromMillisecondsSinceEpoch(widget.notification.createdAt.millisecondsSinceEpoch))
+        .difference(DateTime.fromMillisecondsSinceEpoch(notification.createdAt.millisecondsSinceEpoch))
         .inHours;
 
+    return FutureBuilder<GiftReceiver>(
+      future: giftReceiverController.getGift(notification.releatedDocId),
+      builder: (BuildContext context, AsyncSnapshot<GiftReceiver> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: Text('Please wait its loading...'));
+        } else {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return _buildNotificationTile(snapshot, difference);
+          }
+        }
+      },
+    );
+  }
+
+  Container _buildNotificationTile(AsyncSnapshot<GiftReceiver> snapshot, int difference) {
     return Container(
       width: Get.width,
       height: 100,
@@ -59,21 +56,21 @@ class _GiftGiverNotificationViewState extends State<GiftGiverNotificationView> {
                       BoxShadow(color: Colors.grey, blurRadius: 3.0),
                     ],
                     color: Colors.blue),
-                child: giftReceiver == null
+                child: snapshot.data == null
                     ? const SizedBox()
                     : ClipRRect(
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(5),
                           topLeft: Radius.circular(5),
                         ),
-                        child: Image.network(giftReceiver!.giftGiver.imageUrl, fit: BoxFit.cover)),
+                        child: Image.network(snapshot.data!.giftGiver.imageUrl, fit: BoxFit.cover)),
               ),
-              giftReceiver == null
+              snapshot.data == null
                   ? const SizedBox()
                   : Expanded(
                       child: GestureDetector(
                         onTap: () =>
-                            Get.to(() => GiftGiverNotificationDetailsView(giftReceiver: giftReceiver)),
+                            Get.to(() => GiftGiverNotificationDetailsView(giftReceiver: snapshot.data)),
                         child: Container(
                           decoration: const BoxDecoration(
                             color: Colors.white,
@@ -86,7 +83,7 @@ class _GiftGiverNotificationViewState extends State<GiftGiverNotificationView> {
                             child: Column(
                               children: [
                                 MyText(
-                                  widget.notification.text,
+                                  notification.text,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
                                   maxLines: 2,
