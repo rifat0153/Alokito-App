@@ -18,7 +18,7 @@ class GiftAskNotificationController extends GetxController {
   RxInt requesterRating = 0.obs;
   RxInt giverRating = 0.obs;
 
-  //Message for Giver and Rating
+  //* Message for Giver and Rating
   Future<void> messageForGiverAndRating(GiftAskGiver giftAskGiver) async {
     print('IN adding giver message');
 

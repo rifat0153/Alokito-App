@@ -24,9 +24,9 @@ class _GiftAskNotificationViewState extends State<GiftAskNotificationView> {
 
   Future<void> getGift() async {
     var data = await giftAskGiverController.getGift(widget.notification.releatedDocId);
-    setState(() {
-      giftAskGiver = data;
-    });
+    // setState(() {
+    giftAskGiver = data;
+    // });
   }
 
   @override

@@ -101,7 +101,9 @@ class _DecisionWidget extends StatelessWidget {
             MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
             MaterialButton(
               onPressed: () {
-                // Get.dialog(FeedbackWidget(giftAskGiver: giftAskGiver, isRequester: true));
+                showDialog(
+                    context: context,
+                    builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: true));
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
@@ -117,7 +119,7 @@ class _DecisionWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MyText('Request canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+            MyText('r Request canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
             MyText(
               giftAskGiver!.giver.userName,
               textAlign: TextAlign.center,
@@ -131,7 +133,7 @@ class _DecisionWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MyText('Request confirmed by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+            MyText('r Request confirmed by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
             MyText(
               giftAskGiver!.giver.userName,
               textAlign: TextAlign.center,
@@ -145,7 +147,7 @@ class _DecisionWidget extends StatelessWidget {
               height: 0,
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               color: GIFT_ASK_COLOR,
-              child: MyText('Accept Gift', color: Colors.white),
+              child: MyText('r Accept Gift', color: Colors.white),
             ),
           ],
         );
@@ -223,7 +225,9 @@ class _DecisionWidget extends StatelessWidget {
           MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
           MaterialButton(
             onPressed: () {
-              Get.dialog(GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              showDialog(
+                  context: context,
+                  builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -242,7 +246,9 @@ class _DecisionWidget extends StatelessWidget {
               textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
           MaterialButton(
             onPressed: () {
-              Get.dialog(GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              showDialog(
+                  context: context,
+                  builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,

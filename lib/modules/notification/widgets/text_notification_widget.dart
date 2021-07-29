@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TextNotificationWidget extends StatefulWidget {
-  TextNotificationWidget({Key? key, required this.notification}) : super(key: key);
+  const TextNotificationWidget({Key? key, required this.notification}) : super(key: key);
 
-  MyNotification notification;
+  final MyNotification notification;
 
   @override
   _TextNotificationWidgetState createState() => _TextNotificationWidgetState();
@@ -52,7 +52,13 @@ class _TextNotificationWidgetState extends State<TextNotificationWidget> {
                     bottomLeft: Radius.circular(5),
                     topLeft: Radius.circular(5),
                   ),
-                  child: Image.network('', fit: BoxFit.cover)),
+                  child: Image.network(
+                    '',
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, obj, st) {
+                      return SizedBox();
+                    },
+                  )),
             ),
             Expanded(
               child: Container(

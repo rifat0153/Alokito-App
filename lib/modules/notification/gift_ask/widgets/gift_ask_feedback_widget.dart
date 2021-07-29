@@ -1,9 +1,7 @@
 import 'dart:ui';
 
 import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
-import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/modules/notification/gift_ask/controllers/gift_ask_notification_controller.dart';
-import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +14,8 @@ class GiftAskFeedbackWidget extends StatelessWidget {
     required this.isRequester,
   }) : super(key: key);
 
-  bool isRequester;
-  GiftAskGiver? giftAskGiver;
+  final bool isRequester;
+  final GiftAskGiver? giftAskGiver;
 
   final GiftAskNotificationController controller = Get.find();
 
@@ -72,10 +70,11 @@ class GiftAskFeedbackWidget extends StatelessWidget {
                 MaterialButton(
                   color: GIFT_ADD_FORM_SUBMIT,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  onPressed: () {
+                  onPressed: () async {
+                    await Get.find<GiftAskNotificationController>().doneGiftRequestByGiver(giftAskGiver!);
                     isRequester
-                        ? controller.messageForGiverAndRating(giftAskGiver!)
-                        : controller.messageForRequesterAndRating(giftAskGiver!);
+                        ? await controller.messageForGiverAndRating(giftAskGiver!)
+                        : await controller.messageForRequesterAndRating(giftAskGiver!);
                   },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30),
