@@ -1,6 +1,6 @@
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserEmailWidget extends StatelessWidget {
   const UserEmailWidget({
@@ -16,10 +16,10 @@ class UserEmailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       localUser.email,
-      style: const TextStyle(
+      style: TextStyle(
         color: Colors.black,
         // fontFamily: GoogleFonts.lato().fontFamily,
-        fontSize: 15,
+        fontSize: 18.sp,
       ),
     );
   }

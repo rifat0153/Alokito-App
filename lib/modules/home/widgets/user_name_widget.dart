@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserNameWidget extends StatelessWidget {
   const UserNameWidget({
@@ -15,9 +16,9 @@ class UserNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       localUser.userName,
-      style: const TextStyle(
+      style: TextStyle(
         color: Colors.black,
-        fontSize: 20,
+        fontSize: 22.sp,
       ),
     );
   }

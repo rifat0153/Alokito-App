@@ -62,6 +62,7 @@ class _AlokitoAppState extends State<AlokitoApp> {
         title: 'Flutter Demo',
         theme: ThemeData(
           fontFamily: 'Playtime',
+          textTheme: TextTheme(bodyText2: TextStyle(fontSize: 20.sp)),
           primarySwatch: Colors.teal,
           accentColor: const Color(0xff1b2e59),
         ),
