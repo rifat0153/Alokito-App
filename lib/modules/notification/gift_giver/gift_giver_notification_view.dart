@@ -49,8 +49,8 @@ class GiftGiverNotificationView extends StatelessWidget {
                 width: Get.width * 0.2,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(5),
-                      topLeft: Radius.circular(5),
+                      bottomLeft: Radius.circular(15),
+                      topLeft: Radius.circular(15),
                     ),
                     boxShadow: [
                       BoxShadow(color: Colors.grey, blurRadius: 3.0),
@@ -60,8 +60,8 @@ class GiftGiverNotificationView extends StatelessWidget {
                     ? const SizedBox()
                     : ClipRRect(
                         borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(5),
-                          topLeft: Radius.circular(5),
+                          bottomLeft: Radius.circular(15),
+                          topLeft: Radius.circular(15),
                         ),
                         child: Image.network(snapshot.data!.giftGiver.imageUrl, fit: BoxFit.cover)),
               ),
@@ -74,6 +74,10 @@ class GiftGiverNotificationView extends StatelessWidget {
                         child: Container(
                           decoration: const BoxDecoration(
                             color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(15),
+                              topRight: Radius.circular(15),
+                            ),
                             boxShadow: [
                               BoxShadow(color: Colors.grey, blurRadius: 3.0),
                             ],

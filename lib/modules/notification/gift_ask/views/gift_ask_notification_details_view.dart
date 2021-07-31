@@ -20,7 +20,7 @@ import '../controllers/gift_ask_notification_controller.dart';
 
 class GiftAskNotificationDetailsView extends StatelessWidget {
   GiftAskNotificationDetailsView({Key? key, required this.giftAskGiver}) : super(key: key);
-  final GiftAskGiver? giftAskGiver;
+  final GiftAskGiver giftAskGiver;
 
   final GiftAskNotificationController controller = Get.put(GiftAskNotificationController());
 
@@ -33,15 +33,15 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var requesterIdCreatedAgo = DateTime.now()
-        .difference(DateTime.fromMillisecondsSinceEpoch(giftAskGiver!.createdAt.millisecondsSinceEpoch))
+        .difference(DateTime.fromMillisecondsSinceEpoch(giftAskGiver.createdAt.millisecondsSinceEpoch))
         .inDays;
 
-    LatLng requesterLatLng = LatLng(giftAskGiver!.requester.position.geopoint.latitude,
-        giftAskGiver!.requester.position.geopoint.longitude);
-    var markers = [Marker(markerId: MarkerId(giftAskGiver!.id.toString()), position: requesterLatLng)];
+    LatLng requesterLatLng = LatLng(giftAskGiver.requester.position.geopoint.latitude,
+        giftAskGiver.requester.position.geopoint.longitude);
+    var markers = [Marker(markerId: MarkerId(giftAskGiver.id.toString()), position: requesterLatLng)];
 
     var distanceBetweenRequesterAndGiver =
-        calculateDistance(giftAskGiver!.requester.position, giftAskGiver!.giver.position);
+        calculateDistance(giftAskGiver.requester.position, giftAskGiver.giver.position);
 
     return SkeletonWidget(
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
@@ -58,7 +58,7 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
                       requesterIdCreatedAgo: requesterIdCreatedAgo,
                       distanceBetweenRequesterAndGiver: distanceBetweenRequesterAndGiver),
                   _CommentWidget(giftAskGiver: giftAskGiver),
-                  _RequesterLocationAndGiftDetailsWidget(giftAskGiver: giftAskGiver!),
+                  _RequesterLocationAndGiftDetailsWidget(giftAskGiver: giftAskGiver),
                   _DecisionWidget(controller: controller, giftAskGiver: giftAskGiver),
                   _MapWidget(giftAskGiver: giftAskGiver, markers: markers),
                 ],
@@ -80,22 +80,22 @@ class _DecisionWidget extends StatelessWidget {
   }) : super(key: key);
 
   final GiftAskNotificationController controller;
-  final GiftAskGiver? giftAskGiver;
+  final GiftAskGiver giftAskGiver;
 
   @override
   Widget build(BuildContext context) {
     //*********************       If its requester notification          ********************
-    if (giftAskGiver!.requester.id == Get.find<AuthController>().currentUser.value.id) {
-      if (giftAskGiver!.messageForGiverrSent == true &&
-          giftAskGiver!.giftAskStatus == GiftAskStatus.requestDelivered) {
+    if (giftAskGiver.requester.id == Get.find<AuthController>().currentUser.value.id) {
+      if (giftAskGiver.messageForGiverrSent == true &&
+          giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
         return Column(
           children: [
             MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
           ],
         );
       }
-      if (giftAskGiver!.messageForGiverrSent == false &&
-          giftAskGiver!.giftAskStatus == GiftAskStatus.requestDelivered) {
+      if (giftAskGiver.messageForGiverrSent == false &&
+          giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
         return Column(
           children: [
             MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
@@ -115,13 +115,13 @@ class _DecisionWidget extends StatelessWidget {
         );
       }
       // Gift Canceled By Giver
-      if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestCanceledByGiver) {
+      if (giftAskGiver.giftAskStatus == GiftAskStatus.requestCanceledByGiver) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MyText('r Request canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
             MyText(
-              giftAskGiver!.giver.userName,
+              giftAskGiver.giver.userName,
               textAlign: TextAlign.center,
               fontSize: 25,
             ),
@@ -129,19 +129,19 @@ class _DecisionWidget extends StatelessWidget {
         );
       }
       // Gift confirmed by giver
-      if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestConfirmed) {
+      if (giftAskGiver.giftAskStatus == GiftAskStatus.requestConfirmed) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MyText('r Request confirmed by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
             MyText(
-              giftAskGiver!.giver.userName,
+              giftAskGiver.giver.userName,
               textAlign: TextAlign.center,
               fontSize: 25,
             ),
             MaterialButton(
               onPressed: () {
-                controller.aceeptGiftRequestByRequester(giftAskGiver!);
+                controller.aceeptGiftRequestByRequester(giftAskGiver);
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
@@ -153,28 +153,28 @@ class _DecisionWidget extends StatelessWidget {
         );
       }
       //* Gift Delivered BY Giver
-      if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestDelivered) {
+      if (giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
         return MyText('r Delivered', fontSize: 20, color: Colors.blueAccent);
       }
       //* Gift ACCEPTED BY REQUESTER
-      if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestAccepted) {
+      if (giftAskGiver.giftAskStatus == GiftAskStatus.requestAccepted) {
         return MyText('r Gift Accepted by You',
             textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
       }
       //* GIFT CANCELED BY REQUESTER
-      if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestCanceledByRequester) {
+      if (giftAskGiver.giftAskStatus == GiftAskStatus.requestCanceledByRequester) {
         return MyText('r Request Canceled by You',
             textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
       }
 
       //* Gift ACCEPTEd by GIVER
-      if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestAccepted) {
+      if (giftAskGiver.giftAskStatus == GiftAskStatus.requestAccepted) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
               onPressed: () {
-                // controller.aceeptGiftRequestByRequester(giftAskGiver!);
+                // controller.aceeptGiftRequestByRequester(giftAskGiver);
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
@@ -185,7 +185,7 @@ class _DecisionWidget extends StatelessWidget {
             const SizedBox(width: 30),
             MaterialButton(
               onPressed: () {
-                // controller.cancelGiftRequestByRequester(giftAskGiver!);
+                // controller.cancelGiftRequestByRequester(giftAskGiver);
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
@@ -199,7 +199,7 @@ class _DecisionWidget extends StatelessWidget {
 
       return MaterialButton(
         onPressed: () {
-          controller.cancelGiftRequestByRequester(giftAskGiver!);
+          controller.cancelGiftRequestByRequester(giftAskGiver);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         height: 0,
@@ -211,7 +211,7 @@ class _DecisionWidget extends StatelessWidget {
 
     // *** ****************    If its giver notification            **************
     // Gift Delivered BY Giver
-    if (giftAskGiver!.messageForRequesterSent == true) {
+    if (giftAskGiver.messageForRequesterSent == true) {
       return Column(
         children: [
           MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
@@ -219,7 +219,7 @@ class _DecisionWidget extends StatelessWidget {
       );
     }
     // Gift Delivered BY Giver But not message sent for Requester
-    if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestDelivered) {
+    if (giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
       return Column(
         children: [
           MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
@@ -239,10 +239,10 @@ class _DecisionWidget extends StatelessWidget {
       );
     }
     // Gift ACCEPTED BY REQUESTER
-    if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestAccepted) {
+    if (giftAskGiver.giftAskStatus == GiftAskStatus.requestAccepted) {
       return Column(
         children: [
-          MyText('Gift Accepted by ${giftAskGiver!.requester.userName}',
+          MyText('Gift Accepted by ${giftAskGiver.requester.userName}',
               textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
           MaterialButton(
             onPressed: () {
@@ -260,20 +260,20 @@ class _DecisionWidget extends StatelessWidget {
       );
     }
     // GIFT CANCELED BY REQUESTER
-    if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestCanceledByRequester) {
+    if (giftAskGiver.giftAskStatus == GiftAskStatus.requestCanceledByRequester) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
           MyText(
-            giftAskGiver!.requester.userName,
+            giftAskGiver.requester.userName,
             textAlign: TextAlign.center,
             fontSize: 25,
           ),
         ],
       );
     }
-    if (giftAskGiver!.giftAskStatus == GiftAskStatus.requestCanceledByGiver) {
+    if (giftAskGiver.giftAskStatus == GiftAskStatus.requestCanceledByGiver) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -288,7 +288,7 @@ class _DecisionWidget extends StatelessWidget {
     }
 
     // GIFT CONFIRMED BY GIVER/ WAITING FOR ACCEPTCNCE FROM REQUESTER
-    return giftAskGiver!.giftAskStatus == GiftAskStatus.requestConfirmed
+    return giftAskGiver.giftAskStatus == GiftAskStatus.requestConfirmed
         ? MaterialButton(
             onPressed: () {},
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -299,7 +299,7 @@ class _DecisionWidget extends StatelessWidget {
           )
         : MaterialButton(
             onPressed: () {
-              controller.confirmGift(giftAskGiver!);
+              controller.confirmGift(giftAskGiver);
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -437,7 +437,7 @@ class _CommentWidget extends StatelessWidget {
     required this.giftAskGiver,
   }) : super(key: key);
 
-  final GiftAskGiver? giftAskGiver;
+  final GiftAskGiver giftAskGiver;
 
   @override
   Widget build(BuildContext context) {
@@ -449,7 +449,7 @@ class _CommentWidget extends StatelessWidget {
             BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(5)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(giftAskGiver!.giftAsk.note),
+          child: Text(giftAskGiver.giftAsk.note),
         ),
       ),
     );
@@ -464,7 +464,7 @@ class _RequesterDetailWidget extends StatelessWidget {
     required this.distanceBetweenRequesterAndGiver,
   }) : super(key: key);
 
-  final GiftAskGiver? giftAskGiver;
+  final GiftAskGiver giftAskGiver;
   final int requesterIdCreatedAgo;
   final double distanceBetweenRequesterAndGiver;
 
@@ -483,7 +483,7 @@ class _RequesterDetailWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(giftAskGiver!.requester.imageUrl!),
+                        backgroundImage: NetworkImage(giftAskGiver.requester.imageUrl!),
                         radius: 30,
                       ),
                     ),
@@ -497,7 +497,7 @@ class _RequesterDetailWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MyText(giftAskGiver!.requester.userName, fontWeight: FontWeight.bold),
+                      MyText(giftAskGiver.requester.userName, fontWeight: FontWeight.bold),
                       const SizedBox(height: 8),
                       MyText('Joined $requesterIdCreatedAgo months ago'),
                     ],
@@ -510,7 +510,7 @@ class _RequesterDetailWidget extends StatelessWidget {
           child: Row(
             children: [
               for (var i = 0; i < 5; i++)
-                giftAskGiver!.requester.averageRating.toInt() > i
+                giftAskGiver.requester.averageRating.toInt() > i
                     ? const Icon(
                         Icons.star,
                         size: 15,

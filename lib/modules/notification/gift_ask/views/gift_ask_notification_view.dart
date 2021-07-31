@@ -49,7 +49,7 @@ class GiftAskNotificationView extends StatelessWidget {
   GestureDetector _buildNotificationTile(AsyncSnapshot<GiftAskGiver> snapshot, int difference) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => GiftAskNotificationDetailsView(giftAskGiver: snapshot.data));
+        Get.to(() => GiftAskNotificationDetailsView(giftAskGiver: snapshot.data!));
       },
       child: Row(
         children: [
@@ -58,8 +58,8 @@ class GiftAskNotificationView extends StatelessWidget {
               width: Get.width * 0.2,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(5),
-                    topLeft: Radius.circular(5),
+                    bottomLeft: Radius.circular(15),
+                    topLeft: Radius.circular(15),
                   ),
                   boxShadow: [
                     BoxShadow(color: Colors.grey, blurRadius: 3.0),
@@ -79,11 +79,15 @@ class GiftAskNotificationView extends StatelessWidget {
               : Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(() => GiftAskNotificationDetailsView(giftAskGiver: snapshot.data));
+                      Get.to(() => GiftAskNotificationDetailsView(giftAskGiver: snapshot.data!));
                     },
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
+                        borderRadius: const BorderRadius.only(
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                        ),
                         boxShadow: [
                           BoxShadow(color: Colors.grey, blurRadius: 10.0.r),
                         ],
