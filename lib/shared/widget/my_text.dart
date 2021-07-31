@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyText extends StatelessWidget {
   MyText(
     this.data, {
     this.color = Colors.black,
-    this.fontSize = 14,
+    this.fontSize = 20,
     this.fontWeight = FontWeight.normal,
     this.maxLines = 1,
     this.textAlign = TextAlign.start,
@@ -29,7 +29,7 @@ class MyText extends StatelessWidget {
       style: TextStyle(
         color: color,
         fontWeight: fontWeight,
-        fontSize: fontSize,
+        fontSize: fontSize.sp,
       ),
     );
   }
