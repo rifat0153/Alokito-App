@@ -61,7 +61,7 @@ class _AlokitoAppState extends State<AlokitoApp> {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          fontFamily: GoogleFonts.montserrat().fontFamily,
+          fontFamily: 'Playtime',
           primarySwatch: Colors.teal,
           accentColor: const Color(0xff1b2e59),
         ),
