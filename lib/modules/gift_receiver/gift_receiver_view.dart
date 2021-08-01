@@ -1,4 +1,6 @@
 import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/shared/widget/my_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_view.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
@@ -60,27 +62,24 @@ class GiftReceiverView extends StatelessWidget {
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
-        body: Container(
-          height: Get.size.height,
-          width: Get.size.width,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                // image: AssetImage(
-                //     'assets/images/gift_receiver_background.png'),
-                image: AssetImage('assets/images/rsz_1gift_receiver.png'),
-                fit: BoxFit.fill),
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 100),
-              Container(
-                width: media.width,
-                child: const _MyButtonRowWidget(),
+        body: Stack(
+          children: [
+            Container(
+              height: Get.size.height,
+              width: Get.size.width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    // image: AssetImage(
+                    //     'assets/images/gift_receiver_background.png'),
+                    image: AssetImage('assets/images/rsz_1gift_receiver.png'),
+                    fit: BoxFit.fill),
               ),
-              const Spacer(),
-              _ThankYouBannerWidget(height: 30, width: media.width),
-            ],
-          ),
+            ),
+            const Center(
+              child: _MyButtonRowWidget(),
+            ),
+            const Positioned(bottom: 0, child: _ThankYouBannerWidget())
+          ],
         ),
       ),
     );
@@ -88,20 +87,16 @@ class GiftReceiverView extends StatelessWidget {
 }
 
 class _ThankYouBannerWidget extends StatelessWidget {
-  _ThankYouBannerWidget({required this.height, required this.width});
-
-  final double height;
-  final double width;
+  const _ThankYouBannerWidget();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: height,
-      width: width,
+      width: context.width,
       decoration: BoxDecoration(color: Colors.grey[100], boxShadow: [
         BoxShadow(
           color: Colors.grey,
-          blurRadius: 5,
+          blurRadius: 5.r,
         ),
       ]),
       child: Column(
@@ -110,20 +105,20 @@ class _ThankYouBannerWidget extends StatelessWidget {
             'Thank You',
             style: TextStyle(fontSize: 20, color: Colors.cyan),
           ),
-          const SizedBox(height: 8),
-          const Text(
+          SizedBox(height: 8.sp),
+          Text(
             'for supporting lives',
-            style: TextStyle(fontSize: 10),
+            style: TextStyle(fontSize: 10.sp),
           ),
-          const Text(
+          Text(
             'Your time and services are precious but...',
-            style: TextStyle(fontSize: 10),
+            style: TextStyle(fontSize: 10.sp),
           ),
-          const Text(
+          Text(
             'But it can also put a smile on the face of many people which will give you a feeling of heaven',
             textAlign: TextAlign.center,
             maxLines: 5,
-            style: TextStyle(fontSize: 10),
+            style: TextStyle(fontSize: 10.sp),
           ),
         ],
       ),
@@ -138,29 +133,42 @@ class _MyButtonRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith((states) => GIFT_GIVER_BUTTON_COLOR),
-            foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.black),
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(
+              horizontal: 15.w,
+              vertical: 10.h,
+            ),
           ),
           onPressed: () {
             Get.to(() => GiftAskView());
           },
-          child: const Text('Gift Request'),
+          child: MyText(
+            'Gift Request',
+            fontSize: 30.sp,
+          ),
+        ),
+        SizedBox(
+          height: 20.h,
         ),
         ElevatedButton(
           onPressed: () {
             Get.toNamed(GiftReceiverOfferListView.route);
-            // Get.to(() => MyGiftView());
           },
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.grey),
-            foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.black),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.grey[400],
+            padding: EdgeInsets.symmetric(
+              horizontal: 30.w,
+              vertical: 10.h,
+            ),
           ),
-          child: const Text('Gift Offer'),
+          child: MyText(
+            'Gift Offer',
+            fontSize: 30.sp,
+          ),
         ),
       ],
     );

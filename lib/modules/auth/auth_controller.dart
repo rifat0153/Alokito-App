@@ -26,7 +26,7 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     authStream.bindStream(authService.authStateChanges);
-    // bindMyUserStream();
+    bindMyUserStream();
     getUserInfoAndSetCurrentUser();
     bindLocationData();
     super.onInit();
@@ -35,7 +35,7 @@ class AuthController extends GetxController {
   @override
   void onClose() {
     authStream.close();
-    // currentUser.close();
+    currentUser.close();
     super.onClose();
   }
 
@@ -134,9 +134,9 @@ class AuthController extends GetxController {
     print('AuthController: ' + currentUserPosition.value.toString());
   }
 
-  // void bindMyUserStream() {
-  //   currentUser.bindStream(authService.loggedInUserStream());
-  // }
+  void bindMyUserStream() {
+    currentUser.bindStream(authService.loggedInUserStream());
+  }
 
   // void setCurrentUser(LocalUser user) => currentUser.value = user;
   // LocalUser getCurrentUser() => currentUser.value;

@@ -27,8 +27,7 @@ class GiftAskDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var date = DateFormat.yMd()
-        .format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
+    var date = DateFormat.yMd().format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
     var distance = calculateDistance(
       giftAsk.requester.position,
       Get.find<AuthController>().currentUser.value.position,
@@ -67,8 +66,7 @@ class GiftAskDetailView extends StatelessWidget {
               width: Get.width,
               height: Get.height,
               decoration: const BoxDecoration(
-                image:
-                    DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
+                image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
             _buildBody(date, distance, userJoinedAt, markers),
@@ -319,9 +317,7 @@ class _UserNameAndLocationWidget extends StatelessWidget {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      SizedBox(
-                          width: 120,
-                          child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
+                      SizedBox(width: 120, child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

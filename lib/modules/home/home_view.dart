@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     authController.getUserInfoAndSetCurrentUser();
-    // authController.bindMyUserStream();
+    authController.bindMyUserStream();
 
     return SafeArea(
       child: Scaffold(
