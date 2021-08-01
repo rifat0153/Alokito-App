@@ -6,11 +6,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-class AuthenticationWrapper extends StatelessWidget {
+class AuthenticationWrapper extends StatefulWidget {
+  @override
+  _AuthenticationWrapperState createState() => _AuthenticationWrapperState();
+}
+
+class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   final AuthController authController = Get.find<AuthController>();
   final LoginController loginController = Get.put(LoginController());
-
   final keyValue = const Uuid().v4();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    authController.getUserInfoAndSetCurrentUser();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    print('In initState getting user');
+    authController.getUserInfoAndSetCurrentUser();
+  }
 
   @override
   Widget build(BuildContext context) {

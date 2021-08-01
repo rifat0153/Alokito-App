@@ -137,77 +137,81 @@ class _GiftAskRequestTile extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Width is $width');
 
-    return giftAskList[index].id == authController.currentUser.value.id
-        ? Container()
-        : GestureDetector(
-            onTap: () {
-              Get.to(() => GiftAskDetailView(giftAsk: giftAskList[index]));
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey.withOpacity(0.3)),
-                ),
-                width: 300,
-                height: 80,
-                child: Row(
-                  children: [
-                    Container(
-                      width: 100,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                          color: GIFT_ASK_COLOR,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                          )),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
-                          Text(
-                            '0${giftAskList[index].requestForNoOfPeople}',
-                            style: const TextStyle(
-                              color: Color(0xff11CFE7),
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+    return authController.currentUserInfo.value.when(
+      data: (user) => giftAskList[index].id == user.id
+          ? Container()
+          : GestureDetector(
+              onTap: () {
+                Get.to(() => GiftAskDetailView(giftAsk: giftAskList[index]));
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                  ),
+                  width: 300,
+                  height: 80,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 100,
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                            color: GIFT_ASK_COLOR,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              bottomLeft: Radius.circular(10),
+                            )),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Any Retail Item', style: boldFontStyle.copyWith(fontSize: 16)),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    convertGiftAskType(giftAskType: giftAskList[index].giftAskType),
-                                    softWrap: false,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                Text(giftAskList[index].area, style: boldFontStyle.copyWith(fontSize: 13)),
-                              ],
-                            )
+                            Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
+                            Text(
+                              '0${giftAskList[index].requestForNoOfPeople}',
+                              style: const TextStyle(
+                                color: Color(0xff11CFE7),
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Any Retail Item', style: boldFontStyle.copyWith(fontSize: 16)),
+                              const SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      convertGiftAskType(giftAskType: giftAskList[index].giftAskType),
+                                      softWrap: false,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  Text(giftAskList[index].area, style: boldFontStyle.copyWith(fontSize: 13)),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          );
+      loading: () => const CircularProgressIndicator.adaptive(),
+      error: (error) => const Text('Something went Wrong'),
+    );
   }
 }

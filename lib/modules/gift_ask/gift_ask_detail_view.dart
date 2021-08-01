@@ -145,45 +145,48 @@ class AcceptAndDenyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // final user = authController.currentUserInfo.value.maybeWhen(orElse: () )
 
-    return SizedBox(
-      width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (authController.currentUser.value.acceptedGiftId != giftAsk.id &&
-              authController.currentUser.value.acceptedGiftId.isEmpty)
-            MaterialButton(
-              onPressed: () async {
-                await giftAskGiverController.acceptGiftAskRequest(giftAsk);
-              },
-              color: GIFT_ASK_COLOR,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-              height: 0,
-              child: MyText(
-                'Accept for confirmation',
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 15.sp,
-              ),
-            ),
-          if (authController.currentUser.value.acceptedGiftId != giftAsk.id &&
-              authController.currentUser.value.acceptedGiftId.isNotEmpty)
-            MyText(
-              'Another Request Ongoing',
-              color: Colors.green,
-              fontWeight: FontWeight.bold,
-              fontSize: 20.sp,
-            ),
-          if (authController.currentUser.value.acceptedGiftId == giftAsk.id &&
-              authController.currentUser.value.acceptedGiftId.isNotEmpty)
-            MyText(
-              'Rquest Accepted',
-              color: Colors.green,
-              fontWeight: FontWeight.bold,
-              fontSize: 20.sp,
-            ),
-        ],
+    return Obx(
+      () => authController.currentUserInfo.value.when(
+        data: (user) => SizedBox(
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (user.acceptedGiftId != giftAsk.id && user.acceptedGiftId.isEmpty)
+                MaterialButton(
+                  onPressed: () async {
+                    await giftAskGiverController.acceptGiftAskRequest(giftAsk);
+                  },
+                  color: GIFT_ASK_COLOR,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                  height: 0,
+                  child: MyText(
+                    'Accept for confirmation',
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.sp,
+                  ),
+                ),
+              if (user.acceptedGiftId != giftAsk.id && user.acceptedGiftId.isNotEmpty)
+                MyText(
+                  'Another Request Ongoing',
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.sp,
+                ),
+              if (user.acceptedGiftId == giftAsk.id && user.acceptedGiftId.isNotEmpty)
+                MyText(
+                  'Rquest Accepted',
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.sp,
+                ),
+            ],
+          ),
+        ),
+        loading: () => const Center(child: CircularProgressIndicator.adaptive()),
+        error: (error) => Text(error.toString()),
       ),
     );
   }

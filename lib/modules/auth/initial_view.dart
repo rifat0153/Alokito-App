@@ -9,7 +9,6 @@ import 'package:alokito_new/modules/gift_record/gift_record_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
