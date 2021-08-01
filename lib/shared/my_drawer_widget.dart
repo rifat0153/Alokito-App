@@ -5,7 +5,7 @@ import 'package:alokito_new/modules/home/home_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -13,170 +13,171 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-      child: Container(
-        height: 1.sh,
-        width: 0.7.sw,
-        decoration: BoxDecoration(
-          // color: Colors.red,
-          image: DecorationImage(
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                Colors.transparent.withOpacity(.70),
-                BlendMode.dstIn,
-              ),
-              image: const AssetImage('assets/images/drawer_bg.png')),
+    return Container(
+      height: 1.sh,
+      width: 0.7.sw,
+      decoration: BoxDecoration(
+        // color: Colors.red,
+        image: DecorationImage(
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.transparent.withOpacity(.70),
+              BlendMode.dstIn,
+            ),
+            image: const AssetImage('assets/images/drawer_bg.png')),
+      ),
+      child: _buildDrawer(context),
+    );
+  }
+
+  Column _buildDrawer(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 20.h,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 20.h,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20.r),
+          child: Container(
+            color: Colors.blue,
+            height: 50.h,
+            width: 130.w,
+            alignment: Alignment.center,
+            child: Text(
+              'Logo',
+              style: TextStyle(fontSize: 30.sp),
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20.r),
-              child: Container(
-                color: Colors.blue,
-                height: 50.h,
-                width: 130.w,
-                alignment: Alignment.center,
-                child: Text(
-                  'Logo',
-                  style: TextStyle(fontSize: 30.sp),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
-            Get.find<AuthController>().currentUserInfo.value.when(
-                  data: (user) => Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          ),
+        ),
+        SizedBox(
+          height: 16.h,
+        ),
+        Get.find<AuthController>().currentUserInfo.value.when(
+              data: (user) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 30.r,
+                    backgroundImage: NetworkImage(user.imageUrl!),
+                  ),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      CircleAvatar(
-                        radius: 30.r,
-                        backgroundImage: NetworkImage(user.imageUrl!),
-                      ),
+                      Text(user.userName),
                       SizedBox(
-                        width: 8.w,
+                        height: 8.h,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      Row(
                         children: [
-                          Text(user.userName),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          Row(
-                            children: [
-                              for (var i = 0; i < 5; i++)
-                                user.averageRating.toInt() > i
-                                    ? const Icon(
-                                        Icons.star,
-                                        size: 15,
-                                        color: Colors.orange,
-                                      )
-                                    : const Icon(
-                                        Icons.star,
-                                        size: 15,
-                                        color: Colors.black,
-                                      ),
-                            ],
-                          )
+                          for (var i = 0; i < 5; i++)
+                            user.averageRating.toInt() > i
+                                ? const Icon(
+                                    Icons.star,
+                                    size: 15,
+                                    color: Colors.orange,
+                                  )
+                                : const Icon(
+                                    Icons.star,
+                                    size: 15,
+                                    color: Colors.black,
+                                  ),
                         ],
                       )
                     ],
-                  ),
-                  loading: () => const SizedBox(),
-                  error: (err) => Text(err.toString()),
-                ),
-            SizedBox(
-              height: 40.h,
+                  )
+                ],
+              ),
+              loading: () => const SizedBox(),
+              error: (err) => Text(err.toString()),
             ),
-            _buildMenuItem(
-              navFunction: () {
-                Navigator.popUntil(context, ModalRoute.withName('/'));
-              },
-              assetPath: 'assets/images/home.svg',
-              menuItemName: 'Home',
-            ),
-            SizedBox(
-              height: menuItemHeight.h,
-            ),
-            _buildMenuItem(
-              navFunction: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
-              },
-              assetPath: 'assets/images/gift_hand.svg',
-              menuItemName: 'Gift Giver',
-            ),
-            SizedBox(
-              height: menuItemHeight.h,
-            ),
-            _buildMenuItem(
-              navFunction: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
-              },
-              assetPath: 'assets/images/gift.svg',
-              menuItemName: 'Gift Receiver',
-            ),
-            SizedBox(
-              height: menuItemHeight.h,
-            ),
-            _buildMenuItem(
-              navFunction: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
-              },
-              assetPath: 'assets/images/hero.svg',
-              menuItemName: 'Community Hero',
-            ),
-            SizedBox(
-              height: menuItemHeight.h,
-            ),
-            _buildMenuItem(
-              navFunction: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
-              },
-              assetPath: 'assets/images/group.svg',
-              menuItemName: 'Team Players',
-            ),
-            SizedBox(
-              height: menuItemHeight.h,
-            ),
-            _buildMenuItem(
-              navFunction: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
-              },
-              assetPath: 'assets/images/bell.svg',
-              menuItemName: 'Notification',
-            ),
-            SizedBox(
-              height: menuItemHeight.h,
-            ),
-            _buildMenuItem(
-              navFunction: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
-              },
-              assetPath: 'assets/images/exclamation.svg',
-              menuItemName: 'About',
-            ),
-            SizedBox(
-              height: menuItemHeight.h,
-            ),
-            _buildMenuItem(
-              navFunction: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
-              },
-              assetPath: 'assets/images/question_mark.svg',
-              menuItemName: 'Help',
-            ),
-            SizedBox(
-              height: menuItemHeight.h,
-            ),
-          ],
+        SizedBox(
+          height: 40.h,
         ),
-      ),
+        _buildMenuItem(
+          navFunction: () {
+            Navigator.popUntil(context, ModalRoute.withName('/'));
+          },
+          assetPath: 'assets/images/home.svg',
+          menuItemName: 'Home',
+        ),
+        SizedBox(
+          height: menuItemHeight.h,
+        ),
+        _buildMenuItem(
+          navFunction: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+          },
+          assetPath: 'assets/images/gift_hand.svg',
+          menuItemName: 'Gift Giver',
+        ),
+        SizedBox(
+          height: menuItemHeight.h,
+        ),
+        _buildMenuItem(
+          navFunction: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+          },
+          assetPath: 'assets/images/gift.svg',
+          menuItemName: 'Gift Receiver',
+        ),
+        SizedBox(
+          height: menuItemHeight.h,
+        ),
+        _buildMenuItem(
+          navFunction: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+          },
+          assetPath: 'assets/images/hero.svg',
+          menuItemName: 'Community Hero',
+        ),
+        SizedBox(
+          height: menuItemHeight.h,
+        ),
+        _buildMenuItem(
+          navFunction: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+          },
+          assetPath: 'assets/images/group.svg',
+          menuItemName: 'Team Players',
+        ),
+        SizedBox(
+          height: menuItemHeight.h,
+        ),
+        _buildMenuItem(
+          navFunction: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+          },
+          assetPath: 'assets/images/bell.svg',
+          menuItemName: 'Notification',
+        ),
+        SizedBox(
+          height: menuItemHeight.h,
+        ),
+        _buildMenuItem(
+          navFunction: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+          },
+          assetPath: 'assets/images/exclamation.svg',
+          menuItemName: 'About',
+        ),
+        SizedBox(
+          height: menuItemHeight.h,
+        ),
+        _buildMenuItem(
+          navFunction: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+          },
+          assetPath: 'assets/images/question_mark.svg',
+          menuItemName: 'Help',
+        ),
+        SizedBox(
+          height: menuItemHeight.h,
+        ),
+      ],
     );
   }
 
