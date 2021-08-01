@@ -26,7 +26,7 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     authStream.bindStream(authService.authStateChanges);
-    bindMyUserStream();
+    // bindMyUserStream();
     getUserInfoAndSetCurrentUser();
     bindLocationData();
     super.onInit();
@@ -35,27 +35,47 @@ class AuthController extends GetxController {
   @override
   void onClose() {
     authStream.close();
-    currentUser.close();
+    // currentUser.close();
     super.onClose();
   }
 
   void signOut() async {
     await authService.signOut();
-    currentUser.value = initialUser;
+    // currentUser.value = initialUser;
   }
 
   Future<void> userHasGiftReuqest(String giftId) async {
-    await authService.updateLocalUser(currentUser.value.copyWith(
-      hasGiftAskRequest: true,
-      requestedGiftId: giftId,
-    ));
+    try {
+      await authService.updateLocalUser(currentUserInfo.value
+          .maybeWhen(
+              data: (user) => user,
+              orElse: () {
+                throw AuthException(message: 'User Info not found');
+              })
+          .copyWith(
+            hasGiftAskRequest: true,
+            requestedGiftId: giftId,
+          ));
+    } catch (e) {
+      Get.snackbar('Something Went Wrong', e.toString());
+    }
   }
 
   Future<void> userDoesNotHaveGiftReuqest(String giftId) async {
-    await authService.updateLocalUser(currentUser.value.copyWith(
-      hasGiftAskRequest: false,
-      requestedGiftId: '',
-    ));
+    try {
+      await authService.updateLocalUser(currentUserInfo.value
+          .maybeWhen(
+              data: (user) => user,
+              orElse: () {
+                throw AuthException(message: 'User Info not found');
+              })
+          .copyWith(
+            hasGiftAskRequest: false,
+            requestedGiftId: '',
+          ));
+    } catch (e) {
+      Get.snackbar('Something Went Wrong', e.toString());
+    }
   }
 
   Future<void> userHasNotification(String id) async {
@@ -63,8 +83,17 @@ class AuthController extends GetxController {
   }
 
   Future<void> userDoesNotHaveNotification() async {
-    if (currentUser.value.hasNotifications) {
-      await authService.updateUserNotificationStatus(currentUser.value.id!, false);
+    try {
+      await currentUserInfo.value.when(
+          data: (user) async {
+            if (user.hasNotifications) {
+              await authService.updateUserNotificationStatus(user.id!, false);
+            }
+          },
+          loading: () {},
+          error: (error) {});
+    } catch (e) {
+      Get.snackbar('Something Went Wrong', e.toString());
     }
   }
 
@@ -105,10 +134,10 @@ class AuthController extends GetxController {
     print('AuthController: ' + currentUserPosition.value.toString());
   }
 
-  void bindMyUserStream() {
-    currentUser.bindStream(authService.loggedInUserStream());
-  }
+  // void bindMyUserStream() {
+  //   currentUser.bindStream(authService.loggedInUserStream());
+  // }
 
-  void setCurrentUser(LocalUser user) => currentUser.value = user;
-  LocalUser getCurrentUser() => currentUser.value;
+  // void setCurrentUser(LocalUser user) => currentUser.value = user;
+  // LocalUser getCurrentUser() => currentUser.value;
 }
