@@ -42,8 +42,10 @@ class GiftReceiverView extends StatelessWidget {
             Row(
               children: [
                 Obx(() => Badge(
-                      badgeContent:
-                          authController.currentUser.value.hasNotifications ? const Text('!') : const Text(''),
+                      badgeContent: authController.currentUserInfo.value
+                              .maybeWhen(data: (user) => user.hasNotifications, orElse: () => false)
+                          ? const Text('!')
+                          : const Text(''),
                       badgeColor: Colors.white,
                       child: const Icon(Icons.notifications, color: Colors.white),
                     )),

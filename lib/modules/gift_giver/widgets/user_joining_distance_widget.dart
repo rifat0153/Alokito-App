@@ -15,10 +15,15 @@ class UserRatingAndDistance extends StatelessWidget {
     print(giftGiver.userAvgRating);
 
     var distance = Geoflutterfire()
-        .point(latitude: giftGiver.userPosition.geopoint.latitude, longitude: giftGiver.userPosition.geopoint.longitude)
+        .point(
+            latitude: giftGiver.userPosition.geopoint.latitude,
+            longitude: giftGiver.userPosition.geopoint.longitude)
         .distance(
-            lat: authController.currentUser.value.position.geopoint.latitude,
-            lng: authController.currentUser.value.position.geopoint.longitude);
+          lat: authController.currentUserInfo.value
+              .maybeWhen(data: (user) => user.position.geopoint.latitude, orElse: () => 0),
+          lng: authController.currentUserInfo.value
+              .maybeWhen(data: (user) => user.position.geopoint.longitude, orElse: () => 0),
+        );
 
     const double starSize = 12;
 

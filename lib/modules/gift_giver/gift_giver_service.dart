@@ -49,15 +49,13 @@ class GiftGiverService implements BaseGiftGiverService {
     var myLocation = geo.point(latitude: giftPosition.latitude, longitude: giftPosition.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
-    MyPosition myPosition =
-        MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
+    MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
     var fileExtension = path.extension(controller.imageFile.value.path);
 
     var uuid = const Uuid().v4();
 
-    var firebaseStorageRef =
-        firebase_storage.FirebaseStorage.instance.ref().child('gifts/images/$uuid$fileExtension');
+    var firebaseStorageRef = firebase_storage.FirebaseStorage.instance.ref().child('gifts/images/$uuid$fileExtension');
 
     try {
       await firebaseStorageRef.putFile(controller.imageFile.value);
@@ -83,9 +81,9 @@ class GiftGiverService implements BaseGiftGiverService {
       userName: name,
       userFullName: userFullName,
       userImageUrl: giverImageUrl,
-      userAvgRating: authController.currentUser.value.averageRating,
-      userTotRating: authController.currentUser.value.totalRating,
-      userRatingSum: authController.currentUser.value.ratingSum,
+      userAvgRating: authController.currentUserInfo.value.maybeWhen(data: (user) => user.averageRating, orElse: () => 0),
+      userTotRating: authController.currentUserInfo.value.maybeWhen(data: (user) => user.totalRating, orElse: () => 0),
+      userRatingSum: authController.currentUserInfo.value.maybeWhen(data: (user) => user.ratingSum, orElse: () => 0),
       userPosition: userPosition,
       area: controller.area.value,
       location: controller.location.value,
@@ -115,8 +113,7 @@ class GiftGiverService implements BaseGiftGiverService {
 
     final LatLng currentUserLatLng = Get.find<AuthController>().currentUserPosition.value;
 
-    GeoFirePoint center =
-        geo.point(latitude: currentUserLatLng.latitude, longitude: currentUserLatLng.longitude);
+    GeoFirePoint center = geo.point(latitude: currentUserLatLng.latitude, longitude: currentUserLatLng.longitude);
 
     var collectionReference = _firestore.collection('gifts');
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);

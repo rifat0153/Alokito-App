@@ -21,8 +21,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    authController.bindMyUserStream();
     authController.getUserInfoAndSetCurrentUser();
+    authController.bindMyUserStream();
 
     return SafeArea(
       child: Scaffold(
@@ -114,21 +114,27 @@ class _BuildBody extends StatelessWidget {
                   error: (err) => Column(
                     children: [
                       const Text('Something went wrong'),
-                      TextButton(
-                          onPressed: authController.getUserInfoAndSetCurrentUser,
-                          child: const Text('Try Again'))
+                      TextButton(onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
                     ],
                   ),
                 ),
               ),
               Obx(
-                () => Flexible(
-                  child: UserNameWidget(localUser: authController.currentUser.value, context: context),
+                () => authController.currentUserInfo.value.when(
+                  data: (user) => Flexible(
+                    child: UserNameWidget(localUser: user, context: context),
+                  ),
+                  loading: () => const CircularProgressIndicator.adaptive(),
+                  error: (error) => Text(error.toString()),
                 ),
               ),
               Obx(
-                () => Flexible(
-                  child: UserEmailWidget(context: context, localUser: authController.currentUser.value),
+                () => authController.currentUserInfo.value.when(
+                  data: (user) => Flexible(
+                    child: UserEmailWidget(localUser: user, context: context),
+                  ),
+                  loading: () => const CircularProgressIndicator.adaptive(),
+                  error: (error) => Text(error.toString()),
                 ),
               ),
               Padding(
@@ -187,7 +193,7 @@ class _UserImageWidget extends StatelessWidget {
       flex: 6,
       fit: FlexFit.tight,
       child: Padding(
-        key: ValueKey(authController.currentUser.value.id),
+        key: ValueKey(localUser.id),
         padding: const EdgeInsets.only(top: 35),
         child: localUser.imageUrl != null
             ? CircleAvatar(
