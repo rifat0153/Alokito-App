@@ -35,8 +35,7 @@ class GiftAskDetailView extends StatelessWidget {
     );
     var userJoinedAt = DateTime.now()
             .difference(
-              DateTime.fromMillisecondsSinceEpoch(
-                  giftAsk.requester.createdAt.millisecondsSinceEpoch),
+              DateTime.fromMillisecondsSinceEpoch(giftAsk.requester.createdAt.millisecondsSinceEpoch),
             )
             .inDays ~/
         30;
@@ -68,8 +67,8 @@ class GiftAskDetailView extends StatelessWidget {
               width: Get.width,
               height: Get.height,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
+                image:
+                    DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
             _buildBody(date, distance, userJoinedAt, markers),
@@ -95,8 +94,7 @@ class GiftAskDetailView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(giftAsk.giftTitle,
-                      style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                  Text(giftAsk.giftTitle, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
                 ],
               )),
           _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
@@ -145,6 +143,8 @@ class AcceptAndDenyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final user = authController.currentUserInfo.value.maybeWhen(orElse: () )
+
     return SizedBox(
       width: double.infinity,
       child: Row(
@@ -318,8 +318,7 @@ class _UserNameAndLocationWidget extends StatelessWidget {
                     children: [
                       SizedBox(
                           width: 120,
-                          child: Text(giftAsk.area,
-                              overflow: TextOverflow.ellipsis, style: boldFontStyle)),
+                          child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

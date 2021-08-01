@@ -27,7 +27,7 @@ class AuthController extends GetxController {
   void onInit() {
     authStream.bindStream(authService.authStateChanges);
     bindMyUserStream();
-    // getUserInfoAndSetCurrentUser();
+    getUserInfoAndSetCurrentUser();
     bindLocationData();
     super.onInit();
   }

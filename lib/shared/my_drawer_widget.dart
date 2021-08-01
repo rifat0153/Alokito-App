@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
         image: DecorationImage(
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-              Colors.transparent.withOpacity(.70),
+              Colors.transparent.withOpacity(.90),
               BlendMode.dstIn,
             ),
             image: const AssetImage('assets/images/drawer_bg.png')),

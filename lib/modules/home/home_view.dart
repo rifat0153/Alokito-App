@@ -6,14 +6,12 @@ import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_navbar.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
@@ -24,6 +22,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     authController.bindMyUserStream();
+    // authController.getUserInfoAndSetCurrentUser();
 
     return SafeArea(
       child: Scaffold(
@@ -48,14 +47,44 @@ class HomeView extends StatelessWidget {
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
-        body: _buildBody(media: media, authController: authController),
+        body: Obx(
+          () => authController.currentUserInfo.value.when(
+            data: (user) => _BuildBody(media: media, authController: authController),
+            loading: () => const Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
+            error: (error) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MyText(
+                    'Something went wrong',
+                    fontSize: 35.sp,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      print('object');
+                      authController.getUserInfoAndSetCurrentUser();
+                    },
+                    child: MyText(
+                      'Try Again',
+                      color: Colors.green,
+                      fontSize: 30.sp,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
 }
 
-class _buildBody extends StatelessWidget {
-  const _buildBody({
+class _BuildBody extends StatelessWidget {
+  const _BuildBody({
     Key? key,
     required this.media,
     required this.authController,
@@ -76,9 +105,20 @@ class _buildBody extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: media.height * 0.1, width: 0),
               Obx(
-                () => _UserImageWidget(
-                  authController: authController,
-                  localUser: authController.currentUser.value,
+                () => authController.currentUserInfo.value.when(
+                  data: (user) => _UserImageWidget(
+                    authController: authController,
+                    localUser: user,
+                  ),
+                  loading: () => const CircularProgressIndicator(),
+                  error: (err) => Column(
+                    children: [
+                      const Text('Something went wrong'),
+                      TextButton(
+                          onPressed: authController.getUserInfoAndSetCurrentUser,
+                          child: const Text('Try Again'))
+                    ],
+                  ),
                 ),
               ),
               Obx(
@@ -110,11 +150,13 @@ class _buildBody extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Get.toNamed(GiftReceiverView.route);
-                  // Get.find<GiftController>().bindLocationData();
                 },
                 child: _GiftRecieverMenu(height: media.height * 0.1, width: media.width * 0.7),
               ),
-              _CommunityHeroMenu(height: media.height * 0.1, width: media.width * 0.7),
+              _CommunityHeroMenu(
+                height: media.height * 0.1,
+                width: media.width * 0.7,
+              ),
               _TeamPlayerMenu(
                 height: media.height * 0.1,
                 width: media.width * 0.7,
@@ -141,31 +183,20 @@ class _UserImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    authController.getUserInfoAndSetCurrentUser();
-
     return Flexible(
       flex: 6,
       fit: FlexFit.tight,
-      child: Obx(
-        () => authController.currentUserInfo.value.when(
-            data: (data) => Padding(
-                  key: ValueKey(authController.currentUser.value.id),
-                  padding: const EdgeInsets.only(top: 35),
-                  child: localUser.imageUrl != null
-                      ? Obx(
-                          () => CircleAvatar(
-                            radius: 75,
-                            backgroundImage: NetworkImage(
-                              authController.currentUserInfo.value
-                                      .maybeWhen(data: (data) => data.imageUrl, orElse: () => '') ??
-                                  '',
-                            ),
-                          ),
-                        )
-                      : const SizedBox(),
+      child: Padding(
+        key: ValueKey(authController.currentUser.value.id),
+        padding: const EdgeInsets.only(top: 35),
+        child: localUser.imageUrl != null
+            ? CircleAvatar(
+                radius: 75,
+                backgroundImage: NetworkImage(
+                  localUser.imageUrl ?? '',
                 ),
-            loading: () => const CircularProgressIndicator(),
-            error: (e) => Center(child: Text(e))),
+              )
+            : const SizedBox(),
       ),
     );
   }

@@ -45,18 +45,5 @@ class LocalUserInfo with _$LocalUserInfo{
   const factory LocalUserInfo.loading() = Loading;
   const factory LocalUserInfo.error(String message) = Error;
 
-  // const factory LocalUserInfo({
-  //   required String id,
-  // }) = _LocalUserInfo;
 }
 
-
-// @freezed
-// class LocalUserInfo with _$LocalUserInfo {
-//   // const factory LocalUser.loading() = Loading;
-  
-//   const factory LocalUserInfo.error(String? message) = Error;
-
-//    factory LocalUserInfo(LocalUser localUser) = _LocalUser;
-
-// }

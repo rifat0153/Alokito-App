@@ -32,14 +32,5 @@ class InitialView extends StatelessWidget {
     return Scaffold(
       body: AuthenticationWrapper(),
     );
-    // return Obx(
-    //   () => Scaffold(
-    //     body: connectionController.connectionStatus.value == ConnectivityResult.none
-    //         ? const Center(
-    //             child: Text('No Internet'),
-    //           )
-    //         : AuthenticationWrapper(),
-    //   ),
-    // );
   }
 }
