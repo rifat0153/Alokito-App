@@ -1,18 +1,19 @@
-import 'package:alokito_new/modules/settings/views/general_settings_view.dart';
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key}) : super(key: key);
-  static const route = 'SettingsView';
+class GeneralSettingsView extends StatelessWidget {
+  const GeneralSettingsView({Key? key}) : super(key: key);
+  static const route = 'GeneralSettingsView';
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var rowPadding = 24.h;
+    var rowPadding = 20.h;
 
     return SafeArea(
       child: Scaffold(
@@ -28,7 +29,7 @@ class SettingsView extends StatelessWidget {
             icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
           ),
           title: MyText(
-            'Settings',
+            'General Settings',
             fontSize: 25.sp,
           ),
           centerTitle: true,
@@ -43,30 +44,34 @@ class SettingsView extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            _buildSettingsBody(size, rowPadding, context)
+            _buildSettingsBody(size, rowPadding)
           ],
         ),
       ),
     );
   }
 
-  SizedBox _buildSettingsBody(Size size, double rowPadding, BuildContext context) {
+  SizedBox _buildSettingsBody(Size size, double rowPadding) {
     return SizedBox(
       height: size.height,
       width: double.infinity,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 35.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 100.h,
             ),
-            buildSettingsItem(
-                assetFileName: 'gear.svg',
-                title: 'General Settings',
-                navFunction: () {
-                  Navigator.pushNamed(context, GeneralSettingsView.route);
-                }),
+            Obx(
+              () => buildSettingsItem(
+                  title: 'Name',
+                  value: Get.find<AuthController>()
+                      .currentUserInfo
+                      .value
+                      .maybeWhen(data: (user) => user.userName, orElse: () => ''),
+                  navFunction: () {}),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: rowPadding),
               child: const Divider(
@@ -74,7 +79,15 @@ class SettingsView extends StatelessWidget {
                 color: settingsBorderColor,
               ),
             ),
-            buildSettingsItem(assetFileName: 'bell.svg', title: 'Notification Settings', navFunction: () {}),
+            Obx(
+              () => buildSettingsItem(
+                  title: 'Address',
+                  value: Get.find<AuthController>()
+                      .currentUserInfo
+                      .value
+                      .maybeWhen(data: (user) => user.position.geopoint.toString(), orElse: () => ''),
+                  navFunction: () {}),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: rowPadding),
               child: const Divider(
@@ -82,7 +95,10 @@ class SettingsView extends StatelessWidget {
                 color: settingsBorderColor,
               ),
             ),
-            buildSettingsItem(assetFileName: 'lock.svg', title: 'Privacy', navFunction: () {}),
+            Obx(
+              () => buildSettingsItem(
+                  title: 'Email', value: Get.find<AuthController>().currentUser.value.email, navFunction: () {}),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: rowPadding),
               child: const Divider(
@@ -90,7 +106,7 @@ class SettingsView extends StatelessWidget {
                 color: settingsBorderColor,
               ),
             ),
-            buildSettingsItem(assetFileName: 'danger.svg', title: 'Report', navFunction: () {}),
+            buildSettingsItem(title: 'Password', value: 'Changed 12 hours ago', navFunction: () {}),
             Padding(
               padding: EdgeInsets.symmetric(vertical: rowPadding),
               child: const Divider(
@@ -98,7 +114,12 @@ class SettingsView extends StatelessWidget {
                 color: settingsBorderColor,
               ),
             ),
-            buildSettingsItem(assetFileName: 'exit.svg', title: 'Sign Out', navFunction: () {}),
+            Obx(
+              () => buildSettingsItem(
+                  title: 'Phone',
+                  value: Get.find<AuthController>().authStream.value!.emailVerified ? 'Verified' : 'Not Verified',
+                  navFunction: () {}),
+            ),
           ],
         ),
       ),
@@ -107,25 +128,22 @@ class SettingsView extends StatelessWidget {
 
   Widget buildSettingsItem({
     required String title,
-    required String assetFileName,
+    required String value,
     required void Function() navFunction,
     double size = 25,
     double titleFontSize = 25,
   }) {
     return GestureDetector(
       onTap: navFunction,
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SvgPicture.asset(
-            '$imageAssetPath$assetFileName',
-            height: size.h,
-            width: size.h,
-          ),
+          MyText(title),
           SizedBox(
-            width: 30.w,
+            width: 30.h,
           ),
           MyText(
-            title,
+            value,
             fontSize: 24.sp,
           )
         ],

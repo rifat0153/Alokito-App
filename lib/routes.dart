@@ -14,6 +14,7 @@ import 'modules/gift_giver/gift_controller.dart';
 import 'modules/gift_giver/gift_giver_view.dart';
 import 'modules/map/geo_map_view.dart';
 import 'modules/map/my_map_view.dart';
+import 'modules/settings/views/general_settings_view.dart';
 
 class GetPages {
   List<GetPage> getPages = [
@@ -96,7 +97,14 @@ class GetPages {
     //*   Settings Page
     GetPage(
       name: SettingsView.route,
-      page: () => SettingsView(),
+      page: () => const SettingsView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => NotificationController());
+      }),
+    ),
+    GetPage(
+      name: GeneralSettingsView.route,
+      page: () => GeneralSettingsView(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => NotificationController());
       }),
