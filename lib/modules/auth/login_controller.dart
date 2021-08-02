@@ -60,11 +60,24 @@ class LoginController extends GetxController {
       return;
     }
 
-    await authController.authService.signIn(
-      email: email.value,
-      password: password.value,
-    );
+    try {
+      await authController.authService.signIn(
+        email: email.value,
+        password: password.value,
+      );
+    } catch (e) {
+      showErrorMessage(e.toString());
+    }
+  }
 
-    return null;
+  void showErrorMessage(String message) async {
+    Get.snackbar(
+      'Login Error',
+      message,
+      duration: const Duration(milliseconds: 3000),
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.black,
+      colorText: Colors.white,
+    );
   }
 }

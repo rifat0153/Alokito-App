@@ -113,6 +113,8 @@ class AuthController extends GetxController {
   Future<void> getUserInfoAndSetCurrentUser() async {
     print('AuthController: getting user form DB call');
 
+    currentUserInfo.value = const LocalUserInfo.loading();
+
     try {
       LocalUser? userInfo = await authService.getLocalUserInfo(FirebaseAuth.instance.currentUser?.uid ?? '');
 
