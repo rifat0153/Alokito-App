@@ -1,0 +1,92 @@
+import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/shared/widget/my_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class SettingsView extends StatelessWidget {
+  const SettingsView({Key? key}) : super(key: key);
+  static const route = 'SettingsView';
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        extendBodyBehindAppBar: true,
+        extendBody: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
+          ),
+          title: MyText(
+            'Settings',
+            fontSize: 25.sp,
+          ),
+          centerTitle: true,
+        ),
+        body: Stack(
+          children: [
+            SizedBox(
+              width: size.width,
+              height: size.height,
+              child: Image.asset(
+                'assets/images/settings_bg.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(
+              height: size.height,
+              width: double.infinity,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 35.w),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 100.h,
+                    ),
+                    buildSettingsItem(assetFileName: 'gear.svg', title: 'General Settings', navFunction: () {})
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildSettingsItem({
+    required String title,
+    required String assetFileName,
+    required void Function() navFunction,
+    double size = 25,
+    double titleFontSize = 25,
+  }) {
+    return GestureDetector(
+      onTap: navFunction,
+      child: Row(
+        children: [
+          SvgPicture.asset(
+            '$imageAssetPath$assetFileName',
+            height: size.h,
+            width: size.h,
+          ),
+          SizedBox(
+            width: 30.w,
+          ),
+          MyText(
+            title,
+            fontSize: 24.sp,
+          )
+        ],
+      ),
+    );
+  }
+}

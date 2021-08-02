@@ -6,6 +6,7 @@ import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/modules/map/geo_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_view.dart';
+import 'package:alokito_new/modules/settings/views/settings_view.dart';
 import 'package:get/get.dart';
 
 import 'modules/gift_giver/gift_add_view.dart';
@@ -16,7 +17,7 @@ import 'modules/map/my_map_view.dart';
 
 class GetPages {
   List<GetPage> getPages = [
-    //Auth Route
+    //* Auth Route
     GetPage(
       name: '/',
       page: () => InitialView(),
@@ -26,8 +27,7 @@ class GetPages {
       page: () => LoginView(),
       binding: BindingsBuilder(() {}),
     ),
-    //Notification Routes
-    // Gift Receiver Routes
+    //* Gift Receiver Routes
     GetPage(
       name: GiftReceiverView.route,
       page: () => GiftReceiverView(),
@@ -38,7 +38,7 @@ class GetPages {
       }),
     ),
 
-    //  Gift Giver Routes
+    // * Gift Giver Routes
     GetPage(
       name: GiftAddView.route,
       page: () => GiftAddView(),
@@ -68,7 +68,7 @@ class GetPages {
       }),
     ),
 
-    //Map
+    //*    Map
     GetPage(
       name: MyMapView.route,
       transitionDuration: const Duration(milliseconds: 500),
@@ -85,9 +85,18 @@ class GetPages {
         Get.lazyPut(() => GeoController());
       }),
     ),
+    //*   Notification Routes
     GetPage(
       name: NotificationView.route,
       page: () => NotificationView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => NotificationController());
+      }),
+    ),
+    //*   Settings Page
+    GetPage(
+      name: SettingsView.route,
+      page: () => SettingsView(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => NotificationController());
       }),

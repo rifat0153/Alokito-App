@@ -13,6 +13,8 @@ const GIFT_ASK_COLOR = Color(0xff353445);
 
 const PLACEHOLDER_IMAGE_URL = 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png';
 
+const imageAssetPath = 'assets/images/';
+
 final LocalUser initialUser = LocalUser(
     firstName: '',
     lastName: '',

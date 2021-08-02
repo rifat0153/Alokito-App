@@ -5,6 +5,7 @@ import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_navbar.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
+import 'package:alokito_new/modules/settings/views/settings_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,7 +40,9 @@ class HomeView extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, SettingsView.route);
+              },
               icon: const Icon(Icons.settings),
             ),
           ],
@@ -95,88 +98,88 @@ class _BuildBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets/images/rsz_registration.png'), fit: BoxFit.fill),
-      ),
-      child: Stack(
-        children: [
-          Column(
-            children: <Widget>[
-              SizedBox(height: media.height * 0.1, width: 0),
-              Obx(
-                () => authController.currentUserInfo.value.when(
-                  data: (user) => _UserImageWidget(
-                    authController: authController,
-                    localUser: user,
-                  ),
-                  loading: () => const CircularProgressIndicator(),
-                  error: (err) => Column(
-                    children: [
-                      const Text('Something went wrong'),
-                      TextButton(onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
-                    ],
-                  ),
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/images/rsz_registration.png'), fit: BoxFit.fill),
+          ),
+        ),
+        Column(
+          children: <Widget>[
+            SizedBox(height: media.height * 0.1, width: 0),
+            Obx(
+              () => authController.currentUserInfo.value.when(
+                data: (user) => _UserImageWidget(
+                  authController: authController,
+                  localUser: user,
                 ),
-              ),
-              Obx(
-                () => authController.currentUserInfo.value.when(
-                  data: (user) => Flexible(
-                    child: UserNameWidget(localUser: user, context: context),
-                  ),
-                  loading: () => const CircularProgressIndicator.adaptive(),
-                  error: (error) => Text(error.toString()),
-                ),
-              ),
-              Obx(
-                () => authController.currentUserInfo.value.when(
-                  data: (user) => Flexible(
-                    child: UserEmailWidget(localUser: user, context: context),
-                  ),
-                  loading: () => const CircularProgressIndicator.adaptive(),
-                  error: (error) => Text(error.toString()),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Row(
+                loading: () => const CircularProgressIndicator(),
+                error: (err) => Column(
                   children: [
-                    SizedBox(width: media.width * 0.18, height: 0),
-                    const Text(
-                      'and you are a...',
-                      style: TextStyle(fontSize: 17),
-                    ),
+                    const Text('Something went wrong'),
+                    TextButton(onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
                   ],
                 ),
               ),
-              GestureDetector(
-                onTap: () => Get.toNamed(GiftGiverView.route),
-                child: _GiftGiverMenu(height: media.height * 0.1, width: media.width * 0.7),
+            ),
+            Obx(
+              () => authController.currentUserInfo.value.when(
+                data: (user) => Flexible(
+                  child: UserNameWidget(localUser: user, context: context),
+                ),
+                loading: () => const CircularProgressIndicator.adaptive(),
+                error: (error) => Text(error.toString()),
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed(GiftReceiverView.route);
-                },
-                child: _GiftRecieverMenu(height: media.height * 0.1, width: media.width * 0.7),
+            ),
+            Obx(
+              () => authController.currentUserInfo.value.when(
+                data: (user) => Flexible(
+                  child: UserEmailWidget(localUser: user, context: context),
+                ),
+                loading: () => const CircularProgressIndicator.adaptive(),
+                error: (error) => Text(error.toString()),
               ),
-              _CommunityHeroMenu(
-                height: media.height * 0.1,
-                width: media.width * 0.7,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Row(
+                children: [
+                  SizedBox(width: media.width * 0.18, height: 0),
+                  const Text(
+                    'and you are a...',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                ],
               ),
-              _TeamPlayerMenu(
-                height: media.height * 0.1,
-                width: media.width * 0.7,
-              ),
-              Flexible(flex: 2, child: Container()),
-            ],
-          ),
-          Positioned(
-            width: Get.size.width,
-            bottom: 0,
-            child: UserNavbar(),
-          )
-        ],
-      ),
+            ),
+            GestureDetector(
+              onTap: () => Get.toNamed(GiftGiverView.route),
+              child: _GiftGiverMenu(height: media.height * 0.1, width: media.width * 0.7),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(GiftReceiverView.route);
+              },
+              child: _GiftRecieverMenu(height: media.height * 0.1, width: media.width * 0.7),
+            ),
+            _CommunityHeroMenu(
+              height: media.height * 0.1,
+              width: media.width * 0.7,
+            ),
+            _TeamPlayerMenu(
+              height: media.height * 0.1,
+              width: media.width * 0.7,
+            ),
+            Flexible(flex: 2, child: Container()),
+          ],
+        ),
+        Positioned(
+          width: Get.size.width,
+          bottom: 0,
+          child: UserNavbar(),
+        )
+      ],
     );
   }
 }
