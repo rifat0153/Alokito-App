@@ -11,6 +11,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var rowPadding = 24.h;
 
     return SafeArea(
       child: Scaffold(
@@ -41,25 +42,61 @@ class SettingsView extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
-              height: size.height,
-              width: double.infinity,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 35.w),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 100.h,
-                    ),
-                    buildSettingsItem(assetFileName: 'gear.svg', title: 'General Settings', navFunction: () {})
-                  ],
-                ),
-              ),
-            )
+            _buildSettingsBody(size, rowPadding)
           ],
         ),
       ),
     );
+  }
+
+  SizedBox _buildSettingsBody(Size size, double rowPadding) {
+    return SizedBox(
+            height: size.height,
+            width: double.infinity,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 35.w),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 100.h,
+                  ),
+                  buildSettingsItem(assetFileName: 'gear.svg', title: 'General Settings', navFunction: () {}),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: rowPadding),
+                    child: const Divider(
+                      height: 1,
+                      color: settingsBorderColor,
+                    ),
+                  ),
+                  buildSettingsItem(assetFileName: 'bell.svg', title: 'Notification Settings', navFunction: () {}),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: rowPadding),
+                    child: const Divider(
+                      height: 1,
+                      color: settingsBorderColor,
+                    ),
+                  ),
+                  buildSettingsItem(assetFileName: 'lock.svg', title: 'Privacy', navFunction: () {}),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: rowPadding),
+                    child: const Divider(
+                      height: 1,
+                      color: settingsBorderColor,
+                    ),
+                  ),
+                  buildSettingsItem(assetFileName: 'danger.svg', title: 'Report', navFunction: () {}),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: rowPadding),
+                    child: const Divider(
+                      height: 1,
+                      color: settingsBorderColor,
+                    ),
+                  ),
+                  buildSettingsItem(assetFileName: 'exit.svg', title: 'Sign Out', navFunction: () {}),
+                ],
+              ),
+            ),
+          );
   }
 
   Widget buildSettingsItem({
