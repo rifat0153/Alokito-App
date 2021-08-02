@@ -14,6 +14,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'gift_giver/gift_giver_notification_view.dart';
 
 class NotificationView extends StatelessWidget {
+  static const route = 'NotificationView';
+
   NotificationView({Key? key}) : super(key: key);
 
   final NotificationController controller = Get.find<NotificationController>();

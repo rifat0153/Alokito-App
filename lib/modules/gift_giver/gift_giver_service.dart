@@ -113,6 +113,8 @@ class GiftGiverService implements BaseGiftGiverService {
 
     final LatLng currentUserLatLng = Get.find<AuthController>().currentUserPosition.value;
 
+    print('GiftGiverService: ' + currentUserLatLng.toString());
+
     GeoFirePoint center = geo.point(latitude: currentUserLatLng.latitude, longitude: currentUserLatLng.longitude);
 
     var collectionReference = _firestore.collection('gifts');

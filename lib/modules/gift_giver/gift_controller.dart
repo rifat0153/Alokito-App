@@ -119,8 +119,8 @@ class GiftController extends GetxController {
   //   currentUserLocation.value = LatLng(locData.latitude!, locData.longitude!);
   // }
 
-  void bindGiftStream() {
-    Get.find<AuthController>().bindLocationData();
+  void bindGiftStream() async {
+     Get.find<AuthController>().bindLocationData();
 
     giftList.bindStream(giftService.giftStreamByLocation());
   }

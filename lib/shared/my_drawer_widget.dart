@@ -1,7 +1,10 @@
 import 'dart:ui';
 
 import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
+import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/modules/home/home_view.dart';
+import 'package:alokito_new/modules/notification/notification_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -109,7 +112,8 @@ class MyDrawer extends StatelessWidget {
         ),
         _buildMenuItem(
           navFunction: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+            // Navigator.push(context, MaterialPageRoute(builder: (_) => GiftGiverView.route()));
+            Navigator.pushNamed(context, GiftGiverView.route);
           },
           assetPath: 'assets/images/gift_hand.svg',
           menuItemName: 'Gift Giver',
@@ -119,7 +123,7 @@ class MyDrawer extends StatelessWidget {
         ),
         _buildMenuItem(
           navFunction: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+            Navigator.pushNamed(context, GiftReceiverView.route);
           },
           assetPath: 'assets/images/gift.svg',
           menuItemName: 'Gift Receiver',
@@ -129,7 +133,7 @@ class MyDrawer extends StatelessWidget {
         ),
         _buildMenuItem(
           navFunction: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+            //  Todo: Add community route
           },
           assetPath: 'assets/images/hero.svg',
           menuItemName: 'Community Hero',
@@ -139,7 +143,7 @@ class MyDrawer extends StatelessWidget {
         ),
         _buildMenuItem(
           navFunction: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+            //  Todo: Add team player route
           },
           assetPath: 'assets/images/group.svg',
           menuItemName: 'Team Players',
@@ -149,7 +153,7 @@ class MyDrawer extends StatelessWidget {
         ),
         _buildMenuItem(
           navFunction: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+            Navigator.pushNamed(context, NotificationView.route);
           },
           assetPath: 'assets/images/bell.svg',
           menuItemName: 'Notification',
@@ -159,7 +163,7 @@ class MyDrawer extends StatelessWidget {
         ),
         _buildMenuItem(
           navFunction: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+            //  Todo: Add About route
           },
           assetPath: 'assets/images/exclamation.svg',
           menuItemName: 'About',
@@ -169,7 +173,7 @@ class MyDrawer extends StatelessWidget {
         ),
         _buildMenuItem(
           navFunction: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => HomeView()));
+            //  Todo: Add Help route
           },
           assetPath: 'assets/images/question_mark.svg',
           menuItemName: 'Help',

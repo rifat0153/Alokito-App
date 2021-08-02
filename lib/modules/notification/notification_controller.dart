@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotificationController extends GetxController {
-  NotificationController(this.notificationService);
-  final NotificationService notificationService;
+  NotificationController();
+
+  final NotificationService notificationService = NotificationService(FirebaseFirestore.instance);
 
   RxBool loading = RxBool(false);
   RxBool errors = false.obs;

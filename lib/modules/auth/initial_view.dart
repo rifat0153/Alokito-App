@@ -21,8 +21,7 @@ class InitialView extends StatelessWidget {
   final giftRecordController = Get.put(GiftRecordController());
   final giftRequestController = Get.put(GiftReceiverController());
   final giftAskGiverController = Get.put(GiftAskGiverController());
-  final notificationController =
-      Get.put(NotificationController(NotificationService(FirebaseFirestore.instance)));
+  final notificationController = Get.put(NotificationController());
 
   final GiftAskController giftAskController = Get.put(GiftAskController(), permanent: true);
 

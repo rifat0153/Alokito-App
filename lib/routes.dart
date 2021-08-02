@@ -4,6 +4,8 @@ import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gif_receiver_offer_list_view.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/modules/map/geo_controller.dart';
+import 'package:alokito_new/modules/notification/notification_controller.dart';
+import 'package:alokito_new/modules/notification/notification_view.dart';
 import 'package:get/get.dart';
 
 import 'modules/gift_giver/gift_add_view.dart';
@@ -18,7 +20,6 @@ class GetPages {
     GetPage(
       name: '/',
       page: () => InitialView(),
-
     ),
     GetPage(
       name: LoginView.route,
@@ -82,6 +83,13 @@ class GetPages {
       page: () => GeoMapView(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GeoController());
+      }),
+    ),
+    GetPage(
+      name: NotificationView.route,
+      page: () => NotificationView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => NotificationController());
       }),
     ),
   ];
