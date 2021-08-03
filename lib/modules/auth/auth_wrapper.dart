@@ -33,21 +33,37 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => authController.authStream.value != null && authController.authCompleted.value
-        ? FutureBuilder(
-            future: authController.getUserInfoAndSetCurrentUser(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              return Scaffold(
-                body: HomeView(
-                  key: ValueKey(keyValue),
-                ),
-              );
-            },
-          )
-        : const LoginRegFormView());
+    return Obx(() {
+      if (authController.registering.value) {
+        return authController.authStream.value != null && authController.authCompleted.value
+            ? FutureBuilder(
+                future: authController.getUserInfoAndSetCurrentUser(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return Scaffold(
+                    body: HomeView(
+                      key: ValueKey(keyValue),
+                    ),
+                  );
+                },
+              )
+            : const LoginRegFormView();
+      } else {
+        return authController.authStream.value != null
+            ? FutureBuilder(
+                future: authController.getUserInfoAndSetCurrentUser(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return Scaffold(
+                    body: HomeView(
+                      key: ValueKey(keyValue),
+                    ),
+                  );
+                },
+              )
+            : const LoginRegFormView();
+      }
+    });
   }
 }
-
 
 
 //  Scaffold(

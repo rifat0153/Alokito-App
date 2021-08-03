@@ -1,10 +1,10 @@
+import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/auth/widgets/reg_image_input.dart';
 import 'package:alokito_new/shared/my_name_input.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import '../../../shared/login_input.dart';
 import '../../../shared/config.dart';
 import '../login_controller.dart';
@@ -26,6 +26,11 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
     setState(() {
       isLogin = !isLogin;
     });
+    if (!isLogin) {
+      Get.find<AuthController>().registering.value = true;
+    }else{
+      Get.find<AuthController>().registering.value = false;
+    }
   }
 
   @override

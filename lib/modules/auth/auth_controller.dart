@@ -15,6 +15,7 @@ class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
   final Rx<LocalUser> currentUser = initialUser.obs;
 
+  final RxBool registering = false.obs; 
   final RxBool authCompleted = false.obs;
   final RxBool errors = false.obs;
 
@@ -28,7 +29,7 @@ class AuthController extends GetxController {
   void onInit() {
     authStream.bindStream(authService.authStateChanges);
     bindMyUserStream();
-    getUserInfoAndSetCurrentUser();
+    // getUserInfoAndSetCurrentUser();
     bindLocationData();
     super.onInit();
   }
