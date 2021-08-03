@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'auth_controller.dart';
@@ -18,24 +19,28 @@ class LoginController extends GetxController {
     AuthController authController = Get.find();
 
     if (firstName.value.isEmpty) {
-      Get.snackbar('Reg Error', 'First Name cant be empty', backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'First Name cant be empty', backgroundColor: registrationErrorColor);
+      return;
+    }
+    if (imageFile.value.path.isEmpty) {
+      Get.snackbar('Reg Error', 'Image is needed', backgroundColor: registrationErrorColor);
       return;
     }
     if (!email.value.isEmail) {
-      Get.snackbar('Reg Error', 'Invalid Email', backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'Invalid Email', backgroundColor: registrationErrorColor);
       return;
     }
 
     if (password.value.isEmpty) {
-      Get.snackbar('Reg Error', 'Password can\'t be  empty', backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'Password can\'t be  empty', backgroundColor: registrationErrorColor);
       return;
     }
     if (password.value != confirmPassword.value) {
-      Get.snackbar('Reg Error', 'Password did not match', backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'Password did not match', backgroundColor: registrationErrorColor);
       return;
     }
     if (!aggreedToTermsAndCondition.value) {
-      Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON', backgroundColor: Colors.red);
+      Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON', backgroundColor: registrationErrorColor);
       return;
     }
 
