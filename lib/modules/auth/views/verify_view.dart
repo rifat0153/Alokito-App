@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:alokito_new/modules/auth/views/initial_view.dart';
 import 'package:alokito_new/modules/firebase/firebase_provider.dart';
+import 'package:alokito_new/modules/home/home_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -41,26 +42,28 @@ class _VerifyScreenState extends State<VerifyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: emailSent
-            ? MyText(
-                'An email has been sent to ${user?.email} please verify',
-                textAlign: TextAlign.center,
-              )
-            : TextButton(
-                onPressed: sendVerificationEmail,
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.r),
-                    side: BorderSide(width: 2.w),
-                  ),
-                ),
-                child: MyText(
-                  'Send Verification Email',
-                  maxLines: 3,
-                ),
-              ),
-      ),
+      body: user!.emailVerified
+          ? HomeView()
+          : Center(
+              child: emailSent
+                  ? MyText(
+                      'An email has been sent to ${user?.email} please verify',
+                      textAlign: TextAlign.center,
+                    )
+                  : TextButton(
+                      onPressed: sendVerificationEmail,
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                          side: BorderSide(width: 2.w),
+                        ),
+                      ),
+                      child: MyText(
+                        'Send Verification Email',
+                        maxLines: 3,
+                      ),
+                    ),
+            ),
     );
   }
 
@@ -87,7 +90,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
     if (user!.emailVerified) {
       timer.cancel();
-      await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => InitialView()));
+      setState(() {});
+      // await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeView()));
     }
   }
 }

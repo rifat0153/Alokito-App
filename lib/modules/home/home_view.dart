@@ -64,36 +64,41 @@ class _HomeViewState extends State<HomeView> {
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
-        body: Obx(
-          () => authController.currentUserInfo.value.when(
-            data: (user) => _BuildBody(media: media, authController: authController),
-            loading: () => const Center(
-              child: CircularProgressIndicator.adaptive(),
-            ),
-            error: (error) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  MyText(
-                    'Something went wrong',
-                    fontSize: 35.sp,
+        body: FutureBuilder(
+          future: authController.getUserInfoAndSetCurrentUser(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return Obx(
+              () => authController.currentUserInfo.value.when(
+                data: (user) => _BuildBody(media: media, authController: authController),
+                loading: () => const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
+                error: (error) => Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      MyText(
+                        'Something went wrong',
+                        fontSize: 35.sp,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          print('object');
+                          authController.getUserInfoAndSetCurrentUser();
+                        },
+                        child: MyText(
+                          'Try Again',
+                          color: Colors.green,
+                          fontSize: 30.sp,
+                        ),
+                      )
+                    ],
                   ),
-                  TextButton(
-                    onPressed: () {
-                      print('object');
-                      authController.getUserInfoAndSetCurrentUser();
-                    },
-                    child: MyText(
-                      'Try Again',
-                      color: Colors.green,
-                      fontSize: 30.sp,
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
