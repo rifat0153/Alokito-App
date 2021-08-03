@@ -1,6 +1,6 @@
 import 'package:alokito_new/modules/auth/auth_controller.dart';
 import 'package:alokito_new/modules/auth/login_controller.dart';
-import 'package:alokito_new/modules/auth/login_view.dart';
+import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
 import 'package:alokito_new/modules/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,13 +33,15 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Get.find<AuthController>().authStream.value == null
-        ? LoginView()
-        : Scaffold(
-            body: HomeView(
-              key: ValueKey(keyValue),
+    return Obx(
+      () => Get.find<AuthController>().authStream.value == null
+          ? LoginRegFormView()
+          : Scaffold(
+              body: HomeView(
+                key: ValueKey(keyValue),
+              ),
             ),
-          ));
+    );
   }
 }
 

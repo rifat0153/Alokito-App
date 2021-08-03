@@ -1,5 +1,5 @@
 import 'package:alokito_new/modules/auth/initial_view.dart';
-import 'package:alokito_new/modules/auth/login_view.dart';
+import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gif_receiver_offer_list_view.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
@@ -24,10 +24,10 @@ class GetPages {
       page: () => InitialView(),
     ),
     GetPage(
-      name: LoginView.route,
-      page: () => LoginView(),
-      binding: BindingsBuilder(() {}),
+      name: LoginRegFormView.route,
+      page: () => LoginRegFormView(),
     ),
+
     //* Gift Receiver Routes
     GetPage(
       name: GiftReceiverView.route,
@@ -101,13 +101,15 @@ class GetPages {
       binding: BindingsBuilder(() {
         Get.lazyPut(() => NotificationController());
       }),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: GeneralSettingsView.route,
-      page: () => GeneralSettingsView(),
+      page: () => const GeneralSettingsView(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => NotificationController());
       }),
+      transition: Transition.rightToLeftWithFade,
     ),
   ];
 }
