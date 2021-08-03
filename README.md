@@ -3,7 +3,8 @@
 A new Flutter project.
 
 # issues
- New user login after a logout causes Render flex error in homeview
+  *After verification is done, user is shown verification screen twice
+  *
 
 ## Getting Started
 

@@ -1,7 +1,12 @@
 import 'dart:async';
 
+import 'package:alokito_new/modules/auth/views/initial_view.dart';
+import 'package:alokito_new/modules/firebase/firebase_provider.dart';
+import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VerifyScreen extends StatefulWidget {
   @override
@@ -9,16 +14,19 @@ class VerifyScreen extends StatefulWidget {
 }
 
 class _VerifyScreenState extends State<VerifyScreen> {
-  final auth = FirebaseAuth.instance;
+  final auth = Get.find<MyFirebase>().auth;
   late User? user;
   late Timer timer;
+
+  bool emailSent = false;
+  bool errorFound = false;
+  String errorMessage = '';
 
   @override
   void initState() {
     user = auth.currentUser;
-    user?.sendEmailVerification();
 
-    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       checkEmailVerified();
     });
     super.initState();
@@ -34,9 +42,43 @@ class _VerifyScreenState extends State<VerifyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('An email has been sent to ${user?.email} please verify'),
+        child: emailSent
+            ? MyText(
+                'An email has been sent to ${user?.email} please verify',
+                textAlign: TextAlign.center,
+              )
+            : TextButton(
+                onPressed: sendVerificationEmail,
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                    side: BorderSide(width: 2.w),
+                  ),
+                ),
+                child: MyText(
+                  'Send Verification Email',
+                  maxLines: 3,
+                ),
+              ),
       ),
     );
+  }
+
+  void sendVerificationEmail() async {
+    try {
+      if (!user!.emailVerified) {
+        await user?.sendEmailVerification();
+
+        setState(() {
+          emailSent = true;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        errorFound = true;
+        errorMessage = e.toString();
+      });
+    }
   }
 
   Future<void> checkEmailVerified() async {
@@ -45,8 +87,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
     if (user!.emailVerified) {
       timer.cancel();
-      // Navigator.of(context).pushReplacement(
-      //     MaterialPageRoute(builder: (context) => HomeScreen()));
+      await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => InitialView()));
     }
   }
 }

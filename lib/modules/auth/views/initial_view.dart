@@ -2,6 +2,7 @@ import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
 import 'package:alokito_new/modules/connection/connection_controller.dart';
+import 'package:alokito_new/modules/firebase/firebase_provider.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
@@ -15,6 +16,7 @@ import 'package:get/get.dart';
 class InitialView extends StatelessWidget {
   InitialView({Key? key}) : super(key: key);
 
+  final firebaseController = Get.put(MyFirebase());
   final connectionController = Get.put(ConnectionController());
   final authController = Get.put(AuthController());
   final loginController = Get.put(LoginController());
