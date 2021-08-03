@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_view.dart';

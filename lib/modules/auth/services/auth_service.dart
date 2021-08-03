@@ -14,7 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../../models/user/local_user.dart';
+import '../../../models/user/local_user.dart';
 
 abstract class BaseAuthService {
   Future<bool> updateLocalUser(LocalUser localUser);

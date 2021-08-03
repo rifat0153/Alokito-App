@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/auth/widgets/reg_image_input.dart';
 import 'package:alokito_new/shared/my_name_input.dart';
 
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../shared/login_input.dart';
 import '../../../shared/config.dart';
-import '../login_controller.dart';
+import '../controllers/login_controller.dart';
 
 class LoginRegFormView extends StatefulWidget {
   const LoginRegFormView();

@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/auth/initial_view.dart';
+import 'package:alokito_new/modules/auth/views/initial_view.dart';
 import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/gif_receiver_offer_list_view.dart';

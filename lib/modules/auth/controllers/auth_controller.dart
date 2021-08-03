@@ -8,8 +8,8 @@ import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import '../../models/user/local_user.dart';
-import 'auth_service.dart';
+import '../../../models/user/local_user.dart';
+import '../services/auth_service.dart';
 
 class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);

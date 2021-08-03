@@ -9,7 +9,7 @@ class LoginController extends GetxController {
   var lastName = 'a'.obs;
   var password = '123456'.obs;
   var confirmPassword = '123456'.obs;
-  var email = 'rifat@gmail.com'.obs;
+  var email = 'rifat0153@gmail.com'.obs;
   var userName = 'rrr'.obs;
   Rx<File> imageFile = File('').obs;
   var aggreedToTermsAndCondition = true.obs;

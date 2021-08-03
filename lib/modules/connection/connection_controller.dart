@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

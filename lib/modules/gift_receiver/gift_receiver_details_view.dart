@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
 import 'package:alokito_new/modules/gift_giver/widgets/user_joining_distance_widget.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';

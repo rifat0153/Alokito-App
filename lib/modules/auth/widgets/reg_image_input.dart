@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import '../auth_controller.dart';
-import '../login_controller.dart';
+import '../controllers/auth_controller.dart';
+import '../controllers/login_controller.dart';
 
 class RegImageInput extends StatelessWidget {
   final AuthController authController = Get.find();

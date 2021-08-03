@@ -1,5 +1,5 @@
 import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
 import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
@@ -8,21 +8,35 @@ import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
 import 'package:alokito_new/modules/settings/views/settings_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   HomeView({Key? key}) : super(key: key);
 
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   final AuthController authController = Get.find<AuthController>();
   final media = Get.size;
 
   @override
+  void initState() {
+    super.initState();
+    // authController.authStream.value?.sendEmailVerification();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // authController.getUserInfoAndSetCurrentUser();
+    print('UserVerified:  ' + authController.authStream.value!.emailVerified.toString());
+    authController.authStream.value?.reload();
+
     authController.bindMyUserStream();
 
     return SafeArea(

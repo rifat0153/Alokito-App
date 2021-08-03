@@ -1,6 +1,6 @@
-import 'package:alokito_new/modules/auth/auth_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
-import 'package:alokito_new/modules/auth/login_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
 import 'package:alokito_new/modules/connection/connection_controller.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_controller.dart';
