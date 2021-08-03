@@ -5,18 +5,16 @@ import 'package:get/get.dart';
 import 'auth_controller.dart';
 
 class LoginController extends GetxController {
-  RxBool isLogin = true.obs;
-
-  var firstName = ''.obs;
-  var lastName = ''.obs;
-  var password = ''.obs;
-  var confirmPassword = ''.obs;
-  var email = ''.obs;
-  var userName = ''.obs;
+  var firstName = 'a'.obs;
+  var lastName = 'a'.obs;
+  var password = '123456'.obs;
+  var confirmPassword = '123456'.obs;
+  var email = 'rifat@gmail.com'.obs;
+  var userName = 'rrr'.obs;
   Rx<File> imageFile = File('').obs;
-  var aggreedToTermsAndCondition = false.obs;
+  var aggreedToTermsAndCondition = true.obs;
 
-  void verifyRegistration() {
+  void verifyRegistration() async {
     AuthController authController = Get.find();
 
     if (firstName.value.isEmpty) {
@@ -41,7 +39,7 @@ class LoginController extends GetxController {
       return;
     }
 
-    authController.authService.signUp(
+    await authController.authService.signUp(
         firstName: firstName.value,
         lastName: lastName.value,
         email: email.value.trim(),
@@ -49,7 +47,7 @@ class LoginController extends GetxController {
         userName: userName.value,
         localImageFile: imageFile.value);
 
-    return null;
+    Get.find<AuthController>().authCompleted.value = true;
   }
 
   void verifyLogin() async {
@@ -65,6 +63,7 @@ class LoginController extends GetxController {
         email: email.value,
         password: password.value,
       );
+      Get.find<AuthController>().authCompleted.value = true;
     } catch (e) {
       showErrorMessage(e.toString());
     }

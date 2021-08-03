@@ -15,6 +15,7 @@ class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
   final Rx<LocalUser> currentUser = initialUser.obs;
 
+  final RxBool authCompleted = false.obs;
   final RxBool errors = false.obs;
 
   final Rx<String> firebaseUser = ''.obs;
@@ -41,7 +42,7 @@ class AuthController extends GetxController {
 
   void signOut() async {
     await authService.signOut();
-    // currentUser.value = initialUser;
+    authCompleted.value = false;
   }
 
   Future<void> userHasGiftReuqest(String giftId) async {
@@ -122,6 +123,8 @@ class AuthController extends GetxController {
         currentUser.value = userInfo;
         errors.value = false;
         currentUserInfo.value = LocalUserInfo.data(userInfo);
+      } else {
+        currentUserInfo.value = LocalUserInfo.error('Reg error maybe');
       }
     } on AuthException catch (e) {
       errors.value = true;
