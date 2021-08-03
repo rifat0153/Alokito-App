@@ -106,7 +106,7 @@ class _DecisionWidget extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              color: GIFT_ASK_COLOR,
+              color: giftAskColor,
               child: MyText('r Done', color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ],
@@ -139,7 +139,7 @@ class _DecisionWidget extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              color: GIFT_ASK_COLOR,
+              color: giftAskColor,
               child: MyText('r Accept Gift', color: Colors.white),
             ),
             const SizedBox(width: 30),
@@ -150,7 +150,7 @@ class _DecisionWidget extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
               padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-              color: GIFT_ASK_COLOR,
+              color: giftAskColor,
               child: MyText('r Cancel', color: Colors.white),
             )
           ],
@@ -164,7 +164,7 @@ class _DecisionWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         height: 0,
         padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-        color: GIFT_ASK_COLOR,
+        color: giftAskColor,
         child: MyText('r Cancel', color: Colors.white),
       );
     }
@@ -190,7 +190,7 @@ class _DecisionWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            color: GIFT_ASK_COLOR,
+            color: giftAskColor,
             child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ],
@@ -209,7 +209,7 @@ class _DecisionWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            color: GIFT_ASK_COLOR,
+            color: giftAskColor,
             child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ],
@@ -237,7 +237,7 @@ class _DecisionWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            color: GIFT_ASK_COLOR,
+            color: giftAskColor,
             child: MyText('Gift Accepted', color: Colors.white),
           )
         : MaterialButton(
@@ -247,7 +247,7 @@ class _DecisionWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            color: GIFT_ASK_COLOR,
+            color: giftAskColor,
             child: MyText('Accept for confirmation', color: Colors.white),
           );
   }
@@ -333,7 +333,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                       height: 60,
                       width: 66,
                       decoration: BoxDecoration(
-                        color: GIFT_ASK_COLOR,
+                        color: giftAskColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Padding(
@@ -351,7 +351,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                       height: 60,
                       width: 66,
                       decoration: BoxDecoration(
-                        color: GIFT_ASK_COLOR,
+                        color: giftAskColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Padding(

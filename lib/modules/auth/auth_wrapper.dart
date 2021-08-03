@@ -33,11 +33,14 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (authController.authStream.value != null) {
-        if (!authController.authStream.value!.emailVerified) {
-          return VerifyScreen();
-        }
-      }
+      // * Check if user is verified
+      // if (authController.authStream.value != null) {
+      //   if (!authController.authStream.value!.emailVerified) {
+      //     return VerifyScreen();
+      //   }
+      // }
+
+      // * User not registered
       if (authController.registering.value) {
         return authController.authStream.value != null && authController.authCompleted.value
             ? FutureBuilder(
@@ -52,6 +55,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
               )
             : const LoginRegFormView();
       } else {
+        // * Already registered  user
         return authController.authStream.value != null
             ? FutureBuilder(
                 future: authController.getUserInfoAndSetCurrentUser(),

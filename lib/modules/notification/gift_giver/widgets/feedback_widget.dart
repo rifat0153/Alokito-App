@@ -64,7 +64,7 @@ class FeedbackWidget extends StatelessWidget {
                 ),
                 _RatingWidget(isRequester: isRequester),
                 MaterialButton(
-                  color: GIFT_ADD_FORM_SUBMIT,
+                  color: giftAddFormSubmitColor,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   onPressed: () {
                     isRequester

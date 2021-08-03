@@ -31,7 +31,7 @@ class ListingDateWidget extends StatelessWidget {
               height: 30,
               width: 100,
               decoration: BoxDecoration(
-                color: GIFT_ADD_FORM_COLOR,
+                color: giftAddFormColor,
                 borderRadius: BorderRadius.circular(5),
               ),
               alignment: Alignment.center,

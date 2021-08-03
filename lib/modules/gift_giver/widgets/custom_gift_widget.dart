@@ -28,7 +28,7 @@ class CustomGiftOptionWidget extends StatelessWidget {
             width: 50,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: GIFT_ADD_FORM_COLOR,
+                color: giftAddFormColor,
                 borderRadius: BorderRadius.circular(5)),
             child: TextField(
               maxLength: 2,

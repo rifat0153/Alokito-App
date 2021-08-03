@@ -18,7 +18,7 @@ class GiftDetailMapWidget extends StatelessWidget {
   final Completer<GoogleMapController> _controller = Completer();
 
   var markers = [
-    Marker(
+    const Marker(
       markerId: MarkerId('1'),
       position: LatLng(23.7590, 90.4119),
     )
@@ -46,7 +46,7 @@ class GiftDetailMapWidget extends StatelessWidget {
           ),
         ),
         Container(
-          decoration: BoxDecoration(color: GIFT_ADD_FORM_COLOR),
+          decoration: BoxDecoration(color: giftAddFormColor),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

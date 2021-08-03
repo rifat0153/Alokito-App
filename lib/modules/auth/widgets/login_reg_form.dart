@@ -77,7 +77,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
             borderRadius: BorderRadius.circular(5),
             child: MaterialButton(
               onPressed: loginController.verifyLogin,
-              color: LOGIN_COLOR,
+              color: loginColor,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 5),
                 child: Text(
@@ -99,7 +99,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
                 children: <TextSpan>[
                   TextSpan(
                     text: ' SIGN UP',
-                    style: TextStyle(fontWeight: FontWeight.bold, color: LOGIN_COLOR),
+                    style: TextStyle(fontWeight: FontWeight.bold, color: loginColor),
                   ),
                 ],
               ),

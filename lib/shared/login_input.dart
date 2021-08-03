@@ -19,7 +19,7 @@ class _MyNameInputState extends State<LoginInput> {
       height: 50.h,
       decoration: BoxDecoration(
         // color: Color(0xFFc9c9c9),
-        border: Border.all(color: LOGIN_COLOR, width: 3.w),
+        border: Border.all(color: loginColor, width: 3.w),
         borderRadius: BorderRadius.circular(40.r),
       ),
       child: Padding(

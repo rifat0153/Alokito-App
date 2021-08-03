@@ -92,7 +92,7 @@ class GiftAskView extends StatelessWidget {
                               },
                               shape:
                                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
-                              color: GIFT_ADD_FORM_SUBMIT,
+                              color: giftAddFormSubmitColor,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 50.w),
                                 child: Text(
@@ -328,7 +328,7 @@ class _InsertLocationWidget extends StatelessWidget {
         height: 30,
         width: context.width,
         decoration: BoxDecoration(
-          color: GIFT_ADD_FORM_COLOR,
+          color: giftAddFormColor,
           borderRadius: BorderRadius.circular(5),
         ),
         child: GestureDetector(
@@ -442,7 +442,7 @@ class _RequestDateWidget extends StatelessWidget {
             children: [
               const Icon(Icons.calendar_today),
               Container(
-                color: GIFT_ADD_FORM_COLOR,
+                color: giftAddFormColor,
                 height: 30,
                 width: 100,
                 alignment: Alignment.center,
@@ -568,7 +568,7 @@ class _StyledContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: GIFT_ADD_FORM_COLOR,
+        color: giftAddFormColor,
         borderRadius: BorderRadius.circular(5.r),
       ),
       child: widget,

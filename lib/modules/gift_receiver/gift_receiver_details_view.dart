@@ -130,7 +130,7 @@ class _DecisionWidget extends StatelessWidget {
                 children: [
                   MaterialButton(
                     onPressed: null,
-                    disabledColor: GIFT_ADD_FORM_COLOR,
+                    disabledColor: giftAddFormColor,
                     color: Colors.blue,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     child: const Text(
@@ -164,7 +164,7 @@ class _DecisionWidget extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: MaterialButton(
                 onPressed: () {},
-                color: GIFT_ADD_FORM_SUBMIT,
+                color: giftAddFormSubmitColor,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.1),
@@ -188,7 +188,7 @@ class _DecisionWidget extends StatelessWidget {
                   },
                 );
               },
-              color: GIFT_ADD_FORM_SUBMIT,
+              color: giftAddFormSubmitColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
@@ -276,7 +276,7 @@ class _PackageName extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(width: 8, color: Colors.transparent),
               borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-              color: GIFT_ADD_FORM_COLOR,
+              color: giftAddFormColor,
             ),
             child: Row(
               children: [
@@ -319,24 +319,15 @@ class _GiftDetails extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(width: 8, color: Colors.transparent),
                     borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                    color: GIFT_ADD_FORM_COLOR,
+                    color: giftAddFormColor,
                   ),
-                  child: Text('${giftGiver.giftDetails}'),
+                  child: Text(giftGiver.giftDetails),
                 ),
               ),
             ],
           )
         ],
       ),
-    );
-  }
-}
-
-class _GiftGiverInfo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [],
     );
   }
 }

@@ -50,7 +50,7 @@ class MessagePopUpWidget extends StatelessWidget {
                   () => controller.loading.value
                       ? const CircularProgressIndicator()
                       : MaterialButton(
-                          color: GIFT_ADD_FORM_SUBMIT,
+                          color: giftAddFormSubmitColor,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                           onPressed: () {
                             controller.addGiftRequestAndNotification(giftGiver);

@@ -160,7 +160,7 @@ class _GiftAskRequestTile extends StatelessWidget {
                         width: 100,
                         alignment: Alignment.center,
                         decoration: const BoxDecoration(
-                            color: GIFT_ASK_COLOR,
+                            color: giftAskColor,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               bottomLeft: Radius.circular(10),

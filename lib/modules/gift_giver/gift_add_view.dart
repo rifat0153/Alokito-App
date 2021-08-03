@@ -101,7 +101,7 @@ class GiftAddView extends StatelessWidget {
                         ? const CircularProgressIndicator()
                         : MaterialButton(
                             onPressed: controller.addGift,
-                            color: GIFT_ADD_FORM_SUBMIT,
+                            color: giftAddFormSubmitColor,
                             child: const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 100),
                               child: Text(
@@ -140,7 +140,7 @@ class _PickUpTimeWidget extends StatelessWidget {
               () => Text(controller.showPickupTime()),
             ),
             MaterialButton(
-              color: GIFT_GIVER_BUTTON_COLOR,
+              color: giftGiverButtonColor,
               onPressed: () async {
                 var time = await showTimePicker(
                   initialTime: TimeOfDay.now(),
@@ -162,7 +162,7 @@ class _PickUpTimeWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: MaterialButton(
-            color: GIFT_GIVER_BUTTON_COLOR,
+            color: giftGiverButtonColor,
             onPressed: () async {
               var time = await showTimePicker(
                 initialTime: TimeOfDay.now(),
@@ -211,7 +211,7 @@ class _GiftDetailWidget extends StatelessWidget {
                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                fillColor: GIFT_ADD_FORM_COLOR,
+                fillColor: giftAddFormColor,
                 // hoverColor: Colors.grey,
                 filled: true,
                 hintText:
@@ -224,74 +224,3 @@ class _GiftDetailWidget extends StatelessWidget {
     );
   }
 }
-
-// class _LocationAndAreaWidget extends StatelessWidget {
-//   final GiftAddFormController controller = Get.find();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 8),
-//       child: Row(
-//         children: [
-//           Container(
-//             width: Get.size.width / 2,
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Padding(
-//                   padding: const EdgeInsets.only(left: 30),
-//                   child: Text('Pickup Area'),
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.only(left: 30, right: 4),
-//                   child: TextField(
-//                     decoration: InputDecoration(
-//                         border: const OutlineInputBorder(
-//                           borderSide:
-//                               BorderSide(width: 0, style: BorderStyle.none),
-//                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-//                         ),
-//                         fillColor: GIFT_ADD_FORM_COLOR,
-//                         // hoverColor: Colors.grey,
-//                         filled: true,
-//                         hintText: 'e.g. near modhubag field'),
-//                     onChanged: (value) => controller.area.value = value,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//           Container(
-//             width: Get.size.width / 2,
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Padding(
-//                   padding: const EdgeInsets.only(left: 8),
-//                   child: Text('Location'),
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.only(left: 4, right: 30),
-//                   child: TextField(
-//                     decoration: InputDecoration(
-//                         border: const OutlineInputBorder(
-//                           borderSide:
-//                               BorderSide(width: 0, style: BorderStyle.none),
-//                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-//                         ),
-//                         fillColor: GIFT_ADD_FORM_COLOR,
-//                         // hoverColor: Colors.grey,
-//                         filled: true,
-//                         hintText: 'e.g. Banani'),
-//                     onChanged: (value) => controller.location.value = value,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

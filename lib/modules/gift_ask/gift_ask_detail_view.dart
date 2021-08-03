@@ -52,8 +52,8 @@ class GiftAskDetailView extends StatelessWidget {
             onPressed: Get.back,
             icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
           ),
-          backgroundColor: APP_BAR_COLOR,
-          foregroundColor: APP_BAR_COLOR,
+          backgroundColor: appBarColor,
+          foregroundColor: appBarColor,
           elevation: 5,
           title: Text(
             'Gift Request - ${convertGiftAskType(giftAskType: giftAsk.giftAskType)} ',
@@ -155,7 +155,7 @@ class AcceptAndDenyWidget extends StatelessWidget {
                   onPressed: () async {
                     await giftAskGiverController.acceptGiftAskRequest(giftAsk);
                   },
-                  color: GIFT_ASK_COLOR,
+                  color: giftAskColor,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                   height: 0,
@@ -244,7 +244,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                       height: 60,
                       width: 66,
                       decoration: BoxDecoration(
-                        color: GIFT_ASK_COLOR,
+                        color: giftAskColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Padding(
@@ -262,7 +262,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                       height: 60,
                       width: 66,
                       decoration: BoxDecoration(
-                        color: GIFT_ASK_COLOR,
+                        color: giftAskColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Padding(
@@ -420,7 +420,7 @@ class _RequestForAndDateWidget extends StatelessWidget {
               Text('Request Date', style: boldFontStyle),
               Text(date),
               MaterialButton(
-                color: GIFT_ASK_COLOR,
+                color: giftAskColor,
                 height: 0,
                 padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),

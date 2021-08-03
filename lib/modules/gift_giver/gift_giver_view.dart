@@ -4,13 +4,11 @@ import 'package:alokito_new/modules/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/modules/gift_receiver/widgets/notification_icon_widget.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
-import 'my_gift_view.dart';
 
 class GiftGiverView extends StatelessWidget {
   static const route = '/giftgivermainmenu';
@@ -31,7 +29,7 @@ class GiftGiverView extends StatelessWidget {
         appBar: AppBar(
           toolbarHeight: 80,
           centerTitle: true,
-          title: Text(
+          title: const Text(
             'Gift Receiver',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 30),
@@ -40,8 +38,8 @@ class GiftGiverView extends StatelessWidget {
             Row(
               children: [
                 Badge(
-                  badgeContent: Text('!'),
-                  child: Icon(Icons.notifications),
+                  badgeContent:const Text('!'),
+                  child: const Icon(Icons.notifications),
                 ),
               ],
             ),
@@ -296,14 +294,14 @@ class _Package7DaysMenu extends StatelessWidget {
 }
 
 class _PackageCustomMenu extends StatelessWidget {
-  _PackageCustomMenu({required this.height, required this.width});
+  const _PackageCustomMenu({required this.height, required this.width});
 
   final double height;
   final double width;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: height,
       width: width,
       child: Image.asset(
@@ -327,7 +325,7 @@ class _MyButtonRowWidget extends StatelessWidget {
         ElevatedButton(
           onPressed: () {},
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith((states) => GIFT_GIVER_BUTTON_COLOR),
+            backgroundColor: MaterialStateProperty.resolveWith((states) => giftGiverButtonColor),
             foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.black),
           ),
           child: const Text('My Gift'),

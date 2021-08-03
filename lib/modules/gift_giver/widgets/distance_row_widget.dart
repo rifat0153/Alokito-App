@@ -55,7 +55,7 @@ class _ButtonWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: controller.distance.value == distance
                 ? Colors.cyan
-                : GIFT_ADD_FORM_COLOR,
+                : giftAddFormColor,
             borderRadius: BorderRadius.circular(5),
           ),
           alignment: Alignment.center,

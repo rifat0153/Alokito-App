@@ -68,7 +68,7 @@ class GiftAskFeedbackWidget extends StatelessWidget {
                 ),
                 _RatingWidget(isRequester: isRequester),
                 MaterialButton(
-                  color: GIFT_ADD_FORM_SUBMIT,
+                  color: giftAddFormSubmitColor,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   onPressed: () async {
                     await Get.find<GiftAskNotificationController>().doneGiftRequestByGiver(giftAskGiver!);

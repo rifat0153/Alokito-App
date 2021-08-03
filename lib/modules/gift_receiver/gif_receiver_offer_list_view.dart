@@ -165,14 +165,14 @@ class _GiftListTile extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: GIFT_ADD_FORM_COLOR,
+            color: giftAddFormColor,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: GIFT_ADD_FORM_COLOR,
+                  color: giftAddFormColor,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     bottomLeft: Radius.circular(20),
@@ -248,7 +248,7 @@ class _SearchWidget extends StatelessWidget {
       height: Get.size.height * 0.04,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: GIFT_ADD_FORM_COLOR,
+        color: giftAddFormColor,
       ),
       child: const TextField(
         decoration: InputDecoration(
