@@ -33,6 +33,10 @@ class GiftAskNotificationController extends GetxController {
     final updatedGiftAskGiver = giftAskGiver.copyWith(messageForGiverrSent: true);
     await Get.find<GiftAskGiverController>().changeGiftAskGiverAndDeleteGiftAsk(updatedGiftAskGiver);
 
+    // *update requester userinfo to no request
+    final updatedUser = giftAskGiver.requester.copyWith(hasGiftAskRequest: false);
+    await Get.find<AuthController>().authService.updateLocalUser(updatedUser);
+
     await Get.find<NotificationController>()
         .addNotification(userId: giftAskGiver.giver.id ?? '', notification: giverNotification);
 
@@ -52,6 +56,10 @@ class GiftAskNotificationController extends GetxController {
     //* changeGiftASkGiver to completed and delete the GiftASk request
     final updatedGiftAskGiver = giftAskGiver.copyWith(messageForRequesterSent: true);
     await Get.find<GiftAskGiverController>().changeGiftAskGiverAndDeleteGiftAsk(updatedGiftAskGiver);
+
+    // *update giver userinfo to no request
+    final updatedUser = giftAskGiver.giver.copyWith(hasGiftAskRequest: false);
+    await Get.find<AuthController>().authService.updateLocalUser(updatedUser);
 
     await Get.find<NotificationController>()
         .addNotification(userId: giftAskGiver.requester.id ?? '', notification: requesterNotification);
