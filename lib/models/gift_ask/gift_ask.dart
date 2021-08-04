@@ -13,6 +13,7 @@ part 'gift_ask.g.dart';
 class GiftAsk with _$GiftAsk {
   const factory GiftAsk({
     String? id,
+    @Default(false) bool giftCompleted,
     @Default(false) bool giftGiven,
     @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
     required String address,

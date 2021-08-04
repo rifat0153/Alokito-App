@@ -4,7 +4,7 @@ import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_ask/gift_ask_service.dart';
+import 'package:alokito_new/modules/gift_ask/services/gift_ask_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +15,6 @@ import 'package:geocoder/geocoder.dart' as geocoder;
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 class GiftAskController extends GetxController {
   final GiftAskService giftAskService =
@@ -56,7 +55,7 @@ class GiftAskController extends GetxController {
         filteredGiftRequestList.value = const GiftAskListUnion.loading();
 
         for (var doc in docList) {
-          if (doc.id != Get.find<AuthController>().currentUser.value.id) {
+          if (doc.id != Get.find<AuthController>().currentUser.value.id  && !doc.giftCompleted ) {
             List<GiftAsk> tempFilteredList = [
               ...filteredGiftRequestList.value.maybeWhen(data: (data) => data, orElse: () => []),
               doc
@@ -101,8 +100,8 @@ class GiftAskController extends GetxController {
 
       final GeoPoint point = giftAsk.position.geopoint;
 
-      var userPoint = geo.point(
-          latitude: currentUserPosition.value.latitude, longitude: currentUserPosition.value.longitude);
+      var userPoint =
+          geo.point(latitude: currentUserPosition.value.latitude, longitude: currentUserPosition.value.longitude);
 
       var distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
 
@@ -151,12 +150,10 @@ class GiftAskController extends GetxController {
   Future<void> addGift() async {
     loading.value = true;
 
-    var myLocation = geo.point(
-        latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
+    var myLocation = geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
-    MyPosition giftPosition =
-        MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
+    MyPosition giftPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
     GiftAsk giftAsk = GiftAsk(
       requester: Get.find<AuthController>().currentUser.value,
@@ -207,8 +204,7 @@ class GiftAskController extends GetxController {
 
   void setLocationFromMapCordinates() async {
     // From coordinates
-    final coordinates =
-        geocoder.Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
+    final coordinates = geocoder.Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
     try {
       var addresses1 = await geocoder.Geocoder.local.findAddressesFromCoordinates(coordinates);
       var first = addresses1.first;

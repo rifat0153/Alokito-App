@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/gift_ask/gift_ask_request_view.dart';
+import 'package:alokito_new/modules/gift_ask/views/gift_ask_request_view.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/gift_add_view.dart';
 import 'package:alokito_new/modules/gift_receiver/widgets/notification_icon_widget.dart';
@@ -8,7 +8,6 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
-
 
 class GiftGiverView extends StatelessWidget {
   static const route = '/giftgivermainmenu';
@@ -38,7 +37,7 @@ class GiftGiverView extends StatelessWidget {
             Row(
               children: [
                 Badge(
-                  badgeContent:const Text('!'),
+                  badgeContent: const Text('!'),
                   child: const Icon(Icons.notifications),
                 ),
               ],
@@ -53,10 +52,7 @@ class GiftGiverView extends StatelessWidget {
           shadowColor: Colors.transparent,
         ),
         body: _buildBody(
-            media: media,
-            giftAddFormController: giftAddFormController,
-            menuHeight: menuHeight,
-            menuWidth: menuWidth),
+            media: media, giftAddFormController: giftAddFormController, menuHeight: menuHeight, menuWidth: menuWidth),
       ),
     );
   }

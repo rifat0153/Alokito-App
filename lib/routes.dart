@@ -1,14 +1,14 @@
-import 'package:alokito_new/modules/auth/views/initial_view.dart';
-import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
-import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/gif_receiver_offer_list_view.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
-import 'package:alokito_new/modules/map/geo_controller.dart';
-import 'package:alokito_new/modules/notification/notification_controller.dart';
-import 'package:alokito_new/modules/notification/notification_view.dart';
-import 'package:alokito_new/modules/settings/views/settings_view.dart';
 import 'package:get/get.dart';
 
+import '/modules/auth/views/initial_view.dart';
+import '/modules/auth/widgets/login_reg_form.dart';
+import '/modules/gift_giver/gift_add_form_controller.dart';
+import '/modules/gift_receiver/gif_receiver_offer_list_view.dart';
+import '/modules/gift_receiver/gift_receiver_view.dart';
+import '/modules/map/geo_controller.dart';
+import '/modules/notification/notification_controller.dart';
+import '/modules/notification/notification_view.dart';
+import '/modules/settings/views/settings_view.dart';
 import 'modules/gift_giver/gift_add_view.dart';
 import 'modules/gift_giver/gift_controller.dart';
 import 'modules/gift_giver/gift_giver_view.dart';
@@ -25,7 +25,7 @@ class GetPages {
     ),
     GetPage(
       name: LoginRegFormView.route,
-      page: () => LoginRegFormView(),
+      page: () => const LoginRegFormView(),
     ),
 
     //* Gift Receiver Routes

@@ -22,6 +22,7 @@ class _$GiftAskTearOff {
 
   _GiftAsk call(
       {String? id,
+      bool giftCompleted = false,
       bool giftGiven = false,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required LocalUser requester,
@@ -42,6 +43,7 @@ class _$GiftAskTearOff {
           required Timestamp createdAt}) {
     return _GiftAsk(
       id: id,
+      giftCompleted: giftCompleted,
       giftGiven: giftGiven,
       requester: requester,
       address: address,
@@ -69,6 +71,7 @@ const $GiftAsk = _$GiftAskTearOff();
 /// @nodoc
 mixin _$GiftAsk {
   String? get id => throw _privateConstructorUsedError;
+  bool get giftCompleted => throw _privateConstructorUsedError;
   bool get giftGiven => throw _privateConstructorUsedError;
   @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
   LocalUser get requester => throw _privateConstructorUsedError;
@@ -99,6 +102,7 @@ abstract class $GiftAskCopyWith<$Res> {
       _$GiftAskCopyWithImpl<$Res>;
   $Res call(
       {String? id,
+      bool giftCompleted,
       bool giftGiven,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           LocalUser requester,
@@ -133,6 +137,7 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? giftCompleted = freezed,
     Object? giftGiven = freezed,
     Object? requester = freezed,
     Object? address = freezed,
@@ -152,6 +157,10 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      giftCompleted: giftCompleted == freezed
+          ? _value.giftCompleted
+          : giftCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
       giftGiven: giftGiven == freezed
           ? _value.giftGiven
           : giftGiven // ignore: cast_nullable_to_non_nullable
@@ -229,6 +238,7 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
+      bool giftCompleted,
       bool giftGiven,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           LocalUser requester,
@@ -266,6 +276,7 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? giftCompleted = freezed,
     Object? giftGiven = freezed,
     Object? requester = freezed,
     Object? address = freezed,
@@ -285,6 +296,10 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      giftCompleted: giftCompleted == freezed
+          ? _value.giftCompleted
+          : giftCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
       giftGiven: giftGiven == freezed
           ? _value.giftGiven
           : giftGiven // ignore: cast_nullable_to_non_nullable
@@ -346,6 +361,7 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
 class _$_GiftAsk implements _GiftAsk {
   const _$_GiftAsk(
       {this.id,
+      this.giftCompleted = false,
       this.giftGiven = false,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required this.requester,
@@ -370,6 +386,9 @@ class _$_GiftAsk implements _GiftAsk {
 
   @override
   final String? id;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool giftCompleted;
   @JsonKey(defaultValue: false)
   @override
   final bool giftGiven;
@@ -405,7 +424,7 @@ class _$_GiftAsk implements _GiftAsk {
 
   @override
   String toString() {
-    return 'GiftAsk(id: $id, giftGiven: $giftGiven, requester: $requester, address: $address, area: $area, position: $position, reuqestDate: $reuqestDate, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note, createdAt: $createdAt)';
+    return 'GiftAsk(id: $id, giftCompleted: $giftCompleted, giftGiven: $giftGiven, requester: $requester, address: $address, area: $area, position: $position, reuqestDate: $reuqestDate, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note, createdAt: $createdAt)';
   }
 
   @override
@@ -414,6 +433,9 @@ class _$_GiftAsk implements _GiftAsk {
         (other is _GiftAsk &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.giftCompleted, giftCompleted) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftCompleted, giftCompleted)) &&
             (identical(other.giftGiven, giftGiven) ||
                 const DeepCollectionEquality()
                     .equals(other.giftGiven, giftGiven)) &&
@@ -457,6 +479,7 @@ class _$_GiftAsk implements _GiftAsk {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(giftCompleted) ^
       const DeepCollectionEquality().hash(giftGiven) ^
       const DeepCollectionEquality().hash(requester) ^
       const DeepCollectionEquality().hash(address) ^
@@ -485,6 +508,7 @@ class _$_GiftAsk implements _GiftAsk {
 abstract class _GiftAsk implements GiftAsk {
   const factory _GiftAsk(
       {String? id,
+      bool giftCompleted,
       bool giftGiven,
       @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
           required LocalUser requester,
@@ -508,6 +532,8 @@ abstract class _GiftAsk implements GiftAsk {
 
   @override
   String? get id => throw _privateConstructorUsedError;
+  @override
+  bool get giftCompleted => throw _privateConstructorUsedError;
   @override
   bool get giftGiven => throw _privateConstructorUsedError;
   @override

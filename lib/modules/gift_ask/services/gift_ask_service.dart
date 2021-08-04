@@ -40,6 +40,7 @@ class GiftAskService implements BaseGiftAskService {
     GeoFirePoint center = _geo.point(latitude: latitude, longitude: longitude);
 
     var collectionReference = _firestore.collection('gift_ask');
+
     // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
 
     // return Stream.value(

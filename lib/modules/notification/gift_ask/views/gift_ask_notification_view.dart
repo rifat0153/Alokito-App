@@ -71,7 +71,7 @@ class GiftAskNotificationView extends StatelessWidget {
                         bottomLeft: Radius.circular(5),
                         topLeft: Radius.circular(5),
                       ),
-                      // Todo
+                      // Todo add realted gist ask notification img
                       child: Image.asset('assets/images/map-dot (1).png', fit: BoxFit.cover))
                   : const SizedBox()),
           snapshot.data == null

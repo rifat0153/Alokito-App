@@ -1,8 +1,8 @@
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_ask/gift_ask_controller.dart';
-import 'package:alokito_new/modules/gift_ask/gift_ask_detail_view.dart';
+import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
+import 'package:alokito_new/modules/gift_ask/views/gift_ask_detail_view.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
@@ -88,7 +88,7 @@ class _BuildBody extends StatelessWidget {
                 data: (giftAskList) => ListView.builder(
                       itemCount: giftAskList.length,
                       itemBuilder: (_, i) => _GiftAskRequestTile(
-                        key: ValueKey(i),
+                        key: ValueKey(giftAskList[i].id),
                         giftAskList: giftAskList,
                         giftAskController: giftAskController,
                         index: i,
@@ -96,8 +96,8 @@ class _BuildBody extends StatelessWidget {
                       ),
                       physics: const BouncingScrollPhysics(),
                     ),
-                empty: () => Text('data'),
-                loading: () => LinearProgressIndicator(),
+                empty: () => const SizedBox(),
+                loading: () => const LinearProgressIndicator(),
                 error: (error) {
                   return Text(error.toString());
                 })),
@@ -135,81 +135,77 @@ class _GiftAskRequestTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Width is $width');
-
     return authController.currentUserInfo.value.when(
-      data: (user) => giftAskList[index].id == user.id
-          ? Container()
-          : GestureDetector(
-              onTap: () {
-                Get.to(() => GiftAskDetailView(giftAsk: giftAskList[index]));
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey.withOpacity(0.3)),
-                  ),
-                  width: 300,
-                  height: 80,
-                  child: Row(
+      data: (user) => GestureDetector(
+        onTap: () {
+          Get.to(() => GiftAskDetailView(giftAsk: giftAskList[index]));
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.grey.withOpacity(0.3)),
+            ),
+            width: 300,
+            height: 80,
+            child: Row(
+              children: [
+                Container(
+                  width: 100,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                      color: giftAskColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                      )),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: 100,
-                        alignment: Alignment.center,
-                        decoration: const BoxDecoration(
-                            color: giftAskColor,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10),
-                            )),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
-                            Text(
-                              '0${giftAskList[index].requestForNoOfPeople}',
-                              style: const TextStyle(
-                                color: Color(0xff11CFE7),
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Any Retail Item', style: boldFontStyle.copyWith(fontSize: 16)),
-                              const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      convertGiftAskType(giftAskType: giftAskList[index].giftAskType),
-                                      softWrap: false,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Text(giftAskList[index].area, style: boldFontStyle.copyWith(fontSize: 13)),
-                                ],
-                              )
-                            ],
-                          ),
+                      Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
+                      Text(
+                        '0${giftAskList[index].requestForNoOfPeople}',
+                        style: const TextStyle(
+                          color: Color(0xff11CFE7),
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Any Retail Item', style: boldFontStyle.copyWith(fontSize: 16)),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                convertGiftAskType(giftAskType: giftAskList[index].giftAskType),
+                                softWrap: false,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Text(giftAskList[index].area, style: boldFontStyle.copyWith(fontSize: 13)),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
+          ),
+        ),
+      ),
       loading: () => const CircularProgressIndicator.adaptive(),
       error: (error) => const Text('Something went Wrong'),
     );
