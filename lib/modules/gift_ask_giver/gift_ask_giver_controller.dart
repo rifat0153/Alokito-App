@@ -3,6 +3,7 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_service.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,7 +24,14 @@ class GiftAskGiverController extends GetxController {
     return doc;
   }
 
-  // Change GiftAskGiver status
+  //* Update GiftAskGiver to Completed and Delete GiftASk from list
+  Future<void> changeGiftAskGiverAndDeleteGiftAsk(GiftAskGiver updatedGiftAskGiver) async {
+    await giftAskGiverService.updateGiftAskGiver(updatedGiftAskGiver);
+
+    await Get.find<GiftAskController>().deleteGiftAsk(updatedGiftAskGiver.giftAsk);
+  }
+
+  //* Change GiftAskGiver status
   Future<void> changeGiftAskGiverStatus(GiftAskGiver giftAskGiver, GiftAskStatus giftAskStatus) async {
     var updatedGiftAskGiver = giftAskGiver.copyWith(giftAskStatus: giftAskStatus);
 

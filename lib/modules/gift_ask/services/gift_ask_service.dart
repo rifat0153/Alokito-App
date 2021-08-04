@@ -21,6 +21,8 @@ abstract class BaseGiftAskService {
     required double searchRadius,
     required String userId,
   });
+
+  Future<void> delete(GiftAsk giftAsk);
 }
 
 class GiftAskService implements BaseGiftAskService {
@@ -40,12 +42,6 @@ class GiftAskService implements BaseGiftAskService {
     GeoFirePoint center = _geo.point(latitude: latitude, longitude: longitude);
 
     var collectionReference = _firestore.collection('gift_ask');
-
-    // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
-
-    // return Stream.value(
-    //   GiftAskListUnion.error(GiftAskException(message: 'Test Error')),
-    // );
 
     try {
       var stream = _geo
@@ -106,6 +102,17 @@ class GiftAskService implements BaseGiftAskService {
       return docRef.data() != null ? true : false;
     } on FirebaseException catch (e) {
       throw GiftAskException(message: 'GiftRequest finding error: ${e.message}');
+    }
+  }
+
+  @override
+  Future<void> delete(GiftAsk giftAsk) async {
+    try {
+      await _firestore.collection('gift_ask').doc(giftAsk.id).delete();
+    } on FirebaseException catch (e) {
+      throw GiftAskException(message: e.toString());
+    } catch (e) {
+      throw GiftAskException(message: e.toString());
     }
   }
 }

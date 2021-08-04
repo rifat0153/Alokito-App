@@ -29,6 +29,10 @@ class GiftAskNotificationController extends GetxController {
         releatedDocId: giftAskGiver.giftAsk.id!,
         createdAt: Timestamp.now());
 
+    //* changeGiftASkGiver to completed and delete the GiftASk request
+    final updatedGiftAskGiver = giftAskGiver.copyWith(messageForGiverrSent: true);
+    await Get.find<GiftAskGiverController>().changeGiftAskGiverAndDeleteGiftAsk(updatedGiftAskGiver);
+
     await Get.find<NotificationController>()
         .addNotification(userId: giftAskGiver.giver.id ?? '', notification: giverNotification);
 
@@ -45,19 +49,20 @@ class GiftAskNotificationController extends GetxController {
         releatedDocId: giftAskGiver.id!,
         createdAt: Timestamp.now());
 
+    //* changeGiftASkGiver to completed and delete the GiftASk request
+    final updatedGiftAskGiver = giftAskGiver.copyWith(messageForRequesterSent: true);
+    await Get.find<GiftAskGiverController>().changeGiftAskGiverAndDeleteGiftAsk(updatedGiftAskGiver);
+
     await Get.find<NotificationController>()
         .addNotification(userId: giftAskGiver.requester.id ?? '', notification: requesterNotification);
 
     //***  THIS CALL Used to change user it has been fixed for now ***
-    await Get.find<AuthController>()
-        .authService
-        .updateUserRating(giftAskGiver.requester.id ?? '', requesterRating.value);
+    await Get.find<AuthController>().authService.updateUserRating(giftAskGiver.requester.id ?? '', requesterRating.value);
   }
 
   //* MARKED AS DONE BY GIVER
   Future<void> doneGiftRequestByGiver(GiftAskGiver giftAskGiver) async {
-    await Get.find<GiftAskGiverController>()
-        .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestDelivered);
+    await Get.find<GiftAskGiverController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestDelivered);
 
     String giftType = convertGiftAskType(giftAskType: giftAskGiver.giftAsk.giftAskType);
 
@@ -69,8 +74,7 @@ class GiftAskNotificationController extends GetxController {
 
   //* AFTER CONFIRMATION BY GIVER, Gift ACCEPTED BY REUQESTER, makes no sense IK, BUT its how app was made :3
   Future<void> aceeptGiftRequestByRequester(GiftAskGiver giftAskGiver) async {
-    await Get.find<GiftAskGiverController>()
-        .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestAccepted);
+    await Get.find<GiftAskGiverController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestAccepted);
 
     String giftType = convertGiftAskType(giftAskType: giftAskGiver.giftAsk.giftAskType);
 
@@ -99,8 +103,7 @@ class GiftAskNotificationController extends GetxController {
 
   //* CONFIRMED BY GIVER
   Future<void> confirmGift(GiftAskGiver giftAskGiver) async {
-    await Get.find<GiftAskGiverController>()
-        .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestConfirmed);
+    await Get.find<GiftAskGiverController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestConfirmed);
 
     String giftType = convertGiftAskType(giftAskType: giftAskGiver.giftAsk.giftAskType);
 

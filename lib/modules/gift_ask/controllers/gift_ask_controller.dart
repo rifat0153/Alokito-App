@@ -55,7 +55,7 @@ class GiftAskController extends GetxController {
         filteredGiftRequestList.value = const GiftAskListUnion.loading();
 
         for (var doc in docList) {
-          if (doc.id != Get.find<AuthController>().currentUser.value.id  && !doc.giftCompleted ) {
+          if (doc.id != Get.find<AuthController>().currentUser.value.id && !doc.giftCompleted) {
             List<GiftAsk> tempFilteredList = [
               ...filteredGiftRequestList.value.maybeWhen(data: (data) => data, orElse: () => []),
               doc
@@ -90,6 +90,15 @@ class GiftAskController extends GetxController {
     streamSubscription?.cancel();
     giftRequestList.close();
     filteredGiftRequestList.close();
+  }
+
+  // * Delete GiftASk
+  Future<void> deleteGiftAsk(GiftAsk giftAsk) async {
+    try {
+      await giftAskService.delete(giftAsk);
+    } catch (e) {
+      showSuccessOrErrorBottomSheet(false, '', 'GiftAsk could not be deleted');
+    }
   }
 
   void _updateMarkers(List<GiftAsk> documentList) {
