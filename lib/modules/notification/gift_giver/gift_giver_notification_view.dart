@@ -26,7 +26,7 @@ class GiftGiverNotificationView extends StatelessWidget {
           return const Center(child: Text('Please wait its loading...'));
         } else {
           if (snapshot.hasError) {
-            return const Center(child: Text('Gift Request Deleted'));
+            return  Center(child: Text(snapshot.error.toString()));
           } else {
             return _buildNotificationTile(snapshot, difference);
           }

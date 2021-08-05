@@ -76,7 +76,7 @@ class GiftGiverNotificationController extends GetxController {
   // AFTER CONFIRMATION BY GIVER ACCEPTED BY REUQESTER, makes no sense IK, BUT its the app was made :3
   Future<void> aceeptGiftRequestByRequester(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>()
-        .cancelGiftRequest(giftReceiver,const GiftReceiverStatus.aceepted());
+        .cancelGiftRequest(giftReceiver,const GiftReceiverStatus.accepted());
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
 

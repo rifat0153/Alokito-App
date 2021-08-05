@@ -441,6 +441,26 @@ abstract class _GiftReceiver extends GiftReceiver {
       throw _privateConstructorUsedError;
 }
 
+GiftReceiverStatus _$GiftReceiverStatusFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType'] as String) {
+    case 'pending':
+      return Pending.fromJson(json);
+    case 'confirmed':
+      return Confirmed.fromJson(json);
+    case 'canceledByGiver':
+      return CanceledByGiver.fromJson(json);
+    case 'canceledByRequester':
+      return CanceledByRequester.fromJson(json);
+    case 'accepted':
+      return Accepted.fromJson(json);
+    case 'delivered':
+      return Delivered.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
+}
+
 /// @nodoc
 class _$GiftReceiverStatusTearOff {
   const _$GiftReceiverStatusTearOff();
@@ -461,12 +481,16 @@ class _$GiftReceiverStatusTearOff {
     return const CanceledByRequester();
   }
 
-  Aceepted aceepted() {
-    return const Aceepted();
+  Accepted accepted() {
+    return const Accepted();
   }
 
   Delivered delivered() {
     return const Delivered();
+  }
+
+  GiftReceiverStatus fromJson(Map<String, Object> json) {
+    return GiftReceiverStatus.fromJson(json);
   }
 }
 
@@ -481,7 +505,7 @@ mixin _$GiftReceiverStatus {
     required TResult Function() confirmed,
     required TResult Function() canceledByGiver,
     required TResult Function() canceledByRequester,
-    required TResult Function() aceepted,
+    required TResult Function() accepted,
     required TResult Function() delivered,
   }) =>
       throw _privateConstructorUsedError;
@@ -491,7 +515,7 @@ mixin _$GiftReceiverStatus {
     TResult Function()? confirmed,
     TResult Function()? canceledByGiver,
     TResult Function()? canceledByRequester,
-    TResult Function()? aceepted,
+    TResult Function()? accepted,
     TResult Function()? delivered,
     required TResult orElse(),
   }) =>
@@ -502,7 +526,7 @@ mixin _$GiftReceiverStatus {
     required TResult Function(Confirmed value) confirmed,
     required TResult Function(CanceledByGiver value) canceledByGiver,
     required TResult Function(CanceledByRequester value) canceledByRequester,
-    required TResult Function(Aceepted value) aceepted,
+    required TResult Function(Accepted value) accepted,
     required TResult Function(Delivered value) delivered,
   }) =>
       throw _privateConstructorUsedError;
@@ -512,11 +536,12 @@ mixin _$GiftReceiverStatus {
     TResult Function(Confirmed value)? confirmed,
     TResult Function(CanceledByGiver value)? canceledByGiver,
     TResult Function(CanceledByRequester value)? canceledByRequester,
-    TResult Function(Aceepted value)? aceepted,
+    TResult Function(Accepted value)? accepted,
     TResult Function(Delivered value)? delivered,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -553,9 +578,12 @@ class _$PendingCopyWithImpl<$Res> extends _$GiftReceiverStatusCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$Pending implements Pending {
   const _$Pending();
+
+  factory _$Pending.fromJson(Map<String, dynamic> json) =>
+      _$_$PendingFromJson(json);
 
   @override
   String toString() {
@@ -577,7 +605,7 @@ class _$Pending implements Pending {
     required TResult Function() confirmed,
     required TResult Function() canceledByGiver,
     required TResult Function() canceledByRequester,
-    required TResult Function() aceepted,
+    required TResult Function() accepted,
     required TResult Function() delivered,
   }) {
     return pending();
@@ -590,7 +618,7 @@ class _$Pending implements Pending {
     TResult Function()? confirmed,
     TResult Function()? canceledByGiver,
     TResult Function()? canceledByRequester,
-    TResult Function()? aceepted,
+    TResult Function()? accepted,
     TResult Function()? delivered,
     required TResult orElse(),
   }) {
@@ -607,7 +635,7 @@ class _$Pending implements Pending {
     required TResult Function(Confirmed value) confirmed,
     required TResult Function(CanceledByGiver value) canceledByGiver,
     required TResult Function(CanceledByRequester value) canceledByRequester,
-    required TResult Function(Aceepted value) aceepted,
+    required TResult Function(Accepted value) accepted,
     required TResult Function(Delivered value) delivered,
   }) {
     return pending(this);
@@ -620,7 +648,7 @@ class _$Pending implements Pending {
     TResult Function(Confirmed value)? confirmed,
     TResult Function(CanceledByGiver value)? canceledByGiver,
     TResult Function(CanceledByRequester value)? canceledByRequester,
-    TResult Function(Aceepted value)? aceepted,
+    TResult Function(Accepted value)? accepted,
     TResult Function(Delivered value)? delivered,
     required TResult orElse(),
   }) {
@@ -629,10 +657,17 @@ class _$Pending implements Pending {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$PendingToJson(this)..['runtimeType'] = 'pending';
+  }
 }
 
 abstract class Pending implements GiftReceiverStatus {
   const factory Pending() = _$Pending;
+
+  factory Pending.fromJson(Map<String, dynamic> json) = _$Pending.fromJson;
 }
 
 /// @nodoc
@@ -653,9 +688,12 @@ class _$ConfirmedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$Confirmed implements Confirmed {
   const _$Confirmed();
+
+  factory _$Confirmed.fromJson(Map<String, dynamic> json) =>
+      _$_$ConfirmedFromJson(json);
 
   @override
   String toString() {
@@ -677,7 +715,7 @@ class _$Confirmed implements Confirmed {
     required TResult Function() confirmed,
     required TResult Function() canceledByGiver,
     required TResult Function() canceledByRequester,
-    required TResult Function() aceepted,
+    required TResult Function() accepted,
     required TResult Function() delivered,
   }) {
     return confirmed();
@@ -690,7 +728,7 @@ class _$Confirmed implements Confirmed {
     TResult Function()? confirmed,
     TResult Function()? canceledByGiver,
     TResult Function()? canceledByRequester,
-    TResult Function()? aceepted,
+    TResult Function()? accepted,
     TResult Function()? delivered,
     required TResult orElse(),
   }) {
@@ -707,7 +745,7 @@ class _$Confirmed implements Confirmed {
     required TResult Function(Confirmed value) confirmed,
     required TResult Function(CanceledByGiver value) canceledByGiver,
     required TResult Function(CanceledByRequester value) canceledByRequester,
-    required TResult Function(Aceepted value) aceepted,
+    required TResult Function(Accepted value) accepted,
     required TResult Function(Delivered value) delivered,
   }) {
     return confirmed(this);
@@ -720,7 +758,7 @@ class _$Confirmed implements Confirmed {
     TResult Function(Confirmed value)? confirmed,
     TResult Function(CanceledByGiver value)? canceledByGiver,
     TResult Function(CanceledByRequester value)? canceledByRequester,
-    TResult Function(Aceepted value)? aceepted,
+    TResult Function(Accepted value)? accepted,
     TResult Function(Delivered value)? delivered,
     required TResult orElse(),
   }) {
@@ -729,10 +767,17 @@ class _$Confirmed implements Confirmed {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$ConfirmedToJson(this)..['runtimeType'] = 'confirmed';
+  }
 }
 
 abstract class Confirmed implements GiftReceiverStatus {
   const factory Confirmed() = _$Confirmed;
+
+  factory Confirmed.fromJson(Map<String, dynamic> json) = _$Confirmed.fromJson;
 }
 
 /// @nodoc
@@ -755,9 +800,12 @@ class _$CanceledByGiverCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$CanceledByGiver implements CanceledByGiver {
   const _$CanceledByGiver();
+
+  factory _$CanceledByGiver.fromJson(Map<String, dynamic> json) =>
+      _$_$CanceledByGiverFromJson(json);
 
   @override
   String toString() {
@@ -779,7 +827,7 @@ class _$CanceledByGiver implements CanceledByGiver {
     required TResult Function() confirmed,
     required TResult Function() canceledByGiver,
     required TResult Function() canceledByRequester,
-    required TResult Function() aceepted,
+    required TResult Function() accepted,
     required TResult Function() delivered,
   }) {
     return canceledByGiver();
@@ -792,7 +840,7 @@ class _$CanceledByGiver implements CanceledByGiver {
     TResult Function()? confirmed,
     TResult Function()? canceledByGiver,
     TResult Function()? canceledByRequester,
-    TResult Function()? aceepted,
+    TResult Function()? accepted,
     TResult Function()? delivered,
     required TResult orElse(),
   }) {
@@ -809,7 +857,7 @@ class _$CanceledByGiver implements CanceledByGiver {
     required TResult Function(Confirmed value) confirmed,
     required TResult Function(CanceledByGiver value) canceledByGiver,
     required TResult Function(CanceledByRequester value) canceledByRequester,
-    required TResult Function(Aceepted value) aceepted,
+    required TResult Function(Accepted value) accepted,
     required TResult Function(Delivered value) delivered,
   }) {
     return canceledByGiver(this);
@@ -822,7 +870,7 @@ class _$CanceledByGiver implements CanceledByGiver {
     TResult Function(Confirmed value)? confirmed,
     TResult Function(CanceledByGiver value)? canceledByGiver,
     TResult Function(CanceledByRequester value)? canceledByRequester,
-    TResult Function(Aceepted value)? aceepted,
+    TResult Function(Accepted value)? accepted,
     TResult Function(Delivered value)? delivered,
     required TResult orElse(),
   }) {
@@ -831,10 +879,18 @@ class _$CanceledByGiver implements CanceledByGiver {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CanceledByGiverToJson(this)..['runtimeType'] = 'canceledByGiver';
+  }
 }
 
 abstract class CanceledByGiver implements GiftReceiverStatus {
   const factory CanceledByGiver() = _$CanceledByGiver;
+
+  factory CanceledByGiver.fromJson(Map<String, dynamic> json) =
+      _$CanceledByGiver.fromJson;
 }
 
 /// @nodoc
@@ -857,9 +913,12 @@ class _$CanceledByRequesterCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$CanceledByRequester implements CanceledByRequester {
   const _$CanceledByRequester();
+
+  factory _$CanceledByRequester.fromJson(Map<String, dynamic> json) =>
+      _$_$CanceledByRequesterFromJson(json);
 
   @override
   String toString() {
@@ -881,7 +940,7 @@ class _$CanceledByRequester implements CanceledByRequester {
     required TResult Function() confirmed,
     required TResult Function() canceledByGiver,
     required TResult Function() canceledByRequester,
-    required TResult Function() aceepted,
+    required TResult Function() accepted,
     required TResult Function() delivered,
   }) {
     return canceledByRequester();
@@ -894,7 +953,7 @@ class _$CanceledByRequester implements CanceledByRequester {
     TResult Function()? confirmed,
     TResult Function()? canceledByGiver,
     TResult Function()? canceledByRequester,
-    TResult Function()? aceepted,
+    TResult Function()? accepted,
     TResult Function()? delivered,
     required TResult orElse(),
   }) {
@@ -911,7 +970,7 @@ class _$CanceledByRequester implements CanceledByRequester {
     required TResult Function(Confirmed value) confirmed,
     required TResult Function(CanceledByGiver value) canceledByGiver,
     required TResult Function(CanceledByRequester value) canceledByRequester,
-    required TResult Function(Aceepted value) aceepted,
+    required TResult Function(Accepted value) accepted,
     required TResult Function(Delivered value) delivered,
   }) {
     return canceledByRequester(this);
@@ -924,7 +983,7 @@ class _$CanceledByRequester implements CanceledByRequester {
     TResult Function(Confirmed value)? confirmed,
     TResult Function(CanceledByGiver value)? canceledByGiver,
     TResult Function(CanceledByRequester value)? canceledByRequester,
-    TResult Function(Aceepted value)? aceepted,
+    TResult Function(Accepted value)? accepted,
     TResult Function(Delivered value)? delivered,
     required TResult orElse(),
   }) {
@@ -933,42 +992,54 @@ class _$CanceledByRequester implements CanceledByRequester {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CanceledByRequesterToJson(this)
+      ..['runtimeType'] = 'canceledByRequester';
+  }
 }
 
 abstract class CanceledByRequester implements GiftReceiverStatus {
   const factory CanceledByRequester() = _$CanceledByRequester;
+
+  factory CanceledByRequester.fromJson(Map<String, dynamic> json) =
+      _$CanceledByRequester.fromJson;
 }
 
 /// @nodoc
-abstract class $AceeptedCopyWith<$Res> {
-  factory $AceeptedCopyWith(Aceepted value, $Res Function(Aceepted) then) =
-      _$AceeptedCopyWithImpl<$Res>;
+abstract class $AcceptedCopyWith<$Res> {
+  factory $AcceptedCopyWith(Accepted value, $Res Function(Accepted) then) =
+      _$AcceptedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AceeptedCopyWithImpl<$Res>
+class _$AcceptedCopyWithImpl<$Res>
     extends _$GiftReceiverStatusCopyWithImpl<$Res>
-    implements $AceeptedCopyWith<$Res> {
-  _$AceeptedCopyWithImpl(Aceepted _value, $Res Function(Aceepted) _then)
-      : super(_value, (v) => _then(v as Aceepted));
+    implements $AcceptedCopyWith<$Res> {
+  _$AcceptedCopyWithImpl(Accepted _value, $Res Function(Accepted) _then)
+      : super(_value, (v) => _then(v as Accepted));
 
   @override
-  Aceepted get _value => super._value as Aceepted;
+  Accepted get _value => super._value as Accepted;
 }
 
 /// @nodoc
+@JsonSerializable()
+class _$Accepted implements Accepted {
+  const _$Accepted();
 
-class _$Aceepted implements Aceepted {
-  const _$Aceepted();
+  factory _$Accepted.fromJson(Map<String, dynamic> json) =>
+      _$_$AcceptedFromJson(json);
 
   @override
   String toString() {
-    return 'GiftReceiverStatus.aceepted()';
+    return 'GiftReceiverStatus.accepted()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Aceepted);
+    return identical(this, other) || (other is Accepted);
   }
 
   @override
@@ -981,10 +1052,10 @@ class _$Aceepted implements Aceepted {
     required TResult Function() confirmed,
     required TResult Function() canceledByGiver,
     required TResult Function() canceledByRequester,
-    required TResult Function() aceepted,
+    required TResult Function() accepted,
     required TResult Function() delivered,
   }) {
-    return aceepted();
+    return accepted();
   }
 
   @override
@@ -994,12 +1065,12 @@ class _$Aceepted implements Aceepted {
     TResult Function()? confirmed,
     TResult Function()? canceledByGiver,
     TResult Function()? canceledByRequester,
-    TResult Function()? aceepted,
+    TResult Function()? accepted,
     TResult Function()? delivered,
     required TResult orElse(),
   }) {
-    if (aceepted != null) {
-      return aceepted();
+    if (accepted != null) {
+      return accepted();
     }
     return orElse();
   }
@@ -1011,10 +1082,10 @@ class _$Aceepted implements Aceepted {
     required TResult Function(Confirmed value) confirmed,
     required TResult Function(CanceledByGiver value) canceledByGiver,
     required TResult Function(CanceledByRequester value) canceledByRequester,
-    required TResult Function(Aceepted value) aceepted,
+    required TResult Function(Accepted value) accepted,
     required TResult Function(Delivered value) delivered,
   }) {
-    return aceepted(this);
+    return accepted(this);
   }
 
   @override
@@ -1024,19 +1095,26 @@ class _$Aceepted implements Aceepted {
     TResult Function(Confirmed value)? confirmed,
     TResult Function(CanceledByGiver value)? canceledByGiver,
     TResult Function(CanceledByRequester value)? canceledByRequester,
-    TResult Function(Aceepted value)? aceepted,
+    TResult Function(Accepted value)? accepted,
     TResult Function(Delivered value)? delivered,
     required TResult orElse(),
   }) {
-    if (aceepted != null) {
-      return aceepted(this);
+    if (accepted != null) {
+      return accepted(this);
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$AcceptedToJson(this)..['runtimeType'] = 'accepted';
+  }
 }
 
-abstract class Aceepted implements GiftReceiverStatus {
-  const factory Aceepted() = _$Aceepted;
+abstract class Accepted implements GiftReceiverStatus {
+  const factory Accepted() = _$Accepted;
+
+  factory Accepted.fromJson(Map<String, dynamic> json) = _$Accepted.fromJson;
 }
 
 /// @nodoc
@@ -1057,9 +1135,12 @@ class _$DeliveredCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$Delivered implements Delivered {
   const _$Delivered();
+
+  factory _$Delivered.fromJson(Map<String, dynamic> json) =>
+      _$_$DeliveredFromJson(json);
 
   @override
   String toString() {
@@ -1081,7 +1162,7 @@ class _$Delivered implements Delivered {
     required TResult Function() confirmed,
     required TResult Function() canceledByGiver,
     required TResult Function() canceledByRequester,
-    required TResult Function() aceepted,
+    required TResult Function() accepted,
     required TResult Function() delivered,
   }) {
     return delivered();
@@ -1094,7 +1175,7 @@ class _$Delivered implements Delivered {
     TResult Function()? confirmed,
     TResult Function()? canceledByGiver,
     TResult Function()? canceledByRequester,
-    TResult Function()? aceepted,
+    TResult Function()? accepted,
     TResult Function()? delivered,
     required TResult orElse(),
   }) {
@@ -1111,7 +1192,7 @@ class _$Delivered implements Delivered {
     required TResult Function(Confirmed value) confirmed,
     required TResult Function(CanceledByGiver value) canceledByGiver,
     required TResult Function(CanceledByRequester value) canceledByRequester,
-    required TResult Function(Aceepted value) aceepted,
+    required TResult Function(Accepted value) accepted,
     required TResult Function(Delivered value) delivered,
   }) {
     return delivered(this);
@@ -1124,7 +1205,7 @@ class _$Delivered implements Delivered {
     TResult Function(Confirmed value)? confirmed,
     TResult Function(CanceledByGiver value)? canceledByGiver,
     TResult Function(CanceledByRequester value)? canceledByRequester,
-    TResult Function(Aceepted value)? aceepted,
+    TResult Function(Accepted value)? accepted,
     TResult Function(Delivered value)? delivered,
     required TResult orElse(),
   }) {
@@ -1133,8 +1214,15 @@ class _$Delivered implements Delivered {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$DeliveredToJson(this)..['runtimeType'] = 'delivered';
+  }
 }
 
 abstract class Delivered implements GiftReceiverStatus {
   const factory Delivered() = _$Delivered;
+
+  factory Delivered.fromJson(Map<String, dynamic> json) = _$Delivered.fromJson;
 }

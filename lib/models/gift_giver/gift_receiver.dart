@@ -1,5 +1,5 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/models/json_converters.dart';
+import 'package:alokito_new/models/json_converters.dart' ;
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -35,6 +35,11 @@ class GiftReceiverStatus with _$GiftReceiverStatus {
   const factory GiftReceiverStatus.confirmed() = Confirmed;
   const factory GiftReceiverStatus.canceledByGiver() = CanceledByGiver;
   const factory GiftReceiverStatus.canceledByRequester() = CanceledByRequester;
-  const factory GiftReceiverStatus.aceepted() = Aceepted;
+  const factory GiftReceiverStatus.accepted() = Accepted;
   const factory GiftReceiverStatus.delivered() = Delivered;
+
+  factory GiftReceiverStatus.fromJson(Map<String, dynamic> json) => _$GiftReceiverStatusFromJson(json);
 }
+
+Map<String, dynamic> giftReceiverStatusToJson(GiftReceiverStatus giftReceiverStatus) => giftReceiverStatus.toJson();
+GiftReceiverStatus giftReceiverStatusFromJson(Map<String, dynamic> json) => GiftReceiverStatus.fromJson(json);

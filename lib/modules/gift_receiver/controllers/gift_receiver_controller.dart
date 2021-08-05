@@ -28,7 +28,7 @@ class GiftReceiverController extends GetxController {
 
       return doc;
     } catch (e) {
-      throw GiftReceiverException(message: 'Gift request deleted');
+      throw Exception(e.toString());
     }
   }
 
@@ -65,7 +65,7 @@ class GiftReceiverController extends GetxController {
 
   Future<void> confirmGiftRequest(GiftReceiver giftReceiver) async {
     await giftReceiverService.updateGiftReceiver(
-        giftReceiver: giftReceiver.copyWith(giftReceiverStatus:const GiftReceiverStatus.confirmed()));
+        giftReceiver: giftReceiver.copyWith(giftReceiverStatus: const GiftReceiverStatus.confirmed()));
   }
 
   Future<void> addGiftRequestAndNotification(GiftGiver giftGiver) async {
@@ -80,7 +80,7 @@ class GiftReceiverController extends GetxController {
 
     GiftReceiver giftReceiver = GiftReceiver(
       id: docId,
-      giftReceiverStatus:const GiftReceiverStatus.pending(),
+      giftReceiverStatus: const GiftReceiverStatus.pending(),
       comment: requesterMessage.value,
       giftGiver: giftGiver,
       requester: Get.find<AuthController>().currentUser.value,

@@ -111,7 +111,7 @@ class _DecisionWidget extends StatelessWidget {
           return MyText('r Request Canceled by You',
               textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
         },
-        aceepted: () {
+        accepted: () {
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
