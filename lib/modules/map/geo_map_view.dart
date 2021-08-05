@@ -37,18 +37,9 @@ class _GeoMapViewState extends State<GeoMapView> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _mapController?.dispose();
   }
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   // _onMapCreated(_mapController!);
-  //   _updateMarkers(geoController.geoStream.value);
-  // }
 
   @override
   Widget build(BuildContext context) {
