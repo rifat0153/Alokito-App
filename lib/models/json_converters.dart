@@ -8,34 +8,6 @@ import 'gift_ask/gift_ask.dart';
 
 //* Testing Freezed for request status
 
-// int giftReceiverStatusToJson(GiftReceiverStatus giftReceiverStatus) {
-//   return giftReceiverStatus.when(
-//       pending: () => 0,
-//       confirmed: () => 1,
-//       canceledByGiver: () => 2,
-//       canceledByRequester: () => 3,
-//       aceepted: () => 4,
-//       delivered: () => 5);
-// }
-
-// GiftReceiverStatus giftReceiverStatusFromJson(int json) {
-//   switch (json) {
-//     case 0:
-//       return  const GiftReceiverStatus.pending();
-//     case 1:
-//       return const GiftReceiverStatus.confirmed();
-//     case 2:
-//       return const GiftReceiverStatus.canceledByGiver();
-//     case 3:
-//       return const GiftReceiverStatus.canceledByRequester();
-//     case 4:
-//       return const GiftReceiverStatus.aceepted();
-//     case 5:
-//       return const GiftReceiverStatus.delivered();
-//     default:
-//       return const GiftReceiverStatus.pending();
-//   }
-// }
 
 // *Test 
 

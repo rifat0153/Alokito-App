@@ -84,86 +84,72 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //***             If its requester notification              ***
+    //*************************** If its requester notification              ***
     if (giftReceiver.requester.id == Get.find<AuthController>().currentUser.value.id) {
       return giftReceiver.giftReceiverStatus.when(
-        pending: () {
-          return MaterialButton(
-            onPressed: () {
-              controller.cancelGiftRequestByRequester(giftReceiver);
-            },
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            height: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-            color: giftAskColor,
-            child: MyText('r Cancel', color: Colors.white),
-          );
-        },
-        confirmed: () {
-          return MyText('r Gift Accepted by You',
-              textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold);
-        },
-        canceledByGiver: () {
-          return MyText('r Request Canceled by ${giftReceiver.giftGiver.userName}',
-              textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
-        },
-        canceledByRequester: () {
-          return MyText('r Request Canceled by You',
-              textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold);
-        },
-        accepted: () {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MaterialButton(
-                onPressed: () {
-                  controller.aceeptGiftRequestByRequester(giftReceiver);
-                },
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                height: 0,
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                color: giftAskColor,
-                child: MyText('r Accept Gift', color: Colors.white),
-              ),
-              const SizedBox(width: 30),
-              MaterialButton(
-                onPressed: () {
-                  controller.cancelGiftRequestByRequester(giftReceiver);
-                },
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                height: 0,
-                padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-                color: giftAskColor,
-                child: MyText('r Cancel', color: Colors.white),
+        pending: () => MaterialButton(
+          onPressed: () {
+            controller.cancelGiftRequestByRequester(giftReceiver);
+          },
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          height: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+          color: giftAskColor,
+          child: MyText('r Cancel', color: Colors.white),
+        ),
+        confirmed: () => MyText('r Gift Accepted by You',
+            textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
+        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.giftGiver.userName}',
+            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        canceledByRequester: () => MyText('r Request Canceled by You',
+            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        accepted: () => Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MaterialButton(
+              onPressed: () {
+                controller.aceeptGiftRequestByRequester(giftReceiver);
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              height: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              color: giftAskColor,
+              child: MyText('r Accept Gift', color: Colors.white),
+            ),
+            const SizedBox(width: 30),
+            MaterialButton(
+              onPressed: () {
+                controller.cancelGiftRequestByRequester(giftReceiver);
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              height: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+              color: giftAskColor,
+              child: MyText('r Cancel', color: Colors.white),
+            )
+          ],
+        ),
+        delivered: () => giftReceiver.messageForGiverrSent == true
+            ? Column(
+                children: [
+                  MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
+                ],
               )
-            ],
-          );
-        },
-        delivered: () {
-          if (giftReceiver.messageForGiverrSent == true) {
-            return Column(
-              children: [
-                MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
-              ],
-            );
-          } else {
-            return Column(
-              children: [
-                MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
-                MaterialButton(
-                  onPressed: () {
-                    Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: true));
-                  },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  height: 0,
-                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                  color: giftAskColor,
-                  child: MyText('r Done', color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ],
-            );
-          }
-        },
+            : Column(
+                children: [
+                  MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
+                  MaterialButton(
+                    onPressed: () {
+                      Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: true));
+                    },
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    height: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    color: giftAskColor,
+                    child: MyText('r Done', color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
       );
 
       // //* Gift Delivered BY Giver
@@ -172,89 +158,71 @@ class _DecisionWidget extends StatelessWidget {
       // }
     }
 
-    return Text('Giver Decision');
+    // ************************* If its giver notification                  ***
 
-    // ***                    If its giver notification                  ***
-    // Gift Delivered BY Giver
-    // if (giftReceiver!.messageForRequesterSent == true) {
-    //   return Column(
-    //     children: [
-    //       MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
-    //     ],
-    //   );
-    // }
-    // // Gift Delivered BY Giver But not message sent for Requester
-    // if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
-    //   return Column(
-    //     children: [
-    //       MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
-    //       MaterialButton(
-    //         onPressed: () {
-    //           Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: false));
-    //         },
-    //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-    //         height: 0,
-    //         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-    //         color: giftAskColor,
-    //         child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
-    //       ),
-    //     ],
-    //   );
-    // }
-    // // Gift ACCEPTED BY REQUESTER
-    // if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestAccepted) {
-    //   return Column(
-    //     children: [
-    //       MyText('Gift Accepted by ${giftReceiver!.requester.userName}',
-    //           textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
-    //       MaterialButton(
-    //         onPressed: () {
-    //           controller.doneGiftRequestByGiver(giftReceiver!);
-    //         },
-    //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-    //         height: 0,
-    //         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-    //         color: giftAskColor,
-    //         child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
-    //       ),
-    //     ],
-    //   );
-    // }
-    // //* GIFT CANCELED BY REQUESTER
-    // if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestCanceledByRequester) {
-    //   return Column(
-    //     crossAxisAlignment: CrossAxisAlignment.center,
-    //     children: [
-    //       MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
-    //       MyText(
-    //         giftReceiver!.requester.userName,
-    //         textAlign: TextAlign.center,
-    //         fontSize: 25,
-    //       ),
-    //     ],
-    //   );
-    // }
-
-    // // GIFT CONFIRMED BY GIVER/ WAITING FOR ACCEPTCNCE FROM REQUESTER
-    // return giftReceiver!.giftRequestStatus == GiftRequestStatus.requestConfirmed
-    //     ? MaterialButton(
-    //         onPressed: () {},
-    //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-    //         height: 0,
-    //         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-    //         color: giftAskColor,
-    //         child: MyText('Gift Accepted', color: Colors.white),
-    //       )
-    //     : MaterialButton(
-    //         onPressed: () {
-    //           controller.confirmGift(giftReceiver!);
-    //         },
-    //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-    //         height: 0,
-    //         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-    //         color: giftAskColor,
-    //         child: MyText('Accept for confirmation', color: Colors.white),
-    //       );
+    return giftReceiver.giftReceiverStatus.when(
+        pending: () => MaterialButton(
+              onPressed: () {
+                controller.confirmGift(giftReceiver);
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              height: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              color: giftAskColor,
+              child: MyText('Accept for confirmation', color: Colors.white),
+            ),
+        confirmed: () => MyText(
+              'Gift Accepted by You\n Waiting for confirmation',
+              color: Colors.black,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+            ),
+        canceledByGiver: () =>
+            MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        canceledByRequester: () => Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+                MyText(
+                  giftReceiver.requester.userName,
+                  textAlign: TextAlign.center,
+                  fontSize: 25,
+                ),
+              ],
+            ),
+        accepted: () => Column(
+              children: [
+                MyText('Gift Accepted by ${giftReceiver.requester.userName}',
+                    textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
+                MaterialButton(
+                  onPressed: () {
+                    controller.doneGiftRequestByGiver(giftReceiver);
+                  },
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                  height: 0,
+                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  color: giftAskColor,
+                  child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+        delivered: () => giftReceiver.messageForRequesterSent
+            ? MyText('Delivered', fontSize: 20, color: Colors.blueAccent)
+            : Column(
+                children: [
+                  MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
+                  MaterialButton(
+                    onPressed: () {
+                      Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: false));
+                    },
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    height: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    color: giftAskColor,
+                    child: MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ));
   }
 }
 
