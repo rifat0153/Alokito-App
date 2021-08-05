@@ -26,7 +26,7 @@ class GiftGiverNotificationView extends StatelessWidget {
           return const Center(child: Text('Please wait its loading...'));
         } else {
           if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return const Center(child: Text('Gift Request Deleted'));
           } else {
             return _buildNotificationTile(snapshot, difference);
           }
@@ -69,8 +69,7 @@ class GiftGiverNotificationView extends StatelessWidget {
                   ? const SizedBox()
                   : Expanded(
                       child: GestureDetector(
-                        onTap: () =>
-                            Get.to(() => GiftGiverNotificationDetailsView(giftReceiver: snapshot.data)),
+                        onTap: () => Get.to(() => GiftGiverNotificationDetailsView(giftReceiver: snapshot.data)),
                         child: Container(
                           decoration: const BoxDecoration(
                             color: Colors.white,
