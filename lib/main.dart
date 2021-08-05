@@ -72,3 +72,5 @@ class _AlokitoAppState extends State<AlokitoApp> {
     );
   }
 }
+
+// Comment from TEST branch
