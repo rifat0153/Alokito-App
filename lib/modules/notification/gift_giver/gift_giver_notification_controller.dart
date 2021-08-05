@@ -27,19 +27,19 @@ class GiftGiverNotificationController extends GetxController {
         releatedDocId: giftReceiver.giftGiver.uid,
         createdAt: Timestamp.now());
 
+    // * Changin Gift Receiver Status 
     await Get.find<GiftReceiverController>()
         .changeMessageSentStatus(giftReceiver: giftReceiver, isRequester: true);
 
+    //* Adding Notification for Gift Giver
     await Get.find<NotificationController>()
         .addNotification(userId: giftReceiver.giftGiver.uid, notification: giverNotification);
 
     //***  THIS CALL Used to change user it has been fixed for now ***
-    await Get.find<AuthController>()
-        .authService
-        .updateUserRating(giftReceiver.giftGiver.uid, giverRating.value);
+    await Get.find<AuthController>().authService.updateUserRating(giftReceiver.giftGiver.uid, giverRating.value);
   }
 
-  //Message for Requester and Rating
+  //* Message for Requester and Rating
   Future<void> messageForRequesterAndRating(GiftReceiver giftReceiver) async {
     MyNotification requesterNotification = MyNotification.data(
         id: '',
@@ -60,10 +60,9 @@ class GiftGiverNotificationController extends GetxController {
         .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);
   }
 
-  // MARKED AS DONE BY GIVER
+  //* MARKED AS DONE BY GIVER
   Future<void> doneGiftRequestByGiver(GiftReceiver giftReceiver) async {
-    await Get.find<GiftReceiverController>()
-        .cancelGiftRequest(giftReceiver, const GiftReceiverStatus.delivered());
+    await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, const GiftReceiverStatus.delivered());
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
 
@@ -73,10 +72,9 @@ class GiftGiverNotificationController extends GetxController {
         'Delivered: $giftType delivered to ${giftReceiver.requester.userName}');
   }
 
-  // AFTER CONFIRMATION BY GIVER ACCEPTED BY REUQESTER, makes no sense IK, BUT its the app was made :3
+  //* AFTER CONFIRMATION BY GIVER ACCEPTED BY REUQESTER, makes no sense IK, BUT its the app was made :3
   Future<void> aceeptGiftRequestByRequester(GiftReceiver giftReceiver) async {
-    await Get.find<GiftReceiverController>()
-        .cancelGiftRequest(giftReceiver,const GiftReceiverStatus.accepted());
+    await Get.find<GiftReceiverController>().cancelGiftRequest(giftReceiver, const GiftReceiverStatus.accepted());
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
 
@@ -87,7 +85,7 @@ class GiftGiverNotificationController extends GetxController {
     );
   }
 
-  // CANCELED BY REQUESTER
+  //* CANCELED BY REQUESTER
   Future<void> cancelGiftRequestByRequester(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>()
         .cancelGiftRequest(giftReceiver, const GiftReceiverStatus.canceledByRequester());
@@ -95,6 +93,7 @@ class GiftGiverNotificationController extends GetxController {
     await Get.find<AuthController>().userDoesNotHaveGiftReuqest();
 
     String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
+
     await addNotificationRequesterAndGiver(
       giftReceiver,
       'Gift request $giftType from ${giftReceiver.giftGiver.userName} has been canceled by you',
@@ -102,7 +101,7 @@ class GiftGiverNotificationController extends GetxController {
     );
   }
 
-  // CONFIRMED BY GIVER
+  //* CONFIRMED BY GIVER
   Future<void> confirmGift(GiftReceiver giftReceiver) async {
     await Get.find<GiftReceiverController>().confirmGiftRequest(giftReceiver);
 
@@ -114,6 +113,8 @@ class GiftGiverNotificationController extends GetxController {
     );
   }
 
+
+  // Adds notification for both giver and requester
   Future<void> addNotificationRequesterAndGiver(
       GiftReceiver giftReceiver, String requesterText, String giverText) async {
     MyNotification notificationRequester = MyNotification.data(

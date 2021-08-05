@@ -97,13 +97,7 @@ class _DecisionWidget extends StatelessWidget {
           color: giftAskColor,
           child: MyText('r Cancel', color: Colors.white),
         ),
-        confirmed: () => MyText('r Gift Accepted by You',
-            textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
-        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.giftGiver.userName}',
-            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
-        canceledByRequester: () => MyText('r Request Canceled by You',
-            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
-        accepted: () => Row(
+        confirmed: () => Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
@@ -129,6 +123,12 @@ class _DecisionWidget extends StatelessWidget {
             )
           ],
         ),
+        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.giftGiver.userName}',
+            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        canceledByRequester: () => MyText('r Request Canceled by You',
+            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        accepted: () => MyText('r Gift Accepted by You',
+            textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
         delivered: () => giftReceiver.messageForGiverrSent == true
             ? Column(
                 children: [
@@ -151,14 +151,9 @@ class _DecisionWidget extends StatelessWidget {
                 ],
               ),
       );
-
-      // //* Gift Delivered BY Giver
-      // if (giftReceiver!.giftRequestStatus == GiftRequestStatus.requestDelivered) {
-      //   return MyText('r Delivered', fontSize: 20, color: Colors.blueAccent);
-      // }
     }
 
-    // ************************* If its giver notification                  ***
+    // ************************* If its giver notification ************************
 
     return giftReceiver.giftReceiverStatus.when(
         pending: () => MaterialButton(
