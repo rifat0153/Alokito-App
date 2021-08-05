@@ -6,6 +6,39 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'gift_ask/gift_ask.dart';
 
+//* Testing Freezed for request status
+
+int giftReceiverStatusToJson(GiftReceiverStatus giftReceiverStatus) {
+  return giftReceiverStatus.when(
+      pending: () => 0,
+      confirmed: () => 1,
+      canceledByGiver: () => 2,
+      canceledByRequester: () => 3,
+      aceepted: () => 4,
+      delivered: () => 5);
+}
+
+GiftReceiverStatus giftReceiverStatusFromJson(int json) {
+  switch (json) {
+    case 0:
+      return  const GiftReceiverStatus.pending();
+    case 1:
+      return const GiftReceiverStatus.confirmed();
+    case 2:
+      return const GiftReceiverStatus.canceledByGiver();
+    case 3:
+      return const GiftReceiverStatus.canceledByRequester();
+    case 4:
+      return const GiftReceiverStatus.aceepted();
+    case 5:
+      return const GiftReceiverStatus.delivered();
+    default:
+      return const GiftReceiverStatus.pending();
+  }
+}
+
+// *Test 
+
 GeoPoint geoPointToJson(GeoPoint geoPoint) => geoPoint;
 GeoPoint geoPointFromJson(GeoPoint json) => json;
 
@@ -64,43 +97,43 @@ GiftAskStatus giftAskStatusFromJson(int json) {
   }
 }
 
-int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
-  switch (giftRequestStatus) {
-    case GiftRequestStatus.requestPending:
-      return 0;
-    case GiftRequestStatus.requestConfirmed:
-      return 1;
-    case GiftRequestStatus.requestCanceledByGiver:
-      return 2;
-    case GiftRequestStatus.requestCanceledByRequester:
-      return 3;
-    case GiftRequestStatus.requestAccepted:
-      return 4;
-    case GiftRequestStatus.requestDelivered:
-      return 5;
-    default:
-      return -1;
-  }
-}
+// int giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
+//   switch (giftRequestStatus) {
+//     case GiftRequestStatus.requestPending:
+//       return 0;
+//     case GiftRequestStatus.requestConfirmed:
+//       return 1;
+//     case GiftRequestStatus.requestCanceledByGiver:
+//       return 2;
+//     case GiftRequestStatus.requestCanceledByRequester:
+//       return 3;
+//     case GiftRequestStatus.requestAccepted:
+//       return 4;
+//     case GiftRequestStatus.requestDelivered:
+//       return 5;
+//     default:
+//       return -1;
+//   }
+// }
 
-GiftRequestStatus giftRequestStatusFromJson(int json) {
-  switch (json) {
-    case 0:
-      return GiftRequestStatus.requestPending;
-    case 1:
-      return GiftRequestStatus.requestConfirmed;
-    case 2:
-      return GiftRequestStatus.requestCanceledByGiver;
-    case 3:
-      return GiftRequestStatus.requestCanceledByRequester;
-    case 4:
-      return GiftRequestStatus.requestAccepted;
-    case 5:
-      return GiftRequestStatus.requestDelivered;
-    default:
-      return GiftRequestStatus.requestPending;
-  }
-}
+// GiftRequestStatus giftRequestStatusFromJson(int json) {
+//   switch (json) {
+//     case 0:
+//       return GiftRequestStatus.requestPending;
+//     case 1:
+//       return GiftRequestStatus.requestConfirmed;
+//     case 2:
+//       return GiftRequestStatus.requestCanceledByGiver;
+//     case 3:
+//       return GiftRequestStatus.requestCanceledByRequester;
+//     case 4:
+//       return GiftRequestStatus.requestAccepted;
+//     case 5:
+//       return GiftRequestStatus.requestDelivered;
+//     default:
+//       return GiftRequestStatus.requestPending;
+//   }
+// }
 
 int notificationTypeToJson(NotificationType notificationType) {
   switch (notificationType) {

@@ -18,14 +18,14 @@ enum GiftAskStatus {
   requestDelivered
 }
 
-enum GiftRequestStatus {
-  requestPending,
-  requestConfirmed,
-  requestCanceledByGiver,
-  requestCanceledByRequester,
-  requestAccepted,
-  requestDelivered
-}
+  // enum GiftRequestStatus {
+  //   requestPending,
+  //   requestConfirmed,
+  //   requestCanceledByGiver,
+  //   requestCanceledByRequester,
+  //   requestAccepted,
+  //   requestDelivered
+  // }
 
 enum GiftAskType {
   food,

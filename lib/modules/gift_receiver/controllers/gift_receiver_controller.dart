@@ -58,14 +58,14 @@ class GiftReceiverController extends GetxController {
             giftReceiver: giftReceiver.copyWith(messageForRequesterSent: true));
   }
 
-  Future<void> cancelGiftRequest(GiftReceiver giftReceiver, GiftRequestStatus giftRequestStatus) async {
+  Future<void> cancelGiftRequest(GiftReceiver giftReceiver, GiftReceiverStatus giftReceiverStatus) async {
     await giftReceiverService.updateGiftReceiver(
-        giftReceiver: giftReceiver.copyWith(giftRequestStatus: giftRequestStatus));
+        giftReceiver: giftReceiver.copyWith(giftReceiverStatus: giftReceiverStatus));
   }
 
   Future<void> confirmGiftRequest(GiftReceiver giftReceiver) async {
     await giftReceiverService.updateGiftReceiver(
-        giftReceiver: giftReceiver.copyWith(giftRequestStatus: GiftRequestStatus.requestConfirmed));
+        giftReceiver: giftReceiver.copyWith(giftReceiverStatus:const GiftReceiverStatus.confirmed()));
   }
 
   Future<void> addGiftRequestAndNotification(GiftGiver giftGiver) async {
@@ -80,7 +80,7 @@ class GiftReceiverController extends GetxController {
 
     GiftReceiver giftReceiver = GiftReceiver(
       id: docId,
-      giftRequestStatus: GiftRequestStatus.requestPending,
+      giftReceiverStatus:const GiftReceiverStatus.pending(),
       comment: requesterMessage.value,
       giftGiver: giftGiver,
       requester: Get.find<AuthController>().currentUser.value,
