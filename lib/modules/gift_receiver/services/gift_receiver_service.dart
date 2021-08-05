@@ -9,7 +9,7 @@ abstract class BaseGiftReceiverService {
 
   Future<bool> findGift({required String id});
 
-  Future<bool> deleteGiftRequest({required GiftReceiver giftReceiver});
+  Future<void> deleteGiftRequest({required GiftReceiver giftReceiver});
 
   Future<GiftReceiver?> getGiftRequest({required String id});
 
@@ -17,11 +17,10 @@ abstract class BaseGiftReceiverService {
 }
 
 class GiftReceiverService implements BaseGiftReceiverService {
-  GiftReceiverService(this.geo, this._firestore, this._auth);
+  GiftReceiverService(this.geo, this._firestore);
 
   final Geoflutterfire geo;
   final FirebaseFirestore _firestore;
-  final FirebaseAuth _auth;
 
   @override
   Future<GiftReceiver> getGiftRequest({required String id}) async {
@@ -66,8 +65,11 @@ class GiftReceiverService implements BaseGiftReceiverService {
   }
 
   @override
-  Future<bool> deleteGiftRequest({required GiftReceiver giftReceiver}) {
-    // TODO: implement deleteGiftRequest
-    throw UnimplementedError();
+  Future<void> deleteGiftRequest({required GiftReceiver giftReceiver}) async {
+    try {
+      await _firestore.collection('gift_receiver').doc(giftReceiver.id).delete();
+    } catch (e) {
+      throw GiftReceiverException(message: e.toString());
+    }
   }
 }

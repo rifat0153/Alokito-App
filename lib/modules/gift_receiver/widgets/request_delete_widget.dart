@@ -1,8 +1,7 @@
 import 'dart:ui';
 
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +9,7 @@ class RequestDeleteWidget extends StatelessWidget {
   RequestDeleteWidget({required this.giftGiver});
   final GiftReceiverController controller = Get.find();
 
-  GiftGiver giftGiver;
+  final GiftGiver giftGiver;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +27,8 @@ class RequestDeleteWidget extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text('Are you sure you want to delete the request?'),
                 ),
                 Row(
@@ -37,7 +36,8 @@ class RequestDeleteWidget extends StatelessWidget {
                   children: [
                     MaterialButton(
                       onPressed: () {
-                        // controller.deleleGiftRequest(giftGiver: giftGiver);
+                        // Todo 
+                        // controller.deleteGiftRequestAndResetUserRequestedGiftInfo(giftGiver);
                         Get.back();
                       },
                       color: Colors.green,

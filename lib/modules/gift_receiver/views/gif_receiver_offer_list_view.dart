@@ -1,9 +1,9 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
+import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_details_view.dart';
+import 'package:alokito_new/modules/gift_receiver/views/gift_receiver_details_view.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
 import 'package:flutter/material.dart';

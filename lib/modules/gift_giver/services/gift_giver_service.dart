@@ -1,7 +1,7 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/gift_add_form_controller.dart';
-import 'package:alokito_new/modules/gift_giver/gift_controller.dart';
+import 'package:alokito_new/modules/gift_giver/controllers/gift_add_form_controller.dart';
+import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/gift_giver/gift_giver_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,8 +13,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
-import '../../models/gift_giver/my_position.dart';
-import './widgets/gift_error.dart';
+import '../../../models/gift_giver/my_position.dart';
+import '../widgets/gift_error.dart';
 
 abstract class BaseGiftGiverService {
   Future<void> addGift();

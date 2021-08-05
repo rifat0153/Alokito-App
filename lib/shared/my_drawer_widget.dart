@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/gift_giver_view.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_view.dart';
+import 'package:alokito_new/modules/gift_giver/views/gift_giver_view.dart';
+import 'package:alokito_new/modules/gift_receiver/views/gift_receiver_view.dart';
 import 'package:alokito_new/modules/home/home_view.dart';
 import 'package:alokito_new/modules/notification/notification_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';

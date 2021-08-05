@@ -3,7 +3,7 @@ import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_service.dart';
+import 'package:alokito_new/modules/gift_receiver/services/gift_receiver_service.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,11 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
-import '../../models/notification/notification.dart';
+import '../../../models/notification/notification.dart';
 
 class GiftReceiverController extends GetxController {
-  final GiftReceiverService giftReceiverService =
-      GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance, FirebaseAuth.instance);
+  final GiftReceiverService giftReceiverService = GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance);
 
   RxBool loading = RxBool(false);
   RxString requesterMessage = RxString('');
@@ -29,20 +28,25 @@ class GiftReceiverController extends GetxController {
     return doc;
   }
 
+  Future<void> deleteGiftRequestAndResetUserRequestedGiftInfo(GiftReceiver giftReceiver) async {
+    try {
+      await giftReceiverService.deleteGiftRequest(giftReceiver: giftReceiver);
+    } catch (e) {
+      await showSuccessOrErrorMessage(false, 'Operation delete unsuscessful', '', e.toString());
+    }
+  }
+
   Future<void> changeMessageSentStatus({
     required GiftReceiver giftReceiver,
     required bool isRequester,
   }) async {
     isRequester
-        ? await giftReceiverService.updateGiftReceiver(
-            giftReceiver: giftReceiver.copyWith(messageForGiverrSent: true))
-        : await giftReceiverService.updateGiftReceiver(
-            giftReceiver: giftReceiver.copyWith(messageForRequesterSent: true));
+        ? await giftReceiverService.updateGiftReceiver(giftReceiver: giftReceiver.copyWith(messageForGiverrSent: true))
+        : await giftReceiverService.updateGiftReceiver(giftReceiver: giftReceiver.copyWith(messageForRequesterSent: true));
   }
 
   Future<void> cancelGiftRequest(GiftReceiver giftReceiver, GiftRequestStatus giftRequestStatus) async {
-    await giftReceiverService.updateGiftReceiver(
-        giftReceiver: giftReceiver.copyWith(giftRequestStatus: giftRequestStatus));
+    await giftReceiverService.updateGiftReceiver(giftReceiver: giftReceiver.copyWith(giftRequestStatus: giftRequestStatus));
   }
 
   Future<void> confirmGiftRequest(GiftReceiver giftReceiver) async {
@@ -95,10 +99,8 @@ class GiftReceiverController extends GetxController {
     MyNotification giverNotification =
         requesterNotification.copyWith(text: 'Your gift offer $giftType is requested by $requesterName');
 
-    await Get.find<NotificationController>()
-        .addNotification(userId: requesterId, notification: requesterNotification);
-    await Get.find<NotificationController>()
-        .addNotification(userId: giverId, notification: giverNotification);
+    await Get.find<NotificationController>().addNotification(userId: requesterId, notification: requesterNotification);
+    await Get.find<NotificationController>().addNotification(userId: giverId, notification: giverNotification);
 
     await Get.find<AuthController>().userHasNotification(giverId);
     await Get.find<AuthController>().userHasNotification(requesterId);

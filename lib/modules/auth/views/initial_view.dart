@@ -5,7 +5,7 @@ import 'package:alokito_new/modules/connection/connection_controller.dart';
 import 'package:alokito_new/modules/firebase/firebase_provider.dart';
 import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/gift_record/gift_record_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
