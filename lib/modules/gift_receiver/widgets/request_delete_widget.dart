@@ -36,8 +36,7 @@ class RequestDeleteWidget extends StatelessWidget {
                   children: [
                     MaterialButton(
                       onPressed: () {
-                        // Todo 
-                        // controller.deleteGiftRequestAndResetUserRequestedGiftInfo(giftGiver);
+                        controller.deleteGiftRequestAndResetUserRequestedGiftInfo(giftGiver);
                         Get.back();
                       },
                       color: Colors.green,
@@ -48,9 +47,7 @@ class RequestDeleteWidget extends StatelessWidget {
                       ),
                     ),
                     MaterialButton(
-                      onPressed: () {
-                        Get.back();
-                      },
+                      onPressed: Get.back,
                       color: Colors.red,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       child: Text(

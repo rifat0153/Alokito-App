@@ -9,7 +9,7 @@ abstract class BaseGiftReceiverService {
 
   Future<bool> findGift({required String id});
 
-  Future<void> deleteGiftRequest({required GiftReceiver giftReceiver});
+  Future<void> deleteGiftRequest(String docId);
 
   Future<GiftReceiver?> getGiftRequest({required String id});
 
@@ -30,6 +30,8 @@ class GiftReceiverService implements BaseGiftReceiverService {
       return GiftReceiver.fromJson(doc.data()!);
     } on FirebaseException catch (e) {
       throw GiftReceiverException(message: e.message);
+    } on Exception catch (_) {
+      throw GiftReceiverException(message: 'Gift request deleted');
     }
   }
 
@@ -65,9 +67,9 @@ class GiftReceiverService implements BaseGiftReceiverService {
   }
 
   @override
-  Future<void> deleteGiftRequest({required GiftReceiver giftReceiver}) async {
+  Future<void> deleteGiftRequest(String docId) async {
     try {
-      await _firestore.collection('gift_receiver').doc(giftReceiver.id).delete();
+      await _firestore.collection('gift_receiver').doc(docId).delete();
     } catch (e) {
       throw GiftReceiverException(message: e.toString());
     }

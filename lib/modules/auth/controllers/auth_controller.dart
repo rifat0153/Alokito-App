@@ -63,7 +63,7 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> userDoesNotHaveGiftReuqest(String giftId) async {
+  Future<void> userDoesNotHaveGiftReuqest() async {
     try {
       await authService.updateLocalUser(currentUserInfo.value
           .maybeWhen(
