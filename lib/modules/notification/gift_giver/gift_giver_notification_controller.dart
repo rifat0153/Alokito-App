@@ -35,6 +35,10 @@ class GiftGiverNotificationController extends GetxController {
     await Get.find<NotificationController>()
         .addNotification(userId: giftReceiver.giftGiver.uid, notification: giverNotification);
 
+    // TODO delete GIft from after delivery
+
+    // TODO user has no gift Request 
+
     //***  THIS CALL Used to change user it has been fixed for now ***
     await Get.find<AuthController>().authService.updateUserRating(giftReceiver.giftGiver.uid, giverRating.value);
   }

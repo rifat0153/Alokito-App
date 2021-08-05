@@ -132,12 +132,12 @@ class _DecisionWidget extends StatelessWidget {
         delivered: () => giftReceiver.messageForGiverrSent == true
             ? Column(
                 children: [
-                  MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
+                  MyText('r Gift Received', fontSize: 20, color: Colors.blueAccent),
                 ],
               )
             : Column(
                 children: [
-                  MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
+                  MyText('r Gift Received', fontSize: 20, color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
                       Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: true));

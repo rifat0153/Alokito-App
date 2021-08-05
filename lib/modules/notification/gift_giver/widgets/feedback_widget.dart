@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 class FeedbackWidget extends StatelessWidget {
   FeedbackWidget({Key? key, required this.giftReceiver, required this.isRequester}) : super(key: key);
 
-  bool isRequester;
-  GiftReceiver? giftReceiver;
+  final bool isRequester;
+  final GiftReceiver? giftReceiver;
 
   final GiftGiverNotificationController controller = Get.find();
 
@@ -56,8 +56,7 @@ class FeedbackWidget extends StatelessWidget {
                       isRequester
                           ? controller.messageForGiver.value = value
                           : controller.messageForRequester.value = value,
-                      print(controller.messageForGiver.value),
-                      print(controller.messageForRequester.value),
+               
                     },
                     onSubmitted: (value) => {},
                   ),
