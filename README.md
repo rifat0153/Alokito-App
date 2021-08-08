@@ -4,7 +4,7 @@ A new Flutter project.
 
 # issues
   *After verification is done, user is shown verification screen twice
-  *
+  *Change Gift Reciever Doc ID
 
 ## Getting Started
 
