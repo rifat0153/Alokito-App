@@ -57,10 +57,14 @@ class AuthService implements BaseAuthService {
   @override
   Future<LocalUser?> getLocalUserInfo(String uid) async {
     try {
-      var userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
-      if (userDoc.exists) {
-        LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
-        return localUser;
+      DocumentSnapshot userDoc;
+      if (uid.isNotEmpty) {
+        userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+        
+        if (userDoc.exists) {
+          LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
+          return localUser;
+        }
       }
       return null;
     } on FirebaseException catch (e) {
@@ -177,8 +181,7 @@ class AuthService implements BaseAuthService {
       var myLocation = geo.point(latitude: userPosition.latitude, longitude: userPosition.longitude);
       var pos = myLocation.data as Map<dynamic, dynamic>;
 
-      MyPosition myPosition =
-          MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
+      MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
       LocalUser myUser = LocalUser(
         id: firebaseUser.user?.uid,

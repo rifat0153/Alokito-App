@@ -18,13 +18,12 @@ class GiftReceiverDetailController extends GetxController {
     try {
       await Get.find<GiftReceiverController>().addGiftRequestAndNotification(giftGiver);
 
-
       // Updating LocalUserInfo
       LocalUser? currentUseInfo = Get.find<AuthController>()
           .currentUserInfo
           .value
           .maybeWhen(data: (userInfo) => userInfo, orElse: () => null);
-          
+
       if (currentUseInfo != null) {
         currentUseInfo = currentUseInfo.copyWith(hasGiftAskRequest: true, requestedGiftId: giftGiver.id!);
       }

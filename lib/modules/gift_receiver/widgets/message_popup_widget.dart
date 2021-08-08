@@ -48,17 +48,21 @@ class MessagePopUpWidget extends StatelessWidget {
                     onSubmitted: (value) => controller.requesterMessage.value = value,
                   ),
                 ),
-                MaterialButton(
-                  color: giftAddFormSubmitColor,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  onPressed: () {
-                    giftReceiverDetailController.addGiftRequest(giftGiver);
-                    // controller.addGiftRequestAndNotification(giftGiver);
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Text('send'),
-                  ),
+                Obx(
+                  () => giftReceiverDetailController.loading.value
+                      ? const CircularProgressIndicator.adaptive()
+                      : MaterialButton(
+                          color: giftAddFormSubmitColor,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                          onPressed: () {
+                            giftReceiverDetailController.addGiftRequest(giftGiver);
+                            // controller.addGiftRequestAndNotification(giftGiver);
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 30),
+                            child: Text('send'),
+                          ),
+                        ),
                 ),
               ],
             ),
