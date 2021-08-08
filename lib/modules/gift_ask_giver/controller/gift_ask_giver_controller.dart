@@ -4,15 +4,15 @@ import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
-import 'package:alokito_new/modules/gift_ask_giver/gift_ask_giver_service.dart';
+import 'package:alokito_new/modules/gift_ask_giver/service/gift_ask_giver_service.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 
-import '../../models/gift_ask/gift_ask.dart';
-import '../../shared/success_error_sheet.dart';
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../shared/success_error_sheet.dart';
 
 class GiftAskGiverController extends GetxController {
   GiftAskGiverService giftAskGiverService = GiftAskGiverService(FirebaseFirestore.instance);
@@ -54,9 +54,9 @@ class GiftAskGiverController extends GetxController {
     try {
       await giftAskGiverService.add(giftAskGiver);
 
-      await Get.find<AuthController>().authService.updateLocalUser(currentUser.copyWith(
-            acceptedGiftId: giftAsk.id ?? '',
-          ));
+      await Get.find<AuthController>()
+          .authService
+          .updateLocalUser(currentUser.copyWith(acceptedGiftId: giftAsk.id ?? '', hasGiftAskRequest: true));
 
       await addNotification(
         giftAskGiver: giftAskGiver,
@@ -66,6 +66,17 @@ class GiftAskGiverController extends GetxController {
         giftAskGiver: giftAskGiver,
         textForGiver: 'You confirmed request of ${giftAskGiver.giftAsk.requester.userName}',
       );
+
+      // Updating LocalUserInfo
+      LocalUser? currentUseInfo = Get.find<AuthController>()
+          .currentUserInfo
+          .value
+          .maybeWhen(data: (userInfo) => userInfo, orElse: () => null);
+
+      if (currentUseInfo != null) {
+        currentUseInfo = currentUseInfo.copyWith(hasGiftAskRequest: true, acceptedGiftId: giftAsk.id ?? '');
+        Get.find<AuthController>().updateLocalUser(currentUseInfo);
+      }
     } on FirebaseException {
       ShowSuccessOrError.showSuccessOrErrorBottomSheet(false, '', 'Something went wrong');
     }
