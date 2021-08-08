@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/modules/gift_receiver_details/controllers/gift_receiver_detail_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 class MessagePopUpWidget extends StatelessWidget {
   MessagePopUpWidget({required this.giftGiver});
   final GiftReceiverController controller = Get.find();
+  final GiftReceiverDetailController giftReceiverDetailController = Get.find();
 
   final GiftGiver giftGiver;
 
@@ -46,21 +48,18 @@ class MessagePopUpWidget extends StatelessWidget {
                     onSubmitted: (value) => controller.requesterMessage.value = value,
                   ),
                 ),
-                Obx(
-                  () => controller.loading.value
-                      ? const CircularProgressIndicator()
-                      : MaterialButton(
-                          color: giftAddFormSubmitColor,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                          onPressed: () {
-                            controller.addGiftRequestAndNotification(giftGiver);
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 30),
-                            child: Text('send'),
-                          ),
-                        ),
-                )
+                MaterialButton(
+                  color: giftAddFormSubmitColor,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                  onPressed: () {
+                    giftReceiverDetailController.addGiftRequest(giftGiver);
+                    // controller.addGiftRequestAndNotification(giftGiver);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Text('send'),
+                  ),
+                ),
               ],
             ),
           ),

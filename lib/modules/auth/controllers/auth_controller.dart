@@ -15,7 +15,7 @@ class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
   final Rx<LocalUser> currentUser = initialUser.obs;
 
-  final RxBool registering = false.obs; 
+  final RxBool registering = false.obs;
   final RxBool authCompleted = false.obs;
   final RxBool errors = false.obs;
 
@@ -44,6 +44,10 @@ class AuthController extends GetxController {
   void signOut() async {
     await authService.signOut();
     authCompleted.value = false;
+  }
+
+  void updateLocalUser(LocalUser localUser) {
+    currentUserInfo.value = LocalUserInfo.data(localUser);
   }
 
   Future<void> userHasGiftReuqest(String giftId) async {
@@ -101,13 +105,14 @@ class AuthController extends GetxController {
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();
-    var giftGiverPoint =
-        geo.point(latitude: giftGiver.position.geopoint.latitude, longitude: giftGiver.position.geopoint.longitude);
+    var giftGiverPoint = geo.point(
+        latitude: giftGiver.position.geopoint.latitude, longitude: giftGiver.position.geopoint.longitude);
 
     final GiftController giftController = Get.find();
 
     var distance = giftGiverPoint.distance(
-        lat: giftController.currentUserLocation.value.latitude, lng: giftController.currentUserLocation.value.longitude);
+        lat: giftController.currentUserLocation.value.latitude,
+        lng: giftController.currentUserLocation.value.longitude);
 
     return distance;
   }

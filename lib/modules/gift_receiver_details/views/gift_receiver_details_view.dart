@@ -4,13 +4,14 @@ import 'package:alokito_new/modules/gift_giver/widgets/user_joining_distance_wid
 import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/gift_receiver_details/controllers/gift_receiver_detail_controller.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:alokito_new/shared/config.dart';
-import '../widgets/gift_detail_map_widget.dart';
-import '../widgets/message_popup_widget.dart';
+import '../../gift_receiver/widgets/gift_detail_map_widget.dart';
+import '../../gift_receiver/widgets/message_popup_widget.dart';
 import '../widgets/request_delete_widget.dart';
 
 class GiftReceiverDetailsView extends StatelessWidget {
@@ -19,9 +20,9 @@ class GiftReceiverDetailsView extends StatelessWidget {
   static const route = 'giftdetail';
 
   final GiftGiver giftGiver;
-  final GiftReceiverController giftRequestController = Get.find();
   final AuthController authController = Get.find<AuthController>();
   final GiftController giftController = Get.find();
+  final GiftReceiverDetailController giftRecieverDetailController = Get.put(GiftReceiverDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,21 +54,27 @@ class GiftReceiverDetailsView extends StatelessWidget {
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
         ),
-        body: _BuildBody(giftGiver: giftGiver, authController: authController),
+        body: _BuildBody(
+          giftGiver: giftGiver,
+          authController: authController,
+          giftRecieverDetailController: giftRecieverDetailController,
+        ),
       ),
     );
   }
 }
 
 class _BuildBody extends StatelessWidget {
-  const _BuildBody({
-    Key? key,
-    required this.giftGiver,
-    required this.authController,
-  }) : super(key: key);
+  const _BuildBody(
+      {Key? key,
+      required this.giftGiver,
+      required this.authController,
+      required this.giftRecieverDetailController})
+      : super(key: key);
 
   final GiftGiver giftGiver;
   final AuthController authController;
+  final GiftReceiverDetailController giftRecieverDetailController;
 
   @override
   Widget build(BuildContext context) {
@@ -102,106 +109,114 @@ class _BuildBody extends StatelessWidget {
             ),
           ),
         ),
-        _DecisionWidget(authController: authController, giftGiver: giftGiver),
+        _DecisionWidget(
+          authController: authController,
+          giftGiver: giftGiver,
+          giftRecieverDetailController: giftRecieverDetailController,
+        ),
       ],
     );
   }
 }
 
 class _DecisionWidget extends StatelessWidget {
-  const _DecisionWidget({
-    Key? key,
-    required this.authController,
-    required this.giftGiver,
-  }) : super(key: key);
+  const _DecisionWidget(
+      {Key? key,
+      required this.authController,
+      required this.giftGiver,
+      required this.giftRecieverDetailController})
+      : super(key: key);
 
   final AuthController authController;
   final GiftGiver giftGiver;
+  final GiftReceiverDetailController giftRecieverDetailController;
 
   @override
   Widget build(BuildContext context) {
-    return authController.currentUserInfo.value.when(
-        data: (user) {
-          if (user.hasGiftAskRequest && user.requestedGiftId == giftGiver.id) {
-            return Align(
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  MaterialButton(
-                    onPressed: null,
-                    disabledColor: giftAddFormColor,
-                    color: Colors.blue,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                    child: const Text(
-                      'Gift Requested',
-                      style: TextStyle(color: Colors.blue),
+    return Obx(
+      () => authController.currentUserInfo.value.when(
+          data: (user) {
+            if (user.hasGiftAskRequest && user.requestedGiftId == giftGiver.id) {
+              return Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    MaterialButton(
+                      onPressed: null,
+                      disabledColor: giftAddFormColor,
+                      color: Colors.blue,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      child: const Text(
+                        'Gift Requested',
+                        style: TextStyle(color: Colors.blue),
+                      ),
                     ),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (BuildContext context) {
-                          return RequestDeleteWidget(giftGiver: giftGiver);
-                        },
-                      );
-                    },
-                    color: Colors.red,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    MaterialButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context) {
+                            return RequestDeleteWidget(giftGiver: giftGiver);
+                          },
+                        );
+                      },
+                      color: Colors.red,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      child: const Text(
+                        'Cancel',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+            if (user.hasGiftAskRequest && user.requestedGiftId != giftGiver.id) {
+              return Align(
+                alignment: Alignment.bottomCenter,
+                child: MaterialButton(
+                  onPressed: () {},
+                  color: giftAddFormSubmitColor,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.1),
                     child: const Text(
-                      'Cancel',
+                      'Already have a Request',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                ],
-              ),
-            );
-          }
-          if (user.hasGiftAskRequest && user.requestedGiftId != giftGiver.id) {
+                ),
+              );
+            }
             return Align(
               alignment: Alignment.bottomCenter,
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: true,
+                    builder: (BuildContext context) {
+                      return MessagePopUpWidget(giftGiver: giftGiver);
+                    },
+                  );
+                },
                 color: giftAddFormSubmitColor,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.1),
+                  padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
                   child: const Text(
-                    'Already have a Request',
+                    'Send Requests',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
             );
-          }
-          return Align(
-            alignment: Alignment.bottomCenter,
-            child: MaterialButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (BuildContext context) {
-                    return MessagePopUpWidget(giftGiver: giftGiver);
-                  },
-                );
-              },
-              color: giftAddFormSubmitColor,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
-                child: const Text(
-                  'Send Request',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-          );
-        },
-        loading: () => const CircularProgressIndicator.adaptive(),
-        error: (error) => const Text('something went wrong'));
+          },
+          loading: () => const CircularProgressIndicator.adaptive(),
+          error: (error) => const Text('something went wrong')),
+    );
   }
 }
 
