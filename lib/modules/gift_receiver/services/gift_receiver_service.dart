@@ -27,7 +27,12 @@ class GiftReceiverService implements BaseGiftReceiverService {
     try {
       var doc = await _firestore.collection('gift_receiver').doc(id).get();
 
+      if(doc.exists) {
       return GiftReceiver.fromJson(doc.data()!);
+      }else {
+        throw GiftReceiverException(message: 'Gift request deleted');
+      }
+
     } on FirebaseException catch (e) {
       throw GiftReceiverException(message: e.message);
     } on Exception catch (_) {
