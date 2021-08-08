@@ -22,14 +22,14 @@ class GiftReceiverController extends GetxController {
   RxBool showDialog = RxBool(false);
   RxBool requestExists = RxBool(false);
 
-  Future<GiftReceiver> getGift(String id) async {
+  Future<GiftReceiverNotificationUnion> getGift(String id) async {
     try {
       print('GiftReceiverController: getGift call made');
-      GiftReceiver doc = await giftReceiverService.getGiftRequest(id: id);
+      GiftReceiverNotificationUnion docUnion = await giftReceiverService.getGiftRequest(id: id);
 
-      return doc;
+      return docUnion;
     } catch (e) {
-      throw Exception(e.toString());
+      return GiftReceiverNotificationUnion.error(e);
     }
   }
 

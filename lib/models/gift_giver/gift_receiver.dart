@@ -43,3 +43,10 @@ class GiftReceiverStatus with _$GiftReceiverStatus {
 
 Map<String, dynamic> giftReceiverStatusToJson(GiftReceiverStatus giftReceiverStatus) => giftReceiverStatus.toJson();
 GiftReceiverStatus giftReceiverStatusFromJson(Map<String, dynamic> json) => GiftReceiverStatus.fromJson(json);
+
+@freezed
+class GiftReceiverNotificationUnion with _$GiftReceiverNotificationUnion{
+  const factory GiftReceiverNotificationUnion.dataa(GiftReceiver giftReceiver) = Data;
+  const factory GiftReceiverNotificationUnion.loading() = Loading;
+  const factory GiftReceiverNotificationUnion.error(Object err) = Error;
+}
