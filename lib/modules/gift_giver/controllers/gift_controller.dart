@@ -48,20 +48,6 @@ class GiftController extends GetxController {
           }
         }
         _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
-
-        // docList.forEach(
-        //   (GiftGiver doc) {
-        //     //filtering logic goes here
-        //     if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
-        //       List<GiftGiver> tempFilteredList = [
-        //         ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
-        //         doc
-        //       ];
-        //       filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
-        //     }
-        //   },
-        // );
-        // _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
       }, empty: () {
         filteredGiftList.value = const GiftGiverListUnion.empty();
         _updateMarkers([]);
@@ -75,6 +61,14 @@ class GiftController extends GetxController {
     });
 
     // bindLocationData();
+  }
+
+  void updateGift(GiftGiver giftGiver) {
+    for (GiftGiver item in filteredGiftList.value.maybeWhen(data: (giftList) => giftList, orElse: () => [])) {
+      if (item == giftGiver) {
+        print(item.id);
+      }
+    }
   }
 
   @override
@@ -93,8 +87,8 @@ class GiftController extends GetxController {
 
       final GeoPoint point = giftAsk.position.geopoint;
 
-      var userPoint = geo.point(
-          latitude: currentUserLocation.value.latitude, longitude: currentUserLocation.value.longitude);
+      var userPoint =
+          geo.point(latitude: currentUserLocation.value.latitude, longitude: currentUserLocation.value.longitude);
 
       var distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
 
@@ -120,7 +114,7 @@ class GiftController extends GetxController {
   // }
 
   void bindGiftStream() async {
-     Get.find<AuthController>().bindLocationData();
+    Get.find<AuthController>().bindLocationData();
 
     giftList.bindStream(giftService.giftStreamByLocation());
   }
