@@ -11,7 +11,7 @@ abstract class BaseGiftReceiverService {
 
   Future<void> deleteGiftRequest(String docId);
 
-  Future<GiftReceiver?> getGiftRequest({required String id});
+  Future<GiftReceiverNotificationUnion> getGiftRequest({required String id});
 
   Future<bool> updateGiftReceiver({required GiftReceiver giftReceiver});
 }
@@ -23,20 +23,20 @@ class GiftReceiverService implements BaseGiftReceiverService {
   final FirebaseFirestore _firestore;
 
   @override
-  Future<GiftReceiver> getGiftRequest({required String id}) async {
+  Future<GiftReceiverNotificationUnion> getGiftRequest({required String id}) async {
     try {
       var doc = await _firestore.collection('gift_receiver').doc(id).get();
 
-      if(doc.exists) {
-      return GiftReceiver.fromJson(doc.data()!);
-      }else {
-        throw GiftReceiverException(message: 'Gift request deleted');
+      if (doc.exists) {
+        var giftReceiver = GiftReceiver.fromJson(doc.data()!);
+        return GiftReceiverNotificationUnion.dataa(giftReceiver);
+      } else {
+        return GiftReceiverNotificationUnion.error(GiftReceiverException(message: 'Gift request deleted'));
       }
-
     } on FirebaseException catch (e) {
-      throw GiftReceiverException(message: e.message);
+      return GiftReceiverNotificationUnion.error(e);
     } on Exception catch (_) {
-      throw GiftReceiverException(message: 'Gift request deleted');
+      return GiftReceiverNotificationUnion.error(GiftReceiverException(message: 'Gift request deleted'));
     }
   }
 
