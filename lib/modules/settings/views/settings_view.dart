@@ -1,9 +1,11 @@
+import 'package:alokito_new/modules/language/language_controller.dart';
 import 'package:alokito_new/modules/settings/views/general_settings_view.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({Key? key}) : super(key: key);
@@ -61,6 +63,17 @@ class SettingsView extends StatelessWidget {
             SizedBox(
               height: 100.h,
             ),
+            MyText('appName'.tr),
+            TextButton(
+                onPressed: () {
+                  Get.find<LanguageController>().changeLocale('en', 'US');
+                },
+                child: const Text('English')),
+            TextButton(
+                onPressed: () {
+                  Get.find<LanguageController>().changeLocale('bn', 'BD');
+                },
+                child: const Text('Bangla')),
             buildSettingsItem(
                 assetFileName: 'gear.svg',
                 title: 'General Settings',

@@ -1,6 +1,9 @@
 # alokito_new
 
-A new Flutter project.
+# commit_message
+
+Added Internationaliztion , just needs translation of all text
+Made MyAlokitoApp stateless, removed asset caching code
 
 # issues
   *After verification is done, user is shown verification screen twice

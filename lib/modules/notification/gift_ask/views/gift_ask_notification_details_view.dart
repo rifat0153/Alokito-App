@@ -32,14 +32,16 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var requesterIdCreatedAgo =
-        DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(giftAskGiver.createdAt.millisecondsSinceEpoch)).inDays;
+    var requesterIdCreatedAgo = DateTime.now()
+        .difference(DateTime.fromMillisecondsSinceEpoch(giftAskGiver.createdAt.millisecondsSinceEpoch))
+        .inDays;
 
-    LatLng requesterLatLng =
-        LatLng(giftAskGiver.requester.position.geopoint.latitude, giftAskGiver.requester.position.geopoint.longitude);
+    LatLng requesterLatLng = LatLng(
+        giftAskGiver.requester.position.geopoint.latitude, giftAskGiver.requester.position.geopoint.longitude);
     var markers = [Marker(markerId: MarkerId(giftAskGiver.id.toString()), position: requesterLatLng)];
 
-    var distanceBetweenRequesterAndGiver = calculateDistance(giftAskGiver.requester.position, giftAskGiver.giver.position);
+    var distanceBetweenRequesterAndGiver =
+        calculateDistance(giftAskGiver.requester.position, giftAskGiver.giver.position);
 
     return SkeletonWidget(
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
@@ -87,21 +89,24 @@ class _DecisionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //*********************       If its requester notification          ********************
     if (giftAskGiver.requester.id == Get.find<AuthController>().currentUser.value.id) {
-      if (giftAskGiver.messageForGiverrSent == true && giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
+      if (giftAskGiver.messageForGiverrSent == true &&
+          giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
         return Column(
           children: [
             MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
           ],
         );
       }
-      if (giftAskGiver.messageForGiverrSent == false && giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
+      if (giftAskGiver.messageForGiverrSent == false &&
+          giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
         return Column(
           children: [
             MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
             MaterialButton(
               onPressed: () {
                 showDialog(
-                    context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: true));
+                    context: context,
+                    builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: true));
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
@@ -224,7 +229,8 @@ class _DecisionWidget extends StatelessWidget {
           MaterialButton(
             onPressed: () {
               showDialog(
-                  context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+                  context: context,
+                  builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -244,7 +250,8 @@ class _DecisionWidget extends StatelessWidget {
           MaterialButton(
             onPressed: () {
               showDialog(
-                  context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+                  context: context,
+                  builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
