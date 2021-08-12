@@ -8,10 +8,12 @@ class MyTranslations extends Translations {
     'en_US': {
       'appName': 'Alokito',
       'user': 'User',
+      'giftGiver': 'Gift Giver',
     },
     'bn_BD': {
       'appName': 'অলোকিতো',
       'user': 'ব্যবহারকারী',
+      'giftGiver': 'ব্যবহারকারী',
     }
   };
 

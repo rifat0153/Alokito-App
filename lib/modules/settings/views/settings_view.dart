@@ -65,13 +65,13 @@ class SettingsView extends StatelessWidget {
             ),
             MyText('appName'.tr),
             TextButton(
-                onPressed: () {
-                  Get.find<LanguageController>().changeLocale('en', 'US');
+                onPressed: ()  async {
+                  await Get.find<LanguageController>().changeLocale('en', 'US');
                 },
                 child: const Text('English')),
             TextButton(
-                onPressed: () {
-                  Get.find<LanguageController>().changeLocale('bn', 'BD');
+                onPressed: () async {
+                  await Get.find<LanguageController>().changeLocale('bn', 'BD');
                 },
                 child: const Text('Bangla')),
             buildSettingsItem(
