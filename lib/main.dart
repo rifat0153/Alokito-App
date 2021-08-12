@@ -1,13 +1,13 @@
 // @dart=2.9
 // above line is used to disabel sound null safety
+import 'package:alokito_new/modules/language/language_controller.dart';
+import 'package:alokito_new/modules/language/translations.dart';
 import 'package:alokito_new/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 
 Future<void> main() async {
@@ -19,26 +19,10 @@ Future<void> main() async {
   );
 }
 
-class AlokitoApp extends StatefulWidget {
+class AlokitoApp extends StatelessWidget {
   // This widget is the root of your application.
-  @override
-  _AlokitoAppState createState() => _AlokitoAppState();
-}
 
-class _AlokitoAppState extends State<AlokitoApp> {
-  AssetImage giftGiverImage;
-
-  @override
-  void initState() {
-    super.initState();
-    giftGiverImage = const AssetImage('assets/images/rsz_background.png');
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    precacheImage(giftGiverImage, context);
-  }
+  final LanguageController languageController = Get.put(LanguageController());
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +41,11 @@ class _AlokitoAppState extends State<AlokitoApp> {
     return ScreenUtilInit(
       designSize: const Size(392, 781),
       builder: () => GetMaterialApp(
-        // darkTheme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        translations: MyTranslations(),
+        locale: const Locale('en', 'US') ,
+        fallbackLocale: const Locale('en', 'US'),
+        title: 'Alokito',
         theme: ThemeData(
           fontFamily: 'Playtime',
           textTheme: TextTheme(bodyText2: TextStyle(fontSize: 20.sp)),

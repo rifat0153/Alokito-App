@@ -84,7 +84,7 @@ class _DecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //*************************** If its requester notification              ***
+    //*************************** If its requester notification   ********************************
     if (giftReceiver.requester.id == Get.find<AuthController>().currentUser.value.id) {
       return giftReceiver.giftReceiverStatus.when(
         pending: () => MaterialButton(
