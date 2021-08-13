@@ -62,7 +62,18 @@ class MyDrawer extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30.r,
-                    backgroundImage: NetworkImage(user.imageUrl!),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30.r),
+                      child: SizedBox(
+                        width: 60.r,
+                        height: 60.r,
+                        child: Image.network(
+                          user.imageUrl ?? '',
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, obj, st) => Image.asset('assets/images/profile_placeholder.png'),
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     width: 8.w,

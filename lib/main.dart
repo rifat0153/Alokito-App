@@ -23,7 +23,6 @@ Future<void> main() async {
 class AlokitoApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  final LanguageController languageController = Get.put(LanguageController());
 
   @override
   Widget build(BuildContext context) {

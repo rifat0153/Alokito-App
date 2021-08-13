@@ -23,14 +23,25 @@ class InitialView extends StatefulWidget {
 
 class _InitialViewState extends State<InitialView> {
   final firebaseController = Get.put(MyFirebase());
+  
   final connectionController = Get.put(ConnectionController());
+
   final authController = Get.put(AuthController());
+
   final loginController = Get.put(LoginController());
+
   final giftRecordController = Get.put(GiftRecordController());
+
   final giftRequestController = Get.put(GiftReceiverController());
+
   final giftAskGiverController = Get.put(GiftAskGiverController());
+
   final notificationController = Get.put(NotificationController());
+
   final giftAskController = Get.put(GiftAskController(), permanent: true);
+
+  final LanguageController languageController = Get.put(LanguageController());
+
 
   // @override
   // void initState() {

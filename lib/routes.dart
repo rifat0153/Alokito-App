@@ -21,7 +21,7 @@ class GetPages {
     //* Auth Route
     GetPage(
       name: '/',
-      page: () => InitialView(),
+      page: () => const InitialView(),
     ),
     GetPage(
       name: LoginRegFormView.route,

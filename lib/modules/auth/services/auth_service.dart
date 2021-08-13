@@ -60,7 +60,7 @@ class AuthService implements BaseAuthService {
       DocumentSnapshot userDoc;
       if (uid.isNotEmpty) {
         userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
-        
+
         if (userDoc.exists) {
           LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
           return localUser;
@@ -76,20 +76,20 @@ class AuthService implements BaseAuthService {
 
   @override
   Future<void> updateUserRating(String userId, int rating) async {
-    DocumentReference documentReference = _firestore.collection('users').doc(userId);
+    final DocumentReference documentReference = _firestore.collection('users').doc(userId);
 
     try {
       await _firestore.runTransaction((transaction) async {
-        DocumentSnapshot snapshot = await transaction.get(documentReference);
+        final DocumentSnapshot snapshot = await transaction.get(documentReference);
 
         if (!snapshot.exists) {
           throw AuthException(message: 'User $userId does not exists');
         }
-        LocalUser localUser = LocalUser.fromJson(snapshot.data()!);
+        final LocalUser localUser = LocalUser.fromJson(snapshot.data()!);
 
-        var newRating = (localUser.ratingSum + rating) / (localUser.totalRating + 1);
+        final newRating = (localUser.ratingSum + rating) / (localUser.totalRating + 1);
 
-        var updatedUser = localUser.copyWith(
+        final updatedUser = localUser.copyWith(
           ratingSum: localUser.ratingSum + rating,
           totalRating: localUser.totalRating + 1,
           averageRating: newRating,
@@ -146,7 +146,7 @@ class AuthService implements BaseAuthService {
           .snapshots()
           .map((DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {
-          var retVal = LocalUser.fromJson(documentSnapshot.data()!);
+          final retVal = LocalUser.fromJson(documentSnapshot.data()!);
           return retVal;
         } else {
           return initialUser;
@@ -168,22 +168,21 @@ class AuthService implements BaseAuthService {
   }) async {
     try {
       // EasyLoading.show(status: 'loading...');
-      UserCredential firebaseUser =
+      final UserCredential firebaseUser =
           await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
-      print('IN signup:  ' + firebaseUser.user!.uid);
+      final Geoflutterfire geo = Geoflutterfire();
 
-      Geoflutterfire geo = Geoflutterfire();
+      final loc = await Location().getLocation();
 
-      var loc = await Location().getLocation();
+      final LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
+      final myLocation = geo.point(latitude: userPosition.latitude, longitude: userPosition.longitude);
+      final pos = myLocation.data as Map<dynamic, dynamic>;
 
-      LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
-      var myLocation = geo.point(latitude: userPosition.latitude, longitude: userPosition.longitude);
-      var pos = myLocation.data as Map<dynamic, dynamic>;
+      final MyPosition myPosition =
+          MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
-      MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
-
-      LocalUser myUser = LocalUser(
+      final LocalUser myUser = LocalUser(
         id: firebaseUser.user?.uid,
         firstName: firstName,
         lastName: lastName,
@@ -209,18 +208,18 @@ class AuthService implements BaseAuthService {
   @override
   Future<void> uploadUserAndImage(LocalUser user, bool isUpdating, File localFile) async {
     if (localFile.path.isNotEmpty) {
-      var fileExtension = path.extension(localFile.path);
+      final fileExtension = path.extension(localFile.path);
 
-      var uuid = const Uuid().v4();
+      final uuid = const Uuid().v4();
 
-      firebase_storage.Reference firebaseStorageRef =
+      final firebase_storage.Reference firebaseStorageRef =
           firebase_storage.FirebaseStorage.instance.ref().child('users/images/$uuid$fileExtension');
 
       try {
         await firebaseStorageRef.putFile(localFile);
       } on firebase_core.FirebaseException catch (e) {}
 
-      String url = await firebaseStorageRef.getDownloadURL();
+      final String url = await firebaseStorageRef.getDownloadURL();
       await uploadUser(user, isUpdating, imageUrl: url);
     } else {
       await uploadUser(user, isUpdating);
@@ -237,15 +236,12 @@ class AuthService implements BaseAuthService {
     try {
       if (isUpdating) {
         await userRef.doc(user.id).update(user.toJson());
-
-        print('Updated user with id: ${user.id}');
       } else {
         user = user.copyWith(id: _firebaseAuth.currentUser?.uid);
 
-        DocumentReference documentRef = userRef.doc(user.id);
+        final DocumentReference documentRef = userRef.doc(user.id);
 
         await documentRef.set(user.toJson());
-        print('Uploaded user successfully: ${user.toString()}');
       }
     } on FirebaseException catch (e) {
       throw AuthException(message: e.message);
