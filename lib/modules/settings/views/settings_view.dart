@@ -13,8 +13,8 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    var rowPadding = 24.h;
+    final size = MediaQuery.of(context).size;
+    final rowPadding = 24.h;
 
     return SafeArea(
       child: Scaffold(

@@ -3,17 +3,17 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageController extends GetxController {
-  // @override
-  // void onInit() async {
-  //   super.onInit();
-  //   await setSavedLocal();
-  // }
-
   @override
-  void onReady() {
-    super.onReady();
-    setSavedLocal();
+  void onInit()  {
+    super.onInit();
+     setSavedLocal();
   }
+
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   setSavedLocal();
+  // }
 
   Future<void> setSavedLocal() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
