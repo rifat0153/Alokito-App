@@ -1,13 +1,16 @@
+import 'dart:async';
+
+import 'package:alokito_new/models/login/login.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
 import 'package:alokito_new/modules/auth/widgets/reg_image_input.dart';
+import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/shared/login_input.dart';
 import 'package:alokito_new/shared/my_name_input.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../shared/login_input.dart';
-import '../../../shared/config.dart';
-import '../controllers/login_controller.dart';
 
 class LoginRegFormView extends StatefulWidget {
   const LoginRegFormView();
@@ -28,7 +31,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
     });
     if (!isLogin) {
       Get.find<AuthController>().registering.value = true;
-    }else{
+    } else {
       Get.find<AuthController>().registering.value = false;
     }
   }
@@ -73,20 +76,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
             ),
           ),
           SizedBox(height: Get.size.height * 0.01),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: MaterialButton(
-              onPressed: loginController.verifyLogin,
-              color: loginColor,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 5),
-                child: Text(
-                  'Log In',
-                  style: TextStyle(color: Colors.white, fontSize: 25.sp, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
+          _LoginButton(loginController: loginController),
           SizedBox(height: Get.size.height * 0.02),
           GestureDetector(
             onTap: () {
@@ -136,7 +126,8 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: MyNameInput(
-                        hint: 'First Name', onChanged: (value) => loginController.firstName.value = value as String),
+                        hint: 'First Name',
+                        onChanged: (value) => loginController.firstName.value = value as String),
                   ),
                   SizedBox(height: 13.h),
                   Padding(
@@ -149,7 +140,8 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: MyNameInput(
-                        hint: 'Email Address', onChanged: (value) => loginController.email.value = value as String),
+                        hint: 'Email Address',
+                        onChanged: (value) => loginController.email.value = value as String),
                   ),
                   SizedBox(height: 13.h),
 
@@ -198,7 +190,6 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
                   ),
                   SizedBox(height: Get.size.height * 0.001),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(width: Get.size.width * 0.1),
                       Obx(
@@ -240,6 +231,103 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
                 ],
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _LoginButton extends StatefulWidget {
+  const _LoginButton({
+    Key? key,
+    required this.loginController,
+  }) : super(key: key);
+
+  final LoginController loginController;
+
+  @override
+  __LoginButtonState createState() => __LoginButtonState();
+}
+
+class __LoginButtonState extends State<_LoginButton> with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> sizeAnimation;
+  StreamSubscription? streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+
+    sizeAnimation = Tween<double>(begin: 60.w, end: 20.w).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          controller.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          controller.forward();
+        }
+      });
+
+
+    streamSubscription = Get.find<LoginController>().loginStatus.listen((status) {
+      if (status == const LoginStatus.logginIn()) {
+        controller.forward();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    streamSubscription?.cancel();
+    controller.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => widget.loginController.loginStatus.value.when(
+        logginIn: () => MaterialButton(
+          onPressed: widget.loginController.verifyInputAndLogin,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+          color:loginColor,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: sizeAnimation.value, vertical: 5.w),
+            child: Text(
+              'Log In',
+              style: TextStyle(color: Colors.white, fontSize: 25.sp, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        loggedIn: () => const Text('Logged IN'),
+        notLoggedIn: () => MaterialButton(
+          onPressed: widget.loginController.verifyInputAndLogin,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+          color: loginColor,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 60.w, vertical: 5.w),
+            child: Text(
+              'Log In',
+              style: TextStyle(color: Colors.white, fontSize: 25.sp, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        error: (err) => MaterialButton(
+          onPressed: widget.loginController.verifyInputAndLogin,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+          color: loginColor,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 60.w, vertical: 5.w),
+            child: Text(
+              'Log In',
+              style: TextStyle(color: Colors.white, fontSize: 25.sp, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
       ),

@@ -1,22 +1,25 @@
 import 'dart:io';
 
+import 'package:alokito_new/models/login/login.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'auth_controller.dart';
 
 class LoginController extends GetxController {
-  var firstName = 'a'.obs;
-  var lastName = 'a'.obs;
-  var password = '123456'.obs;
-  var confirmPassword = '123456'.obs;
-  var email = 'rifat0153@gmail.com'.obs;
-  var userName = 'rrr'.obs;
+  RxString firstName = 'a'.obs;
+  RxString lastName = 'a'.obs;
+  RxString password = '123456'.obs;
+  RxString confirmPassword = '123456'.obs;
+  RxString email = 'rifat0153@gmail.com'.obs;
+  RxString userName = 'rrr'.obs;
   Rx<File> imageFile = File('').obs;
-  var aggreedToTermsAndCondition = true.obs;
+  RxBool aggreedToTermsAndCondition = true.obs;
 
-  void verifyRegistration() async {
-    AuthController authController = Get.find();
+  Rx<LoginStatus> loginStatus = const LoginStatus.notLoggedIn().obs;
+
+  Future<void> verifyRegistration() async {
+    final AuthController authController = Get.find();
 
     if (firstName.value.isEmpty) {
       Get.snackbar('Reg Error', 'First Name cant be empty', backgroundColor: registrationErrorColor);
@@ -32,7 +35,7 @@ class LoginController extends GetxController {
     }
 
     if (password.value.isEmpty) {
-      Get.snackbar('Reg Error', 'Password can\'t be  empty', backgroundColor: registrationErrorColor);
+      Get.snackbar('Reg Error', "Password can't be  empty", backgroundColor: registrationErrorColor);
       return;
     }
     if (password.value != confirmPassword.value) {
@@ -40,7 +43,8 @@ class LoginController extends GetxController {
       return;
     }
     if (!aggreedToTermsAndCondition.value) {
-      Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON', backgroundColor: registrationErrorColor);
+      Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON',
+          backgroundColor: registrationErrorColor);
       return;
     }
 
@@ -55,26 +59,34 @@ class LoginController extends GetxController {
     Get.find<AuthController>().authCompleted.value = true;
   }
 
-  void verifyLogin() async {
-    AuthController authController = Get.find();
+  Future<void> verifyInputAndLogin() async {
+    final AuthController authController = Get.find();
+
+    loginStatus.value = const LoginStatus.logginIn();
 
     if (email.value.isEmpty) {
       Get.snackbar('Login Error', 'Email cant be empty', backgroundColor: Colors.red);
       return;
     }
 
+    await Future.delayed(Duration(seconds: 1));
+
     try {
       await authController.authService.signIn(
         email: email.value,
         password: password.value,
       );
+
+      loginStatus.value = const LoginStatus.loggedIn();
+
       Get.find<AuthController>().authCompleted.value = true;
     } catch (e) {
+      loginStatus.value = LoginStatus.error(e);
       showErrorMessage(e.toString());
     }
   }
 
-  void showErrorMessage(String message) async {
+  void showErrorMessage(String message)  {
     Get.snackbar(
       'Login Error',
       message,
