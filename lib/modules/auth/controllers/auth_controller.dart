@@ -1,4 +1,6 @@
+import 'package:alokito_new/models/login/login.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
+import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -41,8 +43,10 @@ class AuthController extends GetxController {
     super.onClose();
   }
 
-  void signOut() async {
+  Future signOut() async {
     await authService.signOut();
+
+    Get.find<LoginController>().loginStatus.value =const LoginStatus.notLoggedIn();
     authCompleted.value = false;
   }
 
@@ -105,12 +109,12 @@ class AuthController extends GetxController {
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();
-    var giftGiverPoint = geo.point(
+    final giftGiverPoint = geo.point(
         latitude: giftGiver.position.geopoint.latitude, longitude: giftGiver.position.geopoint.longitude);
 
     final GiftController giftController = Get.find();
 
-    var distance = giftGiverPoint.distance(
+    final distance = giftGiverPoint.distance(
         lat: giftController.currentUserLocation.value.latitude,
         lng: giftController.currentUserLocation.value.longitude);
 
@@ -148,7 +152,4 @@ class AuthController extends GetxController {
   void bindMyUserStream() {
     currentUser.bindStream(authService.loggedInUserStream());
   }
-
-  // void setCurrentUser(LocalUser user) => currentUser.value = user;
-  // LocalUser getCurrentUser() => currentUser.value;
 }
