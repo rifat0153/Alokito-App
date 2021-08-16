@@ -25,6 +25,7 @@ class LoginController extends GetxController {
       Get.snackbar('Reg Error', 'First Name cant be empty', backgroundColor: registrationErrorColor);
       return;
     }
+    // 
     // if (imageFile.value.path.isEmpty) {
     //   Get.snackbar('Reg Error', 'Image is needed', backgroundColor: registrationErrorColor);
     //   return;
