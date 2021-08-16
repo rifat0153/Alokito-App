@@ -74,7 +74,7 @@ class NotificationView extends StatelessWidget {
                     );
                   }
 
-                  return Text('data');
+                  return const Text('data');
                 },
               ),
             );
