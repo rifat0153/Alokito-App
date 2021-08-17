@@ -11,7 +11,7 @@ _$_GiftAsk _$_$_GiftAskFromJson(Map<String, dynamic> json) {
     id: json['id'] as String?,
     giftCompleted: json['giftCompleted'] as bool? ?? false,
     giftGiven: json['giftGiven'] as bool? ?? false,
-    requester: localUserFromJson(json['requester'] as Map<String, dynamic>),
+    requester: localUserFromJson(json['requester'] as String),
     address: json['address'] as String,
     area: json['area'] as String,
     position: myPositionFromJson(json['position'] as Map<String, dynamic>),

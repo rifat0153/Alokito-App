@@ -9,46 +9,67 @@ part of 'local_user.dart';
 _$_LocalUser _$_$_LocalUserFromJson(Map<String, dynamic> json) {
   return _$_LocalUser(
     id: json['id'] as String?,
-    firstName: json['firstName'] as String,
-    lastName: json['lastName'] as String,
+    email: json['email'] as String,
+    userName: json['userName'] as String,
+    imageUrl: json['imageUrl'] as String,
+    geometry: Geometry.fromJson(json['geometry'] as Map<String, dynamic>),
+    firstName: json['firstName'] as String? ?? '',
+    lastName: json['lastName'] as String? ?? '',
+    hasNotifications: json['hasNotifications'] as bool? ?? false,
     ratingSum: (json['ratingSum'] as num?)?.toDouble() ?? 0,
     totalRating: (json['totalRating'] as num?)?.toDouble() ?? 0,
     averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0,
-    userName: json['userName'] as String,
-    email: json['email'] as String,
-    hasGiftRequest: json['hasGiftRequest'] as bool? ?? false,
+    giftGiven: (json['giftGiven'] as num?)?.toDouble() ?? 0,
+    giftReceived: (json['giftReceived'] as num?)?.toDouble() ?? 0,
+    hasGiftGiverRequest: json['hasGiftGiverRequest'] as bool? ?? false,
     hasGiftAskRequest: json['hasGiftAskRequest'] as bool? ?? false,
     requestedGiftId: json['requestedGiftId'] as String? ?? '',
     acceptedGiftId: json['acceptedGiftId'] as String? ?? '',
-    imageUrl: json['imageUrl'] as String?,
-    hasNotifications: json['hasNotifications'] as bool? ?? false,
     role: json['role'] as String? ?? 'user',
-    giftOffered: json['giftOffered'] as int? ?? 0,
-    giftReceived: json['giftReceived'] as int? ?? 0,
-    position: myPositionFromJson(json['position'] as Map<String, dynamic>),
-    createdAt: timestampFromJson(json['createdAt'] as Timestamp),
+    createdAt: DateTime.parse(json['createdAt'] as String),
+    updatedAt: DateTime.parse(json['updatedAt'] as String),
+    v: json['v'] as int? ?? 1,
   );
 }
 
 Map<String, dynamic> _$_$_LocalUserToJson(_$_LocalUser instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'email': instance.email,
+      'userName': instance.userName,
+      'imageUrl': instance.imageUrl,
+      'geometry': instance.geometry,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
+      'hasNotifications': instance.hasNotifications,
       'ratingSum': instance.ratingSum,
       'totalRating': instance.totalRating,
       'averageRating': instance.averageRating,
-      'userName': instance.userName,
-      'email': instance.email,
-      'hasGiftRequest': instance.hasGiftRequest,
+      'giftGiven': instance.giftGiven,
+      'giftReceived': instance.giftReceived,
+      'hasGiftGiverRequest': instance.hasGiftGiverRequest,
       'hasGiftAskRequest': instance.hasGiftAskRequest,
       'requestedGiftId': instance.requestedGiftId,
       'acceptedGiftId': instance.acceptedGiftId,
-      'imageUrl': instance.imageUrl,
-      'hasNotifications': instance.hasNotifications,
       'role': instance.role,
-      'giftOffered': instance.giftOffered,
-      'giftReceived': instance.giftReceived,
-      'position': myPositionToJson(instance.position),
-      'createdAt': timestampToJson(instance.createdAt),
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'v': instance.v,
+    };
+
+_$_Geometry _$_$_GeometryFromJson(Map<String, dynamic> json) {
+  return _$_Geometry(
+    type: json['type'] as String? ?? 'Point',
+    id: json['id'] as String?,
+    coordinates: (json['coordinates'] as List<dynamic>)
+        .map((e) => (e as num).toDouble())
+        .toList(),
+  );
+}
+
+Map<String, dynamic> _$_$_GeometryToJson(_$_Geometry instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'id': instance.id,
+      'coordinates': instance.coordinates,
     };

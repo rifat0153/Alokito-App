@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:http/http.dart' as http;
 
 import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
@@ -171,25 +172,20 @@ class AuthService implements BaseAuthService {
       final UserCredential firebaseUser =
           await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
-      final Geoflutterfire geo = Geoflutterfire();
-
       final loc = await Location().getLocation();
-
       final LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
-      final myLocation = geo.point(latitude: userPosition.latitude, longitude: userPosition.longitude);
-      final pos = myLocation.data as Map<dynamic, dynamic>;
-
-      final MyPosition myPosition =
-          MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
+      final Geometry geometry = Geometry(coordinates: [userPosition.longitude, userPosition.latitude]);
 
       final LocalUser myUser = LocalUser(
         id: firebaseUser.user?.uid,
+        imageUrl: '',
         firstName: firstName,
         lastName: lastName,
         email: email,
         userName: userName,
-        position: myPosition,
-        createdAt: Timestamp.now(),
+        geometry: geometry,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
       );
 
       await uploadUserAndImage(myUser, false, localImageFile);
@@ -209,7 +205,6 @@ class AuthService implements BaseAuthService {
   Future<void> uploadUserAndImage(LocalUser user, bool isUpdating, File localFile) async {
     if (localFile.path.isNotEmpty) {
       final fileExtension = path.extension(localFile.path);
-
       final uuid = const Uuid().v4();
 
       final firebase_storage.Reference firebaseStorageRef =
@@ -243,6 +238,13 @@ class AuthService implements BaseAuthService {
 
         await documentRef.set(user.toJson());
       }
+
+      final client = http.Client();
+
+      final uriResponse =
+          await client.post(Uri.parse('https://localhost:3000/api/v1/user/store'), body: user.toJson());
+
+      print(uriResponse);
     } on FirebaseException catch (e) {
       throw AuthException(message: e.message);
     }

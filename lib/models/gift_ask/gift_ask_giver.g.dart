@@ -14,8 +14,8 @@ _$_GiftAskGiver _$_$_GiftAskGiverFromJson(Map<String, dynamic> json) {
     giftAskStatus: giftAskStatusFromJson(json['giftAskStatus'] as int),
     messageForRequesterSent: json['messageForRequesterSent'] as bool? ?? false,
     messageForGiverrSent: json['messageForGiverrSent'] as bool? ?? false,
-    giver: localUserFromJson(json['giver'] as Map<String, dynamic>),
-    requester: localUserFromJson(json['requester'] as Map<String, dynamic>),
+    giver: localUserFromJson(json['giver'] as String),
+    requester: localUserFromJson(json['requester'] as String),
     createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
 }

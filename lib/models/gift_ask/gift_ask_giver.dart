@@ -1,5 +1,4 @@
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/user/local_user.dart';

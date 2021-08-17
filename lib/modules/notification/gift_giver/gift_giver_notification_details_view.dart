@@ -24,10 +24,13 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
 
   final GiftGiverNotificationController controller = Get.put(GiftGiverNotificationController());
 
-  double calculateDistance(MyPosition posotion1, MyPosition posotion2) {
-    return Geoflutterfire()
-        .point(latitude: posotion1.geopoint.latitude, longitude: posotion1.geopoint.longitude)
-        .distance(lat: posotion2.geopoint.latitude, lng: posotion2.geopoint.longitude);
+  double calculateDistance(
+    double lat1,
+    double lng1,
+    double lat2,
+    double lng2,
+  ) {
+    return Geoflutterfire().point(latitude: lat1, longitude: lng1).distance(lat: lat2, lng: lng2);
   }
 
   @override
@@ -36,13 +39,17 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
         .difference(DateTime.fromMillisecondsSinceEpoch(giftReceiver!.createdAt.millisecondsSinceEpoch))
         .inDays;
 
-    LatLng requesterLatLng = LatLng(
-        giftReceiver!.requester.position.geopoint.latitude, giftReceiver!.requester.position.geopoint.longitude);
+    final LatLng requesterLatLng =
+        LatLng(giftReceiver!.requester.geometry.coordinates[1], giftReceiver!.requester.geometry.coordinates[0]);
     var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: requesterLatLng)];
-
-    var distanceBetweenRequesterAndGiver =
-        calculateDistance(giftReceiver!.requester.position, giftReceiver!.giftGiver.userPosition);
-
+    final giverCoordinates = giftReceiver!.requester.geometry.coordinates;
+    final requesterCoordinates = giftReceiver!.requester.geometry.coordinates;
+    final distanceBetweenRequesterAndGiver = calculateDistance(
+      giverCoordinates[1],
+      giverCoordinates[0],
+      requesterCoordinates[1],
+      requesterCoordinates[0],
+    );
     return SkeletonWidget(
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
       assetPath: 'assets/images/gift_details.png',
@@ -288,7 +295,9 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    MyText(giftReceiver.requester.giftOffered.toString()),
+                    // TODO FIX
+                    MyText('1'),
+                    // MyText(giftReceiver.requester.giftOffered.toString()),
                     MyText('All time', fontSize: 14),
                     MyText(giftReceiver.requester.giftReceived.toString()),
                   ],

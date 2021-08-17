@@ -20,10 +20,12 @@ final giftAddFormColor = Colors.grey[300]!.withOpacity(0.5);
 final giftAddFormSubmitColor = Colors.blueGrey[700];
 
 final LocalUser initialUser = LocalUser(
-    firstName: '',
-    lastName: '',
-    userName: '',
-    email: '',
-    // imageUrl: 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png',
-    position: const MyPosition(geohash: '', geopoint: GeoPoint(0, 0)),
-    createdAt: Timestamp.now());
+  firstName: '',
+  lastName: '',
+  userName: '',
+  email: '',
+  imageUrl: '',
+  geometry: const Geometry(coordinates: [23, 90]),
+  createdAt: DateTime.now(),
+  updatedAt: DateTime.now(),
+);

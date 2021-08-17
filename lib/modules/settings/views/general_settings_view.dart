@@ -85,7 +85,7 @@ class GeneralSettingsView extends StatelessWidget {
                   value: Get.find<AuthController>()
                       .currentUserInfo
                       .value
-                      .maybeWhen(data: (user) => user.position.geopoint.toString(), orElse: () => ''),
+                      .maybeWhen(data: (user) => '1', orElse: () => ''),
                   navFunction: () {}),
             ),
             Padding(

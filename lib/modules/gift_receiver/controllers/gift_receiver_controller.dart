@@ -82,7 +82,7 @@ class GiftReceiverController extends GetxController {
 
   // * Add Gift Reuqest
   Future<void> addGiftRequestAndNotification(GiftGiver giftGiver) async {
-    var found = Get.find<AuthController>().currentUser.value.hasGiftRequest;
+    var found = Get.find<AuthController>().currentUser.value.hasGiftGiverRequest;
 
     if (found) {
       await showSuccessOrErrorMessage(false, 'Request Already Found', '', 'One request per user at a time');

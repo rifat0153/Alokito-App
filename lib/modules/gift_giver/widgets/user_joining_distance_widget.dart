@@ -20,10 +20,21 @@ class UserRatingAndDistance extends StatelessWidget {
             longitude: giftGiver.userPosition.geopoint.longitude)
         .distance(
           lat: authController.currentUserInfo.value
-              .maybeWhen(data: (user) => user.position.geopoint.latitude, orElse: () => 0),
+              .maybeWhen(data: (user) => 23, orElse: () => 0),
           lng: authController.currentUserInfo.value
-              .maybeWhen(data: (user) => user.position.geopoint.longitude, orElse: () => 0),
+              .maybeWhen(data: (user) => 90, orElse: () => 0),
         );
+        // TODO FIX
+    // var distance = Geoflutterfire()
+    //     .point(
+    //         latitude: giftGiver.userPosition.geopoint.latitude,
+    //         longitude: giftGiver.userPosition.geopoint.longitude)
+    //     .distance(
+    //       lat: authController.currentUserInfo.value
+    //           .maybeWhen(data: (user) => user.position.geopoint.latitude, orElse: () => 0),
+    //       lng: authController.currentUserInfo.value
+    //           .maybeWhen(data: (user) => user.position.geopoint.longitude, orElse: () => 0),
+    //     );
 
     const double starSize = 12;
 

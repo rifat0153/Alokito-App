@@ -17,8 +17,8 @@ GeoPoint geoPointFromJson(GeoPoint json) => json;
 Map<String, dynamic> myPositionToJson(MyPosition myPosition) => myPosition.toJson();
 MyPosition myPositionFromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);
 
-Map<String, dynamic> localUserToJson(LocalUser localUser) => localUser.toJson();
-LocalUser localUserFromJson(Map<String, dynamic> json) => LocalUser.fromJson(json);
+// Map<String, dynamic> localUserToJson(LocalUser localUser) => localUser.toJson();
+// LocalUser localUserFromJson(Map<String, dynamic> json) => LocalUser.fromJson(json);
 
 Map<String, dynamic> giftAskToJson(GiftAsk giftAsk) => giftAsk.toJson();
 GiftAsk giftAskFromJson(Map<String, dynamic> json) => GiftAsk.fromJson(json);

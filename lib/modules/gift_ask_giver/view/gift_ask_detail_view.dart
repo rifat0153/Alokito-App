@@ -28,10 +28,11 @@ class GiftAskDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var date = DateFormat.yMd().format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
-    var distance = calculateDistance(
-      giftAsk.requester.position,
-      Get.find<AuthController>().currentUser.value.position,
-    );
+    // TODO FIX
+    // var distance = calculateDistance(
+    //   giftAsk.requester.position,
+    //   Get.find<AuthController>().currentUser.value.geometry,
+    // );
     var userJoinedAt = DateTime.now()
             .difference(
               DateTime.fromMillisecondsSinceEpoch(giftAsk.requester.createdAt.millisecondsSinceEpoch),
@@ -69,7 +70,9 @@ class GiftAskDetailView extends StatelessWidget {
                 image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
-            _buildBody(date, distance, userJoinedAt, markers),
+            // _buildBody(date, distance, userJoinedAt, markers),
+            // TODO FIX
+            _buildBody(date, 1, userJoinedAt, markers),
           ],
         ),
       ),
@@ -231,7 +234,9 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    MyText(giftAsk.requester.giftOffered.toString()),
+                    // TODO FIX
+                    // MyText(giftAsk.requester.giftOffered.toString()),
+                    MyText('1'),
                     MyText('All time', fontSize: 14),
                     MyText(giftAsk.requester.giftReceived.toString()),
                   ],

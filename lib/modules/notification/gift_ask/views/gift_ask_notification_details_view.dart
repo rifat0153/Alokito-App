@@ -24,10 +24,13 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
 
   final GiftAskNotificationController controller = Get.put(GiftAskNotificationController());
 
-  double calculateDistance(MyPosition posotion1, MyPosition posotion2) {
-    return Geoflutterfire()
-        .point(latitude: posotion1.geopoint.latitude, longitude: posotion1.geopoint.longitude)
-        .distance(lat: posotion2.geopoint.latitude, lng: posotion2.geopoint.longitude);
+  double calculateDistance(
+    double lat1,
+    double lng1,
+    double lat2,
+    double lng2,
+  ) {
+    return Geoflutterfire().point(latitude: lat1, longitude: lng1).distance(lat: lat2, lng: lng2);
   }
 
   @override
@@ -36,12 +39,19 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
         .difference(DateTime.fromMillisecondsSinceEpoch(giftAskGiver.createdAt.millisecondsSinceEpoch))
         .inDays;
 
-    LatLng requesterLatLng = LatLng(
-        giftAskGiver.requester.position.geopoint.latitude, giftAskGiver.requester.position.geopoint.longitude);
-    var markers = [Marker(markerId: MarkerId(giftAskGiver.id.toString()), position: requesterLatLng)];
+    final LatLng requesterLatLng =
+        LatLng(giftAskGiver.requester.geometry.coordinates[1], giftAskGiver.requester.geometry.coordinates[0]);
+    final markers = [Marker(markerId: MarkerId(giftAskGiver.id.toString()), position: requesterLatLng)];
 
-    var distanceBetweenRequesterAndGiver =
-        calculateDistance(giftAskGiver.requester.position, giftAskGiver.giver.position);
+    final giverCoordinates = giftAskGiver.requester.geometry.coordinates;
+    final requesterCoordinates = giftAskGiver.giver.geometry.coordinates;
+
+    final distanceBetweenRequesterAndGiver = calculateDistance(
+      giverCoordinates[1],
+      giverCoordinates[0],
+      requesterCoordinates[1],
+      requesterCoordinates[0],
+    );
 
     return SkeletonWidget(
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
@@ -380,7 +390,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    MyText(giftAskGiver.requester.giftOffered.toString()),
+                    MyText(giftAskGiver.requester.giftGiven.toString()),
                     MyText('All time', fontSize: 14),
                     MyText(giftAskGiver.requester.giftReceived.toString()),
                   ],

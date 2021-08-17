@@ -22,46 +22,48 @@ class _$LocalUserTearOff {
 
   _LocalUser call(
       {String? id,
-      required String firstName,
-      required String lastName,
+      required String email,
+      required String userName,
+      required String imageUrl,
+      required Geometry geometry,
+      String firstName = '',
+      String lastName = '',
+      bool hasNotifications = false,
       double ratingSum = 0,
       double totalRating = 0,
       double averageRating = 0,
-      required String userName,
-      required String email,
-      bool hasGiftRequest = false,
+      double giftGiven = 0,
+      double giftReceived = 0,
+      bool hasGiftGiverRequest = false,
       bool hasGiftAskRequest = false,
       String requestedGiftId = '',
       String acceptedGiftId = '',
-      String? imageUrl,
-      bool hasNotifications = false,
       String role = 'user',
-      int giftOffered = 0,
-      int giftReceived = 0,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required MyPosition position,
-      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-          required Timestamp createdAt}) {
+      required DateTime createdAt,
+      required DateTime updatedAt,
+      int v = 1}) {
     return _LocalUser(
       id: id,
+      email: email,
+      userName: userName,
+      imageUrl: imageUrl,
+      geometry: geometry,
       firstName: firstName,
       lastName: lastName,
+      hasNotifications: hasNotifications,
       ratingSum: ratingSum,
       totalRating: totalRating,
       averageRating: averageRating,
-      userName: userName,
-      email: email,
-      hasGiftRequest: hasGiftRequest,
+      giftGiven: giftGiven,
+      giftReceived: giftReceived,
+      hasGiftGiverRequest: hasGiftGiverRequest,
       hasGiftAskRequest: hasGiftAskRequest,
       requestedGiftId: requestedGiftId,
       acceptedGiftId: acceptedGiftId,
-      imageUrl: imageUrl,
-      hasNotifications: hasNotifications,
       role: role,
-      giftOffered: giftOffered,
-      giftReceived: giftReceived,
-      position: position,
       createdAt: createdAt,
+      updatedAt: updatedAt,
+      v: v,
     );
   }
 
@@ -76,26 +78,26 @@ const $LocalUser = _$LocalUserTearOff();
 /// @nodoc
 mixin _$LocalUser {
   String? get id => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  Geometry get geometry => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
+  bool get hasNotifications => throw _privateConstructorUsedError;
   double get ratingSum => throw _privateConstructorUsedError;
   double get totalRating => throw _privateConstructorUsedError;
   double get averageRating => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  bool get hasGiftRequest => throw _privateConstructorUsedError;
+  double get giftGiven => throw _privateConstructorUsedError;
+  double get giftReceived => throw _privateConstructorUsedError;
+  bool get hasGiftGiverRequest => throw _privateConstructorUsedError;
   bool get hasGiftAskRequest => throw _privateConstructorUsedError;
   String get requestedGiftId => throw _privateConstructorUsedError;
   String get acceptedGiftId => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
-  bool get hasNotifications => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
-  int get giftOffered => throw _privateConstructorUsedError;
-  int get giftReceived => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get position => throw _privateConstructorUsedError;
-  @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  int get v => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -109,28 +111,28 @@ abstract class $LocalUserCopyWith<$Res> {
       _$LocalUserCopyWithImpl<$Res>;
   $Res call(
       {String? id,
+      String email,
+      String userName,
+      String imageUrl,
+      Geometry geometry,
       String firstName,
       String lastName,
+      bool hasNotifications,
       double ratingSum,
       double totalRating,
       double averageRating,
-      String userName,
-      String email,
-      bool hasGiftRequest,
+      double giftGiven,
+      double giftReceived,
+      bool hasGiftGiverRequest,
       bool hasGiftAskRequest,
       String requestedGiftId,
       String acceptedGiftId,
-      String? imageUrl,
-      bool hasNotifications,
       String role,
-      int giftOffered,
-      int giftReceived,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition position,
-      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-          Timestamp createdAt});
+      DateTime createdAt,
+      DateTime updatedAt,
+      int v});
 
-  $MyPositionCopyWith<$Res> get position;
+  $GeometryCopyWith<$Res> get geometry;
 }
 
 /// @nodoc
@@ -144,30 +146,48 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? email = freezed,
+    Object? userName = freezed,
+    Object? imageUrl = freezed,
+    Object? geometry = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
+    Object? hasNotifications = freezed,
     Object? ratingSum = freezed,
     Object? totalRating = freezed,
     Object? averageRating = freezed,
-    Object? userName = freezed,
-    Object? email = freezed,
-    Object? hasGiftRequest = freezed,
+    Object? giftGiven = freezed,
+    Object? giftReceived = freezed,
+    Object? hasGiftGiverRequest = freezed,
     Object? hasGiftAskRequest = freezed,
     Object? requestedGiftId = freezed,
     Object? acceptedGiftId = freezed,
-    Object? imageUrl = freezed,
-    Object? hasNotifications = freezed,
     Object? role = freezed,
-    Object? giftOffered = freezed,
-    Object? giftReceived = freezed,
-    Object? position = freezed,
     Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? v = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -176,6 +196,10 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
+      hasNotifications: hasNotifications == freezed
+          ? _value.hasNotifications
+          : hasNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
       ratingSum: ratingSum == freezed
           ? _value.ratingSum
           : ratingSum // ignore: cast_nullable_to_non_nullable
@@ -188,17 +212,17 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.averageRating
           : averageRating // ignore: cast_nullable_to_non_nullable
               as double,
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasGiftRequest: hasGiftRequest == freezed
-          ? _value.hasGiftRequest
-          : hasGiftRequest // ignore: cast_nullable_to_non_nullable
+      giftGiven: giftGiven == freezed
+          ? _value.giftGiven
+          : giftGiven // ignore: cast_nullable_to_non_nullable
+              as double,
+      giftReceived: giftReceived == freezed
+          ? _value.giftReceived
+          : giftReceived // ignore: cast_nullable_to_non_nullable
+              as double,
+      hasGiftGiverRequest: hasGiftGiverRequest == freezed
+          ? _value.hasGiftGiverRequest
+          : hasGiftGiverRequest // ignore: cast_nullable_to_non_nullable
               as bool,
       hasGiftAskRequest: hasGiftAskRequest == freezed
           ? _value.hasGiftAskRequest
@@ -212,41 +236,29 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.acceptedGiftId
           : acceptedGiftId // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hasNotifications: hasNotifications == freezed
-          ? _value.hasNotifications
-          : hasNotifications // ignore: cast_nullable_to_non_nullable
-              as bool,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      giftOffered: giftOffered == freezed
-          ? _value.giftOffered
-          : giftOffered // ignore: cast_nullable_to_non_nullable
-              as int,
-      giftReceived: giftReceived == freezed
-          ? _value.giftReceived
-          : giftReceived // ignore: cast_nullable_to_non_nullable
-              as int,
-      position: position == freezed
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as MyPosition,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as DateTime,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      v: v == freezed
+          ? _value.v
+          : v // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
   @override
-  $MyPositionCopyWith<$Res> get position {
-    return $MyPositionCopyWith<$Res>(_value.position, (value) {
-      return _then(_value.copyWith(position: value));
+  $GeometryCopyWith<$Res> get geometry {
+    return $GeometryCopyWith<$Res>(_value.geometry, (value) {
+      return _then(_value.copyWith(geometry: value));
     });
   }
 }
@@ -259,29 +271,29 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
+      String email,
+      String userName,
+      String imageUrl,
+      Geometry geometry,
       String firstName,
       String lastName,
+      bool hasNotifications,
       double ratingSum,
       double totalRating,
       double averageRating,
-      String userName,
-      String email,
-      bool hasGiftRequest,
+      double giftGiven,
+      double giftReceived,
+      bool hasGiftGiverRequest,
       bool hasGiftAskRequest,
       String requestedGiftId,
       String acceptedGiftId,
-      String? imageUrl,
-      bool hasNotifications,
       String role,
-      int giftOffered,
-      int giftReceived,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition position,
-      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-          Timestamp createdAt});
+      DateTime createdAt,
+      DateTime updatedAt,
+      int v});
 
   @override
-  $MyPositionCopyWith<$Res> get position;
+  $GeometryCopyWith<$Res> get geometry;
 }
 
 /// @nodoc
@@ -296,30 +308,48 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? email = freezed,
+    Object? userName = freezed,
+    Object? imageUrl = freezed,
+    Object? geometry = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
+    Object? hasNotifications = freezed,
     Object? ratingSum = freezed,
     Object? totalRating = freezed,
     Object? averageRating = freezed,
-    Object? userName = freezed,
-    Object? email = freezed,
-    Object? hasGiftRequest = freezed,
+    Object? giftGiven = freezed,
+    Object? giftReceived = freezed,
+    Object? hasGiftGiverRequest = freezed,
     Object? hasGiftAskRequest = freezed,
     Object? requestedGiftId = freezed,
     Object? acceptedGiftId = freezed,
-    Object? imageUrl = freezed,
-    Object? hasNotifications = freezed,
     Object? role = freezed,
-    Object? giftOffered = freezed,
-    Object? giftReceived = freezed,
-    Object? position = freezed,
     Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? v = freezed,
   }) {
     return _then(_LocalUser(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -328,6 +358,10 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
+      hasNotifications: hasNotifications == freezed
+          ? _value.hasNotifications
+          : hasNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
       ratingSum: ratingSum == freezed
           ? _value.ratingSum
           : ratingSum // ignore: cast_nullable_to_non_nullable
@@ -340,17 +374,17 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.averageRating
           : averageRating // ignore: cast_nullable_to_non_nullable
               as double,
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasGiftRequest: hasGiftRequest == freezed
-          ? _value.hasGiftRequest
-          : hasGiftRequest // ignore: cast_nullable_to_non_nullable
+      giftGiven: giftGiven == freezed
+          ? _value.giftGiven
+          : giftGiven // ignore: cast_nullable_to_non_nullable
+              as double,
+      giftReceived: giftReceived == freezed
+          ? _value.giftReceived
+          : giftReceived // ignore: cast_nullable_to_non_nullable
+              as double,
+      hasGiftGiverRequest: hasGiftGiverRequest == freezed
+          ? _value.hasGiftGiverRequest
+          : hasGiftGiverRequest // ignore: cast_nullable_to_non_nullable
               as bool,
       hasGiftAskRequest: hasGiftAskRequest == freezed
           ? _value.hasGiftAskRequest
@@ -364,34 +398,22 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.acceptedGiftId
           : acceptedGiftId // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hasNotifications: hasNotifications == freezed
-          ? _value.hasNotifications
-          : hasNotifications // ignore: cast_nullable_to_non_nullable
-              as bool,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      giftOffered: giftOffered == freezed
-          ? _value.giftOffered
-          : giftOffered // ignore: cast_nullable_to_non_nullable
-              as int,
-      giftReceived: giftReceived == freezed
-          ? _value.giftReceived
-          : giftReceived // ignore: cast_nullable_to_non_nullable
-              as int,
-      position: position == freezed
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as MyPosition,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as DateTime,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      v: v == freezed
+          ? _value.v
+          : v // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -399,28 +421,28 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LocalUser implements _LocalUser {
-  _$_LocalUser(
+  const _$_LocalUser(
       {this.id,
-      required this.firstName,
-      required this.lastName,
+      required this.email,
+      required this.userName,
+      required this.imageUrl,
+      required this.geometry,
+      this.firstName = '',
+      this.lastName = '',
+      this.hasNotifications = false,
       this.ratingSum = 0,
       this.totalRating = 0,
       this.averageRating = 0,
-      required this.userName,
-      required this.email,
-      this.hasGiftRequest = false,
+      this.giftGiven = 0,
+      this.giftReceived = 0,
+      this.hasGiftGiverRequest = false,
       this.hasGiftAskRequest = false,
       this.requestedGiftId = '',
       this.acceptedGiftId = '',
-      this.imageUrl,
-      this.hasNotifications = false,
       this.role = 'user',
-      this.giftOffered = 0,
-      this.giftReceived = 0,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required this.position,
-      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-          required this.createdAt});
+      required this.createdAt,
+      required this.updatedAt,
+      this.v = 1});
 
   factory _$_LocalUser.fromJson(Map<String, dynamic> json) =>
       _$_$_LocalUserFromJson(json);
@@ -428,9 +450,22 @@ class _$_LocalUser implements _LocalUser {
   @override
   final String? id;
   @override
+  final String email;
+  @override
+  final String userName;
+  @override
+  final String imageUrl;
+  @override
+  final Geometry geometry;
+  @JsonKey(defaultValue: '')
+  @override
   final String firstName;
+  @JsonKey(defaultValue: '')
   @override
   final String lastName;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool hasNotifications;
   @JsonKey(defaultValue: 0)
   @override
   final double ratingSum;
@@ -440,13 +475,15 @@ class _$_LocalUser implements _LocalUser {
   @JsonKey(defaultValue: 0)
   @override
   final double averageRating;
+  @JsonKey(defaultValue: 0)
   @override
-  final String userName;
+  final double giftGiven;
+  @JsonKey(defaultValue: 0)
   @override
-  final String email;
+  final double giftReceived;
   @JsonKey(defaultValue: false)
   @override
-  final bool hasGiftRequest;
+  final bool hasGiftGiverRequest;
   @JsonKey(defaultValue: false)
   @override
   final bool hasGiftAskRequest;
@@ -456,30 +493,20 @@ class _$_LocalUser implements _LocalUser {
   @JsonKey(defaultValue: '')
   @override
   final String acceptedGiftId;
-  @override
-  final String? imageUrl;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool hasNotifications;
   @JsonKey(defaultValue: 'user')
   @override
   final String role;
-  @JsonKey(defaultValue: 0)
   @override
-  final int giftOffered;
-  @JsonKey(defaultValue: 0)
+  final DateTime createdAt;
   @override
-  final int giftReceived;
+  final DateTime updatedAt;
+  @JsonKey(defaultValue: 1)
   @override
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  final MyPosition position;
-  @override
-  @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-  final Timestamp createdAt;
+  final int v;
 
   @override
   String toString() {
-    return 'LocalUser(id: $id, firstName: $firstName, lastName: $lastName, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, userName: $userName, email: $email, hasGiftRequest: $hasGiftRequest, hasGiftAskRequest: $hasGiftAskRequest, requestedGiftId: $requestedGiftId, acceptedGiftId: $acceptedGiftId, imageUrl: $imageUrl, hasNotifications: $hasNotifications, role: $role, giftOffered: $giftOffered, giftReceived: $giftReceived, position: $position, createdAt: $createdAt)';
+    return 'LocalUser(id: $id, email: $email, userName: $userName, imageUrl: $imageUrl, geometry: $geometry, firstName: $firstName, lastName: $lastName, hasNotifications: $hasNotifications, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, giftGiven: $giftGiven, giftReceived: $giftReceived, hasGiftGiverRequest: $hasGiftGiverRequest, hasGiftAskRequest: $hasGiftAskRequest, requestedGiftId: $requestedGiftId, acceptedGiftId: $acceptedGiftId, role: $role, createdAt: $createdAt, updatedAt: $updatedAt, v: $v)';
   }
 
   @override
@@ -488,12 +515,26 @@ class _$_LocalUser implements _LocalUser {
         (other is _LocalUser &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.userName, userName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userName, userName)) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.geometry, geometry) ||
+                const DeepCollectionEquality()
+                    .equals(other.geometry, geometry)) &&
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
+            (identical(other.hasNotifications, hasNotifications) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasNotifications, hasNotifications)) &&
             (identical(other.ratingSum, ratingSum) ||
                 const DeepCollectionEquality()
                     .equals(other.ratingSum, ratingSum)) &&
@@ -503,14 +544,15 @@ class _$_LocalUser implements _LocalUser {
             (identical(other.averageRating, averageRating) ||
                 const DeepCollectionEquality()
                     .equals(other.averageRating, averageRating)) &&
-            (identical(other.userName, userName) ||
+            (identical(other.giftGiven, giftGiven) ||
                 const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.hasGiftRequest, hasGiftRequest) ||
+                    .equals(other.giftGiven, giftGiven)) &&
+            (identical(other.giftReceived, giftReceived) ||
                 const DeepCollectionEquality()
-                    .equals(other.hasGiftRequest, hasGiftRequest)) &&
+                    .equals(other.giftReceived, giftReceived)) &&
+            (identical(other.hasGiftGiverRequest, hasGiftGiverRequest) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasGiftGiverRequest, hasGiftGiverRequest)) &&
             (identical(other.hasGiftAskRequest, hasGiftAskRequest) ||
                 const DeepCollectionEquality()
                     .equals(other.hasGiftAskRequest, hasGiftAskRequest)) &&
@@ -520,50 +562,42 @@ class _$_LocalUser implements _LocalUser {
             (identical(other.acceptedGiftId, acceptedGiftId) ||
                 const DeepCollectionEquality()
                     .equals(other.acceptedGiftId, acceptedGiftId)) &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
-            (identical(other.hasNotifications, hasNotifications) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasNotifications, hasNotifications)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.giftOffered, giftOffered) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftOffered, giftOffered)) &&
-            (identical(other.giftReceived, giftReceived) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftReceived, giftReceived)) &&
-            (identical(other.position, position) ||
-                const DeepCollectionEquality()
-                    .equals(other.position, position)) &&
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)) &&
+            (identical(other.v, v) ||
+                const DeepCollectionEquality().equals(other.v, v)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(userName) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(geometry) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(hasNotifications) ^
       const DeepCollectionEquality().hash(ratingSum) ^
       const DeepCollectionEquality().hash(totalRating) ^
       const DeepCollectionEquality().hash(averageRating) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(hasGiftRequest) ^
+      const DeepCollectionEquality().hash(giftGiven) ^
+      const DeepCollectionEquality().hash(giftReceived) ^
+      const DeepCollectionEquality().hash(hasGiftGiverRequest) ^
       const DeepCollectionEquality().hash(hasGiftAskRequest) ^
       const DeepCollectionEquality().hash(requestedGiftId) ^
       const DeepCollectionEquality().hash(acceptedGiftId) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(hasNotifications) ^
       const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(giftOffered) ^
-      const DeepCollectionEquality().hash(giftReceived) ^
-      const DeepCollectionEquality().hash(position) ^
-      const DeepCollectionEquality().hash(createdAt);
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(updatedAt) ^
+      const DeepCollectionEquality().hash(v);
 
   @JsonKey(ignore: true)
   @override
@@ -577,28 +611,28 @@ class _$_LocalUser implements _LocalUser {
 }
 
 abstract class _LocalUser implements LocalUser {
-  factory _LocalUser(
+  const factory _LocalUser(
       {String? id,
-      required String firstName,
-      required String lastName,
+      required String email,
+      required String userName,
+      required String imageUrl,
+      required Geometry geometry,
+      String firstName,
+      String lastName,
+      bool hasNotifications,
       double ratingSum,
       double totalRating,
       double averageRating,
-      required String userName,
-      required String email,
-      bool hasGiftRequest,
+      double giftGiven,
+      double giftReceived,
+      bool hasGiftGiverRequest,
       bool hasGiftAskRequest,
       String requestedGiftId,
       String acceptedGiftId,
-      String? imageUrl,
-      bool hasNotifications,
       String role,
-      int giftOffered,
-      int giftReceived,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required MyPosition position,
-      @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-          required Timestamp createdAt}) = _$_LocalUser;
+      required DateTime createdAt,
+      required DateTime updatedAt,
+      int v}) = _$_LocalUser;
 
   factory _LocalUser.fromJson(Map<String, dynamic> json) =
       _$_LocalUser.fromJson;
@@ -606,9 +640,19 @@ abstract class _LocalUser implements LocalUser {
   @override
   String? get id => throw _privateConstructorUsedError;
   @override
+  String get email => throw _privateConstructorUsedError;
+  @override
+  String get userName => throw _privateConstructorUsedError;
+  @override
+  String get imageUrl => throw _privateConstructorUsedError;
+  @override
+  Geometry get geometry => throw _privateConstructorUsedError;
+  @override
   String get firstName => throw _privateConstructorUsedError;
   @override
   String get lastName => throw _privateConstructorUsedError;
+  @override
+  bool get hasNotifications => throw _privateConstructorUsedError;
   @override
   double get ratingSum => throw _privateConstructorUsedError;
   @override
@@ -616,11 +660,11 @@ abstract class _LocalUser implements LocalUser {
   @override
   double get averageRating => throw _privateConstructorUsedError;
   @override
-  String get userName => throw _privateConstructorUsedError;
+  double get giftGiven => throw _privateConstructorUsedError;
   @override
-  String get email => throw _privateConstructorUsedError;
+  double get giftReceived => throw _privateConstructorUsedError;
   @override
-  bool get hasGiftRequest => throw _privateConstructorUsedError;
+  bool get hasGiftGiverRequest => throw _privateConstructorUsedError;
   @override
   bool get hasGiftAskRequest => throw _privateConstructorUsedError;
   @override
@@ -628,24 +672,203 @@ abstract class _LocalUser implements LocalUser {
   @override
   String get acceptedGiftId => throw _privateConstructorUsedError;
   @override
-  String? get imageUrl => throw _privateConstructorUsedError;
-  @override
-  bool get hasNotifications => throw _privateConstructorUsedError;
-  @override
   String get role => throw _privateConstructorUsedError;
   @override
-  int get giftOffered => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
-  int get giftReceived => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get position => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(toJson: timestampToJson, fromJson: timestampFromJson)
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  int get v => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LocalUserCopyWith<_LocalUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Geometry _$GeometryFromJson(Map<String, dynamic> json) {
+  return _Geometry.fromJson(json);
+}
+
+/// @nodoc
+class _$GeometryTearOff {
+  const _$GeometryTearOff();
+
+  _Geometry call(
+      {String type = 'Point', String? id, required List<double> coordinates}) {
+    return _Geometry(
+      type: type,
+      id: id,
+      coordinates: coordinates,
+    );
+  }
+
+  Geometry fromJson(Map<String, Object> json) {
+    return Geometry.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Geometry = _$GeometryTearOff();
+
+/// @nodoc
+mixin _$Geometry {
+  String get type => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  List<double> get coordinates => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GeometryCopyWith<Geometry> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GeometryCopyWith<$Res> {
+  factory $GeometryCopyWith(Geometry value, $Res Function(Geometry) then) =
+      _$GeometryCopyWithImpl<$Res>;
+  $Res call({String type, String? id, List<double> coordinates});
+}
+
+/// @nodoc
+class _$GeometryCopyWithImpl<$Res> implements $GeometryCopyWith<$Res> {
+  _$GeometryCopyWithImpl(this._value, this._then);
+
+  final Geometry _value;
+  // ignore: unused_field
+  final $Res Function(Geometry) _then;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? id = freezed,
+    Object? coordinates = freezed,
+  }) {
+    return _then(_value.copyWith(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coordinates: coordinates == freezed
+          ? _value.coordinates
+          : coordinates // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$GeometryCopyWith<$Res> implements $GeometryCopyWith<$Res> {
+  factory _$GeometryCopyWith(_Geometry value, $Res Function(_Geometry) then) =
+      __$GeometryCopyWithImpl<$Res>;
+  @override
+  $Res call({String type, String? id, List<double> coordinates});
+}
+
+/// @nodoc
+class __$GeometryCopyWithImpl<$Res> extends _$GeometryCopyWithImpl<$Res>
+    implements _$GeometryCopyWith<$Res> {
+  __$GeometryCopyWithImpl(_Geometry _value, $Res Function(_Geometry) _then)
+      : super(_value, (v) => _then(v as _Geometry));
+
+  @override
+  _Geometry get _value => super._value as _Geometry;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? id = freezed,
+    Object? coordinates = freezed,
+  }) {
+    return _then(_Geometry(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coordinates: coordinates == freezed
+          ? _value.coordinates
+          : coordinates // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Geometry implements _Geometry {
+  const _$_Geometry({this.type = 'Point', this.id, required this.coordinates});
+
+  factory _$_Geometry.fromJson(Map<String, dynamic> json) =>
+      _$_$_GeometryFromJson(json);
+
+  @JsonKey(defaultValue: 'Point')
+  @override
+  final String type;
+  @override
+  final String? id;
+  @override
+  final List<double> coordinates;
+
+  @override
+  String toString() {
+    return 'Geometry(type: $type, id: $id, coordinates: $coordinates)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Geometry &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.coordinates, coordinates) ||
+                const DeepCollectionEquality()
+                    .equals(other.coordinates, coordinates)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(coordinates);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GeometryCopyWith<_Geometry> get copyWith =>
+      __$GeometryCopyWithImpl<_Geometry>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_GeometryToJson(this);
+  }
+}
+
+abstract class _Geometry implements Geometry {
+  const factory _Geometry(
+      {String type,
+      String? id,
+      required List<double> coordinates}) = _$_Geometry;
+
+  factory _Geometry.fromJson(Map<String, dynamic> json) = _$_Geometry.fromJson;
+
+  @override
+  String get type => throw _privateConstructorUsedError;
+  @override
+  String? get id => throw _privateConstructorUsedError;
+  @override
+  List<double> get coordinates => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$GeometryCopyWith<_Geometry> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
