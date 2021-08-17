@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  RxString firstName = 'a'.obs;
-  RxString lastName = 'a'.obs;
-  RxString password = '123456'.obs;
-  RxString confirmPassword = '123456'.obs;
-  RxString email = 'rifat0153@gmail.com'.obs;
-  RxString userName = 'rrr'.obs;
+  RxString firstName = ''.obs;
+  RxString lastName = ''.obs;
+  RxString password = ''.obs;
+  RxString confirmPassword = ''.obs;
+  RxString email = ''.obs;
+  RxString userName = ''.obs;
   Rx<File> imageFile = File('').obs;
-  RxBool aggreedToTermsAndCondition = true.obs;
+  RxBool aggreedToTermsAndCondition = false.obs;
 
   Rx<LoginStatus> loginStatus = const LoginStatus.notLoggedIn().obs;
 
@@ -25,11 +25,11 @@ class LoginController extends GetxController {
       Get.snackbar('Reg Error', 'First Name cant be empty', backgroundColor: registrationErrorColor);
       return;
     }
-    // 
-    // if (imageFile.value.path.isEmpty) {
-    //   Get.snackbar('Reg Error', 'Image is needed', backgroundColor: registrationErrorColor);
-    //   return;
-    // }
+    
+    if (imageFile.value.path.isEmpty) {
+      Get.snackbar('Reg Error', 'Image is needed', backgroundColor: registrationErrorColor);
+      return;
+    }
     if (!email.value.isEmail) {
       Get.snackbar('Reg Error', 'Invalid Email', backgroundColor: registrationErrorColor);
       return;
