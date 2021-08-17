@@ -34,7 +34,7 @@ class FeedbackWidget extends StatelessWidget {
               children: [
                 const SizedBox(height: 8),
                 CircleAvatar(
-                  backgroundImage: NetworkImage(giftReceiver!.requester.imageUrl!),
+                  backgroundImage: NetworkImage(giftReceiver!.requester.imageUrl),
                   radius: 30,
                 ),
                 const SizedBox(height: 8),

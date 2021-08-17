@@ -25,7 +25,8 @@ class _$LocalUserTearOff {
       required String email,
       required String userName,
       required String imageUrl,
-      required Geometry geometry,
+      @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
+          required Geometry geometry,
       String firstName = '',
       String lastName = '',
       bool hasNotifications = false,
@@ -81,6 +82,7 @@ mixin _$LocalUser {
   String get email => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
   Geometry get geometry => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
@@ -114,7 +116,8 @@ abstract class $LocalUserCopyWith<$Res> {
       String email,
       String userName,
       String imageUrl,
-      Geometry geometry,
+      @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
+          Geometry geometry,
       String firstName,
       String lastName,
       bool hasNotifications,
@@ -274,7 +277,8 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
       String email,
       String userName,
       String imageUrl,
-      Geometry geometry,
+      @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
+          Geometry geometry,
       String firstName,
       String lastName,
       bool hasNotifications,
@@ -426,7 +430,8 @@ class _$_LocalUser implements _LocalUser {
       required this.email,
       required this.userName,
       required this.imageUrl,
-      required this.geometry,
+      @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
+          required this.geometry,
       this.firstName = '',
       this.lastName = '',
       this.hasNotifications = false,
@@ -456,6 +461,7 @@ class _$_LocalUser implements _LocalUser {
   @override
   final String imageUrl;
   @override
+  @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
   final Geometry geometry;
   @JsonKey(defaultValue: '')
   @override
@@ -616,7 +622,8 @@ abstract class _LocalUser implements LocalUser {
       required String email,
       required String userName,
       required String imageUrl,
-      required Geometry geometry,
+      @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
+          required Geometry geometry,
       String firstName,
       String lastName,
       bool hasNotifications,
@@ -646,6 +653,7 @@ abstract class _LocalUser implements LocalUser {
   @override
   String get imageUrl => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
   Geometry get geometry => throw _privateConstructorUsedError;
   @override
   String get firstName => throw _privateConstructorUsedError;

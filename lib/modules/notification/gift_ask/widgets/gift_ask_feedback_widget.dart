@@ -38,7 +38,7 @@ class GiftAskFeedbackWidget extends StatelessWidget {
               children: [
                 const SizedBox(height: 8),
                 CircleAvatar(
-                  backgroundImage: NetworkImage(giftAskGiver!.requester.imageUrl!),
+                  backgroundImage: NetworkImage(giftAskGiver!.requester.imageUrl),
                   radius: 30,
                 ),
                 const SizedBox(height: 8),

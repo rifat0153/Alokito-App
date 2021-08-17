@@ -137,7 +137,8 @@ class _BuildBody extends StatelessWidget {
                 error: (err) => Column(
                   children: [
                     const Text('Something went wrong'),
-                    TextButton(onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
+                    TextButton(
+                        onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
                   ],
                 ),
               ),
@@ -221,7 +222,7 @@ class _UserImageWidget extends StatelessWidget {
             ? CircleAvatar(
                 radius: 75,
                 backgroundImage: NetworkImage(
-                  localUser.imageUrl ?? '',
+                  localUser.imageUrl,
                 ),
               )
             : const SizedBox(),

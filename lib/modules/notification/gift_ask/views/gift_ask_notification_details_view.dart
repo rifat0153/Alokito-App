@@ -495,7 +495,7 @@ class _RequesterDetailWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(giftAskGiver.requester.imageUrl!),
+                        backgroundImage: NetworkImage(giftAskGiver.requester.imageUrl),
                         radius: 30,
                       ),
                     ),

@@ -311,7 +311,7 @@ class _UserNameAndLocationWidget extends StatelessWidget {
               CircleAvatar(
                 minRadius: 30,
                 backgroundImage: NetworkImage(
-                  giftAsk.requester.imageUrl ?? PLACEHOLDER_IMAGE_URL,
+                  giftAsk.requester.imageUrl ,
                 ),
               ),
               const SizedBox(width: 8),

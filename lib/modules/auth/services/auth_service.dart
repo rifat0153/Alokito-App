@@ -167,17 +167,17 @@ class AuthService implements BaseAuthService {
     required String userName,
     required File localImageFile,
   }) async {
+    final client = http.Client();
+
     try {
-      // EasyLoading.show(status: 'loading...');
-      final UserCredential firebaseUser =
-          await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      // final UserCredential firebaseUser =
+      //     await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
       final loc = await Location().getLocation();
       final LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
       final Geometry geometry = Geometry(coordinates: [userPosition.longitude, userPosition.latitude]);
 
       final LocalUser myUser = LocalUser(
-        id: firebaseUser.user?.uid,
         imageUrl: '',
         firstName: firstName,
         lastName: lastName,
@@ -188,9 +188,15 @@ class AuthService implements BaseAuthService {
         updatedAt: DateTime.now(),
       );
 
-      await uploadUserAndImage(myUser, false, localImageFile);
+      final uriResponse = await client.post(Uri.parse('http://192.168.0.108:3000/api/v1/user/store'),
+          body: {
+            "email": "mongo"
+          });
 
-      print("Signed up");
+      print(uriResponse.body);
+
+      // await uploadUserAndImage(myUser, false, localImageFile);
+
       return true;
     } on FirebaseAuthException catch (e) {
       // EasyLoading.dismiss();
@@ -198,6 +204,8 @@ class AuthService implements BaseAuthService {
       Get.snackbar(e.message ?? '', '', backgroundColor: Colors.red);
       print(e.message);
       return false;
+    } finally {
+      client.close();
     }
   }
 
@@ -207,15 +215,15 @@ class AuthService implements BaseAuthService {
       final fileExtension = path.extension(localFile.path);
       final uuid = const Uuid().v4();
 
-      final firebase_storage.Reference firebaseStorageRef =
-          firebase_storage.FirebaseStorage.instance.ref().child('users/images/$uuid$fileExtension');
+      // final firebase_storage.Reference firebaseStorageRef =
+      //     firebase_storage.FirebaseStorage.instance.ref().child('users/images/$uuid$fileExtension');
 
-      try {
-        await firebaseStorageRef.putFile(localFile);
-      } on firebase_core.FirebaseException catch (e) {}
+      // try {
+      //   await firebaseStorageRef.putFile(localFile);
+      // } on firebase_core.FirebaseException catch (e) {}
 
-      final String url = await firebaseStorageRef.getDownloadURL();
-      await uploadUser(user, isUpdating, imageUrl: url);
+      // final String url = await firebaseStorageRef.getDownloadURL();
+      await uploadUser(user, isUpdating, imageUrl: '');
     } else {
       await uploadUser(user, isUpdating);
     }
@@ -236,15 +244,8 @@ class AuthService implements BaseAuthService {
 
         final DocumentReference documentRef = userRef.doc(user.id);
 
-        await documentRef.set(user.toJson());
+        // await documentRef.set(user.toJson());
       }
-
-      final client = http.Client();
-
-      final uriResponse =
-          await client.post(Uri.parse('https://localhost:3000/api/v1/user/store'), body: user.toJson());
-
-      print(uriResponse);
     } on FirebaseException catch (e) {
       throw AuthException(message: e.message);
     }

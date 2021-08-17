@@ -68,7 +68,7 @@ class MyDrawer extends StatelessWidget {
                         width: 60.r,
                         height: 60.r,
                         child: Image.network(
-                          user.imageUrl ?? '',
+                          user.imageUrl,
                           fit: BoxFit.cover,
                           errorBuilder: (_, obj, st) => Image.asset('assets/images/profile_placeholder.png'),
                         ),
