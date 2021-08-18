@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:alokito_new/models/gift_giver/my_position.dart';
@@ -188,21 +189,35 @@ class AuthService implements BaseAuthService {
         updatedAt: DateTime.now(),
       );
 
-      final uriResponse = await client.post(Uri.parse('http://192.168.0.108:3000/api/v1/user/store'),
-          body: {
-            "email": "mongo"
-          });
+      // final uriResponse =
+      //     await client.post(Uri.parse('http://192.168.0.121:3000/api/v1/user/store'), body: myUser.toJson());
 
-      print(uriResponse.body);
+      // print(uriResponse.body);
+
+      final http.Response response = await client.get(
+        Uri.parse('http://192.168.0.121:3000/api/v1/user/near?lat=23&lng=90&maxDistance=125&page=1&limit=5'),
+        headers: {"Content-Type": "application/json"},
+      );
+
+      final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
+      final List<dynamic> userBody = body['users'] as List<dynamic>;
+
+      final List<LocalUser> users = userBody
+          .map(
+            (user) => LocalUser.fromJson(user as Map<String, dynamic>),
+          )
+          .toList();
+
+      users.forEach((element) {
+        print(element.distance);
+      });
 
       // await uploadUserAndImage(myUser, false, localImageFile);
 
       return true;
     } on FirebaseAuthException catch (e) {
-      // EasyLoading.dismiss();
-
       Get.snackbar(e.message ?? '', '', backgroundColor: Colors.red);
-      print(e.message);
       return false;
     } finally {
       client.close();

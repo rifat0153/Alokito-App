@@ -9,6 +9,7 @@ part of 'local_user.dart';
 _$_LocalUser _$_$_LocalUserFromJson(Map<String, dynamic> json) {
   return _$_LocalUser(
     id: json['id'] as String?,
+    distance: (json['distance'] as num?)?.toDouble(),
     email: json['email'] as String,
     userName: json['userName'] as String,
     imageUrl: json['imageUrl'] as String,
@@ -35,6 +36,7 @@ _$_LocalUser _$_$_LocalUserFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_LocalUserToJson(_$_LocalUser instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'distance': instance.distance,
       'email': instance.email,
       'userName': instance.userName,
       'imageUrl': instance.imageUrl,
@@ -72,4 +74,17 @@ Map<String, dynamic> _$_$_GeometryToJson(_$_Geometry instance) =>
       'type': instance.type,
       'id': instance.id,
       'coordinates': instance.coordinates,
+    };
+
+_$_LocalUserNear _$_$_LocalUserNearFromJson(Map<String, dynamic> json) {
+  return _$_LocalUserNear(
+    localUser: localUserFromMap(json['localUser'] as Map<String, dynamic>),
+    distance: json['distance'] as int?,
+  );
+}
+
+Map<String, dynamic> _$_$_LocalUserNearToJson(_$_LocalUserNear instance) =>
+    <String, dynamic>{
+      'localUser': localUserToMap(instance.localUser),
+      'distance': instance.distance,
     };

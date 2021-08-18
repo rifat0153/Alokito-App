@@ -22,3 +22,4 @@ linter:
     prefer_const_literals_to_create_immutables: false
     lowercase_with_underscores: false
     directives_ordering: false
+    prefer_single_quotes: false

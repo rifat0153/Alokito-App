@@ -22,6 +22,7 @@ class _$LocalUserTearOff {
 
   _LocalUser call(
       {String? id,
+      double? distance,
       required String email,
       required String userName,
       required String imageUrl,
@@ -45,6 +46,7 @@ class _$LocalUserTearOff {
       int v = 1}) {
     return _LocalUser(
       id: id,
+      distance: distance,
       email: email,
       userName: userName,
       imageUrl: imageUrl,
@@ -79,6 +81,7 @@ const $LocalUser = _$LocalUserTearOff();
 /// @nodoc
 mixin _$LocalUser {
   String? get id => throw _privateConstructorUsedError;
+  double? get distance => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
@@ -113,6 +116,7 @@ abstract class $LocalUserCopyWith<$Res> {
       _$LocalUserCopyWithImpl<$Res>;
   $Res call(
       {String? id,
+      double? distance,
       String email,
       String userName,
       String imageUrl,
@@ -149,6 +153,7 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? distance = freezed,
     Object? email = freezed,
     Object? userName = freezed,
     Object? imageUrl = freezed,
@@ -175,6 +180,10 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -274,6 +283,7 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
+      double? distance,
       String email,
       String userName,
       String imageUrl,
@@ -312,6 +322,7 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? distance = freezed,
     Object? email = freezed,
     Object? userName = freezed,
     Object? imageUrl = freezed,
@@ -338,6 +349,10 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -427,6 +442,7 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
 class _$_LocalUser implements _LocalUser {
   const _$_LocalUser(
       {this.id,
+      this.distance,
       required this.email,
       required this.userName,
       required this.imageUrl,
@@ -454,6 +470,8 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   final String? id;
+  @override
+  final double? distance;
   @override
   final String email;
   @override
@@ -512,7 +530,7 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   String toString() {
-    return 'LocalUser(id: $id, email: $email, userName: $userName, imageUrl: $imageUrl, geometry: $geometry, firstName: $firstName, lastName: $lastName, hasNotifications: $hasNotifications, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, giftGiven: $giftGiven, giftReceived: $giftReceived, hasGiftGiverRequest: $hasGiftGiverRequest, hasGiftAskRequest: $hasGiftAskRequest, requestedGiftId: $requestedGiftId, acceptedGiftId: $acceptedGiftId, role: $role, createdAt: $createdAt, updatedAt: $updatedAt, v: $v)';
+    return 'LocalUser(id: $id, distance: $distance, email: $email, userName: $userName, imageUrl: $imageUrl, geometry: $geometry, firstName: $firstName, lastName: $lastName, hasNotifications: $hasNotifications, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, giftGiven: $giftGiven, giftReceived: $giftReceived, hasGiftGiverRequest: $hasGiftGiverRequest, hasGiftAskRequest: $hasGiftAskRequest, requestedGiftId: $requestedGiftId, acceptedGiftId: $acceptedGiftId, role: $role, createdAt: $createdAt, updatedAt: $updatedAt, v: $v)';
   }
 
   @override
@@ -521,6 +539,9 @@ class _$_LocalUser implements _LocalUser {
         (other is _LocalUser &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.distance, distance) ||
+                const DeepCollectionEquality()
+                    .equals(other.distance, distance)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.userName, userName) ||
@@ -584,6 +605,7 @@ class _$_LocalUser implements _LocalUser {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(distance) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(imageUrl) ^
@@ -619,6 +641,7 @@ class _$_LocalUser implements _LocalUser {
 abstract class _LocalUser implements LocalUser {
   const factory _LocalUser(
       {String? id,
+      double? distance,
       required String email,
       required String userName,
       required String imageUrl,
@@ -646,6 +669,8 @@ abstract class _LocalUser implements LocalUser {
 
   @override
   String? get id => throw _privateConstructorUsedError;
+  @override
+  double? get distance => throw _privateConstructorUsedError;
   @override
   String get email => throw _privateConstructorUsedError;
   @override
@@ -877,6 +902,207 @@ abstract class _Geometry implements Geometry {
   @override
   @JsonKey(ignore: true)
   _$GeometryCopyWith<_Geometry> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LocalUserNear _$LocalUserNearFromJson(Map<String, dynamic> json) {
+  return _LocalUserNear.fromJson(json);
+}
+
+/// @nodoc
+class _$LocalUserNearTearOff {
+  const _$LocalUserNearTearOff();
+
+  _LocalUserNear call(
+      {@JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          required LocalUser localUser,
+      int? distance}) {
+    return _LocalUserNear(
+      localUser: localUser,
+      distance: distance,
+    );
+  }
+
+  LocalUserNear fromJson(Map<String, Object> json) {
+    return LocalUserNear.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $LocalUserNear = _$LocalUserNearTearOff();
+
+/// @nodoc
+mixin _$LocalUserNear {
+  @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+  LocalUser get localUser => throw _privateConstructorUsedError;
+  int? get distance => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LocalUserNearCopyWith<LocalUserNear> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LocalUserNearCopyWith<$Res> {
+  factory $LocalUserNearCopyWith(
+          LocalUserNear value, $Res Function(LocalUserNear) then) =
+      _$LocalUserNearCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          LocalUser localUser,
+      int? distance});
+
+  $LocalUserCopyWith<$Res> get localUser;
+}
+
+/// @nodoc
+class _$LocalUserNearCopyWithImpl<$Res>
+    implements $LocalUserNearCopyWith<$Res> {
+  _$LocalUserNearCopyWithImpl(this._value, this._then);
+
+  final LocalUserNear _value;
+  // ignore: unused_field
+  final $Res Function(LocalUserNear) _then;
+
+  @override
+  $Res call({
+    Object? localUser = freezed,
+    Object? distance = freezed,
+  }) {
+    return _then(_value.copyWith(
+      localUser: localUser == freezed
+          ? _value.localUser
+          : localUser // ignore: cast_nullable_to_non_nullable
+              as LocalUser,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+
+  @override
+  $LocalUserCopyWith<$Res> get localUser {
+    return $LocalUserCopyWith<$Res>(_value.localUser, (value) {
+      return _then(_value.copyWith(localUser: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$LocalUserNearCopyWith<$Res>
+    implements $LocalUserNearCopyWith<$Res> {
+  factory _$LocalUserNearCopyWith(
+          _LocalUserNear value, $Res Function(_LocalUserNear) then) =
+      __$LocalUserNearCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          LocalUser localUser,
+      int? distance});
+
+  @override
+  $LocalUserCopyWith<$Res> get localUser;
+}
+
+/// @nodoc
+class __$LocalUserNearCopyWithImpl<$Res>
+    extends _$LocalUserNearCopyWithImpl<$Res>
+    implements _$LocalUserNearCopyWith<$Res> {
+  __$LocalUserNearCopyWithImpl(
+      _LocalUserNear _value, $Res Function(_LocalUserNear) _then)
+      : super(_value, (v) => _then(v as _LocalUserNear));
+
+  @override
+  _LocalUserNear get _value => super._value as _LocalUserNear;
+
+  @override
+  $Res call({
+    Object? localUser = freezed,
+    Object? distance = freezed,
+  }) {
+    return _then(_LocalUserNear(
+      localUser: localUser == freezed
+          ? _value.localUser
+          : localUser // ignore: cast_nullable_to_non_nullable
+              as LocalUser,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_LocalUserNear implements _LocalUserNear {
+  const _$_LocalUserNear(
+      {@JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          required this.localUser,
+      this.distance});
+
+  factory _$_LocalUserNear.fromJson(Map<String, dynamic> json) =>
+      _$_$_LocalUserNearFromJson(json);
+
+  @override
+  @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+  final LocalUser localUser;
+  @override
+  final int? distance;
+
+  @override
+  String toString() {
+    return 'LocalUserNear(localUser: $localUser, distance: $distance)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _LocalUserNear &&
+            (identical(other.localUser, localUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.localUser, localUser)) &&
+            (identical(other.distance, distance) ||
+                const DeepCollectionEquality()
+                    .equals(other.distance, distance)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(localUser) ^
+      const DeepCollectionEquality().hash(distance);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LocalUserNearCopyWith<_LocalUserNear> get copyWith =>
+      __$LocalUserNearCopyWithImpl<_LocalUserNear>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_LocalUserNearToJson(this);
+  }
+}
+
+abstract class _LocalUserNear implements LocalUserNear {
+  const factory _LocalUserNear(
+      {@JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          required LocalUser localUser,
+      int? distance}) = _$_LocalUserNear;
+
+  factory _LocalUserNear.fromJson(Map<String, dynamic> json) =
+      _$_LocalUserNear.fromJson;
+
+  @override
+  @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+  LocalUser get localUser => throw _privateConstructorUsedError;
+  @override
+  int? get distance => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$LocalUserNearCopyWith<_LocalUserNear> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

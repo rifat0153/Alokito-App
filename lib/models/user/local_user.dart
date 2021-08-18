@@ -12,11 +12,11 @@ String localUserToJson(LocalUser data) => json.encode(data.toJson());
 abstract class LocalUser with _$LocalUser {
   const factory LocalUser({
     String? id,
+    double? distance,
     required String email,
     required String userName,
     required String imageUrl,
-     @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson)
-    required Geometry geometry,
+    @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson) required Geometry geometry,
     @Default('') String firstName,
     @Default('') String lastName,
     @Default(false) bool hasNotifications,
@@ -38,7 +38,8 @@ abstract class LocalUser with _$LocalUser {
   factory LocalUser.fromJson(Map<String, dynamic> json) => _$LocalUserFromJson(json);
 }
 
-
+Map<String, dynamic> localUserToMap(LocalUser localUser) => localUser.toJson();
+LocalUser localUserFromMap(Map<String, dynamic> json) => LocalUser.fromJson(json);
 
 @freezed
 abstract class Geometry with _$Geometry {
@@ -53,6 +54,17 @@ abstract class Geometry with _$Geometry {
 
 Map<String, dynamic> geometryToJson(Geometry geometry) => geometry.toJson();
 Geometry geometryFromJson(Map<String, dynamic> json) => Geometry.fromJson(json);
+
+@freezed
+@freezed
+class LocalUserNear with _$LocalUserNear {
+  const factory LocalUserNear({
+    @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap) required LocalUser localUser,
+    int? distance,
+  }) = _LocalUserNear;
+
+  factory LocalUserNear.fromJson(Map<String, dynamic> json) => _$LocalUserNearFromJson(json);
+}
 
 @freezed
 class LocalUserInfo with _$LocalUserInfo {
