@@ -194,24 +194,36 @@ class AuthService implements BaseAuthService {
 
       // print(uriResponse.body);
 
-      final http.Response response = await client.get(
-        Uri.parse('http://192.168.0.121:3000/api/v1/user/near?lat=23&lng=90&maxDistance=125&page=1&limit=5'),
-        headers: {"Content-Type": "application/json"},
+      // * Http get
+      // final http.Response response = await client.get(
+      //   Uri.parse('http://192.168.0.121:3000/api/v1/user/near?lat=23&lng=90&maxDistance=125&page=1&limit=5'),
+      //   headers: {"Content-Type": "application/json"},
+      // );
+
+      // final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
+      // final List<dynamic> userBody = body['users'] as List<dynamic>;
+
+      // final List<LocalUser> users = userBody
+      //     .map(
+      //       (user) => LocalUser.fromJson(user as Map<String, dynamic>),
+      //     )
+      //     .toList();
+
+      // users.forEach((element) {
+      //   print(element.distance);
+      // });
+
+      // * Http Post
+      final http.Response response = await client.post(
+        Uri.parse('http://192.168.0.121:3000/api/v1/user/store'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(myUser.toJson()),
       );
 
-      final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
-
-      final List<dynamic> userBody = body['users'] as List<dynamic>;
-
-      final List<LocalUser> users = userBody
-          .map(
-            (user) => LocalUser.fromJson(user as Map<String, dynamic>),
-          )
-          .toList();
-
-      users.forEach((element) {
-        print(element.distance);
-      });
+      print(response.body);
 
       // await uploadUserAndImage(myUser, false, localImageFile);
 
