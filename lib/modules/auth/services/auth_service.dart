@@ -29,7 +29,7 @@ abstract class BaseAuthService {
     required File localImageFile,
   });
 
-  Future<LocalUser> uploadUserAndImageToFirebase(LocalUser user, bool isUpdating, File localFile);
+  Future<LocalUser> uploadImageToFirebase(LocalUser user, bool isUpdating, File localFile);
 
   Future<void> addUser(LocalUser user, bool isUpdating, File localFile);
 
@@ -84,8 +84,8 @@ class AuthService implements BaseAuthService {
 
     try {
       // * Create User in Firebase Auth
-      // final UserCredential userCredential =
-      //     await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      final UserCredential userCredential =
+          await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
       final loc = await Location().getLocation();
       final LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
@@ -103,26 +103,31 @@ class AuthService implements BaseAuthService {
         updatedAt: DateTime.now(),
       );
 
-      // * upload userDoc to Firebase and Image to Firebase storage and return user
-      // myUser = await uploadUserAndImageToFirebase(myUser, false, localImageFile);
+      // * upload user Image to Firebase storage and return user with image url
+      myUser = await uploadImageToFirebase(myUser, false, localImageFile);
 
       // * Create userDocument in mongodb
       final http.Response response = await client.post(
-        Uri.parse('http://192.168.0.121:3000/api/v1/user/store'),
+        Uri.parse('http://192.168.0.108:3000/api/v1/user/store'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(myUser.toJson()),
+        body: localUserToJson(myUser),
       );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
         await MyError.showErrorBottomSheet('${response.statusCode}: Something went wrong');
         return;
       } else {
-        final mongoUser = LocalUser.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-        print(mongoUser);
+        final mongoUser = localUserFromJson(response.body);
+        myUser = mongoUser;
       }
-      // print(response.body);
+
+      // * Creating userDoc in Firestore
+      await _firestore.collection('users').doc(_firebaseAuth.currentUser?.uid).set(myUser.toJson());
+
+      print('new user');
+      print(myUser);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(e.message ?? '', '', backgroundColor: Colors.red);
     } catch (error) {
@@ -133,17 +138,14 @@ class AuthService implements BaseAuthService {
   }
 
   @override
-  Future<LocalUser> uploadUserAndImageToFirebase(LocalUser user, bool isUpdating, File localFile) async {
-    // * Creating userDoc in Firestore
-    await _firestore.collection('users').doc(user.id).set(user.toJson());
-
+  Future<LocalUser> uploadImageToFirebase(LocalUser user, bool isUpdating, File localFile) async {
     if (localFile.path.isNotEmpty) {
       final fileExtension = path.extension(localFile.path);
 
       final uuid = const Uuid().v4();
 
-      final firebase_storage.Reference firebaseStorageRef =
-          firebase_storage.FirebaseStorage.instance.ref().child('users/images/$uuid$fileExtension');
+      final firebase_storage.Reference firebaseStorageRef = firebase_storage.FirebaseStorage.instance.ref().child(
+          'users/${_firebaseAuth.currentUser != null ? _firebaseAuth.currentUser!.uid : ''}/images/$uuid$fileExtension');
 
       try {
         await firebaseStorageRef.putFile(localFile);

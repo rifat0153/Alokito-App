@@ -23,3 +23,4 @@ linter:
     lowercase_with_underscores: false
     directives_ordering: false
     prefer_single_quotes: false
+    
