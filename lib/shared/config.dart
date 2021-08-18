@@ -20,6 +20,7 @@ final giftAddFormColor = Colors.grey[300]!.withOpacity(0.5);
 final giftAddFormSubmitColor = Colors.blueGrey[700];
 
 final LocalUser initialUser = LocalUser(
+  id: '',
   firstName: '',
   lastName: '',
   userName: '',

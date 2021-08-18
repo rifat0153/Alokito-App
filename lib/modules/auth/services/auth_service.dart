@@ -1,11 +1,10 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:alokito_new/models/user/local_user.dart';
+import 'package:alokito_new/shared/my_error.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:path/path.dart' as path;
@@ -16,7 +15,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../../../models/user/local_user.dart';
 
 abstract class BaseAuthService {
   Future<void> signIn({required String email, required String password});
@@ -86,7 +84,7 @@ class AuthService implements BaseAuthService {
 
     try {
       // * Create User in Firebase Auth
-      // final UserCredential firebaseUser =
+      // final UserCredential userCredential =
       //     await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
       final loc = await Location().getLocation();
@@ -94,6 +92,7 @@ class AuthService implements BaseAuthService {
       final Geometry geometry = Geometry(coordinates: [userPosition.longitude, userPosition.latitude]);
 
       LocalUser myUser = LocalUser(
+        id: '',
         imageUrl: '',
         firstName: firstName,
         lastName: lastName,
@@ -104,30 +103,10 @@ class AuthService implements BaseAuthService {
         updatedAt: DateTime.now(),
       );
 
+      // * upload userDoc to Firebase and Image to Firebase storage and return user
       // myUser = await uploadUserAndImageToFirebase(myUser, false, localImageFile);
 
-// * Http get
-      // final http.Response response = await client.get(
-      //   Uri.parse(
-      //       'http://192.168.0.121:3000/api/v1/user/near?lat=${userPosition.latitude}&lng=${userPosition.longitude}&maxDistance=125&page=1&limit=15'),
-      //   headers: {"Content-Type": "application/json"},
-      // );
-
-      // final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
-
-      // final List<dynamic> userBody = body['users'] as List<dynamic>;
-
-      // final List<LocalUser> users = userBody
-      //     .map(
-      //       (user) => LocalUser.fromJson(user as Map<String, dynamic>),
-      //     )
-      //     .toList();
-
-      // users.forEach((element) {
-      //   print(element.id);
-      // });
-
-      // * Http Post
+      // * Create userDocument in mongodb
       final http.Response response = await client.post(
         Uri.parse('http://192.168.0.121:3000/api/v1/user/store'),
         headers: <String, String>{
@@ -136,9 +115,18 @@ class AuthService implements BaseAuthService {
         body: jsonEncode(myUser.toJson()),
       );
 
-      print(response.body);
+      if (response.statusCode != 200 && response.statusCode != 201) {
+        await MyError.showErrorBottomSheet('${response.statusCode}: Something went wrong');
+        return;
+      } else {
+        final mongoUser = LocalUser.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+        print(mongoUser);
+      }
+      // print(response.body);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(e.message ?? '', '', backgroundColor: Colors.red);
+    } catch (error) {
+      Get.snackbar(error.toString(), '', backgroundColor: Colors.red);
     } finally {
       client.close();
     }
@@ -146,7 +134,8 @@ class AuthService implements BaseAuthService {
 
   @override
   Future<LocalUser> uploadUserAndImageToFirebase(LocalUser user, bool isUpdating, File localFile) async {
-    // _firestore.collection('users').doc(user.id).
+    // * Creating userDoc in Firestore
+    await _firestore.collection('users').doc(user.id).set(user.toJson());
 
     if (localFile.path.isNotEmpty) {
       final fileExtension = path.extension(localFile.path);
@@ -158,7 +147,9 @@ class AuthService implements BaseAuthService {
 
       try {
         await firebaseStorageRef.putFile(localFile);
-      } on firebase_core.FirebaseException catch (e) {}
+      } on firebase_core.FirebaseException catch (e) {
+        await MyError.showErrorBottomSheet(e.toString());
+      }
 
       final String url = await firebaseStorageRef.getDownloadURL();
 
@@ -194,3 +185,25 @@ class AuthService implements BaseAuthService {
     throw UnimplementedError();
   }
 }
+
+
+// * Http get
+      // final http.Response response = await client.get(
+      //   Uri.parse(
+      //       'http://192.168.0.121:3000/api/v1/user/near?lat=${userPosition.latitude}&lng=${userPosition.longitude}&maxDistance=125&page=1&limit=15'),
+      //   headers: {"Content-Type": "application/json"},
+      // );
+
+      // final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
+      // final List<dynamic> userBody = body['users'] as List<dynamic>;
+
+      // final List<LocalUser> users = userBody
+      //     .map(
+      //       (user) => LocalUser.fromJson(user as Map<String, dynamic>),
+      //     )
+      //     .toList();
+
+      // users.forEach((element) {
+      //   print(element.id);
+      // });

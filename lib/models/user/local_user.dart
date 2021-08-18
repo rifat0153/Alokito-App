@@ -56,17 +56,6 @@ Map<String, dynamic> geometryToJson(Geometry geometry) => geometry.toJson();
 Geometry geometryFromJson(Map<String, dynamic> json) => Geometry.fromJson(json);
 
 @freezed
-@freezed
-class LocalUserNear with _$LocalUserNear {
-  const factory LocalUserNear({
-    @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap) required LocalUser localUser,
-    int? distance,
-  }) = _LocalUserNear;
-
-  factory LocalUserNear.fromJson(Map<String, dynamic> json) => _$LocalUserNearFromJson(json);
-}
-
-@freezed
 class LocalUserInfo with _$LocalUserInfo {
   const factory LocalUserInfo.data(LocalUser localUser) = Data;
   const factory LocalUserInfo.loading() = Loading;
