@@ -8,7 +8,7 @@ part of 'local_user.dart';
 
 _$_LocalUser _$_$_LocalUserFromJson(Map<String, dynamic> json) {
   return _$_LocalUser(
-    id: json['id'] as String?,
+    id: json['_id'] as String?,
     distance: (json['distance'] as num?)?.toDouble(),
     email: json['email'] as String,
     userName: json['userName'] as String,
@@ -33,8 +33,7 @@ _$_LocalUser _$_$_LocalUserFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_LocalUserToJson(_$_LocalUser instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_LocalUserToJson(_$_LocalUser instance) => <String, dynamic>{
       'id': instance.id,
       'distance': instance.distance,
       'email': instance.email,
@@ -63,14 +62,11 @@ _$_Geometry _$_$_GeometryFromJson(Map<String, dynamic> json) {
   return _$_Geometry(
     type: json['type'] as String? ?? 'Point',
     id: json['id'] as String?,
-    coordinates: (json['coordinates'] as List<dynamic>)
-        .map((e) => (e as num).toDouble())
-        .toList(),
+    coordinates: (json['coordinates'] as List<dynamic>).map((e) => (e as num).toDouble()).toList(),
   );
 }
 
-Map<String, dynamic> _$_$_GeometryToJson(_$_Geometry instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_GeometryToJson(_$_Geometry instance) => <String, dynamic>{
       'type': instance.type,
       'id': instance.id,
       'coordinates': instance.coordinates,
@@ -83,8 +79,7 @@ _$_LocalUserNear _$_$_LocalUserNearFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_LocalUserNearToJson(_$_LocalUserNear instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_LocalUserNearToJson(_$_LocalUserNear instance) => <String, dynamic>{
       'localUser': localUserToMap(instance.localUser),
       'distance': instance.distance,
     };

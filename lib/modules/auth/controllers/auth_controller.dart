@@ -56,16 +56,16 @@ class AuthController extends GetxController {
 
   Future<void> userHasGiftReuqest(String giftId) async {
     try {
-      await authService.updateLocalUser(currentUserInfo.value
-          .maybeWhen(
-              data: (user) => user,
-              orElse: () {
-                throw AuthException(message: 'User Info not found');
-              })
-          .copyWith(
-            hasGiftAskRequest: true,
-            requestedGiftId: giftId,
-          ));
+      // await authService.updateLocalUser(currentUserInfo.value
+      //     .maybeWhen(
+      //         data: (user) => user,
+      //         orElse: () {
+      //           throw AuthException(message: 'User Info not found');
+      //         })
+      //     .copyWith(
+      //       hasGiftAskRequest: true,
+      //       requestedGiftId: giftId,
+      //     ));
     } catch (e) {
       Get.snackbar('Something Went Wrong', e.toString());
     }
@@ -73,16 +73,16 @@ class AuthController extends GetxController {
 
   Future<void> userDoesNotHaveGiftReuqest() async {
     try {
-      await authService.updateLocalUser(currentUserInfo.value
-          .maybeWhen(
-              data: (user) => user,
-              orElse: () {
-                throw AuthException(message: 'User Info not found');
-              })
-          .copyWith(
-            hasGiftAskRequest: false,
-            requestedGiftId: '',
-          ));
+      // await authService.updateLocalUser(currentUserInfo.value
+      //     .maybeWhen(
+      //         data: (user) => user,
+      //         orElse: () {
+      //           throw AuthException(message: 'User Info not found');
+      //         })
+      //     .copyWith(
+      //       hasGiftAskRequest: false,
+      //       requestedGiftId: '',
+      //     ));
     } catch (e) {
       Get.snackbar('Something Went Wrong', e.toString());
     }
@@ -127,15 +127,15 @@ class AuthController extends GetxController {
     currentUserInfo.value = const LocalUserInfo.loading();
 
     try {
-      LocalUser? userInfo = await authService.getLocalUserInfo(FirebaseAuth.instance.currentUser?.uid ?? '');
+      // LocalUser? userInfo = await authService.getLocalUserInfo(FirebaseAuth.instance.currentUser?.uid ?? '');
 
-      if (userInfo != null) {
-        currentUser.value = userInfo;
-        errors.value = false;
-        currentUserInfo.value = LocalUserInfo.data(userInfo);
-      } else {
-        currentUserInfo.value = LocalUserInfo.error('Reg error maybe');
-      }
+      // if (userInfo != null) {
+      //   currentUser.value = userInfo;
+      //   errors.value = false;
+      //   currentUserInfo.value = LocalUserInfo.data(userInfo);
+      // } else {
+      //   currentUserInfo.value = LocalUserInfo.error('Reg error maybe');
+      // }
     } on AuthException catch (e) {
       errors.value = true;
       currentUserInfo.value = LocalUserInfo.error(e.toString());
@@ -150,6 +150,6 @@ class AuthController extends GetxController {
   }
 
   void bindMyUserStream() {
-    currentUser.bindStream(authService.loggedInUserStream());
+    // currentUser.bindStream(authService.loggedInUserStream());
   }
 }

@@ -40,7 +40,7 @@ class GiftGiverNotificationController extends GetxController {
     // TODO user has no gift Request 
 
     //***  THIS CALL Used to change user it has been fixed for now ***
-    await Get.find<AuthController>().authService.updateUserRating(giftReceiver.giftGiver.uid, giverRating.value);
+    // await Get.find<AuthController>().authService.updateUserRating(giftReceiver.giftGiver.uid, giverRating.value);
   }
 
   //* Message for Requester and Rating
@@ -59,9 +59,9 @@ class GiftGiverNotificationController extends GetxController {
         .addNotification(userId: giftReceiver.requester.id ?? '', notification: requesterNotification);
 
     //***  THIS CALL Used to change user it has been fixed for now ***
-    await Get.find<AuthController>()
-        .authService
-        .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);
+    // await Get.find<AuthController>()
+    //     .authService
+    //     .updateUserRating(giftReceiver.requester.id ?? '', requesterRating.value);
   }
 
   //* MARKED AS DONE BY GIVER

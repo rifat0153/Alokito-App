@@ -54,9 +54,9 @@ class GiftAskGiverController extends GetxController {
     try {
       await giftAskGiverService.add(giftAskGiver);
 
-      await Get.find<AuthController>()
-          .authService
-          .updateLocalUser(currentUser.copyWith(acceptedGiftId: giftAsk.id ?? '', hasGiftAskRequest: true));
+      // await Get.find<AuthController>()
+      //     .authService
+      //     .updateLocalUser(currentUser.copyWith(acceptedGiftId: giftAsk.id ?? '', hasGiftAskRequest: true));
 
       await addNotification(
         giftAskGiver: giftAskGiver,

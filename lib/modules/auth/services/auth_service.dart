@@ -19,16 +19,10 @@ import 'package:flutter/material.dart';
 import '../../../models/user/local_user.dart';
 
 abstract class BaseAuthService {
-  Future<bool> updateLocalUser(LocalUser localUser);
-
-  Future<bool> updateUserNotificationStatus(String id, bool notificationStatus);
-
-  Future<String> signIn({required String email, required String password});
-
-  Stream<LocalUser> loggedInUserStream();
+  Future<void> signIn({required String email, required String password});
 
   // Sign Up function
-  Future<bool> signUp({
+  Future<void> signUp({
     required String firstName,
     required String lastName,
     required String email,
@@ -37,17 +31,17 @@ abstract class BaseAuthService {
     required File localImageFile,
   });
 
-  Future<void> uploadUserAndImage(LocalUser user, bool isUpdating, File localFile);
+  Future<LocalUser> uploadUserAndImageToFirebase(LocalUser user, bool isUpdating, File localFile);
 
-  Future<void> uploadUser(LocalUser user, bool isUpdating, {String? imageUrl});
+  Future<void> addUser(LocalUser user, bool isUpdating, File localFile);
+
+  Future<void> updateUserFirebase();
+
+  Future<void> updateUserNotificationStatus(String id, bool notificationStatus);
 
   Stream<User?> get authStateChanges;
 
-  Future<LocalUser?> getLocalUserInfo(String uid);
-
   Future<void> signOut();
-
-  Future<void> updateUserRating(String userId, int rating);
 }
 
 class AuthService implements BaseAuthService {
@@ -55,66 +49,6 @@ class AuthService implements BaseAuthService {
 
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
-
-  @override
-  Future<LocalUser?> getLocalUserInfo(String uid) async {
-    try {
-      DocumentSnapshot userDoc;
-      if (uid.isNotEmpty) {
-        userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
-
-        if (userDoc.exists) {
-          LocalUser localUser = LocalUser.fromJson(userDoc.data()!);
-          return localUser;
-        }
-      }
-      return null;
-    } on FirebaseException catch (e) {
-      throw AuthException(message: e.message);
-    } catch (e) {
-      throw AuthException(message: 'Something went wrong');
-    }
-  }
-
-  @override
-  Future<void> updateUserRating(String userId, int rating) async {
-    final DocumentReference documentReference = _firestore.collection('users').doc(userId);
-
-    try {
-      await _firestore.runTransaction((transaction) async {
-        final DocumentSnapshot snapshot = await transaction.get(documentReference);
-
-        if (!snapshot.exists) {
-          throw AuthException(message: 'User $userId does not exists');
-        }
-        final LocalUser localUser = LocalUser.fromJson(snapshot.data()!);
-
-        final newRating = (localUser.ratingSum + rating) / (localUser.totalRating + 1);
-
-        final updatedUser = localUser.copyWith(
-          ratingSum: localUser.ratingSum + rating,
-          totalRating: localUser.totalRating + 1,
-          averageRating: newRating,
-        );
-
-        // Perform an update on the document
-        transaction.update(documentReference, updatedUser.toJson());
-      });
-    } on FirebaseException catch (e) {
-      throw AuthException(message: e.message);
-    }
-  }
-
-  @override
-  Future<bool> updateLocalUser(LocalUser localUser) async {
-    try {
-      await _firestore.collection('users').doc(localUser.id).update(localUser.toJson());
-
-      return true;
-    } on FirebaseAuthException catch (e) {
-      throw AuthException(message: e.message);
-    }
-  }
 
   @override
   Future<bool> updateUserNotificationStatus(String id, bool notificationStatus) async {
@@ -140,27 +74,7 @@ class AuthService implements BaseAuthService {
   }
 
   @override
-  Stream<LocalUser> loggedInUserStream() {
-    try {
-      return _firestore
-          .collection('users')
-          .doc(_firebaseAuth.currentUser?.uid)
-          .snapshots()
-          .map((DocumentSnapshot documentSnapshot) {
-        if (documentSnapshot.exists) {
-          final retVal = LocalUser.fromJson(documentSnapshot.data()!);
-          return retVal;
-        } else {
-          return initialUser;
-        }
-      });
-    } catch (e) {
-      throw AuthException(message: e.toString());
-    }
-  }
-
-  @override
-  Future<bool> signUp({
+  Future<void> signUp({
     required String firstName,
     required String lastName,
     required String email,
@@ -171,6 +85,7 @@ class AuthService implements BaseAuthService {
     final client = http.Client();
 
     try {
+      // * Create User in Firebase Auth
       // final UserCredential firebaseUser =
       //     await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
@@ -178,7 +93,7 @@ class AuthService implements BaseAuthService {
       final LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
       final Geometry geometry = Geometry(coordinates: [userPosition.longitude, userPosition.latitude]);
 
-      final LocalUser myUser = LocalUser(
+      LocalUser myUser = LocalUser(
         imageUrl: '',
         firstName: firstName,
         lastName: lastName,
@@ -189,14 +104,12 @@ class AuthService implements BaseAuthService {
         updatedAt: DateTime.now(),
       );
 
-      // final uriResponse =
-      //     await client.post(Uri.parse('http://192.168.0.121:3000/api/v1/user/store'), body: myUser.toJson());
+      // myUser = await uploadUserAndImageToFirebase(myUser, false, localImageFile);
 
-      // print(uriResponse.body);
-
-      // * Http get
+// * Http get
       // final http.Response response = await client.get(
-      //   Uri.parse('http://192.168.0.121:3000/api/v1/user/near?lat=23&lng=90&maxDistance=125&page=1&limit=5'),
+      //   Uri.parse(
+      //       'http://192.168.0.121:3000/api/v1/user/near?lat=${userPosition.latitude}&lng=${userPosition.longitude}&maxDistance=125&page=1&limit=15'),
       //   headers: {"Content-Type": "application/json"},
       // );
 
@@ -211,7 +124,7 @@ class AuthService implements BaseAuthService {
       //     .toList();
 
       // users.forEach((element) {
-      //   print(element.distance);
+      //   print(element.id);
       // });
 
       // * Http Post
@@ -224,57 +137,34 @@ class AuthService implements BaseAuthService {
       );
 
       print(response.body);
-
-      // await uploadUserAndImage(myUser, false, localImageFile);
-
-      return true;
     } on FirebaseAuthException catch (e) {
       Get.snackbar(e.message ?? '', '', backgroundColor: Colors.red);
-      return false;
     } finally {
       client.close();
     }
   }
 
   @override
-  Future<void> uploadUserAndImage(LocalUser user, bool isUpdating, File localFile) async {
+  Future<LocalUser> uploadUserAndImageToFirebase(LocalUser user, bool isUpdating, File localFile) async {
+    // _firestore.collection('users').doc(user.id).
+
     if (localFile.path.isNotEmpty) {
       final fileExtension = path.extension(localFile.path);
+
       final uuid = const Uuid().v4();
 
-      // final firebase_storage.Reference firebaseStorageRef =
-      //     firebase_storage.FirebaseStorage.instance.ref().child('users/images/$uuid$fileExtension');
+      final firebase_storage.Reference firebaseStorageRef =
+          firebase_storage.FirebaseStorage.instance.ref().child('users/images/$uuid$fileExtension');
 
-      // try {
-      //   await firebaseStorageRef.putFile(localFile);
-      // } on firebase_core.FirebaseException catch (e) {}
+      try {
+        await firebaseStorageRef.putFile(localFile);
+      } on firebase_core.FirebaseException catch (e) {}
 
-      // final String url = await firebaseStorageRef.getDownloadURL();
-      await uploadUser(user, isUpdating, imageUrl: '');
+      final String url = await firebaseStorageRef.getDownloadURL();
+
+      return user.copyWith(imageUrl: url);
     } else {
-      await uploadUser(user, isUpdating);
-    }
-  }
-
-  @override
-  Future<void> uploadUser(LocalUser user, bool isUpdating, {String? imageUrl}) async {
-    final CollectionReference userRef = FirebaseFirestore.instance.collection('users');
-
-    if (imageUrl != null) {
-      user = user.copyWith(imageUrl: imageUrl);
-    }
-    try {
-      if (isUpdating) {
-        await userRef.doc(user.id).update(user.toJson());
-      } else {
-        user = user.copyWith(id: _firebaseAuth.currentUser?.uid);
-
-        final DocumentReference documentRef = userRef.doc(user.id);
-
-        // await documentRef.set(user.toJson());
-      }
-    } on FirebaseException catch (e) {
-      throw AuthException(message: e.message);
+      return user;
     }
   }
 
@@ -290,5 +180,17 @@ class AuthService implements BaseAuthService {
   @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+  }
+
+  @override
+  Future<void> addUser(LocalUser user, bool isUpdating, File localFile) {
+    // TODO: implement addUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateUserFirebase() {
+    // TODO: implement updateUserFirebase
+    throw UnimplementedError();
   }
 }

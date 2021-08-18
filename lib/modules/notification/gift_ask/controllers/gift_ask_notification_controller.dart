@@ -35,13 +35,13 @@ class GiftAskNotificationController extends GetxController {
 
     // *update requester userinfo to no request
     final updatedUser = giftAskGiver.requester.copyWith(hasGiftAskRequest: false);
-    await Get.find<AuthController>().authService.updateLocalUser(updatedUser);
+    // await Get.find<AuthController>().authService.updateLocalUser(updatedUser);
 
     await Get.find<NotificationController>()
         .addNotification(userId: giftAskGiver.giver.id ?? '', notification: giverNotification);
 
     //***  THIS CALL Used to change user it has been fixed for now ***
-    await Get.find<AuthController>().authService.updateUserRating(giftAskGiver.giver.id!, giverRating.value);
+    // await Get.find<AuthController>().authService.updateUserRating(giftAskGiver.giver.id!, giverRating.value);
   }
 
   //*Message for Requester and Rating
@@ -59,13 +59,13 @@ class GiftAskNotificationController extends GetxController {
 
     // *update giver userinfo to no request
     final updatedUser = giftAskGiver.giver.copyWith(hasGiftAskRequest: false);
-    await Get.find<AuthController>().authService.updateLocalUser(updatedUser);
+    // await Get.find<AuthController>().authService.updateLocalUser(updatedUser);
 
     await Get.find<NotificationController>()
         .addNotification(userId: giftAskGiver.requester.id ?? '', notification: requesterNotification);
 
     //***  THIS CALL Used to change user it has been fixed for now ***
-    await Get.find<AuthController>().authService.updateUserRating(giftAskGiver.requester.id ?? '', requesterRating.value);
+    // await Get.find<AuthController>().authService.updateUserRating(giftAskGiver.requester.id ?? '', requesterRating.value);
   }
 
   //* MARKED AS DONE BY GIVER
