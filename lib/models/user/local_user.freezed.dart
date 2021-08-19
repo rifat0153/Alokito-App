@@ -22,6 +22,7 @@ class _$LocalUserTearOff {
 
   _LocalUser call(
       {String? id,
+      String? uid,
       double? distance,
       required String email,
       required String userName,
@@ -46,6 +47,7 @@ class _$LocalUserTearOff {
       int v = 1}) {
     return _LocalUser(
       id: id,
+      uid: uid,
       distance: distance,
       email: email,
       userName: userName,
@@ -81,6 +83,7 @@ const $LocalUser = _$LocalUserTearOff();
 /// @nodoc
 mixin _$LocalUser {
   String? get id => throw _privateConstructorUsedError;
+  String? get uid => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
@@ -116,6 +119,7 @@ abstract class $LocalUserCopyWith<$Res> {
       _$LocalUserCopyWithImpl<$Res>;
   $Res call(
       {String? id,
+      String? uid,
       double? distance,
       String email,
       String userName,
@@ -153,6 +157,7 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? uid = freezed,
     Object? distance = freezed,
     Object? email = freezed,
     Object? userName = freezed,
@@ -179,6 +184,10 @@ class _$LocalUserCopyWithImpl<$Res> implements $LocalUserCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       distance: distance == freezed
           ? _value.distance
@@ -283,6 +292,7 @@ abstract class _$LocalUserCopyWith<$Res> implements $LocalUserCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
+      String? uid,
       double? distance,
       String email,
       String userName,
@@ -322,6 +332,7 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? uid = freezed,
     Object? distance = freezed,
     Object? email = freezed,
     Object? userName = freezed,
@@ -348,6 +359,10 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       distance: distance == freezed
           ? _value.distance
@@ -442,6 +457,7 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
 class _$_LocalUser implements _LocalUser {
   const _$_LocalUser(
       {this.id,
+      this.uid,
       this.distance,
       required this.email,
       required this.userName,
@@ -470,6 +486,8 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   final String? id;
+  @override
+  final String? uid;
   @override
   final double? distance;
   @override
@@ -530,7 +548,7 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   String toString() {
-    return 'LocalUser(id: $id, distance: $distance, email: $email, userName: $userName, imageUrl: $imageUrl, geometry: $geometry, firstName: $firstName, lastName: $lastName, hasNotifications: $hasNotifications, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, giftGiven: $giftGiven, giftReceived: $giftReceived, hasGiftGiverRequest: $hasGiftGiverRequest, hasGiftAskRequest: $hasGiftAskRequest, requestedGiftId: $requestedGiftId, acceptedGiftId: $acceptedGiftId, role: $role, createdAt: $createdAt, updatedAt: $updatedAt, v: $v)';
+    return 'LocalUser(id: $id, uid: $uid, distance: $distance, email: $email, userName: $userName, imageUrl: $imageUrl, geometry: $geometry, firstName: $firstName, lastName: $lastName, hasNotifications: $hasNotifications, ratingSum: $ratingSum, totalRating: $totalRating, averageRating: $averageRating, giftGiven: $giftGiven, giftReceived: $giftReceived, hasGiftGiverRequest: $hasGiftGiverRequest, hasGiftAskRequest: $hasGiftAskRequest, requestedGiftId: $requestedGiftId, acceptedGiftId: $acceptedGiftId, role: $role, createdAt: $createdAt, updatedAt: $updatedAt, v: $v)';
   }
 
   @override
@@ -539,6 +557,8 @@ class _$_LocalUser implements _LocalUser {
         (other is _LocalUser &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.uid, uid) ||
+                const DeepCollectionEquality().equals(other.uid, uid)) &&
             (identical(other.distance, distance) ||
                 const DeepCollectionEquality()
                     .equals(other.distance, distance)) &&
@@ -605,6 +625,7 @@ class _$_LocalUser implements _LocalUser {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(distance) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(userName) ^
@@ -641,6 +662,7 @@ class _$_LocalUser implements _LocalUser {
 abstract class _LocalUser implements LocalUser {
   const factory _LocalUser(
       {String? id,
+      String? uid,
       double? distance,
       required String email,
       required String userName,
@@ -669,6 +691,8 @@ abstract class _LocalUser implements LocalUser {
 
   @override
   String? get id => throw _privateConstructorUsedError;
+  @override
+  String? get uid => throw _privateConstructorUsedError;
   @override
   double? get distance => throw _privateConstructorUsedError;
   @override

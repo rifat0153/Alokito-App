@@ -12,6 +12,7 @@ String localUserToJson(LocalUser data) => json.encode(data.toJson());
 abstract class LocalUser with _$LocalUser {
   const factory LocalUser({
     String? id,
+    String? uid,
     double? distance,
     required String email,
     required String userName,

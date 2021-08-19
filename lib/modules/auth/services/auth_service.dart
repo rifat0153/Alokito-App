@@ -93,6 +93,7 @@ class AuthService implements BaseAuthService {
 
       LocalUser myUser = LocalUser(
         id: '',
+        uid: userCredential.user != null? userCredential.user!.uid : '' ,
         imageUrl: '',
         firstName: firstName,
         lastName: lastName,
