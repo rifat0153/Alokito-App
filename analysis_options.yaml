@@ -23,4 +23,5 @@ linter:
     lowercase_with_underscores: false
     directives_ordering: false
     prefer_single_quotes: false
+    type_annotate_public_apis: false
     

@@ -206,11 +206,11 @@ class _GiftListTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            convertGiftType(filteredGiftList[index].giftType),
+                            'test',
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 5),
-                          Text(filteredGiftList[index].userName),
+                          Text(filteredGiftList[index].user.userName),
                         ],
                       ),
                     ),

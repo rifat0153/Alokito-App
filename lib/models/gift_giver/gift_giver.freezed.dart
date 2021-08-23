@@ -28,6 +28,7 @@ class _$GiftGiverTearOff {
           required LocalUser user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required Geometry geometry,
+      required String giftType,
       required String giftDetails,
       required DateTime pickUpTime,
       required String area,
@@ -40,6 +41,7 @@ class _$GiftGiverTearOff {
       canLeaveOutside: canLeaveOutside,
       user: user,
       geometry: geometry,
+      giftType: giftType,
       giftDetails: giftDetails,
       pickUpTime: pickUpTime,
       area: area,
@@ -66,6 +68,7 @@ mixin _$GiftGiver {
   LocalUser get user => throw _privateConstructorUsedError;
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
   Geometry get geometry => throw _privateConstructorUsedError;
+  String get giftType => throw _privateConstructorUsedError;
   String get giftDetails => throw _privateConstructorUsedError;
   DateTime get pickUpTime => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
@@ -91,6 +94,7 @@ abstract class $GiftGiverCopyWith<$Res> {
           LocalUser user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           Geometry geometry,
+      String giftType,
       String giftDetails,
       DateTime pickUpTime,
       String area,
@@ -117,6 +121,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? canLeaveOutside = freezed,
     Object? user = freezed,
     Object? geometry = freezed,
+    Object? giftType = freezed,
     Object? giftDetails = freezed,
     Object? pickUpTime = freezed,
     Object? area = freezed,
@@ -145,6 +150,10 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
               as Geometry,
+      giftType: giftType == freezed
+          ? _value.giftType
+          : giftType // ignore: cast_nullable_to_non_nullable
+              as String,
       giftDetails: giftDetails == freezed
           ? _value.giftDetails
           : giftDetails // ignore: cast_nullable_to_non_nullable
@@ -201,6 +210,7 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
           LocalUser user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           Geometry geometry,
+      String giftType,
       String giftDetails,
       DateTime pickUpTime,
       String area,
@@ -230,6 +240,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? canLeaveOutside = freezed,
     Object? user = freezed,
     Object? geometry = freezed,
+    Object? giftType = freezed,
     Object? giftDetails = freezed,
     Object? pickUpTime = freezed,
     Object? area = freezed,
@@ -258,6 +269,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
               as Geometry,
+      giftType: giftType == freezed
+          ? _value.giftType
+          : giftType // ignore: cast_nullable_to_non_nullable
+              as String,
       giftDetails: giftDetails == freezed
           ? _value.giftDetails
           : giftDetails // ignore: cast_nullable_to_non_nullable
@@ -297,6 +312,7 @@ class _$_GiftGiver implements _GiftGiver {
           required this.user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required this.geometry,
+      required this.giftType,
       required this.giftDetails,
       required this.pickUpTime,
       required this.area,
@@ -320,6 +336,8 @@ class _$_GiftGiver implements _GiftGiver {
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
   final Geometry geometry;
   @override
+  final String giftType;
+  @override
   final String giftDetails;
   @override
   final DateTime pickUpTime;
@@ -334,7 +352,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, user: $user, geometry: $geometry, giftDetails: $giftDetails, pickUpTime: $pickUpTime, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
+    return 'GiftGiver(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, user: $user, geometry: $geometry, giftType: $giftType, giftDetails: $giftDetails, pickUpTime: $pickUpTime, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
   }
 
   @override
@@ -354,6 +372,9 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.geometry, geometry) ||
                 const DeepCollectionEquality()
                     .equals(other.geometry, geometry)) &&
+            (identical(other.giftType, giftType) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftType, giftType)) &&
             (identical(other.giftDetails, giftDetails) ||
                 const DeepCollectionEquality()
                     .equals(other.giftDetails, giftDetails)) &&
@@ -381,6 +402,7 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(canLeaveOutside) ^
       const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(geometry) ^
+      const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(giftDetails) ^
       const DeepCollectionEquality().hash(pickUpTime) ^
       const DeepCollectionEquality().hash(area) ^
@@ -408,6 +430,7 @@ abstract class _GiftGiver implements GiftGiver {
           required LocalUser user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required Geometry geometry,
+      required String giftType,
       required String giftDetails,
       required DateTime pickUpTime,
       required String area,
@@ -430,6 +453,8 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
   Geometry get geometry => throw _privateConstructorUsedError;
+  @override
+  String get giftType => throw _privateConstructorUsedError;
   @override
   String get giftDetails => throw _privateConstructorUsedError;
   @override

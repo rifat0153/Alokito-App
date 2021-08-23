@@ -95,9 +95,7 @@ class _DecisionWidget extends StatelessWidget {
     if (giftReceiver.requester.id == Get.find<AuthController>().currentUser.value.id) {
       return giftReceiver.giftReceiverStatus.when(
         pending: () => MaterialButton(
-          onPressed: () {
-            controller.cancelGiftRequestByRequester(giftReceiver);
-          },
+          onPressed: () {},
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           height: 0,
           padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
@@ -108,9 +106,7 @@ class _DecisionWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
-              onPressed: () {
-                controller.aceeptGiftRequestByRequester(giftReceiver);
-              },
+              onPressed: () {},
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -119,9 +115,7 @@ class _DecisionWidget extends StatelessWidget {
             ),
             const SizedBox(width: 30),
             MaterialButton(
-              onPressed: () {
-                controller.cancelGiftRequestByRequester(giftReceiver);
-              },
+              onPressed: () {},
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
               padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
@@ -130,7 +124,7 @@ class _DecisionWidget extends StatelessWidget {
             )
           ],
         ),
-        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.giftGiver.userName}',
+        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.giftGiver.user.userName}',
             textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
         canceledByRequester: () => MyText('r Request Canceled by You',
             textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
@@ -164,9 +158,7 @@ class _DecisionWidget extends StatelessWidget {
 
     return giftReceiver.giftReceiverStatus.when(
         pending: () => MaterialButton(
-              onPressed: () {
-                controller.confirmGift(giftReceiver);
-              },
+              onPressed: () {},
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -197,9 +189,7 @@ class _DecisionWidget extends StatelessWidget {
                 MyText('Gift Accepted by ${giftReceiver.requester.userName}',
                     textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
                 MaterialButton(
-                  onPressed: () {
-                    controller.doneGiftRequestByGiver(giftReceiver);
-                  },
+                  onPressed: () {},
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   height: 0,
                   padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),

@@ -25,8 +25,7 @@ class FeedbackWidget extends StatelessWidget {
           // height: 800,
           // width: Get.size.width,
           decoration: BoxDecoration(
-            image: const DecorationImage(
-                image: AssetImage('assets/images/submit-feedback.png'), fit: BoxFit.fill),
+            image: const DecorationImage(image: AssetImage('assets/images/submit-feedback.png'), fit: BoxFit.fill),
             borderRadius: BorderRadius.circular(10),
           ),
           child: SingleChildScrollView(
@@ -56,7 +55,6 @@ class FeedbackWidget extends StatelessWidget {
                       isRequester
                           ? controller.messageForGiver.value = value
                           : controller.messageForRequester.value = value,
-               
                     },
                     onSubmitted: (value) => {},
                   ),
@@ -65,11 +63,7 @@ class FeedbackWidget extends StatelessWidget {
                 MaterialButton(
                   color: giftAddFormSubmitColor,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  onPressed: () {
-                    isRequester
-                        ? controller.messageForGiverAndRating(giftReceiver!)
-                        : controller.messageForRequesterAndRating(giftReceiver!);
-                  },
+                  onPressed: () {},
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     child: Text('send'),

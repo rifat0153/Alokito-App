@@ -71,13 +71,13 @@ String convertGiftType(GiftType giftType) {
   }
 }
 
-String convertGiftFor(GiftGiver giftType) {
-  switch (giftType.giftFor) {
-    case 0:
-      return 'Small Family';
-    case 1:
-      return 'Large Family';
-    default:
-      return '';
-  }
-}
+// String convertGiftFor(GiftGiver GiftGiver) {
+//   switch (GiftGiver.giftType) {
+//     case 0:
+//       return 'Small Family';
+//     case 1:
+//       return 'Large Family';
+//     default:
+//       return '';
+//   }
+// }

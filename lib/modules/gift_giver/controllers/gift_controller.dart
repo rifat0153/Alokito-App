@@ -39,7 +39,7 @@ class GiftController extends GetxController {
         filteredGiftList.value = const GiftGiverListUnion.loading();
 
         for (var doc in docList) {
-          if (doc.uid != Get.find<AuthController>().currentUser.value.id) {
+          if (doc.user.uid != Get.find<AuthController>().currentUser.value.id) {
             List<GiftGiver> tempFilteredList = [
               ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
               doc
@@ -82,10 +82,10 @@ class GiftController extends GetxController {
   void _updateMarkers(List<GiftGiver> documentList) {
     markers.value = <MarkerId, Marker>{};
 
-    documentList.forEach((GiftGiver giftAsk) {
-      if (giftAsk.id == Get.find<AuthController>().currentUser.value.id) return;
+    documentList.forEach((GiftGiver giftGiver) {
+      if (giftGiver.id == Get.find<AuthController>().currentUser.value.id) return;
 
-      final GeoPoint point = giftAsk.position.geopoint;
+      final GeoPoint point = GeoPoint(giftGiver.geometry.coordinates.first, giftGiver.geometry.coordinates.last);
 
       var userPoint =
           geo.point(latitude: currentUserLocation.value.latitude, longitude: currentUserLocation.value.longitude);
@@ -108,7 +108,6 @@ class GiftController extends GetxController {
     markers[id] = _marker;
   }
 
- 
   void bindGiftStream() async {
     Get.find<AuthController>().bindLocationData();
 

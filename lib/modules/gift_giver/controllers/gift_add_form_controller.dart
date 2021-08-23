@@ -25,13 +25,13 @@ class GiftAddFormController extends GetxController {
   var canLeaveOutside = false.obs;
   var markers = List<Marker>.empty().obs;
   Rx<File> imageFile = File('').obs;
-  var userLocation = LatLng(0, 0).obs;
+  var userLocation = const LatLng(0, 0).obs;
   var addressQuery = ''.obs;
   var foundAddress = ''.obs;
   var selectedAddress = ''.obs;
   var addressSelected = true.obs;
-  var selectedAddressLatLng = LatLng(0, 0).obs;
-  var selectedLatLng = LatLng(0, 0).obs;
+  var selectedAddressLatLng = const LatLng(0, 0).obs;
+  var selectedLatLng = const LatLng(0, 0).obs;
   var selectedMapLocation = ''.obs;
   var location = ''.obs;
   var area = ''.obs;
@@ -139,6 +139,6 @@ class GiftAddFormController extends GetxController {
       return;
     }
 
-    GiftGiverService().addGift();
+    // GiftGiverService().addGift();
   }
 }

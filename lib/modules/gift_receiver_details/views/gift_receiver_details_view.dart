@@ -26,7 +26,7 @@ class GiftReceiverDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var giftType = convertGiftType(giftGiver.giftType);
+    var giftType = 'test';
 
     return SafeArea(
       child: Scaffold(
@@ -295,9 +295,9 @@ class _PackageName extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text(convertGiftFor(giftGiver)),
+                Text('test'),
                 const SizedBox(width: 30),
-                Text('${giftGiver.givingGiftInDays} days'),
+                Text('12 days'),
               ],
             ),
           )

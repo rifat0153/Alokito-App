@@ -52,7 +52,7 @@ class AuthController extends GetxController {
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();
     final giftGiverPoint =
-        geo.point(latitude: giftGiver.position.geopoint.latitude, longitude: giftGiver.position.geopoint.longitude);
+        geo.point(latitude: giftGiver.geometry.coordinates.first, longitude: giftGiver.geometry.coordinates.last);
 
     final GiftController giftController = Get.find();
 
@@ -69,7 +69,7 @@ class AuthController extends GetxController {
     currentUserInfo.value = const LocalUserInfo.loading();
 
     try {
-      LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
+      final LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
       currentUserInfo.value = userInfo;
     } on AuthException catch (e) {
