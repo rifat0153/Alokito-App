@@ -103,7 +103,7 @@ class AuthService implements BaseAuthService {
         updatedAt: DateTime.now(),
       );
 
-      // * upload user Image to Firebase storage and return user with image url
+      // * upload userImage to Firebase storage and return user with image url
       myUser = await uploadImageToFirebase(myUser, false, localImageFile);
 
       // * Create userDocument in mongodb

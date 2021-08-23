@@ -23,7 +23,6 @@ class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.bindNotificationStream(Get.find<AuthController>().currentUser.value.id ?? '');
-    Get.find<AuthController>().userDoesNotHaveNotification();
 
     final notificationController = Get.find<NotificationController>();
 

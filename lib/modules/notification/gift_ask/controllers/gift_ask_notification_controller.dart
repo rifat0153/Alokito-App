@@ -98,7 +98,6 @@ class GiftAskNotificationController extends GetxController {
     await Get.find<GiftAskGiverController>()
         .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestCanceledByRequester);
 
-    await Get.find<AuthController>().userDoesNotHaveGiftReuqest();
 
     String giftType = convertGiftAskType(giftAskType: giftAskGiver.giftAsk.giftAskType);
 

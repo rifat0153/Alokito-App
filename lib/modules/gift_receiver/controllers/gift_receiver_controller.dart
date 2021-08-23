@@ -41,7 +41,6 @@ class GiftReceiverController extends GetxController {
 
       await giftReceiverService.deleteGiftRequest(docIdToBeDeleted);
 
-      await Get.find<AuthController>().userDoesNotHaveGiftReuqest();
       await Get.find<AuthController>().getUserInfoAndSetCurrentUser();
 
       // Updating LocalUserInfo
@@ -53,7 +52,6 @@ class GiftReceiverController extends GetxController {
       if (currentUseInfo != null) {
         currentUseInfo = currentUseInfo.copyWith(hasGiftAskRequest: false, requestedGiftId: '');
       }
-      Get.find<AuthController>().updateLocalUser(currentUseInfo!);
     } catch (e) {
       await showSuccessOrErrorMessage(false, 'Operation delete unsuscessful', '', e.toString());
     }
@@ -102,7 +100,6 @@ class GiftReceiverController extends GetxController {
 
     var result = await giftReceiverService.addGiftRequest(giftReceiver: giftReceiver);
     if (result) {
-      await Get.find<AuthController>().userHasGiftReuqest(giftGiver.id!);
       await addNotificationForGiftRequest(giftReceiver);
       await Get.find<AuthController>().getUserInfoAndSetCurrentUser();
     }
@@ -131,8 +128,6 @@ class GiftReceiverController extends GetxController {
         .addNotification(userId: requesterId, notification: requesterNotification);
     await Get.find<NotificationController>().addNotification(userId: giverId, notification: giverNotification);
 
-    await Get.find<AuthController>().userHasNotification(giverId);
-    await Get.find<AuthController>().userHasNotification(requesterId);
   }
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {

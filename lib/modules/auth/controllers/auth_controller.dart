@@ -30,9 +30,8 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     authStream.bindStream(authService.authStateChanges);
-    bindMyUserStream();
-    // getUserInfoAndSetCurrentUser();
     bindLocationData();
+
     super.onInit();
   }
 
@@ -48,63 +47,6 @@ class AuthController extends GetxController {
 
     Get.find<LoginController>().loginStatus.value = const LoginStatus.notLoggedIn();
     authCompleted.value = false;
-  }
-
-  void updateLocalUser(LocalUser localUser) {
-    currentUserInfo.value = LocalUserInfo.data(localUser);
-  }
-
-  Future<void> userHasGiftReuqest(String giftId) async {
-    try {
-      // await authService.updateLocalUser(currentUserInfo.value
-      //     .maybeWhen(
-      //         data: (user) => user,
-      //         orElse: () {
-      //           throw AuthException(message: 'User Info not found');
-      //         })
-      //     .copyWith(
-      //       hasGiftAskRequest: true,
-      //       requestedGiftId: giftId,
-      //     ));
-    } catch (e) {
-      Get.snackbar('Something Went Wrong', e.toString());
-    }
-  }
-
-  Future<void> userDoesNotHaveGiftReuqest() async {
-    try {
-      // await authService.updateLocalUser(currentUserInfo.value
-      //     .maybeWhen(
-      //         data: (user) => user,
-      //         orElse: () {
-      //           throw AuthException(message: 'User Info not found');
-      //         })
-      //     .copyWith(
-      //       hasGiftAskRequest: false,
-      //       requestedGiftId: '',
-      //     ));
-    } catch (e) {
-      Get.snackbar('Something Went Wrong', e.toString());
-    }
-  }
-
-  Future<void> userHasNotification(String id) async {
-    await authService.updateUserNotificationStatus(id, true);
-  }
-
-  Future<void> userDoesNotHaveNotification() async {
-    try {
-      await currentUserInfo.value.when(
-          data: (user) async {
-            if (user.hasNotifications) {
-              await authService.updateUserNotificationStatus(user.id!, false);
-            }
-          },
-          loading: () {},
-          error: (error) {});
-    } catch (e) {
-      Get.snackbar('Something Went Wrong', e.toString());
-    }
   }
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
@@ -130,7 +72,6 @@ class AuthController extends GetxController {
       LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
       currentUserInfo.value = userInfo;
-      
     } on AuthException catch (e) {
       errors.value = true;
       currentUserInfo.value = LocalUserInfo.error(e.toString());
@@ -142,9 +83,5 @@ class AuthController extends GetxController {
     currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
 
     print('AuthController: ' + currentUserPosition.value.toString());
-  }
-
-  void bindMyUserStream() {
-    // currentUser.bindStream(authService.loggedInUserStream());
   }
 }

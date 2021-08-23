@@ -37,7 +37,6 @@ class _HomeViewState extends State<HomeView> {
     print('UserVerified:  ' + authController.authStream.value!.emailVerified.toString());
     authController.authStream.value?.reload();
 
-    authController.bindMyUserStream();
 
     return SafeArea(
       child: Scaffold(

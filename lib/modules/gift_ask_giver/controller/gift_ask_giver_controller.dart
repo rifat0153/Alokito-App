@@ -75,7 +75,6 @@ class GiftAskGiverController extends GetxController {
 
       if (currentUseInfo != null) {
         currentUseInfo = currentUseInfo.copyWith(hasGiftAskRequest: true, acceptedGiftId: giftAsk.id ?? '');
-        Get.find<AuthController>().updateLocalUser(currentUseInfo);
       }
     } on FirebaseException {
       ShowSuccessOrError.showSuccessOrErrorBottomSheet(false, '', 'Something went wrong');

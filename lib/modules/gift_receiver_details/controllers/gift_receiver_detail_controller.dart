@@ -27,7 +27,6 @@ class GiftReceiverDetailController extends GetxController {
       if (currentUseInfo != null) {
         currentUseInfo = currentUseInfo.copyWith(hasGiftAskRequest: true, requestedGiftId: giftGiver.id!);
       }
-      Get.find<AuthController>().updateLocalUser(currentUseInfo!);
 
       loading.value = false;
     } catch (e) {
