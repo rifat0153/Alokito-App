@@ -46,7 +46,7 @@ class AuthController extends GetxController {
   Future signOut() async {
     await authService.signOut();
 
-    Get.find<LoginController>().loginStatus.value =const LoginStatus.notLoggedIn();
+    Get.find<LoginController>().loginStatus.value = const LoginStatus.notLoggedIn();
     authCompleted.value = false;
   }
 
@@ -109,8 +109,8 @@ class AuthController extends GetxController {
 
   double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
     final geo = Geoflutterfire();
-    final giftGiverPoint = geo.point(
-        latitude: giftGiver.position.geopoint.latitude, longitude: giftGiver.position.geopoint.longitude);
+    final giftGiverPoint =
+        geo.point(latitude: giftGiver.position.geopoint.latitude, longitude: giftGiver.position.geopoint.longitude);
 
     final GiftController giftController = Get.find();
 
@@ -127,15 +127,10 @@ class AuthController extends GetxController {
     currentUserInfo.value = const LocalUserInfo.loading();
 
     try {
-      // LocalUser? userInfo = await authService.getLocalUserInfo(FirebaseAuth.instance.currentUser?.uid ?? '');
+      LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
-      // if (userInfo != null) {
-      //   currentUser.value = userInfo;
-      //   errors.value = false;
-      //   currentUserInfo.value = LocalUserInfo.data(userInfo);
-      // } else {
-      //   currentUserInfo.value = LocalUserInfo.error('Reg error maybe');
-      // }
+      currentUserInfo.value = userInfo;
+      
     } on AuthException catch (e) {
       errors.value = true;
       currentUserInfo.value = LocalUserInfo.error(e.toString());

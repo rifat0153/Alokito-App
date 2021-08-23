@@ -30,11 +30,9 @@ abstract class BaseAuthService {
     required File localImageFile,
   });
 
+  Future<LocalUserInfo> getLocalUserDB(String id);
+
   Future<LocalUser> uploadImageToFirebase(LocalUser user, bool isUpdating, File localFile);
-
-  Future<void> addUser(LocalUser user, bool isUpdating, File localFile);
-
-  Future<void> updateUserFirebase();
 
   Future<void> updateUserNotificationStatus(String id, bool notificationStatus);
 
@@ -106,7 +104,7 @@ class AuthService implements BaseAuthService {
       );
 
       // * upload user Image to Firebase storage and return user with image url
-      // myUser = await uploadImageToFirebase(myUser, false, localImageFile);
+      myUser = await uploadImageToFirebase(myUser, false, localImageFile);
 
       // * Create userDocument in mongodb
       final http.Response response = await client
@@ -182,15 +180,23 @@ class AuthService implements BaseAuthService {
   }
 
   @override
-  Future<void> addUser(LocalUser user, bool isUpdating, File localFile) {
-    // TODO: implement addUser
-    throw UnimplementedError();
-  }
+  Future<LocalUserInfo> getLocalUserDB(String id) async {
+    final client = http.Client();
 
-  @override
-  Future<void> updateUserFirebase() {
-    // TODO: implement updateUserFirebase
-    throw UnimplementedError();
+    try {
+      final http.Response response = await client.get(
+        Uri.parse('http://192.168.0.121:3000/api/v1/user/show?id=$id'),
+        headers: {"Content-Type": "application/json"},
+      ).timeout(const Duration(seconds: 5));
+
+      print('GEt user status: ' + response.statusCode.toString());
+      final LocalUser localUser = localUserFromJson(response.body);
+      print('User: ' + localUser.id.toString());
+
+      return LocalUserInfo.data(localUser);
+    } catch (e) {
+      return LocalUserInfo.error(e.toString());
+    }
   }
 }
 

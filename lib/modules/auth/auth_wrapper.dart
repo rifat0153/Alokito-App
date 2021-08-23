@@ -32,45 +32,44 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: const LoginRegFormView());
-    //
-    //Obx(() {
-    //   // * Check if user is verified
-    //   // if (authController.authStream.value != null) {
-    //   //   if (!authController.authStream.value!.emailVerified) {
-    //   //     return VerifyScreen();
-    //   //   }
-    //   // }
+    // return Scaffold(body: const LoginRegFormView());
+    return Obx(() {
+      // * Check if user is verified
+      // if (authController.authStream.value != null) {
+      //   if (!authController.authStream.value!.emailVerified) {
+      //     return VerifyScreen();
+      //   }
+      // }
 
-    //   // * User not registered
-    //   if (authController.registering.value) {
-    //     return authController.authStream.value != null && authController.authCompleted.value
-    //         ? FutureBuilder(
-    //             future: authController.getUserInfoAndSetCurrentUser(),
-    //             builder: (BuildContext context, AsyncSnapshot snapshot) {
-    //               return Scaffold(
-    //                 body: HomeView(
-    //                   key: ValueKey(keyValue),
-    //                 ),
-    //               );
-    //             },
-    //           )
-    //         : const LoginRegFormView();
-    //   } else {
-    //     // * Already registered  user
-    //     return authController.authStream.value != null
-    //         ? FutureBuilder(
-    //             future: authController.getUserInfoAndSetCurrentUser(),
-    //             builder: (BuildContext context, AsyncSnapshot snapshot) {
-    //               return Scaffold(
-    //                 body: HomeView(
-    //                   key: ValueKey(keyValue),
-    //                 ),
-    //               );
-    //             },
-    //           )
-    //         : const LoginRegFormView();
-    //   }
-    // });
+      // * User not registered
+      if (authController.registering.value) {
+        return authController.authStream.value != null && authController.authCompleted.value
+            ? FutureBuilder(
+                future: authController.getUserInfoAndSetCurrentUser(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return Scaffold(
+                    body: HomeView(
+                      key: ValueKey(keyValue),
+                    ),
+                  );
+                },
+              )
+            : const LoginRegFormView();
+      } else {
+        // * Already registered  user
+        return authController.authStream.value != null
+            ? FutureBuilder(
+                future: authController.getUserInfoAndSetCurrentUser(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return Scaffold(
+                    body: HomeView(
+                      key: ValueKey(keyValue),
+                    ),
+                  );
+                },
+              )
+            : const LoginRegFormView();
+      }
+    });
   }
 }
