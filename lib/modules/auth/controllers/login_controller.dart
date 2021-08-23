@@ -11,7 +11,7 @@ class LoginController extends GetxController {
   RxString lastName = 'a'.obs;
   RxString password = '123456'.obs;
   RxString confirmPassword = '123456'.obs;
-  RxString email = 'mongo@gmail.com'.obs;
+  RxString email = 'test@gmail.com'.obs;
   RxString userName = 'rrr'.obs;
   Rx<File> imageFile = File('').obs;
   RxBool aggreedToTermsAndCondition = true.obs;

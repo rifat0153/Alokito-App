@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 import 'package:alokito_new/models/user/local_user.dart';
@@ -93,7 +94,7 @@ class AuthService implements BaseAuthService {
 
       LocalUser myUser = LocalUser(
         id: '',
-        uid: userCredential.user != null? userCredential.user!.uid : '' ,
+        uid: userCredential.user != null ? userCredential.user!.uid : '',
         imageUrl: '',
         firstName: firstName,
         lastName: lastName,
@@ -105,16 +106,18 @@ class AuthService implements BaseAuthService {
       );
 
       // * upload user Image to Firebase storage and return user with image url
-      myUser = await uploadImageToFirebase(myUser, false, localImageFile);
+      // myUser = await uploadImageToFirebase(myUser, false, localImageFile);
 
       // * Create userDocument in mongodb
-      final http.Response response = await client.post(
-        Uri.parse('http://192.168.0.108:3000/api/v1/user/store'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: localUserToJson(myUser),
-      );
+      final http.Response response = await client
+          .post(
+            Uri.parse('http://192.168.0.121:3000/api/v1/user/store'),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: localUserToJson(myUser),
+          )
+          .timeout(const Duration(seconds: 5));
 
       if (response.statusCode != 200 && response.statusCode != 201) {
         await MyError.showErrorBottomSheet('${response.statusCode}: Something went wrong');
@@ -129,10 +132,12 @@ class AuthService implements BaseAuthService {
 
       print('new user');
       print(myUser);
+    } on TimeoutException catch (error) {
+      await MyError.showErrorBottomSheet('could not reach server');
     } on FirebaseAuthException catch (e) {
       Get.snackbar(e.message ?? '', '', backgroundColor: Colors.red);
     } catch (error) {
-      Get.snackbar(error.toString(), '', backgroundColor: Colors.red);
+      await MyError.showErrorBottomSheet('500: server is not reacheable at this moment');
     } finally {
       client.close();
     }
