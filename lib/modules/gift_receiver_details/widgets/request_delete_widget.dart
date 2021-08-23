@@ -36,23 +36,22 @@ class RequestDeleteWidget extends StatelessWidget {
                   children: [
                     MaterialButton(
                       onPressed: () {
-                        controller.deleteGiftRequestAndResetUserRequestedGiftInfo(giftGiver);
                         Get.back();
                       },
                       color: Colors.green,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      child:const Text(
+                      child: const Text(
                         'Yes',
-                        style:  TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                     MaterialButton(
                       onPressed: Get.back,
                       color: Colors.red,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      child:const Text(
+                      child: const Text(
                         'No',
-                        style:  TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ],

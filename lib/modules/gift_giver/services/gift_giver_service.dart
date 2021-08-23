@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_add_form_controller.dart';
@@ -11,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:path/path.dart' as path;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
+import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
 import '../../../models/gift_giver/my_position.dart';
@@ -18,6 +21,8 @@ import '../widgets/gift_error.dart';
 
 abstract class BaseGiftGiverService {
   Future<void> addGift();
+
+  Future<GiftGiverListUnion> getGiftDB(String page, String limit, LatLng latLng, double radius);
 
   Stream<GiftGiverListUnion> giftStreamByLocation();
 
@@ -28,6 +33,30 @@ class GiftGiverService implements BaseGiftGiverService {
   final geo = Geoflutterfire();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
+
+  @override
+  Future<GiftGiverListUnion> getGiftDB(String page, String limit, LatLng latLng, double radius) async {
+    final client = http.Client();
+
+    final http.Response response = await client.get(
+      Uri.parse('http://192.168.0.121:3000/api/v1/gift/near?lat=23&lng=91&maxDistance=104&page=1&limit=5'),
+      headers: {"Content-Type": "application/json"},
+    );
+
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
+    final List<dynamic> userBody = body['gifts'] as List<dynamic>;
+
+    final List<GiftGiver> users = userBody
+        .map(
+          (user) => giftGiver,
+        )
+        .toList();
+
+    users.forEach((element) {
+      print(element.id);
+    });
+  }
 
   @override
   Future<bool> updateGiftGiver({required String giftId, required GiftReceiver giftReceiver}) async {
@@ -42,20 +71,21 @@ class GiftGiverService implements BaseGiftGiverService {
 
   @override
   Future<void> addGift() async {
-    GiftAddFormController controller = Get.find();
+    final GiftAddFormController controller = Get.find();
     controller.isUploading.value = true;
 
-    LatLng giftPosition = controller.markers.first.position;
-    var myLocation = geo.point(latitude: giftPosition.latitude, longitude: giftPosition.longitude);
-    var pos = myLocation.data as Map<dynamic, dynamic>;
+    final LatLng giftPosition = controller.markers.first.position;
+    final myLocation = geo.point(latitude: giftPosition.latitude, longitude: giftPosition.longitude);
+    final pos = myLocation.data as Map<dynamic, dynamic>;
 
-    MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
+    final MyPosition myPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
-    var fileExtension = path.extension(controller.imageFile.value.path);
+    final fileExtension = path.extension(controller.imageFile.value.path);
+    final uuid = const Uuid().v4();
+    final uid = _auth.currentUser != null ? _auth.currentUser?.uid : throw Exception('no uid found');
 
-    var uuid = const Uuid().v4();
-
-    var firebaseStorageRef = firebase_storage.FirebaseStorage.instance.ref().child('gifts/images/$uuid$fileExtension');
+    final firebaseStorageRef =
+        firebase_storage.FirebaseStorage.instance.ref().child('$uid/gifts/images/$uuid$fileExtension');
 
     try {
       await firebaseStorageRef.putFile(controller.imageFile.value);
@@ -63,25 +93,26 @@ class GiftGiverService implements BaseGiftGiverService {
       throw Exception(e.toString());
     }
 
-    String url = await firebaseStorageRef.getDownloadURL();
+    final String url = await firebaseStorageRef.getDownloadURL();
 
-    var docRef = _firestore.collection('gifts').doc();
-    AuthController authController = Get.find();
+    final docRef = _firestore.collection('gifts').doc();
+    final AuthController authController = Get.find();
 
-    var userDoc = await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
+    final userDoc = await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
 
-    var name = userDoc.data() == null ? '' : userDoc.data()!['userName'] as String;
-    var giverImageUrl = userDoc.data() == null ? '' : userDoc.data()!['imageUrl'] as String;
-    MyPosition userPosition = MyPosition.fromJson(userDoc.data()!['position'] as Map<String, dynamic>);
-    Timestamp userCreatedAt = userDoc.data()!['createdAt'] as Timestamp;
-    String userFullName = (userDoc.data()!['firstName'] as String) + (userDoc.data()!['lastName'] as String);
+    final name = userDoc.data() == null ? '' : userDoc.data()!['userName'] as String;
+    final giverImageUrl = userDoc.data() == null ? '' : userDoc.data()!['imageUrl'] as String;
+    final MyPosition userPosition = MyPosition.fromJson(userDoc.data()!['position'] as Map<String, dynamic>);
+    final Timestamp userCreatedAt = userDoc.data()!['createdAt'] as Timestamp;
+    final String userFullName = (userDoc.data()!['firstName'] as String) + (userDoc.data()!['lastName'] as String);
 
     var gift = GiftGiver(
       id: docRef.id,
       userName: name,
       userFullName: userFullName,
       userImageUrl: giverImageUrl,
-      userAvgRating: authController.currentUserInfo.value.maybeWhen(data: (user) => user.averageRating, orElse: () => 0),
+      userAvgRating:
+          authController.currentUserInfo.value.maybeWhen(data: (user) => user.averageRating, orElse: () => 0),
       userTotRating: authController.currentUserInfo.value.maybeWhen(data: (user) => user.totalRating, orElse: () => 0),
       userRatingSum: authController.currentUserInfo.value.maybeWhen(data: (user) => user.ratingSum, orElse: () => 0),
       userPosition: userPosition,
@@ -117,12 +148,7 @@ class GiftGiverService implements BaseGiftGiverService {
 
     GeoFirePoint center = geo.point(latitude: currentUserLatLng.latitude, longitude: currentUserLatLng.longitude);
 
-    var collectionReference = _firestore.collection('gifts');
-    // .where('uid', isNotEqualTo: _auth.currentUser?.uid);
-
-    // return Stream.value(
-    //   GiftGiverListUnion.error(GiftGiverException(message: 'Test Error')),
-    // );
+    final collectionReference = _firestore.collection('gifts');
 
     try {
       var stream = geo
@@ -134,7 +160,7 @@ class GiftGiverService implements BaseGiftGiverService {
             strictMode: true,
           )
           .map((docList) {
-        List<GiftGiver> list = [];
+        final List<GiftGiver> list = [];
 
         docList.forEach((docSnap) {
           list.add(GiftGiver.fromJson(docSnap.data()!));

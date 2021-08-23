@@ -22,63 +22,30 @@ class _$GiftGiverTearOff {
 
   _GiftGiver call(
       {String? id,
-      int giftFor = 0,
-      bool giftAcquired = false,
-      required String userName,
-      required double userAvgRating,
-      required double userTotRating,
-      required double userRatingSum,
-      required String userImageUrl,
-      required String userFullName,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required MyPosition userPosition,
-      required int distance,
-      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-          required GiftType giftType,
-      required String uid,
-      required int givingGiftInDays,
+      required int listingForDays,
+      required bool canLeaveOutside,
+      @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          required LocalUser user,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          required Geometry geometry,
+      required String giftDetails,
+      required DateTime pickUpTime,
       required String area,
       required String location,
       required String imageUrl,
-      required String giftDetails,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp userCreatedAt,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp listingDate,
-      required int listingForDays,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp pickUpTime,
-      required bool canLeaveOutside,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required MyPosition position,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp createdAt}) {
+      required double distance}) {
     return _GiftGiver(
       id: id,
-      giftFor: giftFor,
-      giftAcquired: giftAcquired,
-      userName: userName,
-      userAvgRating: userAvgRating,
-      userTotRating: userTotRating,
-      userRatingSum: userRatingSum,
-      userImageUrl: userImageUrl,
-      userFullName: userFullName,
-      userPosition: userPosition,
-      distance: distance,
-      giftType: giftType,
-      uid: uid,
-      givingGiftInDays: givingGiftInDays,
+      listingForDays: listingForDays,
+      canLeaveOutside: canLeaveOutside,
+      user: user,
+      geometry: geometry,
+      giftDetails: giftDetails,
+      pickUpTime: pickUpTime,
       area: area,
       location: location,
       imageUrl: imageUrl,
-      giftDetails: giftDetails,
-      userCreatedAt: userCreatedAt,
-      listingDate: listingDate,
-      listingForDays: listingForDays,
-      pickUpTime: pickUpTime,
-      canLeaveOutside: canLeaveOutside,
-      position: position,
-      createdAt: createdAt,
+      distance: distance,
     );
   }
 
@@ -93,37 +60,18 @@ const $GiftGiver = _$GiftGiverTearOff();
 /// @nodoc
 mixin _$GiftGiver {
   String? get id => throw _privateConstructorUsedError;
-  int get giftFor => throw _privateConstructorUsedError;
-  bool get giftAcquired => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
-  double get userAvgRating => throw _privateConstructorUsedError;
-  double get userTotRating => throw _privateConstructorUsedError;
-  double get userRatingSum => throw _privateConstructorUsedError;
-  String get userImageUrl => throw _privateConstructorUsedError;
-  String get userFullName => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get userPosition => throw _privateConstructorUsedError;
-  int get distance => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-  GiftType get giftType => throw _privateConstructorUsedError;
-  String get uid => throw _privateConstructorUsedError;
-  int get givingGiftInDays => throw _privateConstructorUsedError;
+  int get listingForDays => throw _privateConstructorUsedError;
+  bool get canLeaveOutside => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+  LocalUser get user => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  Geometry get geometry => throw _privateConstructorUsedError;
+  String get giftDetails => throw _privateConstructorUsedError;
+  DateTime get pickUpTime => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  String get giftDetails => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get userCreatedAt => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get listingDate => throw _privateConstructorUsedError;
-  int get listingForDays => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get pickUpTime => throw _privateConstructorUsedError;
-  bool get canLeaveOutside => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get position => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  double get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -137,40 +85,21 @@ abstract class $GiftGiverCopyWith<$Res> {
       _$GiftGiverCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      int giftFor,
-      bool giftAcquired,
-      String userName,
-      double userAvgRating,
-      double userTotRating,
-      double userRatingSum,
-      String userImageUrl,
-      String userFullName,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition userPosition,
-      int distance,
-      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-          GiftType giftType,
-      String uid,
-      int givingGiftInDays,
+      int listingForDays,
+      bool canLeaveOutside,
+      @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          LocalUser user,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          Geometry geometry,
+      String giftDetails,
+      DateTime pickUpTime,
       String area,
       String location,
       String imageUrl,
-      String giftDetails,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp userCreatedAt,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp listingDate,
-      int listingForDays,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp pickUpTime,
-      bool canLeaveOutside,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition position,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp createdAt});
+      double distance});
 
-  $MyPositionCopyWith<$Res> get userPosition;
-  $MyPositionCopyWith<$Res> get position;
+  $LocalUserCopyWith<$Res> get user;
+  $GeometryCopyWith<$Res> get geometry;
 }
 
 /// @nodoc
@@ -184,88 +113,46 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? giftFor = freezed,
-    Object? giftAcquired = freezed,
-    Object? userName = freezed,
-    Object? userAvgRating = freezed,
-    Object? userTotRating = freezed,
-    Object? userRatingSum = freezed,
-    Object? userImageUrl = freezed,
-    Object? userFullName = freezed,
-    Object? userPosition = freezed,
-    Object? distance = freezed,
-    Object? giftType = freezed,
-    Object? uid = freezed,
-    Object? givingGiftInDays = freezed,
+    Object? listingForDays = freezed,
+    Object? canLeaveOutside = freezed,
+    Object? user = freezed,
+    Object? geometry = freezed,
+    Object? giftDetails = freezed,
+    Object? pickUpTime = freezed,
     Object? area = freezed,
     Object? location = freezed,
     Object? imageUrl = freezed,
-    Object? giftDetails = freezed,
-    Object? userCreatedAt = freezed,
-    Object? listingDate = freezed,
-    Object? listingForDays = freezed,
-    Object? pickUpTime = freezed,
-    Object? canLeaveOutside = freezed,
-    Object? position = freezed,
-    Object? createdAt = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      giftFor: giftFor == freezed
-          ? _value.giftFor
-          : giftFor // ignore: cast_nullable_to_non_nullable
+      listingForDays: listingForDays == freezed
+          ? _value.listingForDays
+          : listingForDays // ignore: cast_nullable_to_non_nullable
               as int,
-      giftAcquired: giftAcquired == freezed
-          ? _value.giftAcquired
-          : giftAcquired // ignore: cast_nullable_to_non_nullable
+      canLeaveOutside: canLeaveOutside == freezed
+          ? _value.canLeaveOutside
+          : canLeaveOutside // ignore: cast_nullable_to_non_nullable
               as bool,
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as LocalUser,
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
+      giftDetails: giftDetails == freezed
+          ? _value.giftDetails
+          : giftDetails // ignore: cast_nullable_to_non_nullable
               as String,
-      userAvgRating: userAvgRating == freezed
-          ? _value.userAvgRating
-          : userAvgRating // ignore: cast_nullable_to_non_nullable
-              as double,
-      userTotRating: userTotRating == freezed
-          ? _value.userTotRating
-          : userTotRating // ignore: cast_nullable_to_non_nullable
-              as double,
-      userRatingSum: userRatingSum == freezed
-          ? _value.userRatingSum
-          : userRatingSum // ignore: cast_nullable_to_non_nullable
-              as double,
-      userImageUrl: userImageUrl == freezed
-          ? _value.userImageUrl
-          : userImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      userFullName: userFullName == freezed
-          ? _value.userFullName
-          : userFullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      userPosition: userPosition == freezed
-          ? _value.userPosition
-          : userPosition // ignore: cast_nullable_to_non_nullable
-              as MyPosition,
-      distance: distance == freezed
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as int,
-      giftType: giftType == freezed
-          ? _value.giftType
-          : giftType // ignore: cast_nullable_to_non_nullable
-              as GiftType,
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
-      givingGiftInDays: givingGiftInDays == freezed
-          ? _value.givingGiftInDays
-          : givingGiftInDays // ignore: cast_nullable_to_non_nullable
-              as int,
+      pickUpTime: pickUpTime == freezed
+          ? _value.pickUpTime
+          : pickUpTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
@@ -278,52 +165,24 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      giftDetails: giftDetails == freezed
-          ? _value.giftDetails
-          : giftDetails // ignore: cast_nullable_to_non_nullable
-              as String,
-      userCreatedAt: userCreatedAt == freezed
-          ? _value.userCreatedAt
-          : userCreatedAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
-      listingDate: listingDate == freezed
-          ? _value.listingDate
-          : listingDate // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
-      listingForDays: listingForDays == freezed
-          ? _value.listingForDays
-          : listingForDays // ignore: cast_nullable_to_non_nullable
-              as int,
-      pickUpTime: pickUpTime == freezed
-          ? _value.pickUpTime
-          : pickUpTime // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
-      canLeaveOutside: canLeaveOutside == freezed
-          ? _value.canLeaveOutside
-          : canLeaveOutside // ignore: cast_nullable_to_non_nullable
-              as bool,
-      position: position == freezed
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as MyPosition,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 
   @override
-  $MyPositionCopyWith<$Res> get userPosition {
-    return $MyPositionCopyWith<$Res>(_value.userPosition, (value) {
-      return _then(_value.copyWith(userPosition: value));
+  $LocalUserCopyWith<$Res> get user {
+    return $LocalUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 
   @override
-  $MyPositionCopyWith<$Res> get position {
-    return $MyPositionCopyWith<$Res>(_value.position, (value) {
-      return _then(_value.copyWith(position: value));
+  $GeometryCopyWith<$Res> get geometry {
+    return $GeometryCopyWith<$Res>(_value.geometry, (value) {
+      return _then(_value.copyWith(geometry: value));
     });
   }
 }
@@ -336,42 +195,23 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
-      int giftFor,
-      bool giftAcquired,
-      String userName,
-      double userAvgRating,
-      double userTotRating,
-      double userRatingSum,
-      String userImageUrl,
-      String userFullName,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition userPosition,
-      int distance,
-      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-          GiftType giftType,
-      String uid,
-      int givingGiftInDays,
+      int listingForDays,
+      bool canLeaveOutside,
+      @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          LocalUser user,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          Geometry geometry,
+      String giftDetails,
+      DateTime pickUpTime,
       String area,
       String location,
       String imageUrl,
-      String giftDetails,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp userCreatedAt,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp listingDate,
-      int listingForDays,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp pickUpTime,
-      bool canLeaveOutside,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          MyPosition position,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp createdAt});
+      double distance});
 
   @override
-  $MyPositionCopyWith<$Res> get userPosition;
+  $LocalUserCopyWith<$Res> get user;
   @override
-  $MyPositionCopyWith<$Res> get position;
+  $GeometryCopyWith<$Res> get geometry;
 }
 
 /// @nodoc
@@ -386,88 +226,46 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? giftFor = freezed,
-    Object? giftAcquired = freezed,
-    Object? userName = freezed,
-    Object? userAvgRating = freezed,
-    Object? userTotRating = freezed,
-    Object? userRatingSum = freezed,
-    Object? userImageUrl = freezed,
-    Object? userFullName = freezed,
-    Object? userPosition = freezed,
-    Object? distance = freezed,
-    Object? giftType = freezed,
-    Object? uid = freezed,
-    Object? givingGiftInDays = freezed,
+    Object? listingForDays = freezed,
+    Object? canLeaveOutside = freezed,
+    Object? user = freezed,
+    Object? geometry = freezed,
+    Object? giftDetails = freezed,
+    Object? pickUpTime = freezed,
     Object? area = freezed,
     Object? location = freezed,
     Object? imageUrl = freezed,
-    Object? giftDetails = freezed,
-    Object? userCreatedAt = freezed,
-    Object? listingDate = freezed,
-    Object? listingForDays = freezed,
-    Object? pickUpTime = freezed,
-    Object? canLeaveOutside = freezed,
-    Object? position = freezed,
-    Object? createdAt = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_GiftGiver(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      giftFor: giftFor == freezed
-          ? _value.giftFor
-          : giftFor // ignore: cast_nullable_to_non_nullable
+      listingForDays: listingForDays == freezed
+          ? _value.listingForDays
+          : listingForDays // ignore: cast_nullable_to_non_nullable
               as int,
-      giftAcquired: giftAcquired == freezed
-          ? _value.giftAcquired
-          : giftAcquired // ignore: cast_nullable_to_non_nullable
+      canLeaveOutside: canLeaveOutside == freezed
+          ? _value.canLeaveOutside
+          : canLeaveOutside // ignore: cast_nullable_to_non_nullable
               as bool,
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as LocalUser,
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
+      giftDetails: giftDetails == freezed
+          ? _value.giftDetails
+          : giftDetails // ignore: cast_nullable_to_non_nullable
               as String,
-      userAvgRating: userAvgRating == freezed
-          ? _value.userAvgRating
-          : userAvgRating // ignore: cast_nullable_to_non_nullable
-              as double,
-      userTotRating: userTotRating == freezed
-          ? _value.userTotRating
-          : userTotRating // ignore: cast_nullable_to_non_nullable
-              as double,
-      userRatingSum: userRatingSum == freezed
-          ? _value.userRatingSum
-          : userRatingSum // ignore: cast_nullable_to_non_nullable
-              as double,
-      userImageUrl: userImageUrl == freezed
-          ? _value.userImageUrl
-          : userImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      userFullName: userFullName == freezed
-          ? _value.userFullName
-          : userFullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      userPosition: userPosition == freezed
-          ? _value.userPosition
-          : userPosition // ignore: cast_nullable_to_non_nullable
-              as MyPosition,
-      distance: distance == freezed
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as int,
-      giftType: giftType == freezed
-          ? _value.giftType
-          : giftType // ignore: cast_nullable_to_non_nullable
-              as GiftType,
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
-      givingGiftInDays: givingGiftInDays == freezed
-          ? _value.givingGiftInDays
-          : givingGiftInDays // ignore: cast_nullable_to_non_nullable
-              as int,
+      pickUpTime: pickUpTime == freezed
+          ? _value.pickUpTime
+          : pickUpTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
@@ -480,38 +278,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      giftDetails: giftDetails == freezed
-          ? _value.giftDetails
-          : giftDetails // ignore: cast_nullable_to_non_nullable
-              as String,
-      userCreatedAt: userCreatedAt == freezed
-          ? _value.userCreatedAt
-          : userCreatedAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
-      listingDate: listingDate == freezed
-          ? _value.listingDate
-          : listingDate // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
-      listingForDays: listingForDays == freezed
-          ? _value.listingForDays
-          : listingForDays // ignore: cast_nullable_to_non_nullable
-              as int,
-      pickUpTime: pickUpTime == freezed
-          ? _value.pickUpTime
-          : pickUpTime // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
-      canLeaveOutside: canLeaveOutside == freezed
-          ? _value.canLeaveOutside
-          : canLeaveOutside // ignore: cast_nullable_to_non_nullable
-              as bool,
-      position: position == freezed
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as MyPosition,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -521,73 +291,38 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
 class _$_GiftGiver implements _GiftGiver {
   const _$_GiftGiver(
       {this.id,
-      this.giftFor = 0,
-      this.giftAcquired = false,
-      required this.userName,
-      required this.userAvgRating,
-      required this.userTotRating,
-      required this.userRatingSum,
-      required this.userImageUrl,
-      required this.userFullName,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required this.userPosition,
-      required this.distance,
-      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-          required this.giftType,
-      required this.uid,
-      required this.givingGiftInDays,
+      required this.listingForDays,
+      required this.canLeaveOutside,
+      @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          required this.user,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          required this.geometry,
+      required this.giftDetails,
+      required this.pickUpTime,
       required this.area,
       required this.location,
       required this.imageUrl,
-      required this.giftDetails,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required this.userCreatedAt,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required this.listingDate,
-      required this.listingForDays,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required this.pickUpTime,
-      required this.canLeaveOutside,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required this.position,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required this.createdAt});
+      required this.distance});
 
   factory _$_GiftGiver.fromJson(Map<String, dynamic> json) =>
       _$_$_GiftGiverFromJson(json);
 
   @override
   final String? id;
-  @JsonKey(defaultValue: 0)
   @override
-  final int giftFor;
-  @JsonKey(defaultValue: false)
+  final int listingForDays;
   @override
-  final bool giftAcquired;
+  final bool canLeaveOutside;
   @override
-  final String userName;
+  @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+  final LocalUser user;
   @override
-  final double userAvgRating;
+  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  final Geometry geometry;
   @override
-  final double userTotRating;
+  final String giftDetails;
   @override
-  final double userRatingSum;
-  @override
-  final String userImageUrl;
-  @override
-  final String userFullName;
-  @override
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  final MyPosition userPosition;
-  @override
-  final int distance;
-  @override
-  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-  final GiftType giftType;
-  @override
-  final String uid;
-  @override
-  final int givingGiftInDays;
+  final DateTime pickUpTime;
   @override
   final String area;
   @override
@@ -595,30 +330,11 @@ class _$_GiftGiver implements _GiftGiver {
   @override
   final String imageUrl;
   @override
-  final String giftDetails;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp userCreatedAt;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp listingDate;
-  @override
-  final int listingForDays;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp pickUpTime;
-  @override
-  final bool canLeaveOutside;
-  @override
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  final MyPosition position;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp createdAt;
+  final double distance;
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, giftFor: $giftFor, giftAcquired: $giftAcquired, userName: $userName, userAvgRating: $userAvgRating, userTotRating: $userTotRating, userRatingSum: $userRatingSum, userImageUrl: $userImageUrl, userFullName: $userFullName, userPosition: $userPosition, distance: $distance, giftType: $giftType, uid: $uid, givingGiftInDays: $givingGiftInDays, area: $area, location: $location, imageUrl: $imageUrl, giftDetails: $giftDetails, userCreatedAt: $userCreatedAt, listingDate: $listingDate, listingForDays: $listingForDays, pickUpTime: $pickUpTime, canLeaveOutside: $canLeaveOutside, position: $position, createdAt: $createdAt)';
+    return 'GiftGiver(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, user: $user, geometry: $geometry, giftDetails: $giftDetails, pickUpTime: $pickUpTime, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
   }
 
   @override
@@ -627,44 +343,23 @@ class _$_GiftGiver implements _GiftGiver {
         (other is _GiftGiver &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.giftFor, giftFor) ||
+            (identical(other.listingForDays, listingForDays) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftFor, giftFor)) &&
-            (identical(other.giftAcquired, giftAcquired) ||
+                    .equals(other.listingForDays, listingForDays)) &&
+            (identical(other.canLeaveOutside, canLeaveOutside) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftAcquired, giftAcquired)) &&
-            (identical(other.userName, userName) ||
+                    .equals(other.canLeaveOutside, canLeaveOutside)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.geometry, geometry) ||
                 const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.userAvgRating, userAvgRating) ||
+                    .equals(other.geometry, geometry)) &&
+            (identical(other.giftDetails, giftDetails) ||
                 const DeepCollectionEquality()
-                    .equals(other.userAvgRating, userAvgRating)) &&
-            (identical(other.userTotRating, userTotRating) ||
+                    .equals(other.giftDetails, giftDetails)) &&
+            (identical(other.pickUpTime, pickUpTime) ||
                 const DeepCollectionEquality()
-                    .equals(other.userTotRating, userTotRating)) &&
-            (identical(other.userRatingSum, userRatingSum) ||
-                const DeepCollectionEquality()
-                    .equals(other.userRatingSum, userRatingSum)) &&
-            (identical(other.userImageUrl, userImageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.userImageUrl, userImageUrl)) &&
-            (identical(other.userFullName, userFullName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userFullName, userFullName)) &&
-            (identical(other.userPosition, userPosition) ||
-                const DeepCollectionEquality()
-                    .equals(other.userPosition, userPosition)) &&
-            (identical(other.distance, distance) ||
-                const DeepCollectionEquality()
-                    .equals(other.distance, distance)) &&
-            (identical(other.giftType, giftType) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftType, giftType)) &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
-            (identical(other.givingGiftInDays, givingGiftInDays) ||
-                const DeepCollectionEquality()
-                    .equals(other.givingGiftInDays, givingGiftInDays)) &&
+                    .equals(other.pickUpTime, pickUpTime)) &&
             (identical(other.area, area) ||
                 const DeepCollectionEquality().equals(other.area, area)) &&
             (identical(other.location, location) ||
@@ -673,56 +368,25 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)) &&
-            (identical(other.giftDetails, giftDetails) ||
+            (identical(other.distance, distance) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftDetails, giftDetails)) &&
-            (identical(other.userCreatedAt, userCreatedAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.userCreatedAt, userCreatedAt)) &&
-            (identical(other.listingDate, listingDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.listingDate, listingDate)) &&
-            (identical(other.listingForDays, listingForDays) ||
-                const DeepCollectionEquality()
-                    .equals(other.listingForDays, listingForDays)) &&
-            (identical(other.pickUpTime, pickUpTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.pickUpTime, pickUpTime)) &&
-            (identical(other.canLeaveOutside, canLeaveOutside) ||
-                const DeepCollectionEquality()
-                    .equals(other.canLeaveOutside, canLeaveOutside)) &&
-            (identical(other.position, position) || const DeepCollectionEquality().equals(other.position, position)) &&
-            (identical(other.createdAt, createdAt) || const DeepCollectionEquality().equals(other.createdAt, createdAt)));
+                    .equals(other.distance, distance)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(giftFor) ^
-      const DeepCollectionEquality().hash(giftAcquired) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(userAvgRating) ^
-      const DeepCollectionEquality().hash(userTotRating) ^
-      const DeepCollectionEquality().hash(userRatingSum) ^
-      const DeepCollectionEquality().hash(userImageUrl) ^
-      const DeepCollectionEquality().hash(userFullName) ^
-      const DeepCollectionEquality().hash(userPosition) ^
-      const DeepCollectionEquality().hash(distance) ^
-      const DeepCollectionEquality().hash(giftType) ^
-      const DeepCollectionEquality().hash(uid) ^
-      const DeepCollectionEquality().hash(givingGiftInDays) ^
+      const DeepCollectionEquality().hash(listingForDays) ^
+      const DeepCollectionEquality().hash(canLeaveOutside) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(geometry) ^
+      const DeepCollectionEquality().hash(giftDetails) ^
+      const DeepCollectionEquality().hash(pickUpTime) ^
       const DeepCollectionEquality().hash(area) ^
       const DeepCollectionEquality().hash(location) ^
       const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(giftDetails) ^
-      const DeepCollectionEquality().hash(userCreatedAt) ^
-      const DeepCollectionEquality().hash(listingDate) ^
-      const DeepCollectionEquality().hash(listingForDays) ^
-      const DeepCollectionEquality().hash(pickUpTime) ^
-      const DeepCollectionEquality().hash(canLeaveOutside) ^
-      const DeepCollectionEquality().hash(position) ^
-      const DeepCollectionEquality().hash(createdAt);
+      const DeepCollectionEquality().hash(distance);
 
   @JsonKey(ignore: true)
   @override
@@ -738,37 +402,18 @@ class _$_GiftGiver implements _GiftGiver {
 abstract class _GiftGiver implements GiftGiver {
   const factory _GiftGiver(
       {String? id,
-      int giftFor,
-      bool giftAcquired,
-      required String userName,
-      required double userAvgRating,
-      required double userTotRating,
-      required double userRatingSum,
-      required String userImageUrl,
-      required String userFullName,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required MyPosition userPosition,
-      required int distance,
-      @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-          required GiftType giftType,
-      required String uid,
-      required int givingGiftInDays,
+      required int listingForDays,
+      required bool canLeaveOutside,
+      @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+          required LocalUser user,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          required Geometry geometry,
+      required String giftDetails,
+      required DateTime pickUpTime,
       required String area,
       required String location,
       required String imageUrl,
-      required String giftDetails,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp userCreatedAt,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp listingDate,
-      required int listingForDays,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp pickUpTime,
-      required bool canLeaveOutside,
-      @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-          required MyPosition position,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp createdAt}) = _$_GiftGiver;
+      required double distance}) = _$_GiftGiver;
 
   factory _GiftGiver.fromJson(Map<String, dynamic> json) =
       _$_GiftGiver.fromJson;
@@ -776,33 +421,19 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   String? get id => throw _privateConstructorUsedError;
   @override
-  int get giftFor => throw _privateConstructorUsedError;
+  int get listingForDays => throw _privateConstructorUsedError;
   @override
-  bool get giftAcquired => throw _privateConstructorUsedError;
+  bool get canLeaveOutside => throw _privateConstructorUsedError;
   @override
-  String get userName => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
+  LocalUser get user => throw _privateConstructorUsedError;
   @override
-  double get userAvgRating => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  Geometry get geometry => throw _privateConstructorUsedError;
   @override
-  double get userTotRating => throw _privateConstructorUsedError;
+  String get giftDetails => throw _privateConstructorUsedError;
   @override
-  double get userRatingSum => throw _privateConstructorUsedError;
-  @override
-  String get userImageUrl => throw _privateConstructorUsedError;
-  @override
-  String get userFullName => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get userPosition => throw _privateConstructorUsedError;
-  @override
-  int get distance => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson)
-  GiftType get giftType => throw _privateConstructorUsedError;
-  @override
-  String get uid => throw _privateConstructorUsedError;
-  @override
-  int get givingGiftInDays => throw _privateConstructorUsedError;
+  DateTime get pickUpTime => throw _privateConstructorUsedError;
   @override
   String get area => throw _privateConstructorUsedError;
   @override
@@ -810,26 +441,7 @@ abstract class _GiftGiver implements GiftGiver {
   @override
   String get imageUrl => throw _privateConstructorUsedError;
   @override
-  String get giftDetails => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get userCreatedAt => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get listingDate => throw _privateConstructorUsedError;
-  @override
-  int get listingForDays => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get pickUpTime => throw _privateConstructorUsedError;
-  @override
-  bool get canLeaveOutside => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson)
-  MyPosition get position => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  double get distance => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GiftGiverCopyWith<_GiftGiver> get copyWith =>

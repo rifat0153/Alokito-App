@@ -33,29 +33,7 @@ class GiftReceiverController extends GetxController {
     }
   }
 
-  Future<void> deleteGiftRequestAndResetUserRequestedGiftInfo(GiftGiver giftGiver) async {
-    try {
-      final reqeusterId = Get.find<AuthController>().currentUser.value.id;
-      final giftId = giftGiver.id ?? '';
-      final docIdToBeDeleted = '$reqeusterId.$giftId';
-
-      await giftReceiverService.deleteGiftRequest(docIdToBeDeleted);
-
-      await Get.find<AuthController>().getUserInfoAndSetCurrentUser();
-
-      // Updating LocalUserInfo
-      LocalUser? currentUseInfo = Get.find<AuthController>()
-          .currentUserInfo
-          .value
-          .maybeWhen(data: (userInfo) => userInfo, orElse: () => null);
-
-      if (currentUseInfo != null) {
-        currentUseInfo = currentUseInfo.copyWith(hasGiftAskRequest: false, requestedGiftId: '');
-      }
-    } catch (e) {
-      await showSuccessOrErrorMessage(false, 'Operation delete unsuscessful', '', e.toString());
-    }
-  }
+  
 
   Future<void> changeMessageSentStatus({
     required GiftReceiver giftReceiver,
@@ -100,35 +78,13 @@ class GiftReceiverController extends GetxController {
 
     var result = await giftReceiverService.addGiftRequest(giftReceiver: giftReceiver);
     if (result) {
-      await addNotificationForGiftRequest(giftReceiver);
       await Get.find<AuthController>().getUserInfoAndSetCurrentUser();
     }
 
     await showSuccessOrErrorMessage(result, 'Gift Add', 'Request Added', 'Something went wrong');
   }
 
-  Future<void> addNotificationForGiftRequest(GiftReceiver giftReceiver) async {
-    Uuid uuid = const Uuid();
-    String giftType = convertGiftType(giftReceiver.giftGiver.giftType);
-    String requesterId = giftReceiver.requester.id!;
-    String giverId = giftReceiver.giftGiver.uid;
-    String requesterName = giftReceiver.requester.userName;
 
-    MyNotification requesterNotification = MyNotification.data(
-        id: '${uuid.v4()}.${giftReceiver.id}',
-        text: 'Gift Request for $giftType was added',
-        notificationType: NotificationType.giftGiver,
-        releatedDocId: giftReceiver.id ?? '',
-        createdAt: Timestamp.now());
-
-    MyNotification giverNotification =
-        requesterNotification.copyWith(text: 'Your gift offer $giftType is requested by $requesterName');
-
-    await Get.find<NotificationController>()
-        .addNotification(userId: requesterId, notification: requesterNotification);
-    await Get.find<NotificationController>().addNotification(userId: giverId, notification: giverNotification);
-
-  }
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {
     Get.back();

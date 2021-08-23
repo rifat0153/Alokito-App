@@ -1,55 +1,40 @@
-import 'package:alokito_new/models/gift_giver/my_position.dart';
-import 'package:alokito_new/models/json_converters.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'dart:convert';
 
 part 'gift_giver.freezed.dart';
 part 'gift_giver.g.dart';
 
+GiftGiver giftGiverFromJson(String str) => GiftGiver.fromJson(json.decode(str)   as Map<String, dynamic> );
+
+String giftGiverToJson(GiftGiver data) => json.encode(data.toJson());
+
 @freezed
-class GiftGiver with _$GiftGiver {
+abstract class GiftGiver with _$GiftGiver {
   const factory GiftGiver({
     String? id,
-    @Default(0) int giftFor,
-    @Default(false) bool giftAcquired,
-    required String userName,
-    required double userAvgRating,
-    required double userTotRating,
-    required double userRatingSum,
-    required String userImageUrl,
-    required String userFullName,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition userPosition,
-    required int distance,
-    @JsonKey(fromJson: giftTypeFromJson, toJson: giftTypeToJson) required GiftType giftType,
-    required String uid,
-    required int givingGiftInDays,
+    required int listingForDays,
+    required bool canLeaveOutside,
+    @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap) required LocalUser user,
+    @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap) required Geometry geometry,
+    required String giftDetails,
+    required DateTime pickUpTime,
     required String area,
     required String location,
     required String imageUrl,
-    required String giftDetails,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp userCreatedAt,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp listingDate,
-    required int listingForDays,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp pickUpTime,
-    required bool canLeaveOutside,
-    @JsonKey(fromJson: myPositionFromJson, toJson: myPositionToJson) required MyPosition position,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
+    required double distance,
   }) = _GiftGiver;
 
   factory GiftGiver.fromJson(Map<String, dynamic> json) => _$GiftGiverFromJson(json);
 }
 
 @freezed
-class GiftGiverListUnion with _$GiftGiverListUnion{
-  const factory GiftGiverListUnion.data(List<GiftGiver> giftGiverList) =  Data;
-  const factory GiftGiverListUnion.empty() =  Empty;
-  const factory GiftGiverListUnion.loading() =  Loading;
-  const factory GiftGiverListUnion.error(Object error) =  Error;
+class GiftGiverListUnion with _$GiftGiverListUnion {
+  const factory GiftGiverListUnion.data(List<GiftGiver> giftGiverList) = Data;
+  const factory GiftGiverListUnion.empty() = Empty;
+  const factory GiftGiverListUnion.loading() = Loading;
+  const factory GiftGiverListUnion.error(Object error) = Error;
 }
 
-
-Map<String, dynamic> giftGiverToJson(GiftGiver giftGiver) => giftGiver.toJson();
-GiftGiver giftGiverFromJson(Map<String, dynamic> json) => GiftGiver.fromJson(json);
+Map<String, dynamic> giftGiverToMap(GiftGiver giftGiver) => giftGiver.toJson();
+GiftGiver giftGiverFromMap(Map<String, dynamic> json) => GiftGiver.fromJson(json);

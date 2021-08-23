@@ -108,11 +108,7 @@ class GiftController extends GetxController {
     markers[id] = _marker;
   }
 
-  // void bindLocationData() async {
-  //   var locData = await Location().getLocation();
-  //   currentUserLocation.value = LatLng(locData.latitude!, locData.longitude!);
-  // }
-
+ 
   void bindGiftStream() async {
     Get.find<AuthController>().bindLocationData();
 

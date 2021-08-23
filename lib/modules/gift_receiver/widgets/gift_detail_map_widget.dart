@@ -26,9 +26,7 @@ class GiftDetailMapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var distanceOfGift =
-        authController.calculateDistanceForGiftDetail(giftGiver: giftGiver);
-    var giftType = convertGiftType(giftGiver.giftType);
+    var distanceOfGift = authController.calculateDistanceForGiftDetail(giftGiver: giftGiver);
 
     return Column(
       children: [
@@ -67,16 +65,13 @@ class GiftDetailMapWidget extends StatelessWidget {
                           _controller.complete(controller);
                         },
                         initialCameraPosition: CameraPosition(
-                          target: LatLng(giftGiver.position.geopoint.latitude,
-                              giftGiver.position.geopoint.longitude),
+                          target: LatLng(1, 2),
                           zoom: 15,
                         ),
                         markers: [
                           Marker(
                             markerId: MarkerId('1'),
-                            position: LatLng(
-                                giftGiver.position.geopoint.latitude,
-                                giftGiver.position.geopoint.longitude),
+                            position: LatLng(1, 2),
                           )
                         ].toSet(),
                       ),

@@ -66,8 +66,7 @@ class BuildBody extends StatelessWidget {
               Obx(
                 () => MapWithMarkersWidget(
                   markers: giftController.markers,
-                  initialCameraPosition:
-                      CameraPosition(target: authController.currentUserPosition.value, zoom: 9),
+                  initialCameraPosition: CameraPosition(target: authController.currentUserPosition.value, zoom: 9),
                 ),
               ),
               _SearchWidget(),
@@ -103,8 +102,7 @@ class BuildBody extends StatelessWidget {
                       ),
                     );
                   },
-                  loading: () =>
-                      SizedBox(height: 5.h, width: double.infinity, child: const LinearProgressIndicator()),
+                  loading: () => SizedBox(height: 5.h, width: double.infinity, child: const LinearProgressIndicator()),
                   error: (e) => Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,

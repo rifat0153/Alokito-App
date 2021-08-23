@@ -17,7 +17,7 @@ abstract class LocalUser with _$LocalUser {
     required String email,
     required String userName,
     required String imageUrl,
-    @JsonKey(fromJson: geometryFromJson, toJson: geometryToJson) required Geometry geometry,
+    @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap) required Geometry geometry,
     @Default('') String firstName,
     @Default('') String lastName,
     @Default(false) bool hasNotifications,
@@ -53,8 +53,8 @@ abstract class Geometry with _$Geometry {
   factory Geometry.fromJson(Map<String, dynamic> json) => _$GeometryFromJson(json);
 }
 
-Map<String, dynamic> geometryToJson(Geometry geometry) => geometry.toJson();
-Geometry geometryFromJson(Map<String, dynamic> json) => Geometry.fromJson(json);
+Map<String, dynamic> geometryToMap(Geometry geometry) => geometry.toJson();
+Geometry geometryFromMap(Map<String, dynamic> json) => Geometry.fromJson(json);
 
 @freezed
 class LocalUserInfo with _$LocalUserInfo {

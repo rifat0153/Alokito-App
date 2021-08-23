@@ -15,7 +15,7 @@ _$_GiftReceiver _$_$_GiftReceiverFromJson(Map<String, dynamic> json) {
     messageForGiverrSent: json['messageForGiverrSent'] as bool? ?? false,
     giftReceiverStatus: giftReceiverStatusFromJson(
         json['giftReceiverStatus'] as Map<String, dynamic>),
-    giftGiver: giftGiverFromJson(json['giftGiver'] as Map<String, dynamic>),
+    giftGiver: giftGiverFromJson(json['giftGiver'] as String),
     requester: localUserFromJson(json['requester'] as String),
     createdAt: timestampFromJson(json['createdAt'] as Timestamp),
   );
