@@ -12,7 +12,6 @@ class GiftReceiverDetailController extends GetxController {
 
   // Add Gift Request
   Future<void> addGiftRequest(GiftGiver giftGiver) async {
-    Get.find<GiftController>().updateGift(giftGiver);
     loading.value = true;
 
     try {

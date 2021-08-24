@@ -32,6 +32,32 @@ class GiftReceiverController extends GetxController {
   StreamSubscription? streamSubscription;
   Rx<LatLng> userPosition = const LatLng(0, 0).obs;
 
+  //  streamSubscription = giftList.listen((docListUnion) {
+  //     docListUnion.when(data: (docList) {
+  //       filteredGiftList.value = const GiftGiverListUnion.loading();
+
+  //       for (var doc in docList) {
+  //         if (doc.user.uid != Get.find<AuthController>().currentUser.value.id) {
+  //           List<GiftGiver> tempFilteredList = [
+  //             ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
+  //             doc
+  //           ];
+  //           filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
+  //         }
+  //       }
+  //       _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
+  //     }, empty: () {
+  //       filteredGiftList.value = const GiftGiverListUnion.empty();
+  //       _updateMarkers([]);
+  //     }, loading: () {
+  //       filteredGiftList.value = const GiftGiverListUnion.loading();
+  //       _updateMarkers([]);
+  //     }, error: (error) {
+  //       filteredGiftList.value = GiftGiverListUnion.error(error);
+  //       _updateMarkers([]);
+  //     });
+  //   });
+
   @override
   void onInit() {
     super.onInit();
