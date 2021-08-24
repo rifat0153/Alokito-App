@@ -32,7 +32,7 @@ class _InitialViewState extends State<InitialView> {
 
   final giftRecordController = Get.put(GiftRecordController());
 
-  final giftRequestController = Get.put(GiftReceiverController());
+  // final giftRequestController = Get.put(GiftReceiverController());
 
   final giftAskGiverController = Get.put(GiftAskGiverController());
 

@@ -193,7 +193,7 @@ class _GiftListTile extends StatelessWidget {
                 width: Get.width * 0.25,
                 height: Get.height * 0.1,
                 child: Hero(
-                  tag: filteredGiftList[index].imageUrl,
+                  tag: filteredGiftList[index].id!,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),

@@ -254,7 +254,7 @@ class _Image extends StatelessWidget {
         height: 200,
         width: Get.size.width * 0.9,
         child: Hero(
-          tag: giftGiver.imageUrl,
+          tag: giftGiver.id!,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
