@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/gift_receiver/gift_receiver_exception.dart';
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -27,32 +29,35 @@ class GiftReceiverService implements BaseGiftReceiverService {
   final Geoflutterfire geo;
   final FirebaseFirestore _firestore;
 
- @override
-  Future<GiftGiverListUnion> getGiftDB(String page, String limit, LatLng latLng, double radius) async {
+  @override
+  Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius) async {
     final client = http.Client();
 
-    final http.Response response = await client.get(
-      Uri.parse('http://192.168.0.121:3000/api/v1/gift/near?lat=23&lng=91&maxDistance=104&page=1&limit=5'),
-      headers: {"Content-Type": "application/json"},
-    );
+    try {
+      final http.Response response = await client.get(
+        Uri.parse(  '$baseUrl/gift/near?lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit'),
+        headers: {"Content-Type": "application/json"},
+      ).timeout(const Duration(seconds: 5));
 
-    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+      final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
 
-    final List<dynamic> giftJson = body['gifts'] as List<dynamic>;
+      final List<dynamic> giftJson = body['gifts'] as List<dynamic>;
 
-    final List<GiftGiver> gifts = giftJson
-        .map(
-          (user) => GiftGiver.fromJson(giftJson as Map<String, dynamic>),
-        )
-        .toList();
+      final List<GiftGiver> gifts = giftJson
+          .map(
+            (gift) => GiftGiver.fromJson(gift as Map<String, dynamic>),
+          )
+          .toList();
 
-    gifts.forEach((element) {
-      print(element);
-    });
+      print(gifts.length);
 
-    return GiftGiverListUnion.data(gifts);
+      return GiftGiverListUnion.data(gifts);
+    } on TimeoutException catch (_) {
+      return const GiftGiverListUnion.error('Server could not be reached');
+    } catch (e) {
+      return GiftGiverListUnion.error(e.toString());
+    }
   }
-
 
   @override
   Future<GiftReceiverNotificationUnion> getGiftRequest({required String id}) async {

@@ -2,6 +2,7 @@ import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/modules/gift_receiver_details/views/gift_receiver_details_view.dart';
 import 'package:alokito_new/shared/styles.dart';
@@ -14,12 +15,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class GiftReceiverOfferListView extends StatelessWidget {
   static const route = 'giftoffer';
 
-  final GiftController giftController = Get.find();
+  final GiftReceiverController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    giftController.bindGiftStream();
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -32,7 +31,7 @@ class GiftReceiverOfferListView extends StatelessWidget {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: BuildBody(giftController: giftController),
+        body: BuildBody(controller: controller),
       ),
     );
   }
@@ -41,10 +40,10 @@ class GiftReceiverOfferListView extends StatelessWidget {
 class BuildBody extends StatelessWidget {
   BuildBody({
     Key? key,
-    required this.giftController,
+    required this.controller,
   }) : super(key: key);
 
-  final GiftController giftController;
+  final GiftReceiverController controller;
   final AuthController authController = Get.find();
 
   @override
@@ -65,14 +64,19 @@ class BuildBody extends StatelessWidget {
             children: [
               Obx(
                 () => MapWithMarkersWidget(
-                  markers: giftController.markers,
+                  markers: controller.markers,
                   initialCameraPosition: CameraPosition(target: authController.currentUserPosition.value, zoom: 9),
                 ),
               ),
               _SearchWidget(),
+              TextButton(
+                  onPressed: () async {
+                    await controller.retriveGifts();
+                  },
+                  child: Text('data')),
               // _TextWidget(),
               Obx(
-                () => giftController.filteredGiftList.value.when(
+                () => controller.filteredGiftList.value.when(
                   data: (list) {
                     print('List full CASE');
 
@@ -81,7 +85,7 @@ class BuildBody extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         itemCount: list.length,
                         itemBuilder: (_, i) => _GiftListTile(
-                          giftController: giftController,
+                          controller: controller,
                           filteredGiftList: list,
                           index: i,
                         ),
@@ -102,14 +106,22 @@ class BuildBody extends StatelessWidget {
                       ),
                     );
                   },
-                  loading: () => SizedBox(height: 5.h, width: double.infinity, child: const LinearProgressIndicator()),
+                  loading: () => TextButton(
+                      onPressed: () async {
+                        await controller.retriveGifts();
+                        // await giftReceiverController.giftReceiverService.getGiftDB('0', '0', 0, 0, 0);
+                      },
+                      child: Text('data')),
                   error: (e) => Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(e.toString()),
                         ElevatedButton(
-                          onPressed: giftController.bindGiftStream,
+                          onPressed: () async {
+                            await controller.retriveGifts();
+                            // await giftReceiverController.giftReceiverService.getGiftDB('0', '0', 0, 0, 0);
+                          },
                           child: Text(
                             'Retry',
                             style: boldFontStyle.copyWith(color: Colors.white),
@@ -123,12 +135,14 @@ class BuildBody extends StatelessWidget {
 
               Obx(
                 () => Slider(
-                  label: giftController.searchRadius.toInt().toString(),
-                  divisions: 199,
-                  min: 1.0,
-                  max: 200.0,
-                  value: giftController.searchRadius,
-                  onChanged: giftController.setSearchRadius,
+                  label: controller.radius.toInt().toString(),
+                  divisions: 499,
+                  min: 1,
+                  max: 500,
+                  value: controller.radius.value.toDouble(),
+                  onChanged: (val) {
+                    controller.radius.value = val.toInt();
+                  },
                 ),
               ),
             ],
@@ -142,12 +156,12 @@ class BuildBody extends StatelessWidget {
 class _GiftListTile extends StatelessWidget {
   const _GiftListTile({
     Key? key,
-    required this.giftController,
+    required this.controller,
     required this.filteredGiftList,
     required this.index,
   }) : super(key: key);
 
-  final GiftController giftController;
+  final GiftReceiverController controller;
   final List<GiftGiver> filteredGiftList;
   final int index;
 
@@ -191,7 +205,6 @@ class _GiftListTile extends StatelessWidget {
                         return const SizedBox();
                       },
                       fit: BoxFit.cover,
-                      alignment: Alignment.center,
                     ),
                   ),
                 ),
@@ -201,12 +214,12 @@ class _GiftListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'test',
+                            filteredGiftList[index].giftDetails,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 5),
