@@ -83,19 +83,18 @@ class BuildBody extends StatelessWidget {
                     print('List full CASE');
 
                     return Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: _GiftListView(controller: controller, giftGiverList: list),
-                          ),
-                          TextButton(
-                              onPressed: () async {
-                                controller.page.value += 1;
-                                await controller.retriveGifts();
-                              },
-                              child: const Text('load more'))
-                        ],
-                      ),
+                      child: ListView.builder(
+                          // itemExtent: 130,
+                          controller: controller.scrollController,
+                          padding: EdgeInsets.zero,
+                          itemCount: list.length,
+                          itemBuilder: (_, index) {
+                            return _GiftListTile(
+                              controller: controller,
+                              filteredGiftList: list,
+                              index: index,
+                            );
+                          }),
                     );
                   },
                   empty: () {
@@ -156,30 +155,6 @@ class BuildBody extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class _GiftListView extends StatelessWidget {
-  const _GiftListView({Key? key, required this.controller, required this.giftGiverList}) : super(key: key);
-
-  final List<GiftGiver> giftGiverList;
-  final GiftReceiverController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: EdgeInsets.zero,
-        itemCount: giftGiverList.length,
-        itemBuilder: (_, i) {
-          if (i == controller.giftList.value.maybeWhen(data: (data) => data.length, orElse: () => 0)) {
-            return const CupertinoActivityIndicator();
-          }
-          return _GiftListTile(
-            controller: controller,
-            filteredGiftList: giftGiverList,
-            index: i,
-          );
-        });
   }
 }
 

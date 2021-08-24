@@ -23,7 +23,7 @@ class GiftReceiverController extends GetxController {
 
 // * Gift info
   Rx<int> page = 1.obs;
-  Rx<int> limit = 2.obs;
+  Rx<int> limit = 3.obs;
   Rx<int> radius = 400.obs;
   Rx<String> searchString = ''.obs;
   Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.loading().obs;
@@ -31,6 +31,8 @@ class GiftReceiverController extends GetxController {
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   StreamSubscription? streamSubscription;
   Rx<LatLng> userPosition = const LatLng(0, 0).obs;
+
+  final ScrollController scrollController = ScrollController();
 
   //  streamSubscription = giftList.listen((docListUnion) {
   //     docListUnion.when(data: (docList) {
@@ -70,6 +72,13 @@ class GiftReceiverController extends GetxController {
     print('GiftReceiverController, userPosition' + userPosition.value.toString());
 
     await retriveGifts();
+
+    scrollController.addListener(() async {
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        page.value += 1;
+        await retriveGifts();
+      }
+    });
 
     super.onReady();
   }
