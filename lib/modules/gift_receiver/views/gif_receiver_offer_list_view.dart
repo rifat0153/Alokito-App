@@ -7,6 +7,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/modules/gift_receiver_details/views/gift_receiver_details_view.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -71,6 +72,7 @@ class BuildBody extends StatelessWidget {
               _SearchWidget(),
               TextButton(
                   onPressed: () async {
+                    controller.page.value = 1;
                     await controller.retriveGifts();
                   },
                   child: Text('data')),
@@ -81,14 +83,18 @@ class BuildBody extends StatelessWidget {
                     print('List full CASE');
 
                     return Expanded(
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: list.length,
-                        itemBuilder: (_, i) => _GiftListTile(
-                          controller: controller,
-                          filteredGiftList: list,
-                          index: i,
-                        ),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: _GiftListView(controller: controller, giftGiverList: list),
+                          ),
+                          TextButton(
+                              onPressed: () async {
+                                controller.page.value += 1;
+                                await controller.retriveGifts();
+                              },
+                              child: const Text('load more'))
+                        ],
                       ),
                     );
                   },
@@ -150,6 +156,30 @@ class BuildBody extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class _GiftListView extends StatelessWidget {
+  const _GiftListView({Key? key, required this.controller, required this.giftGiverList}) : super(key: key);
+
+  final List<GiftGiver> giftGiverList;
+  final GiftReceiverController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        padding: EdgeInsets.zero,
+        itemCount: giftGiverList.length,
+        itemBuilder: (_, i) {
+          if (i == controller.giftList.value.maybeWhen(data: (data) => data.length, orElse: () => 0)) {
+            return const CupertinoActivityIndicator();
+          }
+          return _GiftListTile(
+            controller: controller,
+            filteredGiftList: giftGiverList,
+            index: i,
+          );
+        });
   }
 }
 

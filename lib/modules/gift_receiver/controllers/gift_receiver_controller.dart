@@ -23,7 +23,7 @@ class GiftReceiverController extends GetxController {
 
 // * Gift info
   Rx<int> page = 1.obs;
-  Rx<int> limit = 10.obs;
+  Rx<int> limit = 2.obs;
   Rx<int> radius = 400.obs;
   Rx<String> searchString = ''.obs;
   Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.loading().obs;
@@ -84,8 +84,23 @@ class GiftReceiverController extends GetxController {
   Future<void> retriveGifts() async {
     print(radius.value);
 
-    giftList.value = await giftReceiverService.getGiftDB(page.value.toString(), limit.value.toString(),
+    final GiftGiverListUnion giftListUnion = await giftReceiverService.getGiftDB(page.value.toString(), limit.value.toString(),
         userPosition.value.latitude, userPosition.value.longitude, radius.value.toDouble());
+
+    final bool found = giftListUnion.when(data: (data) => true, empty: () => false, loading: () => false, error: (e) => false);
+
+    if (page.toInt() == 1 && found) {
+      giftList.value = giftListUnion;
+    } else {
+      final List<GiftGiver> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
+      final List<GiftGiver> newGifts = giftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
+
+      final updatedGiftList = [...existingGifts, ...newGifts];
+      giftList.value = GiftGiverListUnion.data(updatedGiftList);
+      filteredGiftList.value = giftList.value;
+
+      print('This is page ${page.value} data');
+    }
 
     filteredGiftList.value = giftList.value;
 
