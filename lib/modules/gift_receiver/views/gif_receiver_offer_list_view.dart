@@ -70,10 +70,9 @@ class BuildBody extends StatelessWidget {
               ),
               _SearchWidget(),
               Obx(
-                () => controller.filteredGiftList.value.when(
+                () => controller.giftList.value.when(
                   data: (list) {
                     print('List full CASE');
-
                     return Expanded(
                       child: ListView.builder(
                           // itemExtent: 130,
@@ -83,7 +82,7 @@ class BuildBody extends StatelessWidget {
                           itemBuilder: (_, index) {
                             return _GiftListTile(
                               controller: controller,
-                              filteredGiftList: list,
+                              giftList: list,
                               index: index,
                             );
                           }),
@@ -148,25 +147,26 @@ class _GiftListTile extends StatelessWidget {
   const _GiftListTile({
     Key? key,
     required this.controller,
-    required this.filteredGiftList,
+    required this.giftList,
     required this.index,
   }) : super(key: key);
 
   final GiftReceiverController controller;
-  final List<GiftGiver> filteredGiftList;
+  final List<GiftGiver> giftList;
   final int index;
-
-  final String giftType = '';
 
   @override
   Widget build(BuildContext context) {
+    final String giftType = '';
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
       child: GestureDetector(
         onTap: () => Get.to(
-          () => GiftReceiverDetailsView(giftGiver: filteredGiftList[index]),
+          () => GiftReceiverDetailsView(giftGiver: giftList[index]),
         ),
         child: Container(
+          // height: 100.h,
           decoration: BoxDecoration(
             color: giftAddFormColor,
             borderRadius: BorderRadius.circular(20),
@@ -181,17 +181,17 @@ class _GiftListTile extends StatelessWidget {
                     bottomLeft: Radius.circular(20),
                   ),
                 ),
-                width: Get.width * 0.25,
-                height: Get.height * 0.1,
+                width: 100.w,
+                height: 100.h,
                 child: Hero(
-                  tag: filteredGiftList[index].id!,
+                  tag: giftList[index].id!,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       bottomLeft: Radius.circular(20),
                     ),
                     child: Image.network(
-                      filteredGiftList[index].imageUrl,
+                      giftList[index].imageUrl,
                       errorBuilder: (_, obj, st) {
                         return const SizedBox();
                       },
@@ -210,25 +210,17 @@ class _GiftListTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            filteredGiftList[index].giftDetails,
+                            giftList[index].giftDetails,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 5),
-                          Text(filteredGiftList[index].user.userName),
+                          Text(giftList[index].user.userName),
                         ],
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            filteredGiftList[index].area,
-                            softWrap: true,
-                          ),
-                        ),
-                      ],
+                      children: [Text(giftList[index].area, softWrap: true), SizedBox(width: 8.w)],
                     ),
                   ],
                 ),

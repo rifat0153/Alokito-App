@@ -29,7 +29,7 @@ class GiftReceiverController extends GetxController {
   Rx<int> limit = 3.obs;
   Rx<int> radius = 400.obs;
 
-  Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.empty().obs;
+  Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.loading().obs;
 
   Rx<GiftGiverListUnion> filteredGiftList = const GiftGiverListUnion.empty().obs;
   Rx<String> searchString = ''.obs;
@@ -47,7 +47,6 @@ class GiftReceiverController extends GetxController {
 
   @override
   void onInit() {
-
     //* track user input in search option
     debounce(
       searchString,
@@ -116,7 +115,6 @@ class GiftReceiverController extends GetxController {
         userPosition.value.longitude,
         radius.value.toDouble(),
       );
-
     } else {
       giftListUnion = await giftReceiverService.getGiftDB(
         page.value.toString(),

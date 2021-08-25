@@ -51,7 +51,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
       final http.Response response = await client.get(
         Uri.parse(
             // '$baseUrl/gift/search?lat=23&lng=91&maxDistance=500&page=1&limit=10&searchString=4'),
-            '$baseUrl/gift/search?searchString=$searchString&lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=20'),
+            '$baseUrl/gift/search?searchString=$searchString&lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit'),
         headers: {"Content-Type": "application/json"},
       ).timeout(const Duration(seconds: 5));
 
