@@ -35,35 +35,12 @@ class GiftReceiverController extends GetxController {
   Rx<bool> allGiftsFetched = false.obs;
 
   final ScrollController scrollController = ScrollController();
-
-  //  streamSubscription = giftList.listen((docListUnion) {
-  //     docListUnion.when(data: (docList) {
-  //       filteredGiftList.value = const GiftGiverListUnion.loading();
-
-  //       for (var doc in docList) {
-  //         if (doc.user.uid != Get.find<AuthController>().currentUser.value.id) {
-  //           List<GiftGiver> tempFilteredList = [
-  //             ...filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []),
-  //             doc
-  //           ];
-  //           filteredGiftList.value = GiftGiverListUnion.data(tempFilteredList);
-  //         }
-  //       }
-  //       _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
-  //     }, empty: () {
-  //       filteredGiftList.value = const GiftGiverListUnion.empty();
-  //       _updateMarkers([]);
-  //     }, loading: () {
-  //       filteredGiftList.value = const GiftGiverListUnion.loading();
-  //       _updateMarkers([]);
-  //     }, error: (error) {
-  //       filteredGiftList.value = GiftGiverListUnion.error(error);
-  //       _updateMarkers([]);
-  //     });
-  //   });
+  late TextEditingController searchController;
 
   @override
   void onInit() {
+    searchController = TextEditingController();
+
     super.onInit();
   }
 
@@ -92,6 +69,7 @@ class GiftReceiverController extends GetxController {
   @override
   void onClose() {
     streamSubscription?.cancel();
+    searchController.dispose();
 
     super.onClose();
   }
@@ -213,7 +191,6 @@ class GiftReceiverController extends GetxController {
     );
 
     var result = await giftReceiverService.addGiftRequest(giftReceiver: giftReceiver);
- 
 
     await showSuccessOrErrorMessage(result, 'Gift Add', 'Request Added', 'Something went wrong');
   }

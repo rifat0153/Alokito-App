@@ -1,7 +1,5 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
-import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/modules/gift_receiver_details/views/gift_receiver_details_view.dart';
@@ -11,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftReceiverOfferListView extends StatelessWidget {
@@ -243,25 +242,32 @@ class _GiftListTile extends StatelessWidget {
 }
 
 class _SearchWidget extends StatelessWidget {
+  final GiftReceiverController giftReceiverController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: Get.size.width * 0.85,
-      height: Get.size.height * 0.04,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: giftAddFormColor,
-      ),
-      child: const TextField(
-        decoration: InputDecoration(
+    return Padding(
+      padding: EdgeInsets.all(8.h),
+      child: Container(
+        alignment: Alignment.center,
+        width: 330.w,
+        height: 37.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: giftAddFormColor,
+        ),
+        child: TextField(
+          controller: giftReceiverController.searchController,
+          decoration: const InputDecoration(
+            hintText: 'Search by location, service type etc',
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
             errorBorder: InputBorder.none,
             disabledBorder: InputBorder.none,
-            hintText: 'Search by location, service type etc',
-            prefixIcon: Icon(Icons.search)),
+            prefixIcon: Icon(Icons.search),
+          ),
+        ),
       ),
     );
   }
