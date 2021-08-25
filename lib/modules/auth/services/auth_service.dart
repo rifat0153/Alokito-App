@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/shared/my_error.dart';
+import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:alokito_new/modules/auth/auth_exception.dart';

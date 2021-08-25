@@ -70,13 +70,6 @@ class BuildBody extends StatelessWidget {
                 ),
               ),
               _SearchWidget(),
-              TextButton(
-                  onPressed: () async {
-                    controller.page.value = 1;
-                    await controller.retriveGifts();
-                  },
-                  child: Text('data')),
-              // _TextWidget(),
               Obx(
                 () => controller.filteredGiftList.value.when(
                   data: (list) {
@@ -111,12 +104,7 @@ class BuildBody extends StatelessWidget {
                       ),
                     );
                   },
-                  loading: () => TextButton(
-                      onPressed: () async {
-                        await controller.retriveGifts();
-                        // await giftReceiverController.giftReceiverService.getGiftDB('0', '0', 0, 0, 0);
-                      },
-                      child: Text('data')),
+                  loading: () => const CircularProgressIndicator(),
                   error: (e) => Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -137,7 +125,6 @@ class BuildBody extends StatelessWidget {
                   ),
                 ),
               ),
-
               Obx(
                 () => Slider(
                   label: controller.radius.toInt().toString(),

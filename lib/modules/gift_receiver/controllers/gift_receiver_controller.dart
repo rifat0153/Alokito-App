@@ -4,6 +4,7 @@ import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/gift_receiver/services/gift_receiver_service.dart';
+import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -31,6 +32,7 @@ class GiftReceiverController extends GetxController {
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   StreamSubscription? streamSubscription;
   Rx<LatLng> userPosition = const LatLng(0, 0).obs;
+  Rx<bool> allGiftsFetched = false.obs;
 
   final ScrollController scrollController = ScrollController();
 
@@ -76,7 +78,11 @@ class GiftReceiverController extends GetxController {
     scrollController.addListener(() async {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         page.value += 1;
-        await retriveGifts();
+        if (allGiftsFetched.value) {
+          MyUserNotify.showAllFetchedSnackbar('you have caught up');
+        } else {
+          await retriveGifts();
+        }
       }
     });
 
@@ -90,6 +96,7 @@ class GiftReceiverController extends GetxController {
     super.onClose();
   }
 
+  //* Get giftList by location from MongoDB
   Future<void> retriveGifts() async {
     print(radius.value);
 
@@ -103,6 +110,14 @@ class GiftReceiverController extends GetxController {
     } else {
       final List<GiftGiver> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
       final List<GiftGiver> newGifts = giftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
+
+      if (newGifts.isEmpty) {
+        allGiftsFetched.value = true;
+      } else {
+        allGiftsFetched.value = false;
+      }
+
+      print('GiftReceiveerContreoller: ' + allGiftsFetched.toString());
 
       final updatedGiftList = [...existingGifts, ...newGifts];
       giftList.value = GiftGiverListUnion.data(updatedGiftList);
@@ -119,8 +134,8 @@ class GiftReceiverController extends GetxController {
   void _updateMarkers(List<GiftGiver> documentList) {
     markers.value = <MarkerId, Marker>{};
 
-    documentList.forEach((GiftGiver giftGiver) {
-      // if (giftGiver.id == Get.find<AuthController>().currentUser.value.id) return;
+    for (final giftGiver in documentList) {
+      if (giftGiver.user.uid == Get.find<AuthController>().currentUser.value.id) return;
 
       // * Reverse order , bcz mongoDB returns lng first then lat
       final GeoPoint point = GeoPoint(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.first);
@@ -131,7 +146,7 @@ class GiftReceiverController extends GetxController {
       final distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
 
       _addMarker(point.latitude, point.longitude, distance);
-    });
+    }
   }
 
   void _addMarker(double lat, double lng, double distance) {
