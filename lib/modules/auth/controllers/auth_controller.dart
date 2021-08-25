@@ -3,6 +3,7 @@ import 'package:alokito_new/modules/auth/auth_exception.dart';
 import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,11 +55,10 @@ class AuthController extends GetxController {
     final giftGiverPoint =
         geo.point(latitude: giftGiver.geometry.coordinates.first, longitude: giftGiver.geometry.coordinates.last);
 
-    final GiftController giftController = Get.find();
 
     final distance = giftGiverPoint.distance(
-        lat: giftController.currentUserLocation.value.latitude,
-        lng: giftController.currentUserLocation.value.longitude);
+        lat: currentUserPosition.value.latitude,
+        lng: currentUserPosition.value.longitude);
 
     return distance;
   }

@@ -18,12 +18,12 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   final LoginController loginController = Get.put(LoginController());
   final keyValue = const Uuid().v4();
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
 
-    authController.getUserInfoAndSetCurrentUser();
-  }
+  //   authController.getUserInfoAndSetCurrentUser();
+  // }
 
   @override
   void initState() {

@@ -13,8 +13,6 @@ import 'package:get/get.dart';
 class GiftReceiverView extends StatelessWidget {
   static const route = '/giftreceiverview';
 
-  final GiftReceiverController giftRequestController = Get.put(GiftReceiverController());
-  final GiftController giftController = Get.put(GiftController());
   final AuthController authController = Get.find();
 
   final media = Get.size;

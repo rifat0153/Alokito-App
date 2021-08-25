@@ -15,29 +15,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
 
-  @override
-  _HomeViewState createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
   final AuthController authController = Get.find<AuthController>();
   final media = Get.size;
 
   @override
-  void initState() {
-    super.initState();
-    // authController.authStream.value?.sendEmailVerification();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    print('UserVerified:  ' + authController.authStream.value!.emailVerified.toString());
-    authController.authStream.value?.reload();
-
-
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -63,41 +48,36 @@ class _HomeViewState extends State<HomeView> {
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
-        body: FutureBuilder(
-          future: authController.getUserInfoAndSetCurrentUser(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            return Obx(
-              () => authController.currentUserInfo.value.when(
-                data: (user) => _BuildBody(media: media, authController: authController),
-                loading: () => const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                ),
-                error: (error) => Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      MyText(
-                        'Something went wrong',
-                        fontSize: 35.sp,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          print('object');
-                          authController.getUserInfoAndSetCurrentUser();
-                        },
-                        child: MyText(
-                          'Try Again',
-                          color: Colors.green,
-                          fontSize: 30.sp,
-                        ),
-                      )
-                    ],
+        body: Obx(
+          () => authController.currentUserInfo.value.when(
+            data: (user) => _BuildBody(media: media, authController: authController),
+            loading: () => const Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
+            error: (error) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MyText(
+                    'Something went wrong',
+                    fontSize: 35.sp,
                   ),
-                ),
+                  TextButton(
+                    onPressed: () {
+                      print('object');
+                      authController.getUserInfoAndSetCurrentUser();
+                    },
+                    child: MyText(
+                      'Try Again',
+                      color: Colors.green,
+                      fontSize: 30.sp,
+                    ),
+                  )
+                ],
               ),
-            );
-          },
+            ),
+          ),
         ),
       ),
     );
@@ -136,8 +116,7 @@ class _BuildBody extends StatelessWidget {
                 error: (err) => Column(
                   children: [
                     const Text('Something went wrong'),
-                    TextButton(
-                        onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
+                    TextButton(onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
                   ],
                 ),
               ),

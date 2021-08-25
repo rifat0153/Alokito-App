@@ -1,3 +1,5 @@
+import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
+import 'package:alokito_new/modules/gift_receiver_details/views/gift_receiver_details_view.dart';
 import 'package:get/get.dart';
 
 import '/modules/auth/views/initial_view.dart';
@@ -35,9 +37,19 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
-        Get.put(GiftController());
+        // Get.put(GiftReceiverController());
       }),
     ),
+    GetPage(
+      name: GiftReceiverOfferListView.route,
+      page: () => GiftReceiverOfferListView(),
+      transitionDuration: const Duration(milliseconds: 500),
+      transition: Transition.cupertino,
+      binding: BindingsBuilder(() {
+        Get.put(GiftReceiverController());
+      }),
+    ),
+    
 
     // * Gift Giver Routes
     GetPage(

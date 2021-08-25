@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,11 +11,10 @@ class GiftDetailMapWidget extends StatelessWidget {
   GiftDetailMapWidget({required this.giftGiver});
 
   final GiftGiver giftGiver;
-  final GiftController giftController = Get.find();
   final AuthController authController = Get.find();
   final Completer<GoogleMapController> _controller = Completer();
 
-  var markers = [
+  final markers = [
     const Marker(
       markerId: MarkerId('1'),
       position: LatLng(23.7590, 90.4119),
@@ -26,7 +23,7 @@ class GiftDetailMapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var distanceOfGift = authController.calculateDistanceForGiftDetail(giftGiver: giftGiver);
+    final distanceOfGift = authController.calculateDistanceForGiftDetail(giftGiver: giftGiver);
 
     return Column(
       children: [
@@ -51,27 +48,25 @@ class GiftDetailMapWidget extends StatelessWidget {
               Align(
                 child: Text('${giftGiver.location}, ${giftGiver.area} '),
               ),
-              Container(
+              SizedBox(
                 height: 200,
                 width: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     child: Card(
                       elevation: 20,
                       child: GoogleMap(
-                        mapType: MapType.normal,
-                        onMapCreated: (GoogleMapController controller) {
-                          _controller.complete(controller);
-                        },
+                        // mapType: MapType.normal,
+                        onMapCreated: _controller.complete,
                         initialCameraPosition: CameraPosition(
-                          target: LatLng(1, 2),
+                          target: LatLng(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.first),
                           zoom: 15,
                         ),
                         markers: [
                           Marker(
-                            markerId: MarkerId('1'),
-                            position: LatLng(1, 2),
+                            markerId: const MarkerId('123121'),
+                            position: LatLng(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.first),
                           )
                         ].toSet(),
                       ),

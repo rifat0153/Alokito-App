@@ -1,18 +1,14 @@
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/modules/gift_giver/widgets/user_joining_distance_widget.dart';
-import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/gift_receiver/widgets/gift_detail_map_widget.dart';
+import 'package:alokito_new/modules/gift_receiver/widgets/message_popup_widget.dart';
 import 'package:alokito_new/modules/gift_receiver_details/controllers/gift_receiver_detail_controller.dart';
+import 'package:alokito_new/modules/gift_receiver_details/widgets/request_delete_widget.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:alokito_new/shared/config.dart';
-import '../../gift_receiver/widgets/gift_detail_map_widget.dart';
-import '../../gift_receiver/widgets/message_popup_widget.dart';
-import '../widgets/request_delete_widget.dart';
 
 class GiftReceiverDetailsView extends StatelessWidget {
   GiftReceiverDetailsView({required this.giftGiver});
@@ -21,7 +17,6 @@ class GiftReceiverDetailsView extends StatelessWidget {
 
   final GiftGiver giftGiver;
   final AuthController authController = Get.find<AuthController>();
-  final GiftController giftController = Get.find();
   final GiftReceiverDetailController giftRecieverDetailController = Get.put(GiftReceiverDetailController());
 
   @override
@@ -224,7 +219,6 @@ class _Location extends StatelessWidget {
   _Location({required this.giftGiver});
 
   final GiftGiver giftGiver;
-  final GiftController giftController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -271,7 +265,6 @@ class _PackageName extends StatelessWidget {
   _PackageName({required this.giftGiver});
 
   final GiftGiver giftGiver;
-  final GiftController giftController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -311,7 +304,6 @@ class _GiftDetails extends StatelessWidget {
   _GiftDetails({required this.giftGiver});
 
   final GiftGiver giftGiver;
-  final GiftController giftController = Get.find();
 
   @override
   Widget build(BuildContext context) {
