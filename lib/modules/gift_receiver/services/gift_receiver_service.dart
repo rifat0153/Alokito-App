@@ -14,6 +14,11 @@ import 'package:http/http.dart' as http;
 abstract class BaseGiftReceiverService {
   Future<bool> addGiftRequest({required GiftReceiver giftReceiver});
 
+  Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius);
+
+  Future<GiftGiverListUnion> getGiftByFilterDB(
+      String searchString, String page, String limit, double lat, double lng, double radius);
+
   Future<bool> findGift({required String id});
 
   Future<void> deleteGiftRequest(String docId);
@@ -30,12 +35,55 @@ class GiftReceiverService implements BaseGiftReceiverService {
   final FirebaseFirestore _firestore;
 
   @override
-  Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius) async {
+  Future<GiftGiverListUnion> getGiftByFilterDB(
+    String searchString,
+    String page,
+    String limit,
+    double lat,
+    double lng,
+    double radius,
+  ) async {
     final client = http.Client();
 
     try {
       final http.Response response = await client.get(
-        Uri.parse(  '$baseUrl/gift/near?lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit'),
+        Uri.parse('$baseUrl/gift/search?searchString=$searchString&lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit'),
+        headers: {"Content-Type": "application/json"},
+      ).timeout(const Duration(seconds: 5));
+
+      final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
+      final List<dynamic> giftJson = body['gifts'] as List<dynamic>;
+
+      final List<GiftGiver> gifts = giftJson
+          .map(
+            (gift) => GiftGiver.fromJson(gift as Map<String, dynamic>),
+          )
+          .toList();
+
+      print(' SearchResults '+gifts.length.toString());
+
+      return GiftGiverListUnion.data(gifts);
+    } on TimeoutException catch (_) {
+      return const GiftGiverListUnion.error('Server could not be reached');
+    } catch (e) {
+      return GiftGiverListUnion.error(e.toString());
+    }
+  }
+
+  @override
+  Future<GiftGiverListUnion> getGiftDB(
+    String page,
+    String limit,
+    double lat,
+    double lng,
+    double radius,
+  ) async {
+    final client = http.Client();
+
+    try {
+      final http.Response response = await client.get(
+        Uri.parse('$baseUrl/gift/near?lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit'),
         headers: {"Content-Type": "application/json"},
       ).timeout(const Duration(seconds: 5));
 

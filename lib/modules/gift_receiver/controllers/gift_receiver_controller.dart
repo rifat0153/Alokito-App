@@ -33,6 +33,7 @@ class GiftReceiverController extends GetxController {
   StreamSubscription? streamSubscription;
   Rx<LatLng> userPosition = const LatLng(0, 0).obs;
   Rx<bool> allGiftsFetched = false.obs;
+  Rx<bool> searchCalledOnce = false.obs;
 
   final ScrollController scrollController = ScrollController();
   late TextEditingController searchController;
@@ -40,6 +41,24 @@ class GiftReceiverController extends GetxController {
   @override
   void onInit() {
     searchController = TextEditingController();
+
+    searchController.addListener(() {
+      searchString.value = searchController.text;
+    });
+
+    debounce(searchString, (_) async {
+      //* reset all page value as Search string was changed
+      page.value = 1;
+      allGiftsFetched.value = false;
+
+      if (searchString.value.isNotEmpty) {
+        print('calling retrive gift by filter');
+        await retriveGifts(isSearching: true);
+      } else {
+        print('calling retrive gift');
+        await retriveGifts();
+      }
+    }, time: const Duration(milliseconds: 1000));
 
     super.onInit();
   }
@@ -50,6 +69,7 @@ class GiftReceiverController extends GetxController {
     userPosition.value = LatLng(locData.latitude ?? 0, locData.longitude ?? 0);
     print('GiftReceiverController, userPosition' + userPosition.value.toString());
 
+    // * Get Gifts on Page Load
     await retriveGifts();
 
     scrollController.addListener(() async {
@@ -74,12 +94,38 @@ class GiftReceiverController extends GetxController {
     super.onClose();
   }
 
-  //* Get giftList by location from MongoDB
-  Future<void> retriveGifts() async {
-    print(radius.value);
+  //Get giftList by location from MongoDB
+  Future<void> retriveGifts({
+    bool isSearching = false,
+  }) async {
+    GiftGiverListUnion giftListUnion = const GiftGiverListUnion.loading();
 
-    final GiftGiverListUnion giftListUnion = await giftReceiverService.getGiftDB(page.value.toString(), limit.value.toString(),
-        userPosition.value.latitude, userPosition.value.longitude, radius.value.toDouble());
+    if (isSearching) {
+      //Search by filter called for first time, set page to 1 and giftList to loading state
+      if (!searchCalledOnce.value) {
+        page.value = 1;
+        giftList.value = const GiftGiverListUnion.loading();
+      }
+
+      giftListUnion = await giftReceiverService.getGiftByFilterDB(
+        searchString.value,
+        page.value.toString(),
+        limit.value.toString(),
+        userPosition.value.latitude,
+        userPosition.value.longitude,
+        radius.value.toDouble(),
+      );
+
+      searchCalledOnce.value = true;
+    } else {
+      giftListUnion = await giftReceiverService.getGiftDB(
+        page.value.toString(),
+        limit.value.toString(),
+        userPosition.value.latitude,
+        userPosition.value.longitude,
+        radius.value.toDouble(),
+      );
+    }
 
     final bool found = giftListUnion.when(data: (data) => true, empty: () => false, loading: () => false, error: (e) => false);
 
@@ -95,13 +141,9 @@ class GiftReceiverController extends GetxController {
         allGiftsFetched.value = false;
       }
 
-      print('GiftReceiveerContreoller: ' + allGiftsFetched.toString());
-
       final updatedGiftList = [...existingGifts, ...newGifts];
       giftList.value = GiftGiverListUnion.data(updatedGiftList);
       filteredGiftList.value = giftList.value;
-
-      print('This is page ${page.value} data');
     }
 
     filteredGiftList.value = giftList.value;
