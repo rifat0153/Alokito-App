@@ -22,43 +22,51 @@ class GiftReceiverController extends GetxController {
   RxBool showDialog = RxBool(false);
   RxBool requestExists = RxBool(false);
 
-// * Gift info
+// * load gift by location or with filtering
+  Rx<GiftGiverLoadingOption> giftRetriveOption = const GiftGiverLoadingOption.byLocation().obs;
+
   Rx<int> page = 1.obs;
   Rx<int> limit = 3.obs;
   Rx<int> radius = 400.obs;
+
+  Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.empty().obs;
+
+  Rx<GiftGiverListUnion> filteredGiftList = const GiftGiverListUnion.empty().obs;
   Rx<String> searchString = ''.obs;
-  Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.loading().obs;
-  Rx<GiftGiverListUnion> filteredGiftList = const GiftGiverListUnion.loading().obs;
+
+  Rx<bool> allGiftsFetched = false.obs;
+  Rx<bool> allGiftsFetchedBySearch = false.obs;
+
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   StreamSubscription? streamSubscription;
   Rx<LatLng> userPosition = const LatLng(0, 0).obs;
-  Rx<bool> allGiftsFetched = false.obs;
+
   Rx<bool> searchCalledOnce = false.obs;
 
   final ScrollController scrollController = ScrollController();
-  late TextEditingController searchController;
 
   @override
   void onInit() {
-    searchController = TextEditingController();
 
-    searchController.addListener(() {
-      searchString.value = searchController.text;
-    });
+    //* track user input in search option
+    debounce(
+      searchString,
+      (_) async {
+        //* reset all page value as Search string was changed
+        page.value = 1;
+        allGiftsFetched.value = false;
 
-    debounce(searchString, (_) async {
-      //* reset all page value as Search string was changed
-      page.value = 1;
-      allGiftsFetched.value = false;
+        //* if search string exists get gift by search, otherwise get gift by location only
+        giftRetriveOption.value =
+            searchString.value.isNotEmpty ? const GiftGiverLoadingOption.bySearch() : const GiftGiverLoadingOption.byLocation();
 
-      if (searchString.value.isNotEmpty) {
-        print('calling retrive gift by filter');
-        await retriveGifts(isSearching: true);
-      } else {
-        print('calling retrive gift');
+        //* set giftList to loading state
+        giftList.value = const GiftGiverListUnion.loading();
+
         await retriveGifts();
-      }
-    }, time: const Duration(milliseconds: 1000));
+      },
+      time: const Duration(milliseconds: 1000),
+    );
 
     super.onInit();
   }
@@ -89,23 +97,16 @@ class GiftReceiverController extends GetxController {
   @override
   void onClose() {
     streamSubscription?.cancel();
-    searchController.dispose();
 
     super.onClose();
   }
 
   //Get giftList by location from MongoDB
-  Future<void> retriveGifts({
-    bool isSearching = false,
-  }) async {
+  Future<void> retriveGifts() async {
     GiftGiverListUnion giftListUnion = const GiftGiverListUnion.loading();
 
-    if (isSearching) {
-      //Search by filter called for first time, set page to 1 and giftList to loading state
-      if (!searchCalledOnce.value) {
-        page.value = 1;
-        giftList.value = const GiftGiverListUnion.loading();
-      }
+    if (giftRetriveOption.value == const GiftGiverLoadingOption.bySearch()) {
+      //* Search by filter called for first time, set page to 1 and giftList to loading state
 
       giftListUnion = await giftReceiverService.getGiftByFilterDB(
         searchString.value,
@@ -116,7 +117,6 @@ class GiftReceiverController extends GetxController {
         radius.value.toDouble(),
       );
 
-      searchCalledOnce.value = true;
     } else {
       giftListUnion = await giftReceiverService.getGiftDB(
         page.value.toString(),
@@ -143,12 +143,11 @@ class GiftReceiverController extends GetxController {
 
       final updatedGiftList = [...existingGifts, ...newGifts];
       giftList.value = GiftGiverListUnion.data(updatedGiftList);
-      filteredGiftList.value = giftList.value;
     }
 
     filteredGiftList.value = giftList.value;
 
-    _updateMarkers(filteredGiftList.value.maybeWhen(data: (data) => data, orElse: () => []));
+    _updateMarkers(giftList.value.maybeWhen(data: (data) => data, orElse: () => []));
   }
 
   void _updateMarkers(List<GiftGiver> documentList) {

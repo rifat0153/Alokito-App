@@ -45,9 +45,13 @@ class GiftReceiverService implements BaseGiftReceiverService {
   ) async {
     final client = http.Client();
 
+    print('Seraching with search term: ' + searchString);
+
     try {
       final http.Response response = await client.get(
-        Uri.parse('$baseUrl/gift/search?searchString=$searchString&lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit'),
+        Uri.parse(
+            // '$baseUrl/gift/search?lat=23&lng=91&maxDistance=500&page=1&limit=10&searchString=4'),
+            '$baseUrl/gift/search?searchString=$searchString&lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=20'),
         headers: {"Content-Type": "application/json"},
       ).timeout(const Duration(seconds: 5));
 
@@ -61,7 +65,8 @@ class GiftReceiverService implements BaseGiftReceiverService {
           )
           .toList();
 
-      print(' SearchResults '+gifts.length.toString());
+      print('get gift by Search service called');
+      print(' SearchResults ' + gifts.length.toString());
 
       return GiftGiverListUnion.data(gifts);
     } on TimeoutException catch (_) {
@@ -97,7 +102,8 @@ class GiftReceiverService implements BaseGiftReceiverService {
           )
           .toList();
 
-      print(gifts.length);
+      print('get gift by Location service called');
+      print(' LocationResults ' + gifts.length.toString());
 
       return GiftGiverListUnion.data(gifts);
     } on TimeoutException catch (_) {

@@ -474,6 +474,238 @@ abstract class _GiftGiver implements GiftGiver {
 }
 
 /// @nodoc
+class _$GiftGiverLoadingOptionTearOff {
+  const _$GiftGiverLoadingOptionTearOff();
+
+  ByLocation byLocation() {
+    return const ByLocation();
+  }
+
+  BySearch bySearch() {
+    return const BySearch();
+  }
+}
+
+/// @nodoc
+const $GiftGiverLoadingOption = _$GiftGiverLoadingOptionTearOff();
+
+/// @nodoc
+mixin _$GiftGiverLoadingOption {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftGiverLoadingOptionCopyWith<$Res> {
+  factory $GiftGiverLoadingOptionCopyWith(GiftGiverLoadingOption value,
+          $Res Function(GiftGiverLoadingOption) then) =
+      _$GiftGiverLoadingOptionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftGiverLoadingOptionCopyWithImpl<$Res>
+    implements $GiftGiverLoadingOptionCopyWith<$Res> {
+  _$GiftGiverLoadingOptionCopyWithImpl(this._value, this._then);
+
+  final GiftGiverLoadingOption _value;
+  // ignore: unused_field
+  final $Res Function(GiftGiverLoadingOption) _then;
+}
+
+/// @nodoc
+abstract class $ByLocationCopyWith<$Res> {
+  factory $ByLocationCopyWith(
+          ByLocation value, $Res Function(ByLocation) then) =
+      _$ByLocationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ByLocationCopyWithImpl<$Res>
+    extends _$GiftGiverLoadingOptionCopyWithImpl<$Res>
+    implements $ByLocationCopyWith<$Res> {
+  _$ByLocationCopyWithImpl(ByLocation _value, $Res Function(ByLocation) _then)
+      : super(_value, (v) => _then(v as ByLocation));
+
+  @override
+  ByLocation get _value => super._value as ByLocation;
+}
+
+/// @nodoc
+
+class _$ByLocation implements ByLocation {
+  const _$ByLocation();
+
+  @override
+  String toString() {
+    return 'GiftGiverLoadingOption.byLocation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is ByLocation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) {
+    return byLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) {
+    if (byLocation != null) {
+      return byLocation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) {
+    return byLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) {
+    if (byLocation != null) {
+      return byLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ByLocation implements GiftGiverLoadingOption {
+  const factory ByLocation() = _$ByLocation;
+}
+
+/// @nodoc
+abstract class $BySearchCopyWith<$Res> {
+  factory $BySearchCopyWith(BySearch value, $Res Function(BySearch) then) =
+      _$BySearchCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$BySearchCopyWithImpl<$Res>
+    extends _$GiftGiverLoadingOptionCopyWithImpl<$Res>
+    implements $BySearchCopyWith<$Res> {
+  _$BySearchCopyWithImpl(BySearch _value, $Res Function(BySearch) _then)
+      : super(_value, (v) => _then(v as BySearch));
+
+  @override
+  BySearch get _value => super._value as BySearch;
+}
+
+/// @nodoc
+
+class _$BySearch implements BySearch {
+  const _$BySearch();
+
+  @override
+  String toString() {
+    return 'GiftGiverLoadingOption.bySearch()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is BySearch);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) {
+    return bySearch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) {
+    if (bySearch != null) {
+      return bySearch();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) {
+    return bySearch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) {
+    if (bySearch != null) {
+      return bySearch(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BySearch implements GiftGiverLoadingOption {
+  const factory BySearch() = _$BySearch;
+}
+
+/// @nodoc
 class _$GiftGiverListUnionTearOff {
   const _$GiftGiverListUnionTearOff();
 

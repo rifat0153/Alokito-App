@@ -257,7 +257,7 @@ class _SearchWidget extends StatelessWidget {
           color: giftAddFormColor,
         ),
         child: TextField(
-          controller: giftReceiverController.searchController,
+          onChanged: giftReceiverController.searchString,
           decoration: const InputDecoration(
             hintText: 'Search by location, service type etc',
             border: InputBorder.none,

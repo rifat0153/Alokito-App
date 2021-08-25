@@ -29,6 +29,14 @@ abstract class GiftGiver with _$GiftGiver {
   factory GiftGiver.fromJson(Map<String, dynamic> json) => _$GiftGiverFromJson(json);
 }
 
+
+@freezed
+class GiftGiverLoadingOption with _$GiftGiverLoadingOption{
+    const factory GiftGiverLoadingOption.byLocation() = ByLocation;
+  const factory GiftGiverLoadingOption.bySearch() = BySearch;
+
+}
+
 @freezed
 class GiftGiverListUnion with _$GiftGiverListUnion {
   const factory GiftGiverListUnion.data(List<GiftGiver> giftGiverList) = Data;
