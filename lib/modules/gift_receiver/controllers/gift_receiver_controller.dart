@@ -28,17 +28,13 @@ class GiftReceiverController extends GetxController {
   Rx<int> page = 1.obs;
   Rx<int> limit = 3.obs;
   Rx<int> radius = 400.obs;
+  Rx<String> searchString = ''.obs;
 
   Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.loading().obs;
 
-  Rx<GiftGiverListUnion> filteredGiftList = const GiftGiverListUnion.empty().obs;
-  Rx<String> searchString = ''.obs;
-
   Rx<bool> allGiftsFetched = false.obs;
-  Rx<bool> allGiftsFetchedBySearch = false.obs;
 
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
-  StreamSubscription? streamSubscription;
   Rx<LatLng> userPosition = const LatLng(0, 0).obs;
 
   Rx<bool> searchCalledOnce = false.obs;
@@ -59,10 +55,10 @@ class GiftReceiverController extends GetxController {
         giftRetriveOption.value =
             searchString.value.isNotEmpty ? const GiftGiverLoadingOption.bySearch() : const GiftGiverLoadingOption.byLocation();
 
-        //* set giftList to loading state
+        //* set giftListState to loading 
         giftList.value = const GiftGiverListUnion.loading();
 
-        await retriveGifts();
+        await retrieveGifts();
       },
       time: const Duration(milliseconds: 1000),
     );
@@ -74,10 +70,9 @@ class GiftReceiverController extends GetxController {
   Future onReady() async {
     final locData = await Location().getLocation();
     userPosition.value = LatLng(locData.latitude ?? 0, locData.longitude ?? 0);
-    print('GiftReceiverController, userPosition' + userPosition.value.toString());
 
     // * Get Gifts on Page Load
-    await retriveGifts();
+    await retrieveGifts();
 
     scrollController.addListener(() async {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
@@ -85,7 +80,7 @@ class GiftReceiverController extends GetxController {
         if (allGiftsFetched.value) {
           MyUserNotify.showAllFetchedSnackbar('you have caught up');
         } else {
-          await retriveGifts();
+          await retrieveGifts();
         }
       }
     });
@@ -93,15 +88,8 @@ class GiftReceiverController extends GetxController {
     super.onReady();
   }
 
-  @override
-  void onClose() {
-    streamSubscription?.cancel();
-
-    super.onClose();
-  }
-
-  //Get giftList by location from MongoDB
-  Future<void> retriveGifts() async {
+  //* Retrieve giftList by location from MongoDB
+  Future<void> retrieveGifts() async {
     GiftGiverListUnion giftListUnion = const GiftGiverListUnion.loading();
 
     if (giftRetriveOption.value == const GiftGiverLoadingOption.bySearch()) {
@@ -143,7 +131,6 @@ class GiftReceiverController extends GetxController {
       giftList.value = GiftGiverListUnion.data(updatedGiftList);
     }
 
-    filteredGiftList.value = giftList.value;
 
     _updateMarkers(giftList.value.maybeWhen(data: (data) => data, orElse: () => []));
   }

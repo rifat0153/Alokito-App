@@ -110,8 +110,7 @@ class BuildBody extends StatelessWidget {
                         Text(e.toString()),
                         ElevatedButton(
                           onPressed: () async {
-                            await controller.retriveGifts();
-                            // await giftReceiverController.giftReceiverService.getGiftDB('0', '0', 0, 0, 0);
+                            await controller.retrieveGifts();
                           },
                           child: Text(
                             'Retry',

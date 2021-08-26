@@ -12,8 +12,7 @@ class MyNotification with _$MyNotification {
   const factory MyNotification.data({
     required String id,
     required String text,
-    @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-        required NotificationType notificationType,
+    @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson) required NotificationType notificationType,
     required String releatedDocId,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
   }) = _MyNotification;

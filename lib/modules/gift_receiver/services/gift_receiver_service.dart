@@ -65,9 +65,6 @@ class GiftReceiverService implements BaseGiftReceiverService {
           )
           .toList();
 
-      print('get gift by Search service called');
-      print(' SearchResults ' + gifts.length.toString());
-
       return GiftGiverListUnion.data(gifts);
     } on TimeoutException catch (_) {
       return const GiftGiverListUnion.error('Server could not be reached');
