@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 import 'package:alokito_new/models/user/local_user.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:http/http.dart' as http;
 
@@ -109,7 +110,7 @@ class AuthService implements BaseAuthService {
       // * Create userDocument in mongodb
       final http.Response response = await client
           .post(
-            Uri.parse('http://192.168.0.121:3000/api/v1/user/store'),
+            Uri.parse('$baseUrl/user/store'),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
@@ -117,12 +118,14 @@ class AuthService implements BaseAuthService {
           )
           .timeout(const Duration(seconds: 5));
 
-      if (response.statusCode != 200 && response.statusCode != 201) {
-        await MyError.showErrorBottomSheet('${response.statusCode}: Something went wrong');
-        return;
-      } else {
-        final mongoUser = localUserFromJson(response.body);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+         final mongoUser = localUserFromJson(response.body);
         myUser = mongoUser;
+      
+      } else {
+          await MyError.showErrorBottomSheet('${response.statusCode}: Something went wrong');
+
+        return;
       }
 
       // * Creating userDoc in Firestore
@@ -185,7 +188,7 @@ class AuthService implements BaseAuthService {
 
     try {
       final http.Response response = await client.get(
-        Uri.parse('http://192.168.0.121:3000/api/v1/user/show?id=$id'),
+        Uri.parse('$baseUrl/user/show?id=$id'),
         headers: {"Content-Type": "application/json"},
       ).timeout(const Duration(seconds: 5));
 
