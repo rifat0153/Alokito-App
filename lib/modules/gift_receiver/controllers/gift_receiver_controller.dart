@@ -139,7 +139,7 @@ class GiftReceiverController extends GetxController {
     markers.value = <MarkerId, Marker>{};
 
     for (final giftGiver in documentList) {
-      if (giftGiver.user.uid == Get.find<AuthController>().currentUser.value.id) return;
+      if (giftGiver.user?.uid == Get.find<AuthController>().currentUser.value.id) return;
 
       // * Reverse order , bcz mongoDB returns lng first then lat
       final GeoPoint point = GeoPoint(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.first);

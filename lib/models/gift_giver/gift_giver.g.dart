@@ -11,7 +11,7 @@ _$_GiftGiver _$_$_GiftGiverFromJson(Map<String, dynamic> json) {
     id: json['id'] as String?,
     listingForDays: json['listingForDays'] as int,
     canLeaveOutside: json['canLeaveOutside'] as bool,
-    user: localUserFromMap(json['user'] as Map<String, dynamic>),
+    user: localUserFromMap(json['user'] as Map<String, dynamic>?),
     geometry: geometryFromMap(json['geometry'] as Map<String, dynamic>),
     giftType: json['giftType'] as String,
     giftDetails: json['giftDetails'] as String,

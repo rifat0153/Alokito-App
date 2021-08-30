@@ -124,7 +124,7 @@ class _DecisionWidget extends StatelessWidget {
             )
           ],
         ),
-        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.giftGiver.user.userName}',
+        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.giftGiver.user!.userName}',
             textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
         canceledByRequester: () => MyText('r Request Canceled by You',
             textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),

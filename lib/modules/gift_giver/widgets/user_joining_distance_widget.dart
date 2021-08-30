@@ -12,10 +12,12 @@ class UserRatingAndDistance extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(giftGiver.user.averageRating);
+    print(giftGiver.user!.averageRating);
+
+
 
     var distance = Geoflutterfire()
-        .point(latitude: giftGiver.user.geometry.coordinates.last, longitude: giftGiver.user.geometry.coordinates.first)
+        .point(latitude: giftGiver.user!.geometry.coordinates.last, longitude: giftGiver.user!.geometry.coordinates.first)
         .distance(
           lat: authController.currentUserInfo.value.maybeWhen(data: (user) => 23, orElse: () => 0),
           lng: authController.currentUserInfo.value.maybeWhen(data: (user) => 90, orElse: () => 0),
@@ -38,19 +40,19 @@ class UserRatingAndDistance extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children: [
-          giftGiver.user.averageRating >= 1
+           giftGiver.user!.averageRating >= 1
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftGiver.user.averageRating >= 2
+           giftGiver.user!.averageRating >= 2
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftGiver.user.averageRating >= 3
+           giftGiver.user!.averageRating >= 3
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftGiver.user.averageRating >= 4
+           giftGiver.user!.averageRating >= 4
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
-          giftGiver.user.averageRating >= 5
+           giftGiver.user!.averageRating >= 5
               ? const Icon(Icons.star, color: Colors.yellow, size: starSize)
               : const Icon(Icons.star, size: starSize),
           const Icon(Icons.arrow_forward_ios),
@@ -69,7 +71,7 @@ class UserDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final date = DateTime.now();
-    final userCreatedAt = DateTime.fromMicrosecondsSinceEpoch(giftGiver.user.createdAt.microsecondsSinceEpoch);
+    final userCreatedAt = DateTime.fromMicrosecondsSinceEpoch(giftGiver.user!.createdAt.microsecondsSinceEpoch);
     final joined = date.difference(userCreatedAt).inDays ~/ 30;
 
     return Padding(
@@ -80,14 +82,14 @@ class UserDetail extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: CircleAvatar(
               radius: 30,
-              backgroundImage: NetworkImage(giftGiver.user.imageUrl),
+              backgroundImage: NetworkImage(giftGiver.user!.imageUrl),
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                giftGiver.user.firstName,
+                giftGiver.user!.firstName,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),

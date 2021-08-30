@@ -213,7 +213,7 @@ class _GiftListTile extends StatelessWidget {
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 5),
-                          Text(giftList[index].user.userName),
+                          Text( giftList[index].user != null?  giftList[index].user!.userName : ''),
                         ],
                       ),
                     ),

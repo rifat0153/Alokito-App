@@ -25,7 +25,7 @@ class _$GiftGiverTearOff {
       required int listingForDays,
       required bool canLeaveOutside,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-          required LocalUser user,
+          LocalUser? user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required Geometry geometry,
       required String giftType,
@@ -65,7 +65,7 @@ mixin _$GiftGiver {
   int get listingForDays => throw _privateConstructorUsedError;
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-  LocalUser get user => throw _privateConstructorUsedError;
+  LocalUser? get user => throw _privateConstructorUsedError;
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
   Geometry get geometry => throw _privateConstructorUsedError;
   String get giftType => throw _privateConstructorUsedError;
@@ -91,7 +91,7 @@ abstract class $GiftGiverCopyWith<$Res> {
       int listingForDays,
       bool canLeaveOutside,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-          LocalUser user,
+          LocalUser? user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           Geometry geometry,
       String giftType,
@@ -102,7 +102,7 @@ abstract class $GiftGiverCopyWith<$Res> {
       String imageUrl,
       double distance});
 
-  $LocalUserCopyWith<$Res> get user;
+  $LocalUserCopyWith<$Res>? get user;
   $GeometryCopyWith<$Res> get geometry;
 }
 
@@ -145,7 +145,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as LocalUser,
+              as LocalUser?,
       geometry: geometry == freezed
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
@@ -182,8 +182,12 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
   }
 
   @override
-  $LocalUserCopyWith<$Res> get user {
-    return $LocalUserCopyWith<$Res>(_value.user, (value) {
+  $LocalUserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $LocalUserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -207,7 +211,7 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       int listingForDays,
       bool canLeaveOutside,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-          LocalUser user,
+          LocalUser? user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           Geometry geometry,
       String giftType,
@@ -219,7 +223,7 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       double distance});
 
   @override
-  $LocalUserCopyWith<$Res> get user;
+  $LocalUserCopyWith<$Res>? get user;
   @override
   $GeometryCopyWith<$Res> get geometry;
 }
@@ -264,7 +268,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as LocalUser,
+              as LocalUser?,
       geometry: geometry == freezed
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
@@ -309,7 +313,7 @@ class _$_GiftGiver implements _GiftGiver {
       required this.listingForDays,
       required this.canLeaveOutside,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-          required this.user,
+          this.user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required this.geometry,
       required this.giftType,
@@ -331,7 +335,7 @@ class _$_GiftGiver implements _GiftGiver {
   final bool canLeaveOutside;
   @override
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-  final LocalUser user;
+  final LocalUser? user;
   @override
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
   final Geometry geometry;
@@ -427,7 +431,7 @@ abstract class _GiftGiver implements GiftGiver {
       required int listingForDays,
       required bool canLeaveOutside,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-          required LocalUser user,
+          LocalUser? user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required Geometry geometry,
       required String giftType,
@@ -449,7 +453,7 @@ abstract class _GiftGiver implements GiftGiver {
   bool get canLeaveOutside => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-  LocalUser get user => throw _privateConstructorUsedError;
+  LocalUser? get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
   Geometry get geometry => throw _privateConstructorUsedError;

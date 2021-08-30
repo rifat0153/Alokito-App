@@ -39,8 +39,21 @@ abstract class LocalUser with _$LocalUser {
   factory LocalUser.fromJson(Map<String, dynamic> json) => _$LocalUserFromJson(json);
 }
 
-Map<String, dynamic> localUserToMap(LocalUser localUser) => localUser.toJson();
-LocalUser localUserFromMap(Map<String, dynamic> json) => LocalUser.fromJson(json);
+Map<String, dynamic>? localUserToMap(LocalUser? localUser) {
+  if (localUser != null) {
+    return localUser.toJson();
+  } else {
+    return null;
+  }
+}
+
+LocalUser? localUserFromMap(Map<String, dynamic>? json)  {
+  if(json != null) {
+    return LocalUser.fromJson(json);
+  }else {
+    return null;
+  }
+}
 
 @freezed
 abstract class Geometry with _$Geometry {
