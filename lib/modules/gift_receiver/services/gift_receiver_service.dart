@@ -93,16 +93,20 @@ class GiftReceiverService implements BaseGiftReceiverService {
 
       final List<dynamic> giftJson = body['gifts'] as List<dynamic>;
 
-      final List<GiftGiver> gifts = giftJson
-          .map(
-            (gift) => GiftGiver.fromJson(gift as Map<String, dynamic>),
-          )
-          .toList();
+      final List<GiftGiver> filteredGifts = [];
+
+      for (var gift in giftJson) {
+        final giftGiver = GiftGiver.fromJson(gift as Map<String, dynamic>);
+
+        if (giftGiver.user != null) {
+          filteredGifts.add(giftGiver);
+        }
+      }
 
       print('get gift by Location service called');
-      print(' LocationResults ' + gifts.length.toString());
+      print(' Filtered Results ' + filteredGifts.length.toString());
 
-      return GiftGiverListUnion.data(gifts);
+      return GiftGiverListUnion.data(filteredGifts);
     } on TimeoutException catch (_) {
       return const GiftGiverListUnion.error('Server could not be reached');
     } catch (e) {
