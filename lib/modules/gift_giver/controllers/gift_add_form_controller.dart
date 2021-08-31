@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
@@ -14,27 +16,31 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class GiftAddFormController extends GetxController {
-  var isUploading = false.obs;
-  var giftFor = 0.obs;
+  GiftAddFormController(this.giftGiverService);
+
+  GiftGiverService giftGiverService;
+
+  final isUploading = false.obs;
+  final giftFor = 0.obs;
   Rx<GiftType> giftType = GiftType.packageFor3Days.obs;
-  var distance = 1.obs;
-  var giftDetails = ''.obs;
-  var givingGiftInDays = 1.obs;
+  final distance = 1.obs;
+  final giftDetails = ''.obs;
+  final givingGiftInDays = 1.obs;
   Rx<Timestamp?> pickUpTime = Timestamp.now().obs;
-  var listingFor = 5.0.obs;
-  var canLeaveOutside = false.obs;
-  var markers = List<Marker>.empty().obs;
+  final listingFor = 5.0.obs;
+  final canLeaveOutside = false.obs;
+  final markers = List<Marker>.empty().obs;
   Rx<File> imageFile = File('').obs;
-  var userLocation = const LatLng(0, 0).obs;
-  var addressQuery = ''.obs;
-  var foundAddress = ''.obs;
-  var selectedAddress = ''.obs;
-  var addressSelected = true.obs;
-  var selectedAddressLatLng = const LatLng(0, 0).obs;
-  var selectedLatLng = const LatLng(0, 0).obs;
-  var selectedMapLocation = ''.obs;
-  var location = ''.obs;
-  var area = ''.obs;
+  final userLocation = const LatLng(0, 0).obs;
+  final addressQuery = ''.obs;
+  final foundAddress = ''.obs;
+  final selectedAddress = ''.obs;
+  final addressSelected = true.obs;
+  final selectedAddressLatLng = const LatLng(0, 0).obs;
+  final selectedLatLng = const LatLng(0, 0).obs;
+  final selectedMapLocation = ''.obs;
+  final location = ''.obs;
+  final area = ''.obs;
 
   @override
   void onInit() {
@@ -48,13 +54,23 @@ class GiftAddFormController extends GetxController {
     super.onInit();
   }
 
+  Future<void> addGift() async {
+    if (area.value.isEmpty) {
+      Get.snackbar('Gift Add Error', 'Area cant be empty',
+          backgroundColor: Colors.red.withOpacity(0.5), duration: const Duration(milliseconds: 2000));
+      return;
+    }
+    if (location.value.isEmpty) {
+      Get.snackbar('Gift Add Error', 'Location cant be empty', backgroundColor: Colors.red.withOpacity(0.5));
+      return;
+    }
+
+    await giftGiverService.addGift();
+  }
+
   String showPickupTime() {
-    var hour = DateTime.fromMillisecondsSinceEpoch(
-            pickUpTime.value!.millisecondsSinceEpoch)
-        .hour;
-    var min = DateTime.fromMillisecondsSinceEpoch(
-            pickUpTime.value!.millisecondsSinceEpoch)
-        .minute;
+    final hour = DateTime.fromMillisecondsSinceEpoch(pickUpTime.value!.millisecondsSinceEpoch).hour;
+    final min = DateTime.fromMillisecondsSinceEpoch(pickUpTime.value!.millisecondsSinceEpoch).minute;
 
     if (hour > 12) {
       return '${hour - 12}:$min pm';
@@ -63,14 +79,13 @@ class GiftAddFormController extends GetxController {
     }
   }
 
-  void setLocationFromMapCordinates() async {
-    print('In FROM MAP Controller');
+  Future<void> setLocationFromMapCordinates() async {
     // From coordinates
-    final coordinates = Coordinates(
-        selectedLatLng.value.latitude, selectedLatLng.value.longitude);
-    var addresses1 =
-        await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    var first = addresses1.first;
+    final coordinates = Coordinates(selectedLatLng.value.latitude, selectedLatLng.value.longitude);
+
+    final addresses1 = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+
+    final first = addresses1.first;
     selectedMapLocation.value = ' ${first.addressLine}  ${first.subLocality}';
 
     location.value = first.addressLine;
@@ -87,7 +102,7 @@ class GiftAddFormController extends GetxController {
     Address first = Address();
 
     try {
-      var addresses = await Geocoder.local.findAddressesFromQuery(query);
+      final addresses = await Geocoder.local.findAddressesFromQuery(query);
       first = addresses.first;
       print(addresses.first.addressLine);
       print('${first.featureName} : ${first.coordinates}');
@@ -100,15 +115,12 @@ class GiftAddFormController extends GetxController {
       foundAddress.value = 'No matching location';
     } else {
       foundAddress.value = first.addressLine;
-      selectedAddressLatLng.value =
-          LatLng(first.coordinates.latitude, first.coordinates.longitude);
+      selectedAddressLatLng.value = LatLng(first.coordinates.latitude, first.coordinates.longitude);
     }
 
     // From coordinates
-    final coordinates =
-        Coordinates(first.coordinates.latitude, first.coordinates.longitude);
-    var addresses1 =
-        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    final coordinates = Coordinates(first.coordinates.latitude, first.coordinates.longitude);
+    final addresses1 = await Geocoder.local.findAddressesFromCoordinates(coordinates);
     first = addresses1.first;
     print('${first.featureName} : ${first.addressLine}');
   }
@@ -124,21 +136,5 @@ class GiftAddFormController extends GetxController {
     userLocation.value = LatLng(locData.latitude!, locData.longitude!);
 
     print('In controller  ' + userLocation.value.toString());
-  }
-
-  void addGift() {
-    if (area.value.isEmpty) {
-      Get.snackbar('Gift Add Error', 'Area cant be empty',
-          backgroundColor: Colors.red.withOpacity(0.5),
-          duration: Duration(milliseconds: 2000));
-      return;
-    }
-    if (location.value.isEmpty) {
-      Get.snackbar('Gift Add Error', 'Location cant be empty',
-          backgroundColor: Colors.red.withOpacity(0.5));
-      return;
-    }
-
-    // GiftGiverService().addGift();
   }
 }

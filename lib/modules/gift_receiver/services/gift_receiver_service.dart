@@ -56,7 +56,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
       ).timeout(const Duration(seconds: 5));
 
       final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
-
+      
       final List<dynamic> giftJson = body['gifts'] as List<dynamic>;
 
       final List<GiftGiver> gifts = giftJson

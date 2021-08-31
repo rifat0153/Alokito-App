@@ -1,19 +1,18 @@
+import 'package:alokito_new/modules/gift_giver/controllers/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/gift_giver/widgets/custom_gift_widget.dart';
+import 'package:alokito_new/modules/gift_giver/widgets/distance_row_widget.dart';
+import 'package:alokito_new/modules/gift_giver/widgets/family_option_widget.dart';
+import 'package:alokito_new/modules/gift_giver/widgets/gift_location_widget.dart';
+import 'package:alokito_new/modules/gift_giver/widgets/image_input_widget.dart';
+import 'package:alokito_new/modules/gift_giver/widgets/listing_date_widget.dart';
+import 'package:alokito_new/modules/gift_giver/widgets/location_search_widget.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../controllers/gift_add_form_controller.dart';
-
-import '../widgets/custom_gift_widget.dart';
-import '../widgets/distance_row_widget.dart';
-import '../widgets/family_option_widget.dart';
-import '../widgets/gift_location_widget.dart';
-import '../widgets/image_input_widget.dart';
-import '../widgets/listing_date_widget.dart';
-import '../widgets/location_search_widget.dart';
 
 class GiftAddView extends StatelessWidget {
   static const route = 'giftaddview';
@@ -73,20 +72,14 @@ class GiftAddView extends StatelessWidget {
               height: Get.size.height,
               width: Get.size.width,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/gift_add_form.png'),
-                    fit: BoxFit.fill),
+                image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
             SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  controller.giftType.value == GiftType.anyRetailItem
-                      ? Container()
-                      : FamilyOptionWidget(),
-                  controller.giftType.value == GiftType.customizedPackage
-                      ? CustomGiftOptionWidget()
-                      : Container(),
+                  if (controller.giftType.value == GiftType.anyRetailItem) FamilyOptionWidget(),
+                  if (controller.giftType.value == GiftType.customizedPackage) CustomGiftOptionWidget(),
 
                   DistanceListRow(),
                   ImageInputWidget(),
@@ -130,7 +123,6 @@ class _PickUpTimeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -147,38 +139,17 @@ class _PickUpTimeWidget extends StatelessWidget {
                   context: context,
                 );
                 var now = DateTime.now();
-                now = DateTime(
-                    now.year, now.month, now.day, time!.hour, time.minute);
+                if (time != null) {
+                  now = DateTime(now.year, now.month, now.day, time.hour, time.minute);
+                }
 
                 controller.pickUpTime.value = Timestamp.fromDate(now);
-                print(time);
-                print(controller.pickUpTime.value);
               },
-              child: Text('Pick Time'),
+              child: const Text('Pick Time'),
             ),
           ],
         ),
         const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: MaterialButton(
-            color: giftGiverButtonColor,
-            onPressed: () async {
-              var time = await showTimePicker(
-                initialTime: TimeOfDay.now(),
-                context: context,
-              );
-              var now = DateTime.now();
-              now = DateTime(
-                  now.year, now.month, now.day, time!.hour, time.minute);
-
-              controller.pickUpTime.value = Timestamp.fromDate(now);
-              print(time);
-              print(controller.pickUpTime.value);
-            },
-            child: Text('Pick Time'),
-          ),
-        ),
       ],
     );
   }
@@ -214,8 +185,7 @@ class _GiftDetailWidget extends StatelessWidget {
                 fillColor: giftAddFormColor,
                 // hoverColor: Colors.grey,
                 filled: true,
-                hintText:
-                    'e.g. Food or Medicine name, quality, quantity, any other information'),
+                hintText: 'e.g. Food or Medicine name, quality, quantity, any other information'),
             maxLines: 3,
             onChanged: (value) => controller.giftDetails.value = value,
           ),

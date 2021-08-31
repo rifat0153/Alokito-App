@@ -63,7 +63,7 @@ class _Option extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width: 6),
+        const SizedBox(width: 6),
         Text(text)
       ],
     );

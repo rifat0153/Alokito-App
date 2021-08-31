@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/gift_giver/services/gift_giver_service.dart';
 import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/gift_receiver_details/views/gift_receiver_details_view.dart';
 import 'package:get/get.dart';
@@ -49,7 +50,6 @@ class GetPages {
         Get.put(GiftReceiverController());
       }),
     ),
-    
 
     // * Gift Giver Routes
     GetPage(
@@ -58,7 +58,7 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.downToUp,
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => GiftAddFormController());
+        Get.lazyPut(() => GiftAddFormController(GiftGiverService()));
       }),
     ),
     GetPage(
@@ -77,7 +77,7 @@ class GetPages {
       transition: Transition.noTransition,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
-        Get.lazyPut(() => GiftAddFormController());
+        Get.lazyPut(() => GiftAddFormController(GiftGiverService()));
       }),
     ),
 
