@@ -14,10 +14,10 @@ import 'package:http/http.dart' as http;
 abstract class BaseGiftReceiverService {
   Future<bool> addGiftRequest({required GiftReceiver giftReceiver});
 
-  Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius, String uid);
+  Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius, String id);
 
   Future<GiftGiverListUnion> getGiftByFilterDB(
-      String searchString, String page, String limit, double lat, double lng, double radius, String uid);
+      String searchString, String page, String limit, double lat, double lng, double radius, String id);
 
   Future<bool> findGift({required String id});
 
@@ -42,7 +42,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
     double lat,
     double lng,
     double radius,
-    String uid,
+    String id,
   ) async {
     final client = http.Client();
 
@@ -52,7 +52,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
       final http.Response response = await client.get(
         Uri.parse(
             // '$baseUrl/gift/search?lat=23&lng=91&maxDistance=500&page=1&limit=10&searchString=4'),
-            '$baseUrl/gift/search?searchString=$searchString&lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit'),
+            '$baseUrl/gift/search?searchString=$searchString&lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit&userId=$id'),
         headers: {"Content-Type": "application/json"},
       ).timeout(const Duration(seconds: 5));
 
@@ -71,7 +71,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
       for (var gift in giftJson) {
         final giftGiver = GiftGiver.fromJson(gift as Map<String, dynamic>);
 
-        if (giftGiver.user != null && giftGiver.user!.uid != uid) {
+        if (giftGiver.user != null) {
           filteredGifts.add(giftGiver);
         }
       }
@@ -91,13 +91,13 @@ class GiftReceiverService implements BaseGiftReceiverService {
     double lat,
     double lng,
     double radius,
-    String uid,
+    String id,
   ) async {
     final client = http.Client();
 
     try {
       final http.Response response = await client.get(
-        Uri.parse('$baseUrl/gift/near?lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit'),
+        Uri.parse('$baseUrl/gift/near?lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit&userId=$id'),
         headers: {"Content-Type": "application/json"},
       ).timeout(const Duration(seconds: 5));
 
@@ -117,10 +117,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
         if (giftGiver.user != null) {
           filteredGifts.add(giftGiver);
         }
-        // if (giftGiver.user != null && giftGiver.user!.uid! != uid) {
-        //   print('accepted');
-        //   filteredGifts.add(giftGiver);
-        // }
+       
         else {
           print('rejected');
         }

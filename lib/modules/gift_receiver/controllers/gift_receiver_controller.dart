@@ -102,7 +102,7 @@ class GiftReceiverController extends GetxController {
         userPosition.value.latitude,
         userPosition.value.longitude,
         radius.value.toDouble(),
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.uid ?? '', orElse: () => ''),
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => ''),
       );
     } else {
       giftListUnion = await giftReceiverService.getGiftDB(
@@ -111,7 +111,7 @@ class GiftReceiverController extends GetxController {
         userPosition.value.latitude,
         userPosition.value.longitude,
         radius.value.toDouble(),
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.uid ?? '', orElse: () => ''),
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => ''),
       );
     }
 
