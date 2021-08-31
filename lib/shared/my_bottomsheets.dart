@@ -3,7 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyError {
+class MyBottomSheet {
+  static Future<void> showSuccessBottomSheet(String successMessage) async {
+    await Get.bottomSheet(SafeArea(
+      child: Container(
+        alignment: Alignment.center,
+        height: 60.h,
+        color: Colors.green.withOpacity(0.9),
+        child: Text(
+          successMessage,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ));
+  }
+
   static Future<void> showErrorBottomSheet(String errorMessage) async {
     await Get.bottomSheet(SafeArea(
       child: Container(
@@ -18,6 +32,18 @@ class MyError {
     ));
   }
 }
+
+class MySnackbar {
+   static Future<void> showSuccessSnackbar(String message) async {
+    await Get.showSnackbar(GetBar(
+      messageText: MyText(message, color: Colors.white, textAlign: TextAlign.center),
+      snackStyle: SnackStyle.FLOATING,
+      duration: const Duration(milliseconds: 2000),
+    ));
+  }
+}
+
+
 
 class MyUserNotify {
   static Future<void> showAllFetched(String message) async {
@@ -34,29 +60,7 @@ class MyUserNotify {
     ));
   }
 
-  static void showAllFetchedSnackbar(String message) async {
-    // var snackbar = Get.snackbar(
-    //   '',
-    //   '',
-    //   duration: const Duration(milliseconds: 1000),
-    //   snackPosition: SnackPosition.BOTTOM,
-    //   backgroundColor: Colors.grey.shade800,
-    //   padding: EdgeInsets.all(0),
-    //   margin: EdgeInsets.all(8),
-    //   maxWidth: 200.w,
-    //   snackStyle: SnackStyle.GROUNDED,
-    //   borderRadius: 20.r,
-    //   titleText: const SizedBox(),
-    //   messageText: Container(
-    //     alignment: Alignment.center,
-    //     child: MyText(
-    //       message,
-    //       color: Colors.grey.shade400,
-    //       textAlign: TextAlign.center,
-    //     ),
-    //   ),
-    // );
-
+  static Future<void> showAllFetchedSnackbar(String message) async {
     await Get.showSnackbar(GetBar(
       messageText: MyText(message, color: Colors.white, textAlign: TextAlign.center),
       snackStyle: SnackStyle.FLOATING,

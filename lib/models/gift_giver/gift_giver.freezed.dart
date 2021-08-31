@@ -24,6 +24,7 @@ class _$GiftGiverTearOff {
       {String? id,
       required int listingForDays,
       required bool canLeaveOutside,
+      required String userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           LocalUser? user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
@@ -39,6 +40,7 @@ class _$GiftGiverTearOff {
       id: id,
       listingForDays: listingForDays,
       canLeaveOutside: canLeaveOutside,
+      userId: userId,
       user: user,
       geometry: geometry,
       giftType: giftType,
@@ -64,6 +66,7 @@ mixin _$GiftGiver {
   String? get id => throw _privateConstructorUsedError;
   int get listingForDays => throw _privateConstructorUsedError;
   bool get canLeaveOutside => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
   LocalUser? get user => throw _privateConstructorUsedError;
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
@@ -90,6 +93,7 @@ abstract class $GiftGiverCopyWith<$Res> {
       {String? id,
       int listingForDays,
       bool canLeaveOutside,
+      String userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           LocalUser? user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
@@ -119,6 +123,7 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
     Object? id = freezed,
     Object? listingForDays = freezed,
     Object? canLeaveOutside = freezed,
+    Object? userId = freezed,
     Object? user = freezed,
     Object? geometry = freezed,
     Object? giftType = freezed,
@@ -142,6 +147,10 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
               as bool,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -210,6 +219,7 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
       {String? id,
       int listingForDays,
       bool canLeaveOutside,
+      String userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           LocalUser? user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
@@ -242,6 +252,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? id = freezed,
     Object? listingForDays = freezed,
     Object? canLeaveOutside = freezed,
+    Object? userId = freezed,
     Object? user = freezed,
     Object? geometry = freezed,
     Object? giftType = freezed,
@@ -265,6 +276,10 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
           ? _value.canLeaveOutside
           : canLeaveOutside // ignore: cast_nullable_to_non_nullable
               as bool,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -312,6 +327,7 @@ class _$_GiftGiver implements _GiftGiver {
       {this.id,
       required this.listingForDays,
       required this.canLeaveOutside,
+      required this.userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           this.user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
@@ -333,6 +349,8 @@ class _$_GiftGiver implements _GiftGiver {
   final int listingForDays;
   @override
   final bool canLeaveOutside;
+  @override
+  final String userId;
   @override
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
   final LocalUser? user;
@@ -356,7 +374,7 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, user: $user, geometry: $geometry, giftType: $giftType, giftDetails: $giftDetails, pickUpTime: $pickUpTime, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
+    return 'GiftGiver(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, userId: $userId, user: $user, geometry: $geometry, giftType: $giftType, giftDetails: $giftDetails, pickUpTime: $pickUpTime, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
   }
 
   @override
@@ -371,6 +389,8 @@ class _$_GiftGiver implements _GiftGiver {
             (identical(other.canLeaveOutside, canLeaveOutside) ||
                 const DeepCollectionEquality()
                     .equals(other.canLeaveOutside, canLeaveOutside)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.geometry, geometry) ||
@@ -404,6 +424,7 @@ class _$_GiftGiver implements _GiftGiver {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(listingForDays) ^
       const DeepCollectionEquality().hash(canLeaveOutside) ^
+      const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(geometry) ^
       const DeepCollectionEquality().hash(giftType) ^
@@ -430,6 +451,7 @@ abstract class _GiftGiver implements GiftGiver {
       {String? id,
       required int listingForDays,
       required bool canLeaveOutside,
+      required String userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           LocalUser? user,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
@@ -451,6 +473,8 @@ abstract class _GiftGiver implements GiftGiver {
   int get listingForDays => throw _privateConstructorUsedError;
   @override
   bool get canLeaveOutside => throw _privateConstructorUsedError;
+  @override
+  String get userId => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
   LocalUser? get user => throw _privateConstructorUsedError;

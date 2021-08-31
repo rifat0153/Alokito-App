@@ -22,7 +22,7 @@ class SharedService {
         try {
           await firebaseStorageRef.putFile(imageFile);
         } on firebase_core.FirebaseException catch (e) {
-          await MyError.showErrorBottomSheet(e.toString());
+          await MyBottomSheet.showErrorBottomSheet(e.toString());
         }
 
         // * get download url of uploaded file

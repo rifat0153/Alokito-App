@@ -8,7 +8,6 @@ import 'package:alokito_new/modules/gift_receiver/views/gift_receiver_view.dart'
 import 'package:alokito_new/modules/settings/views/settings_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

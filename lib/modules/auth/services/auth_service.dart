@@ -122,7 +122,7 @@ class AuthService implements BaseAuthService {
         myUser = mongoUser;
       
       } else {
-          await MyError.showErrorBottomSheet('${response.statusCode}: Something went wrong');
+          await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
 
         return;
       }
@@ -133,11 +133,11 @@ class AuthService implements BaseAuthService {
       print('new user');
       print(myUser);
     } on TimeoutException catch (error) {
-      await MyError.showErrorBottomSheet('could not reach server');
+      await MyBottomSheet.showErrorBottomSheet('could not reach server');
     } on FirebaseAuthException catch (e) {
       Get.snackbar(e.message ?? '', '', backgroundColor: Colors.red);
     } catch (error) {
-      await MyError.showErrorBottomSheet('500: server is not reacheable at this moment');
+      await MyBottomSheet.showErrorBottomSheet('500: server is not reacheable at this moment');
     } finally {
       client.close();
     }
@@ -156,7 +156,7 @@ class AuthService implements BaseAuthService {
       try {
         await firebaseStorageRef.putFile(localFile);
       } on firebase_core.FirebaseException catch (e) {
-        await MyError.showErrorBottomSheet(e.toString());
+        await MyBottomSheet.showErrorBottomSheet(e.toString());
       }
 
       final String url = await firebaseStorageRef.getDownloadURL();

@@ -34,35 +34,44 @@ class GiftGiverService implements BaseGiftGiverService {
       throw GiftGiverException(message: 'Gift image Upload Fail');
     }
 
-    final gift = GiftGiver(
+    final LocalUser? currentUser =
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
+
+    try {
+      final gift = GiftGiver(
+        userId: currentUser!.id?? '',
+        user: currentUser,
         listingForDays: controller.givingGiftInDays.value,
         canLeaveOutside: controller.canLeaveOutside.value,
         geometry: geometry,
-        giftType: convertGiftType(controller.giftType.value),
+        giftType: convertGiftType(controller.giftType.value).toLowerCase(),
         giftDetails: controller.giftDetails.value,
         pickUpTime: DateTime.fromMicrosecondsSinceEpoch(controller.pickUpTime.value!.microsecondsSinceEpoch),
         area: controller.area.value,
         location: controller.location.value,
         imageUrl: giftImageUrl,
-        distance: 15);
+        distance: 15,
+      );
 
-    // * Add gift to MongoDB
-    final http.Response response = await client
-        .post(
-          Uri.parse('$baseUrl/gift/store'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: giftGiverToJson(gift),
-        )
-        .timeout(const Duration(seconds: timeout));
+      // * Add Gift to DB
+      final http.Response response = await client
+          .post(
+            Uri.parse('$baseUrl/gift/store'),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: giftGiverToJson(gift),
+          )
+          .timeout(const Duration(seconds: timeout));
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      final GiftGiver giftFromDB = giftGiverFromJson(response.body);
-      print(giftFromDB);
-    } else {
-      await MyError.showErrorBottomSheet('${response.statusCode}: Something went wrong');
-      return;
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        await MySnackbar.showSuccessSnackbar('Gift Added');
+      } else {
+        await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
+        return;
+      }
+    } catch (e) {
+      await MyBottomSheet.showErrorBottomSheet('$e: Something went wrong');
     }
   }
 }

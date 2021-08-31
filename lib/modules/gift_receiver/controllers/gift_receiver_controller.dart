@@ -55,7 +55,7 @@ class GiftReceiverController extends GetxController {
         giftRetriveOption.value =
             searchString.value.isNotEmpty ? const GiftGiverLoadingOption.bySearch() : const GiftGiverLoadingOption.byLocation();
 
-        //* set giftListState to loading 
+        //* set giftListState to loading
         giftList.value = const GiftGiverListUnion.loading();
 
         await retrieveGifts();
@@ -102,6 +102,7 @@ class GiftReceiverController extends GetxController {
         userPosition.value.latitude,
         userPosition.value.longitude,
         radius.value.toDouble(),
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.uid ?? '', orElse: () => ''),
       );
     } else {
       giftListUnion = await giftReceiverService.getGiftDB(
@@ -110,6 +111,7 @@ class GiftReceiverController extends GetxController {
         userPosition.value.latitude,
         userPosition.value.longitude,
         radius.value.toDouble(),
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.uid ?? '', orElse: () => ''),
       );
     }
 
@@ -130,7 +132,6 @@ class GiftReceiverController extends GetxController {
       final updatedGiftList = [...existingGifts, ...newGifts];
       giftList.value = GiftGiverListUnion.data(updatedGiftList);
     }
-
 
     _updateMarkers(giftList.value.maybeWhen(data: (data) => data, orElse: () => []));
   }

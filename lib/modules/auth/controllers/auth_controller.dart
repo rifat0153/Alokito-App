@@ -1,9 +1,9 @@
 import 'package:alokito_new/models/login/login.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
 import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
+import 'package:alokito_new/modules/auth/services/auth_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,11 +11,11 @@ import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import '../../../models/user/local_user.dart';
-import '../services/auth_service.dart';
+
 
 class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
+  
   final Rx<LocalUser> currentUser = initialUser.obs;
 
   final RxBool registering = false.obs;
@@ -78,7 +78,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void bindLocationData() async {
+  Future<void> bindLocationData() async {
     LocationData loc = await Location().getLocation();
     currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
 

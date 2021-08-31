@@ -14,10 +14,10 @@ import 'package:http/http.dart' as http;
 abstract class BaseGiftReceiverService {
   Future<bool> addGiftRequest({required GiftReceiver giftReceiver});
 
-  Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius);
+  Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius, String uid);
 
   Future<GiftGiverListUnion> getGiftByFilterDB(
-      String searchString, String page, String limit, double lat, double lng, double radius);
+      String searchString, String page, String limit, double lat, double lng, double radius, String uid);
 
   Future<bool> findGift({required String id});
 
@@ -42,6 +42,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
     double lat,
     double lng,
     double radius,
+    String uid,
   ) async {
     final client = http.Client();
 
@@ -56,7 +57,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
       ).timeout(const Duration(seconds: 5));
 
       final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
-      
+
       final List<dynamic> giftJson = body['gifts'] as List<dynamic>;
 
       final List<GiftGiver> gifts = giftJson
@@ -65,7 +66,17 @@ class GiftReceiverService implements BaseGiftReceiverService {
           )
           .toList();
 
-      return GiftGiverListUnion.data(gifts);
+      final List<GiftGiver> filteredGifts = [];
+
+      for (var gift in giftJson) {
+        final giftGiver = GiftGiver.fromJson(gift as Map<String, dynamic>);
+
+        if (giftGiver.user != null && giftGiver.user!.uid != uid) {
+          filteredGifts.add(giftGiver);
+        }
+      }
+
+      return GiftGiverListUnion.data(filteredGifts);
     } on TimeoutException catch (_) {
       return const GiftGiverListUnion.error('Server could not be reached');
     } catch (e) {
@@ -80,6 +91,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
     double lat,
     double lng,
     double radius,
+    String uid,
   ) async {
     final client = http.Client();
 
@@ -95,11 +107,22 @@ class GiftReceiverService implements BaseGiftReceiverService {
 
       final List<GiftGiver> filteredGifts = [];
 
-      for (var gift in giftJson) {
+      print('TOTAL gift: ' + giftJson.length.toString());
+
+      for (final gift in giftJson) {
         final giftGiver = GiftGiver.fromJson(gift as Map<String, dynamic>);
+
+        print('UID: ' + giftGiver.user!.uid.toString());
 
         if (giftGiver.user != null) {
           filteredGifts.add(giftGiver);
+        }
+        // if (giftGiver.user != null && giftGiver.user!.uid! != uid) {
+        //   print('accepted');
+        //   filteredGifts.add(giftGiver);
+        // }
+        else {
+          print('rejected');
         }
       }
 

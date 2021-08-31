@@ -15,6 +15,7 @@ abstract class GiftGiver with _$GiftGiver {
     String? id,
     required int listingForDays,
     required bool canLeaveOutside,
+    required String userId,
     @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)  LocalUser? user,
     @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap) required Geometry geometry,
     required String giftType,
