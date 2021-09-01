@@ -47,12 +47,21 @@ Map<String, dynamic>? localUserToMap(LocalUser? localUser) {
   }
 }
 
-LocalUser? localUserFromMap(Map<String, dynamic>? json)  {
-  if(json != null) {
+LocalUser? localUserFromMap(Map<String, dynamic>? json) {
+  if (json != null) {
     return LocalUser.fromJson(json);
-  }else {
+  } else {
     return null;
   }
+}
+
+//* Non null converters
+Map<String, dynamic> localUserNonNullToMap(LocalUser localUser) {
+  return localUser.toJson();
+}
+
+LocalUser localUserNonNullFromMap(Map<String, dynamic> json) {
+  return LocalUser.fromJson(json);
 }
 
 @freezed

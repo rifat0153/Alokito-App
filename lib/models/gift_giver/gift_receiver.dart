@@ -10,8 +10,6 @@ part 'gift_receiver.g.dart';
 
 @freezed
 class GiftReceiver with _$GiftReceiver {
-  GiftReceiver._();
-
   factory GiftReceiver({
     String? id,
     String? giverId,
@@ -20,9 +18,9 @@ class GiftReceiver with _$GiftReceiver {
     @Default(false) bool messageForGiverrSent,
     @Default(GiftReceiverStatus.pending())
     @JsonKey(fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-        GiftReceiverStatus giftReceiverStatus,
-    @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson) required GiftGiver gift,
-    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
+        GiftReceiverStatus giftRequestStatus,
+    @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap) required GiftGiver gift,
+    @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap) required LocalUser requester,
      required DateTime createdAt,
   }) = _GiftReceiver;
 

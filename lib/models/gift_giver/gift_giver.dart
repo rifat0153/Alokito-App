@@ -30,6 +30,9 @@ abstract class GiftGiver with _$GiftGiver {
   factory GiftGiver.fromJson(Map<String, dynamic> json) => _$GiftGiverFromJson(json);
 }
 
+Map<String, dynamic> giftGiverToMap(GiftGiver giftGiver) => giftGiver.toJson();
+GiftGiver giftGiverFromMap(Map<String, dynamic> json) => GiftGiver.fromJson(json);
+
 
 @freezed
 class GiftGiverLoadingOption with _$GiftGiverLoadingOption{
@@ -46,5 +49,4 @@ class GiftGiverListUnion with _$GiftGiverListUnion {
   const factory GiftGiverListUnion.error(Object error) = Error;
 }
 
-Map<String, dynamic> giftGiverToMap(GiftGiver giftGiver) => giftGiver.toJson();
-GiftGiver giftGiverFromMap(Map<String, dynamic> json) => GiftGiver.fromJson(json);
+

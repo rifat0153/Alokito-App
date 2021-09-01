@@ -22,6 +22,12 @@ class GiftReceiverDetailService implements BaseGiftReceiverDetailService {
     print('In Gift Receiver Detail Service');
     print(giftReceiver.toJson());
 
+    const data = {
+      "giftRequestStatus": {"runtimeType": "pending"},
+      "requester": {"id": "612b4060da0941461c28951d"},
+      "gift": {"id": "612e257631d8c633b0985df6"}
+    };
+
     try {
       final http.Response response = await client
           .post(

@@ -93,7 +93,7 @@ class _DecisionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //*************************** If its requester notification   ********************************
     if (giftReceiver.requester.id == Get.find<AuthController>().currentUser.value.id) {
-      return giftReceiver.giftReceiverStatus.when(
+      return giftReceiver.giftRequestStatus.when(
         pending: () => MaterialButton(
           onPressed: () {},
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -156,7 +156,7 @@ class _DecisionWidget extends StatelessWidget {
 
     // ************************* If its giver notification ************************
 
-    return giftReceiver.giftReceiverStatus.when(
+    return giftReceiver.giftRequestStatus.when(
         pending: () => MaterialButton(
               onPressed: () {},
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

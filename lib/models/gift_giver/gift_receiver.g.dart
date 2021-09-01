@@ -13,10 +13,11 @@ _$_GiftReceiver _$_$_GiftReceiverFromJson(Map<String, dynamic> json) {
     comment: json['comment'] as String,
     messageForRequesterSent: json['messageForRequesterSent'] as bool? ?? false,
     messageForGiverrSent: json['messageForGiverrSent'] as bool? ?? false,
-    giftReceiverStatus: giftReceiverStatusFromJson(
-        json['giftReceiverStatus'] as Map<String, dynamic>),
-    gift: giftGiverFromJson(json['gift'] as String),
-    requester: localUserFromJson(json['requester'] as String),
+    giftRequestStatus: giftReceiverStatusFromJson(
+        json['giftRequestStatus'] as Map<String, dynamic>),
+    gift: giftGiverFromMap(json['gift'] as Map<String, dynamic>),
+    requester:
+        localUserNonNullFromMap(json['requester'] as Map<String, dynamic>),
     createdAt: DateTime.parse(json['createdAt'] as String),
   );
 }
@@ -28,10 +29,9 @@ Map<String, dynamic> _$_$_GiftReceiverToJson(_$_GiftReceiver instance) =>
       'comment': instance.comment,
       'messageForRequesterSent': instance.messageForRequesterSent,
       'messageForGiverrSent': instance.messageForGiverrSent,
-      'giftReceiverStatus':
-          giftReceiverStatusToJson(instance.giftReceiverStatus),
-      'gift': giftGiverToJson(instance.gift),
-      'requester': localUserToJson(instance.requester),
+      'giftRequestStatus': giftReceiverStatusToJson(instance.giftRequestStatus),
+      'gift': giftGiverToMap(instance.gift),
+      'requester': localUserNonNullToMap(instance.requester),
       'createdAt': instance.createdAt.toIso8601String(),
     };
 
