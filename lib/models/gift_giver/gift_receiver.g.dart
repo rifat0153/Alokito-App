@@ -6,14 +6,14 @@ part of 'gift_receiver.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GiftReceiver _$_$_GiftReceiverFromJson(Map<String, dynamic> json) {
-  return _$_GiftReceiver(
+_$_GiftRequest _$_$_GiftRequestFromJson(Map<String, dynamic> json) {
+  return _$_GiftRequest(
     id: json['id'] as String?,
     giverId: json['giverId'] as String?,
     comment: json['comment'] as String,
     messageForRequesterSent: json['messageForRequesterSent'] as bool? ?? false,
     messageForGiverrSent: json['messageForGiverrSent'] as bool? ?? false,
-    giftRequestStatus: giftReceiverStatusFromJson(
+    giftRequestStatus: giftRequestStatusFromJson(
         json['giftRequestStatus'] as Map<String, dynamic>),
     gift: giftGiverFromMap(json['gift'] as Map<String, dynamic>),
     requester:
@@ -22,14 +22,14 @@ _$_GiftReceiver _$_$_GiftReceiverFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_GiftReceiverToJson(_$_GiftReceiver instance) =>
+Map<String, dynamic> _$_$_GiftRequestToJson(_$_GiftRequest instance) =>
     <String, dynamic>{
       'id': instance.id,
       'giverId': instance.giverId,
       'comment': instance.comment,
       'messageForRequesterSent': instance.messageForRequesterSent,
       'messageForGiverrSent': instance.messageForGiverrSent,
-      'giftRequestStatus': giftReceiverStatusToJson(instance.giftRequestStatus),
+      'giftRequestStatus': giftRequestStatusToJson(instance.giftRequestStatus),
       'gift': giftGiverToMap(instance.gift),
       'requester': localUserNonNullToMap(instance.requester),
       'createdAt': instance.createdAt.toIso8601String(),

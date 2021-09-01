@@ -28,7 +28,6 @@ class GiftAskGiverController extends GetxController {
   Future<void> changeGiftAskGiverAndDeleteGiftAsk(GiftAskGiver updatedGiftAskGiver) async {
     await giftAskGiverService.updateGiftAskGiver(updatedGiftAskGiver);
 
-    await Get.find<GiftAskController>().deleteGiftAsk(updatedGiftAskGiver.giftAsk);
   }
 
   //* Change GiftAskGiver status
@@ -45,10 +44,8 @@ class GiftAskGiverController extends GetxController {
     GiftAskGiver giftAskGiver = GiftAskGiver(
       id: '${currentUser.id}.${giftAsk.id}',
       giftAskStatus: GiftAskStatus.requestPending,
-      giftAsk: giftAsk,
       giver: currentUser,
       requester: giftAsk.requester,
-      createdAt: Timestamp.now(),
     );
 
     try {
@@ -58,14 +55,7 @@ class GiftAskGiverController extends GetxController {
       //     .authService
       //     .updateLocalUser(currentUser.copyWith(acceptedGiftId: giftAsk.id ?? '', hasGiftAskRequest: true));
 
-      await addNotification(
-        giftAskGiver: giftAskGiver,
-        textForRequester: 'Gift Request accepted by ${giftAskGiver.giver.userName}',
-      );
-      await addNotification(
-        giftAskGiver: giftAskGiver,
-        textForGiver: 'You confirmed request of ${giftAskGiver.giftAsk.requester.userName}',
-      );
+    
 
       // Updating LocalUserInfo
       LocalUser? currentUseInfo = Get.find<AuthController>()
@@ -88,31 +78,8 @@ class GiftAskGiverController extends GetxController {
     required GiftAskGiver giftAskGiver,
   }) async {
     final String uuid = const Uuid().v4();
-    final NotificationController notificationController = Get.find();
 
-    if (textForRequester != null) {
-      MyNotification notificationForRequester = MyNotification.data(
-        id: uuid,
-        text: textForRequester,
-        notificationType: NotificationType.giftAsk,
-        releatedDocId: giftAskGiver.id ?? '',
-        createdAt: Timestamp.now(),
-      );
 
-      await notificationController.notificationService
-          .add(notification: notificationForRequester, userId: giftAskGiver.giftAsk.requester.id ?? '');
-    }
-    if (textForGiver != null) {
-      MyNotification notificationForGiver = MyNotification.data(
-        id: uuid,
-        text: textForGiver,
-        notificationType: NotificationType.giftAsk,
-        releatedDocId: giftAskGiver.id ?? '',
-        createdAt: Timestamp.now(),
-      );
 
-      await notificationController.notificationService
-          .add(notification: notificationForGiver, userId: giftAskGiver.giver.id ?? '');
-    }
   }
 }

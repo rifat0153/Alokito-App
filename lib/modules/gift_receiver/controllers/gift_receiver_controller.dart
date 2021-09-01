@@ -184,16 +184,7 @@ class GiftReceiverController extends GetxController {
     return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
   }
 
-  Future<GiftReceiverNotificationUnion> getGift(String id) async {
-    try {
-      print('GiftReceiverController: getGift call made');
-      GiftReceiverNotificationUnion docUnion = await giftReceiverService.getGiftRequest(id: id);
 
-      return docUnion;
-    } catch (e) {
-      return GiftReceiverNotificationUnion.error(e);
-    }
-  }
 
 
 

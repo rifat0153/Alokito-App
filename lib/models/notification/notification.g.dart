@@ -12,7 +12,7 @@ _$_MyNotification _$_$_MyNotificationFromJson(Map<String, dynamic> json) {
     text: json['text'] as String,
     notificationType: notificationTypeFromJson(json['notificationType'] as int),
     releatedDocId: json['releatedDocId'] as String,
-    createdAt: timestampFromJson(json['createdAt'] as Timestamp),
+    createdAt: DateTime.parse(json['createdAt'] as String),
   );
 }
 
@@ -22,5 +22,5 @@ Map<String, dynamic> _$_$_MyNotificationToJson(_$_MyNotification instance) =>
       'text': instance.text,
       'notificationType': notificationTypeToJson(instance.notificationType),
       'releatedDocId': instance.releatedDocId,
-      'createdAt': timestampToJson(instance.createdAt),
+      'createdAt': instance.createdAt.toIso8601String(),
     };

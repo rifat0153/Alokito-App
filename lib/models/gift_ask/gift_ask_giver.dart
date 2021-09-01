@@ -13,13 +13,11 @@ class GiftAskGiver with _$GiftAskGiver {
   const factory GiftAskGiver({
     String? id,
     @Default(false) bool requestComplete,
-    @JsonKey(fromJson: giftAskFromJson, toJson: giftAskToJson) required GiftAsk giftAsk,
     @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson) required GiftAskStatus giftAskStatus,
     @Default(false) bool messageForRequesterSent,
     @Default(false) bool messageForGiverrSent,
     @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser giver,
     @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
   }) = _GiftAskGiver;
 
   factory GiftAskGiver.fromJson(Map<String, dynamic> json) => _$GiftAskGiverFromJson(json);

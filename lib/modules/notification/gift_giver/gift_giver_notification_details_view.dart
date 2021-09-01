@@ -1,5 +1,4 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
-import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
@@ -20,7 +19,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class GiftGiverNotificationDetailsView extends StatelessWidget {
   GiftGiverNotificationDetailsView({Key? key, required this.giftReceiver}) : super(key: key);
-  GiftReceiver? giftReceiver;
+  GiftRequest? giftReceiver;
 
   final GiftGiverNotificationController controller = Get.put(GiftGiverNotificationController());
 
@@ -44,12 +43,7 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
     var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: requesterLatLng)];
     final giverCoordinates = giftReceiver!.requester.geometry.coordinates;
     final requesterCoordinates = giftReceiver!.requester.geometry.coordinates;
-    final distanceBetweenRequesterAndGiver = calculateDistance(
-      giverCoordinates[1],
-      giverCoordinates[0],
-      requesterCoordinates[1],
-      requesterCoordinates[0],
-    );
+ 
     return SkeletonWidget(
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
       assetPath: 'assets/images/gift_details.png',
@@ -63,7 +57,7 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
                   _RequesterDetailWidget(
                       giftReceiver: giftReceiver,
                       requesterIdCreatedAgo: requesterIdCreatedAgo,
-                      distanceBetweenRequesterAndGiver: distanceBetweenRequesterAndGiver),
+                      distanceBetweenRequesterAndGiver: 0),
                   _CommentWidget(giftReceiver: giftReceiver),
                   _RequesterLocationAndGiftDetailsWidget(giftReceiver: giftReceiver!),
                   _DecisionWidget(controller: controller, giftReceiver: giftReceiver!),
@@ -87,7 +81,7 @@ class _DecisionWidget extends StatelessWidget {
   }) : super(key: key);
 
   final GiftGiverNotificationController controller;
-  final GiftReceiver giftReceiver;
+  final GiftRequest giftReceiver;
 
   @override
   Widget build(BuildContext context) {
@@ -225,7 +219,7 @@ class _MapWidget extends StatelessWidget {
     required this.markers,
   }) : super(key: key);
 
-  final GiftReceiver? giftReceiver;
+  final GiftRequest? giftReceiver;
   final List<Marker> markers;
 
   @override
@@ -252,7 +246,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
     required this.giftReceiver,
   }) : super(key: key);
 
-  final GiftReceiver giftReceiver;
+  final GiftRequest giftReceiver;
 
   @override
   Widget build(BuildContext context) {
@@ -347,7 +341,7 @@ class _CommentWidget extends StatelessWidget {
     required this.giftReceiver,
   }) : super(key: key);
 
-  final GiftReceiver? giftReceiver;
+  final GiftRequest? giftReceiver;
 
   @override
   Widget build(BuildContext context) {
@@ -373,7 +367,7 @@ class _RequesterDetailWidget extends StatelessWidget {
     required this.distanceBetweenRequesterAndGiver,
   }) : super(key: key);
 
-  final GiftReceiver? giftReceiver;
+  final GiftRequest? giftReceiver;
   final int requesterIdCreatedAgo;
   final double distanceBetweenRequesterAndGiver;
 

@@ -9,42 +9,42 @@ part 'gift_receiver.freezed.dart';
 part 'gift_receiver.g.dart';
 
 @freezed
-class GiftReceiver with _$GiftReceiver {
-  factory GiftReceiver({
+class GiftRequest with _$GiftRequest {
+  factory GiftRequest({
     String? id,
     String? giverId,
     required String comment,
     @Default(false) bool messageForRequesterSent,
     @Default(false) bool messageForGiverrSent,
-    @Default(GiftReceiverStatus.pending())
-    @JsonKey(fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-        GiftReceiverStatus giftRequestStatus,
+    @Default(GiftRequestStatus.pending())
+    @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+        GiftRequestStatus giftRequestStatus,
     @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap) required GiftGiver gift,
     @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap) required LocalUser requester,
-     required DateTime createdAt,
-  }) = _GiftReceiver;
+    required DateTime createdAt,
+  }) = _GiftRequest;
 
-  factory GiftReceiver.fromJson(Map<String, dynamic> json) => _$GiftReceiverFromJson(json);
+  factory GiftRequest.fromJson(Map<String, dynamic> json) => _$GiftRequestFromJson(json);
 }
 
 @freezed
-class GiftReceiverStatus with _$GiftReceiverStatus {
-  const factory GiftReceiverStatus.pending() = Pending;
-  const factory GiftReceiverStatus.confirmed() = Confirmed;
-  const factory GiftReceiverStatus.canceledByGiver() = CanceledByGiver;
-  const factory GiftReceiverStatus.canceledByRequester() = CanceledByRequester;
-  const factory GiftReceiverStatus.accepted() = Accepted;
-  const factory GiftReceiverStatus.delivered() = Delivered;
+class GiftRequestStatus with _$GiftRequestStatus {
+  const factory GiftRequestStatus.pending() = Pending;
+  const factory GiftRequestStatus.confirmed() = Confirmed;
+  const factory GiftRequestStatus.canceledByGiver() = CanceledByGiver;
+  const factory GiftRequestStatus.canceledByRequester() = CanceledByRequester;
+  const factory GiftRequestStatus.accepted() = Accepted;
+  const factory GiftRequestStatus.delivered() = Delivered;
 
-  factory GiftReceiverStatus.fromJson(Map<String, dynamic> json) => _$GiftReceiverStatusFromJson(json);
+  factory GiftRequestStatus.fromJson(Map<String, dynamic> json) => _$GiftRequestStatusFromJson(json);
 }
 
-Map<String, dynamic> giftReceiverStatusToJson(GiftReceiverStatus giftReceiverStatus) => giftReceiverStatus.toJson();
-GiftReceiverStatus giftReceiverStatusFromJson(Map<String, dynamic> json) => GiftReceiverStatus.fromJson(json);
+Map<String, dynamic> giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) => giftRequestStatus.toJson();
+GiftRequestStatus giftRequestStatusFromJson(Map<String, dynamic> json) => GiftRequestStatus.fromJson(json);
 
 @freezed
-class GiftReceiverNotificationUnion with _$GiftReceiverNotificationUnion {
-  const factory GiftReceiverNotificationUnion.dataa(GiftReceiver giftReceiver) = Data;
-  const factory GiftReceiverNotificationUnion.loading() = Loading;
-  const factory GiftReceiverNotificationUnion.error(Object err) = Error;
+class GiftRequestNotificationUnion with _$GiftRequestNotificationUnion {
+  const factory GiftRequestNotificationUnion.dataa(GiftRequest giftRequest) = Data;
+  const factory GiftRequestNotificationUnion.loading() = Loading;
+  const factory GiftRequestNotificationUnion.error(Object err) = Error;
 }

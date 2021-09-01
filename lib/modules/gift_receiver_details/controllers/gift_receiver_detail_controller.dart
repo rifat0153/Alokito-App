@@ -22,7 +22,7 @@ class GiftReceiverDetailController extends GetxController {
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
 
     if (currentUser != null) {
-      final GiftReceiver giftReceiver = GiftReceiver(
+      final GiftRequest giftReceiver = GiftRequest(
         comment: comment.value,
         gift: giftGiver,
         requester: currentUser,

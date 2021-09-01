@@ -12,7 +12,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
 abstract class BaseGiftReceiverService {
-  Future<bool> addGiftRequest({required GiftReceiver giftReceiver});
+  Future<bool> addGiftRequest({required GiftRequest giftReceiver});
 
   Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius, String id);
 
@@ -23,9 +23,9 @@ abstract class BaseGiftReceiverService {
 
   Future<void> deleteGiftRequest(String docId);
 
-  Future<GiftReceiverNotificationUnion> getGiftRequest({required String id});
+  Future<GiftRequestNotificationUnion> getGiftRequest({required String id});
 
-  Future<bool> updateGiftReceiver({required GiftReceiver giftReceiver});
+  Future<bool> updateGiftReceiver({required GiftRequest giftReceiver});
 }
 
 class GiftReceiverService implements BaseGiftReceiverService {
@@ -135,25 +135,25 @@ class GiftReceiverService implements BaseGiftReceiverService {
   }
 
   @override
-  Future<GiftReceiverNotificationUnion> getGiftRequest({required String id}) async {
+  Future<GiftRequestNotificationUnion> getGiftRequest({required String id}) async {
     try {
       var doc = await _firestore.collection('gift_receiver').doc(id).get();
 
       if (doc.exists) {
-        var giftReceiver = GiftReceiver.fromJson(doc.data()!);
-        return GiftReceiverNotificationUnion.dataa(giftReceiver);
+        var giftReceiver = GiftRequest.fromJson(doc.data()!);
+        return GiftRequestNotificationUnion.dataa(giftReceiver);
       } else {
-        return GiftReceiverNotificationUnion.error(GiftReceiverException(message: 'Gift request deleted'));
+        return GiftRequestNotificationUnion.error(GiftReceiverException(message: 'Gift request deleted'));
       }
     } on FirebaseException catch (e) {
-      return GiftReceiverNotificationUnion.error(e);
+      return GiftRequestNotificationUnion.error(e);
     } on Exception catch (_) {
-      return GiftReceiverNotificationUnion.error(GiftReceiverException(message: 'Gift request deleted'));
+      return GiftRequestNotificationUnion.error(GiftReceiverException(message: 'Gift request deleted'));
     }
   }
 
   @override
-  Future<bool> addGiftRequest({required GiftReceiver giftReceiver}) async {
+  Future<bool> addGiftRequest({required GiftRequest giftReceiver}) async {
     try {
       await _firestore.collection('gift_receiver').doc(giftReceiver.id).set(giftReceiver.toJson());
 
@@ -174,7 +174,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
   }
 
   @override
-  Future<bool> updateGiftReceiver({required GiftReceiver giftReceiver}) async {
+  Future<bool> updateGiftReceiver({required GiftRequest giftReceiver}) async {
     try {
       await _firestore.collection('gift_receiver').doc(giftReceiver.id).update(giftReceiver.toJson());
       return true;

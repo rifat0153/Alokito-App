@@ -19,9 +19,9 @@ class GiftGiverNotificationView extends StatelessWidget {
         .difference(DateTime.fromMillisecondsSinceEpoch(notification.createdAt.millisecondsSinceEpoch))
         .inHours;
 
-    return FutureBuilder<GiftReceiverNotificationUnion>(
-      future: giftReceiverController.getGift(notification.releatedDocId),
-      builder: (BuildContext context, AsyncSnapshot<GiftReceiverNotificationUnion> snapshot) {
+    return FutureBuilder<GiftRequestNotificationUnion>(
+      future: Future.delayed(Duration(seconds: 1)),
+      builder: (BuildContext context, AsyncSnapshot<GiftRequestNotificationUnion> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: Text('Please wait its loading...'));
         } else {
@@ -38,7 +38,7 @@ class GiftGiverNotificationView extends StatelessWidget {
     );
   }
 
-  Container _buildNotificationTile(GiftReceiver snapshot, int difference) {
+  Container _buildNotificationTile(GiftRequest snapshot, int difference) {
     return Container(
       width: Get.width,
       height: 100,

@@ -1,5 +1,4 @@
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
-import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,25 +10,7 @@ import 'gift_ask/gift_ask.dart';
 
 // *Test 
 
-GeoPoint geoPointToJson(GeoPoint geoPoint) => geoPoint;
-GeoPoint geoPointFromJson(GeoPoint json) => json;
 
-Map<String, dynamic> myPositionToJson(MyPosition myPosition) => myPosition.toJson();
-MyPosition myPositionFromJson(Map<String, dynamic> json) => MyPosition.fromJson(json);
-
-// Map<String, dynamic> localUserToJson(LocalUser localUser) => localUser.toJson();
-// LocalUser localUserFromJson(Map<String, dynamic> json) => LocalUser.fromJson(json);
-
-Map<String, dynamic> giftAskToJson(GiftAsk giftAsk) => giftAsk.toJson();
-GiftAsk giftAskFromJson(Map<String, dynamic> json) => GiftAsk.fromJson(json);
-
-Timestamp timestampToJson(Timestamp timestamp) => timestamp;
-Timestamp timestampFromJson(Timestamp json) => json;
-
-//Gift Request
-Map<String, dynamic> giftReceiverToJson(GiftReceiver giftReqeust) => giftReqeust.toJson();
-GiftReceiver giftReceiverFromJson(Map<String, dynamic> json) => GiftReceiver.fromJson(json);
-//Gift Notifications
 
 int giftAskStatusToJson(GiftAskStatus giftAskStatus) {
   switch (giftAskStatus) {

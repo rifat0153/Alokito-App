@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask/services/gift_ask_service.dart';
@@ -107,7 +106,7 @@ class GiftAskController extends GetxController {
     documentList.forEach((GiftAsk giftAsk) {
       if (giftAsk.id == Get.find<AuthController>().currentUser.value.id) return;
 
-      final GeoPoint point = giftAsk.position.geopoint;
+      final GeoPoint point = GeoPoint(0, 2);
 
       var userPoint =
           geo.point(latitude: currentUserPosition.value.latitude, longitude: currentUserPosition.value.longitude);
@@ -162,20 +161,16 @@ class GiftAskController extends GetxController {
     var myLocation = geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
     var pos = myLocation.data as Map<dynamic, dynamic>;
 
-    MyPosition giftPosition = MyPosition(geohash: pos['geohash'] as String, geopoint: pos['geopoint'] as GeoPoint);
 
     GiftAsk giftAsk = GiftAsk(
       requester: Get.find<AuthController>().currentUser.value,
       address: address.value,
       area: area.value,
-      position: giftPosition,
-      reuqestDate: Timestamp.now(),
       requestForNoOfPeople: requestForNoOfPeople,
       giftAskType: getGiftAskType(),
       giftTitle: giftTitle.value,
       giftForSmallFamily: _packageSmallFamilty.value,
       note: note.value,
-      createdAt: Timestamp.now(),
     );
 
     String userId = Get.find<AuthController>().currentUser.value.id ?? '';

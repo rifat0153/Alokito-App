@@ -1,6 +1,5 @@
 import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
-import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/notification/gift_ask/widgets/gift_ask_feedback_widget.dart';
@@ -35,9 +34,7 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var requesterIdCreatedAgo = DateTime.now()
-        .difference(DateTime.fromMillisecondsSinceEpoch(giftAskGiver.createdAt.millisecondsSinceEpoch))
-        .inDays;
+    var requesterIdCreatedAgo = DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(123)).inDays;
 
     final LatLng requesterLatLng =
         LatLng(giftAskGiver.requester.geometry.coordinates[1], giftAskGiver.requester.geometry.coordinates[0]);
@@ -99,24 +96,21 @@ class _DecisionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //*********************       If its requester notification          ********************
     if (giftAskGiver.requester.id == Get.find<AuthController>().currentUser.value.id) {
-      if (giftAskGiver.messageForGiverrSent == true &&
-          giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
+      if (giftAskGiver.messageForGiverrSent == true && giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
         return Column(
           children: [
             MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
           ],
         );
       }
-      if (giftAskGiver.messageForGiverrSent == false &&
-          giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
+      if (giftAskGiver.messageForGiverrSent == false && giftAskGiver.giftAskStatus == GiftAskStatus.requestDelivered) {
         return Column(
           children: [
             MyText('r Delivered', fontSize: 20, color: Colors.blueAccent),
             MaterialButton(
               onPressed: () {
                 showDialog(
-                    context: context,
-                    builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: true));
+                    context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: true));
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               height: 0,
@@ -238,9 +232,7 @@ class _DecisionWidget extends StatelessWidget {
           MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
           MaterialButton(
             onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              showDialog(context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -259,9 +251,7 @@ class _DecisionWidget extends StatelessWidget {
               textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
           MaterialButton(
             onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              showDialog(context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -376,7 +366,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text('Location', style: boldFontStyle),
                 const SizedBox(height: 4),
-                Text(giftAskGiver.giftAsk.area.isEmpty ? 'N/A' : giftAskGiver.giftAsk.area),
+                Text('asd'),
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -461,7 +451,7 @@ class _CommentWidget extends StatelessWidget {
         decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(5)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(giftAskGiver.giftAsk.note),
+          child: Text('asdasd'),
         ),
       ),
     );

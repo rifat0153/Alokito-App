@@ -14,7 +14,7 @@ class MyNotification with _$MyNotification {
     required String text,
     @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson) required NotificationType notificationType,
     required String releatedDocId,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
+    required DateTime createdAt,
   }) = _MyNotification;
 
   factory MyNotification.fromJson(Map<String, dynamic> json) => _$MyNotificationFromJson(json);

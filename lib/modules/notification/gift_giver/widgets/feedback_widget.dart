@@ -11,7 +11,7 @@ class FeedbackWidget extends StatelessWidget {
   FeedbackWidget({Key? key, required this.giftReceiver, required this.isRequester}) : super(key: key);
 
   final bool isRequester;
-  final GiftReceiver? giftReceiver;
+  final GiftRequest? giftReceiver;
 
   final GiftGiverNotificationController controller = Get.find();
 

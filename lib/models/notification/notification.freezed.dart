@@ -26,8 +26,7 @@ class _$MyNotificationTearOff {
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           required NotificationType notificationType,
       required String releatedDocId,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp createdAt}) {
+      required DateTime createdAt}) {
     return _MyNotification(
       id: id,
       text: text,
@@ -52,8 +51,7 @@ mixin _$MyNotification {
   @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
   NotificationType get notificationType => throw _privateConstructorUsedError;
   String get releatedDocId => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -63,8 +61,7 @@ mixin _$MyNotification {
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
                 NotificationType notificationType,
             String releatedDocId,
-            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-                Timestamp createdAt)
+            DateTime createdAt)
         data,
   }) =>
       throw _privateConstructorUsedError;
@@ -76,8 +73,7 @@ mixin _$MyNotification {
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
                 NotificationType notificationType,
             String releatedDocId,
-            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-                Timestamp createdAt)?
+            DateTime createdAt)?
         data,
     required TResult orElse(),
   }) =>
@@ -110,8 +106,7 @@ abstract class $MyNotificationCopyWith<$Res> {
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           NotificationType notificationType,
       String releatedDocId,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp createdAt});
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -151,7 +146,7 @@ class _$MyNotificationCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as DateTime,
     ));
   }
 }
@@ -169,8 +164,7 @@ abstract class _$MyNotificationCopyWith<$Res>
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           NotificationType notificationType,
       String releatedDocId,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp createdAt});
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -212,7 +206,7 @@ class __$MyNotificationCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as DateTime,
     ));
   }
 }
@@ -226,8 +220,7 @@ class _$_MyNotification implements _MyNotification {
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           required this.notificationType,
       required this.releatedDocId,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required this.createdAt});
+      required this.createdAt});
 
   factory _$_MyNotification.fromJson(Map<String, dynamic> json) =>
       _$_$_MyNotificationFromJson(json);
@@ -242,8 +235,7 @@ class _$_MyNotification implements _MyNotification {
   @override
   final String releatedDocId;
   @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp createdAt;
+  final DateTime createdAt;
 
   @override
   String toString() {
@@ -292,8 +284,7 @@ class _$_MyNotification implements _MyNotification {
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
                 NotificationType notificationType,
             String releatedDocId,
-            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-                Timestamp createdAt)
+            DateTime createdAt)
         data,
   }) {
     return data(id, text, notificationType, releatedDocId, createdAt);
@@ -308,8 +299,7 @@ class _$_MyNotification implements _MyNotification {
             @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
                 NotificationType notificationType,
             String releatedDocId,
-            @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-                Timestamp createdAt)?
+            DateTime createdAt)?
         data,
     required TResult orElse(),
   }) {
@@ -352,8 +342,7 @@ abstract class _MyNotification implements MyNotification {
       @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
           required NotificationType notificationType,
       required String releatedDocId,
-      @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          required Timestamp createdAt}) = _$_MyNotification;
+      required DateTime createdAt}) = _$_MyNotification;
 
   factory _MyNotification.fromJson(Map<String, dynamic> json) =
       _$_MyNotification.fromJson;
@@ -368,8 +357,7 @@ abstract class _MyNotification implements MyNotification {
   @override
   String get releatedDocId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MyNotificationCopyWith<_MyNotification> get copyWith =>

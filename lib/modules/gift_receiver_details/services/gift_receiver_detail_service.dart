@@ -7,20 +7,20 @@ import 'package:alokito_new/shared/shared_service.dart';
 import 'package:http/http.dart' as http;
 
 abstract class BaseGiftReceiverDetailService {
-  Future<void> add(GiftReceiver giftReceiver);
+  Future<void> add(GiftRequest giftRequest);
 
-  Future<void> update(GiftReceiver giftReceiver, String requestStatus);
+  Future<void> update(GiftRequest giftRequest, String requestStatus);
 
-  Future<void> delete(GiftReceiver giftReceiver);
+  Future<void> delete(GiftRequest giftRequest);
 }
 
 class GiftReceiverDetailService implements BaseGiftReceiverDetailService {
   @override
-  Future<void> add(GiftReceiver giftReceiver) async {
+  Future<void> add(GiftRequest giftRequest) async {
     final client = http.Client();
 
     print('In Gift Receiver Detail Service');
-    print(giftReceiver.toJson());
+    print(giftRequest.toJson());
 
     const data = {
       "giftRequestStatus": {"runtimeType": "pending"},
@@ -35,7 +35,7 @@ class GiftReceiverDetailService implements BaseGiftReceiverDetailService {
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
-            body: jsonEncode(giftReceiver.toJson()),
+            body: jsonEncode(giftRequest.toJson()),
           )
           .timeout(const Duration(seconds: timeout));
 
@@ -53,13 +53,13 @@ class GiftReceiverDetailService implements BaseGiftReceiverDetailService {
   }
 
   @override
-  Future<void> delete(GiftReceiver giftReceiver) {
+  Future<void> delete(GiftRequest giftRequest) {
     // TODO: implement delete
     throw UnimplementedError();
   }
 
   @override
-  Future<void> update(GiftReceiver giftReceiver, String requestStatus) {
+  Future<void> update(GiftRequest giftRequest, String requestStatus) {
     // TODO: implement update
     throw UnimplementedError();
   }

@@ -1,5 +1,4 @@
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/controller/gift_ask_giver_controller.dart';
@@ -19,15 +18,9 @@ class GiftAskDetailView extends StatelessWidget {
 
   final GiftAsk giftAsk;
 
-  double calculateDistance(MyPosition posotion1, MyPosition posotion2) {
-    return Geoflutterfire()
-        .point(latitude: posotion1.geopoint.latitude, longitude: posotion1.geopoint.longitude)
-        .distance(lat: posotion2.geopoint.latitude, lng: posotion2.geopoint.longitude);
-  }
-
   @override
   Widget build(BuildContext context) {
-    var date = DateFormat.yMd().format(DateTime.fromMicrosecondsSinceEpoch(giftAsk.createdAt.microsecondsSinceEpoch));
+    var date = '';
     // TODO FIX
     // var distance = calculateDistance(
     //   giftAsk.requester.position,
@@ -40,11 +33,7 @@ class GiftAskDetailView extends StatelessWidget {
             .inDays ~/
         30;
 
-    var markers = [
-      Marker(
-          markerId: const MarkerId('1'),
-          position: LatLng(giftAsk.position.geopoint.latitude, giftAsk.position.geopoint.longitude))
-    ];
+    var markers = [Marker(markerId: const MarkerId('1'), position: LatLng(0, 9))];
 
     return SafeArea(
       child: Scaffold(
@@ -114,8 +103,8 @@ class GiftAskDetailView extends StatelessWidget {
                 child: GoogleMap(
                   initialCameraPosition: CameraPosition(
                     target: LatLng(
-                      giftAsk.position.geopoint.latitude,
-                      giftAsk.position.geopoint.longitude,
+                      0,
+                      0,
                     ),
                     zoom: 13,
                   ),
@@ -311,7 +300,7 @@ class _UserNameAndLocationWidget extends StatelessWidget {
               CircleAvatar(
                 minRadius: 30,
                 backgroundImage: NetworkImage(
-                  giftAsk.requester.imageUrl ,
+                  giftAsk.requester.imageUrl,
                 ),
               ),
               const SizedBox(width: 8),

@@ -7,7 +7,6 @@ import 'package:alokito_new/modules/providers/firebase_provider.dart';
 import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/controller/gift_ask_giver_controller.dart';
 import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
-import 'package:alokito_new/modules/gift_record/gift_record_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,10 +28,6 @@ class _InitialViewState extends State<InitialView> {
   final authController = Get.put(AuthController());
 
   final loginController = Get.put(LoginController());
-
-  final giftRecordController = Get.put(GiftRecordController());
-
-  // final giftRequestController = Get.put(GiftReceiverController());
 
   final giftAskGiverController = Get.put(GiftAskGiverController());
 

@@ -12,29 +12,29 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GiftReceiver _$GiftReceiverFromJson(Map<String, dynamic> json) {
-  return _GiftReceiver.fromJson(json);
+GiftRequest _$GiftRequestFromJson(Map<String, dynamic> json) {
+  return _GiftRequest.fromJson(json);
 }
 
 /// @nodoc
-class _$GiftReceiverTearOff {
-  const _$GiftReceiverTearOff();
+class _$GiftRequestTearOff {
+  const _$GiftRequestTearOff();
 
-  _GiftReceiver call(
+  _GiftRequest call(
       {String? id,
       String? giverId,
       required String comment,
       bool messageForRequesterSent = false,
       bool messageForGiverrSent = false,
-      @JsonKey(fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-          GiftReceiverStatus
-              giftRequestStatus = const GiftReceiverStatus.pending(),
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          GiftRequestStatus
+              giftRequestStatus = const GiftRequestStatus.pending(),
       @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
           required GiftGiver gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required LocalUser requester,
       required DateTime createdAt}) {
-    return _GiftReceiver(
+    return _GiftRequest(
       id: id,
       giverId: giverId,
       comment: comment,
@@ -47,25 +47,23 @@ class _$GiftReceiverTearOff {
     );
   }
 
-  GiftReceiver fromJson(Map<String, Object> json) {
-    return GiftReceiver.fromJson(json);
+  GiftRequest fromJson(Map<String, Object> json) {
+    return GiftRequest.fromJson(json);
   }
 }
 
 /// @nodoc
-const $GiftReceiver = _$GiftReceiverTearOff();
+const $GiftRequest = _$GiftRequestTearOff();
 
 /// @nodoc
-mixin _$GiftReceiver {
+mixin _$GiftRequest {
   String? get id => throw _privateConstructorUsedError;
   String? get giverId => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
   bool get messageForRequesterSent => throw _privateConstructorUsedError;
   bool get messageForGiverrSent => throw _privateConstructorUsedError;
-  @JsonKey(
-      fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-  GiftReceiverStatus get giftRequestStatus =>
-      throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
   GiftGiver get gift => throw _privateConstructorUsedError;
   @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
@@ -74,41 +72,41 @@ mixin _$GiftReceiver {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GiftReceiverCopyWith<GiftReceiver> get copyWith =>
+  $GiftRequestCopyWith<GiftRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GiftReceiverCopyWith<$Res> {
-  factory $GiftReceiverCopyWith(
-          GiftReceiver value, $Res Function(GiftReceiver) then) =
-      _$GiftReceiverCopyWithImpl<$Res>;
+abstract class $GiftRequestCopyWith<$Res> {
+  factory $GiftRequestCopyWith(
+          GiftRequest value, $Res Function(GiftRequest) then) =
+      _$GiftRequestCopyWithImpl<$Res>;
   $Res call(
       {String? id,
       String? giverId,
       String comment,
       bool messageForRequesterSent,
       bool messageForGiverrSent,
-      @JsonKey(fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-          GiftReceiverStatus giftRequestStatus,
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
           GiftGiver gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           LocalUser requester,
       DateTime createdAt});
 
-  $GiftReceiverStatusCopyWith<$Res> get giftRequestStatus;
+  $GiftRequestStatusCopyWith<$Res> get giftRequestStatus;
   $GiftGiverCopyWith<$Res> get gift;
   $LocalUserCopyWith<$Res> get requester;
 }
 
 /// @nodoc
-class _$GiftReceiverCopyWithImpl<$Res> implements $GiftReceiverCopyWith<$Res> {
-  _$GiftReceiverCopyWithImpl(this._value, this._then);
+class _$GiftRequestCopyWithImpl<$Res> implements $GiftRequestCopyWith<$Res> {
+  _$GiftRequestCopyWithImpl(this._value, this._then);
 
-  final GiftReceiver _value;
+  final GiftRequest _value;
   // ignore: unused_field
-  final $Res Function(GiftReceiver) _then;
+  final $Res Function(GiftRequest) _then;
 
   @override
   $Res call({
@@ -146,7 +144,7 @@ class _$GiftReceiverCopyWithImpl<$Res> implements $GiftReceiverCopyWith<$Res> {
       giftRequestStatus: giftRequestStatus == freezed
           ? _value.giftRequestStatus
           : giftRequestStatus // ignore: cast_nullable_to_non_nullable
-              as GiftReceiverStatus,
+              as GiftRequestStatus,
       gift: gift == freezed
           ? _value.gift
           : gift // ignore: cast_nullable_to_non_nullable
@@ -163,8 +161,8 @@ class _$GiftReceiverCopyWithImpl<$Res> implements $GiftReceiverCopyWith<$Res> {
   }
 
   @override
-  $GiftReceiverStatusCopyWith<$Res> get giftRequestStatus {
-    return $GiftReceiverStatusCopyWith<$Res>(_value.giftRequestStatus, (value) {
+  $GiftRequestStatusCopyWith<$Res> get giftRequestStatus {
+    return $GiftRequestStatusCopyWith<$Res>(_value.giftRequestStatus, (value) {
       return _then(_value.copyWith(giftRequestStatus: value));
     });
   }
@@ -185,11 +183,11 @@ class _$GiftReceiverCopyWithImpl<$Res> implements $GiftReceiverCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$GiftReceiverCopyWith<$Res>
-    implements $GiftReceiverCopyWith<$Res> {
-  factory _$GiftReceiverCopyWith(
-          _GiftReceiver value, $Res Function(_GiftReceiver) then) =
-      __$GiftReceiverCopyWithImpl<$Res>;
+abstract class _$GiftRequestCopyWith<$Res>
+    implements $GiftRequestCopyWith<$Res> {
+  factory _$GiftRequestCopyWith(
+          _GiftRequest value, $Res Function(_GiftRequest) then) =
+      __$GiftRequestCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? id,
@@ -197,8 +195,8 @@ abstract class _$GiftReceiverCopyWith<$Res>
       String comment,
       bool messageForRequesterSent,
       bool messageForGiverrSent,
-      @JsonKey(fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-          GiftReceiverStatus giftRequestStatus,
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
           GiftGiver gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
@@ -206,7 +204,7 @@ abstract class _$GiftReceiverCopyWith<$Res>
       DateTime createdAt});
 
   @override
-  $GiftReceiverStatusCopyWith<$Res> get giftRequestStatus;
+  $GiftRequestStatusCopyWith<$Res> get giftRequestStatus;
   @override
   $GiftGiverCopyWith<$Res> get gift;
   @override
@@ -214,14 +212,14 @@ abstract class _$GiftReceiverCopyWith<$Res>
 }
 
 /// @nodoc
-class __$GiftReceiverCopyWithImpl<$Res> extends _$GiftReceiverCopyWithImpl<$Res>
-    implements _$GiftReceiverCopyWith<$Res> {
-  __$GiftReceiverCopyWithImpl(
-      _GiftReceiver _value, $Res Function(_GiftReceiver) _then)
-      : super(_value, (v) => _then(v as _GiftReceiver));
+class __$GiftRequestCopyWithImpl<$Res> extends _$GiftRequestCopyWithImpl<$Res>
+    implements _$GiftRequestCopyWith<$Res> {
+  __$GiftRequestCopyWithImpl(
+      _GiftRequest _value, $Res Function(_GiftRequest) _then)
+      : super(_value, (v) => _then(v as _GiftRequest));
 
   @override
-  _GiftReceiver get _value => super._value as _GiftReceiver;
+  _GiftRequest get _value => super._value as _GiftRequest;
 
   @override
   $Res call({
@@ -235,7 +233,7 @@ class __$GiftReceiverCopyWithImpl<$Res> extends _$GiftReceiverCopyWithImpl<$Res>
     Object? requester = freezed,
     Object? createdAt = freezed,
   }) {
-    return _then(_GiftReceiver(
+    return _then(_GiftRequest(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -259,7 +257,7 @@ class __$GiftReceiverCopyWithImpl<$Res> extends _$GiftReceiverCopyWithImpl<$Res>
       giftRequestStatus: giftRequestStatus == freezed
           ? _value.giftRequestStatus
           : giftRequestStatus // ignore: cast_nullable_to_non_nullable
-              as GiftReceiverStatus,
+              as GiftRequestStatus,
       gift: gift == freezed
           ? _value.gift
           : gift // ignore: cast_nullable_to_non_nullable
@@ -278,23 +276,23 @@ class __$GiftReceiverCopyWithImpl<$Res> extends _$GiftReceiverCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GiftReceiver implements _GiftReceiver {
-  _$_GiftReceiver(
+class _$_GiftRequest implements _GiftRequest {
+  _$_GiftRequest(
       {this.id,
       this.giverId,
       required this.comment,
       this.messageForRequesterSent = false,
       this.messageForGiverrSent = false,
-      @JsonKey(fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-          this.giftRequestStatus = const GiftReceiverStatus.pending(),
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          this.giftRequestStatus = const GiftRequestStatus.pending(),
       @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
           required this.gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required this.requester,
       required this.createdAt});
 
-  factory _$_GiftReceiver.fromJson(Map<String, dynamic> json) =>
-      _$_$_GiftReceiverFromJson(json);
+  factory _$_GiftRequest.fromJson(Map<String, dynamic> json) =>
+      _$_$_GiftRequestFromJson(json);
 
   @override
   final String? id;
@@ -309,9 +307,8 @@ class _$_GiftReceiver implements _GiftReceiver {
   @override
   final bool messageForGiverrSent;
   @override
-  @JsonKey(
-      fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-  final GiftReceiverStatus giftRequestStatus;
+  @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+  final GiftRequestStatus giftRequestStatus;
   @override
   @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
   final GiftGiver gift;
@@ -323,13 +320,13 @@ class _$_GiftReceiver implements _GiftReceiver {
 
   @override
   String toString() {
-    return 'GiftReceiver(id: $id, giverId: $giverId, comment: $comment, messageForRequesterSent: $messageForRequesterSent, messageForGiverrSent: $messageForGiverrSent, giftRequestStatus: $giftRequestStatus, gift: $gift, requester: $requester, createdAt: $createdAt)';
+    return 'GiftRequest(id: $id, giverId: $giverId, comment: $comment, messageForRequesterSent: $messageForRequesterSent, messageForGiverrSent: $messageForGiverrSent, giftRequestStatus: $giftRequestStatus, gift: $gift, requester: $requester, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GiftReceiver &&
+        (other is _GiftRequest &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.giverId, giverId) ||
@@ -373,32 +370,32 @@ class _$_GiftReceiver implements _GiftReceiver {
 
   @JsonKey(ignore: true)
   @override
-  _$GiftReceiverCopyWith<_GiftReceiver> get copyWith =>
-      __$GiftReceiverCopyWithImpl<_GiftReceiver>(this, _$identity);
+  _$GiftRequestCopyWith<_GiftRequest> get copyWith =>
+      __$GiftRequestCopyWithImpl<_GiftRequest>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GiftReceiverToJson(this);
+    return _$_$_GiftRequestToJson(this);
   }
 }
 
-abstract class _GiftReceiver implements GiftReceiver {
-  factory _GiftReceiver(
+abstract class _GiftRequest implements GiftRequest {
+  factory _GiftRequest(
       {String? id,
       String? giverId,
       required String comment,
       bool messageForRequesterSent,
       bool messageForGiverrSent,
-      @JsonKey(fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-          GiftReceiverStatus giftRequestStatus,
+      @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+          GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
           required GiftGiver gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required LocalUser requester,
-      required DateTime createdAt}) = _$_GiftReceiver;
+      required DateTime createdAt}) = _$_GiftRequest;
 
-  factory _GiftReceiver.fromJson(Map<String, dynamic> json) =
-      _$_GiftReceiver.fromJson;
+  factory _GiftRequest.fromJson(Map<String, dynamic> json) =
+      _$_GiftRequest.fromJson;
 
   @override
   String? get id => throw _privateConstructorUsedError;
@@ -411,10 +408,8 @@ abstract class _GiftReceiver implements GiftReceiver {
   @override
   bool get messageForGiverrSent => throw _privateConstructorUsedError;
   @override
-  @JsonKey(
-      fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
-  GiftReceiverStatus get giftRequestStatus =>
-      throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
+  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
   GiftGiver get gift => throw _privateConstructorUsedError;
@@ -425,11 +420,11 @@ abstract class _GiftReceiver implements GiftReceiver {
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GiftReceiverCopyWith<_GiftReceiver> get copyWith =>
+  _$GiftRequestCopyWith<_GiftRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-GiftReceiverStatus _$GiftReceiverStatusFromJson(Map<String, dynamic> json) {
+GiftRequestStatus _$GiftRequestStatusFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
     case 'pending':
       return Pending.fromJson(json);
@@ -450,8 +445,8 @@ GiftReceiverStatus _$GiftReceiverStatusFromJson(Map<String, dynamic> json) {
 }
 
 /// @nodoc
-class _$GiftReceiverStatusTearOff {
-  const _$GiftReceiverStatusTearOff();
+class _$GiftRequestStatusTearOff {
+  const _$GiftRequestStatusTearOff();
 
   Pending pending() {
     return const Pending();
@@ -477,16 +472,16 @@ class _$GiftReceiverStatusTearOff {
     return const Delivered();
   }
 
-  GiftReceiverStatus fromJson(Map<String, Object> json) {
-    return GiftReceiverStatus.fromJson(json);
+  GiftRequestStatus fromJson(Map<String, Object> json) {
+    return GiftRequestStatus.fromJson(json);
   }
 }
 
 /// @nodoc
-const $GiftReceiverStatus = _$GiftReceiverStatusTearOff();
+const $GiftRequestStatus = _$GiftRequestStatusTearOff();
 
 /// @nodoc
-mixin _$GiftReceiverStatus {
+mixin _$GiftRequestStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() pending,
@@ -533,20 +528,20 @@ mixin _$GiftReceiverStatus {
 }
 
 /// @nodoc
-abstract class $GiftReceiverStatusCopyWith<$Res> {
-  factory $GiftReceiverStatusCopyWith(
-          GiftReceiverStatus value, $Res Function(GiftReceiverStatus) then) =
-      _$GiftReceiverStatusCopyWithImpl<$Res>;
+abstract class $GiftRequestStatusCopyWith<$Res> {
+  factory $GiftRequestStatusCopyWith(
+          GiftRequestStatus value, $Res Function(GiftRequestStatus) then) =
+      _$GiftRequestStatusCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GiftReceiverStatusCopyWithImpl<$Res>
-    implements $GiftReceiverStatusCopyWith<$Res> {
-  _$GiftReceiverStatusCopyWithImpl(this._value, this._then);
+class _$GiftRequestStatusCopyWithImpl<$Res>
+    implements $GiftRequestStatusCopyWith<$Res> {
+  _$GiftRequestStatusCopyWithImpl(this._value, this._then);
 
-  final GiftReceiverStatus _value;
+  final GiftRequestStatus _value;
   // ignore: unused_field
-  final $Res Function(GiftReceiverStatus) _then;
+  final $Res Function(GiftRequestStatus) _then;
 }
 
 /// @nodoc
@@ -556,7 +551,7 @@ abstract class $PendingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PendingCopyWithImpl<$Res> extends _$GiftReceiverStatusCopyWithImpl<$Res>
+class _$PendingCopyWithImpl<$Res> extends _$GiftRequestStatusCopyWithImpl<$Res>
     implements $PendingCopyWith<$Res> {
   _$PendingCopyWithImpl(Pending _value, $Res Function(Pending) _then)
       : super(_value, (v) => _then(v as Pending));
@@ -575,7 +570,7 @@ class _$Pending implements Pending {
 
   @override
   String toString() {
-    return 'GiftReceiverStatus.pending()';
+    return 'GiftRequestStatus.pending()';
   }
 
   @override
@@ -652,7 +647,7 @@ class _$Pending implements Pending {
   }
 }
 
-abstract class Pending implements GiftReceiverStatus {
+abstract class Pending implements GiftRequestStatus {
   const factory Pending() = _$Pending;
 
   factory Pending.fromJson(Map<String, dynamic> json) = _$Pending.fromJson;
@@ -666,7 +661,7 @@ abstract class $ConfirmedCopyWith<$Res> {
 
 /// @nodoc
 class _$ConfirmedCopyWithImpl<$Res>
-    extends _$GiftReceiverStatusCopyWithImpl<$Res>
+    extends _$GiftRequestStatusCopyWithImpl<$Res>
     implements $ConfirmedCopyWith<$Res> {
   _$ConfirmedCopyWithImpl(Confirmed _value, $Res Function(Confirmed) _then)
       : super(_value, (v) => _then(v as Confirmed));
@@ -685,7 +680,7 @@ class _$Confirmed implements Confirmed {
 
   @override
   String toString() {
-    return 'GiftReceiverStatus.confirmed()';
+    return 'GiftRequestStatus.confirmed()';
   }
 
   @override
@@ -762,7 +757,7 @@ class _$Confirmed implements Confirmed {
   }
 }
 
-abstract class Confirmed implements GiftReceiverStatus {
+abstract class Confirmed implements GiftRequestStatus {
   const factory Confirmed() = _$Confirmed;
 
   factory Confirmed.fromJson(Map<String, dynamic> json) = _$Confirmed.fromJson;
@@ -777,7 +772,7 @@ abstract class $CanceledByGiverCopyWith<$Res> {
 
 /// @nodoc
 class _$CanceledByGiverCopyWithImpl<$Res>
-    extends _$GiftReceiverStatusCopyWithImpl<$Res>
+    extends _$GiftRequestStatusCopyWithImpl<$Res>
     implements $CanceledByGiverCopyWith<$Res> {
   _$CanceledByGiverCopyWithImpl(
       CanceledByGiver _value, $Res Function(CanceledByGiver) _then)
@@ -797,7 +792,7 @@ class _$CanceledByGiver implements CanceledByGiver {
 
   @override
   String toString() {
-    return 'GiftReceiverStatus.canceledByGiver()';
+    return 'GiftRequestStatus.canceledByGiver()';
   }
 
   @override
@@ -874,7 +869,7 @@ class _$CanceledByGiver implements CanceledByGiver {
   }
 }
 
-abstract class CanceledByGiver implements GiftReceiverStatus {
+abstract class CanceledByGiver implements GiftRequestStatus {
   const factory CanceledByGiver() = _$CanceledByGiver;
 
   factory CanceledByGiver.fromJson(Map<String, dynamic> json) =
@@ -890,7 +885,7 @@ abstract class $CanceledByRequesterCopyWith<$Res> {
 
 /// @nodoc
 class _$CanceledByRequesterCopyWithImpl<$Res>
-    extends _$GiftReceiverStatusCopyWithImpl<$Res>
+    extends _$GiftRequestStatusCopyWithImpl<$Res>
     implements $CanceledByRequesterCopyWith<$Res> {
   _$CanceledByRequesterCopyWithImpl(
       CanceledByRequester _value, $Res Function(CanceledByRequester) _then)
@@ -910,7 +905,7 @@ class _$CanceledByRequester implements CanceledByRequester {
 
   @override
   String toString() {
-    return 'GiftReceiverStatus.canceledByRequester()';
+    return 'GiftRequestStatus.canceledByRequester()';
   }
 
   @override
@@ -988,7 +983,7 @@ class _$CanceledByRequester implements CanceledByRequester {
   }
 }
 
-abstract class CanceledByRequester implements GiftReceiverStatus {
+abstract class CanceledByRequester implements GiftRequestStatus {
   const factory CanceledByRequester() = _$CanceledByRequester;
 
   factory CanceledByRequester.fromJson(Map<String, dynamic> json) =
@@ -1002,8 +997,7 @@ abstract class $AcceptedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AcceptedCopyWithImpl<$Res>
-    extends _$GiftReceiverStatusCopyWithImpl<$Res>
+class _$AcceptedCopyWithImpl<$Res> extends _$GiftRequestStatusCopyWithImpl<$Res>
     implements $AcceptedCopyWith<$Res> {
   _$AcceptedCopyWithImpl(Accepted _value, $Res Function(Accepted) _then)
       : super(_value, (v) => _then(v as Accepted));
@@ -1022,7 +1016,7 @@ class _$Accepted implements Accepted {
 
   @override
   String toString() {
-    return 'GiftReceiverStatus.accepted()';
+    return 'GiftRequestStatus.accepted()';
   }
 
   @override
@@ -1099,7 +1093,7 @@ class _$Accepted implements Accepted {
   }
 }
 
-abstract class Accepted implements GiftReceiverStatus {
+abstract class Accepted implements GiftRequestStatus {
   const factory Accepted() = _$Accepted;
 
   factory Accepted.fromJson(Map<String, dynamic> json) = _$Accepted.fromJson;
@@ -1113,7 +1107,7 @@ abstract class $DeliveredCopyWith<$Res> {
 
 /// @nodoc
 class _$DeliveredCopyWithImpl<$Res>
-    extends _$GiftReceiverStatusCopyWithImpl<$Res>
+    extends _$GiftRequestStatusCopyWithImpl<$Res>
     implements $DeliveredCopyWith<$Res> {
   _$DeliveredCopyWithImpl(Delivered _value, $Res Function(Delivered) _then)
       : super(_value, (v) => _then(v as Delivered));
@@ -1132,7 +1126,7 @@ class _$Delivered implements Delivered {
 
   @override
   String toString() {
-    return 'GiftReceiverStatus.delivered()';
+    return 'GiftRequestStatus.delivered()';
   }
 
   @override
@@ -1209,19 +1203,19 @@ class _$Delivered implements Delivered {
   }
 }
 
-abstract class Delivered implements GiftReceiverStatus {
+abstract class Delivered implements GiftRequestStatus {
   const factory Delivered() = _$Delivered;
 
   factory Delivered.fromJson(Map<String, dynamic> json) = _$Delivered.fromJson;
 }
 
 /// @nodoc
-class _$GiftReceiverNotificationUnionTearOff {
-  const _$GiftReceiverNotificationUnionTearOff();
+class _$GiftRequestNotificationUnionTearOff {
+  const _$GiftRequestNotificationUnionTearOff();
 
-  Data dataa(GiftReceiver giftReceiver) {
+  Data dataa(GiftRequest giftRequest) {
     return Data(
-      giftReceiver,
+      giftRequest,
     );
   }
 
@@ -1237,20 +1231,20 @@ class _$GiftReceiverNotificationUnionTearOff {
 }
 
 /// @nodoc
-const $GiftReceiverNotificationUnion = _$GiftReceiverNotificationUnionTearOff();
+const $GiftRequestNotificationUnion = _$GiftRequestNotificationUnionTearOff();
 
 /// @nodoc
-mixin _$GiftReceiverNotificationUnion {
+mixin _$GiftRequestNotificationUnion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GiftReceiver giftReceiver) dataa,
+    required TResult Function(GiftRequest giftRequest) dataa,
     required TResult Function() loading,
     required TResult Function(Object err) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GiftReceiver giftReceiver)? dataa,
+    TResult Function(GiftRequest giftRequest)? dataa,
     TResult Function()? loading,
     TResult Function(Object err)? error,
     required TResult orElse(),
@@ -1274,35 +1268,35 @@ mixin _$GiftReceiverNotificationUnion {
 }
 
 /// @nodoc
-abstract class $GiftReceiverNotificationUnionCopyWith<$Res> {
-  factory $GiftReceiverNotificationUnionCopyWith(
-          GiftReceiverNotificationUnion value,
-          $Res Function(GiftReceiverNotificationUnion) then) =
-      _$GiftReceiverNotificationUnionCopyWithImpl<$Res>;
+abstract class $GiftRequestNotificationUnionCopyWith<$Res> {
+  factory $GiftRequestNotificationUnionCopyWith(
+          GiftRequestNotificationUnion value,
+          $Res Function(GiftRequestNotificationUnion) then) =
+      _$GiftRequestNotificationUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GiftReceiverNotificationUnionCopyWithImpl<$Res>
-    implements $GiftReceiverNotificationUnionCopyWith<$Res> {
-  _$GiftReceiverNotificationUnionCopyWithImpl(this._value, this._then);
+class _$GiftRequestNotificationUnionCopyWithImpl<$Res>
+    implements $GiftRequestNotificationUnionCopyWith<$Res> {
+  _$GiftRequestNotificationUnionCopyWithImpl(this._value, this._then);
 
-  final GiftReceiverNotificationUnion _value;
+  final GiftRequestNotificationUnion _value;
   // ignore: unused_field
-  final $Res Function(GiftReceiverNotificationUnion) _then;
+  final $Res Function(GiftRequestNotificationUnion) _then;
 }
 
 /// @nodoc
 abstract class $DataCopyWith<$Res> {
   factory $DataCopyWith(Data value, $Res Function(Data) then) =
       _$DataCopyWithImpl<$Res>;
-  $Res call({GiftReceiver giftReceiver});
+  $Res call({GiftRequest giftRequest});
 
-  $GiftReceiverCopyWith<$Res> get giftReceiver;
+  $GiftRequestCopyWith<$Res> get giftRequest;
 }
 
 /// @nodoc
 class _$DataCopyWithImpl<$Res>
-    extends _$GiftReceiverNotificationUnionCopyWithImpl<$Res>
+    extends _$GiftRequestNotificationUnionCopyWithImpl<$Res>
     implements $DataCopyWith<$Res> {
   _$DataCopyWithImpl(Data _value, $Res Function(Data) _then)
       : super(_value, (v) => _then(v as Data));
@@ -1312,20 +1306,20 @@ class _$DataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? giftReceiver = freezed,
+    Object? giftRequest = freezed,
   }) {
     return _then(Data(
-      giftReceiver == freezed
-          ? _value.giftReceiver
-          : giftReceiver // ignore: cast_nullable_to_non_nullable
-              as GiftReceiver,
+      giftRequest == freezed
+          ? _value.giftRequest
+          : giftRequest // ignore: cast_nullable_to_non_nullable
+              as GiftRequest,
     ));
   }
 
   @override
-  $GiftReceiverCopyWith<$Res> get giftReceiver {
-    return $GiftReceiverCopyWith<$Res>(_value.giftReceiver, (value) {
-      return _then(_value.copyWith(giftReceiver: value));
+  $GiftRequestCopyWith<$Res> get giftRequest {
+    return $GiftRequestCopyWith<$Res>(_value.giftRequest, (value) {
+      return _then(_value.copyWith(giftRequest: value));
     });
   }
 }
@@ -1333,28 +1327,28 @@ class _$DataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Data implements Data {
-  const _$Data(this.giftReceiver);
+  const _$Data(this.giftRequest);
 
   @override
-  final GiftReceiver giftReceiver;
+  final GiftRequest giftRequest;
 
   @override
   String toString() {
-    return 'GiftReceiverNotificationUnion.dataa(giftReceiver: $giftReceiver)';
+    return 'GiftRequestNotificationUnion.dataa(giftRequest: $giftRequest)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Data &&
-            (identical(other.giftReceiver, giftReceiver) ||
+            (identical(other.giftRequest, giftRequest) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftReceiver, giftReceiver)));
+                    .equals(other.giftRequest, giftRequest)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftReceiver);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftRequest);
 
   @JsonKey(ignore: true)
   @override
@@ -1364,23 +1358,23 @@ class _$Data implements Data {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GiftReceiver giftReceiver) dataa,
+    required TResult Function(GiftRequest giftRequest) dataa,
     required TResult Function() loading,
     required TResult Function(Object err) error,
   }) {
-    return dataa(giftReceiver);
+    return dataa(giftRequest);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GiftReceiver giftReceiver)? dataa,
+    TResult Function(GiftRequest giftRequest)? dataa,
     TResult Function()? loading,
     TResult Function(Object err)? error,
     required TResult orElse(),
   }) {
     if (dataa != null) {
-      return dataa(giftReceiver);
+      return dataa(giftRequest);
     }
     return orElse();
   }
@@ -1410,10 +1404,10 @@ class _$Data implements Data {
   }
 }
 
-abstract class Data implements GiftReceiverNotificationUnion {
-  const factory Data(GiftReceiver giftReceiver) = _$Data;
+abstract class Data implements GiftRequestNotificationUnion {
+  const factory Data(GiftRequest giftRequest) = _$Data;
 
-  GiftReceiver get giftReceiver => throw _privateConstructorUsedError;
+  GiftRequest get giftRequest => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -1426,7 +1420,7 @@ abstract class $LoadingCopyWith<$Res> {
 
 /// @nodoc
 class _$LoadingCopyWithImpl<$Res>
-    extends _$GiftReceiverNotificationUnionCopyWithImpl<$Res>
+    extends _$GiftRequestNotificationUnionCopyWithImpl<$Res>
     implements $LoadingCopyWith<$Res> {
   _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
       : super(_value, (v) => _then(v as Loading));
@@ -1442,7 +1436,7 @@ class _$Loading implements Loading {
 
   @override
   String toString() {
-    return 'GiftReceiverNotificationUnion.loading()';
+    return 'GiftRequestNotificationUnion.loading()';
   }
 
   @override
@@ -1456,7 +1450,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GiftReceiver giftReceiver) dataa,
+    required TResult Function(GiftRequest giftRequest) dataa,
     required TResult Function() loading,
     required TResult Function(Object err) error,
   }) {
@@ -1466,7 +1460,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GiftReceiver giftReceiver)? dataa,
+    TResult Function(GiftRequest giftRequest)? dataa,
     TResult Function()? loading,
     TResult Function(Object err)? error,
     required TResult orElse(),
@@ -1502,7 +1496,7 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements GiftReceiverNotificationUnion {
+abstract class Loading implements GiftRequestNotificationUnion {
   const factory Loading() = _$Loading;
 }
 
@@ -1515,7 +1509,7 @@ abstract class $ErrorCopyWith<$Res> {
 
 /// @nodoc
 class _$ErrorCopyWithImpl<$Res>
-    extends _$GiftReceiverNotificationUnionCopyWithImpl<$Res>
+    extends _$GiftRequestNotificationUnionCopyWithImpl<$Res>
     implements $ErrorCopyWith<$Res> {
   _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
       : super(_value, (v) => _then(v as Error));
@@ -1546,7 +1540,7 @@ class _$Error implements Error {
 
   @override
   String toString() {
-    return 'GiftReceiverNotificationUnion.error(err: $err)';
+    return 'GiftRequestNotificationUnion.error(err: $err)';
   }
 
   @override
@@ -1569,7 +1563,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GiftReceiver giftReceiver) dataa,
+    required TResult Function(GiftRequest giftRequest) dataa,
     required TResult Function() loading,
     required TResult Function(Object err) error,
   }) {
@@ -1579,7 +1573,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GiftReceiver giftReceiver)? dataa,
+    TResult Function(GiftRequest giftRequest)? dataa,
     TResult Function()? loading,
     TResult Function(Object err)? error,
     required TResult orElse(),
@@ -1615,7 +1609,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements GiftReceiverNotificationUnion {
+abstract class Error implements GiftRequestNotificationUnion {
   const factory Error(Object err) = _$Error;
 
   Object get err => throw _privateConstructorUsedError;
