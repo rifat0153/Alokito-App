@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
@@ -7,6 +9,7 @@ import 'package:alokito_new/modules/gift_receiver/services/gift_receiver_service
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -31,19 +34,19 @@ class GiftReceiverController extends GetxController {
   Rx<String> searchString = ''.obs;
 
   Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.loading().obs;
+  RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
 
   Rx<bool> allGiftsFetched = false.obs;
-
-  RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   Rx<LatLng> userPosition = const LatLng(0, 0).obs;
-
   Rx<bool> searchCalledOnce = false.obs;
 
   final ScrollController scrollController = ScrollController();
 
   @override
   void onInit() {
-    //* track user input in search option
+    super.onInit();
+
+    //* track user input in search field
     debounce(
       searchString,
       (_) async {
@@ -62,8 +65,6 @@ class GiftReceiverController extends GetxController {
       },
       time: const Duration(milliseconds: 1000),
     );
-
-    super.onInit();
   }
 
   @override
@@ -71,14 +72,14 @@ class GiftReceiverController extends GetxController {
     final locData = await Location().getLocation();
     userPosition.value = LatLng(locData.latitude ?? 0, locData.longitude ?? 0);
 
-    // * Get Gifts on Page Load
+    // * Get Gifts on Page Loads 2nd frame
     await retrieveGifts();
 
     scrollController.addListener(() async {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         page.value += 1;
         if (allGiftsFetched.value) {
-          MyUserNotify.showAllFetchedSnackbar('you have caught up');
+          await MyUserNotify.showAllFetchedSnackbar('you have caught up');
         } else {
           await retrieveGifts();
         }
@@ -115,7 +116,7 @@ class GiftReceiverController extends GetxController {
       );
     }
 
-    final bool found = giftListUnion.when(data: (data) => true, empty: () => false, loading: () => false, error: (e) => false);
+    final bool found = giftListUnion.maybeWhen(data: (data) => true, orElse: () => false);
 
     if (page.toInt() == 1 && found) {
       giftList.value = giftListUnion;
@@ -142,7 +143,7 @@ class GiftReceiverController extends GetxController {
     for (final giftGiver in documentList) {
       if (giftGiver.user?.uid == Get.find<AuthController>().currentUser.value.id) return;
 
-      // * Reverse order , bcz mongoDB returns lng first then lat
+      // * Reverse order of Coordinates , bcz mongoDB returns lng first in the array,e.g. [lng, lat]
       final GeoPoint point = GeoPoint(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.first);
 
       final userLocation = Get.find<AuthController>().currentUserPosition;
@@ -150,22 +151,35 @@ class GiftReceiverController extends GetxController {
 
       final distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
 
-      _addMarker(point.latitude, point.longitude, distance);
+      _addMarker(point.latitude, point.longitude, distance, giftGiver);
     }
   }
 
-  void _addMarker(double lat, double lng, double distance) {
-    print('Add marker called');
+  Future<void> _addMarker(double lat, double lng, double distance, giftGiver) async {
+    //* Load Custom Marker
+    final Uint8List markerIcon = await getBytesFromAsset('assets/images/map-dot (1).png', 50);
 
     final id = MarkerId(lat.toString() + lng.toString());
     final _marker = Marker(
       markerId: id,
       position: LatLng(lat, lng),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
+      icon: BitmapDescriptor.fromBytes(markerIcon),
+      // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
       infoWindow: InfoWindow(title: 'latLng', snippet: '$distance km'),
+      onTap: () {
+        print('Tapped: ');
+      },
     );
 
     markers[id] = _marker;
+  }
+
+  // * Create Custom Marker
+  Future<Uint8List> getBytesFromAsset(String path, int width) async {
+    final ByteData data = await rootBundle.load(path);
+    final ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
+    final ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
   }
 
   Future<GiftReceiverNotificationUnion> getGift(String id) async {

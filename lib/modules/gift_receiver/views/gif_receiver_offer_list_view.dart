@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftReceiverOfferListView extends StatelessWidget {
   static const route = 'giftoffer';
@@ -213,7 +212,7 @@ class _GiftListTile extends StatelessWidget {
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 5),
-                          Text(giftList[index].user != null ? giftList[index].user!.uid! : ''),
+                          Text(giftList[index].user != null ? giftList[index].user!.userName : ''),
                           // Text( giftList[index].user != null?  giftList[index].user!.userName : ''),
                         ],
                       ),
