@@ -21,9 +21,9 @@ class GiftReceiver with _$GiftReceiver {
     @Default(GiftReceiverStatus.pending())
     @JsonKey(fromJson: giftReceiverStatusFromJson, toJson: giftReceiverStatusToJson)
         GiftReceiverStatus giftReceiverStatus,
-    @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson) required GiftGiver giftGiver,
+    @JsonKey(fromJson: giftGiverFromJson, toJson: giftGiverToJson) required GiftGiver gift,
     @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
-    @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) required Timestamp createdAt,
+     required DateTime createdAt,
   }) = _GiftReceiver;
 
   factory GiftReceiver.fromJson(Map<String, dynamic> json) => _$GiftReceiverFromJson(json);

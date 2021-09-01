@@ -1,6 +1,4 @@
-import 'package:alokito_new/models/gift_giver/my_position.dart';
 import 'package:alokito_new/models/user/local_user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 // URL

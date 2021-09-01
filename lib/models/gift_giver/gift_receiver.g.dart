@@ -15,9 +15,9 @@ _$_GiftReceiver _$_$_GiftReceiverFromJson(Map<String, dynamic> json) {
     messageForGiverrSent: json['messageForGiverrSent'] as bool? ?? false,
     giftReceiverStatus: giftReceiverStatusFromJson(
         json['giftReceiverStatus'] as Map<String, dynamic>),
-    giftGiver: giftGiverFromJson(json['giftGiver'] as String),
+    gift: giftGiverFromJson(json['gift'] as String),
     requester: localUserFromJson(json['requester'] as String),
-    createdAt: timestampFromJson(json['createdAt'] as Timestamp),
+    createdAt: DateTime.parse(json['createdAt'] as String),
   );
 }
 
@@ -30,9 +30,9 @@ Map<String, dynamic> _$_$_GiftReceiverToJson(_$_GiftReceiver instance) =>
       'messageForGiverrSent': instance.messageForGiverrSent,
       'giftReceiverStatus':
           giftReceiverStatusToJson(instance.giftReceiverStatus),
-      'giftGiver': giftGiverToJson(instance.giftGiver),
+      'gift': giftGiverToJson(instance.gift),
       'requester': localUserToJson(instance.requester),
-      'createdAt': timestampToJson(instance.createdAt),
+      'createdAt': instance.createdAt.toIso8601String(),
     };
 
 _$Pending _$_$PendingFromJson(Map<String, dynamic> json) {

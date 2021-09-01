@@ -124,21 +124,21 @@ class _DecisionWidget extends StatelessWidget {
             )
           ],
         ),
-        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.giftGiver.user!.userName}',
-            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.gift.user!.userName}',
+            textAlign: TextAlign.center, color: Colors.red,  fontWeight: FontWeight.bold),
         canceledByRequester: () => MyText('r Request Canceled by You',
-            textAlign: TextAlign.center, color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
         accepted: () => MyText('r Gift Accepted by You',
-            textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
         delivered: () => giftReceiver.messageForGiverrSent == true
             ? Column(
                 children: [
-                  MyText('r Gift Received', fontSize: 20, color: Colors.blueAccent),
+                  MyText('r Gift Received', color: Colors.blueAccent),
                 ],
               )
             : Column(
                 children: [
-                  MyText('r Gift Received', fontSize: 20, color: Colors.blueAccent),
+                  MyText('r Gift Received', color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
                       Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: true));
@@ -271,7 +271,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text('Location', style: boldFontStyle),
                 const SizedBox(height: 4),
-                Text(giftReceiver.giftGiver.location.isEmpty ? 'N/A' : giftReceiver.giftGiver.location),
+                Text(giftReceiver.gift.location.isEmpty ? 'N/A' : giftReceiver.gift.location),
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

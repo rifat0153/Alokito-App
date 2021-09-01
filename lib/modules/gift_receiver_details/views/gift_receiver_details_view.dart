@@ -4,6 +4,7 @@ import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/gift_receiver/widgets/gift_detail_map_widget.dart';
 import 'package:alokito_new/modules/gift_receiver/widgets/message_popup_widget.dart';
 import 'package:alokito_new/modules/gift_receiver_details/controllers/gift_receiver_detail_controller.dart';
+import 'package:alokito_new/modules/gift_receiver_details/services/gift_receiver_detail_service.dart';
 import 'package:alokito_new/modules/gift_receiver_details/widgets/request_delete_widget.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class GiftReceiverDetailsView extends StatelessWidget {
   GiftReceiverDetailsView({required this.giftGiver});
 
-  static const route = 'giftdetail';
+  static const route = 'giftdetailview';
 
   final GiftGiver giftGiver;
   final AuthController authController = Get.find<AuthController>();
-  final GiftReceiverDetailController giftRecieverDetailController = Get.put(GiftReceiverDetailController());
+  
+  //* Initializing Controller
+  final GiftReceiverDetailController giftRecieverDetailController = Get.put(
+    GiftReceiverDetailController(
+      GiftReceiverDetailService(),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {

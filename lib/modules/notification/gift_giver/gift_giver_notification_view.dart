@@ -64,7 +64,7 @@ class GiftGiverNotificationView extends StatelessWidget {
                       bottomLeft: Radius.circular(15),
                       topLeft: Radius.circular(15),
                     ),
-                    child: Image.network(snapshot.giftGiver.imageUrl, fit: BoxFit.cover)),
+                    child: Image.network(snapshot.gift.imageUrl, fit: BoxFit.cover)),
               ),
               Expanded(
                 child: GestureDetector(

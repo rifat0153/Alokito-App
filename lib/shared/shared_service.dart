@@ -8,7 +8,19 @@ import 'package:uuid/uuid.dart';
 
 const timeout = 10;
 
-class SharedService {
+class MyException implements Exception {
+  MyException({this.message = 'Something Went wrong', this.exceptionFrom = 'Error'});
+
+  final String? message;
+  final String? exceptionFrom;
+
+  @override
+  String toString() {
+    return '$exceptionFrom { message: $message }';
+  }
+}
+
+class FirebaseService {
   static Future<String> uploadImageAndReturnDownloadURL(File imageFile, String imagePath) async {
     try {
       if (imageFile.path.isNotEmpty) {

@@ -195,48 +195,8 @@ class GiftReceiverController extends GetxController {
     }
   }
 
-  Future<void> changeMessageSentStatus({
-    required GiftReceiver giftReceiver,
-    required bool isRequester,
-  }) async {
-    isRequester
-        ? await giftReceiverService.updateGiftReceiver(giftReceiver: giftReceiver.copyWith(messageForGiverrSent: true))
-        : await giftReceiverService.updateGiftReceiver(giftReceiver: giftReceiver.copyWith(messageForRequesterSent: true));
-  }
 
-  Future<void> cancelGiftRequest(GiftReceiver giftReceiver, GiftReceiverStatus giftReceiverStatus) async {
-    await giftReceiverService.updateGiftReceiver(giftReceiver: giftReceiver.copyWith(giftReceiverStatus: giftReceiverStatus));
-  }
 
-  Future<void> confirmGiftRequest(GiftReceiver giftReceiver) async {
-    await giftReceiverService.updateGiftReceiver(
-        giftReceiver: giftReceiver.copyWith(giftReceiverStatus: const GiftReceiverStatus.confirmed()));
-  }
-
-  // * Add Gift Reuqest
-  Future<void> addGiftRequestAndNotification(GiftGiver giftGiver) async {
-    var found = Get.find<AuthController>().currentUser.value.hasGiftGiverRequest;
-
-    if (found) {
-      await showSuccessOrErrorMessage(false, 'Request Already Found', '', 'One request per user at a time');
-      return;
-    }
-    String uuid = const Uuid().v4();
-    String docId = '${Get.find<AuthController>().currentUser.value.id}.${giftGiver.id}';
-
-    GiftReceiver giftReceiver = GiftReceiver(
-      id: docId,
-      giftReceiverStatus: const GiftReceiverStatus.pending(),
-      comment: requesterMessage.value,
-      giftGiver: giftGiver,
-      requester: Get.find<AuthController>().currentUser.value,
-      createdAt: Timestamp.now(),
-    );
-
-    var result = await giftReceiverService.addGiftRequest(giftReceiver: giftReceiver);
-
-    await showSuccessOrErrorMessage(result, 'Gift Add', 'Request Added', 'Something went wrong');
-  }
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {
     Get.back();

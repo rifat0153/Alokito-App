@@ -41,6 +41,13 @@ class MySnackbar {
       duration: const Duration(milliseconds: 2000),
     ));
   }
+   static Future<void> showErrorSnackbar(String message) async {
+    await Get.showSnackbar(GetBar(
+      messageText: MyText(message, color: Colors.white, textAlign: TextAlign.center),
+      snackStyle: SnackStyle.FLOATING,
+      duration: const Duration(milliseconds: 2000),
+    ));
+  }
 }
 
 

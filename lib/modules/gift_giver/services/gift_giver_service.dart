@@ -29,7 +29,7 @@ class GiftGiverService implements BaseGiftGiverService {
 
     try {
       final uid = FirebaseAuth.instance.currentUser?.uid;
-      giftImageUrl = await SharedService.uploadImageAndReturnDownloadURL(controller.imageFile.value, 'users/$uid');
+      giftImageUrl = await FirebaseService.uploadImageAndReturnDownloadURL(controller.imageFile.value, 'users/$uid');
     } catch (e) {
       throw GiftGiverException(message: 'Gift image Upload Fail');
     }
