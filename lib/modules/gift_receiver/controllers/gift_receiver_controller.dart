@@ -17,8 +17,10 @@ import 'package:location/location.dart';
 import 'package:uuid/uuid.dart';
 
 class GiftReceiverController extends GetxController {
-  final GiftReceiverService giftReceiverService = GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance);
-  final geo = Geoflutterfire();
+  GiftReceiverController(this.giftReceiverService, this.geo);
+
+  final GiftReceiverService giftReceiverService;
+  final Geoflutterfire geo;
 
   RxBool loading = RxBool(false);
   RxString requesterMessage = RxString('');

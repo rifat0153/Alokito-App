@@ -1,6 +1,9 @@
 import 'package:alokito_new/modules/gift_giver/services/gift_giver_service.dart';
 import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
+import 'package:alokito_new/modules/gift_receiver/services/gift_receiver_service.dart';
 import 'package:alokito_new/modules/gift_receiver_details/views/gift_receiver_details_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 
 import '/modules/auth/views/initial_view.dart';
@@ -47,7 +50,7 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
-        Get.put(GiftReceiverController());
+        Get.put(GiftReceiverController(GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance), Geoflutterfire()));
       }),
     ),
 

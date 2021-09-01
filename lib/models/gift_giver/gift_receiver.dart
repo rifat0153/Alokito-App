@@ -1,5 +1,5 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/models/json_converters.dart' ;
+import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -45,7 +45,7 @@ Map<String, dynamic> giftReceiverStatusToJson(GiftReceiverStatus giftReceiverSta
 GiftReceiverStatus giftReceiverStatusFromJson(Map<String, dynamic> json) => GiftReceiverStatus.fromJson(json);
 
 @freezed
-class GiftReceiverNotificationUnion with _$GiftReceiverNotificationUnion{
+class GiftReceiverNotificationUnion with _$GiftReceiverNotificationUnion {
   const factory GiftReceiverNotificationUnion.dataa(GiftReceiver giftReceiver) = Data;
   const factory GiftReceiverNotificationUnion.loading() = Loading;
   const factory GiftReceiverNotificationUnion.error(Object err) = Error;

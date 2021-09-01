@@ -9,6 +9,7 @@ import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:alokito_new/shared/config.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftReceiverDetailsView extends StatelessWidget {
   GiftReceiverDetailsView({required this.giftGiver});
@@ -60,11 +61,7 @@ class GiftReceiverDetailsView extends StatelessWidget {
 }
 
 class _BuildBody extends StatelessWidget {
-  const _BuildBody(
-      {Key? key,
-      required this.giftGiver,
-      required this.authController,
-      required this.giftRecieverDetailController})
+  const _BuildBody({Key? key, required this.giftGiver, required this.authController, required this.giftRecieverDetailController})
       : super(key: key);
 
   final GiftGiver giftGiver;
@@ -85,7 +82,7 @@ class _BuildBody extends StatelessWidget {
         Positioned(
           // top: 10,
           child: SizedBox(
-            height: Get.size.height - 170,
+            height: Get.size.height - 170.h,
             width: Get.size.width,
             child: SingleChildScrollView(
               child: Column(
@@ -116,10 +113,7 @@ class _BuildBody extends StatelessWidget {
 
 class _DecisionWidget extends StatelessWidget {
   const _DecisionWidget(
-      {Key? key,
-      required this.authController,
-      required this.giftGiver,
-      required this.giftRecieverDetailController})
+      {Key? key, required this.authController, required this.giftGiver, required this.giftRecieverDetailController})
       : super(key: key);
 
   final AuthController authController;
@@ -131,7 +125,7 @@ class _DecisionWidget extends StatelessWidget {
     return Obx(
       () => authController.currentUserInfo.value.when(
           data: (user) {
-            if (user.hasGiftAskRequest && user.requestedGiftId == giftGiver.id) {
+            if (user.hasGiftGiverRequest && user.requestedGiftId == giftGiver.id) {
               return Align(
                 alignment: Alignment.bottomCenter,
                 child: Row(
@@ -168,7 +162,7 @@ class _DecisionWidget extends StatelessWidget {
                 ),
               );
             }
-            if (user.hasGiftAskRequest && user.requestedGiftId != giftGiver.id) {
+            if (user.hasGiftGiverRequest && user.requestedGiftId != giftGiver.id) {
               return Align(
                 alignment: Alignment.bottomCenter,
                 child: MaterialButton(
@@ -237,14 +231,14 @@ class _Location extends StatelessWidget {
 }
 
 class _Image extends StatelessWidget {
-  _Image({required this.giftGiver});
+  const _Image({required this.giftGiver});
 
   final GiftGiver giftGiver;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Container(
+      child: SizedBox(
         height: 200,
         width: Get.size.width * 0.9,
         child: Hero(

@@ -9,8 +9,7 @@ import 'package:get/get.dart';
 
 class MessagePopUpWidget extends StatelessWidget {
   MessagePopUpWidget({required this.giftGiver});
-  final GiftReceiverController controller = Get.find();
-  final GiftReceiverDetailController giftReceiverDetailController = Get.find();
+  final GiftReceiverDetailController controller = Get.find();
 
   final GiftGiver giftGiver;
 
@@ -32,34 +31,33 @@ class MessagePopUpWidget extends StatelessWidget {
               children: [
                 const Text('Send a message for this gift'),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: TextField(
                     decoration: InputDecoration(
                         border: const OutlineInputBorder(
                           borderSide: BorderSide(width: 0, style: BorderStyle.none),
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                         fillColor: Colors.grey[400],
                         // hoverColor: Colors.grey,
                         filled: true,
                         hintText: 'e.g. Thanks in advance for your kind consideration'),
                     maxLines: 5,
-                    onChanged: (value) => controller.requesterMessage.value = value,
-                    onSubmitted: (value) => controller.requesterMessage.value = value,
+                    onChanged: (value) => controller.comment.value = value,
+                    onSubmitted: (value) => controller.comment.value = value,
                   ),
                 ),
                 Obx(
-                  () => giftReceiverDetailController.loading.value
+                  () => controller.loading.value
                       ? const CircularProgressIndicator.adaptive()
                       : MaterialButton(
                           color: giftAddFormSubmitColor,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                           onPressed: () {
-                            giftReceiverDetailController.addGiftRequest(giftGiver);
-                            // controller.addGiftRequestAndNotification(giftGiver);
+                            controller.addGiftRequest(giftGiver);
                           },
                           child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 30),
+                            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                             child: Text('send'),
                           ),
                         ),
