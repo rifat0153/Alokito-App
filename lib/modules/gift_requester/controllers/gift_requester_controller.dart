@@ -79,7 +79,8 @@ class GiftRequesterController extends GetxController {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         page.value += 1;
         if (allGiftsFetched.value) {
-          await MyUserNotify.showAllFetchedSnackbar('you have caught up');
+          // * Show snackbar if all gifts are fethced
+          // await MyUserNotify.showAllFetchedSnackbar('you have caught up');
         } else {
           await retrieveGifts();
         }
@@ -91,11 +92,10 @@ class GiftRequesterController extends GetxController {
 
   //* Retrieve giftList by location from MongoDB
   Future<void> retrieveGifts() async {
+    //* Search by filter called for first time, set page to 1 and giftList to loading state
     GiftListUnion newGiftListUnion = const GiftListUnion.loading();
 
     if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
-      //* Search by filter called for first time, set page to 1 and giftList to loading state
-
       newGiftListUnion = await giftRequesterService.getGiftByFilterDB(
         searchString.value,
         page.value.toString(),
@@ -140,7 +140,7 @@ class GiftRequesterController extends GetxController {
       giftList.value = GiftListUnion.data(updatedGiftList);
     }
 
-    _updateMarkers(giftList.value.maybeWhen(data: (data) => data, orElse: () => []));
+    _updateMarkers(giftList.value.maybeWhen(data: (giftList) => giftList, orElse: () => []));
   }
 
   void _updateMarkers(List<Gift> documentList) {

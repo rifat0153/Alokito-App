@@ -106,8 +106,6 @@ class GiftRequesterService implements BaseGiftRequesterService {
 
       final List<Gift> filteredGifts = [];
 
-      print('TOTAL gift: ' + giftJson.length.toString());
-
       for (final giftData in giftJson) {
         final gift = Gift.fromJson(giftData as Map<String, dynamic>);
 
@@ -116,13 +114,8 @@ class GiftRequesterService implements BaseGiftRequesterService {
         if (gift.user != null) {
           filteredGifts.add(gift);
         }
-       
-        else {
-          print('rejected');
-        }
       }
 
-      print('get gift by Location service called');
       print(' Filtered Results ' + filteredGifts.length.toString());
 
       return GiftListUnion.data(filteredGifts);

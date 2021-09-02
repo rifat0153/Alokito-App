@@ -112,7 +112,9 @@ class _BuildBody extends StatelessWidget {
                       ),
                     );
                   },
-                  loading: () => const CircularProgressIndicator(),
+                  loading: () => const CupertinoActivityIndicator(
+                    radius: 15,
+                  ),
                   error: (e) => Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
