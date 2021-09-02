@@ -119,7 +119,13 @@ class GiftRequesterController extends GetxController {
     final bool found = newGiftListUnion.maybeWhen(data: (data) => true, orElse: () => false);
 
     if (page.toInt() == 1 && found) {
+      print('First load');
       giftList.value = newGiftListUnion;
+
+      // * Set allFetched to true if lest than Limit gifts are loaded
+      if (newGiftListUnion.maybeWhen(data: (data) => data.length, orElse: () => 0) < limit.value) {
+        allGiftsFetched.value = true;
+      }
     } else {
       final List<Gift> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
       final List<Gift> newGifts = newGiftListUnion.maybeWhen(data: (data) => data, orElse: () => []);

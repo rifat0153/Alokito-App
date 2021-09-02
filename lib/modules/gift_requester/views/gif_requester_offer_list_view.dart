@@ -77,12 +77,18 @@ class _BuildBody extends StatelessWidget {
                           // itemExtent: 130,
                           controller: controller.scrollController,
                           padding: EdgeInsets.zero,
-                          itemCount: controller.allGiftsFetched.value ? list.length : list.length + 1,
+                          itemCount: controller.allGiftsFetched.value
+                              // * Show Loading Indicator if More gifts needs to be loaded
+                              ? controller.giftList.value.maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
+                              : controller.giftList.value.maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
                           itemBuilder: (_, index) {
-                            if (index == list.length && !controller.allGiftsFetched.value) {
-                              return const CupertinoActivityIndicator(
-                                radius: 15,
-                              );
+                            if (index ==
+                                    controller.giftList.value.maybeWhen(
+                                      data: (giftList) => giftList.length,
+                                      orElse: () => 0,
+                                    ) &&
+                                !controller.allGiftsFetched.value) {
+                              return const CupertinoActivityIndicator(radius: 15);
                             }
                             return _GiftListTile(
                               controller: controller,
