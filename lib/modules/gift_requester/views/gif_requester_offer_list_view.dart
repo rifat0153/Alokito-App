@@ -77,8 +77,13 @@ class _BuildBody extends StatelessWidget {
                           // itemExtent: 130,
                           controller: controller.scrollController,
                           padding: EdgeInsets.zero,
-                          itemCount: list.length,
+                          itemCount: controller.allGiftsFetched.value ? list.length : list.length + 1,
                           itemBuilder: (_, index) {
+                            if (index == list.length && !controller.allGiftsFetched.value) {
+                              return const CupertinoActivityIndicator(
+                                radius: 15,
+                              );
+                            }
                             return _GiftListTile(
                               controller: controller,
                               giftList: list,
@@ -121,18 +126,18 @@ class _BuildBody extends StatelessWidget {
                   ),
                 ),
               ),
-              Obx(
-                () => Slider(
-                  label: controller.radius.toInt().toString(),
-                  divisions: 499,
-                  min: 1,
-                  max: 500,
-                  value: controller.radius.value.toDouble(),
-                  onChanged: (val) {
-                    controller.radius.value = val.toInt();
-                  },
-                ),
-              ),
+              // Obx(
+              //   () => Slider(
+              //     label: controller.radius.toInt().toString(),
+              //     divisions: 499,
+              //     min: 1,
+              //     max: 500,
+              //     value: controller.radius.value.toDouble(),
+              //     onChanged: (val) {
+              //       controller.radius.value = val.toInt();
+              //     },
+              //   ),
+              // ),
             ],
           ),
         ),

@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:alokito_new/models/gift_giver/gift.dart';
-import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
@@ -14,7 +13,6 @@ import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:uuid/uuid.dart';
 
 class GiftRequesterController extends GetxController {
   GiftRequesterController(this.giftRequesterService, this.geo);
@@ -31,7 +29,7 @@ class GiftRequesterController extends GetxController {
   Rx<GiftLoadingOption> giftRetriveOption = const GiftLoadingOption.byLocation().obs;
 
   Rx<int> page = 1.obs;
-  Rx<int> limit = 3.obs;
+  Rx<int> limit = 4.obs;
   Rx<int> radius = 400.obs;
   Rx<String> searchString = ''.obs;
 
@@ -93,12 +91,12 @@ class GiftRequesterController extends GetxController {
 
   //* Retrieve giftList by location from MongoDB
   Future<void> retrieveGifts() async {
-    GiftListUnion giftListUnion = const GiftListUnion.loading();
+    GiftListUnion newGiftListUnion = const GiftListUnion.loading();
 
     if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
       //* Search by filter called for first time, set page to 1 and giftList to loading state
 
-      giftListUnion = await giftRequesterService.getGiftByFilterDB(
+      newGiftListUnion = await giftRequesterService.getGiftByFilterDB(
         searchString.value,
         page.value.toString(),
         limit.value.toString(),
@@ -108,7 +106,7 @@ class GiftRequesterController extends GetxController {
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => ''),
       );
     } else {
-      giftListUnion = await giftRequesterService.getGiftDB(
+      newGiftListUnion = await giftRequesterService.getGiftDB(
         page.value.toString(),
         limit.value.toString(),
         userPosition.value.latitude,
@@ -118,13 +116,13 @@ class GiftRequesterController extends GetxController {
       );
     }
 
-    final bool found = giftListUnion.maybeWhen(data: (data) => true, orElse: () => false);
+    final bool found = newGiftListUnion.maybeWhen(data: (data) => true, orElse: () => false);
 
     if (page.toInt() == 1 && found) {
-      giftList.value = giftListUnion;
+      giftList.value = newGiftListUnion;
     } else {
       final List<Gift> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
-      final List<Gift> newGifts = giftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
+      final List<Gift> newGifts = newGiftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
 
       if (newGifts.isEmpty) {
         allGiftsFetched.value = true;
@@ -183,11 +181,6 @@ class GiftRequesterController extends GetxController {
     final ui.FrameInfo fi = await codec.getNextFrame();
     return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
   }
-
-
-
-
-
 
   Future<void> showSuccessOrErrorMessage(bool result, String title, String success, String error) async {
     Get.back();
