@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/gift_giver/controllers/gift_add_form_controller.dart';
+import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,7 @@ class RequestDeleteWidget extends StatelessWidget {
   RequestDeleteWidget({required this.giftGiver});
   final GiftRequesterController controller = Get.find();
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
-import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/modules/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -172,7 +172,7 @@ class _MyMapViewState extends State<MyMapView> {
       // final GeoPoint point =
       // document.data()!['position']['geopoint'] as GeoPoint;
 
-      final GiftGiver giftGiver = GiftGiver.fromJson(document.data()!);
+      final Gift giftGiver = Gift.fromJson(document.data()!);
       final GeoPoint point = GeoPoint(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.last);
 
       var userPoint = geo.point(

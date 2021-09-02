@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:alokito_new/modules/gift_giver/gift_giver_exception.dart';
+import 'package:alokito_new/modules/gift/gift_exception.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:path/path.dart' as path;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -45,7 +45,7 @@ class FirebaseService {
         return '';
       }
     } catch (e) {
-      throw GiftGiverException(message: 'Gift Image upload fail');
+      throw GiftException(message: 'Gift Image upload fail');
     }
   }
 }

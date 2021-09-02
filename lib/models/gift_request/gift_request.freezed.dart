@@ -29,8 +29,8 @@ class _$GiftRequestTearOff {
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus
               giftRequestStatus = const GiftRequestStatus.pending(),
-      @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
-          required GiftGiver gift,
+      @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
+          required Gift gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required LocalUser requester,
       required DateTime createdAt}) {
@@ -64,8 +64,8 @@ mixin _$GiftRequest {
   bool get messageForGiverrSent => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
-  GiftGiver get gift => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
+  Gift get gift => throw _privateConstructorUsedError;
   @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
   LocalUser get requester => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -89,14 +89,14 @@ abstract class $GiftRequestCopyWith<$Res> {
       bool messageForGiverrSent,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
-      @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
-          GiftGiver gift,
+      @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
+          Gift gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           LocalUser requester,
       DateTime createdAt});
 
   $GiftRequestStatusCopyWith<$Res> get giftRequestStatus;
-  $GiftGiverCopyWith<$Res> get gift;
+  $GiftCopyWith<$Res> get gift;
   $LocalUserCopyWith<$Res> get requester;
 }
 
@@ -148,7 +148,7 @@ class _$GiftRequestCopyWithImpl<$Res> implements $GiftRequestCopyWith<$Res> {
       gift: gift == freezed
           ? _value.gift
           : gift // ignore: cast_nullable_to_non_nullable
-              as GiftGiver,
+              as Gift,
       requester: requester == freezed
           ? _value.requester
           : requester // ignore: cast_nullable_to_non_nullable
@@ -168,8 +168,8 @@ class _$GiftRequestCopyWithImpl<$Res> implements $GiftRequestCopyWith<$Res> {
   }
 
   @override
-  $GiftGiverCopyWith<$Res> get gift {
-    return $GiftGiverCopyWith<$Res>(_value.gift, (value) {
+  $GiftCopyWith<$Res> get gift {
+    return $GiftCopyWith<$Res>(_value.gift, (value) {
       return _then(_value.copyWith(gift: value));
     });
   }
@@ -197,8 +197,8 @@ abstract class _$GiftRequestCopyWith<$Res>
       bool messageForGiverrSent,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
-      @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
-          GiftGiver gift,
+      @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
+          Gift gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           LocalUser requester,
       DateTime createdAt});
@@ -206,7 +206,7 @@ abstract class _$GiftRequestCopyWith<$Res>
   @override
   $GiftRequestStatusCopyWith<$Res> get giftRequestStatus;
   @override
-  $GiftGiverCopyWith<$Res> get gift;
+  $GiftCopyWith<$Res> get gift;
   @override
   $LocalUserCopyWith<$Res> get requester;
 }
@@ -261,7 +261,7 @@ class __$GiftRequestCopyWithImpl<$Res> extends _$GiftRequestCopyWithImpl<$Res>
       gift: gift == freezed
           ? _value.gift
           : gift // ignore: cast_nullable_to_non_nullable
-              as GiftGiver,
+              as Gift,
       requester: requester == freezed
           ? _value.requester
           : requester // ignore: cast_nullable_to_non_nullable
@@ -285,7 +285,7 @@ class _$_GiftRequest implements _GiftRequest {
       this.messageForGiverrSent = false,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           this.giftRequestStatus = const GiftRequestStatus.pending(),
-      @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
+      @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
           required this.gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required this.requester,
@@ -310,8 +310,8 @@ class _$_GiftRequest implements _GiftRequest {
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   final GiftRequestStatus giftRequestStatus;
   @override
-  @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
-  final GiftGiver gift;
+  @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
+  final Gift gift;
   @override
   @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
   final LocalUser requester;
@@ -388,8 +388,8 @@ abstract class _GiftRequest implements GiftRequest {
       bool messageForGiverrSent,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
-      @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
-          required GiftGiver gift,
+      @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
+          required Gift gift,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required LocalUser requester,
       required DateTime createdAt}) = _$_GiftRequest;
@@ -411,8 +411,8 @@ abstract class _GiftRequest implements GiftRequest {
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap)
-  GiftGiver get gift => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
+  Gift get gift => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
   LocalUser get requester => throw _privateConstructorUsedError;

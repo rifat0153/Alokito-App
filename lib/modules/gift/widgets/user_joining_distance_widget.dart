@@ -1,5 +1,5 @@
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class UserRatingAndDistance extends StatelessWidget {
   UserRatingAndDistance({required this.giftGiver});
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
   final AuthController authController = Get.find();
 
   @override
@@ -66,7 +66,7 @@ class UserRatingAndDistance extends StatelessWidget {
 class UserDetail extends StatelessWidget {
   UserDetail({required this.giftGiver});
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
 
   @override
   Widget build(BuildContext context) {

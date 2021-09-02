@@ -2,7 +2,7 @@ import 'package:alokito_new/models/login/login.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
 import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/modules/auth/services/auth_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,7 +50,7 @@ class AuthController extends GetxController {
     authCompleted.value = false;
   }
 
-  double calculateDistanceForGiftDetail({required GiftGiver giftGiver}) {
+  double calculateDistanceForGiftDetail({required Gift giftGiver}) {
     final geo = Geoflutterfire();
     final giftGiverPoint =
         geo.point(latitude: giftGiver.geometry.coordinates.first, longitude: giftGiver.geometry.coordinates.last);

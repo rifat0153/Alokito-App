@@ -1,6 +1,6 @@
 import 'package:alokito_new/modules/gift_ask/views/gift_ask_request_view.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_add_form_controller.dart';
-import 'package:alokito_new/modules/gift_giver/views/gift_add_view.dart';
+import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
+import 'package:alokito_new/modules/gift/views/gift_add_view.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/gift_requester/widgets/notification_icon_widget.dart';
 import 'package:alokito_new/shared/config.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
-class GiftGiverView extends StatelessWidget {
+class GiftView extends StatelessWidget {
   static const route = '/giftgivermainmenu';
   final media = Get.size;
   final double menuHeight = Get.size.height * 0.18;

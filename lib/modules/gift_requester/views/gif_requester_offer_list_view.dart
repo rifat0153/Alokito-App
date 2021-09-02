@@ -1,4 +1,4 @@
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_controller.dart';
 import 'package:alokito_new/modules/gift_requester_details/views/gift_requester_details_view.dart';
@@ -150,7 +150,7 @@ class _GiftListTile extends StatelessWidget {
   }) : super(key: key);
 
   final GiftRequesterController controller;
-  final List<GiftGiver> giftList;
+  final List<Gift> giftList;
   final int index;
 
   @override

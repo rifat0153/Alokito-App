@@ -1,6 +1,6 @@
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/widgets/user_joining_distance_widget.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/modules/gift/widgets/user_joining_distance_widget.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/modules/gift_requester/widgets/gift_detail_map_widget.dart';
 import 'package:alokito_new/modules/gift_requester/widgets/message_popup_widget.dart';
 import 'package:alokito_new/modules/gift_requester_details/controllers/gift_requester_detail_controller.dart';
@@ -17,7 +17,7 @@ class GiftRequesterDetailsView extends StatelessWidget {
 
   static const route = 'giftdetailview';
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
   final AuthController authController = Get.find<AuthController>();
   
   //* Initializing Controller
@@ -71,7 +71,7 @@ class _BuildBody extends StatelessWidget {
   const _BuildBody({Key? key, required this.giftGiver, required this.authController, required this.giftRecieverDetailController})
       : super(key: key);
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
   final AuthController authController;
   final GiftRequesterDetailController giftRecieverDetailController;
 
@@ -124,7 +124,7 @@ class _DecisionWidget extends StatelessWidget {
       : super(key: key);
 
   final AuthController authController;
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
   final GiftRequesterDetailController giftRecieverDetailController;
 
   @override
@@ -219,7 +219,7 @@ class _DecisionWidget extends StatelessWidget {
 class _Location extends StatelessWidget {
   _Location({required this.giftGiver});
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
 
   @override
   Widget build(BuildContext context) {
@@ -240,7 +240,7 @@ class _Location extends StatelessWidget {
 class _Image extends StatelessWidget {
   const _Image({required this.giftGiver});
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -265,7 +265,7 @@ class _Image extends StatelessWidget {
 class _PackageName extends StatelessWidget {
   _PackageName({required this.giftGiver});
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
 
   @override
   Widget build(BuildContext context) {
@@ -304,7 +304,7 @@ class _PackageName extends StatelessWidget {
 class _GiftDetails extends StatelessWidget {
   _GiftDetails({required this.giftGiver});
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
 
   @override
   Widget build(BuildContext context) {

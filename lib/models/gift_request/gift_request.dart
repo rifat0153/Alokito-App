@@ -1,4 +1,4 @@
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,7 +17,7 @@ class GiftRequest with _$GiftRequest {
     @Default(GiftRequestStatus.pending())
     @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
         GiftRequestStatus giftRequestStatus,
-    @JsonKey(fromJson: giftGiverFromMap, toJson: giftGiverToMap) required GiftGiver gift,
+    @JsonKey(fromJson: giftFromMap, toJson: giftToMap) required Gift gift,
     @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap) required LocalUser requester,
     required DateTime createdAt,
   }) = _GiftRequest;

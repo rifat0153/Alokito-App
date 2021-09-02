@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,9 +17,9 @@ import 'package:location/location.dart';
 import 'package:uuid/uuid.dart';
 
 class GiftRequesterController extends GetxController {
-  GiftRequesterController(this.giftReceiverService, this.geo);
+  GiftRequesterController(this.giftRequesterService, this.geo);
 
-  final GiftRequesterService giftReceiverService;
+  final GiftRequesterService giftRequesterService;
   final Geoflutterfire geo;
 
   RxBool loading = RxBool(false);
@@ -28,14 +28,14 @@ class GiftRequesterController extends GetxController {
   RxBool requestExists = RxBool(false);
 
 // * load gift by location or with filtering
-  Rx<GiftGiverLoadingOption> giftRetriveOption = const GiftGiverLoadingOption.byLocation().obs;
+  Rx<GiftLoadingOption> giftRetriveOption = const GiftLoadingOption.byLocation().obs;
 
   Rx<int> page = 1.obs;
   Rx<int> limit = 3.obs;
   Rx<int> radius = 400.obs;
   Rx<String> searchString = ''.obs;
 
-  Rx<GiftGiverListUnion> giftList = const GiftGiverListUnion.loading().obs;
+  Rx<GiftListUnion> giftList = const GiftListUnion.loading().obs;
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
 
   Rx<bool> allGiftsFetched = false.obs;
@@ -58,10 +58,10 @@ class GiftRequesterController extends GetxController {
 
         //* if search string exists get gift by search, otherwise get gift by location only
         giftRetriveOption.value =
-            searchString.value.isNotEmpty ? const GiftGiverLoadingOption.bySearch() : const GiftGiverLoadingOption.byLocation();
+            searchString.value.isNotEmpty ? const GiftLoadingOption.bySearch() : const GiftLoadingOption.byLocation();
 
         //* set giftListState to loading
-        giftList.value = const GiftGiverListUnion.loading();
+        giftList.value = const GiftListUnion.loading();
 
         await retrieveGifts();
       },
@@ -93,12 +93,12 @@ class GiftRequesterController extends GetxController {
 
   //* Retrieve giftList by location from MongoDB
   Future<void> retrieveGifts() async {
-    GiftGiverListUnion giftListUnion = const GiftGiverListUnion.loading();
+    GiftListUnion giftListUnion = const GiftListUnion.loading();
 
-    if (giftRetriveOption.value == const GiftGiverLoadingOption.bySearch()) {
+    if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
       //* Search by filter called for first time, set page to 1 and giftList to loading state
 
-      giftListUnion = await giftReceiverService.getGiftByFilterDB(
+      giftListUnion = await giftRequesterService.getGiftByFilterDB(
         searchString.value,
         page.value.toString(),
         limit.value.toString(),
@@ -108,7 +108,7 @@ class GiftRequesterController extends GetxController {
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => ''),
       );
     } else {
-      giftListUnion = await giftReceiverService.getGiftDB(
+      giftListUnion = await giftRequesterService.getGiftDB(
         page.value.toString(),
         limit.value.toString(),
         userPosition.value.latitude,
@@ -123,8 +123,8 @@ class GiftRequesterController extends GetxController {
     if (page.toInt() == 1 && found) {
       giftList.value = giftListUnion;
     } else {
-      final List<GiftGiver> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
-      final List<GiftGiver> newGifts = giftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
+      final List<Gift> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
+      final List<Gift> newGifts = giftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
 
       if (newGifts.isEmpty) {
         allGiftsFetched.value = true;
@@ -133,31 +133,31 @@ class GiftRequesterController extends GetxController {
       }
 
       final updatedGiftList = [...existingGifts, ...newGifts];
-      giftList.value = GiftGiverListUnion.data(updatedGiftList);
+      giftList.value = GiftListUnion.data(updatedGiftList);
     }
 
     _updateMarkers(giftList.value.maybeWhen(data: (data) => data, orElse: () => []));
   }
 
-  void _updateMarkers(List<GiftGiver> documentList) {
+  void _updateMarkers(List<Gift> documentList) {
     markers.value = <MarkerId, Marker>{};
 
-    for (final giftGiver in documentList) {
-      if (giftGiver.user?.uid == Get.find<AuthController>().currentUser.value.id) return;
+    for (final gift in documentList) {
+      if (gift.user?.uid == Get.find<AuthController>().currentUser.value.id) return;
 
       // * Reverse order of Coordinates , bcz mongoDB returns lng first in the array,e.g. [lng, lat]
-      final GeoPoint point = GeoPoint(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.first);
+      final GeoPoint point = GeoPoint(gift.geometry.coordinates.last, gift.geometry.coordinates.first);
 
       final userLocation = Get.find<AuthController>().currentUserPosition;
       final userPoint = geo.point(latitude: userLocation.value.latitude, longitude: userLocation.value.longitude);
 
       final distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
 
-      _addMarker(point.latitude, point.longitude, distance, giftGiver);
+      _addMarker(point.latitude, point.longitude, distance, gift);
     }
   }
 
-  Future<void> _addMarker(double lat, double lng, double distance, giftGiver) async {
+  Future<void> _addMarker(double lat, double lng, double distance, gift) async {
     //* Load Custom Marker
     final Uint8List markerIcon = await getBytesFromAsset('assets/images/map-dot (1).png', 50);
 

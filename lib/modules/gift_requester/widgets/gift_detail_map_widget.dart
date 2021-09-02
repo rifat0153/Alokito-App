@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +10,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class GiftDetailMapWidget extends StatelessWidget {
   GiftDetailMapWidget({required this.giftGiver});
 
-  final GiftGiver giftGiver;
+  final Gift giftGiver;
   final AuthController authController = Get.find();
   final Completer<GoogleMapController> _controller = Completer();
 

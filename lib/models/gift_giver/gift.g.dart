@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'gift_giver.dart';
+part of 'gift.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GiftGiver _$_$_GiftGiverFromJson(Map<String, dynamic> json) {
-  return _$_GiftGiver(
+_$_Gift _$_$_GiftFromJson(Map<String, dynamic> json) {
+  return _$_Gift(
     id: json['id'] as String?,
     listingForDays: json['listingForDays'] as int,
     canLeaveOutside: json['canLeaveOutside'] as bool,
@@ -24,8 +24,7 @@ _$_GiftGiver _$_$_GiftGiverFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_GiftGiverToJson(_$_GiftGiver instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_GiftToJson(_$_Gift instance) => <String, dynamic>{
       'id': instance.id,
       'listingForDays': instance.listingForDays,
       'canLeaveOutside': instance.canLeaveOutside,

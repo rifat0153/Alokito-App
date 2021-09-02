@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'gift_giver.dart';
+part of 'gift.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,15 +12,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GiftGiver _$GiftGiverFromJson(Map<String, dynamic> json) {
-  return _GiftGiver.fromJson(json);
+Gift _$GiftFromJson(Map<String, dynamic> json) {
+  return _Gift.fromJson(json);
 }
 
 /// @nodoc
-class _$GiftGiverTearOff {
-  const _$GiftGiverTearOff();
+class _$GiftTearOff {
+  const _$GiftTearOff();
 
-  _GiftGiver call(
+  _Gift call(
       {String? id,
       required int listingForDays,
       required bool canLeaveOutside,
@@ -36,7 +36,7 @@ class _$GiftGiverTearOff {
       required String location,
       required String imageUrl,
       required double distance}) {
-    return _GiftGiver(
+    return _Gift(
       id: id,
       listingForDays: listingForDays,
       canLeaveOutside: canLeaveOutside,
@@ -53,16 +53,16 @@ class _$GiftGiverTearOff {
     );
   }
 
-  GiftGiver fromJson(Map<String, Object> json) {
-    return GiftGiver.fromJson(json);
+  Gift fromJson(Map<String, Object> json) {
+    return Gift.fromJson(json);
   }
 }
 
 /// @nodoc
-const $GiftGiver = _$GiftGiverTearOff();
+const $Gift = _$GiftTearOff();
 
 /// @nodoc
-mixin _$GiftGiver {
+mixin _$Gift {
   String? get id => throw _privateConstructorUsedError;
   int get listingForDays => throw _privateConstructorUsedError;
   bool get canLeaveOutside => throw _privateConstructorUsedError;
@@ -81,14 +81,13 @@ mixin _$GiftGiver {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GiftGiverCopyWith<GiftGiver> get copyWith =>
-      throw _privateConstructorUsedError;
+  $GiftCopyWith<Gift> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GiftGiverCopyWith<$Res> {
-  factory $GiftGiverCopyWith(GiftGiver value, $Res Function(GiftGiver) then) =
-      _$GiftGiverCopyWithImpl<$Res>;
+abstract class $GiftCopyWith<$Res> {
+  factory $GiftCopyWith(Gift value, $Res Function(Gift) then) =
+      _$GiftCopyWithImpl<$Res>;
   $Res call(
       {String? id,
       int listingForDays,
@@ -111,12 +110,12 @@ abstract class $GiftGiverCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
-  _$GiftGiverCopyWithImpl(this._value, this._then);
+class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
+  _$GiftCopyWithImpl(this._value, this._then);
 
-  final GiftGiver _value;
+  final Gift _value;
   // ignore: unused_field
-  final $Res Function(GiftGiver) _then;
+  final $Res Function(Gift) _then;
 
   @override
   $Res call({
@@ -210,10 +209,9 @@ class _$GiftGiverCopyWithImpl<$Res> implements $GiftGiverCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
-  factory _$GiftGiverCopyWith(
-          _GiftGiver value, $Res Function(_GiftGiver) then) =
-      __$GiftGiverCopyWithImpl<$Res>;
+abstract class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
+  factory _$GiftCopyWith(_Gift value, $Res Function(_Gift) then) =
+      __$GiftCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? id,
@@ -239,13 +237,13 @@ abstract class _$GiftGiverCopyWith<$Res> implements $GiftGiverCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
-    implements _$GiftGiverCopyWith<$Res> {
-  __$GiftGiverCopyWithImpl(_GiftGiver _value, $Res Function(_GiftGiver) _then)
-      : super(_value, (v) => _then(v as _GiftGiver));
+class __$GiftCopyWithImpl<$Res> extends _$GiftCopyWithImpl<$Res>
+    implements _$GiftCopyWith<$Res> {
+  __$GiftCopyWithImpl(_Gift _value, $Res Function(_Gift) _then)
+      : super(_value, (v) => _then(v as _Gift));
 
   @override
-  _GiftGiver get _value => super._value as _GiftGiver;
+  _Gift get _value => super._value as _Gift;
 
   @override
   $Res call({
@@ -263,7 +261,7 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? distance = freezed,
   }) {
-    return _then(_GiftGiver(
+    return _then(_Gift(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -322,8 +320,8 @@ class __$GiftGiverCopyWithImpl<$Res> extends _$GiftGiverCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GiftGiver implements _GiftGiver {
-  const _$_GiftGiver(
+class _$_Gift implements _Gift {
+  const _$_Gift(
       {this.id,
       required this.listingForDays,
       required this.canLeaveOutside,
@@ -340,8 +338,8 @@ class _$_GiftGiver implements _GiftGiver {
       required this.imageUrl,
       required this.distance});
 
-  factory _$_GiftGiver.fromJson(Map<String, dynamic> json) =>
-      _$_$_GiftGiverFromJson(json);
+  factory _$_Gift.fromJson(Map<String, dynamic> json) =>
+      _$_$_GiftFromJson(json);
 
   @override
   final String? id;
@@ -374,13 +372,13 @@ class _$_GiftGiver implements _GiftGiver {
 
   @override
   String toString() {
-    return 'GiftGiver(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, userId: $userId, user: $user, geometry: $geometry, giftType: $giftType, giftDetails: $giftDetails, pickUpTime: $pickUpTime, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
+    return 'Gift(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, userId: $userId, user: $user, geometry: $geometry, giftType: $giftType, giftDetails: $giftDetails, pickUpTime: $pickUpTime, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GiftGiver &&
+        (other is _Gift &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.listingForDays, listingForDays) ||
@@ -437,17 +435,17 @@ class _$_GiftGiver implements _GiftGiver {
 
   @JsonKey(ignore: true)
   @override
-  _$GiftGiverCopyWith<_GiftGiver> get copyWith =>
-      __$GiftGiverCopyWithImpl<_GiftGiver>(this, _$identity);
+  _$GiftCopyWith<_Gift> get copyWith =>
+      __$GiftCopyWithImpl<_Gift>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GiftGiverToJson(this);
+    return _$_$_GiftToJson(this);
   }
 }
 
-abstract class _GiftGiver implements GiftGiver {
-  const factory _GiftGiver(
+abstract class _Gift implements Gift {
+  const factory _Gift(
       {String? id,
       required int listingForDays,
       required bool canLeaveOutside,
@@ -462,10 +460,9 @@ abstract class _GiftGiver implements GiftGiver {
       required String area,
       required String location,
       required String imageUrl,
-      required double distance}) = _$_GiftGiver;
+      required double distance}) = _$_Gift;
 
-  factory _GiftGiver.fromJson(Map<String, dynamic> json) =
-      _$_GiftGiver.fromJson;
+  factory _Gift.fromJson(Map<String, dynamic> json) = _$_Gift.fromJson;
 
   @override
   String? get id => throw _privateConstructorUsedError;
@@ -497,13 +494,12 @@ abstract class _GiftGiver implements GiftGiver {
   double get distance => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GiftGiverCopyWith<_GiftGiver> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$GiftCopyWith<_Gift> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class _$GiftGiverLoadingOptionTearOff {
-  const _$GiftGiverLoadingOptionTearOff();
+class _$GiftLoadingOptionTearOff {
+  const _$GiftLoadingOptionTearOff();
 
   ByLocation byLocation() {
     return const ByLocation();
@@ -515,10 +511,10 @@ class _$GiftGiverLoadingOptionTearOff {
 }
 
 /// @nodoc
-const $GiftGiverLoadingOption = _$GiftGiverLoadingOptionTearOff();
+const $GiftLoadingOption = _$GiftLoadingOptionTearOff();
 
 /// @nodoc
-mixin _$GiftGiverLoadingOption {
+mixin _$GiftLoadingOption {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() byLocation,
@@ -548,20 +544,20 @@ mixin _$GiftGiverLoadingOption {
 }
 
 /// @nodoc
-abstract class $GiftGiverLoadingOptionCopyWith<$Res> {
-  factory $GiftGiverLoadingOptionCopyWith(GiftGiverLoadingOption value,
-          $Res Function(GiftGiverLoadingOption) then) =
-      _$GiftGiverLoadingOptionCopyWithImpl<$Res>;
+abstract class $GiftLoadingOptionCopyWith<$Res> {
+  factory $GiftLoadingOptionCopyWith(
+          GiftLoadingOption value, $Res Function(GiftLoadingOption) then) =
+      _$GiftLoadingOptionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GiftGiverLoadingOptionCopyWithImpl<$Res>
-    implements $GiftGiverLoadingOptionCopyWith<$Res> {
-  _$GiftGiverLoadingOptionCopyWithImpl(this._value, this._then);
+class _$GiftLoadingOptionCopyWithImpl<$Res>
+    implements $GiftLoadingOptionCopyWith<$Res> {
+  _$GiftLoadingOptionCopyWithImpl(this._value, this._then);
 
-  final GiftGiverLoadingOption _value;
+  final GiftLoadingOption _value;
   // ignore: unused_field
-  final $Res Function(GiftGiverLoadingOption) _then;
+  final $Res Function(GiftLoadingOption) _then;
 }
 
 /// @nodoc
@@ -573,7 +569,7 @@ abstract class $ByLocationCopyWith<$Res> {
 
 /// @nodoc
 class _$ByLocationCopyWithImpl<$Res>
-    extends _$GiftGiverLoadingOptionCopyWithImpl<$Res>
+    extends _$GiftLoadingOptionCopyWithImpl<$Res>
     implements $ByLocationCopyWith<$Res> {
   _$ByLocationCopyWithImpl(ByLocation _value, $Res Function(ByLocation) _then)
       : super(_value, (v) => _then(v as ByLocation));
@@ -589,7 +585,7 @@ class _$ByLocation implements ByLocation {
 
   @override
   String toString() {
-    return 'GiftGiverLoadingOption.byLocation()';
+    return 'GiftLoadingOption.byLocation()';
   }
 
   @override
@@ -645,7 +641,7 @@ class _$ByLocation implements ByLocation {
   }
 }
 
-abstract class ByLocation implements GiftGiverLoadingOption {
+abstract class ByLocation implements GiftLoadingOption {
   const factory ByLocation() = _$ByLocation;
 }
 
@@ -656,8 +652,7 @@ abstract class $BySearchCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BySearchCopyWithImpl<$Res>
-    extends _$GiftGiverLoadingOptionCopyWithImpl<$Res>
+class _$BySearchCopyWithImpl<$Res> extends _$GiftLoadingOptionCopyWithImpl<$Res>
     implements $BySearchCopyWith<$Res> {
   _$BySearchCopyWithImpl(BySearch _value, $Res Function(BySearch) _then)
       : super(_value, (v) => _then(v as BySearch));
@@ -673,7 +668,7 @@ class _$BySearch implements BySearch {
 
   @override
   String toString() {
-    return 'GiftGiverLoadingOption.bySearch()';
+    return 'GiftLoadingOption.bySearch()';
   }
 
   @override
@@ -729,17 +724,17 @@ class _$BySearch implements BySearch {
   }
 }
 
-abstract class BySearch implements GiftGiverLoadingOption {
+abstract class BySearch implements GiftLoadingOption {
   const factory BySearch() = _$BySearch;
 }
 
 /// @nodoc
-class _$GiftGiverListUnionTearOff {
-  const _$GiftGiverListUnionTearOff();
+class _$GiftListUnionTearOff {
+  const _$GiftListUnionTearOff();
 
-  Data data(List<GiftGiver> giftGiverList) {
+  Data data(List<Gift> giftList) {
     return Data(
-      giftGiverList,
+      giftList,
     );
   }
 
@@ -759,13 +754,13 @@ class _$GiftGiverListUnionTearOff {
 }
 
 /// @nodoc
-const $GiftGiverListUnion = _$GiftGiverListUnionTearOff();
+const $GiftListUnion = _$GiftListUnionTearOff();
 
 /// @nodoc
-mixin _$GiftGiverListUnion {
+mixin _$GiftListUnion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<GiftGiver> giftGiverList) data,
+    required TResult Function(List<Gift> giftList) data,
     required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object error) error,
@@ -773,7 +768,7 @@ mixin _$GiftGiverListUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<GiftGiver> giftGiverList)? data,
+    TResult Function(List<Gift> giftList)? data,
     TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object error)? error,
@@ -800,31 +795,31 @@ mixin _$GiftGiverListUnion {
 }
 
 /// @nodoc
-abstract class $GiftGiverListUnionCopyWith<$Res> {
-  factory $GiftGiverListUnionCopyWith(
-          GiftGiverListUnion value, $Res Function(GiftGiverListUnion) then) =
-      _$GiftGiverListUnionCopyWithImpl<$Res>;
+abstract class $GiftListUnionCopyWith<$Res> {
+  factory $GiftListUnionCopyWith(
+          GiftListUnion value, $Res Function(GiftListUnion) then) =
+      _$GiftListUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GiftGiverListUnionCopyWithImpl<$Res>
-    implements $GiftGiverListUnionCopyWith<$Res> {
-  _$GiftGiverListUnionCopyWithImpl(this._value, this._then);
+class _$GiftListUnionCopyWithImpl<$Res>
+    implements $GiftListUnionCopyWith<$Res> {
+  _$GiftListUnionCopyWithImpl(this._value, this._then);
 
-  final GiftGiverListUnion _value;
+  final GiftListUnion _value;
   // ignore: unused_field
-  final $Res Function(GiftGiverListUnion) _then;
+  final $Res Function(GiftListUnion) _then;
 }
 
 /// @nodoc
 abstract class $DataCopyWith<$Res> {
   factory $DataCopyWith(Data value, $Res Function(Data) then) =
       _$DataCopyWithImpl<$Res>;
-  $Res call({List<GiftGiver> giftGiverList});
+  $Res call({List<Gift> giftList});
 }
 
 /// @nodoc
-class _$DataCopyWithImpl<$Res> extends _$GiftGiverListUnionCopyWithImpl<$Res>
+class _$DataCopyWithImpl<$Res> extends _$GiftListUnionCopyWithImpl<$Res>
     implements $DataCopyWith<$Res> {
   _$DataCopyWithImpl(Data _value, $Res Function(Data) _then)
       : super(_value, (v) => _then(v as Data));
@@ -834,13 +829,13 @@ class _$DataCopyWithImpl<$Res> extends _$GiftGiverListUnionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? giftGiverList = freezed,
+    Object? giftList = freezed,
   }) {
     return _then(Data(
-      giftGiverList == freezed
-          ? _value.giftGiverList
-          : giftGiverList // ignore: cast_nullable_to_non_nullable
-              as List<GiftGiver>,
+      giftList == freezed
+          ? _value.giftList
+          : giftList // ignore: cast_nullable_to_non_nullable
+              as List<Gift>,
     ));
   }
 }
@@ -848,28 +843,28 @@ class _$DataCopyWithImpl<$Res> extends _$GiftGiverListUnionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Data implements Data {
-  const _$Data(this.giftGiverList);
+  const _$Data(this.giftList);
 
   @override
-  final List<GiftGiver> giftGiverList;
+  final List<Gift> giftList;
 
   @override
   String toString() {
-    return 'GiftGiverListUnion.data(giftGiverList: $giftGiverList)';
+    return 'GiftListUnion.data(giftList: $giftList)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Data &&
-            (identical(other.giftGiverList, giftGiverList) ||
+            (identical(other.giftList, giftList) ||
                 const DeepCollectionEquality()
-                    .equals(other.giftGiverList, giftGiverList)));
+                    .equals(other.giftList, giftList)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftGiverList);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftList);
 
   @JsonKey(ignore: true)
   @override
@@ -879,25 +874,25 @@ class _$Data implements Data {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<GiftGiver> giftGiverList) data,
+    required TResult Function(List<Gift> giftList) data,
     required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object error) error,
   }) {
-    return data(giftGiverList);
+    return data(giftList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<GiftGiver> giftGiverList)? data,
+    TResult Function(List<Gift> giftList)? data,
     TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(giftGiverList);
+      return data(giftList);
     }
     return orElse();
   }
@@ -929,10 +924,10 @@ class _$Data implements Data {
   }
 }
 
-abstract class Data implements GiftGiverListUnion {
-  const factory Data(List<GiftGiver> giftGiverList) = _$Data;
+abstract class Data implements GiftListUnion {
+  const factory Data(List<Gift> giftList) = _$Data;
 
-  List<GiftGiver> get giftGiverList => throw _privateConstructorUsedError;
+  List<Gift> get giftList => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -944,7 +939,7 @@ abstract class $EmptyCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EmptyCopyWithImpl<$Res> extends _$GiftGiverListUnionCopyWithImpl<$Res>
+class _$EmptyCopyWithImpl<$Res> extends _$GiftListUnionCopyWithImpl<$Res>
     implements $EmptyCopyWith<$Res> {
   _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
       : super(_value, (v) => _then(v as Empty));
@@ -960,7 +955,7 @@ class _$Empty implements Empty {
 
   @override
   String toString() {
-    return 'GiftGiverListUnion.empty()';
+    return 'GiftListUnion.empty()';
   }
 
   @override
@@ -974,7 +969,7 @@ class _$Empty implements Empty {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<GiftGiver> giftGiverList) data,
+    required TResult Function(List<Gift> giftList) data,
     required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object error) error,
@@ -985,7 +980,7 @@ class _$Empty implements Empty {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<GiftGiver> giftGiverList)? data,
+    TResult Function(List<Gift> giftList)? data,
     TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object error)? error,
@@ -1024,7 +1019,7 @@ class _$Empty implements Empty {
   }
 }
 
-abstract class Empty implements GiftGiverListUnion {
+abstract class Empty implements GiftListUnion {
   const factory Empty() = _$Empty;
 }
 
@@ -1035,7 +1030,7 @@ abstract class $LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$GiftGiverListUnionCopyWithImpl<$Res>
+class _$LoadingCopyWithImpl<$Res> extends _$GiftListUnionCopyWithImpl<$Res>
     implements $LoadingCopyWith<$Res> {
   _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
       : super(_value, (v) => _then(v as Loading));
@@ -1051,7 +1046,7 @@ class _$Loading implements Loading {
 
   @override
   String toString() {
-    return 'GiftGiverListUnion.loading()';
+    return 'GiftListUnion.loading()';
   }
 
   @override
@@ -1065,7 +1060,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<GiftGiver> giftGiverList) data,
+    required TResult Function(List<Gift> giftList) data,
     required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object error) error,
@@ -1076,7 +1071,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<GiftGiver> giftGiverList)? data,
+    TResult Function(List<Gift> giftList)? data,
     TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object error)? error,
@@ -1115,7 +1110,7 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements GiftGiverListUnion {
+abstract class Loading implements GiftListUnion {
   const factory Loading() = _$Loading;
 }
 
@@ -1127,7 +1122,7 @@ abstract class $ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ErrorCopyWithImpl<$Res> extends _$GiftGiverListUnionCopyWithImpl<$Res>
+class _$ErrorCopyWithImpl<$Res> extends _$GiftListUnionCopyWithImpl<$Res>
     implements $ErrorCopyWith<$Res> {
   _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
       : super(_value, (v) => _then(v as Error));
@@ -1158,7 +1153,7 @@ class _$Error implements Error {
 
   @override
   String toString() {
-    return 'GiftGiverListUnion.error(error: $error)';
+    return 'GiftListUnion.error(error: $error)';
   }
 
   @override
@@ -1181,7 +1176,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<GiftGiver> giftGiverList) data,
+    required TResult Function(List<Gift> giftList) data,
     required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object error) error,
@@ -1192,7 +1187,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<GiftGiver> giftGiverList)? data,
+    TResult Function(List<Gift> giftList)? data,
     TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object error)? error,
@@ -1231,7 +1226,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements GiftGiverListUnion {
+abstract class Error implements GiftListUnion {
   const factory Error(Object error) = _$Error;
 
   Object get error => throw _privateConstructorUsedError;

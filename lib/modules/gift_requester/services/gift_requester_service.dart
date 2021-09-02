@@ -1,22 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/modules/gift_requester/gift_requester_exception.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
 abstract class BaseGiftRequesterService {
   Future<bool> addGiftRequest({required GiftRequest giftReceiver});
 
-  Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius, String id);
+  Future<GiftListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius, String id);
 
-  Future<GiftGiverListUnion> getGiftByFilterDB(
+  Future<GiftListUnion> getGiftByFilterDB(
       String searchString, String page, String limit, double lat, double lng, double radius, String id);
 
   Future<bool> findGift({required String id});
@@ -35,7 +34,7 @@ class GiftRequesterService implements BaseGiftRequesterService {
   final FirebaseFirestore _firestore;
 
   @override
-  Future<GiftGiverListUnion> getGiftByFilterDB(
+  Future<GiftListUnion> getGiftByFilterDB(
     String searchString,
     String page,
     String limit,
@@ -60,32 +59,32 @@ class GiftRequesterService implements BaseGiftRequesterService {
 
       final List<dynamic> giftJson = body['gifts'] as List<dynamic>;
 
-      final List<GiftGiver> gifts = giftJson
+      final List<Gift> gifts = giftJson
           .map(
-            (gift) => GiftGiver.fromJson(gift as Map<String, dynamic>),
+            (gift) => Gift.fromJson(gift as Map<String, dynamic>),
           )
           .toList();
 
-      final List<GiftGiver> filteredGifts = [];
+      final List<Gift> filteredGifts = [];
 
-      for (var gift in giftJson) {
-        final giftGiver = GiftGiver.fromJson(gift as Map<String, dynamic>);
+      for (final giftData in giftJson) {
+        final gift = Gift.fromJson(giftData as Map<String, dynamic>);
 
-        if (giftGiver.user != null) {
-          filteredGifts.add(giftGiver);
+        if (gift.user != null) {
+          filteredGifts.add(gift);
         }
       }
 
-      return GiftGiverListUnion.data(filteredGifts);
+      return GiftListUnion.data(filteredGifts);
     } on TimeoutException catch (_) {
-      return const GiftGiverListUnion.error('Server could not be reached');
+      return const GiftListUnion.error('Server could not be reached');
     } catch (e) {
-      return GiftGiverListUnion.error(e.toString());
+      return GiftListUnion.error(e.toString());
     }
   }
 
   @override
-  Future<GiftGiverListUnion> getGiftDB(
+  Future<GiftListUnion> getGiftDB(
     String page,
     String limit,
     double lat,
@@ -105,17 +104,17 @@ class GiftRequesterService implements BaseGiftRequesterService {
 
       final List<dynamic> giftJson = body['gifts'] as List<dynamic>;
 
-      final List<GiftGiver> filteredGifts = [];
+      final List<Gift> filteredGifts = [];
 
       print('TOTAL gift: ' + giftJson.length.toString());
 
-      for (final gift in giftJson) {
-        final giftGiver = GiftGiver.fromJson(gift as Map<String, dynamic>);
+      for (final giftData in giftJson) {
+        final gift = Gift.fromJson(giftData as Map<String, dynamic>);
 
-        print('UID: ' + giftGiver.user!.uid.toString());
+        print('UID: ' + gift.user!.uid.toString());
 
-        if (giftGiver.user != null) {
-          filteredGifts.add(giftGiver);
+        if (gift.user != null) {
+          filteredGifts.add(gift);
         }
        
         else {
@@ -126,11 +125,11 @@ class GiftRequesterService implements BaseGiftRequesterService {
       print('get gift by Location service called');
       print(' Filtered Results ' + filteredGifts.length.toString());
 
-      return GiftGiverListUnion.data(filteredGifts);
+      return GiftListUnion.data(filteredGifts);
     } on TimeoutException catch (_) {
-      return const GiftGiverListUnion.error('Server could not be reached');
+      return const GiftListUnion.error('Server could not be reached');
     } catch (e) {
-      return GiftGiverListUnion.error(e.toString());
+      return GiftListUnion.error(e.toString());
     }
   }
 

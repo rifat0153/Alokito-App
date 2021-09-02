@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/views/gift_giver_view.dart';
+import 'package:alokito_new/modules/gift/views/gift_view.dart';
 import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
 import 'package:alokito_new/modules/home/home_view.dart';
 import 'package:alokito_new/modules/notification/notification_view.dart';
@@ -124,7 +124,7 @@ class MyDrawer extends StatelessWidget {
         _buildMenuItem(
           navFunction: () {
             // Navigator.push(context, MaterialPageRoute(builder: (_) => GiftGiverView.route()));
-            Navigator.pushNamed(context, GiftGiverView.route);
+            Navigator.pushNamed(context, GiftView.route);
           },
           assetPath: 'assets/images/gift_hand.svg',
           menuItemName: 'Gift Giver',

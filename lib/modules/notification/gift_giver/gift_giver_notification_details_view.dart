@@ -1,7 +1,7 @@
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
+import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
 import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
 import 'package:alokito_new/modules/notification/gift_giver/widgets/feedback_widget.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';

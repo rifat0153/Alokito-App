@@ -3,7 +3,6 @@ import 'package:alokito_new/modules/gift_requester/views/gif_requester_offer_lis
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:alokito_new/modules/gift_ask/views/gift_ask_view.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';

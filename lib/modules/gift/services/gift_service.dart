@@ -1,9 +1,8 @@
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_add_form_controller.dart';
-import 'package:alokito_new/modules/gift_giver/gift_giver_exception.dart';
+import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:alokito_new/shared/shared_service.dart';
@@ -11,11 +10,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../gift_exception.dart';
+
 abstract class BaseGiftGiverService {
   Future<void> addGift();
 }
 
-class GiftGiverService implements BaseGiftGiverService {
+class GiftService implements BaseGiftGiverService {
   @override
   Future<void> addGift() async {
     final client = http.Client();
@@ -31,14 +32,14 @@ class GiftGiverService implements BaseGiftGiverService {
       final uid = FirebaseAuth.instance.currentUser?.uid;
       giftImageUrl = await FirebaseService.uploadImageAndReturnDownloadURL(controller.imageFile.value, 'users/$uid');
     } catch (e) {
-      throw GiftGiverException(message: 'Gift image Upload Fail');
+      throw GiftException(message: 'Gift image Upload Fail');
     }
 
     final LocalUser? currentUser =
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
 
     try {
-      final gift = GiftGiver(
+      final gift = Gift(
         userId: currentUser!.id?? '',
         user: currentUser,
         listingForDays: controller.givingGiftInDays.value,

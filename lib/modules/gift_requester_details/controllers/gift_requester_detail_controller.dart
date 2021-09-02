@@ -1,4 +1,4 @@
-import 'package:alokito_new/models/gift_giver/gift_giver.dart';
+import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
@@ -15,7 +15,7 @@ class GiftRequesterDetailController extends GetxController {
 
   RxString comment = ''.obs;
 
-  Future<void> addGiftRequest(GiftGiver giftGiver) async {
+  Future<void> addGiftRequest(Gift giftGiver) async {
     final LocalUser? currentUser =
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
 
