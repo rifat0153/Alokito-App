@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'gift_receiver.dart';
+part of 'gift_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -13,8 +13,8 @@ _$_GiftRequest _$_$_GiftRequestFromJson(Map<String, dynamic> json) {
     comment: json['comment'] as String,
     messageForRequesterSent: json['messageForRequesterSent'] as bool? ?? false,
     messageForGiverrSent: json['messageForGiverrSent'] as bool? ?? false,
-    giftRequestStatus: giftRequestStatusFromJson(
-        json['giftRequestStatus'] as Map<String, dynamic>),
+    giftRequestStatus:
+        giftRequestStatusFromJson(json['giftRequestStatus'] as String),
     gift: giftGiverFromMap(json['gift'] as Map<String, dynamic>),
     requester:
         localUserNonNullFromMap(json['requester'] as Map<String, dynamic>),

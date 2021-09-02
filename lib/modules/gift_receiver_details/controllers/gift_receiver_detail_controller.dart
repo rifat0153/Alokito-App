@@ -1,5 +1,5 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
+import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';

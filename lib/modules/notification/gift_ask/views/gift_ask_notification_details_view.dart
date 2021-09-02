@@ -1,5 +1,5 @@
 import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
-import 'package:alokito_new/models/gift_giver/gift_receiver.dart';
+import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/notification/gift_ask/widgets/gift_ask_feedback_widget.dart';

@@ -1,12 +1,10 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/models/json_converters.dart';
 import 'package:alokito_new/models/user/local_user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'gift_receiver.freezed.dart';
-part 'gift_receiver.g.dart';
+part 'gift_request.freezed.dart';
+part 'gift_request.g.dart';
 
 @freezed
 class GiftRequest with _$GiftRequest {
@@ -28,7 +26,7 @@ class GiftRequest with _$GiftRequest {
 }
 
 @freezed
-class GiftRequestStatus with _$GiftRequestStatus {
+abstract class GiftRequestStatus with _$GiftRequestStatus {
   const factory GiftRequestStatus.pending() = Pending;
   const factory GiftRequestStatus.confirmed() = Confirmed;
   const factory GiftRequestStatus.canceledByGiver() = CanceledByGiver;
@@ -39,8 +37,43 @@ class GiftRequestStatus with _$GiftRequestStatus {
   factory GiftRequestStatus.fromJson(Map<String, dynamic> json) => _$GiftRequestStatusFromJson(json);
 }
 
-Map<String, dynamic> giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) => giftRequestStatus.toJson();
-GiftRequestStatus giftRequestStatusFromJson(Map<String, dynamic> json) => GiftRequestStatus.fromJson(json);
+String giftRequestStatusToJson(GiftRequestStatus giftRequestStatus) {
+  if (giftRequestStatus == const GiftRequestStatus.pending()) {
+    return 'pending';
+  } else if (giftRequestStatus == const GiftRequestStatus.confirmed()) {
+    return 'confirmed';
+  } else if (giftRequestStatus == const GiftRequestStatus.canceledByGiver()) {
+    return 'canceledByGiver';
+  } else if (giftRequestStatus == const GiftRequestStatus.canceledByRequester()) {
+    return 'canceledByRequester';
+  } else if (giftRequestStatus == const GiftRequestStatus.accepted()) {
+    return 'accepted';
+  } else if (giftRequestStatus == const GiftRequestStatus.delivered()) {
+    return 'delivered';
+  } else {
+    return 'pending';
+  }
+}
+
+GiftRequestStatus giftRequestStatusFromJson(String giftRequestStatus) {
+  switch (giftRequestStatus) {
+    case 'pending':
+      return const GiftRequestStatus.pending();
+    case 'confirmed':
+      return const GiftRequestStatus.confirmed();
+    case 'canceledByGiver':
+      return const GiftRequestStatus.canceledByGiver();
+    case 'canceledByRequester':
+      return const GiftRequestStatus.canceledByRequester();
+    case 'accepted':
+      return const GiftRequestStatus.accepted();
+    case 'delivered':
+      return const GiftRequestStatus.delivered();
+
+    default:
+      return const GiftRequestStatus.pending();
+  }
+}
 
 @freezed
 class GiftRequestNotificationUnion with _$GiftRequestNotificationUnion {
