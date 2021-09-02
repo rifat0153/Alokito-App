@@ -6,7 +6,7 @@ import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:alokito_new/shared/shared_service.dart';
 import 'package:http/http.dart' as http;
 
-abstract class BaseGiftReceiverDetailService {
+abstract class BaseGiftRequesterDetailService {
   Future<void> add(GiftRequest giftRequest);
 
   Future<void> update(GiftRequest giftRequest, String requestStatus);
@@ -14,7 +14,7 @@ abstract class BaseGiftReceiverDetailService {
   Future<void> delete(GiftRequest giftRequest);
 }
 
-class GiftReceiverDetailService implements BaseGiftReceiverDetailService {
+class GiftRequesterDetailService implements BaseGiftRequesterDetailService {
   @override
   Future<void> add(GiftRequest giftRequest) async {
     final client = http.Client();

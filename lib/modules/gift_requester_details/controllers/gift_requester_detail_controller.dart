@@ -2,16 +2,14 @@ import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_giver/controllers/gift_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
-import 'package:alokito_new/modules/gift_receiver_details/services/gift_receiver_detail_service.dart';
+import 'package:alokito_new/modules/gift_requester_details/services/gift_requester_detail_service.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:get/get.dart';
 
-class GiftReceiverDetailController extends GetxController {
-  GiftReceiverDetailController(this.giftReceiverDetailService);
+class GiftRequesterDetailController extends GetxController {
+  GiftRequesterDetailController(this.giftReceiverDetailService);
 
-  GiftReceiverDetailService giftReceiverDetailService;
+  GiftRequesterDetailService giftReceiverDetailService;
 
   RxBool loading = false.obs;
 

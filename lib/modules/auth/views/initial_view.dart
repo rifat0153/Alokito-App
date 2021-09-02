@@ -6,7 +6,6 @@ import 'package:alokito_new/modules/language/language_controller.dart';
 import 'package:alokito_new/modules/providers/firebase_provider.dart';
 import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/controller/gift_ask_giver_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

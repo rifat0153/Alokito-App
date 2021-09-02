@@ -1,10 +1,10 @@
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/views/gift_giver_view.dart';
+import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
 import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_navbar.dart';
-import 'package:alokito_new/modules/gift_receiver/views/gift_receiver_view.dart';
 import 'package:alokito_new/modules/settings/views/settings_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
@@ -156,7 +156,7 @@ class _BuildBody extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.toNamed(GiftReceiverView.route);
+                Get.toNamed(GiftRequesterView.route);
               },
               child: _GiftRecieverMenu(height: media.height * 0.1, width: media.width * 0.7),
             ),

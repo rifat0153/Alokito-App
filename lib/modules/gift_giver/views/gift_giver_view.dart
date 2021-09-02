@@ -1,8 +1,8 @@
 import 'package:alokito_new/modules/gift_ask/views/gift_ask_request_view.dart';
 import 'package:alokito_new/modules/gift_giver/controllers/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift_giver/views/gift_add_view.dart';
-import 'package:alokito_new/modules/gift_receiver/widgets/notification_icon_widget.dart';
 import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/gift_requester/widgets/notification_icon_widget.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';

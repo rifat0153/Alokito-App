@@ -1,7 +1,8 @@
 import 'package:alokito_new/modules/gift_giver/services/gift_giver_service.dart';
-import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/services/gift_receiver_service.dart';
-import 'package:alokito_new/modules/gift_receiver_details/views/gift_receiver_details_view.dart';
+import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_controller.dart';
+import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
+import 'package:alokito_new/modules/gift_requester/views/gif_requester_offer_list_view.dart';
+import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
@@ -9,8 +10,6 @@ import 'package:get/get.dart';
 import '/modules/auth/views/initial_view.dart';
 import '/modules/auth/widgets/login_reg_form.dart';
 import 'modules/gift_giver/controllers/gift_add_form_controller.dart';
-import 'modules/gift_receiver/views/gif_receiver_offer_list_view.dart';
-import 'modules/gift_receiver/views/gift_receiver_view.dart';
 import '/modules/map/geo_controller.dart';
 import '/modules/notification/notification_controller.dart';
 import '/modules/notification/notification_view.dart';
@@ -36,8 +35,8 @@ class GetPages {
 
     //* Gift Receiver Routes
     GetPage(
-      name: GiftReceiverView.route,
-      page: () => GiftReceiverView(),
+      name: GiftRequesterView.route,
+      page: () => GiftRequesterView(),
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
@@ -45,12 +44,12 @@ class GetPages {
       }),
     ),
     GetPage(
-      name: GiftReceiverOfferListView.route,
-      page: () => GiftReceiverOfferListView(),
+      name: GiftRequesterOfferListView.route,
+      page: () => GiftRequesterOfferListView(),
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
-        Get.put(GiftReceiverController(GiftReceiverService(Geoflutterfire(), FirebaseFirestore.instance), Geoflutterfire()));
+        Get.put(GiftRequesterController(GiftRequesterService(Geoflutterfire(), FirebaseFirestore.instance), Geoflutterfire()));
       }),
     ),
 
@@ -65,8 +64,8 @@ class GetPages {
       }),
     ),
     GetPage(
-      name: GiftReceiverOfferListView.route,
-      page: () => GiftReceiverOfferListView(),
+      name: GiftRequesterOfferListView.route,
+      page: () => GiftRequesterOfferListView(),
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.downToUp,
       binding: BindingsBuilder(() {

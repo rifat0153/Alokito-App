@@ -5,7 +5,7 @@ import 'dart:ui' as ui;
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/modules/gift_receiver/services/gift_receiver_service.dart';
+import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +16,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:uuid/uuid.dart';
 
-class GiftReceiverController extends GetxController {
-  GiftReceiverController(this.giftReceiverService, this.geo);
+class GiftRequesterController extends GetxController {
+  GiftRequesterController(this.giftReceiverService, this.geo);
 
-  final GiftReceiverService giftReceiverService;
+  final GiftRequesterService giftReceiverService;
   final Geoflutterfire geo;
 
   RxBool loading = RxBool(false);

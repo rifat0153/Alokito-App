@@ -1,19 +1,19 @@
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_giver/widgets/user_joining_distance_widget.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/modules/gift_receiver/widgets/gift_detail_map_widget.dart';
-import 'package:alokito_new/modules/gift_receiver/widgets/message_popup_widget.dart';
-import 'package:alokito_new/modules/gift_receiver_details/controllers/gift_receiver_detail_controller.dart';
-import 'package:alokito_new/modules/gift_receiver_details/services/gift_receiver_detail_service.dart';
-import 'package:alokito_new/modules/gift_receiver_details/widgets/request_delete_widget.dart';
+import 'package:alokito_new/modules/gift_requester/widgets/gift_detail_map_widget.dart';
+import 'package:alokito_new/modules/gift_requester/widgets/message_popup_widget.dart';
+import 'package:alokito_new/modules/gift_requester_details/controllers/gift_requester_detail_controller.dart';
+import 'package:alokito_new/modules/gift_requester_details/services/gift_requester_detail_service.dart';
+import 'package:alokito_new/modules/gift_requester_details/widgets/request_delete_widget.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GiftReceiverDetailsView extends StatelessWidget {
-  GiftReceiverDetailsView({required this.giftGiver});
+class GiftRequesterDetailsView extends StatelessWidget {
+  GiftRequesterDetailsView({required this.giftGiver});
 
   static const route = 'giftdetailview';
 
@@ -21,9 +21,9 @@ class GiftReceiverDetailsView extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();
   
   //* Initializing Controller
-  final GiftReceiverDetailController giftRecieverDetailController = Get.put(
-    GiftReceiverDetailController(
-      GiftReceiverDetailService(),
+  final GiftRequesterDetailController giftRecieverDetailController = Get.put(
+    GiftRequesterDetailController(
+      GiftRequesterDetailService(),
     ),
   );
 
@@ -73,7 +73,7 @@ class _BuildBody extends StatelessWidget {
 
   final GiftGiver giftGiver;
   final AuthController authController;
-  final GiftReceiverDetailController giftRecieverDetailController;
+  final GiftRequesterDetailController giftRecieverDetailController;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +125,7 @@ class _DecisionWidget extends StatelessWidget {
 
   final AuthController authController;
   final GiftGiver giftGiver;
-  final GiftReceiverDetailController giftRecieverDetailController;
+  final GiftRequesterDetailController giftRecieverDetailController;
 
   @override
   Widget build(BuildContext context) {

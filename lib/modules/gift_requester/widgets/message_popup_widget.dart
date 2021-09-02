@@ -1,15 +1,14 @@
 import 'dart:ui';
 
-import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/modules/gift_receiver_details/controllers/gift_receiver_detail_controller.dart';
+import 'package:alokito_new/modules/gift_requester_details/controllers/gift_requester_detail_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MessagePopUpWidget extends StatelessWidget {
   MessagePopUpWidget({required this.giftGiver});
-  final GiftReceiverDetailController controller = Get.find();
+  final GiftRequesterDetailController controller = Get.find();
 
   final GiftGiver giftGiver;
 

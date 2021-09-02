@@ -34,23 +34,22 @@ class MyBottomSheet {
 }
 
 class MySnackbar {
-   static Future<void> showSuccessSnackbar(String message) async {
+  static Future<void> showSuccessSnackbar(String message) async {
     await Get.showSnackbar(GetBar(
       messageText: MyText(message, color: Colors.white, textAlign: TextAlign.center),
       snackStyle: SnackStyle.FLOATING,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 3000),
     ));
   }
-   static Future<void> showErrorSnackbar(String message) async {
+
+  static Future<void> showErrorSnackbar(String message) async {
     await Get.showSnackbar(GetBar(
       messageText: MyText(message, color: Colors.white, textAlign: TextAlign.center),
       snackStyle: SnackStyle.FLOATING,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 3000),
     ));
   }
 }
-
-
 
 class MyUserNotify {
   static Future<void> showAllFetched(String message) async {

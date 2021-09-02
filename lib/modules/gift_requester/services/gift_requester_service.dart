@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
-import 'package:alokito_new/modules/gift_receiver/gift_receiver_exception.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
+import 'package:alokito_new/modules/gift_requester/gift_requester_exception.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +11,7 @@ import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
-abstract class BaseGiftReceiverService {
+abstract class BaseGiftRequesterService {
   Future<bool> addGiftRequest({required GiftRequest giftReceiver});
 
   Future<GiftGiverListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius, String id);
@@ -28,8 +28,8 @@ abstract class BaseGiftReceiverService {
   Future<bool> updateGiftReceiver({required GiftRequest giftReceiver});
 }
 
-class GiftReceiverService implements BaseGiftReceiverService {
-  GiftReceiverService(this.geo, this._firestore);
+class GiftRequesterService implements BaseGiftRequesterService {
+  GiftRequesterService(this.geo, this._firestore);
 
   final Geoflutterfire geo;
   final FirebaseFirestore _firestore;
@@ -143,12 +143,12 @@ class GiftReceiverService implements BaseGiftReceiverService {
         var giftReceiver = GiftRequest.fromJson(doc.data()!);
         return GiftRequestNotificationUnion.dataa(giftReceiver);
       } else {
-        return GiftRequestNotificationUnion.error(GiftReceiverException(message: 'Gift request deleted'));
+        return GiftRequestNotificationUnion.error(GiftRequesterException(message: 'Gift request deleted'));
       }
     } on FirebaseException catch (e) {
       return GiftRequestNotificationUnion.error(e);
     } on Exception catch (_) {
-      return GiftRequestNotificationUnion.error(GiftReceiverException(message: 'Gift request deleted'));
+      return GiftRequestNotificationUnion.error(GiftRequesterException(message: 'Gift request deleted'));
     }
   }
 
@@ -159,7 +159,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
 
       return true;
     } on FirebaseException catch (e) {
-      throw GiftReceiverException(message: e.message);
+      throw GiftRequesterException(message: e.message);
     }
   }
 
@@ -169,7 +169,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
       var doc = await _firestore.collection('gift_receiver').doc(id).get();
       return doc.exists ? true : false;
     } on FirebaseException catch (e) {
-      throw GiftReceiverException(message: e.message);
+      throw GiftRequesterException(message: e.message);
     }
   }
 
@@ -179,7 +179,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
       await _firestore.collection('gift_receiver').doc(giftReceiver.id).update(giftReceiver.toJson());
       return true;
     } on FirebaseException catch (e) {
-      throw GiftReceiverException(message: e.message);
+      throw GiftRequesterException(message: e.message);
     }
   }
 
@@ -188,7 +188,7 @@ class GiftReceiverService implements BaseGiftReceiverService {
     try {
       await _firestore.collection('gift_receiver').doc(docId).delete();
     } catch (e) {
-      throw GiftReceiverException(message: e.toString());
+      throw GiftRequesterException(message: e.toString());
     }
   }
 }

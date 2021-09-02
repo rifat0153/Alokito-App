@@ -1,8 +1,8 @@
 import 'package:alokito_new/models/gift_giver/gift_giver.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_receiver/controllers/gift_receiver_controller.dart';
+import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_controller.dart';
+import 'package:alokito_new/modules/gift_requester_details/views/gift_requester_details_view.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/modules/gift_receiver_details/views/gift_receiver_details_view.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,10 +11,10 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GiftReceiverOfferListView extends StatelessWidget {
+class GiftRequesterOfferListView extends StatelessWidget {
   static const route = 'giftoffer';
 
-  final GiftReceiverController controller = Get.find();
+  final GiftRequesterController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +30,19 @@ class GiftReceiverOfferListView extends StatelessWidget {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: BuildBody(controller: controller),
+        body: _BuildBody(controller: controller),
       ),
     );
   }
 }
 
-class BuildBody extends StatelessWidget {
-  BuildBody({
+class _BuildBody extends StatelessWidget {
+  _BuildBody({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
-  final GiftReceiverController controller;
+  final GiftRequesterController controller;
   final AuthController authController = Get.find();
 
   @override
@@ -149,7 +149,7 @@ class _GiftListTile extends StatelessWidget {
     required this.index,
   }) : super(key: key);
 
-  final GiftReceiverController controller;
+  final GiftRequesterController controller;
   final List<GiftGiver> giftList;
   final int index;
 
@@ -161,7 +161,7 @@ class _GiftListTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
       child: GestureDetector(
         onTap: () => Get.to(
-          () => GiftReceiverDetailsView(giftGiver: giftList[index]),
+          () => GiftRequesterDetailsView(giftGiver: giftList[index]),
         ),
         child: Container(
           // height: 100.h,
@@ -233,7 +233,7 @@ class _GiftListTile extends StatelessWidget {
 }
 
 class _SearchWidget extends StatelessWidget {
-  final GiftReceiverController giftReceiverController = Get.find();
+  final GiftRequesterController giftReceiverController = Get.find();
 
   @override
   Widget build(BuildContext context) {
