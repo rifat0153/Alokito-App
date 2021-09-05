@@ -15,6 +15,7 @@ class GiftRequesterDetailController extends GetxController {
 
   RxString comment = ''.obs;
 
+  // Add Gift Request and Update LocalUser
   Future<void> addGiftRequest(Gift giftGiver) async {
     final LocalUser? currentUser =
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
@@ -29,6 +30,16 @@ class GiftRequesterDetailController extends GetxController {
 
       try {
         await giftReceiverDetailService.add(giftReceiver);
+
+        // Update LocalUser after gift request has been added
+        final LocalUser? localuser =
+            Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
+
+        if (localuser != null) {
+          final LocalUser updatedUser = localuser.copyWith(hasGiftGiverRequest: true, requestedGiftId: giftGiver.id!);
+
+          await Get.find<AuthController>().updateLocalUser(updatedUser);
+        }
       } catch (e) {
         await MySnackbar.showErrorSnackbar('Request could not be added');
       }

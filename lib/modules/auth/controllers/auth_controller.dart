@@ -12,10 +12,9 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-
 class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
-  
+
   final Rx<LocalUser> currentUser = initialUser.obs;
 
   final RxBool registering = false.obs;
@@ -55,10 +54,8 @@ class AuthController extends GetxController {
     final giftGiverPoint =
         geo.point(latitude: giftGiver.geometry.coordinates.first, longitude: giftGiver.geometry.coordinates.last);
 
-
-    final distance = giftGiverPoint.distance(
-        lat: currentUserPosition.value.latitude,
-        lng: currentUserPosition.value.longitude);
+    final distance =
+        giftGiverPoint.distance(lat: currentUserPosition.value.latitude, lng: currentUserPosition.value.longitude);
 
     return distance;
   }
@@ -69,11 +66,20 @@ class AuthController extends GetxController {
     currentUserInfo.value = const LocalUserInfo.loading();
 
     try {
-      final LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
+      final LocalUserInfo userInfo =
+          await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
       currentUserInfo.value = userInfo;
     } on AuthException catch (e) {
       errors.value = true;
+      currentUserInfo.value = LocalUserInfo.error(e.toString());
+    }
+  }
+
+  Future<void> updateLocalUser(LocalUser updatedUser) async {
+    try {
+      currentUserInfo.value = LocalUserInfo.data(updatedUser);
+    } catch (e) {
       currentUserInfo.value = LocalUserInfo.error(e.toString());
     }
   }

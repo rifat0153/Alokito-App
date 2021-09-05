@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:alokito_new/models/gift_giver/gift.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_requester_details/controllers/gift_requester_detail_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,9 @@ class MessagePopUpWidget extends StatelessWidget {
                       : MaterialButton(
                           color: giftAddFormSubmitColor,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                          onPressed: () {
-                            controller.addGiftRequest(giftGiver);
+                          onPressed: () async {
+                            await controller.addGiftRequest(giftGiver);
+                            // await Get.find<AuthController>().getUserInfoAndSetCurrentUser();
                           },
                           child: const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
