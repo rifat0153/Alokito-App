@@ -92,7 +92,7 @@ class GiftAddFormController extends GetxController {
     print('${first.featureName} : ${first.addressLine} : ${first.subLocality}');
   }
 
-  void setLatLngFromAddress() async {
+  Future<void> setLatLngFromAddress() async {
     // From a query
     final query = '$addressQuery, Bangladesh';
     bool errorFound = false;
@@ -126,7 +126,7 @@ class GiftAddFormController extends GetxController {
     selectedAddress.value = foundAddress.value;
   }
 
-  void getCurrentLocation() async {
+  Future<void> getCurrentLocation() async {
     print('In controller  ' + userLocation.value.toString());
 
     var locData = await Location().getLocation();
