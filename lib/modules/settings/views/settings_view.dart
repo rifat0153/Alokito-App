@@ -23,7 +23,6 @@ class SettingsView extends StatelessWidget {
         extendBody: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
@@ -65,7 +64,7 @@ class SettingsView extends StatelessWidget {
             ),
             MyText('appName'.tr),
             TextButton(
-                onPressed: ()  async {
+                onPressed: () async {
                   await Get.find<LanguageController>().changeLocale('en', 'US');
                 },
                 child: const Text('English')),

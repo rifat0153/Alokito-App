@@ -19,7 +19,6 @@ class SkeletonWidget extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           shadowColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           backgroundColor: Colors.transparent,
           leading: IconButton(
             icon: const Icon(MdiIcons.chevronLeft, size: 30, color: Colors.black),

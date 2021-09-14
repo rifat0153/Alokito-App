@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 // URL
 // const baseUrl = 'http://192.168.0.108:3000/api/v1';
-const baseUrl = 'http://192.168.0.121:3000/api/v1';
+// const baseUrl = 'http://192.168.0.121:3000/api/v1';
+const baseUrl = 'https://aalokito-dev1-always-on-jyguqmmqea-uc.a.run.app/api/v1';
 
 const GOOGLE_API_KEY = 'AIzaSyDEpVNWlsKHsvJHAEjaMjKi1mtVoUFyXU8';
 

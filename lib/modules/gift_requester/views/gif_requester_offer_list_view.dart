@@ -22,7 +22,6 @@ class GiftRequesterOfferListView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           leading: IconButton(
             onPressed: Get.back,
@@ -79,8 +78,10 @@ class _BuildBody extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           itemCount: controller.allGiftsFetched.value
                               // * Show Loading Indicator if More gifts needs to be loaded
-                              ? controller.giftList.value.maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
-                              : controller.giftList.value.maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
+                              ? controller.giftList.value
+                                  .maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
+                              : controller.giftList.value
+                                  .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
                           itemBuilder: (_, index) {
                             if (index ==
                                     controller.giftList.value.maybeWhen(

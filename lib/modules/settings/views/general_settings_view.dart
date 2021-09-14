@@ -22,7 +22,6 @@ class GeneralSettingsView extends StatelessWidget {
         extendBody: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           leading: IconButton(
             onPressed: () => Navigator.pop(context),

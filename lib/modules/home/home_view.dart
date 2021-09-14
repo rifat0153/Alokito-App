@@ -44,7 +44,6 @@ class HomeView extends StatelessWidget {
             ),
           ],
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
         body: Obx(
@@ -115,7 +114,8 @@ class _BuildBody extends StatelessWidget {
                 error: (err) => Column(
                   children: [
                     const Text('Something went wrong'),
-                    TextButton(onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
+                    TextButton(
+                        onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
                   ],
                 ),
               ),

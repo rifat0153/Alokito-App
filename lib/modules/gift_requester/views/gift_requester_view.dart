@@ -52,7 +52,6 @@ class GiftRequesterView extends StatelessWidget {
             ),
           ],
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
         body: Stack(

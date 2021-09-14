@@ -48,7 +48,6 @@ class GiftView extends StatelessWidget {
             ),
           ],
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
         body: _buildBody(

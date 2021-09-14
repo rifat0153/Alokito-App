@@ -12,7 +12,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
-  final double menuItemHeight = 35.0;
+  final double menuItemHeight = 35;
 
   @override
   Widget build(BuildContext context) {
