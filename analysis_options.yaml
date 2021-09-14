@@ -2,15 +2,13 @@ include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
   exclude:
-  - "**/*.g.dart"
-  - "**/*.gr.dart"
-  - "**/*.iconfig.dart"
-  - "**/*.freezed.dart"
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.iconfig.dart"
+    - "**/*.freezed.dart"
   strong-mode:
     implicit-casts: false
     implicit-dynamic: true
-  
-
 
 linter:
   rules:
@@ -24,4 +22,5 @@ linter:
     directives_ordering: false
     prefer_single_quotes: false
     type_annotate_public_apis: false
-    
+    cascade_invocations: false
+    non_constant_identifier_names: false

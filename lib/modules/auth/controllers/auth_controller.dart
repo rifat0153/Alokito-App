@@ -1,3 +1,4 @@
+import 'package:alokito_new/core/location_helper.dart';
 import 'package:alokito_new/models/login/login.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
@@ -8,9 +9,9 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
@@ -66,8 +67,7 @@ class AuthController extends GetxController {
     currentUserInfo.value = const LocalUserInfo.loading();
 
     try {
-      final LocalUserInfo userInfo =
-          await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
+      final LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
       currentUserInfo.value = userInfo;
     } on AuthException catch (e) {
@@ -85,8 +85,9 @@ class AuthController extends GetxController {
   }
 
   Future<void> bindLocationData() async {
-    LocationData loc = await Location().getLocation();
-    currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
+    Position position = await LocationHelper.determinePosition();
+
+    currentUserPosition.value = LatLng(position.latitude, position.longitude);
 
     print('AuthController: ' + currentUserPosition.value.toString());
   }
