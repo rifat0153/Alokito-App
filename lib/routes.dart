@@ -49,7 +49,12 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
-        Get.put(GiftRequesterController(GiftRequesterService(Geoflutterfire(), FirebaseFirestore.instance), Geoflutterfire()));
+        Get.put(
+          GiftRequesterController(
+            GiftRequesterService(Geoflutterfire()),
+            Geoflutterfire(),
+          ),
+        );
       }),
     ),
 
@@ -57,8 +62,7 @@ class GetPages {
     GetPage(
       name: GiftAddView.route,
       page: () => GiftAddView(),
-      transitionDuration: const Duration(milliseconds: 500),
-      transition: Transition.downToUp,
+      // transition: Transition.downToUp,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftAddFormController(GiftService()));
       }),
