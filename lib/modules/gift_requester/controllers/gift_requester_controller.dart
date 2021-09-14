@@ -95,6 +95,9 @@ class GiftRequesterController extends GetxController {
     //* Search by filter called for first time, set page to 1 and giftList to loading state
     GiftListUnion newGiftListUnion = const GiftListUnion.loading();
 
+    final currentUserId =
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
+
     if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
       newGiftListUnion = await giftRequesterService.getGiftByFilterDB(
         searchString.value,
@@ -103,7 +106,7 @@ class GiftRequesterController extends GetxController {
         userPosition.value.latitude,
         userPosition.value.longitude,
         radius.value.toDouble(),
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => ''),
+        currentUserId,
       );
     } else {
       newGiftListUnion = await giftRequesterService.getGiftDB(
@@ -112,21 +115,32 @@ class GiftRequesterController extends GetxController {
         userPosition.value.latitude,
         userPosition.value.longitude,
         radius.value.toDouble(),
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => ''),
+        currentUserId,
       );
     }
 
+    // If Error Found stop function
+    final bool error = newGiftListUnion.maybeMap(error: (e) {
+      giftList.value = GiftListUnion.error(e);
+      return true;
+    }, orElse: () {
+      return false;
+    });
+    if (error) return;
+
     final bool found = newGiftListUnion.maybeWhen(data: (data) => true, orElse: () => false);
 
+    // First Page Load
     if (page.toInt() == 1 && found) {
-      print('First load');
       giftList.value = newGiftListUnion;
 
-      // * Set allFetched to true if lest than Limit gifts are loaded
+      // Set allFetched to true if lest than Limit gifts are loaded
       if (newGiftListUnion.maybeWhen(data: (data) => data.length, orElse: () => 0) < limit.value) {
         allGiftsFetched.value = true;
       }
-    } else {
+    }
+    // Not First Page Load
+    else {
       final List<Gift> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
       final List<Gift> newGifts = newGiftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
 
@@ -136,6 +150,7 @@ class GiftRequesterController extends GetxController {
         allGiftsFetched.value = false;
       }
 
+      // Add fethced gifts to existing gifts
       final updatedGiftList = [...existingGifts, ...newGifts];
       giftList.value = GiftListUnion.data(updatedGiftList);
     }
