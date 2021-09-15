@@ -26,14 +26,14 @@ class AuthController extends GetxController {
   final Rx<LocalUserInfo> currentUserInfo = const LocalUserInfo.loading().obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
-  final currentUserPosition = const LatLng(0, 0).obs;
+  final Rx<LatLng> currentUserPosition = const LatLng(0, 0).obs;
 
   @override
   void onInit() {
+    super.onInit();
+
     authStream.bindStream(authService.authStateChanges);
     bindLocationData();
-
-    super.onInit();
   }
 
   @override
@@ -85,7 +85,10 @@ class AuthController extends GetxController {
   }
 
   Future<void> bindLocationData() async {
-    Position position = await LocationHelper.determinePosition();
+    print('Getting user location');
+    final Position position = await LocationHelper.determinePosition();
+
+    print(position);
 
     currentUserPosition.value = LatLng(position.latitude, position.longitude);
 

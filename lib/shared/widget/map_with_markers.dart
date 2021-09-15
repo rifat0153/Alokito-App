@@ -4,20 +4,19 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
 class MapWithMarkersWidget extends StatelessWidget {
-  MapWithMarkersWidget({
+   const MapWithMarkersWidget({
     Key? key,
     required this.markers,
     required this.initialCameraPosition,
   }) : super(key: key);
 
-  Map<MarkerId, Marker> markers;
-  CameraPosition initialCameraPosition;
+  final Map<MarkerId, Marker> markers;
+  final CameraPosition initialCameraPosition;
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Card(
           elevation: 4,

@@ -19,7 +19,6 @@ Future<void> main() async {
 class AlokitoApp extends StatelessWidget {
   // This widget is the root of your application.
 
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -34,6 +33,8 @@ class AlokitoApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
 
+    final ThemeData theme = ThemeData();
+
     return ScreenUtilInit(
       designSize: const Size(392, 781),
       builder: () => GetMaterialApp(
@@ -46,7 +47,7 @@ class AlokitoApp extends StatelessWidget {
           fontFamily: 'Playtime',
           textTheme: TextTheme(bodyText2: TextStyle(fontSize: 20.sp)),
           primarySwatch: Colors.teal,
-          accentColor: const Color(0xff1b2e59),
+          colorScheme: theme.colorScheme.copyWith(secondary: const Color(0xff1b2e59)),
         ),
         initialRoute: '/',
         getPages: GetPages().getPages,
@@ -54,5 +55,3 @@ class AlokitoApp extends StatelessWidget {
     );
   }
 }
-
-// Comment from TEST branch

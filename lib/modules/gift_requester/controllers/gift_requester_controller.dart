@@ -164,7 +164,7 @@ class GiftRequesterController extends GetxController {
     for (final gift in documentList) {
       if (gift.user?.uid == Get.find<AuthController>().currentUser.value.id) return;
 
-      // * Reverse order of Coordinates , bcz mongoDB returns lng first in the array,e.g. [lng, lat]
+      // Reverse order of Coordinates , bcz mongoDB returns lng first in the array,e.g. [lng, lat]
       final GeoPoint point = GeoPoint(gift.geometry.coordinates.last, gift.geometry.coordinates.first);
 
       final userLocation = Get.find<AuthController>().currentUserPosition;
@@ -195,7 +195,7 @@ class GiftRequesterController extends GetxController {
     markers[id] = _marker;
   }
 
-  // * Create Custom Marker
+  // * Create Custom Map Marker
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
     final ByteData data = await rootBundle.load(path);
     final ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);

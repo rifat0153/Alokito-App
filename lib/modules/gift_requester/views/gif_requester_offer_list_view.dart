@@ -48,6 +48,7 @@ class _BuildBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // Background
         Container(
           height: Get.size.height,
           width: Get.size.width,
@@ -55,6 +56,7 @@ class _BuildBody extends StatelessWidget {
             image: DecorationImage(image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
           ),
         ),
+        // Top Layer
         SizedBox(
           height: Get.size.height,
           width: Get.size.width,
