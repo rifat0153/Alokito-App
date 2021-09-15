@@ -1,8 +1,4 @@
-// @dart=2.9
-// above line is used to disabel sound null safety
-import 'package:alokito_new/modules/language/language_controller.dart';
 import 'package:alokito_new/modules/language/translations.dart';
-import 'package:alokito_new/modules/providers/prefs_provider.dart';
 import 'package:alokito_new/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
