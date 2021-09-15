@@ -1,7 +1,9 @@
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:alokito_new/modules/gift/views/gift_add_view.dart';
 import 'package:alokito_new/modules/gift/views/gift_view.dart';
 import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
+import 'package:alokito_new/modules/home/widgets/menu_tile_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_email_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_name_widget.dart';
 import 'package:alokito_new/modules/home/widgets/user_navbar.dart';
@@ -11,7 +13,6 @@ import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
@@ -48,24 +49,24 @@ class HomeView extends StatelessWidget {
         ),
         body: Obx(
           () => authController.currentUserInfo.value.when(
-            data: (user) => _BuildBody(media: media, authController: authController),
+            data: (user) => _BuildBody(
+              user: user,
+              media: media,
+              authController: authController,
+            ),
             loading: () => const Center(
               child: CircularProgressIndicator.adaptive(),
             ),
             error: (error) => Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   MyText(
                     'Something went wrong',
                     fontSize: 35.sp,
                   ),
                   TextButton(
-                    onPressed: () {
-                      print('object');
-                      authController.getUserInfoAndSetCurrentUser();
-                    },
+                    onPressed: authController.getUserInfoAndSetCurrentUser,
                     child: MyText(
                       'Try Again',
                       color: Colors.green,
@@ -85,10 +86,12 @@ class HomeView extends StatelessWidget {
 class _BuildBody extends StatelessWidget {
   const _BuildBody({
     Key? key,
+    required this.user,
     required this.media,
     required this.authController,
   }) : super(key: key);
 
+  final LocalUser user;
   final Size media;
   final AuthController authController;
 
@@ -96,81 +99,84 @@ class _BuildBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // Bottom Layer
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(image: AssetImage('assets/images/rsz_registration.png'), fit: BoxFit.fill),
           ),
         ),
+
+        // Top Layer
         Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SizedBox(height: media.height * 0.1, width: 0),
-            Obx(
-              () => authController.currentUserInfo.value.when(
-                data: (user) => _UserImageWidget(
-                  authController: authController,
-                  localUser: user,
-                ),
-                loading: () => const CircularProgressIndicator(),
-                error: (err) => Column(
-                  children: [
-                    const Text('Something went wrong'),
-                    TextButton(
-                        onPressed: authController.getUserInfoAndSetCurrentUser, child: const Text('Try Again'))
-                  ],
-                ),
-              ),
+            // User Image
+            _UserImageWidget(
+              authController: authController,
+              localUser: user,
             ),
-            Obx(
-              () => authController.currentUserInfo.value.when(
-                data: (user) => Flexible(
-                  child: UserNameWidget(localUser: user, context: context),
-                ),
-                loading: () => const CircularProgressIndicator.adaptive(),
-                error: (error) => Text(error.toString()),
-              ),
-            ),
-            Obx(
-              () => authController.currentUserInfo.value.when(
-                data: (user) => Flexible(
-                  child: UserEmailWidget(localUser: user, context: context),
-                ),
-                loading: () => const CircularProgressIndicator.adaptive(),
-                error: (error) => Text(error.toString()),
-              ),
-            ),
+
+            // User Name
+            UserNameWidget(localUser: user, context: context),
+
+            // User Email
+            UserEmailWidget(localUser: user, context: context),
+
+            // Text
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Row(
                 children: [
-                  SizedBox(width: media.width * 0.18, height: 0),
-                  const Text(
+                  SizedBox(width: media.width * 0.18),
+                  Text(
                     'and you are a...',
-                    style: TextStyle(fontSize: 17),
+                    style: TextStyle(fontSize: 17.sp),
                   ),
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () => Get.toNamed(GiftView.route),
-              child: _GiftGiverMenu(height: media.height * 0.1, width: media.width * 0.7),
+            // Gift Giver
+            MenuTileWidget(
+              assetPath: 'assets/images/gift-giver.png',
+              title: 'GiftGiver',
+              width: 0.7.sw,
+              height: 0.09.sh,
+              function: () {
+                Get.toNamed(GiftView.route);
+              },
             ),
-            GestureDetector(
-              onTap: () {
+            // Gift Receiver
+            MenuTileWidget(
+              assetPath: 'assets/images/gift-reciever.png',
+              title: 'GiftGiver',
+              width: 0.7.sw,
+              height: 0.11.sh,
+              function: () {
                 Get.toNamed(GiftRequesterView.route);
               },
-              child: _GiftRecieverMenu(height: media.height * 0.1, width: media.width * 0.7),
             ),
-            _CommunityHeroMenu(
-              height: media.height * 0.1,
-              width: media.width * 0.7,
+            MenuTileWidget(
+              assetPath: 'assets/images/community-hero.png',
+              title: 'GiftGiver',
+              width: 0.7.sw,
+              height: 0.11.sh,
+              function: () {
+                Get.toNamed(GiftRequesterView.route);
+              },
             ),
-            _TeamPlayerMenu(
-              height: media.height * 0.1,
-              width: media.width * 0.7,
+            MenuTileWidget(
+              assetPath: 'assets/images/team-player.png',
+              title: 'GiftGiver',
+              width: 0.7.sw,
+              height: 0.11.sh,
+              function: () {
+                Get.toNamed(GiftRequesterView.route);
+              },
             ),
-            Flexible(flex: 2, child: Container()),
           ],
         ),
+
+        // Last Layer
         Positioned(
           width: Get.size.width,
           bottom: 0,
@@ -189,107 +195,13 @@ class _UserImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      flex: 6,
-      fit: FlexFit.tight,
-      child: Padding(
-        key: ValueKey(localUser.id),
-        padding: const EdgeInsets.only(top: 35),
-        child: localUser.imageUrl != null
-            ? CircleAvatar(
-                radius: 75,
-                backgroundImage: NetworkImage(
-                  localUser.imageUrl,
-                ),
-              )
-            : const SizedBox(),
-      ),
-    );
-  }
-}
-
-class _GiftGiverMenu extends StatelessWidget {
-  const _GiftGiverMenu({required this.height, required this.width});
-
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: const BoxDecoration(
-        // color: Colors.blue,
-        image: DecorationImage(
-          image: AssetImage('assets/images/gift-giver.png'),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-
-class _GiftRecieverMenu extends StatelessWidget {
-  _GiftRecieverMenu({required this.height, required this.width});
-
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: const BoxDecoration(
-        // color: Colors.blue,
-        image: DecorationImage(
-          image: AssetImage('assets/images/gift-reciever.png'),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-
-class _CommunityHeroMenu extends StatelessWidget {
-  _CommunityHeroMenu({required this.height, required this.width});
-
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: const BoxDecoration(
-        // color: Colors.blue,
-        image: DecorationImage(
-          image: AssetImage('assets/images/community-hero.png'),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-
-class _TeamPlayerMenu extends StatelessWidget {
-  _TeamPlayerMenu({required this.height, required this.width});
-
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: const BoxDecoration(
-        // color: Colors.blue,
-        image: DecorationImage(
-          image: AssetImage('assets/images/team-player.png'),
-          fit: BoxFit.cover,
+    return Padding(
+      key: ValueKey(localUser.id),
+      padding: EdgeInsets.only(top: 115.h),
+      child: CircleAvatar(
+        radius: 75,
+        backgroundImage: NetworkImage(
+          localUser.imageUrl,
         ),
       ),
     );

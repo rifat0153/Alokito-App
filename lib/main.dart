@@ -36,7 +36,7 @@ class AlokitoApp extends StatelessWidget {
     final ThemeData theme = ThemeData();
 
     return ScreenUtilInit(
-      designSize: const Size(392, 781),
+      designSize: const Size(392, 780),
       builder: () => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         translations: MyTranslations(),

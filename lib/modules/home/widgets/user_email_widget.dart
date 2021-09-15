@@ -6,7 +6,7 @@ class UserEmailWidget extends StatelessWidget {
   const UserEmailWidget({
     Key? key,
     required this.context,
-    required LocalUser this.localUser,
+    required  this.localUser,
   }) : super(key: key);
 
   final LocalUser localUser;

@@ -20,7 +20,6 @@ class UserNavbar extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Get.to(MyDrawer());
-            // Navigator.push(context, MaterialPageRoute(builder: (_) => MyDrawer()));
           },
           child: Icon(Icons.home, color: Colors.white, size: height * 0.05),
         ),
