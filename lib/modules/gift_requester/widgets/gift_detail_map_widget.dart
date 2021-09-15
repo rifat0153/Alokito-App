@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftDetailMapWidget extends StatelessWidget {
-  GiftDetailMapWidget({required this.giftGiver});
+  GiftDetailMapWidget({required this.gift});
 
-  final Gift giftGiver;
+  final Gift gift;
   final AuthController authController = Get.find();
   final Completer<GoogleMapController> _controller = Completer();
 
@@ -23,7 +23,7 @@ class GiftDetailMapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final distanceOfGift = authController.calculateDistanceForGiftDetail(giftGiver: giftGiver);
+    final distanceOfGift = authController.calculateDistanceForGiftDetail(gift: gift);
 
     return Column(
       children: [
@@ -46,7 +46,7 @@ class GiftDetailMapWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
-                child: Text('${giftGiver.location}, ${giftGiver.area} '),
+                child: Text('${gift.location}, ${gift.area} '),
               ),
               SizedBox(
                 height: 200,
@@ -60,13 +60,13 @@ class GiftDetailMapWidget extends StatelessWidget {
                         // mapType: MapType.normal,
                         onMapCreated: _controller.complete,
                         initialCameraPosition: CameraPosition(
-                          target: LatLng(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.first),
+                          target: LatLng(gift.geometry.coordinates.last, gift.geometry.coordinates.first),
                           zoom: 15,
                         ),
                         markers: [
                           Marker(
                             markerId: const MarkerId('123121'),
-                            position: LatLng(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.first),
+                            position: LatLng(gift.geometry.coordinates.last, gift.geometry.coordinates.first),
                           )
                         ].toSet(),
                       ),

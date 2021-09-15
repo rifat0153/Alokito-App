@@ -5,9 +5,6 @@ import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/modules/gift_requester/gift_requester_exception.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 
 abstract class BaseGiftRequesterService {
@@ -18,9 +15,8 @@ abstract class BaseGiftRequesterService {
 }
 
 class GiftRequesterService extends GetConnect implements BaseGiftRequesterService {
-  GiftRequesterService(this.geo);
+  GiftRequesterService();
 
-  final Geoflutterfire geo;
 
   @override
   Future<GiftListUnion> getGiftByFilterDB(

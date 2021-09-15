@@ -1,3 +1,4 @@
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
@@ -9,7 +10,6 @@ import 'package:alokito_new/shared/widget/covid_guidelines_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -25,7 +25,7 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
     double lat2,
     double lng2,
   ) {
-    return Geoflutterfire().point(latitude: lat1, longitude: lng1).distance(lat: lat2, lng: lng2);
+    return LocationHelper.determineDistance(lat1, lng1, lat2, lng2);
   }
 
   @override
@@ -39,7 +39,7 @@ class GiftGiverNotificationDetailsView extends StatelessWidget {
     var markers = [Marker(markerId: MarkerId(giftReceiver!.id.toString()), position: requesterLatLng)];
     final giverCoordinates = giftReceiver!.requester.geometry.coordinates;
     final requesterCoordinates = giftReceiver!.requester.geometry.coordinates;
- 
+
     return SkeletonWidget(
       titleWidget: MyText('Notification - Requester Details', fontSize: 15),
       assetPath: 'assets/images/gift_details.png',
@@ -115,11 +115,11 @@ class _DecisionWidget extends StatelessWidget {
           ],
         ),
         canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.gift.user!.userName}',
-            textAlign: TextAlign.center, color: Colors.red,  fontWeight: FontWeight.bold),
-        canceledByRequester: () => MyText('r Request Canceled by You',
             textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
-        accepted: () => MyText('r Gift Accepted by You',
-            textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
+        canceledByRequester: () =>
+            MyText('r Request Canceled by You', textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
+        accepted: () =>
+            MyText('r Gift Accepted by You', textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
         delivered: () => giftReceiver.messageForGiverrSent == true
             ? Column(
                 children: [
@@ -161,8 +161,7 @@ class _DecisionWidget extends StatelessWidget {
               maxLines: 2,
               textAlign: TextAlign.center,
             ),
-        canceledByGiver: () =>
-            MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        canceledByGiver: () => MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
         canceledByRequester: () => Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

@@ -3,7 +3,6 @@ import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_co
 import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
 import 'package:alokito_new/modules/gift_requester/views/gif_requester_offer_list_view.dart';
 import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 
 import '/modules/auth/views/initial_view.dart';
@@ -48,8 +47,8 @@ class GetPages {
       binding: BindingsBuilder(() {
         Get.put(
           GiftRequesterController(
-            GiftRequesterService(Geoflutterfire()),
-            Geoflutterfire(),
+            GiftRequesterService(),
+            
           ),
         );
       }),

@@ -1,3 +1,4 @@
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
@@ -9,7 +10,6 @@ import 'package:alokito_new/shared/widget/covid_guidelines_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -27,7 +27,7 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
     double lat2,
     double lng2,
   ) {
-    return Geoflutterfire().point(latitude: lat1, longitude: lng1).distance(lat: lat2, lng: lng2);
+    return LocationHelper.determineDistance(lat1, lng1, lat2, lng2);
   }
 
   @override
@@ -230,7 +230,8 @@ class _DecisionWidget extends StatelessWidget {
           MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
           MaterialButton(
             onPressed: () {
-              showDialog(context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              showDialog(
+                  context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -249,7 +250,8 @@ class _DecisionWidget extends StatelessWidget {
               textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
           MaterialButton(
             onPressed: () {
-              showDialog(context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              showDialog(
+                  context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,

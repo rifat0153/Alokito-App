@@ -101,7 +101,7 @@ class _BuildBody extends StatelessWidget {
                   UserDetail(giftGiver: giftGiver),
                   UserRatingAndDistance(giftGiver: giftGiver),
                   _Location(giftGiver: giftGiver),
-                  GiftDetailMapWidget(giftGiver: giftGiver),
+                  GiftDetailMapWidget(gift: giftGiver),
                   // SizedBox(height: 100)
                 ],
               ),

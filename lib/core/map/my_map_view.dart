@@ -1,13 +1,9 @@
 import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
 import 'package:alokito_new/models/gift_giver/gift.dart';
-import 'package:alokito_new/modules/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class MyMapView extends StatefulWidget {
   static const route = '/mymapview';
@@ -25,9 +21,7 @@ class _MyMapViewState extends State<MyMapView> {
 
   // firestore init
   final _firestore = FirebaseFirestore.instance;
-  late Geoflutterfire geo;
   late Stream<List<DocumentSnapshot>> stream;
-  final radius = BehaviorSubject<double>.seeded(10.0);
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   late BitmapDescriptor customIcon;
@@ -38,21 +32,6 @@ class _MyMapViewState extends State<MyMapView> {
     setMarker();
     _latitudeController = TextEditingController();
     _longitudeController = TextEditingController();
-
-    geo = Geoflutterfire();
-    // GeoFirePoint center = geo.point(latitude: 23, longitude: 90);
-    GeoFirePoint center = geo.point(
-      latitude: giftController.currentUserLocation.value.latitude,
-      longitude: giftController.currentUserLocation.value.longitude,
-    );
-
-    stream = radius.switchMap((rad) {
-      var collectionReference = _firestore.collection('gifts');
-//          .where('name', isEqualTo: 'darshan');
-      return geo
-          .collection(collectionRef: collectionReference)
-          .within(center: center, radius: rad, field: 'position', strictMode: true);
-    });
   }
 
   void setMarker() async {
@@ -64,7 +43,6 @@ class _MyMapViewState extends State<MyMapView> {
   void dispose() {
     _latitudeController.dispose();
     _longitudeController.dispose();
-    radius.close();
     super.dispose();
   }
 
@@ -135,23 +113,12 @@ class _MyMapViewState extends State<MyMapView> {
   }
 
   void _addPoint(double lat, double lng) {
-    GeoFirePoint geoFirePoint = geo.point(latitude: lat, longitude: lng);
-    _firestore.collection('locations').add({'name': 'random name', 'position': geoFirePoint.data}).then((_) {
-      print('added ${geoFirePoint.hash} successfully');
-    });
+    _firestore.collection('locations').add({'name': 'random name', 'position': ''}).then((_) {});
   }
 
   //example to add geoFirePoint inside nested object
   void _addNestedPoint(double lat, double lng) {
-    GeoFirePoint geoFirePoint = geo.point(latitude: lat, longitude: lng);
-    _firestore.collection('nestedLocations').add({
-      'name': 'random name',
-      'address': {
-        'location': {'position': geoFirePoint.data}
-      }
-    }).then((_) {
-      print('added ${geoFirePoint.hash} successfully');
-    });
+    _firestore.collection('nestedLocations').add({'name': 'random name', 'address': {}}).then((_) {});
   }
 
   void _addMarker(double lat, double lng, double distance) {
@@ -174,13 +141,6 @@ class _MyMapViewState extends State<MyMapView> {
 
       final Gift giftGiver = Gift.fromJson(document.data()!);
       final GeoPoint point = GeoPoint(giftGiver.geometry.coordinates.last, giftGiver.geometry.coordinates.last);
-
-      var userPoint = geo.point(
-          latitude: giftController.currentUserLocation.value.latitude,
-          longitude: giftController.currentUserLocation.value.longitude);
-
-      var distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
-      _addMarker(point.latitude, point.longitude, distance);
     });
   }
 
@@ -193,6 +153,5 @@ class _MyMapViewState extends State<MyMapView> {
       _label = '${_value.toInt().toString()} kms';
       markers.clear();
     });
-    radius.add(value as double);
   }
 }

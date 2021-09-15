@@ -9,16 +9,14 @@ import 'package:alokito_new/modules/gift_requester/services/gift_requester_servi
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftRequesterController extends GetxController {
-  GiftRequesterController(this.giftRequesterService, this.geo);
+  GiftRequesterController(this.giftRequesterService);
 
   final GiftRequesterService giftRequesterService;
-  final Geoflutterfire geo;
 
   RxBool loading = RxBool(false);
   RxString requesterMessage = RxString('');
@@ -165,14 +163,18 @@ class GiftRequesterController extends GetxController {
       if (gift.user?.uid == Get.find<AuthController>().currentUser.value.id) return;
 
       // Reverse order of Coordinates , bcz mongoDB returns lng first in the array,e.g. [lng, lat]
-      final GeoPoint point = GeoPoint(gift.geometry.coordinates.last, gift.geometry.coordinates.first);
+      final GeoPoint giftPoint = GeoPoint(gift.geometry.coordinates.last, gift.geometry.coordinates.first);
 
       final userLocation = Get.find<AuthController>().currentUserPosition;
-      final userPoint = geo.point(latitude: userLocation.value.latitude, longitude: userLocation.value.longitude);
 
-      final distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
+      final distance = LocationHelper.determineDistance(
+        gift.geometry.coordinates.last,
+        gift.geometry.coordinates.first,
+        Get.find<AuthController>().currentUserPosition.value.latitude,
+        Get.find<AuthController>().currentUserPosition.value.longitude,
+      );
 
-      _addMarker(point.latitude, point.longitude, distance, gift);
+      _addMarker(giftPoint.latitude, giftPoint.longitude, distance, gift);
     }
   }
 

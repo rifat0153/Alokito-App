@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:alokito_new/modules/gift_ask/views/gift_ask_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
 class GiftRequesterView extends StatelessWidget {

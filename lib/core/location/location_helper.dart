@@ -40,4 +40,8 @@ class LocationHelper {
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
   }
+
+  static double determineDistance(double lat1, double lng1, double lat2, double lng2) {
+    return Geolocator.distanceBetween(lat1, lng1, lat1, lng2);
+  }
 }

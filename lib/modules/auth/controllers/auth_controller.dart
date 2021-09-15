@@ -8,7 +8,6 @@ import 'package:alokito_new/modules/auth/services/auth_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -50,13 +49,13 @@ class AuthController extends GetxController {
     authCompleted.value = false;
   }
 
-  double calculateDistanceForGiftDetail({required Gift giftGiver}) {
-    final geo = Geoflutterfire();
-    final giftGiverPoint =
-        geo.point(latitude: giftGiver.geometry.coordinates.first, longitude: giftGiver.geometry.coordinates.last);
-
-    final distance =
-        giftGiverPoint.distance(lat: currentUserPosition.value.latitude, lng: currentUserPosition.value.longitude);
+  double calculateDistanceForGiftDetail({required Gift gift}) {
+    final distance = LocationHelper.determineDistance(
+      gift.geometry.coordinates.last,
+      gift.geometry.coordinates.first,
+      currentUserPosition.value.latitude,
+      currentUserPosition.value.longitude,
+    );
 
     return distance;
   }
