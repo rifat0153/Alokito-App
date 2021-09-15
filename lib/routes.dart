@@ -3,21 +3,18 @@ import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_co
 import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
 import 'package:alokito_new/modules/gift_requester/views/gif_requester_offer_list_view.dart';
 import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 
 import '/modules/auth/views/initial_view.dart';
 import '/modules/auth/widgets/login_reg_form.dart';
 import 'modules/gift/controllers/gift_add_form_controller.dart';
-import '/modules/map/geo_controller.dart';
 import '/modules/notification/notification_controller.dart';
 import '/modules/notification/notification_view.dart';
 import '/modules/settings/views/settings_view.dart';
 import 'modules/gift/views/gift_add_view.dart';
 import 'modules/gift/controllers/gift_controller.dart';
 import 'modules/gift/views/gift_view.dart';
-import 'modules/map/geo_map_view.dart';
 import 'modules/map/my_map_view.dart';
 import 'modules/settings/views/general_settings_view.dart';
 
@@ -93,17 +90,9 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       page: () => MyMapView(),
-      binding: BindingsBuilder(() {
-        Get.lazyPut(() => GeoController());
-      }),
+      binding: BindingsBuilder(() {}),
     ),
-    GetPage(
-      name: GeoMapView.route,
-      page: () => GeoMapView(),
-      binding: BindingsBuilder(() {
-        Get.lazyPut(() => GeoController());
-      }),
-    ),
+
     //*   Notification Routes
     GetPage(
       name: NotificationView.route,
