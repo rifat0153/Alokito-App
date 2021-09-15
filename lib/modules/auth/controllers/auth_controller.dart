@@ -1,4 +1,4 @@
-import 'package:alokito_new/core/location_helper.dart';
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/login/login.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';

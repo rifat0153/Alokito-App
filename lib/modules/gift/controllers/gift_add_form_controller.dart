@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:alokito_new/core/geocoding_helper.dart';
-import 'package:alokito_new/core/location_helper.dart';
+import 'package:alokito_new/core/location/geocoding_helper.dart';
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
 import 'package:alokito_new/modules/gift/services/gift_service.dart';

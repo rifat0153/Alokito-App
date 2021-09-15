@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:alokito_new/core/geocoding_helper.dart';
+import 'package:alokito_new/core/location/geocoding_helper.dart';
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';

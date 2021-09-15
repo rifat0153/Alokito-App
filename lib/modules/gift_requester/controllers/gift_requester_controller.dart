@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:alokito_new/core/location_helper.dart';
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';

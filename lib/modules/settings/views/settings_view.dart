@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/language/language_controller.dart';
+import 'package:alokito_new/core/language/language_controller.dart';
 import 'package:alokito_new/modules/settings/views/general_settings_view.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
