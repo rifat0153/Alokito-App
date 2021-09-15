@@ -47,11 +47,12 @@ class GiftAddView extends StatelessWidget {
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
-                icon: const Icon(
-                  Icons.cancel,
-                  color: Colors.black,
-                ),
-                onPressed: () => Get.back())
+              icon: const Icon(
+                Icons.cancel,
+                color: Colors.black,
+              ),
+              onPressed: Get.back,
+            )
           ],
           title: Text(
             'My Gift - $giftType',
@@ -86,7 +87,6 @@ class GiftAddView extends StatelessWidget {
                   _GiftDetailWidget(),
                   ListingDateWidget(),
                   _PickUpTimeWidget(),
-                  // _LocationAndAreaWidget(),
                   CurrentAddressFromCordinate(),
                   GiftLocationWidget(),
                   Obx(

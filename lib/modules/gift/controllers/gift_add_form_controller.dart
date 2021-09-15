@@ -81,10 +81,10 @@ class GiftAddFormController extends GetxController {
     final List<Placemark> placemarks =
         await GeocodingHelper.getAddressFromPosition(selectedLatLng.value.latitude, selectedLatLng.value.longitude);
 
-    location.value = placemarks.first.country ?? 'N/A';
+    location.value = placemarks.first.locality ?? 'N/A';
     area.value = placemarks.first.name ?? 'N/A';
 
-    print('area: $area, location: $location');
+    selectedMapLocation.value = '${area.value}, ${location.value}, ${placemarks.first.country}';
   }
 
   void setSelectedAddress() {
@@ -94,7 +94,5 @@ class GiftAddFormController extends GetxController {
   Future<void> getCurrentLocationAndSet() async {
     final Position position = await LocationHelper.determinePosition();
     userLocation.value = LatLng(position.latitude, position.longitude);
-
-    print('In controller  ' + userLocation.value.toString());
   }
 }

@@ -15,8 +15,7 @@ class GiftLocationWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 8),
         MaterialButton(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           color: Colors.blue,
           onPressed: () => Get.to(() => GiftMapWidget()),
           child: const Text('Pickup Location'),
@@ -26,9 +25,7 @@ class GiftLocationWidget extends StatelessWidget {
             const SizedBox(width: 20),
             Obx(
               () => Checkbox(
-                  value: controller.canLeaveOutside.value,
-                  onChanged: (value) =>
-                      controller.canLeaveOutside.value = value!),
+                  value: controller.canLeaveOutside.value, onChanged: (value) => controller.canLeaveOutside.value = value!),
             ),
             const Text(
               ' I can leave it outside your home',
@@ -52,7 +49,7 @@ class GiftMapWidgetState extends State<GiftMapWidget> {
   late LatLng myLocation;
 
   var markers = [
-    Marker(
+    const Marker(
       markerId: MarkerId('1'),
       position: LatLng(23.7590, 90.4119),
     )
@@ -72,11 +69,8 @@ class GiftMapWidgetState extends State<GiftMapWidget> {
         () => GoogleMap(
           mapType: MapType.normal,
           markers: controller.markers.toSet(),
-          initialCameraPosition:
-              CameraPosition(target: controller.userLocation.value, zoom: 16),
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
+          initialCameraPosition: CameraPosition(target: controller.userLocation.value, zoom: 16),
+          onMapCreated: _controller.complete,
           onTap: (LatLng postion) async {
             controller.markers.value = [];
             controller.markers.value = markers = [
