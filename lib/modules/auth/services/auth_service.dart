@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:alokito_new/core/location_helper.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:alokito_new/modules/auth/auth_exception.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -82,12 +83,12 @@ class AuthService implements BaseAuthService {
     final client = http.Client();
 
     try {
-      // * Create User in Firebase Auth
+      //  Create User in Firebase Auth
       final UserCredential userCredential =
           await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
-      final loc = await Location().getLocation();
-      final LatLng userPosition = LatLng(loc.latitude!, loc.longitude!);
+      final Position position = await LocationHelper.determinePosition();
+      final LatLng userPosition = LatLng(position.latitude, position.longitude);
       final Geometry geometry = Geometry(coordinates: [userPosition.longitude, userPosition.latitude]);
 
       LocalUser myUser = LocalUser(
@@ -103,10 +104,10 @@ class AuthService implements BaseAuthService {
         updatedAt: DateTime.now(),
       );
 
-      // * upload userImage to Firebase storage and return user with image url
+      //  upload userImage to Firebase storage and return user with image url
       myUser = await uploadImageToFirebase(myUser, false, localImageFile);
 
-      // * Create userDocument in mongodb
+      //  Create userDocument in mongodb
       final http.Response response = await client
           .post(
             Uri.parse('$baseUrl/user/store'),
@@ -118,16 +119,15 @@ class AuthService implements BaseAuthService {
           .timeout(const Duration(seconds: 5));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-         final mongoUser = localUserFromJson(response.body);
+        final mongoUser = localUserFromJson(response.body);
         myUser = mongoUser;
-      
       } else {
-          await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
+        await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
 
         return;
       }
 
-      // * Creating userDoc in Firestore
+      // Creating userDoc in Firestore
       await _firestore.collection('users').doc(_firebaseAuth.currentUser?.uid).set(myUser.toJson());
 
       print('new user');
@@ -201,25 +201,3 @@ class AuthService implements BaseAuthService {
     }
   }
 }
-
-
-// * Http get
-      // final http.Response response = await client.get(
-      //   Uri.parse(
-      //       'http://192.168.0.121:3000/api/v1/user/near?lat=${userPosition.latitude}&lng=${userPosition.longitude}&maxDistance=125&page=1&limit=15'),
-      //   headers: {"Content-Type": "application/json"},
-      // );
-
-      // final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
-
-      // final List<dynamic> userBody = body['users'] as List<dynamic>;
-
-      // final List<LocalUser> users = userBody
-      //     .map(
-      //       (user) => LocalUser.fromJson(user as Map<String, dynamic>),
-      //     )
-      //     .toList();
-
-      // users.forEach((element) {
-      //   print(element.id);
-      // });

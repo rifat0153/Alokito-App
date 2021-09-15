@@ -6,11 +6,9 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:intl/intl.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftAskDetailView extends StatelessWidget {
@@ -101,7 +99,7 @@ class GiftAskDetailView extends StatelessWidget {
               SizedBox(
                 height: 200.h,
                 child: GoogleMap(
-                  initialCameraPosition: CameraPosition(
+                  initialCameraPosition: const CameraPosition(
                     target: LatLng(
                       0,
                       0,
@@ -246,7 +244,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(MdiIcons.phone, color: Colors.white),
+                            const Icon(FontAwesomeIcons.phone, color: Colors.white),
                             MyText('Voice Call', fontSize: 9, color: Colors.white),
                           ],
                         ),
@@ -260,11 +258,11 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(0.0),
+                        padding: const EdgeInsets.all(0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(MdiIcons.chat, color: Colors.white),
+                            const Icon(FontAwesomeIcons.commentAlt, color: Colors.white),
                             MyText('Conversation', fontSize: 9, color: Colors.white),
                           ],
                         ),
@@ -316,7 +314,7 @@ class _UserNameAndLocationWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const SizedBox(width: 30),
-                          const Icon(MdiIcons.mapMarker),
+                          const Icon(FontAwesomeIcons.mapMarker),
                           Text('$distance km away'),
                         ],
                       ),

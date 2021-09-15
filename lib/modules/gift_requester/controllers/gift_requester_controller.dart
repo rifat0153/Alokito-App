@@ -2,17 +2,17 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:alokito_new/core/location_helper.dart';
 import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 class GiftRequesterController extends GetxController {
   GiftRequesterController(this.giftRequesterService, this.geo);
@@ -69,8 +69,8 @@ class GiftRequesterController extends GetxController {
 
   @override
   Future onReady() async {
-    final locData = await Location().getLocation();
-    userPosition.value = LatLng(locData.latitude ?? 0, locData.longitude ?? 0);
+    final Position position = await LocationHelper.determinePosition();
+    userPosition.value = LatLng(position.latitude, position.longitude);
 
     // * Get Gifts on Page Loads 2nd frame
     await retrieveGifts();

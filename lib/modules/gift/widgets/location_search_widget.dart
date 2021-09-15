@@ -10,7 +10,7 @@ class CurrentAddressFromCordinate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.setLatLngFromAddress();
+    controller.getCurrentLocationAndSet();
 
     return Obx(
       () {

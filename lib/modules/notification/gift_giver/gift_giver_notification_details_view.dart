@@ -1,20 +1,17 @@
 import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
 import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
 import 'package:alokito_new/modules/notification/gift_giver/widgets/feedback_widget.dart';
-import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/covid_guidelines_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class GiftGiverNotificationDetailsView extends StatelessWidget {
   GiftGiverNotificationDetailsView({Key? key, required this.giftReceiver}) : super(key: key);
@@ -301,7 +298,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(MdiIcons.phone, color: Colors.white),
+                            const Icon(FontAwesomeIcons.phone, color: Colors.white),
                             MyText('Voice Call', fontSize: 9, color: Colors.white),
                           ],
                         ),
@@ -319,7 +316,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(MdiIcons.chat, color: Colors.white),
+                            const Icon(FontAwesomeIcons.commentAlt, color: Colors.white),
                             MyText('Conversation', fontSize: 9, color: Colors.white),
                           ],
                         ),
@@ -424,7 +421,7 @@ class _RequesterDetailWidget extends StatelessWidget {
                         color: Colors.black,
                       ),
               const SizedBox(width: 16),
-              const Icon(MdiIcons.mapMarker),
+              const Icon(FontAwesomeIcons.mapMarker),
               MyText('$distanceBetweenRequesterAndGiver km away'),
             ],
           ),
