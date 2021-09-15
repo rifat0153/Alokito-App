@@ -32,7 +32,7 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var requesterIdCreatedAgo = DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(123)).inDays;
+    final requesterIdCreatedAgo = DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(123)).inDays;
 
     final LatLng requesterLatLng =
         LatLng(giftAskGiver.requester.geometry.coordinates[1], giftAskGiver.requester.geometry.coordinates[0]);
@@ -71,7 +71,7 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8),
             child: CovidGuideLines(),
           ),
         ],

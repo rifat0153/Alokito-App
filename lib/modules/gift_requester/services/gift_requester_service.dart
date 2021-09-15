@@ -74,7 +74,6 @@ class GiftRequesterService extends GetConnect implements BaseGiftRequesterServic
         '$baseUrl/gift/near?lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit&userId=$id',
       ).timeout(const Duration(seconds: myTimeout));
 
-      print(response.statusCode);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final List<dynamic> giftJson = response.body['gifts'] as List<dynamic>;
