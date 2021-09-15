@@ -15,7 +15,7 @@ import '/modules/settings/views/settings_view.dart';
 import 'modules/gift/views/gift_add_view.dart';
 import 'modules/gift/controllers/gift_controller.dart';
 import 'modules/gift/views/gift_view.dart';
-import 'modules/map/my_map_view.dart';
+import 'core/map/my_map_view.dart';
 import 'modules/settings/views/general_settings_view.dart';
 
 class GetPages {
