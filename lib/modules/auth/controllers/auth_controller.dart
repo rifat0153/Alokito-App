@@ -1,3 +1,4 @@
+import 'package:alokito_new/core/language/language_controller.dart';
 import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/login/login.dart';
 import 'package:alokito_new/models/user/local_user.dart';
@@ -28,11 +29,14 @@ class AuthController extends GetxController {
   final Rx<LatLng> currentUserPosition = const LatLng(0, 0).obs;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
 
+    // Set Language
+    await Get.find<LanguageController>().setSavedLocal();
+    
     authStream.bindStream(authService.authStateChanges);
-    bindLocationData();
+    await bindLocationData();
   }
 
   @override

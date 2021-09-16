@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:alokito_new/modules/auth/views/initial_view.dart';
 import 'package:alokito_new/core/providers/firebase_provider.dart';
-import 'package:alokito_new/modules/home/home_view.dart';
+import 'package:alokito_new/modules/home/views/home_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

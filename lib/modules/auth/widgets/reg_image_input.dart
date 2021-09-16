@@ -10,12 +10,12 @@ class RegImageInput extends StatelessWidget {
   final AuthController authController = Get.find();
   final LoginController loginController = Get.find();
 
-  void _getLocalImage() async {
-    ImagePicker _picker = ImagePicker();
-    var pickedFile = await _picker.getImage(
+  Future<void> _getLocalImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final pickedFile = await _picker.getImage(
         source: ImageSource.gallery, imageQuality: 50, maxWidth: 400);
 
-    File imageFile = File(pickedFile != null ? pickedFile.path : "");
+    final File imageFile = File(pickedFile != null ? pickedFile.path : "");
 
     if (imageFile.path != "") {
       loginController.imageFile.value = imageFile;
@@ -30,14 +30,14 @@ class RegImageInput extends StatelessWidget {
         width: 100,
         decoration: BoxDecoration(
           border: Border.all(
-            color: Color(0xFF40425c),
+            color: const Color(0xFF40425c),
             width: 4,
           ),
           color: Colors.grey,
           borderRadius: BorderRadius.circular(200),
         ),
         child: Obx(
-          () => loginController.imageFile.value.path.length > 0
+          () => loginController.imageFile.value.path.isNotEmpty
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: Image.file(
@@ -56,12 +56,12 @@ class RegImageInput extends StatelessWidget {
           height: 30,
           width: 30,
           decoration: BoxDecoration(
-            color: Color(0xFF40425c),
+            color: const Color(0xFF40425c),
             borderRadius: BorderRadius.circular(200),
           ),
           child: IconButton(
             onPressed: _getLocalImage,
-            icon: Icon(Icons.edit_rounded, color: Colors.white, size: 20),
+            icon: const Icon(Icons.edit_rounded, color: Colors.white, size: 20),
           ),
         ),
       ),

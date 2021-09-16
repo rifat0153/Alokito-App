@@ -1,6 +1,7 @@
 import 'package:alokito_new/core/language/language_controller.dart';
 import 'package:alokito_new/core/map/my_map_view.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
 import 'package:alokito_new/modules/auth/views/initial_view.dart';
 import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
 import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
@@ -23,16 +24,20 @@ class GetPages {
     //* Auth Route
     GetPage(
         name: '/',
-        page: () =>  InitialView(),
+        page: () => const InitialView(),
         binding: BindingsBuilder(() {
           Get.lazyPut(() => AuthController());
+          Get.lazyPut(() => LoginController());
+
           Get.lazyPut(() => NotificationController());
           Get.lazyPut(() => LanguageController());
         })),
     GetPage(
-      name: LoginRegFormView.route,
-      page: () => const LoginRegFormView(),
-    ),
+        name: LoginRegFormView.route,
+        page: () => const LoginRegFormView(),
+        binding: BindingsBuilder(() {
+          Get.lazyPut(() => LoginController());
+        })),
 
     //* Gift Receiver Routes
     GetPage(
