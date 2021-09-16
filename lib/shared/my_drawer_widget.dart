@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift/views/gift_view.dart';
 import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
-import 'package:alokito_new/modules/home/home_view.dart';
 import 'package:alokito_new/modules/notification/notification_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
-  final double menuItemHeight = 35.0;
+  final double menuItemHeight = 35;
 
   @override
   Widget build(BuildContext context) {

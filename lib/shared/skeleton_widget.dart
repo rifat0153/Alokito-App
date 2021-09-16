@@ -1,16 +1,12 @@
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/notification/notification_controller.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SkeletonWidget extends StatelessWidget {
-  SkeletonWidget({required this.titleWidget, required this.assetPath, required this.child});
+  const SkeletonWidget({required this.titleWidget, required this.assetPath, required this.child});
 
-  Widget titleWidget;
-  String assetPath;
-  Widget child;
+  final Widget titleWidget;
+  final String assetPath;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +15,9 @@ class SkeletonWidget extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           shadowColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           backgroundColor: Colors.transparent,
           leading: IconButton(
-            icon: const Icon(MdiIcons.chevronLeft, size: 30, color: Colors.black),
+            icon: const Icon(Icons.chevron_left, size: 30, color: Colors.black),
             onPressed: () => Get.back(),
           ),
           titleSpacing: 0,

@@ -1,3 +1,5 @@
+import 'package:alokito_new/core/language/language_controller.dart';
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/login/login.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/auth_exception.dart';
@@ -7,15 +9,13 @@ import 'package:alokito_new/modules/auth/services/auth_service.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
-
 
 class AuthController extends GetxController {
   AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
-  
+
   final Rx<LocalUser> currentUser = initialUser.obs;
 
   final RxBool registering = false.obs;
@@ -26,14 +26,17 @@ class AuthController extends GetxController {
   final Rx<LocalUserInfo> currentUserInfo = const LocalUserInfo.loading().obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
-  final currentUserPosition = const LatLng(0, 0).obs;
+  final Rx<LatLng> currentUserPosition = const LatLng(0, 0).obs;
 
   @override
-  void onInit() {
-    authStream.bindStream(authService.authStateChanges);
-    bindLocationData();
-
+  Future<void> onInit() async {
     super.onInit();
+
+    // Set Language
+    await Get.find<LanguageController>().setSavedLocal();
+    
+    authStream.bindStream(authService.authStateChanges);
+    await bindLocationData();
   }
 
   @override
@@ -50,15 +53,13 @@ class AuthController extends GetxController {
     authCompleted.value = false;
   }
 
-  double calculateDistanceForGiftDetail({required Gift giftGiver}) {
-    final geo = Geoflutterfire();
-    final giftGiverPoint =
-        geo.point(latitude: giftGiver.geometry.coordinates.first, longitude: giftGiver.geometry.coordinates.last);
-
-
-    final distance = giftGiverPoint.distance(
-        lat: currentUserPosition.value.latitude,
-        lng: currentUserPosition.value.longitude);
+  double calculateDistanceForGiftDetail({required Gift gift}) {
+    final distance = LocationHelper.determineDistance(
+      gift.geometry.coordinates.last,
+      gift.geometry.coordinates.first,
+      currentUserPosition.value.latitude,
+      currentUserPosition.value.longitude,
+    );
 
     return distance;
   }
@@ -78,9 +79,21 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<void> updateLocalUser(LocalUser updatedUser) async {
+    try {
+      currentUserInfo.value = LocalUserInfo.data(updatedUser);
+    } catch (e) {
+      currentUserInfo.value = LocalUserInfo.error(e.toString());
+    }
+  }
+
   Future<void> bindLocationData() async {
-    LocationData loc = await Location().getLocation();
-    currentUserPosition.value = LatLng(loc.latitude!, loc.longitude!);
+    print('Getting user location');
+    final Position position = await LocationHelper.determinePosition();
+
+    print(position);
+
+    currentUserPosition.value = LatLng(position.latitude, position.longitude);
 
     print('AuthController: ' + currentUserPosition.value.toString());
   }

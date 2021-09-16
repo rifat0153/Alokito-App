@@ -1,5 +1,4 @@
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/connection/connection_view.dart';
 import 'package:alokito_new/modules/notification/notification_view.dart';
 import 'package:alokito_new/shared/my_drawer_widget.dart';
 import 'package:badges/badges.dart';
@@ -20,7 +19,6 @@ class UserNavbar extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Get.to(MyDrawer());
-            // Navigator.push(context, MaterialPageRoute(builder: (_) => MyDrawer()));
           },
           child: Icon(Icons.home, color: Colors.white, size: height * 0.05),
         ),
@@ -48,7 +46,6 @@ class UserNavbar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.to(() => ConnectionView());
           },
           child: Icon(Icons.message, color: Colors.white, size: height * 0.045),
         ),

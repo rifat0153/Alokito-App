@@ -10,7 +10,7 @@ class CurrentAddressFromCordinate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.setLatLngFromAddress();
+    controller.getCurrentLocationAndSet();
 
     return Obx(
       () {
@@ -43,7 +43,7 @@ class CurrentAddressFromCordinate extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 ' ${controller.selectedMapLocation.value},',
-                                style: TextStyle(color: Colors.black54),
+                                style: const TextStyle(color: Colors.black54),
                               ),
                             ),
                           ],

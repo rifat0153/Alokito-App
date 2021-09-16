@@ -9,8 +9,6 @@ import 'package:alokito_new/shared/skeleton_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 import 'gift_giver/gift_giver_notification_view.dart';
 
 class NotificationView extends StatelessWidget {

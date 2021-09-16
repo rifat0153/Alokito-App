@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:alokito_new/core/location/geocoding_helper.dart';
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
@@ -8,17 +9,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 
-import 'package:geocoder/geocoder.dart' as geocoder;
-
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftAskController extends GetxController {
   final GiftAskService giftAskService =
-      GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance, Geoflutterfire());
-  final geo = Geoflutterfire();
+      GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance);
 
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   final RxDouble searchRadius = 50.0.obs;
@@ -108,12 +106,10 @@ class GiftAskController extends GetxController {
 
       final GeoPoint point = GeoPoint(0, 2);
 
-      var userPoint =
-          geo.point(latitude: currentUserPosition.value.latitude, longitude: currentUserPosition.value.longitude);
 
-      var distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
 
-      _addMarker(point.latitude, point.longitude, distance);
+
+      _addMarker(point.latitude, point.longitude, 1);
     });
   }
 
@@ -146,20 +142,12 @@ class GiftAskController extends GetxController {
   void bindGiftRequestStream() {
     bindLocationData();
 
-    giftRequestList.bindStream(giftAskService.giftAskRequestStream(
-      latitude: currentUserPosition.value.latitude,
-      longitude: currentUserPosition.value.longitude,
-      searchRadius: searchRadius.value,
-      userId: Get.find<AuthController>().currentUser.value.id ?? '',
-    ));
+  
   }
 
   // FIREBASE REQUESTS
   Future<void> addGift() async {
     loading.value = true;
-
-    var myLocation = geo.point(latitude: formMarker.value.position.latitude, longitude: formMarker.value.position.longitude);
-    var pos = myLocation.data as Map<dynamic, dynamic>;
 
 
     GiftAsk giftAsk = GiftAsk(
@@ -208,15 +196,12 @@ class GiftAskController extends GetxController {
 
   void setLocationFromMapCordinates() async {
     // From coordinates
-    final coordinates = geocoder.Coordinates(formMarker.value.position.latitude, formMarker.value.position.longitude);
     try {
-      var addresses1 = await geocoder.Geocoder.local.findAddressesFromCoordinates(coordinates);
-      var first = addresses1.first;
-      address.value = ' ${first.addressLine}  ${first.subLocality}';
+      final List<Placemark> placemarks = await GeocodingHelper.getAddressFromPosition(
+          formMarker.value.position.latitude, formMarker.value.position.longitude);
 
-      var location = first.addressLine;
-      address.value = location;
-      area.value = first.adminArea ?? 'N/A';
+      address.value = placemarks.first.country ?? 'N/A';
+      area.value = placemarks.first.name ?? 'N/A';
 
       print(area.value);
     } catch (e) {}

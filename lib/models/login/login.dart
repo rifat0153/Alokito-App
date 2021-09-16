@@ -9,3 +9,12 @@ class LoginStatus with _$LoginStatus {
   const factory LoginStatus.notLoggedIn() = NotLoggedIn;
   const factory LoginStatus.error(Object error) = Error;
 }
+
+@freezed
+class RegStatus with _$RegStatus {
+  const factory RegStatus.registering() = Registering;
+  const factory RegStatus.registered() = Registered;
+  const factory RegStatus.notRegistered() = NotRegistered;
+}
+
+

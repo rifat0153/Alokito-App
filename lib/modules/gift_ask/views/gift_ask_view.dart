@@ -27,7 +27,6 @@ class GiftAskView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           leading: IconButton(
             onPressed: Get.back,
             icon: const Icon(
@@ -65,8 +64,7 @@ class GiftAskView extends StatelessWidget {
           height: Get.size.height,
           width: Get.size.width,
           decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/rsz_1gift_receiver.png'), fit: BoxFit.fill),
+            image: DecorationImage(image: AssetImage('assets/images/rsz_1gift_receiver.png'), fit: BoxFit.fill),
           ),
         ),
         Column(
@@ -90,8 +88,7 @@ class GiftAskView extends StatelessWidget {
                               onPressed: () async {
                                 await giftAskController.addGift();
                               },
-                              shape:
-                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
                               color: giftAddFormSubmitColor,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 50.w),
@@ -235,8 +232,7 @@ class _RequestForAndImageRow extends StatelessWidget {
 
   void _getLocalImage() async {
     ImagePicker _picker = ImagePicker();
-    var pickedFile =
-        await _picker.getImage(source: ImageSource.gallery, imageQuality: 50, maxWidth: 400);
+    var pickedFile = await _picker.getImage(source: ImageSource.gallery, imageQuality: 50, maxWidth: 400);
 
     File imageFile = File(pickedFile != null ? pickedFile.path : "");
 
@@ -302,9 +298,7 @@ class _RequestForAndImageRow extends StatelessWidget {
                     child: Text(' Add Prescription ',
                         style: whiteFontStyle.copyWith(
                             fontSize: 10.sp,
-                            color: giftAskController.showPrescription.value
-                                ? Colors.white
-                                : Colors.grey)),
+                            color: giftAskController.showPrescription.value ? Colors.white : Colors.grey)),
                   ),
                 ),
               ),
@@ -378,8 +372,8 @@ class __MapWidgetState extends State<_MapWidget> {
   final Completer<GoogleMapController> _controller = Completer();
   double zoom = 12;
 
-  late LatLng userPosition = LatLng(giftAskController.currentUserPosition.value.latitude,
-      giftAskController.currentUserPosition.value.longitude);
+  late LatLng userPosition = LatLng(
+      giftAskController.currentUserPosition.value.latitude, giftAskController.currentUserPosition.value.longitude);
 
   @override
   void initState() {
@@ -395,18 +389,15 @@ class __MapWidgetState extends State<_MapWidget> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
         ),
         extendBodyBehindAppBar: true,
         body: Obx(
           () => GoogleMap(
             onMapCreated: _controller.complete,
             zoomControlsEnabled: false,
-            initialCameraPosition:
-                CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom),
+            initialCameraPosition: CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom),
             onTap: (LatLng latLng) async {
-              giftAskController.formMarker.value =
-                  Marker(markerId: const MarkerId('markerId'), position: latLng);
+              giftAskController.formMarker.value = Marker(markerId: const MarkerId('markerId'), position: latLng);
               final GoogleMapController controller = await _controller.future;
               await controller.animateCamera(
                 CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: zoom)),
@@ -501,8 +492,7 @@ class _RequestDateWidget extends StatelessWidget {
               Container(
                 height: 10.h,
                 width: 10.w,
-                decoration:
-                    BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(30)),
+                decoration: BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(30)),
               ),
               SizedBox(width: 8.w),
               Text(
@@ -596,13 +586,11 @@ class _GuideLines extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: '* Please see the ',
-                        style: whiteFontStyle.copyWith(
-                            fontSize: notificationFontSize, color: Colors.black),
+                        style: whiteFontStyle.copyWith(fontSize: notificationFontSize, color: Colors.black),
                       ),
                       TextSpan(
                         text: 'Guideline for Food Adding',
-                        style: boldFontStyle.copyWith(
-                            color: Colors.red, fontSize: notificationFontSize),
+                        style: boldFontStyle.copyWith(color: Colors.red, fontSize: notificationFontSize),
                       ),
                     ],
                   ),
@@ -612,8 +600,7 @@ class _GuideLines extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: '* Request to follow ',
-                        style: whiteFontStyle.copyWith(
-                            fontSize: notificationFontSize, color: Colors.black),
+                        style: whiteFontStyle.copyWith(fontSize: notificationFontSize, color: Colors.black),
                       ),
                       TextSpan(
                         text: 'Covid - 19: Sharing & Safety Guidelines',

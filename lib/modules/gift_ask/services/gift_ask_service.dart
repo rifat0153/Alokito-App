@@ -4,7 +4,6 @@ import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/modules/gift_ask/gift_ask_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 
@@ -15,54 +14,14 @@ abstract class BaseGiftAskService {
 
   Future<bool> findGiftById(String id);
 
-  Stream<GiftAskListUnion> giftAskRequestStream({
-    required double latitude,
-    required double longitude,
-    required double searchRadius,
-    required String userId,
-  });
-
   Future<void> delete(GiftAsk giftAsk);
 }
 
 class GiftAskService implements BaseGiftAskService {
-  GiftAskService(this._firestore, this._storage, this._geo);
+  GiftAskService(this._firestore, this._storage);
 
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
-  final Geoflutterfire _geo;
-
-  @override
-  Stream<GiftAskListUnion> giftAskRequestStream({
-    required double latitude,
-    required double longitude,
-    required double searchRadius,
-    required String userId,
-  }) {
-    GeoFirePoint center = _geo.point(latitude: latitude, longitude: longitude);
-
-    var collectionReference = _firestore.collection('gift_ask');
-
-    try {
-      var stream = _geo
-          .collection(collectionRef: collectionReference)
-          .within(center: center, radius: searchRadius, field: 'position', strictMode: true)
-          .map((docList) {
-        List<GiftAsk> list = [];
-        docList.forEach((doc) {
-          var gift = GiftAsk.fromJson(doc.data() ?? {});
-          if (gift.id != userId) {
-            list.add(gift);
-          }
-        });
-        return list.isEmpty ? const GiftAskListUnion.empty() : GiftAskListUnion.data(list);
-      });
-
-      return stream;
-    } catch (e) {
-      return Stream.value(GiftAskListUnion.error(GiftAskException(message: e.toString())));
-    }
-  }
 
   @override
   Future<bool> addGift({required GiftAsk giftAsk, required String userId}) async {

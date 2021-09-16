@@ -1,16 +1,17 @@
 import 'dart:io';
 
-
+import 'package:alokito_new/core/location/geocoding_helper.dart';
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
 import 'package:alokito_new/modules/gift/services/gift_service.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoder/geocoder.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 class GiftAddFormController extends GetxController {
   GiftAddFormController(this.giftGiverService);
@@ -46,7 +47,7 @@ class GiftAddFormController extends GetxController {
       position: Get.find<GiftController>().currentUserLocation.value,
     ));
 
-    getCurrentLocation();
+    getCurrentLocationAndSet();
     debounce(selectedLatLng, (_) => setLocationFromMapCordinates());
     super.onInit();
   }
@@ -77,61 +78,21 @@ class GiftAddFormController extends GetxController {
   }
 
   Future<void> setLocationFromMapCordinates() async {
-    // From coordinates
-    final coordinates = Coordinates(selectedLatLng.value.latitude, selectedLatLng.value.longitude);
+    final List<Placemark> placemarks =
+        await GeocodingHelper.getAddressFromPosition(selectedLatLng.value.latitude, selectedLatLng.value.longitude);
 
-    final addresses1 = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    location.value = placemarks.first.locality ?? 'N/A';
+    area.value = placemarks.first.name ?? 'N/A';
 
-    final first = addresses1.first;
-    selectedMapLocation.value = ' ${first.addressLine}  ${first.subLocality}';
-
-    location.value = first.addressLine;
-    area.value = first.subLocality ?? 'N/A';
-
-    print('area: $area, location: $location');
-    print('${first.featureName} : ${first.addressLine} : ${first.subLocality}');
-  }
-
-  void setLatLngFromAddress() async {
-    // From a query
-    final query = '$addressQuery, Bangladesh';
-    bool errorFound = false;
-    Address first = Address();
-
-    try {
-      final addresses = await Geocoder.local.findAddressesFromQuery(query);
-      first = addresses.first;
-      print(addresses.first.addressLine);
-      print('${first.featureName} : ${first.coordinates}');
-    } catch (e) {
-      print(e);
-      errorFound = true;
-    }
-
-    if (errorFound) {
-      foundAddress.value = 'No matching location';
-    } else {
-      foundAddress.value = first.addressLine;
-      selectedAddressLatLng.value = LatLng(first.coordinates.latitude, first.coordinates.longitude);
-    }
-
-    // From coordinates
-    final coordinates = Coordinates(first.coordinates.latitude, first.coordinates.longitude);
-    final addresses1 = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    first = addresses1.first;
-    print('${first.featureName} : ${first.addressLine}');
+    selectedMapLocation.value = '${area.value}, ${location.value}, ${placemarks.first.country}';
   }
 
   void setSelectedAddress() {
     selectedAddress.value = foundAddress.value;
   }
 
-  void getCurrentLocation() async {
-    print('In controller  ' + userLocation.value.toString());
-
-    var locData = await Location().getLocation();
-    userLocation.value = LatLng(locData.latitude!, locData.longitude!);
-
-    print('In controller  ' + userLocation.value.toString());
+  Future<void> getCurrentLocationAndSet() async {
+    final Position position = await LocationHelper.determinePosition();
+    userLocation.value = LatLng(position.latitude, position.longitude);
   }
 }

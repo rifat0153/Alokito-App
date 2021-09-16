@@ -22,7 +22,6 @@ class GiftRequesterOfferListView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           leading: IconButton(
             onPressed: Get.back,
@@ -49,6 +48,7 @@ class _BuildBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // Background
         Container(
           height: Get.size.height,
           width: Get.size.width,
@@ -56,6 +56,7 @@ class _BuildBody extends StatelessWidget {
             image: DecorationImage(image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
           ),
         ),
+        // Top Layer
         SizedBox(
           height: Get.size.height,
           width: Get.size.width,
@@ -79,8 +80,10 @@ class _BuildBody extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           itemCount: controller.allGiftsFetched.value
                               // * Show Loading Indicator if More gifts needs to be loaded
-                              ? controller.giftList.value.maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
-                              : controller.giftList.value.maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
+                              ? controller.giftList.value
+                                  .maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
+                              : controller.giftList.value
+                                  .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
                           itemBuilder: (_, index) {
                             if (index ==
                                     controller.giftList.value.maybeWhen(
@@ -112,7 +115,9 @@ class _BuildBody extends StatelessWidget {
                       ),
                     );
                   },
-                  loading: () => const CircularProgressIndicator(),
+                  loading: () => const CupertinoActivityIndicator(
+                    radius: 15,
+                  ),
                   error: (e) => Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,

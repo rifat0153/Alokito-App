@@ -486,3 +486,338 @@ abstract class Error implements LoginStatus {
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$RegStatusTearOff {
+  const _$RegStatusTearOff();
+
+  Registering registering() {
+    return const Registering();
+  }
+
+  Registered registered() {
+    return const Registered();
+  }
+
+  NotRegistered notRegistered() {
+    return const NotRegistered();
+  }
+}
+
+/// @nodoc
+const $RegStatus = _$RegStatusTearOff();
+
+/// @nodoc
+mixin _$RegStatus {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registering,
+    required TResult Function() registered,
+    required TResult Function() notRegistered,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function()? notRegistered,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Registering value) registering,
+    required TResult Function(Registered value) registered,
+    required TResult Function(NotRegistered value) notRegistered,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Registering value)? registering,
+    TResult Function(Registered value)? registered,
+    TResult Function(NotRegistered value)? notRegistered,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegStatusCopyWith<$Res> {
+  factory $RegStatusCopyWith(RegStatus value, $Res Function(RegStatus) then) =
+      _$RegStatusCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RegStatusCopyWithImpl<$Res> implements $RegStatusCopyWith<$Res> {
+  _$RegStatusCopyWithImpl(this._value, this._then);
+
+  final RegStatus _value;
+  // ignore: unused_field
+  final $Res Function(RegStatus) _then;
+}
+
+/// @nodoc
+abstract class $RegisteringCopyWith<$Res> {
+  factory $RegisteringCopyWith(
+          Registering value, $Res Function(Registering) then) =
+      _$RegisteringCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RegisteringCopyWithImpl<$Res> extends _$RegStatusCopyWithImpl<$Res>
+    implements $RegisteringCopyWith<$Res> {
+  _$RegisteringCopyWithImpl(
+      Registering _value, $Res Function(Registering) _then)
+      : super(_value, (v) => _then(v as Registering));
+
+  @override
+  Registering get _value => super._value as Registering;
+}
+
+/// @nodoc
+
+class _$Registering implements Registering {
+  const _$Registering();
+
+  @override
+  String toString() {
+    return 'RegStatus.registering()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Registering);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registering,
+    required TResult Function() registered,
+    required TResult Function() notRegistered,
+  }) {
+    return registering();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function()? notRegistered,
+    required TResult orElse(),
+  }) {
+    if (registering != null) {
+      return registering();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Registering value) registering,
+    required TResult Function(Registered value) registered,
+    required TResult Function(NotRegistered value) notRegistered,
+  }) {
+    return registering(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Registering value)? registering,
+    TResult Function(Registered value)? registered,
+    TResult Function(NotRegistered value)? notRegistered,
+    required TResult orElse(),
+  }) {
+    if (registering != null) {
+      return registering(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Registering implements RegStatus {
+  const factory Registering() = _$Registering;
+}
+
+/// @nodoc
+abstract class $RegisteredCopyWith<$Res> {
+  factory $RegisteredCopyWith(
+          Registered value, $Res Function(Registered) then) =
+      _$RegisteredCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RegisteredCopyWithImpl<$Res> extends _$RegStatusCopyWithImpl<$Res>
+    implements $RegisteredCopyWith<$Res> {
+  _$RegisteredCopyWithImpl(Registered _value, $Res Function(Registered) _then)
+      : super(_value, (v) => _then(v as Registered));
+
+  @override
+  Registered get _value => super._value as Registered;
+}
+
+/// @nodoc
+
+class _$Registered implements Registered {
+  const _$Registered();
+
+  @override
+  String toString() {
+    return 'RegStatus.registered()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Registered);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registering,
+    required TResult Function() registered,
+    required TResult Function() notRegistered,
+  }) {
+    return registered();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function()? notRegistered,
+    required TResult orElse(),
+  }) {
+    if (registered != null) {
+      return registered();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Registering value) registering,
+    required TResult Function(Registered value) registered,
+    required TResult Function(NotRegistered value) notRegistered,
+  }) {
+    return registered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Registering value)? registering,
+    TResult Function(Registered value)? registered,
+    TResult Function(NotRegistered value)? notRegistered,
+    required TResult orElse(),
+  }) {
+    if (registered != null) {
+      return registered(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Registered implements RegStatus {
+  const factory Registered() = _$Registered;
+}
+
+/// @nodoc
+abstract class $NotRegisteredCopyWith<$Res> {
+  factory $NotRegisteredCopyWith(
+          NotRegistered value, $Res Function(NotRegistered) then) =
+      _$NotRegisteredCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$NotRegisteredCopyWithImpl<$Res> extends _$RegStatusCopyWithImpl<$Res>
+    implements $NotRegisteredCopyWith<$Res> {
+  _$NotRegisteredCopyWithImpl(
+      NotRegistered _value, $Res Function(NotRegistered) _then)
+      : super(_value, (v) => _then(v as NotRegistered));
+
+  @override
+  NotRegistered get _value => super._value as NotRegistered;
+}
+
+/// @nodoc
+
+class _$NotRegistered implements NotRegistered {
+  const _$NotRegistered();
+
+  @override
+  String toString() {
+    return 'RegStatus.notRegistered()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is NotRegistered);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registering,
+    required TResult Function() registered,
+    required TResult Function() notRegistered,
+  }) {
+    return notRegistered();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function()? notRegistered,
+    required TResult orElse(),
+  }) {
+    if (notRegistered != null) {
+      return notRegistered();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Registering value) registering,
+    required TResult Function(Registered value) registered,
+    required TResult Function(NotRegistered value) notRegistered,
+  }) {
+    return notRegistered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Registering value)? registering,
+    TResult Function(Registered value)? registered,
+    TResult Function(NotRegistered value)? notRegistered,
+    required TResult orElse(),
+  }) {
+    if (notRegistered != null) {
+      return notRegistered(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotRegistered implements RegStatus {
+  const factory NotRegistered() = _$NotRegistered;
+}

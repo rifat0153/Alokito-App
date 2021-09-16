@@ -1,19 +1,17 @@
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
-import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/models/my_enums.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/notification/gift_ask/widgets/gift_ask_feedback_widget.dart';
-import 'package:alokito_new/modules/notification/gift_giver/widgets/feedback_widget.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/skeleton_widget.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/covid_guidelines_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../controllers/gift_ask_notification_controller.dart';
 
@@ -29,12 +27,12 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
     double lat2,
     double lng2,
   ) {
-    return Geoflutterfire().point(latitude: lat1, longitude: lng1).distance(lat: lat2, lng: lng2);
+    return LocationHelper.determineDistance(lat1, lng1, lat2, lng2);
   }
 
   @override
   Widget build(BuildContext context) {
-    var requesterIdCreatedAgo = DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(123)).inDays;
+    final requesterIdCreatedAgo = DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(123)).inDays;
 
     final LatLng requesterLatLng =
         LatLng(giftAskGiver.requester.geometry.coordinates[1], giftAskGiver.requester.geometry.coordinates[0]);
@@ -73,7 +71,7 @@ class GiftAskNotificationDetailsView extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8),
             child: CovidGuideLines(),
           ),
         ],
@@ -232,7 +230,8 @@ class _DecisionWidget extends StatelessWidget {
           MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
           MaterialButton(
             onPressed: () {
-              showDialog(context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              showDialog(
+                  context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -251,7 +250,8 @@ class _DecisionWidget extends StatelessWidget {
               textAlign: TextAlign.center, color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
           MaterialButton(
             onPressed: () {
-              showDialog(context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
+              showDialog(
+                  context: context, builder: (_) => GiftAskFeedbackWidget(giftAskGiver: giftAskGiver, isRequester: false));
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             height: 0,
@@ -401,7 +401,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(MdiIcons.phone, color: Colors.white),
+                            const Icon(FontAwesomeIcons.phone, color: Colors.white),
                             MyText('Voice Call', fontSize: 9, color: Colors.white),
                           ],
                         ),
@@ -419,7 +419,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(MdiIcons.chat, color: Colors.white),
+                            const Icon(FontAwesomeIcons.commentAlt, color: Colors.white),
                             MyText('Conversation', fontSize: 9, color: Colors.white),
                           ],
                         ),
@@ -524,7 +524,7 @@ class _RequesterDetailWidget extends StatelessWidget {
                         color: Colors.black,
                       ),
               const SizedBox(width: 16),
-              const Icon(MdiIcons.mapMarker),
+              const Icon(FontAwesomeIcons.mapMarker),
               MyText('$distanceBetweenRequesterAndGiver km away'),
             ],
           ),

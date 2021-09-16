@@ -2,23 +2,21 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/gift_giver/gift.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 class GiftRequesterController extends GetxController {
-  GiftRequesterController(this.giftRequesterService, this.geo);
+  GiftRequesterController(this.giftRequesterService);
 
   final GiftRequesterService giftRequesterService;
-  final Geoflutterfire geo;
 
   RxBool loading = RxBool(false);
   RxString requesterMessage = RxString('');
@@ -69,8 +67,8 @@ class GiftRequesterController extends GetxController {
 
   @override
   Future onReady() async {
-    final locData = await Location().getLocation();
-    userPosition.value = LatLng(locData.latitude ?? 0, locData.longitude ?? 0);
+    final Position position = await LocationHelper.determinePosition();
+    userPosition.value = LatLng(position.latitude, position.longitude);
 
     // * Get Gifts on Page Loads 2nd frame
     await retrieveGifts();
@@ -79,7 +77,8 @@ class GiftRequesterController extends GetxController {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         page.value += 1;
         if (allGiftsFetched.value) {
-          await MyUserNotify.showAllFetchedSnackbar('you have caught up');
+          // * Show snackbar if all gifts are fethced
+          // await MyUserNotify.showAllFetchedSnackbar('you have caught up');
         } else {
           await retrieveGifts();
         }
@@ -91,11 +90,13 @@ class GiftRequesterController extends GetxController {
 
   //* Retrieve giftList by location from MongoDB
   Future<void> retrieveGifts() async {
+    //* Search by filter called for first time, set page to 1 and giftList to loading state
     GiftListUnion newGiftListUnion = const GiftListUnion.loading();
 
-    if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
-      //* Search by filter called for first time, set page to 1 and giftList to loading state
+    final currentUserId =
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
+    if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
       newGiftListUnion = await giftRequesterService.getGiftByFilterDB(
         searchString.value,
         page.value.toString(),
@@ -103,7 +104,7 @@ class GiftRequesterController extends GetxController {
         userPosition.value.latitude,
         userPosition.value.longitude,
         radius.value.toDouble(),
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => ''),
+        currentUserId,
       );
     } else {
       newGiftListUnion = await giftRequesterService.getGiftDB(
@@ -112,21 +113,32 @@ class GiftRequesterController extends GetxController {
         userPosition.value.latitude,
         userPosition.value.longitude,
         radius.value.toDouble(),
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => ''),
+        currentUserId,
       );
     }
 
+    // If Error Found stop function
+    final bool error = newGiftListUnion.maybeMap(error: (e) {
+      giftList.value = GiftListUnion.error(e);
+      return true;
+    }, orElse: () {
+      return false;
+    });
+    if (error) return;
+
     final bool found = newGiftListUnion.maybeWhen(data: (data) => true, orElse: () => false);
 
+    // First Page Load
     if (page.toInt() == 1 && found) {
-      print('First load');
       giftList.value = newGiftListUnion;
 
-      // * Set allFetched to true if lest than Limit gifts are loaded
+      // Set allFetched to true if lest than Limit gifts are loaded
       if (newGiftListUnion.maybeWhen(data: (data) => data.length, orElse: () => 0) < limit.value) {
         allGiftsFetched.value = true;
       }
-    } else {
+    }
+    // Not First Page Load
+    else {
       final List<Gift> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
       final List<Gift> newGifts = newGiftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
 
@@ -136,11 +148,12 @@ class GiftRequesterController extends GetxController {
         allGiftsFetched.value = false;
       }
 
+      // Add fethced gifts to existing gifts
       final updatedGiftList = [...existingGifts, ...newGifts];
       giftList.value = GiftListUnion.data(updatedGiftList);
     }
 
-    _updateMarkers(giftList.value.maybeWhen(data: (data) => data, orElse: () => []));
+    _updateMarkers(giftList.value.maybeWhen(data: (giftList) => giftList, orElse: () => []));
   }
 
   void _updateMarkers(List<Gift> documentList) {
@@ -149,15 +162,19 @@ class GiftRequesterController extends GetxController {
     for (final gift in documentList) {
       if (gift.user?.uid == Get.find<AuthController>().currentUser.value.id) return;
 
-      // * Reverse order of Coordinates , bcz mongoDB returns lng first in the array,e.g. [lng, lat]
-      final GeoPoint point = GeoPoint(gift.geometry.coordinates.last, gift.geometry.coordinates.first);
+      // Reverse order of Coordinates , bcz mongoDB returns lng first in the array,e.g. [lng, lat]
+      final GeoPoint giftPoint = GeoPoint(gift.geometry.coordinates.last, gift.geometry.coordinates.first);
 
       final userLocation = Get.find<AuthController>().currentUserPosition;
-      final userPoint = geo.point(latitude: userLocation.value.latitude, longitude: userLocation.value.longitude);
 
-      final distance = userPoint.distance(lat: point.latitude, lng: point.longitude);
+      final distance = LocationHelper.determineDistance(
+        gift.geometry.coordinates.last,
+        gift.geometry.coordinates.first,
+        Get.find<AuthController>().currentUserPosition.value.latitude,
+        Get.find<AuthController>().currentUserPosition.value.longitude,
+      );
 
-      _addMarker(point.latitude, point.longitude, distance, gift);
+      _addMarker(giftPoint.latitude, giftPoint.longitude, distance, gift);
     }
   }
 
@@ -180,7 +197,7 @@ class GiftRequesterController extends GetxController {
     markers[id] = _marker;
   }
 
-  // * Create Custom Marker
+  // * Create Custom Map Marker
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
     final ByteData data = await rootBundle.load(path);
     final ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);

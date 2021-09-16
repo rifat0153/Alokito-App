@@ -21,9 +21,9 @@ class LanguageController extends GetxController {
     final String languageCode = prefs.getString('languageCode') ?? 'en';
     final String countryCode = prefs.getString('countryCode') ?? 'US';
 
-    // print('IN setSavedLocal');
-    // print(languageCode);
-    // print(countryCode);
+    print('IN setSavedLocal');
+    print(languageCode);
+    print(countryCode);
 
     await changeLocale(languageCode, countryCode);
   }
@@ -33,7 +33,7 @@ class LanguageController extends GetxController {
 
     final locale = Locale(language, country);
 
-    // print('Change locale called with $language $country');
+    print('Change locale called with $language $country');
 
     Get.updateLocale(locale);
     await prefs.setString('languageCode', language);

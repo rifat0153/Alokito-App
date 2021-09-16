@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/language/language_controller.dart';
+import 'package:alokito_new/core/language/language_controller.dart';
 import 'package:alokito_new/modules/settings/views/general_settings_view.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
@@ -23,7 +23,6 @@ class SettingsView extends StatelessWidget {
         extendBody: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
@@ -65,7 +64,7 @@ class SettingsView extends StatelessWidget {
             ),
             MyText('appName'.tr),
             TextButton(
-                onPressed: ()  async {
+                onPressed: () async {
                   await Get.find<LanguageController>().changeLocale('en', 'US');
                 },
                 child: const Text('English')),
