@@ -106,28 +106,21 @@ class _BuildBody extends StatelessWidget {
           ),
         ),
 
-        // Top Layer
+        // Middle Layer
         Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            // User Image
             _UserImageWidget(
               authController: authController,
               localUser: user,
             ),
-
-            // User Name
             UserNameWidget(localUser: user, context: context),
-
-            // User Email
             UserEmailWidget(localUser: user, context: context),
-
-            // Text
             Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 10.h),
               child: Row(
                 children: [
-                  SizedBox(width: media.width * 0.18),
+                  SizedBox(width: 70.w),
                   Text(
                     'and you are a...',
                     style: TextStyle(fontSize: 17.sp),
@@ -135,44 +128,8 @@ class _BuildBody extends StatelessWidget {
                 ],
               ),
             ),
-            // Gift Giver
-            MenuTileWidget(
-              assetPath: 'assets/images/gift-giver.png',
-              title: 'GiftGiver',
-              width: 0.7.sw,
-              height: 0.09.sh,
-              function: () {
-                Get.toNamed(GiftView.route);
-              },
-            ),
-            // Gift Receiver
-            MenuTileWidget(
-              assetPath: 'assets/images/gift-reciever.png',
-              title: 'GiftGiver',
-              width: 0.7.sw,
-              height: 0.11.sh,
-              function: () {
-                Get.toNamed(GiftRequesterView.route);
-              },
-            ),
-            MenuTileWidget(
-              assetPath: 'assets/images/community-hero.png',
-              title: 'GiftGiver',
-              width: 0.7.sw,
-              height: 0.11.sh,
-              function: () {
-                Get.toNamed(GiftRequesterView.route);
-              },
-            ),
-            MenuTileWidget(
-              assetPath: 'assets/images/team-player.png',
-              title: 'GiftGiver',
-              width: 0.7.sw,
-              height: 0.11.sh,
-              function: () {
-                Get.toNamed(GiftRequesterView.route);
-              },
-            ),
+            // Menu Lists
+            ...menuListTile
           ],
         ),
 

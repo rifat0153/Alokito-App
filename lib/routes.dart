@@ -1,29 +1,34 @@
+import 'package:alokito_new/core/language/language_controller.dart';
+import 'package:alokito_new/core/map/my_map_view.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:alokito_new/modules/auth/views/initial_view.dart';
+import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
+import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
+import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
 import 'package:alokito_new/modules/gift/services/gift_service.dart';
+import 'package:alokito_new/modules/gift/views/gift_add_view.dart';
+import 'package:alokito_new/modules/gift/views/gift_view.dart';
 import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_controller.dart';
 import 'package:alokito_new/modules/gift_requester/services/gift_requester_service.dart';
 import 'package:alokito_new/modules/gift_requester/views/gif_requester_offer_list_view.dart';
 import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
+import 'package:alokito_new/modules/notification/notification_controller.dart';
+import 'package:alokito_new/modules/notification/notification_view.dart';
+import 'package:alokito_new/modules/settings/views/general_settings_view.dart';
+import 'package:alokito_new/modules/settings/views/settings_view.dart';
 import 'package:get/get.dart';
-
-import '/modules/auth/views/initial_view.dart';
-import '/modules/auth/widgets/login_reg_form.dart';
-import 'modules/gift/controllers/gift_add_form_controller.dart';
-import '/modules/notification/notification_controller.dart';
-import '/modules/notification/notification_view.dart';
-import '/modules/settings/views/settings_view.dart';
-import 'modules/gift/views/gift_add_view.dart';
-import 'modules/gift/controllers/gift_controller.dart';
-import 'modules/gift/views/gift_view.dart';
-import 'core/map/my_map_view.dart';
-import 'modules/settings/views/general_settings_view.dart';
 
 class GetPages {
   List<GetPage> getPages = [
     //* Auth Route
     GetPage(
-      name: '/',
-      page: () => const InitialView(),
-    ),
+        name: '/',
+        page: () =>  InitialView(),
+        binding: BindingsBuilder(() {
+          Get.lazyPut(() => AuthController());
+          Get.lazyPut(() => NotificationController());
+          Get.lazyPut(() => LanguageController());
+        })),
     GetPage(
       name: LoginRegFormView.route,
       page: () => const LoginRegFormView(),
@@ -33,7 +38,6 @@ class GetPages {
     GetPage(
       name: GiftRequesterView.route,
       page: () => GiftRequesterView(),
-      transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
         // Get.put(GiftReceiverController());
@@ -48,7 +52,6 @@ class GetPages {
         Get.put(
           GiftRequesterController(
             GiftRequesterService(),
-            
           ),
         );
       }),
@@ -83,7 +86,7 @@ class GetPages {
       }),
     ),
 
-    //*    Map
+    //* Map
     GetPage(
       name: MyMapView.route,
       transitionDuration: const Duration(milliseconds: 500),
@@ -100,12 +103,13 @@ class GetPages {
         Get.lazyPut(() => NotificationController());
       }),
     ),
-    //*   Settings Page
+
+    // Settings Page
     GetPage(
       name: SettingsView.route,
       page: () => const SettingsView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => NotificationController());
+        Get.lazyPut(() => LanguageController());
       }),
       transition: Transition.rightToLeftWithFade,
     ),
@@ -113,7 +117,7 @@ class GetPages {
       name: GeneralSettingsView.route,
       page: () => const GeneralSettingsView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => NotificationController());
+        Get.lazyPut(() => LanguageController());
       }),
       transition: Transition.rightToLeftWithFade,
     ),
