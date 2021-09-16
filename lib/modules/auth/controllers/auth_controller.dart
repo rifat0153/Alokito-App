@@ -40,9 +40,9 @@ class AuthController extends GetxController {
     await Get.find<LanguageController>().setSavedLocal();
 
     // bind newNotification
-    newNotifications.bindStream(authService
-        .streamNewNotificationNumber(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => '')));
+    bindNewNotificationStream();
 
+    // bind user value
     authStream.bindStream(authService.authStateChanges);
     await bindLocationData();
   }
@@ -54,11 +54,17 @@ class AuthController extends GetxController {
     super.onClose();
   }
 
+  void bindNewNotificationStream() {
+    newNotifications.bindStream(authService
+        .streamNewNotificationNumber(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as')));
+  }
+
   Future signOut() async {
     await authService.signOut();
 
     Get.find<LoginController>().loginStatus.value = const LoginStatus.notLoggedIn();
     authCompleted.value = false;
+    newNotifications.refresh();
   }
 
   double calculateDistanceForGiftDetail({required Gift gift}) {
@@ -81,6 +87,8 @@ class AuthController extends GetxController {
       final LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
       currentUserInfo.value = userInfo;
+
+      bindNewNotificationStream();
     } on AuthException catch (e) {
       errors.value = true;
       currentUserInfo.value = LocalUserInfo.error(e.toString());

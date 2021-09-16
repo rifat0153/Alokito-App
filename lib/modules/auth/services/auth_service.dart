@@ -53,8 +53,8 @@ class AuthService implements BaseAuthService {
   @override
   Stream<int> streamNewNotificationNumber(String userUid) {
     try {
-      final stream = _firestore.collection('users').doc('BHt7PooHymTRZnH5RiiSEFo0Vfg2').snapshots().map((doc) {
-        final val = doc.data()?['notificationCount'] as int;
+      final stream = _firestore.collection('users').doc(_firebaseAuth.currentUser?.uid ?? 'abc').snapshots().map((doc) {
+        final val = (doc.data()?['notificationCount'] ?? 0) as int;
         print('NotificationNUmber: ' + val.toString());
         return val;
       });
@@ -210,7 +210,7 @@ class AuthService implements BaseAuthService {
 
       print('GEt user status: ' + response.statusCode.toString());
       final LocalUser localUser = localUserFromJson(response.body);
-      print('User: ' + localUser.id.toString());
+      print('User: ' + localUser.uid.toString());
 
       return LocalUserInfo.data(localUser);
     } catch (e) {
