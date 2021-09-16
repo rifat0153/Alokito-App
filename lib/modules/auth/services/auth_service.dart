@@ -31,6 +31,8 @@ abstract class BaseAuthService {
     required File localImageFile,
   });
 
+  Stream<int> streamNewNotificationNumber(String userUid);
+
   Future<LocalUserInfo> getLocalUserDB(String id);
 
   Future<LocalUser> uploadImageToFirebase(LocalUser user, bool isUpdating, File localFile);
@@ -47,6 +49,21 @@ class AuthService implements BaseAuthService {
 
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
+
+  @override
+  Stream<int> streamNewNotificationNumber(String userUid) {
+    try {
+      final stream = _firestore.collection('users').doc('BHt7PooHymTRZnH5RiiSEFo0Vfg2').snapshots().map((doc) {
+        final val = doc.data()?['notificationCount'] as int;
+        print('NotificationNUmber: ' + val.toString());
+        return val;
+      });
+
+      return stream;
+    } catch (e) {
+      throw e;
+    }
+  }
 
   @override
   Future<bool> updateUserNotificationStatus(String id, bool notificationStatus) async {

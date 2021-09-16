@@ -3,7 +3,7 @@ import 'package:alokito_new/core/map/my_map_view.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
-import 'package:alokito_new/modules/auth/views/initial_view.dart';
+import 'package:alokito_new/modules/auth/services/auth_service.dart';
 import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
 import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
@@ -18,6 +18,8 @@ import 'package:alokito_new/modules/notification/notification_controller.dart';
 import 'package:alokito_new/modules/notification/notification_view.dart';
 import 'package:alokito_new/modules/settings/views/general_settings_view.dart';
 import 'package:alokito_new/modules/settings/views/settings_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class GetPages {
@@ -25,9 +27,9 @@ class GetPages {
     //* Auth Route
     GetPage(
         name: '/',
-        page: () =>  AuthenticationWrapper(),
+        page: () => AuthenticationWrapper(),
         binding: BindingsBuilder(() {
-          Get.lazyPut(() => AuthController());
+          Get.lazyPut(() => AuthController(AuthService(FirebaseAuth.instance, FirebaseFirestore.instance)));
           Get.lazyPut(() => LoginController());
 
           Get.lazyPut(() => LanguageController());
@@ -54,11 +56,7 @@ class GetPages {
       transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
-        Get.put(
-          GiftRequesterController(
-            GiftRequesterService(),
-          ),
-        );
+        Get.put(GiftRequesterController(GiftRequesterService()));
       }),
     ),
 

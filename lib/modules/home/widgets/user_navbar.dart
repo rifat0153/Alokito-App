@@ -23,21 +23,11 @@ class UserNavbar extends StatelessWidget {
           child: Icon(Icons.home, color: Colors.white, size: height * 0.05),
         ),
         Obx(
-          () => authController.currentUserInfo.value.when(
-            data: (user) => GestureDetector(
-              onTap: () {
-                Get.to(() => NotificationView());
-              },
-              child: user.hasNotifications
-                  ? Badge(
-                      badgeContent: const Text('!'),
-                      badgeColor: Colors.white,
-                      child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
-                    )
-                  : Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
-            ),
-            loading: () => Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
-            error: (error) => Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
+          () => Badge(
+            badgeContent: 
+             Text(authController.newNotifications.value.toString()),
+            badgeColor: Colors.white,
+            child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
           ),
         ),
         GestureDetector(
@@ -45,8 +35,7 @@ class UserNavbar extends StatelessWidget {
           child: Icon(Icons.circle, color: Colors.red, size: height * 0.06),
         ),
         GestureDetector(
-          onTap: () {
-          },
+          onTap: () {},
           child: Icon(Icons.message, color: Colors.white, size: height * 0.045),
         ),
         GestureDetector(

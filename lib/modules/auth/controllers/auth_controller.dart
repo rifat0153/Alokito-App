@@ -14,7 +14,11 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AuthController extends GetxController {
-  AuthService authService = AuthService(FirebaseAuth.instance, FirebaseFirestore.instance);
+  AuthController(this.authService);
+  final AuthService authService;
+
+  // track notification number from firestore
+  final Rx<int> newNotifications = 0.obs;
 
   final Rx<LocalUser> currentUser = initialUser.obs;
 
@@ -34,7 +38,11 @@ class AuthController extends GetxController {
 
     // Set Language
     await Get.find<LanguageController>().setSavedLocal();
-    
+
+    // bind newNotification
+    newNotifications.bindStream(authService
+        .streamNewNotificationNumber(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => '')));
+
     authStream.bindStream(authService.authStateChanges);
     await bindLocationData();
   }
