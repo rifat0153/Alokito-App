@@ -7,10 +7,12 @@ import 'package:alokito_new/modules/auth/widgets/reg_image_input.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/login_input.dart';
 import 'package:alokito_new/shared/my_name_input.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class LoginRegFormView extends StatefulWidget {
   const LoginRegFormView();
@@ -100,7 +102,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
     );
   }
 
-  Container buildRegisterForm(BuildContext context, Function toggle) {
+  Container buildRegisterForm(BuildContext context, Callback toggle) {
     return Container(
       height: MediaQuery.of(context).size.height,
       decoration: const BoxDecoration(
@@ -126,8 +128,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: MyNameInput(
-                        hint: 'First Name',
-                        onChanged: (value) => loginController.firstName.value = value as String),
+                        hint: 'First Name', onChanged: (value) => loginController.firstName.value = value as String),
                   ),
                   SizedBox(height: 13.h),
                   Padding(
@@ -140,8 +141,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: MyNameInput(
-                        hint: 'Email Address',
-                        onChanged: (value) => loginController.email.value = value as String),
+                        hint: 'Email Address', onChanged: (value) => loginController.email.value = value as String),
                   ),
                   SizedBox(height: 13.h),
 
@@ -259,9 +259,9 @@ class __LoginButtonState extends State<_LoginButton> with SingleTickerProviderSt
   void initState() {
     super.initState();
 
-    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 5000));
 
-    sizeAnimation = Tween<double>(begin: 60.w, end: 20.w).animate(controller)
+    sizeAnimation = Tween<double>(begin: 60.w, end: 40.w).animate(controller)
       ..addListener(() {
         setState(() {});
       })
@@ -272,7 +272,6 @@ class __LoginButtonState extends State<_LoginButton> with SingleTickerProviderSt
           controller.forward();
         }
       });
-
 
     streamSubscription = Get.find<LoginController>().loginStatus.listen((status) {
       if (status == const LoginStatus.logginIn()) {
@@ -293,18 +292,7 @@ class __LoginButtonState extends State<_LoginButton> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Obx(
       () => widget.loginController.loginStatus.value.when(
-        logginIn: () => MaterialButton(
-          onPressed: widget.loginController.verifyInputAndLogin,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
-          color:loginColor,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: sizeAnimation.value, vertical: 5.w),
-            child: Text(
-              'Log In',
-              style: TextStyle(color: Colors.white, fontSize: 25.sp, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
+        logginIn: () => const CircularProgressIndicator(color: MyColors.loginColor),
         loggedIn: () => const Text('Logged IN'),
         notLoggedIn: () => MaterialButton(
           onPressed: widget.loginController.verifyInputAndLogin,

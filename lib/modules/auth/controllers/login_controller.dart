@@ -7,16 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
+  Rx<LoginStatus> loginStatus = const LoginStatus.notLoggedIn().obs;
+
   RxString firstName = 'a'.obs;
   RxString lastName = 'a'.obs;
   RxString password = '123456'.obs;
   RxString confirmPassword = '123456'.obs;
-  RxString email = 'test@gmail.com'.obs;
-  RxString userName = 'rrr'.obs;
+  RxString email = 'test1@gmail.com'.obs;
+  RxString userName = 'rifat'.obs;
   Rx<File> imageFile = File('').obs;
   RxBool aggreedToTermsAndCondition = true.obs;
-
-  Rx<LoginStatus> loginStatus = const LoginStatus.notLoggedIn().obs;
 
   Future<void> verifyRegistration() async {
     final AuthController authController = Get.find();
@@ -43,8 +43,7 @@ class LoginController extends GetxController {
       return;
     }
     if (!aggreedToTermsAndCondition.value) {
-      Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON',
-          backgroundColor: registrationErrorColor);
+      Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON', backgroundColor: registrationErrorColor);
       return;
     }
 

@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:alokito_new/modules/auth/views/initial_view.dart';
-import 'package:alokito_new/core/providers/firebase_provider.dart';
 import 'package:alokito_new/modules/home/views/home_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VerifyScreen extends StatefulWidget {
@@ -15,7 +13,7 @@ class VerifyScreen extends StatefulWidget {
 }
 
 class _VerifyScreenState extends State<VerifyScreen> {
-  final auth = Get.find<MyFirebase>().auth;
+  final auth = FirebaseAuth.instance;
   late User? user;
   late Timer timer;
 
