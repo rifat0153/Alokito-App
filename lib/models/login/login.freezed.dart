@@ -502,12 +502,6 @@ class _$RegStatusTearOff {
   NotRegistered notRegistered() {
     return const NotRegistered();
   }
-
-  RegError error(Object error) {
-    return RegError(
-      error,
-    );
-  }
 }
 
 /// @nodoc
@@ -520,7 +514,6 @@ mixin _$RegStatus {
     required TResult Function() registering,
     required TResult Function() registered,
     required TResult Function() notRegistered,
-    required TResult Function(Object error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -528,7 +521,6 @@ mixin _$RegStatus {
     TResult Function()? registering,
     TResult Function()? registered,
     TResult Function()? notRegistered,
-    TResult Function(Object error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -537,7 +529,6 @@ mixin _$RegStatus {
     required TResult Function(Registering value) registering,
     required TResult Function(Registered value) registered,
     required TResult Function(NotRegistered value) notRegistered,
-    required TResult Function(RegError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -545,7 +536,6 @@ mixin _$RegStatus {
     TResult Function(Registering value)? registering,
     TResult Function(Registered value)? registered,
     TResult Function(NotRegistered value)? notRegistered,
-    TResult Function(RegError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -608,7 +598,6 @@ class _$Registering implements Registering {
     required TResult Function() registering,
     required TResult Function() registered,
     required TResult Function() notRegistered,
-    required TResult Function(Object error) error,
   }) {
     return registering();
   }
@@ -619,7 +608,6 @@ class _$Registering implements Registering {
     TResult Function()? registering,
     TResult Function()? registered,
     TResult Function()? notRegistered,
-    TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if (registering != null) {
@@ -634,7 +622,6 @@ class _$Registering implements Registering {
     required TResult Function(Registering value) registering,
     required TResult Function(Registered value) registered,
     required TResult Function(NotRegistered value) notRegistered,
-    required TResult Function(RegError value) error,
   }) {
     return registering(this);
   }
@@ -645,7 +632,6 @@ class _$Registering implements Registering {
     TResult Function(Registering value)? registering,
     TResult Function(Registered value)? registered,
     TResult Function(NotRegistered value)? notRegistered,
-    TResult Function(RegError value)? error,
     required TResult orElse(),
   }) {
     if (registering != null) {
@@ -700,7 +686,6 @@ class _$Registered implements Registered {
     required TResult Function() registering,
     required TResult Function() registered,
     required TResult Function() notRegistered,
-    required TResult Function(Object error) error,
   }) {
     return registered();
   }
@@ -711,7 +696,6 @@ class _$Registered implements Registered {
     TResult Function()? registering,
     TResult Function()? registered,
     TResult Function()? notRegistered,
-    TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if (registered != null) {
@@ -726,7 +710,6 @@ class _$Registered implements Registered {
     required TResult Function(Registering value) registering,
     required TResult Function(Registered value) registered,
     required TResult Function(NotRegistered value) notRegistered,
-    required TResult Function(RegError value) error,
   }) {
     return registered(this);
   }
@@ -737,7 +720,6 @@ class _$Registered implements Registered {
     TResult Function(Registering value)? registering,
     TResult Function(Registered value)? registered,
     TResult Function(NotRegistered value)? notRegistered,
-    TResult Function(RegError value)? error,
     required TResult orElse(),
   }) {
     if (registered != null) {
@@ -793,7 +775,6 @@ class _$NotRegistered implements NotRegistered {
     required TResult Function() registering,
     required TResult Function() registered,
     required TResult Function() notRegistered,
-    required TResult Function(Object error) error,
   }) {
     return notRegistered();
   }
@@ -804,7 +785,6 @@ class _$NotRegistered implements NotRegistered {
     TResult Function()? registering,
     TResult Function()? registered,
     TResult Function()? notRegistered,
-    TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if (notRegistered != null) {
@@ -819,7 +799,6 @@ class _$NotRegistered implements NotRegistered {
     required TResult Function(Registering value) registering,
     required TResult Function(Registered value) registered,
     required TResult Function(NotRegistered value) notRegistered,
-    required TResult Function(RegError value) error,
   }) {
     return notRegistered(this);
   }
@@ -830,7 +809,6 @@ class _$NotRegistered implements NotRegistered {
     TResult Function(Registering value)? registering,
     TResult Function(Registered value)? registered,
     TResult Function(NotRegistered value)? notRegistered,
-    TResult Function(RegError value)? error,
     required TResult orElse(),
   }) {
     if (notRegistered != null) {
@@ -842,125 +820,4 @@ class _$NotRegistered implements NotRegistered {
 
 abstract class NotRegistered implements RegStatus {
   const factory NotRegistered() = _$NotRegistered;
-}
-
-/// @nodoc
-abstract class $RegErrorCopyWith<$Res> {
-  factory $RegErrorCopyWith(RegError value, $Res Function(RegError) then) =
-      _$RegErrorCopyWithImpl<$Res>;
-  $Res call({Object error});
-}
-
-/// @nodoc
-class _$RegErrorCopyWithImpl<$Res> extends _$RegStatusCopyWithImpl<$Res>
-    implements $RegErrorCopyWith<$Res> {
-  _$RegErrorCopyWithImpl(RegError _value, $Res Function(RegError) _then)
-      : super(_value, (v) => _then(v as RegError));
-
-  @override
-  RegError get _value => super._value as RegError;
-
-  @override
-  $Res call({
-    Object? error = freezed,
-  }) {
-    return _then(RegError(
-      error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Object,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$RegError implements RegError {
-  const _$RegError(this.error);
-
-  @override
-  final Object error;
-
-  @override
-  String toString() {
-    return 'RegStatus.error(error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is RegError &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
-
-  @JsonKey(ignore: true)
-  @override
-  $RegErrorCopyWith<RegError> get copyWith =>
-      _$RegErrorCopyWithImpl<RegError>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() registering,
-    required TResult Function() registered,
-    required TResult Function() notRegistered,
-    required TResult Function(Object error) error,
-  }) {
-    return error(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? registering,
-    TResult Function()? registered,
-    TResult Function()? notRegistered,
-    TResult Function(Object error)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Registering value) registering,
-    required TResult Function(Registered value) registered,
-    required TResult Function(NotRegistered value) notRegistered,
-    required TResult Function(RegError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Registering value)? registering,
-    TResult Function(Registered value)? registered,
-    TResult Function(NotRegistered value)? notRegistered,
-    TResult Function(RegError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class RegError implements RegStatus {
-  const factory RegError(Object error) = _$RegError;
-
-  Object get error => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $RegErrorCopyWith<RegError> get copyWith =>
-      throw _privateConstructorUsedError;
 }

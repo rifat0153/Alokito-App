@@ -15,7 +15,6 @@ class RegStatus with _$RegStatus {
   const factory RegStatus.registering() = Registering;
   const factory RegStatus.registered() = Registered;
   const factory RegStatus.notRegistered() = NotRegistered;
-  const factory RegStatus.error(Object error) = RegError;
 }
 
 

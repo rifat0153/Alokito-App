@@ -8,17 +8,20 @@ import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   Rx<LoginStatus> loginStatus = const LoginStatus.notLoggedIn().obs;
+  Rx<RegStatus> regStatus = const RegStatus.notRegistered().obs;
 
   RxString firstName = 'a'.obs;
   RxString lastName = 'a'.obs;
   RxString password = '123456'.obs;
   RxString confirmPassword = '123456'.obs;
-  RxString email = 'test1@gmail.com'.obs;
+  RxString email = 'test@gmail.com'.obs;
   RxString userName = 'rifat'.obs;
   Rx<File> imageFile = File('').obs;
   RxBool aggreedToTermsAndCondition = true.obs;
 
   Future<void> verifyRegistration() async {
+    regStatus.value = const RegStatus.registering();
+
     final AuthController authController = Get.find();
 
     if (firstName.value.isEmpty) {
@@ -54,6 +57,8 @@ class LoginController extends GetxController {
         password: password.value,
         userName: userName.value,
         localImageFile: imageFile.value);
+
+    regStatus.value = const RegStatus.registered();
 
     Get.find<AuthController>().authCompleted.value = true;
   }

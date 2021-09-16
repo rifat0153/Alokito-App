@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:alokito_new/modules/auth/views/initial_view.dart';
 import 'package:alokito_new/modules/home/views/home_view.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -65,7 +64,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     );
   }
 
-  void sendVerificationEmail() async {
+  Future<void> sendVerificationEmail() async {
     try {
       if (!user!.emailVerified) {
         await user?.sendEmailVerification();

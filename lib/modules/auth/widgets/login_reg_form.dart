@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:alokito_new/models/login/login.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
 import 'package:alokito_new/modules/auth/widgets/reg_image_input.dart';
@@ -49,7 +46,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
     loginController.verifyRegistration();
   }
 
-  Container buildLoginForm(BuildContext context, Function toggle) {
+  Container buildLoginForm(BuildContext context, Callback toggle) {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
@@ -213,20 +210,23 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
                       ),
                     ],
                   ),
-                  MaterialButton(
-                    onPressed: _register,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    color: Colors.blue,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.sp),
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(fontSize: 13.sp, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  Obx(() => loginController.regStatus.value.when(
+                      registering: () => const CircularProgressIndicator(),
+                      registered: () => const SizedBox(),
+                      notRegistered: () => MaterialButton(
+                            onPressed: _register,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            color: Colors.blue,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                              child: Text(
+                                'Sign Up',
+                                style: TextStyle(fontSize: 13.sp, color: Colors.white),
+                              ),
+                            ),
+                          ))),
                   SizedBox(height: 10.h)
                 ],
               ),
@@ -238,7 +238,7 @@ class _LoginRegFormViewState extends State<LoginRegFormView> {
   }
 }
 
-class _LoginButton extends StatefulWidget {
+class _LoginButton extends StatelessWidget {
   const _LoginButton({
     Key? key,
     required this.loginController,
@@ -247,55 +247,13 @@ class _LoginButton extends StatefulWidget {
   final LoginController loginController;
 
   @override
-  __LoginButtonState createState() => __LoginButtonState();
-}
-
-class __LoginButtonState extends State<_LoginButton> with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> sizeAnimation;
-  StreamSubscription? streamSubscription;
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 5000));
-
-    sizeAnimation = Tween<double>(begin: 60.w, end: 40.w).animate(controller)
-      ..addListener(() {
-        setState(() {});
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          controller.reverse();
-        } else if (status == AnimationStatus.dismissed) {
-          controller.forward();
-        }
-      });
-
-    streamSubscription = Get.find<LoginController>().loginStatus.listen((status) {
-      if (status == const LoginStatus.logginIn()) {
-        controller.forward();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    streamSubscription?.cancel();
-    controller.dispose();
-
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Obx(
-      () => widget.loginController.loginStatus.value.when(
+      () => loginController.loginStatus.value.when(
         logginIn: () => const CircularProgressIndicator(color: MyColors.loginColor),
         loggedIn: () => const Text('Logged IN'),
         notLoggedIn: () => MaterialButton(
-          onPressed: widget.loginController.verifyInputAndLogin,
+          onPressed: loginController.verifyInputAndLogin,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
           color: loginColor,
           child: Padding(
@@ -307,7 +265,7 @@ class __LoginButtonState extends State<_LoginButton> with SingleTickerProviderSt
           ),
         ),
         error: (err) => MaterialButton(
-          onPressed: widget.loginController.verifyInputAndLogin,
+          onPressed: loginController.verifyInputAndLogin,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
           color: loginColor,
           child: Padding(
