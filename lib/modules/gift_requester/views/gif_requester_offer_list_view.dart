@@ -29,9 +29,7 @@ class GiftRequesterOfferListView extends StatelessWidget {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: Obx(
-          () => _BuildBody(controller: controller),
-        ),
+        body: _BuildBody(controller: controller),
       ),
     );
   }
@@ -50,14 +48,6 @@ class _BuildBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Background
-        Container(
-          height: Get.size.height,
-          width: Get.size.width,
-          decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/gift_offer.png'), fit: BoxFit.fill),
-          ),
-        ),
         // Top Layer
         SizedBox(
           height: Get.size.height,
@@ -67,7 +57,7 @@ class _BuildBody extends StatelessWidget {
               Obx(
                 () => MapWithMarkersWidget(
                   markers: controller.markers,
-                  initialCameraPosition: CameraPosition(target: authController.currentUserPosition.value, zoom: 9),
+                  initialCameraPosition: CameraPosition(target: controller.userPosition.value, zoom: 9),
                 ),
               ),
               _SearchWidget(),
@@ -77,29 +67,29 @@ class _BuildBody extends StatelessWidget {
                     print('List full CASE');
                     return Expanded(
                       child: ListView.builder(
-                          // itemExtent: 130,
-                          controller: controller.scrollController,
-                          padding: EdgeInsets.zero,
-                          itemCount: controller.allGiftsFetched.value
-                              // * Show Loading Indicator if More gifts needs to be loaded
-                              ? controller.giftList.value.maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
-                              : controller.giftList.value
-                                  .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
-                          itemBuilder: (_, index) {
-                            if (index ==
-                                    controller.giftList.value.maybeWhen(
-                                      data: (giftList) => giftList.length,
-                                      orElse: () => 0,
-                                    ) &&
-                                !controller.allGiftsFetched.value) {
-                              return const CupertinoActivityIndicator(radius: 15);
-                            }
-                            return _GiftListTile(
-                              controller: controller,
-                              giftList: list,
-                              index: index,
-                            );
-                          }),
+                        // itemExtent: 130,
+                        controller: controller.scrollController,
+                        padding: EdgeInsets.zero,
+                        itemCount: controller.allGiftsFetched.value
+                            // * Show Loading Indicator if More gifts needs to be loaded
+                            ? controller.giftList.value.maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
+                            : controller.giftList.value.maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
+                        itemBuilder: (_, index) {
+                          if (index ==
+                                  controller.giftList.value.maybeWhen(
+                                    data: (giftList) => giftList.length,
+                                    orElse: () => 0,
+                                  ) &&
+                              !controller.allGiftsFetched.value) {
+                            return const CupertinoActivityIndicator(radius: 15);
+                          }
+                          return _GiftListTile(
+                            controller: controller,
+                            giftList: list,
+                            index: index,
+                          );
+                        },
+                      ),
                     );
                   },
                   empty: () {

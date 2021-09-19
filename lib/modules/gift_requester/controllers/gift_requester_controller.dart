@@ -73,8 +73,6 @@ class GiftRequesterController extends GetxController {
       final Position position = await LocationHelper.determinePosition();
       userPosition.value = LatLng(position.latitude, position.longitude);
     } catch (e) {
-      userPosition.value = LatLng(23, 90);
-
       await MyBottomSheet.showErrorBottomSheet(
           'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters');
     }
@@ -96,6 +94,8 @@ class GiftRequesterController extends GetxController {
 
     super.onReady();
   }
+
+  Future<void> bindLocationData() async {}
 
   //* Retrieve giftList by location from MongoDB
   Future<void> retrieveGifts() async {
@@ -173,8 +173,6 @@ class GiftRequesterController extends GetxController {
 
       // Reverse order of Coordinates , bcz mongoDB returns lng first in the array,e.g. [lng, lat]
       final GeoPoint giftPoint = GeoPoint(gift.geometry.coordinates.last, gift.geometry.coordinates.first);
-
-      final userLocation = Get.find<AuthController>().currentUserPosition;
 
       final distance = LocationHelper.determineDistance(
         gift.geometry.coordinates.last,

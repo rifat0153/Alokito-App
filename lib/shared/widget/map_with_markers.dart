@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 class MapWithMarkersWidget extends StatelessWidget {
-   const MapWithMarkersWidget({
+  const MapWithMarkersWidget({
     Key? key,
     required this.markers,
     required this.initialCameraPosition,
@@ -25,11 +24,16 @@ class MapWithMarkersWidget extends StatelessWidget {
             width: mediaQuery.size.width,
             height: mediaQuery.size.height * (1 / 3),
             child: Obx(
-              () => GoogleMap(
-                // zoomControlsEnabled: false,
-                initialCameraPosition: initialCameraPosition,
-                markers: Set<Marker>.of(markers.values),
-              ),
+              () {
+                print('MAP WITH MARKERS:    ' + initialCameraPosition.toString());
+
+                return GoogleMap(
+                  // zoomControlsEnabled: false,
+                  myLocationButtonEnabled: true,
+                  initialCameraPosition: initialCameraPosition,
+                  markers: Set<Marker>.of(markers.values),
+                );
+              },
             ),
           ),
         ),

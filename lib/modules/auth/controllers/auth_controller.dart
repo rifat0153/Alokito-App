@@ -9,7 +9,6 @@ import 'login_controller.dart';
 import '../../../models/gift_giver/gift.dart';
 import '../services/auth_service.dart';
 import '../../../shared/config.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -117,7 +116,7 @@ class AuthController extends GetxController {
       print('AuthController: ' + currentUserPosition.value.toString());
     } catch (e) {
       await MyBottomSheet.showErrorBottomSheet(
-          'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters');
+          'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters properly');
     }
   }
 }
