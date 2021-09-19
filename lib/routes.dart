@@ -3,7 +3,6 @@ import 'package:alokito_new/core/map/my_map_view.dart';
 import 'package:alokito_new/modules/auth/auth_wrapper.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
-import 'package:alokito_new/modules/auth/views/initial_view.dart';
 import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
 import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
 import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
