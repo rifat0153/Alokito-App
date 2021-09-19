@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:alokito_new/models/gift_giver/gift.dart';
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/modules/gift_requester/gift_requester_exception.dart';
-import 'package:alokito_new/shared/config.dart';
+import '../../../models/gift_giver/gift.dart';
+import '../../../models/gift_request/gift_request.dart';
+import '../gift_requester_exception.dart';
+import '../../../shared/config.dart';
 import 'package:get/get.dart';
 
 abstract class BaseGiftRequesterService {

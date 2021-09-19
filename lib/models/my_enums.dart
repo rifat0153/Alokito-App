@@ -1,4 +1,4 @@
-import 'package:alokito_new/models/gift_giver/gift.dart';
+
 
 enum GiftType { anyRetailItem, packageFor3Days, packageFor7Days, customizedPackage }
 

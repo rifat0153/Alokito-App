@@ -1,6 +1,6 @@
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/notification/notification_view.dart';
-import 'package:alokito_new/shared/my_drawer_widget.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../notification/notification_view.dart';
+import '../../../shared/my_drawer_widget.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,9 +1,9 @@
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
-import 'package:alokito_new/modules/auth/widgets/reg_image_input.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/login_input.dart';
-import 'package:alokito_new/shared/my_name_input.dart';
+import '../controllers/auth_controller.dart';
+import '../controllers/login_controller.dart';
+import 'reg_image_input.dart';
+import '../../../shared/config.dart';
+import '../../../shared/login_input.dart';
+import '../../../shared/my_name_input.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';

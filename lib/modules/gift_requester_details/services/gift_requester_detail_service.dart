@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
-import 'package:alokito_new/shared/shared_service.dart';
+import '../../../models/gift_request/gift_request.dart';
+import '../../../shared/config.dart';
+import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/shared_service.dart';
 import 'package:http/http.dart' as http;
 
 abstract class BaseGiftRequesterDetailService {

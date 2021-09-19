@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:alokito_new/core/location/location_helper.dart';
-import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
+import '../../../core/location/location_helper.dart';
+import '../../../models/user/local_user.dart';
+import '../../../shared/config.dart';
+import '../../../shared/my_bottomsheets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:alokito_new/modules/auth/auth_exception.dart';
+import '../auth_exception.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';

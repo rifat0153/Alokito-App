@@ -1,5 +1,5 @@
-import 'package:alokito_new/core/language/translations.dart';
-import 'package:alokito_new/routes.dart';
+import 'core/language/translations.dart';
+import 'routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

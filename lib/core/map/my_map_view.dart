@@ -1,5 +1,5 @@
-import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift.dart';
+import '../../modules/gift/controllers/gift_controller.dart';
+import '../../models/gift_giver/gift.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';

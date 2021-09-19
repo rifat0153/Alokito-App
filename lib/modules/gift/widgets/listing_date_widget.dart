@@ -1,5 +1,5 @@
-import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
-import 'package:alokito_new/shared/config.dart';
+import '../controllers/gift_add_form_controller.dart';
+import '../../../shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

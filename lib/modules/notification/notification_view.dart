@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/notification/gift_ask/views/gift_ask_notification_view.dart';
-import 'package:alokito_new/modules/notification/notification_controller.dart';
-import 'package:alokito_new/modules/notification/widgets/text_notification_widget.dart';
-import 'package:alokito_new/shared/skeleton_widget.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
+import '../../models/my_enums.dart';
+import '../auth/controllers/auth_controller.dart';
+import 'gift_ask/views/gift_ask_notification_view.dart';
+import 'notification_controller.dart';
+import 'widgets/text_notification_widget.dart';
+import '../../shared/skeleton_widget.dart';
+import '../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'gift_giver/gift_giver_notification_view.dart';

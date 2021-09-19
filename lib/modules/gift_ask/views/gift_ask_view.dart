@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'dart:io';
 
-import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/styles.dart';
+import '../controllers/gift_ask_controller.dart';
+import '../../../shared/config.dart';
+import '../../../shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';

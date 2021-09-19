@@ -1,4 +1,4 @@
-import 'package:alokito_new/models/user/local_user.dart';
+import '../user/local_user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 

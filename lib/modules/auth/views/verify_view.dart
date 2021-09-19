@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:alokito_new/modules/home/views/home_view.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
+import '../../home/views/home_view.dart';
+import '../../../shared/widget/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

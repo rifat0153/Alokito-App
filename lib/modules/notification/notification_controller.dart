@@ -1,7 +1,7 @@
-import 'package:alokito_new/models/notification/notification.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/notification/notification_exception.dart';
-import 'package:alokito_new/modules/notification/notification_service.dart';
+import '../../models/notification/notification.dart';
+import '../auth/controllers/auth_controller.dart';
+import 'notification_exception.dart';
+import 'notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:alokito_new/models/gift_ask/gift_ask_giver.dart';
-import 'package:alokito_new/modules/notification/gift_ask/controllers/gift_ask_notification_controller.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
+import '../../../../models/gift_ask/gift_ask_giver.dart';
+import '../controllers/gift_ask_notification_controller.dart';
+import '../../../../shared/config.dart';
+import '../../../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

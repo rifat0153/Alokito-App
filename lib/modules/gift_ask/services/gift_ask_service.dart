@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/modules/gift_ask/gift_ask_exception.dart';
+import '../../../models/gift_ask/gift_ask.dart';
+import '../gift_ask_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;

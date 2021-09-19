@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:alokito_new/core/location/geocoding_helper.dart';
-import 'package:alokito_new/core/location/location_helper.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
-import 'package:alokito_new/modules/gift/services/gift_service.dart';
+import '../../../core/location/geocoding_helper.dart';
+import '../../../core/location/location_helper.dart';
+import '../../../models/my_enums.dart';
+import 'gift_controller.dart';
+import '../services/gift_service.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

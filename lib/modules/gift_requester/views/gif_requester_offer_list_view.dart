@@ -1,10 +1,10 @@
-import 'package:alokito_new/models/gift_giver/gift.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_controller.dart';
-import 'package:alokito_new/modules/gift_requester_details/views/gift_requester_details_view.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/styles.dart';
-import 'package:alokito_new/shared/widget/map_with_markers.dart';
+import '../../../models/gift_giver/gift.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../controllers/gift_requester_controller.dart';
+import '../../gift_requester_details/views/gift_requester_details_view.dart';
+import '../../../shared/config.dart';
+import '../../../shared/styles.dart';
+import '../../../shared/widget/map_with_markers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,6 +1,6 @@
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../../shared/config.dart';
+import '../../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

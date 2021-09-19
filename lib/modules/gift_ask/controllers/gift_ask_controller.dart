@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:alokito_new/core/location/geocoding_helper.dart';
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_ask/services/gift_ask_service.dart';
+import '../../../core/location/geocoding_helper.dart';
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../models/my_enums.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../services/gift_ask_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';

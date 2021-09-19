@@ -1,5 +1,5 @@
-import 'package:alokito_new/modules/gift/views/gift_view.dart';
-import 'package:alokito_new/modules/gift_requester/views/gift_requester_view.dart';
+import '../../gift/views/gift_view.dart';
+import '../../gift_requester/views/gift_requester_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';

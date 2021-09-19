@@ -1,9 +1,9 @@
-import 'package:alokito_new/models/gift_giver/gift.dart';
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_requester_details/services/gift_requester_detail_service.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
+import '../../../models/gift_giver/gift.dart';
+import '../../../models/gift_request/gift_request.dart';
+import '../../../models/user/local_user.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../services/gift_requester_detail_service.dart';
+import '../../../shared/my_bottomsheets.dart';
 import 'package:get/get.dart';
 
 class GiftRequesterDetailController extends GetxController {

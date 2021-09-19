@@ -1,5 +1,5 @@
-import 'package:alokito_new/models/notification/notification.dart';
-import 'package:alokito_new/modules/notification/notification_exception.dart';
+import '../../models/notification/notification.dart';
+import 'notification_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:alokito_new/models/login/login.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/shared/config.dart';
+import '../../../models/login/login.dart';
+import 'auth_controller.dart';
+import '../../../shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

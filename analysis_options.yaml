@@ -24,3 +24,4 @@ linter:
     type_annotate_public_apis: false
     cascade_invocations: false
     non_constant_identifier_names: false
+    always_use_package_imports: false

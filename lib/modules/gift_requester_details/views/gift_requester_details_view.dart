@@ -1,15 +1,15 @@
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift/widgets/user_joining_distance_widget.dart';
-import 'package:alokito_new/models/gift_giver/gift.dart';
-import 'package:alokito_new/modules/gift_requester/widgets/gift_detail_map_widget.dart';
-import 'package:alokito_new/modules/gift_requester/widgets/message_popup_widget.dart';
-import 'package:alokito_new/modules/gift_requester_details/controllers/gift_requester_detail_controller.dart';
-import 'package:alokito_new/modules/gift_requester_details/services/gift_requester_detail_service.dart';
-import 'package:alokito_new/modules/gift_requester_details/widgets/request_delete_widget.dart';
-import 'package:alokito_new/shared/styles.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../gift/widgets/user_joining_distance_widget.dart';
+import '../../../models/gift_giver/gift.dart';
+import '../../gift_requester/widgets/gift_detail_map_widget.dart';
+import '../../gift_requester/widgets/message_popup_widget.dart';
+import '../controllers/gift_requester_detail_controller.dart';
+import '../services/gift_requester_detail_service.dart';
+import '../widgets/request_delete_widget.dart';
+import '../../../shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:alokito_new/shared/config.dart';
+import '../../../shared/config.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftRequesterDetailsView extends StatelessWidget {
