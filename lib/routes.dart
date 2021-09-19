@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import 'core/language/language_controller.dart';
 import 'core/map/my_map_view.dart';
 import 'modules/auth/auth_wrapper.dart';
@@ -17,7 +19,6 @@ import 'modules/notification/notification_controller.dart';
 import 'modules/notification/notification_view.dart';
 import 'modules/settings/views/general_settings_view.dart';
 import 'modules/settings/views/settings_view.dart';
-import 'package:get/get.dart';
 
 class GetPages {
   List<GetPage> getPages = [
