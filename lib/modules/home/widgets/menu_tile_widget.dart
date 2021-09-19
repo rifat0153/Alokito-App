@@ -52,6 +52,7 @@ class MenuTileWidget extends StatelessWidget {
                 title,
                 color: Colors.white,
                 maxLines: 2,
+                textAlign: TextAlign.center,
               ),
             )
           ],
@@ -68,8 +69,8 @@ final List<MenuTileWidget> menuListTile = [
     title: 'Gift Giver',
     width: 0.7.sw,
     height: 0.08.sh,
-    positionTop: 0.08.sh / 2 - 0.08.sh * 0.15,
-    positionLeft: 0.7.sw / 2 - 10.w,
+    positionTop: 0.08.sh / 2 - 0.08.sh * 0.25,
+    positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
       Get.toNamed(GiftView.route);
     },
@@ -80,8 +81,8 @@ final List<MenuTileWidget> menuListTile = [
     title: 'Gift Receiver',
     width: 0.7.sw,
     height: 0.08.sh,
-    positionTop: 0.08.sh / 2 - 0.08.sh * 0.15,
-    positionLeft: 0.7.sw / 2 - 10.w,
+    positionTop: 0.08.sh / 2 - 0.08.sh * 0.25,
+    positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
       Get.toNamed(GiftRequesterView.route);
     },
@@ -91,8 +92,8 @@ final List<MenuTileWidget> menuListTile = [
     title: 'Community Hero',
     width: 0.7.sw,
     height: 0.08.sh,
-    positionTop: 0.08.sh / 2 - 0.08.sh * 0.15,
-    positionLeft: 0.7.sw / 2 - 10.w,
+    positionTop: 0.08.sh / 2 - 0.08.sh * 0.25,
+    positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
       Get.toNamed(GiftRequesterView.route);
     },
@@ -103,7 +104,7 @@ final List<MenuTileWidget> menuListTile = [
     width: 0.7.sw,
     height: 0.08.sh,
     positionTop: 0.08.sh / 2 - 0.08.sh * 0.37,
-    positionLeft: 0.7.sw / 2 - 10.w,
+    positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
       Get.toNamed(GiftRequesterView.route);
     },

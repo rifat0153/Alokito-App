@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/my_drawer_widget.dart';
@@ -24,32 +25,52 @@ class UserNavbar extends StatelessWidget {
             onTap: () {
               Get.to(MyDrawer());
             },
-            child: Icon(Icons.home, color: Colors.white, size: height * 0.05),
+            child: SvgPicture.asset(
+              'assets/svgs/person_icon.svg',
+              height: 40.w,
+              width: 40.w,
+            ),
           ),
           Obx(
             () => Badge(
               badgeContent: MyText(
                 authController.newNotifications.value > 10 ? '10+' : authController.newNotifications.value.toString(),
+                color: Colors.white,
                 fontSize: 14.sp,
               ),
-              badgeColor: Colors.white,
               alignment: Alignment.topRight,
-              child: Icon(Icons.notifications, color: Colors.white, size: height * 0.05),
+              child: SvgPicture.asset(
+                'assets/svgs/bell_icon.svg',
+                height: 40.w,
+                width: 40.w,
+              ),
             ),
           ),
           GestureDetector(
             onTap: () {},
-            child: Icon(Icons.circle, color: Colors.red, size: height * 0.06),
+            child: SvgPicture.asset(
+              'assets/svgs/red_button_icon.svg',
+              height: 50.w,
+              width: 50.w,
+            ),
           ),
           GestureDetector(
             onTap: () {},
-            child: Icon(Icons.message, color: Colors.white, size: height * 0.045),
+            child: SvgPicture.asset(
+              'assets/svgs/message_icon.svg',
+              height: 40.w,
+              width: 40.w,
+            ),
           ),
           GestureDetector(
             onTap: () {
               Get.find<AuthController>().signOut();
             },
-            child: Icon(Icons.map, color: Colors.white, size: height * 0.035),
+            child: SvgPicture.asset(
+              'assets/svgs/task_icon.svg',
+              height: 40.w,
+              width: 40.w,
+            ),
           ),
         ],
       ),
