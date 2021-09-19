@@ -1,3 +1,5 @@
+import 'package:alokito_new/shared/my_bottomsheets.dart';
+
 import '../../../core/language/language_controller.dart';
 import '../../../core/location/location_helper.dart';
 import '../../../models/login/login.dart';
@@ -104,13 +106,18 @@ class AuthController extends GetxController {
   }
 
   Future<void> bindLocationData() async {
-    print('Getting user location');
-    final Position position = await LocationHelper.determinePosition();
+    try {
+      print('Getting user location');
+      final Position position = await LocationHelper.determinePosition();
 
-    print(position);
+      print(position);
 
-    currentUserPosition.value = LatLng(position.latitude, position.longitude);
+      currentUserPosition.value = LatLng(position.latitude, position.longitude);
 
-    print('AuthController: ' + currentUserPosition.value.toString());
+      print('AuthController: ' + currentUserPosition.value.toString());
+    } catch (e) {
+      await MyBottomSheet.showErrorBottomSheet(
+          'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters');
+    }
   }
 }

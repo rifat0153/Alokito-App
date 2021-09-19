@@ -29,7 +29,9 @@ class GiftRequesterOfferListView extends StatelessWidget {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: _BuildBody(controller: controller),
+        body: Obx(
+          () => _BuildBody(controller: controller),
+        ),
       ),
     );
   }
@@ -80,8 +82,7 @@ class _BuildBody extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           itemCount: controller.allGiftsFetched.value
                               // * Show Loading Indicator if More gifts needs to be loaded
-                              ? controller.giftList.value
-                                  .maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
+                              ? controller.giftList.value.maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
                               : controller.giftList.value
                                   .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
                           itemBuilder: (_, index) {

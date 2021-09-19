@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -68,8 +69,15 @@ class GiftRequesterController extends GetxController {
 
   @override
   Future onReady() async {
-    final Position position = await LocationHelper.determinePosition();
-    userPosition.value = LatLng(position.latitude, position.longitude);
+    try {
+      final Position position = await LocationHelper.determinePosition();
+      userPosition.value = LatLng(position.latitude, position.longitude);
+    } catch (e) {
+      userPosition.value = LatLng(23, 90);
+
+      await MyBottomSheet.showErrorBottomSheet(
+          'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters');
+    }
 
     // * Get Gifts on Page Loads 2nd frame
     await retrieveGifts();

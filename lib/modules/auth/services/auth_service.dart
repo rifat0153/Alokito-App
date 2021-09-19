@@ -44,11 +44,32 @@ abstract class BaseAuthService {
   Future<void> signOut();
 }
 
-class AuthService implements BaseAuthService {
+class AuthService extends GetConnect implements BaseAuthService {
   AuthService(this._firebaseAuth, this._firestore);
 
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
+
+  @override
+  Future<LocalUserInfo> getLocalUserDB(String id) async {
+    try {
+      final Response<LocalUser> response = await get(
+        '${MyConfig.baseUrl}/user/show?id=$id',
+        headers: {
+          
+        },
+        decoder: (data) => LocalUser.fromJson(data as Map<String, dynamic>),
+      ).timeout(const Duration(seconds: myTimeout));
+
+      if (response.body != null) {
+        return LocalUserInfo.data(response.body!);
+      } else {
+        return const LocalUserInfo.error('User not found');
+      }
+    } catch (e) {
+      return LocalUserInfo.error(e.toString());
+    }
+  }
 
   @override
   Stream<int> streamNewNotificationNumber(String userUid) {
@@ -198,23 +219,23 @@ class AuthService implements BaseAuthService {
     await _firebaseAuth.signOut();
   }
 
-  @override
-  Future<LocalUserInfo> getLocalUserDB(String id) async {
-    final client = http.Client();
+  // @override
+  // Future<LocalUserInfo> getLocalUserDB(String id) async {
+  //   final client = http.Client();
 
-    try {
-      final http.Response response = await client.get(
-        Uri.parse('$baseUrl/user/show?id=$id'),
-        headers: {"Content-Type": "application/json"},
-      ).timeout(const Duration(seconds: 5));
+  //   try {
+  //     final http.Response response = await client.get(
+  //       Uri.parse('$baseUrl/user/show?id=$id'),
+  //       headers: {"Content-Type": "application/json"},
+  //     ).timeout(const Duration(seconds: 5));
 
-      print('GEt user status: ' + response.statusCode.toString());
-      final LocalUser localUser = localUserFromJson(response.body);
-      print('User: ' + localUser.uid.toString());
+  //     print('GEt user status: ' + response.statusCode.toString());
+  //     final LocalUser localUser = localUserFromJson(response.body);
+  //     print('User: ' + localUser.uid.toString());
 
-      return LocalUserInfo.data(localUser);
-    } catch (e) {
-      return LocalUserInfo.error(e.toString());
-    }
-  }
+  //     return LocalUserInfo.data(localUser);
+  //   } catch (e) {
+  //     return LocalUserInfo.error(e.toString());
+  //   }
+  // }
 }

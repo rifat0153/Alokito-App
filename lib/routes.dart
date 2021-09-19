@@ -31,7 +31,7 @@ class GetPages {
         binding: BindingsBuilder(() {
           Get.lazyPut(() => AuthController(AuthService(FirebaseAuth.instance, FirebaseFirestore.instance)));
           Get.lazyPut(() => LoginController());
-
+          Get.lazyPut(() => AuthService(FirebaseAuth.instance, FirebaseFirestore.instance));
           Get.lazyPut(() => LanguageController());
         })),
     GetPage(
@@ -45,7 +45,6 @@ class GetPages {
     GetPage(
       name: GiftRequesterView.route,
       page: () => GiftRequesterView(),
-      transition: Transition.cupertino,
       binding: BindingsBuilder(() {
         // Get.put(GiftReceiverController());
       }),
@@ -53,7 +52,6 @@ class GetPages {
     GetPage(
       name: GiftRequesterOfferListView.route,
       page: () => GiftRequesterOfferListView(),
-      transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       binding: BindingsBuilder(() {
         Get.put(GiftRequesterController(GiftRequesterService()));
@@ -64,7 +62,6 @@ class GetPages {
     GetPage(
       name: GiftAddView.route,
       page: () => GiftAddView(),
-      // transition: Transition.downToUp,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftAddFormController(GiftService()));
       }),
@@ -72,7 +69,6 @@ class GetPages {
     GetPage(
       name: GiftRequesterOfferListView.route,
       page: () => GiftRequesterOfferListView(),
-      transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.downToUp,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
@@ -81,7 +77,6 @@ class GetPages {
     GetPage(
       name: GiftView.route,
       page: () => GiftView(),
-      transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.noTransition,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
@@ -92,7 +87,6 @@ class GetPages {
     //* Map
     GetPage(
       name: MyMapView.route,
-      transitionDuration: const Duration(milliseconds: 500),
       transition: Transition.cupertino,
       page: () => MyMapView(),
       binding: BindingsBuilder(() {}),
@@ -114,7 +108,6 @@ class GetPages {
       binding: BindingsBuilder(() {
         Get.lazyPut(() => LanguageController());
       }),
-      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: GeneralSettingsView.route,
@@ -122,7 +115,6 @@ class GetPages {
       binding: BindingsBuilder(() {
         Get.lazyPut(() => LanguageController());
       }),
-      transition: Transition.rightToLeftWithFade,
     ),
   ];
 }
