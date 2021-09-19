@@ -1,18 +1,18 @@
-import 'package:alokito_new/shared/my_bottomsheets.dart';
-
-import '../../../core/language/language_controller.dart';
-import '../../../core/location/location_helper.dart';
-import '../../../models/login/login.dart';
-import '../../../models/user/local_user.dart';
-import '../auth_exception.dart';
-import 'login_controller.dart';
-import '../../../models/gift_giver/gift.dart';
-import '../services/auth_service.dart';
-import '../../../shared/config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../../core/language/language_controller.dart';
+import '../../../core/location/location_helper.dart';
+import '../../../models/gift_giver/gift.dart';
+import '../../../models/login/login.dart';
+import '../../../models/user/local_user.dart';
+import '../../../shared/config.dart';
+import '../../../shared/my_bottomsheets.dart';
+import '../auth_exception.dart';
+import '../services/auth_service.dart';
+import 'login_controller.dart';
 
 class AuthController extends GetxController {
   AuthController(this.authService);

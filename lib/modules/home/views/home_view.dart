@@ -1,19 +1,18 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
 import '../../../models/user/local_user.dart';
+import '../../../shared/my_drawer_widget.dart';
+import '../../../shared/widget/my_text.dart';
 import '../../auth/controllers/auth_controller.dart';
-import '../../gift/views/gift_add_view.dart';
-import '../../gift/views/gift_view.dart';
-import '../../gift_requester/views/gift_requester_view.dart';
+import '../../settings/views/settings_view.dart';
 import '../widgets/menu_tile_widget.dart';
 import '../widgets/user_email_widget.dart';
 import '../widgets/user_name_widget.dart';
 import '../widgets/user_navbar.dart';
-import '../../settings/views/settings_view.dart';
-import '../../../shared/my_drawer_widget.dart';
-import '../../../shared/widget/my_text.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
@@ -30,7 +29,7 @@ class HomeView extends StatelessWidget {
         extendBody: true,
         drawer: MyDrawer(),
         appBar: AppBar(
-          toolbarHeight: 80,
+          toolbarHeight: 100.h,
           centerTitle: true,
           title: const Text(
             'User',
@@ -97,49 +96,64 @@ class _BuildBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // Bottom Layer
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/rsz_registration.png'), fit: BoxFit.fill),
+    return SizedBox(
+      height: Get.height,
+      width: Get.width,
+      child: Stack(
+        children: [
+          // Top Curved Bar
+          SvgPicture.asset(
+            'assets/svgs/top bar.svg',
+            height: 0.145.sh,
+            width: 1.sw,
+            fit: BoxFit.fill,
           ),
-        ),
 
-        // Middle Layer
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _UserImageWidget(
-              authController: authController,
-              localUser: user,
+          // Footer
+          Positioned(
+            bottom: 0,
+            child: SvgPicture.asset(
+              'assets/svgs/footer bar.svg',
+              width: 1.sw,
             ),
-            UserNameWidget(localUser: user, context: context),
-            UserEmailWidget(localUser: user, context: context),
-            Padding(
-              padding: EdgeInsets.only(top: 10.h),
-              child: Row(
-                children: [
-                  SizedBox(width: 70.w),
-                  Text(
-                    'and you are a...',
-                    style: TextStyle(fontSize: 17.sp),
-                  ),
-                ],
+          ),
+
+          // Middle Layer
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _UserImageWidget(
+                authController: authController,
+                localUser: user,
               ),
-            ),
-            // Menu Lists
-            ...menuListTile
-          ],
-        ),
+              UserNameWidget(localUser: user, context: context),
+              UserEmailWidget(localUser: user, context: context),
+              Padding(
+                padding: EdgeInsets.only(top: 10.h),
+                child: Row(
+                  children: [
+                    SizedBox(width: 70.w),
+                    Text(
+                      'and you are a...',
+                      style: TextStyle(fontSize: 17.sp),
+                    ),
+                  ],
+                ),
+              ),
 
-        // Last Layer
-        Positioned(
-          width: Get.size.width,
-          bottom: 0,
-          child: UserNavbar(),
-        )
-      ],
+              // Menu Lists
+              ...menuListTile
+            ],
+          ),
+
+          // Last Layer
+          Positioned(
+            width: Get.size.width,
+            bottom: 0,
+            child: UserNavbar(),
+          )
+        ],
+      ),
     );
   }
 }
@@ -154,9 +168,9 @@ class _UserImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       key: ValueKey(localUser.id),
-      padding: EdgeInsets.only(top: 115.h),
+      padding: EdgeInsets.only(top: 125.h),
       child: CircleAvatar(
-        radius: 75,
+        radius: 65,
         backgroundImage: NetworkImage(
           localUser.imageUrl,
         ),
