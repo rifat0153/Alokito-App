@@ -57,7 +57,7 @@ class _BuildBody extends StatelessWidget {
               Obx(
                 () => MapWithMarkersWidget(
                   markers: controller.markers,
-                  initialCameraPosition: CameraPosition(target: controller.userPosition.value, zoom: 9),
+                  initialCameraPosition: CameraPosition(target: authController.currentUserPosition.value, zoom: 9),
                 ),
               ),
               _SearchWidget(),

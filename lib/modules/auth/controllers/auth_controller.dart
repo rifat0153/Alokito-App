@@ -76,7 +76,7 @@ class AuthController extends GetxController {
       currentUserPosition.value.longitude,
     );
 
-    return distance;
+    return distance / 10000 > 100 ? 101 : (distance / 1000).toPrecision(2);
   }
 
   Future<void> getUserInfoAndSetCurrentUser() async {
