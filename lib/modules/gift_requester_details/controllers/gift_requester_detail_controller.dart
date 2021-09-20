@@ -38,21 +38,29 @@ class GiftRequesterDetailController extends GetxController {
         final LocalUser? localuser =
             Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
 
-        // if (localuser != null) {
-        //   final LocalUser updatedUser = localuser.copyWith(hasGiftGiverRequest: true, requestedGiftId: giftGiver.id!);
+        if (localuser != null) {
+          final LocalUser updatedUser = localuser.copyWith(hasGiftGiverRequest: true, requestedGiftId: giftGiver.id!);
 
-        //   await Get.find<AuthController>().updateLocalUser(updatedUser);
-        // }
+          await Get.find<AuthController>().updateLocalUser(updatedUser);
+        }
         loading.value = false;
       } catch (e) {
         loading.value = false;
 
-        await MySnackbar.showErrorSnackbar('Request could not be added');
+        await MyBottomSheet.showErrorBottomSheet('Request could not be added');
       }
     } else {
       loading.value = false;
 
       await MyBottomSheet.showErrorBottomSheet('No user data found. Try logging in again');
     }
+  }
+
+  // * Delete GiftRequest
+  Future<void> canceledByRequester(GiftRequest giftRequest) async {
+    final GiftRequest updatedGiftRequest =
+        giftRequest.copyWith(giftRequestStatus: const GiftRequestStatus.canceledByRequester());
+
+    await giftReceiverDetailService.remove(updatedGiftRequest);
   }
 }
