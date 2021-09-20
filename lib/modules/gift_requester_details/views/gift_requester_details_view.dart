@@ -9,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../models/gift_giver/gift.dart';
-import '../../../shared/config.dart';
 import '../../../shared/styles.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../gift/widgets/user_joining_distance_widget.dart';

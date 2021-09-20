@@ -25,11 +25,8 @@ class MapWithMarkersWidget extends StatelessWidget {
             height: mediaQuery.size.height * (1 / 3),
             child: Obx(
               () {
-                print('MAP WITH MARKERS:    ' + initialCameraPosition.toString());
-
                 return GoogleMap(
-                  // zoomControlsEnabled: false,
-                  myLocationButtonEnabled: true,
+                  zoomControlsEnabled: false,
                   initialCameraPosition: initialCameraPosition,
                   markers: Set<Marker>.of(markers.values),
                 );
