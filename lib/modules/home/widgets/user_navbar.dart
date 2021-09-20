@@ -47,7 +47,10 @@ class UserNavbar extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            // TODO: Removed this
+            onTap: () {
+              Get.to(() => const _ShowSVG());
+            },
             child: SvgPicture.asset(
               'assets/svgs/red_button_icon.svg',
               height: 50.w,
@@ -73,6 +76,24 @@ class UserNavbar extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _ShowSVG extends StatelessWidget {
+  const _ShowSVG({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blue,
+      body: Center(
+        child: SvgPicture.asset(
+          'assets/svgs/shape.svg',
+          height: Get.height,
+          width: Get.width,
+        ),
       ),
     );
   }
