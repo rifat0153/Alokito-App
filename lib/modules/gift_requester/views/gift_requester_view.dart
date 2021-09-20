@@ -1,11 +1,13 @@
-import '../../auth/controllers/auth_controller.dart';
-import 'gif_requester_offer_list_view.dart';
-import '../../../shared/widget/my_text.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../gift_ask/views/gift_ask_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../shared/widget/my_text.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../gift_ask/views/gift_ask_view.dart';
+import 'gif_requester_offer_list_view.dart';
 
 class GiftRequesterView extends StatelessWidget {
   static const route = '/giftreceiverview';
@@ -64,6 +66,13 @@ class GiftRequesterView extends StatelessWidget {
                     //     'assets/images/gift_receiver_background.png'),
                     image: AssetImage('assets/images/rsz_1gift_receiver.png'),
                     fit: BoxFit.fill),
+              ),
+            ),
+            Positioned(
+              top: 0,
+              child: SvgPicture.asset(
+                'assets/svgs/top bar.svg',
+                height: 110.h,
               ),
             ),
             const Center(

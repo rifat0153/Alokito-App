@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+
 import '../../auth/controllers/auth_controller.dart';
 import '../../../models/gift_giver/gift.dart';
 import '../../../shared/config.dart';
@@ -14,6 +17,13 @@ class GiftDetailMapWidget extends StatelessWidget {
   final AuthController authController = Get.find();
   final Completer<GoogleMapController> _controller = Completer();
 
+  final List<Factory<OneSequenceGestureRecognizer>> gestureRecognizerForMap = [
+    Factory<PanGestureRecognizer>(() => PanGestureRecognizer()),
+    Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()),
+    Factory<TapGestureRecognizer>(() => TapGestureRecognizer()),
+    Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()),
+  ];
+
   final markers = [
     const Marker(
       markerId: MarkerId('1'),
@@ -24,6 +34,13 @@ class GiftDetailMapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final distanceOfGift = authController.calculateDistanceForGiftDetail(gift: gift);
+
+    final markers = [
+      Marker(
+        markerId: const MarkerId('123121'),
+        position: LatLng(gift.geometry.coordinates.last, gift.geometry.coordinates.first),
+      )
+    ];
 
     return Column(
       children: [
@@ -58,17 +75,14 @@ class GiftDetailMapWidget extends StatelessWidget {
                       elevation: 20,
                       child: GoogleMap(
                         // mapType: MapType.normal,
+                        gestureRecognizers: gestureRecognizerForMap.toSet(),
+                        zoomControlsEnabled: false,
                         onMapCreated: _controller.complete,
                         initialCameraPosition: CameraPosition(
                           target: LatLng(gift.geometry.coordinates.last, gift.geometry.coordinates.first),
                           zoom: 15,
                         ),
-                        markers: [
-                          Marker(
-                            markerId: const MarkerId('123121'),
-                            position: LatLng(gift.geometry.coordinates.last, gift.geometry.coordinates.first),
-                          )
-                        ].toSet(),
+                        markers: markers.toSet(),
                       ),
                     ),
                   ),
