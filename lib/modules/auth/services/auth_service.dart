@@ -54,10 +54,8 @@ class AuthService extends GetConnect implements BaseAuthService {
   Future<LocalUserInfo> getLocalUserDB(String id) async {
     try {
       final Response<LocalUser> response = await get(
-        '${MyConfig.baseUrl}/user/show?id=$id',
-        headers: {
-          
-        },
+        '$baseUrl/user/show?id=$id',
+        headers: {},
         decoder: (data) => LocalUser.fromJson(data as Map<String, dynamic>),
       ).timeout(const Duration(seconds: myTimeout));
 

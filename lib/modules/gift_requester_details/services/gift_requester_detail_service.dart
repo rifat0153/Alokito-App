@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
+
 import '../../../models/gift_request/gift_request.dart';
 import '../../../shared/config.dart';
 import '../../../shared/my_bottomsheets.dart';
@@ -11,33 +13,23 @@ abstract class BaseGiftRequesterDetailService {
 
   Future<void> update(GiftRequest giftRequest, String requestStatus);
 
-  Future<void> delete(GiftRequest giftRequest);
+  Future<void> remove(GiftRequest giftRequest);
 }
 
-class GiftRequesterDetailService implements BaseGiftRequesterDetailService {
+class GiftRequesterDetailService extends GetConnect implements BaseGiftRequesterDetailService {
   @override
   Future<void> add(GiftRequest giftRequest) async {
     final client = http.Client();
-
-    print('In Gift Receiver Detail Service');
-    print(giftRequest.toJson());
-
-    const data = {
-      "giftRequestStatus": {"runtimeType": "pending"},
-      "requester": {"id": "612b4060da0941461c28951d"},
-      "gift": {"id": "612e257631d8c633b0985df6"}
-    };
-
     try {
-      final http.Response response = await client
-          .post(
-            Uri.parse('$baseUrl/giftrequest/store'),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(giftRequest.toJson()),
-          )
-          .timeout(const Duration(seconds: timeout));
+      final headers = <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      };
+
+      final response = await post(
+        '$baseUrl/gift_request/store',
+        jsonEncode(giftRequest.toJson()),
+        headers: headers,
+      ).timeout(const Duration(seconds: myTimeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         await MySnackbar.showSuccessSnackbar('GiftRequest Added');
@@ -53,8 +45,8 @@ class GiftRequesterDetailService implements BaseGiftRequesterDetailService {
   }
 
   @override
-  Future<void> delete(GiftRequest giftRequest) {
-    // TODO: implement delete
+  Future<void> remove(GiftRequest giftRequest) async {
+    // TODO: implement update
     throw UnimplementedError();
   }
 

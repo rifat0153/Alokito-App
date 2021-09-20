@@ -1,10 +1,11 @@
+import 'package:get/get.dart';
+
 import '../../../models/gift_giver/gift.dart';
 import '../../../models/gift_request/gift_request.dart';
 import '../../../models/user/local_user.dart';
+import '../../../shared/my_bottomsheets.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../services/gift_requester_detail_service.dart';
-import '../../../shared/my_bottomsheets.dart';
-import 'package:get/get.dart';
 
 class GiftRequesterDetailController extends GetxController {
   GiftRequesterDetailController(this.giftReceiverDetailService);
@@ -15,8 +16,10 @@ class GiftRequesterDetailController extends GetxController {
 
   RxString comment = ''.obs;
 
-  // Add Gift Request and Update LocalUser
+  //* Add Gift Request and Update LocalUser
   Future<void> addGiftRequest(Gift giftGiver) async {
+    loading.value = true;
+
     final LocalUser? currentUser =
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
 
@@ -35,15 +38,20 @@ class GiftRequesterDetailController extends GetxController {
         final LocalUser? localuser =
             Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
 
-        if (localuser != null) {
-          final LocalUser updatedUser = localuser.copyWith(hasGiftGiverRequest: true, requestedGiftId: giftGiver.id!);
+        // if (localuser != null) {
+        //   final LocalUser updatedUser = localuser.copyWith(hasGiftGiverRequest: true, requestedGiftId: giftGiver.id!);
 
-          await Get.find<AuthController>().updateLocalUser(updatedUser);
-        }
+        //   await Get.find<AuthController>().updateLocalUser(updatedUser);
+        // }
+        loading.value = false;
       } catch (e) {
+        loading.value = false;
+
         await MySnackbar.showErrorSnackbar('Request could not be added');
       }
     } else {
+      loading.value = false;
+
       await MyBottomSheet.showErrorBottomSheet('No user data found. Try logging in again');
     }
   }

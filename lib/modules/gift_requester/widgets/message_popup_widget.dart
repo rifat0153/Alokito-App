@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import '../../../models/gift_giver/gift.dart';
-import '../../auth/controllers/auth_controller.dart';
 import '../../gift_requester_details/controllers/gift_requester_detail_controller.dart';
 import '../../../shared/config.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +34,7 @@ class MessagePopUpWidget extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                         border: const OutlineInputBorder(
-                          borderSide: BorderSide(width: 0, style: BorderStyle.none),
+                          borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                         fillColor: Colors.grey[400],
@@ -55,7 +54,6 @@ class MessagePopUpWidget extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                           onPressed: () async {
                             await controller.addGiftRequest(giftGiver);
-                            // await Get.find<AuthController>().getUserInfoAndSetCurrentUser();
                           },
                           child: const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),

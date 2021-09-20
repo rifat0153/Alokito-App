@@ -91,7 +91,7 @@ class DecisionWidget extends StatelessWidget {
                 color: giftAddFormSubmitColor,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Get.size.width * 0.2),
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.2),
                   child: const Text(
                     'Send Requests',
                     style: TextStyle(color: Colors.white),

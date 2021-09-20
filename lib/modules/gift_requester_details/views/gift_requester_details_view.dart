@@ -35,8 +35,6 @@ class GiftRequesterDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var giftType = 'test';
-
     return SafeArea(
       child: Container(
         height: Get.size.height,
@@ -45,6 +43,7 @@ class GiftRequesterDetailsView extends StatelessWidget {
           image: DecorationImage(image: AssetImage('assets/images/gift_details.png'), fit: BoxFit.fill),
         ),
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             leading: IconButton(
@@ -60,15 +59,16 @@ class GiftRequesterDetailsView extends StatelessWidget {
                 style: const TextStyle(color: Colors.black),
                 children: <TextSpan>[
                   TextSpan(
-                    text: giftType,
+                    text: giftGiver.giftType,
                     style: boldFontStyle.copyWith(fontSize: 20),
                   ),
                 ],
               ),
             ),
-            elevation: 5,
-            foregroundColor: Colors.black,
-            backgroundColor: Colors.white,
+            elevation: 10,
+            foregroundColor: Colors.transparent,
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
           ),
           body: _BuildBody(
             giftGiver: giftGiver,
@@ -97,7 +97,7 @@ class _BuildBody extends StatelessWidget {
         Positioned(
           // top: 10,
           child: SizedBox(
-            height: Get.size.height - 170.h,
+            height: Get.height - 170.h,
             width: Get.size.width,
             child: SingleChildScrollView(
               child: Column(

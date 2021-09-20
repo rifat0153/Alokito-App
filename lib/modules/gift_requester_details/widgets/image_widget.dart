@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../../../models/gift_giver/gift.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageWidget extends StatelessWidget {
   const ImageWidget({
     Key? key,
-     this.horizontalPadding = 16,
-     this.verticalPadding = 16,
+    this.horizontalPadding = 16,
+    this.verticalPadding = 16,
     required this.giftGiver,
   }) : super(key: key);
 
@@ -18,17 +17,17 @@ class ImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
       child: SizedBox(
-        height: 200,
-        width: Get.size.width * 0.9,
+        height: 250.h,
+        width: 1.sw,
         child: Hero(
           tag: giftGiver.id!,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 giftGiver.imageUrl,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               )),
         ),
       ),
