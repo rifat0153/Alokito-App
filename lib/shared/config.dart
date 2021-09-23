@@ -2,7 +2,7 @@ import '../models/user/local_user.dart';
 import 'package:flutter/material.dart';
 
 class MyConfig {
-  static const baseUrl = 'https://aalokito-dev1-always-on-jyguqmmqea-uc.a.run.app/api/v1';
+  static const baseUrl = 'https://aalokito-v0-5-dev-jyguqmmqea-as.a.run.app/api/v1';
 
   static const myTimeout = 15;
 }
@@ -10,7 +10,7 @@ class MyConfig {
 // URL
 // const baseUrl = 'http://192.168.0.108:80/api/v1';
 // const baseUrl = 'http://192.168.0.121:80/api/v1';
-const baseUrl = 'https://aalokito-dev1-always-on-jyguqmmqea-uc.a.run.app/api/v1';
+const baseUrl = 'https://aalokito-v0-5-dev-jyguqmmqea-as.a.run.app/api/v1';
 
 const myTimeout = 15;
 
