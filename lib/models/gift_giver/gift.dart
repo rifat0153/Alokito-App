@@ -5,9 +5,9 @@ import 'dart:convert';
 part 'gift.freezed.dart';
 part 'gift.g.dart';
 
-Gift giftGiverFromJson(String str) => Gift.fromJson(json.decode(str)   as Map<String, dynamic> );
+Gift giftFromJson(String str) => Gift.fromJson(json.decode(str)   as Map<String, dynamic> );
 
-String giftGiverToJson(Gift data) => json.encode(data.toJson());
+String giftToJson(Gift data) => json.encode(data.toJson());
 
 @freezed
 abstract class Gift with _$Gift {
