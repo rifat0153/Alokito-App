@@ -1,3 +1,5 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'core/language/translations.dart';
 import 'routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,8 +27,12 @@ Future<void> main() async {
   ));
 
   FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: false);
+
+  
   runApp(
-    AlokitoApp(),
+    ProviderScope(
+      child: AlokitoApp(),
+    ),
   );
 }
 

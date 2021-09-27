@@ -11,9 +11,9 @@ import '../../../shared/config.dart';
 import 'package:get/get.dart';
 
 abstract class BaseGiftRequesterService {
-  Future<GiftListUnion> getGiftDB(String page, String limit, double lat, double lng, double radius, String id);
+  Future<GiftListDtoState> getGiftDB(String page, String limit, double lat, double lng, double radius, String id);
 
-  Future<GiftListUnion> getGiftByFilterDB(
+  Future<GiftListState> getGiftByFilterDB(
       String searchString, String page, String limit, double lat, double lng, double radius, String id);
 }
 
@@ -21,7 +21,7 @@ class GiftRequesterService extends GetConnect implements BaseGiftRequesterServic
   GiftRequesterService();
 
   @override
-  Future<GiftListUnion> getGiftByFilterDB(
+  Future<GiftListState> getGiftByFilterDB(
     String searchString,
     String page,
     String limit,
@@ -38,7 +38,7 @@ class GiftRequesterService extends GetConnect implements BaseGiftRequesterServic
       print(response.statusCode);
 
       if (response.statusCode != 200 || response.statusCode != 201) {
-        return GiftListUnion.error('Server Error');
+        return GiftListState.error('Server Error');
       }
 
       final List<dynamic> giftJson = response.body['gifts'] as List<dynamic>;
@@ -54,16 +54,16 @@ class GiftRequesterService extends GetConnect implements BaseGiftRequesterServic
         }
       }
 
-      return GiftListUnion.data(filteredGifts);
+      return GiftListState.data(filteredGifts);
     } on TimeoutException catch (_) {
-      return const GiftListUnion.error('Server could not be reached');
+      return const GiftListState.error('Server could not be reached');
     } catch (e) {
-      return GiftListUnion.error(e.toString());
+      return GiftListState.error(e.toString());
     }
   }
 
   @override
-  Future<GiftListUnion> getGiftDB(
+  Future<GiftListDtoState> getGiftDB(
     String page,
     String limit,
     double lat,
@@ -80,23 +80,16 @@ class GiftRequesterService extends GetConnect implements BaseGiftRequesterServic
       if (response.statusCode == 200 || response.statusCode == 201) {
         final GiftDto giftDto = response.body!;
 
-        if(giftDto.page == giftDto.lastPage) {
-          // TODO 
-        }
-
-        final List<Gift> giftList = giftDto.results;
-
-        return GiftListUnion.data(giftList);
+        return GiftListDtoState.success(giftDto);
       } else {
-        return const GiftListUnion.error('Server Error');
+        return const GiftListDtoState.error('Some unexpected error occurred');
       }
     } on TimeoutException catch (_) {
-      return const GiftListUnion.error('Server could not be reached');
-    } on IOException catch(e) {
-      return GiftListUnion.error(e.toString());
-    }
-    catch (e) {
-      return GiftListUnion.error(e.toString());
+      return const GiftListDtoState.error('Server could not be reached');
+    } on IOException catch (_) {
+      return const GiftListDtoState.error('Server could not be reached. Please check internet connection');
+    } catch (e) {
+      return const GiftListDtoState.error('Opps. Looks like something went wrong');
     }
   }
 }

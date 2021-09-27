@@ -44,13 +44,20 @@ class GiftLoadingOption with _$GiftLoadingOption{
 }
 
 @freezed
-class GiftListUnion with _$GiftListUnion {
-  const factory GiftListUnion.data(List<Gift> giftList) = Data;
-  const factory GiftListUnion.empty() = Empty;
-  const factory GiftListUnion.loading() = Loading;
-  const factory GiftListUnion.error(Object error) = Error;
+class GiftListState with _$GiftListState {
+  const factory GiftListState.data(List<Gift> giftList) = Data;
+  const factory GiftListState.empty() = Empty;
+  const factory GiftListState.loading() = Loading;
+  const factory GiftListState.error(Object error) = Error;
 }
 
+
+@freezed
+class GiftListDtoState with _$GiftListDtoState{
+  const factory GiftListDtoState.success(GiftDto giftDto) = DtoSuccess;
+  const factory GiftListDtoState.error(Object e) = DtoError;
+  const factory GiftListDtoState.loading() = DtoLoading;
+}
 
 
 

@@ -33,7 +33,7 @@ class GiftRequesterController extends GetxController {
   Rx<int> radius = 400.obs;
   Rx<String> searchString = ''.obs;
 
-  Rx<GiftListUnion> giftList = const GiftListUnion.loading().obs;
+  Rx<GiftListState> giftList = const GiftListState.loading().obs;
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
 
   Rx<bool> allGiftsFetched = false.obs;
@@ -59,7 +59,7 @@ class GiftRequesterController extends GetxController {
             searchString.value.isNotEmpty ? const GiftLoadingOption.bySearch() : const GiftLoadingOption.byLocation();
 
         //* set giftListState to loading
-        giftList.value = const GiftListUnion.loading();
+        giftList.value = const GiftListState.loading();
 
         await retrieveGifts();
       },
@@ -100,7 +100,7 @@ class GiftRequesterController extends GetxController {
   //* Retrieve giftList by location from MongoDB
   Future<void> retrieveGifts() async {
     //* Search by filter called for first time, set page to 1 and giftList to loading state
-    GiftListUnion newGiftListUnion = const GiftListUnion.loading();
+    GiftListState newGiftListUnion = const GiftListState.loading();
 
     final currentUserId =
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
@@ -116,7 +116,7 @@ class GiftRequesterController extends GetxController {
         currentUserId,
       );
     } else {
-      newGiftListUnion = await giftRequesterService.getGiftDB(
+      final newGiftDto = await giftRequesterService.getGiftDB(
         page.value.toString(),
         limit.value.toString(),
         userPosition.value.latitude,
@@ -124,11 +124,12 @@ class GiftRequesterController extends GetxController {
         radius.value.toDouble(),
         currentUserId,
       );
+
     }
 
     // If Error Found stop function
     final bool error = newGiftListUnion.maybeMap(error: (e) {
-      giftList.value = GiftListUnion.error(e);
+      giftList.value = GiftListState.error(e);
       return true;
     }, orElse: () {
       return false;
@@ -159,7 +160,7 @@ class GiftRequesterController extends GetxController {
 
       // Add fethced gifts to existing gifts
       final updatedGiftList = [...existingGifts, ...newGifts];
-      giftList.value = GiftListUnion.data(updatedGiftList);
+      giftList.value = GiftListState.data(updatedGiftList);
     }
 
     _updateMarkers(giftList.value.maybeWhen(data: (giftList) => giftList, orElse: () => []));
