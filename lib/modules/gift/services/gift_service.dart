@@ -61,7 +61,7 @@ class GiftService implements BaseGiftGiverService {
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
-            body: giftGiverToJson(gift),
+            body: giftToJson(gift),
           )
           .timeout(const Duration(seconds: timeout));
 

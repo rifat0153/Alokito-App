@@ -16,12 +16,12 @@ class GiftDto {
         total: json["total"] as int,
         page: json["page"] as int,
         lastPage: json["last_page"] as int,
-        results: json["last_page"] as List<Gift>,
+        results: giftDtoToGiftList(json["results"] as List<dynamic>),
       );
 }
 
-List<Gift> giftDtoToGiftList(GiftDto giftListDto) {
-  return giftListDto.results
+List<Gift> giftDtoToGiftList(List<dynamic> results) {
+  return results
       .map(
         (giftDto) => Gift.fromJson(giftDto as Map<String, dynamic>),
       )

@@ -1,3 +1,5 @@
+import 'package:alokito_new/modules/gift_requester/dto/gift_dto.dart';
+
 import '../user/local_user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
@@ -48,5 +50,7 @@ class GiftListUnion with _$GiftListUnion {
   const factory GiftListUnion.loading() = Loading;
   const factory GiftListUnion.error(Object error) = Error;
 }
+
+
 
 
