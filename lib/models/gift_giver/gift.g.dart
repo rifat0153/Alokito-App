@@ -20,7 +20,7 @@ _$_Gift _$_$_GiftFromJson(Map<String, dynamic> json) {
     area: json['area'] as String,
     location: json['location'] as String,
     imageUrl: json['imageUrl'] as String,
-    distance: (json['distance'] as num).toDouble(),
+    distance: (json['distance'] as num?)?.toDouble(),
   );
 }
 

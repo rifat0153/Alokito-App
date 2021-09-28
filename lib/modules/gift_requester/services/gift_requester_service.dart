@@ -30,32 +30,17 @@ class GiftRequesterService extends GetConnect implements BaseGiftRequesterServic
     String id,
   ) async {
     try {
-      // final Response<GiftDto> response =
-      //     await get('$baseUrl/gift/search?page=1&limit=5&searchString=nahin&userId=612b4060da0941461c28951d',
-      //         // '$baseUrl/gift/search?page=$page&limit=$limit&searchString=$searchString&userId=$id',
-      //         decoder: (data) => GiftDto.fromJson(data as Map<String, dynamic>)).timeout(const Duration(seconds: myTimeout));
+      final Response<GiftDto> response = await get(
+          '$baseUrl/gift/search?page=$page&limit=$limit&searchString=$searchString&userId=$id',
+          decoder: (data) => GiftDto.fromJson(data as Map<String, dynamic>)).timeout(const Duration(seconds: myTimeout));
 
-      // if (response.statusCode == 200 || response.statusCode == 201) {
-      //   final GiftDto giftDto = response.body!;
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final GiftDto giftDto = response.body!;
 
-      //   return GiftListDtoState.success(giftDto);
-      // } else {
-      //   return const GiftListDtoState.error('Some unexpected error occurred');
-      // }
-
-      final http.Response response = await http.get(
-        Uri.parse('$baseUrl/gift/search?page=1&limit=5&searchString=nahin&userId=612b4060da0941461c28951d'),
-      );
-
-      print(response.statusCode);
-
-      print(response.body);
-
-      final GiftDto giftDto = GiftDto.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-
-      print('GiftDTO:' + giftDto.toString());
-
-      return const GiftListDtoState.loading();
+        return GiftListDtoState.success(giftDto);
+      } else {
+        return const GiftListDtoState.error('Some unexpected error occurred');
+      }
     } on TimeoutException catch (_) {
       return const GiftListDtoState.error('Server could not be reached');
     } on IOException catch (_) {

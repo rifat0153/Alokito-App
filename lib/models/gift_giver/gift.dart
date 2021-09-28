@@ -26,11 +26,13 @@ abstract class Gift with _$Gift {
     required String area,
     required String location,
     required String imageUrl,
-    required double distance,
+     double? distance,
   }) = _Gift;
 
   factory Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
 }
+
+
 
 Map<String, dynamic> giftToMap(Gift gift) => gift.toJson();
 Gift giftFromMap(Map<String, dynamic> json) => Gift.fromJson(json);

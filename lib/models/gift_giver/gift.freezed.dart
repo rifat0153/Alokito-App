@@ -35,7 +35,7 @@ class _$GiftTearOff {
       required String area,
       required String location,
       required String imageUrl,
-      required double distance}) {
+      double? distance}) {
     return _Gift(
       id: id,
       listingForDays: listingForDays,
@@ -77,7 +77,7 @@ mixin _$Gift {
   String get area => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  double get distance => throw _privateConstructorUsedError;
+  double? get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -103,7 +103,7 @@ abstract class $GiftCopyWith<$Res> {
       String area,
       String location,
       String imageUrl,
-      double distance});
+      double? distance});
 
   $LocalUserCopyWith<$Res>? get user;
   $GeometryCopyWith<$Res> get geometry;
@@ -185,7 +185,7 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
     ));
   }
 
@@ -228,7 +228,7 @@ abstract class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
       String area,
       String location,
       String imageUrl,
-      double distance});
+      double? distance});
 
   @override
   $LocalUserCopyWith<$Res>? get user;
@@ -313,7 +313,7 @@ class __$GiftCopyWithImpl<$Res> extends _$GiftCopyWithImpl<$Res>
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
     ));
   }
 }
@@ -336,7 +336,7 @@ class _$_Gift implements _Gift {
       required this.area,
       required this.location,
       required this.imageUrl,
-      required this.distance});
+      this.distance});
 
   factory _$_Gift.fromJson(Map<String, dynamic> json) =>
       _$_$_GiftFromJson(json);
@@ -368,7 +368,7 @@ class _$_Gift implements _Gift {
   @override
   final String imageUrl;
   @override
-  final double distance;
+  final double? distance;
 
   @override
   String toString() {
@@ -460,7 +460,7 @@ abstract class _Gift implements Gift {
       required String area,
       required String location,
       required String imageUrl,
-      required double distance}) = _$_Gift;
+      double? distance}) = _$_Gift;
 
   factory _Gift.fromJson(Map<String, dynamic> json) = _$_Gift.fromJson;
 
@@ -491,7 +491,7 @@ abstract class _Gift implements Gift {
   @override
   String get imageUrl => throw _privateConstructorUsedError;
   @override
-  double get distance => throw _privateConstructorUsedError;
+  double? get distance => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GiftCopyWith<_Gift> get copyWith => throw _privateConstructorUsedError;
