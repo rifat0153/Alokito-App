@@ -50,11 +50,11 @@ class GiftRequesterController extends GetxController {
     debounce(
       searchString,
       (_) async {
-        //* reset all page value as Search string was changed
+        //* reset all page value as Search string was changed, gift near data or gift search data will be loaded
         page.value = 1;
         allGiftsFetched.value = false;
 
-        //* if search string exists get gift by search, otherwise get gift by location only
+        //* if search string exists get gift by search, otherwise get gift by location
         giftRetriveOption.value =
             searchString.value.isNotEmpty ? const GiftLoadingOption.bySearch() : const GiftLoadingOption.byLocation();
 
@@ -111,25 +111,29 @@ class GiftRequesterController extends GetxController {
     final currentUserId =
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
-    if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
-      newGiftDto = await giftRequesterService.getGiftByFilterDB(
-        searchString.value,
-        page.value.toString(),
-        limit.value.toString(),
-        userPosition.value.latitude,
-        userPosition.value.longitude,
-        radius.value.toDouble(),
-        currentUserId,
-      );
-    } else {
-      newGiftDto = await giftRequesterService.getGiftDB(
-        page.value.toString(),
-        limit.value.toString(),
-        userPosition.value.latitude,
-        userPosition.value.longitude,
-        radius.value.toDouble(),
-        currentUserId,
-      );
+    try {
+      if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
+        newGiftDto = await giftRequesterService.getGiftByFilterDB(
+          searchString.value,
+          page.value.toString(),
+          limit.value.toString(),
+          userPosition.value.latitude,
+          userPosition.value.longitude,
+          radius.value.toDouble(),
+          currentUserId,
+        );
+      } else {
+        newGiftDto = await giftRequesterService.getGiftDB(
+          page.value.toString(),
+          limit.value.toString(),
+          userPosition.value.latitude,
+          userPosition.value.longitude,
+          radius.value.toDouble(),
+          currentUserId,
+        );
+      }
+    } catch (e) {
+      await MySnackbar.showErrorSnackbar(e.toString());
     }
 
     newGiftDto.when(success: (data) {
@@ -148,22 +152,31 @@ class GiftRequesterController extends GetxController {
 
       if (data.page == data.lastPage) {
         allGiftsFetched.value = true;
-      } 
-      
+      }
     }, error: (e) {
-      giftList.value = GiftListState.error(e);
+      if (page.value == 1) {
+        print('Page value isside if is: ${page.value}');
+        giftList.value = GiftListState.error(e);
+        // MySnackbar.showErrorSnackbar(e.toString());
+      } else {
+        print('Page value inside else is: ${page.value}');
+
+        page.value -= 1;
+
+        MySnackbar.showErrorSnackbar(e.toString());
+      }
     }, loading: () {
       giftList.value = const GiftListState.loading();
     });
 
     // If Error Found stop function
-    final bool error = newGiftDto.maybeMap(error: (e) {
-      giftList.value = GiftListState.error(e);
-      return true;
-    }, orElse: () {
-      return false;
-    });
-    if (error) return;
+    // final bool error = newGiftDto.maybeMap(error: (e) {
+    //   giftList.value = GiftListState.error(e);
+    //   return true;
+    // }, orElse: () {
+    //   return false;
+    // });
+    // if (error) return;
 
     _updateMarkers(giftList.value.maybeWhen(data: (giftList) => giftList, orElse: () => []));
   }
