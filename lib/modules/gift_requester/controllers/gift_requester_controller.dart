@@ -100,13 +100,13 @@ class GiftRequesterController extends GetxController {
   //* Retrieve giftList by location from MongoDB
   Future<void> retrieveGifts() async {
     //* Search by filter called for first time, set page to 1 and giftList to loading state
-    GiftListState newGiftListUnion = const GiftListState.loading();
+    GiftListDtoState newGiftDto = const GiftListDtoState.loading();
 
     final currentUserId =
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
     if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
-      newGiftListUnion = await giftRequesterService.getGiftByFilterDB(
+      newGiftDto = await giftRequesterService.getGiftByFilterDB(
         searchString.value,
         page.value.toString(),
         limit.value.toString(),
@@ -116,7 +116,7 @@ class GiftRequesterController extends GetxController {
         currentUserId,
       );
     } else {
-      final newGiftDto = await giftRequesterService.getGiftDB(
+      newGiftDto = await giftRequesterService.getGiftDB(
         page.value.toString(),
         limit.value.toString(),
         userPosition.value.latitude,
@@ -124,44 +124,38 @@ class GiftRequesterController extends GetxController {
         radius.value.toDouble(),
         currentUserId,
       );
-
     }
 
+    newGiftDto.when(success: (data) {
+      if (data.page == 1) {
+        // Set data
+        giftList.value = GiftListState.data(data.results);
+      } else if (data.page > 1) {
+        final List<Gift> oldGiftData = giftList.value.maybeWhen(data: (oldData) => oldData, orElse: () => []);
+
+        // Append data
+        giftList.value = GiftListState.data([...oldGiftData, ...data.results]);
+      }
+
+      if (data.page == data.lastPage) {
+        allGiftsFetched.value = true;
+      } else {
+        page.value = page.value + 1;
+      }
+    }, error: (e) {
+      giftList.value = GiftListState.error(e);
+    }, loading: () {
+      giftList.value = const GiftListState.loading();
+    });
+
     // If Error Found stop function
-    final bool error = newGiftListUnion.maybeMap(error: (e) {
+    final bool error = newGiftDto.maybeMap(error: (e) {
       giftList.value = GiftListState.error(e);
       return true;
     }, orElse: () {
       return false;
     });
     if (error) return;
-
-    final bool found = newGiftListUnion.maybeWhen(data: (data) => true, orElse: () => false);
-
-    // First Page Load
-    if (page.toInt() == 1 && found) {
-      giftList.value = newGiftListUnion;
-
-      // Set allFetched to true if lest than Limit gifts are loaded
-      if (newGiftListUnion.maybeWhen(data: (data) => data.length, orElse: () => 0) < limit.value) {
-        allGiftsFetched.value = true;
-      }
-    }
-    // Not First Page Load
-    else {
-      final List<Gift> existingGifts = giftList.value.maybeWhen(data: (data) => data, orElse: () => []);
-      final List<Gift> newGifts = newGiftListUnion.maybeWhen(data: (data) => data, orElse: () => []);
-
-      if (newGifts.isEmpty) {
-        allGiftsFetched.value = true;
-      } else {
-        allGiftsFetched.value = false;
-      }
-
-      // Add fethced gifts to existing gifts
-      final updatedGiftList = [...existingGifts, ...newGifts];
-      giftList.value = GiftListState.data(updatedGiftList);
-    }
 
     _updateMarkers(giftList.value.maybeWhen(data: (giftList) => giftList, orElse: () => []));
   }

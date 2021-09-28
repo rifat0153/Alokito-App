@@ -21,9 +21,19 @@ class GiftDto {
 }
 
 List<Gift> giftDtoToGiftList(List<dynamic> results) {
-  return results
-      .map(
-        (giftDto) => Gift.fromJson(giftDto as Map<String, dynamic>),
-      )
-      .toList();
+  final List<Gift> giftList = [];
+
+  if (results.isEmpty) {
+    return giftList;
+  } else {
+    for (final giftDto in results) {
+      if (giftDto != null) {
+        print(giftDto);
+
+        giftList.add(Gift.fromJson(giftDto as Map<String, dynamic>));
+      }
+    }
+  }
+
+  return giftList;
 }
