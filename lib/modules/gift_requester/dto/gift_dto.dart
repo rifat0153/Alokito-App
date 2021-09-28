@@ -28,8 +28,6 @@ List<Gift> giftDtoToGiftList(List<dynamic> results) {
   } else {
     for (final giftDto in results) {
       if (giftDto != null) {
-        print(giftDto);
-
         giftList.add(Gift.fromJson(giftDto as Map<String, dynamic>));
       }
     }

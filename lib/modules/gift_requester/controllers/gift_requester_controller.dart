@@ -97,9 +97,15 @@ class GiftRequesterController extends GetxController {
 
   Future<void> bindLocationData() async {}
 
-  //* Retrieve giftList by location from MongoDB
+  // Retrieve giftList by location from MongoDB
   Future<void> retrieveGifts() async {
-    //* Search by filter called for first time, set page to 1 and giftList to loading state
+    // Return if all gifts are already fetched
+    if (allGiftsFetched.value) {
+      return;
+    }
+
+    // Search by filter called for first time, set page to 1 and giftList to loading state
+
     GiftListDtoState newGiftDto = const GiftListDtoState.loading();
 
     final currentUserId =
@@ -137,11 +143,13 @@ class GiftRequesterController extends GetxController {
         giftList.value = GiftListState.data([...oldGiftData, ...data.results]);
       }
 
+      print(data.page);
+      print(data.lastPage);
+
       if (data.page == data.lastPage) {
         allGiftsFetched.value = true;
-      } else {
-        page.value = page.value + 1;
-      }
+      } 
+      
     }, error: (e) {
       giftList.value = GiftListState.error(e);
     }, loading: () {
