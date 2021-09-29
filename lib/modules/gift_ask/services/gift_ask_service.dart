@@ -1,32 +1,30 @@
 import 'dart:io';
 
+import 'package:get/get.dart';
+
 import '../../../models/gift_ask/gift_ask.dart';
 import '../gift_ask_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart' as path;
-import 'package:uuid/uuid.dart';
 
 abstract class BaseGiftAskService {
-  Future<bool> addGift({required GiftAsk giftAsk, required String userId});
-
-  Future<String> uploadImageAndGetDownloadUrl(File file);
+  Future<bool> addGift({required GiftAsk giftAsk, required String userId, required File imageFile});
 
   Future<bool> findGiftById(String id);
 
-  Future<void> delete(GiftAsk giftAsk);
+  Future<void> deleteGiftAsk(GiftAsk giftAsk);
 }
 
-class GiftAskService implements BaseGiftAskService {
+class GiftAskService extends GetConnect implements BaseGiftAskService  {
   GiftAskService(this._firestore, this._storage);
 
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
 
   @override
-  Future<bool> addGift({required GiftAsk giftAsk, required String userId}) async {
+  Future<bool> addGift({required GiftAsk giftAsk, required String userId, required File imageFile}) async {
     try {
-      var docRef = _firestore.collection('gift_ask').doc(userId);
+      final docRef = _firestore.collection('gift_ask').doc(userId);
       giftAsk = giftAsk.copyWith(id: userId);
 
       await docRef.set(giftAsk.toJson());
@@ -34,22 +32,6 @@ class GiftAskService implements BaseGiftAskService {
       return true;
     } on FirebaseException catch (e) {
       throw GiftAskException(message: e.message);
-    }
-  }
-
-  @override
-  Future<String> uploadImageAndGetDownloadUrl(File file) async {
-    final fileExtension = path.extension(file.path);
-    final uuid = const Uuid().v4();
-    final firebaseStorageRef = _storage.ref().child('gift_ask/images/$uuid$fileExtension');
-
-    try {
-      await firebaseStorageRef.putFile(file);
-      final String url = await firebaseStorageRef.getDownloadURL();
-
-      return url;
-    } on FirebaseException catch (_) {
-      throw GiftAskException(message: 'Prescription Image upload error');
     }
   }
 
@@ -65,7 +47,7 @@ class GiftAskService implements BaseGiftAskService {
   }
 
   @override
-  Future<void> delete(GiftAsk giftAsk) async {
+  Future<void> deleteGiftAsk(GiftAsk giftAsk) async {
     try {
       await _firestore.collection('gift_ask').doc(giftAsk.id).delete();
     } on FirebaseException catch (e) {
