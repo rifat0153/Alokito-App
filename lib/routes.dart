@@ -1,5 +1,9 @@
+import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
+import 'package:alokito_new/modules/gift_ask/services/gift_ask_service.dart';
+import 'package:alokito_new/modules/gift_ask/views/gift_ask_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
 import 'core/language/language_controller.dart';
@@ -53,9 +57,17 @@ class GetPages {
     GetPage(
       name: GiftRequesterOfferListView.route,
       page: () => GiftRequesterOfferListView(),
-      transition: Transition.cupertino,
+      transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
-        Get.put(GiftRequesterController(GiftRequesterService()));
+        Get.lazyPut(() => GiftRequesterController(GiftRequesterService()));
+      }),
+    ),
+    GetPage(
+      name: GiftAskView.route,
+      page: () => GiftAskView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => GiftAskController(GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance)));
       }),
     ),
 
@@ -70,7 +82,7 @@ class GetPages {
     GetPage(
       name: GiftRequesterOfferListView.route,
       page: () => GiftRequesterOfferListView(),
-      transition: Transition.downToUp,
+      transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
       }),
@@ -78,7 +90,7 @@ class GetPages {
     GetPage(
       name: GiftView.route,
       page: () => GiftView(),
-      transition: Transition.noTransition,
+      transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
         Get.lazyPut(() => GiftAddFormController(GiftService()));

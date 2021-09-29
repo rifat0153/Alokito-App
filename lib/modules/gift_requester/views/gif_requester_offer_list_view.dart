@@ -83,8 +83,10 @@ class _BuildBody extends StatelessWidget {
                     itemCount: controller.allGiftsFetched.value
                         // * Show Loading Indicator if More gifts needs to be loaded
                         ? controller.giftList.value.maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
-                        : controller.giftList.value.maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
+                        : controller.giftList.value
+                            .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
                     itemBuilder: (_, index) {
+                      // Conditionally Return Loading Indicator at bottom during more data load
                       if (index ==
                               controller.giftList.value.maybeWhen(
                                 data: (giftList) => giftList.length,
@@ -116,8 +118,8 @@ class _BuildBody extends StatelessWidget {
                   ),
                 );
               },
-              loading: () => const CupertinoActivityIndicator(
-                radius: 15,
+              loading: () => CupertinoActivityIndicator(
+                radius: 15.sp,
               ),
               error: (e) => Expanded(
                 child: Column(

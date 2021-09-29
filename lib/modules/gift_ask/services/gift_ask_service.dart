@@ -39,16 +39,16 @@ class GiftAskService implements BaseGiftAskService {
 
   @override
   Future<String> uploadImageAndGetDownloadUrl(File file) async {
-    var fileExtension = path.extension(file.path);
-    var uuid = const Uuid().v4();
-    var firebaseStorageRef = _storage.ref().child('gift_ask/images/$uuid$fileExtension');
+    final fileExtension = path.extension(file.path);
+    final uuid = const Uuid().v4();
+    final firebaseStorageRef = _storage.ref().child('gift_ask/images/$uuid$fileExtension');
 
     try {
       await firebaseStorageRef.putFile(file);
-      String url = await firebaseStorageRef.getDownloadURL();
+      final String url = await firebaseStorageRef.getDownloadURL();
 
       return url;
-    } on FirebaseException catch (e) {
+    } on FirebaseException catch (_) {
       throw GiftAskException(message: 'Prescription Image upload error');
     }
   }

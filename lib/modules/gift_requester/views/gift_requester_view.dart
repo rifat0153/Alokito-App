@@ -144,7 +144,7 @@ class _MyButtonRowWidget extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Get.to(() => GiftAskView());
+            Get.toNamed(GiftAskView.route);
           },
           child: MyText(
             'Gift Request',

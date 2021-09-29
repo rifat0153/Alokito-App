@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:alokito_new/shared/my_bottomsheets.dart';
+
 import '../../../core/location/geocoding_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../models/my_enums.dart';
@@ -15,8 +17,9 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftAskController extends GetxController {
-  final GiftAskService giftAskService =
-      GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance);
+  GiftAskController(this.giftAskService);
+
+  final GiftAskService giftAskService;
 
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   final RxDouble searchRadius = 50.0.obs;
@@ -94,7 +97,7 @@ class GiftAskController extends GetxController {
     try {
       await giftAskService.delete(giftAsk);
     } catch (e) {
-      showSuccessOrErrorBottomSheet(false, '', 'GiftAsk could not be deleted');
+      await MyBottomSheet.showErrorBottomSheet('GiftAsk could not be deleted');
     }
   }
 
@@ -105,9 +108,6 @@ class GiftAskController extends GetxController {
       if (giftAsk.id == Get.find<AuthController>().currentUser.value.id) return;
 
       final GeoPoint point = GeoPoint(0, 2);
-
-
-
 
       _addMarker(point.latitude, point.longitude, 1);
     });
@@ -141,14 +141,11 @@ class GiftAskController extends GetxController {
 
   void bindGiftRequestStream() {
     bindLocationData();
-
-  
   }
 
   // FIREBASE REQUESTS
   Future<void> addGift() async {
     loading.value = true;
-
 
     GiftAsk giftAsk = GiftAsk(
       requester: Get.find<AuthController>().currentUser.value,
@@ -161,11 +158,11 @@ class GiftAskController extends GetxController {
       note: note.value,
     );
 
-    String userId = Get.find<AuthController>().currentUser.value.id ?? '';
-    bool giftExists = await giftAskService.findGiftById(userId);
+    final String userId = Get.find<AuthController>().currentUser.value.id ?? '';
+    final bool giftExists = await giftAskService.findGiftById(userId);
+
     if (giftExists) {
       loading.value = false;
-      return showSuccessOrErrorBottomSheet(!giftExists, 'No request exists', 'Only one request at a time');
     }
 
     String prescriptionUrl = '';
@@ -175,16 +172,18 @@ class GiftAskController extends GetxController {
 
     giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
 
-    bool status = await giftAskService.addGift(giftAsk: giftAsk, userId: userId);
+    final bool status = await giftAskService.addGift(giftAsk: giftAsk, userId: userId);
     loading.value = false;
 
-    showSuccessOrErrorBottomSheet(status, 'Success: Gift request added', 'Something went wrong');
+    status
+        ? await MyBottomSheet.showErrorBottomSheet('Success: Gift request added')
+        : await MyBottomSheet.showErrorBottomSheet('Something went wrong');
   }
 
   Future<void> findGiftExistsOrNot({required String giftAskId}) async {
     var responseStatus = await giftAskService.findGiftById(giftAskId);
 
-    showSuccessOrErrorBottomSheet(responseStatus, 'gift exists', 'gift does not exists');
+    await MyBottomSheet.showErrorBottomSheet('gift exists gift does not exists');
   }
 
   GiftAskType getGiftAskType() {
@@ -229,43 +228,5 @@ class GiftAskController extends GetxController {
     showPrescription.value = (newValue == 'Medicine') ? true : false;
     precriptionImageFile.value = (newValue == 'Medicine') ? precriptionImageFile.value : File('');
     _selectedGiftType.value = newValue;
-  }
-
-  void showSuccessOrErrorBottomSheet(
-    bool status,
-    String successMessage,
-    String errorMessage,
-  ) async {
-    if (status) {
-      Get.back();
-
-      await Get.bottomSheet(
-        SizedBox(
-          height: 50,
-          child: Center(
-            child: Text(
-              successMessage,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 15),
-            ),
-          ),
-        ),
-        backgroundColor: Colors.greenAccent,
-      );
-    } else {
-      await Get.bottomSheet(
-        SizedBox(
-          height: 50,
-          child: Center(
-            child: Text(
-              errorMessage,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 15),
-            ),
-          ),
-        ),
-        backgroundColor: Colors.redAccent,
-      );
-    }
   }
 }

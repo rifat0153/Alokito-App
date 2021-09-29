@@ -16,6 +16,8 @@ import 'package:intl/intl.dart';
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
 
+  static const route = 'gift_ask_view';
+
   final GiftAskController giftAskController = Get.find<GiftAskController>()..loading.value = false;
 
   @override
@@ -46,7 +48,7 @@ class GiftAskView extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    List<Widget> textWidgets = [
+    final List<Widget> textWidgets = [
       Text(
         "Don't worry...",
         style: boldFontStyle.copyWith(fontSize: 24.sp),
@@ -68,7 +70,6 @@ class GiftAskView extends StatelessWidget {
           ),
         ),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 110.h),
             ...textWidgets,
@@ -129,13 +130,13 @@ class _FormWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 50),
           child: _StyledContainer(
             widget: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding:  const EdgeInsets.all(4),
               child: TextField(
                 maxLength: 25,
                 decoration: const InputDecoration(
                   hintText: 'gift title',
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(0),
+                  contentPadding:  EdgeInsets.zero,
                   counterText: '',
                   isCollapsed: true,
                   isDense: true,
@@ -194,10 +195,10 @@ class _FormWidget extends StatelessWidget {
           child: Text('Note', style: boldFontStyle),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
           child: _StyledContainer(
             widget: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(4),
               child: TextField(
                 // autofocus: true,
                 // focusNode: focusNode,
@@ -206,7 +207,7 @@ class _FormWidget extends StatelessWidget {
                 decoration: const InputDecoration(
                   hintText: 'Feel free to write something...',
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(0),
+                  contentPadding: EdgeInsets.zero,
                   counterText: '',
                   isCollapsed: true,
                   isDense: true,
@@ -518,7 +519,6 @@ class _GiftTypeDropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = giftAskController.selectedGiftType;
 
     return Obx(
       () => DropdownButton<String>(
