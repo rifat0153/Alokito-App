@@ -125,9 +125,9 @@ class GiftAskController extends GetxController {
     markers[id] = _marker;
   }
 
-  void bindLocationData() async {
+  Future<void> bindLocationData() async {
     // LocationData loc = await Location().getLocation();
-    var userLocation = Get.find<AuthController>().currentUserPosition.value;
+    final userLocation = Get.find<AuthController>().currentUserPosition.value;
     currentUserPosition.value = userLocation;
     formMarker.value = Marker(markerId: const MarkerId('123'), position: currentUserPosition.value);
 
@@ -167,12 +167,16 @@ class GiftAskController extends GetxController {
 
     String prescriptionUrl = '';
     if (showPrescription.value && precriptionImageFile.value.path.isNotEmpty) {
-      prescriptionUrl = await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
+      // prescriptionUrl = await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
     }
 
     giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
 
-    final bool status = await giftAskService.addGift(giftAsk: giftAsk, userId: userId);
+    final bool status = await giftAskService.addGift(
+      giftAsk: giftAsk,
+      userId: userId,
+      imageFile: precriptionImageFile.value,
+    );
     loading.value = false;
 
     status
@@ -181,7 +185,7 @@ class GiftAskController extends GetxController {
   }
 
   Future<void> findGiftExistsOrNot({required String giftAskId}) async {
-    var responseStatus = await giftAskService.findGiftById(giftAskId);
+    final responseStatus = await giftAskService.findGiftById(giftAskId);
 
     await MyBottomSheet.showErrorBottomSheet('gift exists gift does not exists');
   }
