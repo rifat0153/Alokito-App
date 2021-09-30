@@ -9,10 +9,11 @@ class MyBottomSheet {
       child: Container(
         alignment: Alignment.center,
         height: 60.h,
-        color: Colors.green.withOpacity(0.9),
-        child: Text(
+        color: Colors.black,
+        child: MyText(
           successMessage,
           textAlign: TextAlign.center,
+          color: Colors.white,
         ),
       ),
     ));
@@ -20,23 +21,22 @@ class MyBottomSheet {
 
   static Future<void> showErrorBottomSheet(String errorMessage) async {
     await Get.bottomSheet(SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9),
-          borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+        child: Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.9),
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+      ),
+      alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: MyText(
+          errorMessage,
+          textAlign: TextAlign.center,
+          fontSize: 28.sp,
+          maxLines: 5,
         ),
-        alignment: Alignment.center,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: MyText(
-            errorMessage,
-            textAlign: TextAlign.center,
-            fontSize: 28.sp,
-            maxLines: 5,
-          ),
-        ),
-      )
-    ));
+      ),
+    )));
   }
 }
 

@@ -207,7 +207,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text('Location', style: boldFontStyle),
                 const SizedBox(height: 4),
-                Text(giftAsk.address.isEmpty ? 'N/A' : giftAsk.address),
+                Text(giftAsk.location.isEmpty ? 'N/A' : giftAsk.location),
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

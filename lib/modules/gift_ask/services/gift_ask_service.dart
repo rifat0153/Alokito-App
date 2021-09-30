@@ -20,7 +20,6 @@ abstract class BaseGiftAskService {
 }
 
 class GiftAskService extends GetConnect implements BaseGiftAskService {
-  
   GiftAskService(this._firestore, this._storage);
 
   final FirebaseFirestore _firestore;
@@ -33,8 +32,10 @@ class GiftAskService extends GetConnect implements BaseGiftAskService {
         final String prescriptionImageUrl =
             await ImageUploadHelper.uploadImageAndGetDownloadUrl(imageFile, 'user/gift_ask', _storage);
 
-        giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionImageUrl);
+        giftAsk = giftAsk.copyWith(imageUrl: prescriptionImageUrl);
       }
+
+      print('GiftASk: ' + giftAsk.toJson().toString());
 
       final Response respose = await post(
         "${MyConfig.baseUrl}/gift_ask/store",
@@ -47,7 +48,7 @@ class GiftAskService extends GetConnect implements BaseGiftAskService {
       print(respose);
 
       if (respose.statusCode == 200 || respose.statusCode == 201) {
-        await MyBottomSheet.showSuccessBottomSheet('Gift request complete');
+        await MySnackbar.showSuccessSnackbar('Gift request complete');
       } else {
         await MySnackbar.showErrorSnackbar('An unexpected error occurred');
       }

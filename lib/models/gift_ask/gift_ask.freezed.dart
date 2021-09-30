@@ -26,10 +26,12 @@ class _$GiftAskTearOff {
       bool giftGiven = false,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required LocalUser user,
-      required String address,
       required String area,
+      required String location,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          required Geometry geometry,
       required int requestForNoOfPeople,
-      String? prescriptionImageUrl,
+      String? imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required GiftAskType giftAskType,
       required String giftTitle,
@@ -40,10 +42,11 @@ class _$GiftAskTearOff {
       giftCompleted: giftCompleted,
       giftGiven: giftGiven,
       user: user,
-      address: address,
       area: area,
+      location: location,
+      geometry: geometry,
       requestForNoOfPeople: requestForNoOfPeople,
-      prescriptionImageUrl: prescriptionImageUrl,
+      imageUrl: imageUrl,
       giftAskType: giftAskType,
       giftTitle: giftTitle,
       giftForSmallFamily: giftForSmallFamily,
@@ -66,10 +69,12 @@ mixin _$GiftAsk {
   bool get giftGiven => throw _privateConstructorUsedError;
   @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
   LocalUser get user => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
+  String get location => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  Geometry get geometry => throw _privateConstructorUsedError;
   int get requestForNoOfPeople => throw _privateConstructorUsedError;
-  String? get prescriptionImageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
   GiftAskType get giftAskType => throw _privateConstructorUsedError;
   String get giftTitle => throw _privateConstructorUsedError;
@@ -91,10 +96,12 @@ abstract class $GiftAskCopyWith<$Res> {
       bool giftGiven,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           LocalUser user,
-      String address,
       String area,
+      String location,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          Geometry geometry,
       int requestForNoOfPeople,
-      String? prescriptionImageUrl,
+      String? imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           GiftAskType giftAskType,
       String giftTitle,
@@ -102,6 +109,7 @@ abstract class $GiftAskCopyWith<$Res> {
       String note});
 
   $LocalUserCopyWith<$Res> get user;
+  $GeometryCopyWith<$Res> get geometry;
 }
 
 /// @nodoc
@@ -118,10 +126,11 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
     Object? giftCompleted = freezed,
     Object? giftGiven = freezed,
     Object? user = freezed,
-    Object? address = freezed,
     Object? area = freezed,
+    Object? location = freezed,
+    Object? geometry = freezed,
     Object? requestForNoOfPeople = freezed,
-    Object? prescriptionImageUrl = freezed,
+    Object? imageUrl = freezed,
     Object? giftAskType = freezed,
     Object? giftTitle = freezed,
     Object? giftForSmallFamily = freezed,
@@ -144,21 +153,25 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as LocalUser,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
               as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
       requestForNoOfPeople: requestForNoOfPeople == freezed
           ? _value.requestForNoOfPeople
           : requestForNoOfPeople // ignore: cast_nullable_to_non_nullable
               as int,
-      prescriptionImageUrl: prescriptionImageUrl == freezed
-          ? _value.prescriptionImageUrl
-          : prescriptionImageUrl // ignore: cast_nullable_to_non_nullable
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       giftAskType: giftAskType == freezed
           ? _value.giftAskType
@@ -185,6 +198,13 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
       return _then(_value.copyWith(user: value));
     });
   }
+
+  @override
+  $GeometryCopyWith<$Res> get geometry {
+    return $GeometryCopyWith<$Res>(_value.geometry, (value) {
+      return _then(_value.copyWith(geometry: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -198,10 +218,12 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
       bool giftGiven,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           LocalUser user,
-      String address,
       String area,
+      String location,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          Geometry geometry,
       int requestForNoOfPeople,
-      String? prescriptionImageUrl,
+      String? imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           GiftAskType giftAskType,
       String giftTitle,
@@ -210,6 +232,8 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
 
   @override
   $LocalUserCopyWith<$Res> get user;
+  @override
+  $GeometryCopyWith<$Res> get geometry;
 }
 
 /// @nodoc
@@ -227,10 +251,11 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
     Object? giftCompleted = freezed,
     Object? giftGiven = freezed,
     Object? user = freezed,
-    Object? address = freezed,
     Object? area = freezed,
+    Object? location = freezed,
+    Object? geometry = freezed,
     Object? requestForNoOfPeople = freezed,
-    Object? prescriptionImageUrl = freezed,
+    Object? imageUrl = freezed,
     Object? giftAskType = freezed,
     Object? giftTitle = freezed,
     Object? giftForSmallFamily = freezed,
@@ -253,21 +278,25 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as LocalUser,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
               as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
       requestForNoOfPeople: requestForNoOfPeople == freezed
           ? _value.requestForNoOfPeople
           : requestForNoOfPeople // ignore: cast_nullable_to_non_nullable
               as int,
-      prescriptionImageUrl: prescriptionImageUrl == freezed
-          ? _value.prescriptionImageUrl
-          : prescriptionImageUrl // ignore: cast_nullable_to_non_nullable
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       giftAskType: giftAskType == freezed
           ? _value.giftAskType
@@ -298,10 +327,12 @@ class _$_GiftAsk implements _GiftAsk {
       this.giftGiven = false,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required this.user,
-      required this.address,
       required this.area,
+      required this.location,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          required this.geometry,
       required this.requestForNoOfPeople,
-      this.prescriptionImageUrl,
+      this.imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required this.giftAskType,
       required this.giftTitle,
@@ -323,13 +354,16 @@ class _$_GiftAsk implements _GiftAsk {
   @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
   final LocalUser user;
   @override
-  final String address;
-  @override
   final String area;
+  @override
+  final String location;
+  @override
+  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  final Geometry geometry;
   @override
   final int requestForNoOfPeople;
   @override
-  final String? prescriptionImageUrl;
+  final String? imageUrl;
   @override
   @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
   final GiftAskType giftAskType;
@@ -342,7 +376,7 @@ class _$_GiftAsk implements _GiftAsk {
 
   @override
   String toString() {
-    return 'GiftAsk(id: $id, giftCompleted: $giftCompleted, giftGiven: $giftGiven, user: $user, address: $address, area: $area, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note)';
+    return 'GiftAsk(id: $id, giftCompleted: $giftCompleted, giftGiven: $giftGiven, user: $user, area: $area, location: $location, geometry: $geometry, requestForNoOfPeople: $requestForNoOfPeople, imageUrl: $imageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note)';
   }
 
   @override
@@ -359,17 +393,20 @@ class _$_GiftAsk implements _GiftAsk {
                     .equals(other.giftGiven, giftGiven)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
             (identical(other.area, area) ||
                 const DeepCollectionEquality().equals(other.area, area)) &&
+            (identical(other.location, location) ||
+                const DeepCollectionEquality()
+                    .equals(other.location, location)) &&
+            (identical(other.geometry, geometry) ||
+                const DeepCollectionEquality()
+                    .equals(other.geometry, geometry)) &&
             (identical(other.requestForNoOfPeople, requestForNoOfPeople) ||
                 const DeepCollectionEquality().equals(
                     other.requestForNoOfPeople, requestForNoOfPeople)) &&
-            (identical(other.prescriptionImageUrl, prescriptionImageUrl) ||
-                const DeepCollectionEquality().equals(
-                    other.prescriptionImageUrl, prescriptionImageUrl)) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)) &&
             (identical(other.giftAskType, giftAskType) ||
                 const DeepCollectionEquality()
                     .equals(other.giftAskType, giftAskType)) &&
@@ -390,10 +427,11 @@ class _$_GiftAsk implements _GiftAsk {
       const DeepCollectionEquality().hash(giftCompleted) ^
       const DeepCollectionEquality().hash(giftGiven) ^
       const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(area) ^
+      const DeepCollectionEquality().hash(location) ^
+      const DeepCollectionEquality().hash(geometry) ^
       const DeepCollectionEquality().hash(requestForNoOfPeople) ^
-      const DeepCollectionEquality().hash(prescriptionImageUrl) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(giftAskType) ^
       const DeepCollectionEquality().hash(giftTitle) ^
       const DeepCollectionEquality().hash(giftForSmallFamily) ^
@@ -417,10 +455,12 @@ abstract class _GiftAsk implements GiftAsk {
       bool giftGiven,
       @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
           required LocalUser user,
-      required String address,
       required String area,
+      required String location,
+      @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+          required Geometry geometry,
       required int requestForNoOfPeople,
-      String? prescriptionImageUrl,
+      String? imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required GiftAskType giftAskType,
       required String giftTitle,
@@ -439,13 +479,16 @@ abstract class _GiftAsk implements GiftAsk {
   @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
   LocalUser get user => throw _privateConstructorUsedError;
   @override
-  String get address => throw _privateConstructorUsedError;
-  @override
   String get area => throw _privateConstructorUsedError;
+  @override
+  String get location => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  Geometry get geometry => throw _privateConstructorUsedError;
   @override
   int get requestForNoOfPeople => throw _privateConstructorUsedError;
   @override
-  String? get prescriptionImageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
   GiftAskType get giftAskType => throw _privateConstructorUsedError;

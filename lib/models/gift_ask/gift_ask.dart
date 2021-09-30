@@ -20,10 +20,11 @@ class GiftAsk with _$GiftAsk {
     @Default(false) bool giftCompleted,
     @Default(false) bool giftGiven,
     @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap) required LocalUser user,
-    required String address,
     required String area,
+    required String location,
+    @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap) required Geometry geometry,
     required int requestForNoOfPeople,
-    String? prescriptionImageUrl,
+    String? imageUrl,
     @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
         required GiftAskType giftAskType,
     required String giftTitle,

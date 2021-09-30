@@ -1,21 +1,18 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:alokito_new/core/image/image_upload_helper.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../core/location/geocoding_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
-import '../../../models/my_enums.dart';
+import '../../../models/user/local_user.dart';
+import '../../../shared/config.dart';
+import '../../../shared/my_bottomsheets.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../services/gift_ask_service.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-
-import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GiftAskController extends GetxController {
   GiftAskController(this.giftAskService);
@@ -34,7 +31,7 @@ class GiftAskController extends GetxController {
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(23, 90).obs;
-  var address = ''.obs;
+  var location = ''.obs;
   var area = ''.obs;
   Rx<LatLng> locationInLatLng = const LatLng(0, 0).obs;
   Rx<Timestamp> requestDate = Timestamp.now().obs;
@@ -50,14 +47,14 @@ class GiftAskController extends GetxController {
   StreamSubscription? streamSubscription;
 
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     streamSubscription = giftRequestList.listen((docListUnion) {
       docListUnion.when(data: (docList) {
         filteredGiftRequestList.value = const GiftAskListUnion.loading();
 
-        for (var doc in docList) {
+        for (final doc in docList) {
           if (doc.id != Get.find<AuthController>().currentUser.value.id && !doc.giftCompleted) {
-            List<GiftAsk> tempFilteredList = [
+            final List<GiftAsk> tempFilteredList = [
               ...filteredGiftRequestList.value.maybeWhen(data: (data) => data, orElse: () => []),
               doc
             ];
@@ -77,7 +74,8 @@ class GiftAskController extends GetxController {
       });
     });
 
-    bindLocationData();
+    await bindLocationData();
+
     bindGiftRequestStream();
     debounce(searchRadius, (_) => bindGiftRequestStream());
 
@@ -149,9 +147,10 @@ class GiftAskController extends GetxController {
     loading.value = true;
 
     final GiftAsk giftAsk = GiftAsk(
-      user: Get.find<AuthController>().currentUser.value,
-      address: address.value,
+      user: Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => initialUser),
+      location: location.value,
       area: area.value,
+      geometry: Geometry(coordinates: [formMarker.value.position.longitude, formMarker.value.position.latitude]),
       requestForNoOfPeople: requestForNoOfPeople,
       giftAskType: getGiftAskType(),
       giftTitle: giftTitle.value,
@@ -189,7 +188,7 @@ class GiftAskController extends GetxController {
       final List<Placemark> placemarks = await GeocodingHelper.getAddressFromPosition(
           formMarker.value.position.latitude, formMarker.value.position.longitude);
 
-      address.value = placemarks.first.country ?? 'N/A';
+      location.value = placemarks.first.country ?? 'N/A';
       area.value = placemarks.first.name ?? 'N/A';
 
       print(area.value);

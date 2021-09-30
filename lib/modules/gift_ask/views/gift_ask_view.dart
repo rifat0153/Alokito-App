@@ -98,7 +98,6 @@ class GiftAskView extends StatelessWidget {
                     ),
                     SizedBox(height: 8.h),
                     const GuideLines(),
-                    // SizedBox(height: 100.h),
                   ],
                 ),
               ),
