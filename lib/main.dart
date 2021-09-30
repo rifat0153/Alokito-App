@@ -1,3 +1,4 @@
+import 'package:alokito_new/di/firebase_di.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/language/translations.dart';
@@ -28,7 +29,9 @@ Future<void> main() async {
 
   FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: false);
 
-  
+  // Inject Instances
+  Get.put(FirebaseDI(), permanent: true);
+
   runApp(
     ProviderScope(
       child: AlokitoApp(),

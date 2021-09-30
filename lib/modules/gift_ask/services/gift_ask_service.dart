@@ -70,7 +70,7 @@ class GiftAskService extends GetConnect implements BaseGiftAskService {
   @override
   Future<bool> findGiftById(String id) async {
     try {
-      var docRef = await _firestore.collection('gift_ask').doc(id).get();
+      final docRef = await _firestore.collection('gift_ask').doc(id).get();
 
       return docRef.data() != null ? true : false;
     } on FirebaseException catch (e) {
