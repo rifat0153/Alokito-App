@@ -1,5 +1,7 @@
 
 
+import 'package:alokito_new/models/gift_ask/gift_ask.dart';
+
 enum GiftType { anyRetailItem, packageFor3Days, packageFor7Days, customizedPackage }
 
 enum NotificationType {
@@ -27,12 +29,6 @@ enum GiftAskStatus {
   //   requestDelivered
   // }
 
-enum GiftAskType {
-  food,
-  medicine,
-  others,
-  error,
-}
 
 String convertGiftAskType({required GiftAskType giftAskType}) {
   switch (giftAskType) {

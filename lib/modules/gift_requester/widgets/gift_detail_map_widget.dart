@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:alokito_new/models/gift/gift.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 
 import '../../auth/controllers/auth_controller.dart';
-import '../../../models/gift_giver/gift.dart';
 import '../../../shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

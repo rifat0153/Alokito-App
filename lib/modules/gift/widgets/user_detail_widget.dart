@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/gift_giver/gift.dart';
+import '../../../models/gift/gift.dart';
+
 
 class UserDetail extends StatelessWidget {
   const UserDetail({

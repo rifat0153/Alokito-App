@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../models/gift_giver/gift.dart';
+import '../../../models/gift/gift.dart';
 import '../../../models/gift_request/gift_request.dart';
 import '../../../models/user/local_user.dart';
 import '../../../shared/my_bottomsheets.dart';
@@ -17,7 +17,7 @@ class GiftRequesterDetailController extends GetxController {
   RxString comment = ''.obs;
 
   //* Add Gift Request and Update LocalUser
-  Future<void> addGiftRequest(Gift giftGiver) async {
+  Future<void> addGiftRequest(Gift gift) async {
     loading.value = true;
 
     final LocalUser? currentUser =
@@ -26,7 +26,7 @@ class GiftRequesterDetailController extends GetxController {
     if (currentUser != null) {
       final GiftRequest giftReceiver = GiftRequest(
         comment: comment.value,
-        gift: giftGiver,
+        gift: gift,
         requester: currentUser,
         createdAt: DateTime.now(),
       );
@@ -39,7 +39,7 @@ class GiftRequesterDetailController extends GetxController {
             Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
 
         if (localuser != null) {
-          final LocalUser updatedUser = localuser.copyWith(hasGiftGiverRequest: true, requestedGiftId: giftGiver.id!);
+          final LocalUser updatedUser = localuser.copyWith(hasGiftGiverRequest: true, requestedGiftId: gift.id!);
 
           await Get.find<AuthController>().updateLocalUser(updatedUser);
         }

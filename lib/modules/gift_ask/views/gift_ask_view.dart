@@ -1,20 +1,14 @@
-import 'dart:io';
-
-import 'package:alokito_new/modules/gift_ask/widgets/form_widget.dart';
-import 'package:alokito_new/modules/gift_ask/widgets/guidline_widget.dart';
-import 'package:alokito_new/modules/gift_ask/widgets/request_image_row_widget.dart';
-import 'package:alokito_new/modules/gift_ask/widgets/styled_container_wdiget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
 import '../../../shared/config.dart';
 import '../../../shared/styles.dart';
 import '../controllers/gift_ask_controller.dart';
+import '../widgets/form_widget.dart';
+import '../widgets/guidline_widget.dart';
 import '../widgets/location_widget.dart';
+import '../widgets/request_image_row_widget.dart';
 
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
@@ -27,7 +21,6 @@ class GiftAskView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -36,7 +29,7 @@ class GiftAskView extends StatelessWidget {
             onPressed: Get.back,
             icon: const Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
           title: const Text(
@@ -117,18 +110,3 @@ class GiftAskView extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:convert';
+import 'package:alokito_new/models/gift/gift.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:alokito_new/modules/gift_requester/dto/gift_dto.dart';
 
-import '../../../models/gift_giver/gift.dart';
 import '../../../shared/config.dart';
 import 'package:get/get.dart';
 

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:alokito_new/models/gift/gift.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../core/location/location_helper.dart';
-import '../../../models/gift_giver/gift.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../services/gift_requester_service.dart';
 

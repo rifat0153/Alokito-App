@@ -24,8 +24,8 @@ class _$GiftAskTearOff {
       {String? id,
       bool giftCompleted = false,
       bool giftGiven = false,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required LocalUser requester,
+      @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+          required LocalUser user,
       required String address,
       required String area,
       required int requestForNoOfPeople,
@@ -39,7 +39,7 @@ class _$GiftAskTearOff {
       id: id,
       giftCompleted: giftCompleted,
       giftGiven: giftGiven,
-      requester: requester,
+      user: user,
       address: address,
       area: area,
       requestForNoOfPeople: requestForNoOfPeople,
@@ -64,8 +64,8 @@ mixin _$GiftAsk {
   String? get id => throw _privateConstructorUsedError;
   bool get giftCompleted => throw _privateConstructorUsedError;
   bool get giftGiven => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-  LocalUser get requester => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+  LocalUser get user => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
   int get requestForNoOfPeople => throw _privateConstructorUsedError;
@@ -89,8 +89,8 @@ abstract class $GiftAskCopyWith<$Res> {
       {String? id,
       bool giftCompleted,
       bool giftGiven,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          LocalUser requester,
+      @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+          LocalUser user,
       String address,
       String area,
       int requestForNoOfPeople,
@@ -101,7 +101,7 @@ abstract class $GiftAskCopyWith<$Res> {
       bool giftForSmallFamily,
       String note});
 
-  $LocalUserCopyWith<$Res> get requester;
+  $LocalUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -117,7 +117,7 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
     Object? id = freezed,
     Object? giftCompleted = freezed,
     Object? giftGiven = freezed,
-    Object? requester = freezed,
+    Object? user = freezed,
     Object? address = freezed,
     Object? area = freezed,
     Object? requestForNoOfPeople = freezed,
@@ -140,9 +140,9 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
           ? _value.giftGiven
           : giftGiven // ignore: cast_nullable_to_non_nullable
               as bool,
-      requester: requester == freezed
-          ? _value.requester
-          : requester // ignore: cast_nullable_to_non_nullable
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as LocalUser,
       address: address == freezed
           ? _value.address
@@ -180,9 +180,9 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
   }
 
   @override
-  $LocalUserCopyWith<$Res> get requester {
-    return $LocalUserCopyWith<$Res>(_value.requester, (value) {
-      return _then(_value.copyWith(requester: value));
+  $LocalUserCopyWith<$Res> get user {
+    return $LocalUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
@@ -196,8 +196,8 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
       {String? id,
       bool giftCompleted,
       bool giftGiven,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          LocalUser requester,
+      @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+          LocalUser user,
       String address,
       String area,
       int requestForNoOfPeople,
@@ -209,7 +209,7 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
       String note});
 
   @override
-  $LocalUserCopyWith<$Res> get requester;
+  $LocalUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -226,7 +226,7 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
     Object? id = freezed,
     Object? giftCompleted = freezed,
     Object? giftGiven = freezed,
-    Object? requester = freezed,
+    Object? user = freezed,
     Object? address = freezed,
     Object? area = freezed,
     Object? requestForNoOfPeople = freezed,
@@ -249,9 +249,9 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
           ? _value.giftGiven
           : giftGiven // ignore: cast_nullable_to_non_nullable
               as bool,
-      requester: requester == freezed
-          ? _value.requester
-          : requester // ignore: cast_nullable_to_non_nullable
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as LocalUser,
       address: address == freezed
           ? _value.address
@@ -296,8 +296,8 @@ class _$_GiftAsk implements _GiftAsk {
       {this.id,
       this.giftCompleted = false,
       this.giftGiven = false,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required this.requester,
+      @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+          required this.user,
       required this.address,
       required this.area,
       required this.requestForNoOfPeople,
@@ -320,8 +320,8 @@ class _$_GiftAsk implements _GiftAsk {
   @override
   final bool giftGiven;
   @override
-  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-  final LocalUser requester;
+  @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+  final LocalUser user;
   @override
   final String address;
   @override
@@ -342,7 +342,7 @@ class _$_GiftAsk implements _GiftAsk {
 
   @override
   String toString() {
-    return 'GiftAsk(id: $id, giftCompleted: $giftCompleted, giftGiven: $giftGiven, requester: $requester, address: $address, area: $area, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note)';
+    return 'GiftAsk(id: $id, giftCompleted: $giftCompleted, giftGiven: $giftGiven, user: $user, address: $address, area: $area, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note)';
   }
 
   @override
@@ -357,9 +357,8 @@ class _$_GiftAsk implements _GiftAsk {
             (identical(other.giftGiven, giftGiven) ||
                 const DeepCollectionEquality()
                     .equals(other.giftGiven, giftGiven)) &&
-            (identical(other.requester, requester) ||
-                const DeepCollectionEquality()
-                    .equals(other.requester, requester)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.address, address) ||
                 const DeepCollectionEquality()
                     .equals(other.address, address)) &&
@@ -390,7 +389,7 @@ class _$_GiftAsk implements _GiftAsk {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(giftCompleted) ^
       const DeepCollectionEquality().hash(giftGiven) ^
-      const DeepCollectionEquality().hash(requester) ^
+      const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(area) ^
       const DeepCollectionEquality().hash(requestForNoOfPeople) ^
@@ -416,8 +415,8 @@ abstract class _GiftAsk implements GiftAsk {
       {String? id,
       bool giftCompleted,
       bool giftGiven,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required LocalUser requester,
+      @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+          required LocalUser user,
       required String address,
       required String area,
       required int requestForNoOfPeople,
@@ -437,8 +436,8 @@ abstract class _GiftAsk implements GiftAsk {
   @override
   bool get giftGiven => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-  LocalUser get requester => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+  LocalUser get user => throw _privateConstructorUsedError;
   @override
   String get address => throw _privateConstructorUsedError;
   @override

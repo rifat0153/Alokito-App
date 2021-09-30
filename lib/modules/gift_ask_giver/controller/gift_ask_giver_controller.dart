@@ -45,7 +45,7 @@ class GiftAskGiverController extends GetxController {
       id: '${currentUser.id}.${giftAsk.id}',
       giftAskStatus: GiftAskStatus.requestPending,
       giver: currentUser,
-      requester: giftAsk.requester,
+      requester: giftAsk.user,
     );
 
     try {

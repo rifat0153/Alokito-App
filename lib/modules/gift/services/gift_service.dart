@@ -1,4 +1,5 @@
-import '../../../models/gift_giver/gift.dart';
+import 'package:alokito_new/models/gift/gift.dart';
+
 import '../../../models/my_enums.dart';
 import '../../../models/user/local_user.dart';
 import '../../auth/controllers/auth_controller.dart';

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import '../../../models/gift_giver/gift.dart';
+import 'package:alokito_new/models/gift/gift.dart';
+
 
 class GiftDto {
   GiftDto({required this.total, required this.page, required this.lastPage, required this.results});

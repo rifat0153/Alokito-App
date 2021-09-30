@@ -1,7 +1,7 @@
+import 'package:alokito_new/models/gift/gift.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/gift_giver/gift.dart';
 import '../../../shared/config.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../gift_requester/widgets/message_popup_widget.dart';

@@ -1,3 +1,5 @@
+import 'package:alokito_new/models/gift/gift.dart';
+
 import '../../gift/widgets/user_detail_widget.dart';
 
 import '../widgets/image_widget.dart';
@@ -8,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../models/gift_giver/gift.dart';
 import '../../../shared/styles.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../gift/widgets/user_joining_distance_widget.dart';
@@ -107,7 +108,7 @@ class _BuildBody extends StatelessWidget {
                   PackageName(giftGiver: giftGiver),
                   GiftDetails(giftGiver: giftGiver),
                   UserDetail(giftGiver: giftGiver),
-                  UserRatingAndDistance(giftGiver: giftGiver),
+                  UserRatingAndDistance(gift: giftGiver),
                   Location(giftGiver: giftGiver),
                   GiftDetailMapWidget(gift: giftGiver),
                 ],

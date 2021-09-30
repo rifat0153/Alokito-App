@@ -1,12 +1,17 @@
-import '../json_converters.dart';
-import '../my_enums.dart';
-import '../user/local_user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../json_converters.dart';
+import '../user/local_user.dart';
+
 part 'gift_ask.freezed.dart';
 part 'gift_ask.g.dart';
+
+enum GiftAskType {
+  food,
+  medicine,
+  others
+}
 
 @freezed
 class GiftAsk with _$GiftAsk {
@@ -14,7 +19,7 @@ class GiftAsk with _$GiftAsk {
     String? id,
     @Default(false) bool giftCompleted,
     @Default(false) bool giftGiven,
-    @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson) required LocalUser requester,
+    @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap) required LocalUser user,
     required String address,
     required String area,
     required int requestForNoOfPeople,

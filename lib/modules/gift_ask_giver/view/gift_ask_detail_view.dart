@@ -21,12 +21,12 @@ class GiftAskDetailView extends StatelessWidget {
     var date = '';
     // TODO FIX
     // var distance = calculateDistance(
-    //   giftAsk.requester.position,
+    //   giftAsk.user.position,
     //   Get.find<AuthController>().currentUser.value.geometry,
     // );
     var userJoinedAt = DateTime.now()
             .difference(
-              DateTime.fromMillisecondsSinceEpoch(giftAsk.requester.createdAt.millisecondsSinceEpoch),
+              DateTime.fromMillisecondsSinceEpoch(giftAsk.user.createdAt.millisecondsSinceEpoch),
             )
             .inDays ~/
         30;
@@ -225,7 +225,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
                     // MyText(giftAsk.requester.giftOffered.toString()),
                     MyText('1'),
                     MyText('All time', fontSize: 14),
-                    MyText(giftAsk.requester.giftReceived.toString()),
+                    MyText(giftAsk.user.giftReceived.toString()),
                   ],
                 ),
                 const SizedBox(height: 8),
@@ -298,14 +298,14 @@ class _UserNameAndLocationWidget extends StatelessWidget {
               CircleAvatar(
                 minRadius: 30,
                 backgroundImage: NetworkImage(
-                  giftAsk.requester.imageUrl,
+                  giftAsk.user.imageUrl,
                 ),
               ),
               const SizedBox(width: 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(giftAsk.requester.userName, style: boldFontStyle.copyWith(fontSize: 18)),
+                  Text(giftAsk.user.userName, style: boldFontStyle.copyWith(fontSize: 18)),
                   const SizedBox(height: 4),
                   Row(
                     children: [
@@ -327,7 +327,7 @@ class _UserNameAndLocationWidget extends StatelessWidget {
           Row(
             children: [
               for (var i = 0; i < 5; i++)
-                giftAsk.requester.averageRating.toInt() > i
+                giftAsk.user.averageRating.toInt() > i
                     ? const Icon(
                         Icons.star,
                         size: 15,

@@ -1,6 +1,6 @@
+import 'package:alokito_new/models/gift/gift.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/gift_giver/gift.dart';
 
 class Location extends StatelessWidget {
   const Location({

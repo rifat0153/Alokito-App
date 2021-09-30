@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:alokito_new/core/image/image_upload_helper.dart';
 import 'package:alokito_new/shared/my_bottomsheets.dart';
 
 import '../../../core/location/geocoding_helper.dart';
@@ -143,12 +144,12 @@ class GiftAskController extends GetxController {
     bindLocationData();
   }
 
-  // FIREBASE REQUESTS
+  // ADD GiftAsk to DB
   Future<void> addGift() async {
     loading.value = true;
 
-    GiftAsk giftAsk = GiftAsk(
-      requester: Get.find<AuthController>().currentUser.value,
+    final GiftAsk giftAsk = GiftAsk(
+      user: Get.find<AuthController>().currentUser.value,
       address: address.value,
       area: area.value,
       requestForNoOfPeople: requestForNoOfPeople,
@@ -159,29 +160,14 @@ class GiftAskController extends GetxController {
     );
 
     final String userId = Get.find<AuthController>().currentUser.value.id ?? '';
-    final bool giftExists = await giftAskService.findGiftById(userId);
 
-    if (giftExists) {
-      loading.value = false;
-    }
-
-    String prescriptionUrl = '';
-    if (showPrescription.value && precriptionImageFile.value.path.isNotEmpty) {
-      // prescriptionUrl = await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
-    }
-
-    giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
-
-    final bool status = await giftAskService.addGift(
+    await giftAskService.addGift(
       giftAsk: giftAsk,
       userId: userId,
       imageFile: precriptionImageFile.value,
     );
-    loading.value = false;
 
-    status
-        ? await MyBottomSheet.showErrorBottomSheet('Success: Gift request added')
-        : await MyBottomSheet.showErrorBottomSheet('Something went wrong');
+    loading.value = false;
   }
 
   Future<void> findGiftExistsOrNot({required String giftAskId}) async {
@@ -194,7 +180,7 @@ class GiftAskController extends GetxController {
     if (selectedGiftType == 'Food') return GiftAskType.food;
     if (selectedGiftType == 'Medicine') return GiftAskType.medicine;
     if (selectedGiftType == 'Others') return GiftAskType.others;
-    return GiftAskType.error;
+    return GiftAskType.food;
   }
 
   void setLocationFromMapCordinates() async {
@@ -229,7 +215,7 @@ class GiftAskController extends GetxController {
   String get selectedGiftType => _selectedGiftType.value;
 
   void setSelectedGiftType(String newValue) {
-    showPrescription.value = (newValue == 'Medicine') ? true : false;
+    showPrescription.value = newValue == 'Medicine';
     precriptionImageFile.value = (newValue == 'Medicine') ? precriptionImageFile.value : File('');
     _selectedGiftType.value = newValue;
   }

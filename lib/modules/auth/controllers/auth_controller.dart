@@ -5,7 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../core/language/language_controller.dart';
 import '../../../core/location/location_helper.dart';
-import '../../../models/gift_giver/gift.dart';
+import '../../../models/gift/gift.dart';
 import '../../../models/login/login.dart';
 import '../../../models/user/local_user.dart';
 import '../../../shared/config.dart';

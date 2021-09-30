@@ -1,4 +1,5 @@
-import '../gift_giver/gift.dart';
+import 'package:alokito_new/models/gift/gift.dart';
+
 import '../user/local_user.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

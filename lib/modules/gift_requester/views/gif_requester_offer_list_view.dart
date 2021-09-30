@@ -2,7 +2,6 @@ import '../widgets/search_widget.dart';
 
 import '../widgets/gift_list_tile_widget.dart';
 
-import '../../../models/gift_giver/gift.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../controllers/gift_requester_controller.dart';
 import '../../gift_requester_details/views/gift_requester_details_view.dart';

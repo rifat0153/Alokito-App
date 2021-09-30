@@ -1,37 +1,68 @@
+import 'dart:async';
 import 'dart:io';
 
-import 'package:get/get.dart';
-
-import '../../../models/gift_ask/gift_ask.dart';
-import '../gift_ask_exception.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:get/get.dart';
+
+import '../../../core/image/image_upload_helper.dart';
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../shared/my_bottomsheets.dart';
+import '../gift_ask_exception.dart';
 
 abstract class BaseGiftAskService {
-  Future<bool> addGift({required GiftAsk giftAsk, required String userId, required File imageFile});
+  Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile});
 
-  Future<bool> findGiftById(String id);
+  Future<void> findGiftById(String id);
 
   Future<void> deleteGiftAsk(GiftAsk giftAsk);
 }
 
-class GiftAskService extends GetConnect implements BaseGiftAskService  {
+class GiftAskService extends GetConnect implements BaseGiftAskService {
+  
   GiftAskService(this._firestore, this._storage);
 
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
 
   @override
-  Future<bool> addGift({required GiftAsk giftAsk, required String userId, required File imageFile}) async {
+  Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile}) async {
     try {
-      final docRef = _firestore.collection('gift_ask').doc(userId);
-      giftAsk = giftAsk.copyWith(id: userId);
+      if (giftAsk.giftAskType == GiftAskType.medicine && imageFile.path.isNotEmpty) {
+        final String prescriptionImageUrl =
+            await ImageUploadHelper.uploadImageAndGetDownloadUrl(imageFile, 'user/gift_ask', _storage);
 
-      await docRef.set(giftAsk.toJson());
+        giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionImageUrl);
+      }
 
-      return true;
-    } on FirebaseException catch (e) {
-      throw GiftAskException(message: e.message);
+      final Response respose = await post(
+        "${MyConfig.baseUrl}/gift_ask/store",
+        giftAsk.toJson(),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      print(respose);
+
+      if (respose.statusCode == 200 || respose.statusCode == 201) {
+        await MyBottomSheet.showSuccessBottomSheet('Gift request complete');
+      } else {
+        await MySnackbar.showErrorSnackbar('An unexpected error occurred');
+      }
+
+      return;
+    } on FirebaseException catch (_) {
+      await MySnackbar.showErrorSnackbar('Image upload failed');
+    } on IOException catch (_) {
+      await MySnackbar.showErrorSnackbar('Could not connect to server. Please check your Internet');
+    } on TimeoutException catch (_) {
+      await MySnackbar.showErrorSnackbar('Could not connect to server. An unexpected error occurred');
+    } catch (e) {
+      print(e);
+
+      await MySnackbar.showErrorSnackbar('An unexpected error occurred');
     }
   }
 
