@@ -1,14 +1,8 @@
-import 'package:alokito_new/di/firebase_di.dart';
-import 'package:alokito_new/modules/gift_ask/controllers/gift_ask_controller.dart';
-import 'package:alokito_new/modules/gift_ask/services/gift_ask_service.dart';
-import 'package:alokito_new/modules/gift_ask/views/gift_ask_view.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
 import 'core/language/language_controller.dart';
 import 'core/map/my_map_view.dart';
+import 'di/firebase_di.dart';
 import 'modules/auth/auth_wrapper.dart';
 import 'modules/auth/controllers/auth_controller.dart';
 import 'modules/auth/controllers/login_controller.dart';
@@ -19,6 +13,9 @@ import 'modules/gift/controllers/gift_controller.dart';
 import 'modules/gift/services/gift_service.dart';
 import 'modules/gift/views/gift_add_view.dart';
 import 'modules/gift/views/gift_view.dart';
+import 'modules/gift_ask/controllers/gift_ask_controller.dart';
+import 'modules/gift_ask/services/gift_ask_service.dart';
+import 'modules/gift_ask/views/gift_ask_view.dart';
 import 'modules/gift_requester/controllers/gift_requester_controller.dart';
 import 'modules/gift_requester/services/gift_requester_service.dart';
 import 'modules/gift_requester/views/gif_requester_offer_list_view.dart';

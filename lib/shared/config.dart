@@ -14,12 +14,8 @@ const baseUrl = 'http://192.168.0.121:80/api/v1';
 // const baseUrl = 'https://aalokito-v06-dev-jyguqmmqea-el.a.run.app/api/v1';
 
 const myTimeout = 8;
-
-const GOOGLE_API_KEY = 'AIzaSyDEpVNWlsKHsvJHAEjaMjKi1mtVoUFyXU8';
-
 const imageAssetPath = 'assets/images/';
 
-const PLACEHOLDER_IMAGE_URL = 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png';
 
 // Colors
 class MyColors {
