@@ -1,18 +1,20 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../models/my_enums.dart';
+import '../../../shared/config.dart';
 import '../controllers/gift_add_form_controller.dart';
 import '../controllers/gift_controller.dart';
-import '../../../models/my_enums.dart';
 import '../widgets/custom_gift_widget.dart';
 import '../widgets/distance_row_widget.dart';
 import '../widgets/family_option_widget.dart';
+import '../widgets/gift_detail_widget.dart';
 import '../widgets/gift_location_widget.dart';
 import '../widgets/image_input_widget.dart';
 import '../widgets/listing_date_widget.dart';
 import '../widgets/location_search_widget.dart';
-import '../../../shared/config.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../widgets/pickup_time_wdiget.dart';
 
 class GiftAddView extends StatelessWidget {
   static const route = 'giftaddview';
@@ -82,11 +84,10 @@ class GiftAddView extends StatelessWidget {
                   if (controller.giftType.value == GiftType.anyRetailItem) FamilyOptionWidget(),
                   if (controller.giftType.value == GiftType.customizedPackage) CustomGiftOptionWidget(),
 
-                  DistanceListRow(),
                   ImageInputWidget(),
-                  _GiftDetailWidget(),
+                  GiftDetailWidget(),
                   ListingDateWidget(),
-                  _PickUpTimeWidget(),
+                  PickUpTimeWidget(),
                   CurrentAddressFromCordinate(),
                   GiftLocationWidget(),
                   Obx(
@@ -113,84 +114,6 @@ class GiftAddView extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _PickUpTimeWidget extends StatelessWidget {
-  final GiftAddFormController controller = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text('Pick up time'),
-            Obx(
-              () => Text(controller.showPickupTime()),
-            ),
-            MaterialButton(
-              color: giftGiverButtonColor,
-              onPressed: () async {
-                var time = await showTimePicker(
-                  initialTime: TimeOfDay.now(),
-                  context: context,
-                );
-                var now = DateTime.now();
-                if (time != null) {
-                  now = DateTime(now.year, now.month, now.day, time.hour, time.minute);
-                }
-
-                controller.pickUpTime.value = Timestamp.fromDate(now);
-              },
-              child: const Text('Pick Time'),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-      ],
-    );
-  }
-}
-
-class _GiftDetailWidget extends StatelessWidget {
-  _GiftDetailWidget({
-    Key? key,
-  }) : super(key: key);
-
-  final GiftAddFormController controller = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            const SizedBox(width: 30),
-            const Text('Gift Details'),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: TextField(
-            decoration: InputDecoration(
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(width: 0, style: BorderStyle.none),
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                ),
-                fillColor: giftAddFormColor,
-                // hoverColor: Colors.grey,
-                filled: true,
-                hintText: 'e.g. Food or Medicine name, quality, quantity, any other information'),
-            maxLines: 3,
-            onChanged: (value) => controller.giftDetails.value = value,
-          ),
-        ),
-      ],
     );
   }
 }

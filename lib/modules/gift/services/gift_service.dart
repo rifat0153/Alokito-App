@@ -1,79 +1,54 @@
-import 'package:alokito_new/models/gift/gift.dart';
+import 'dart:io';
 
-import '../../../models/my_enums.dart';
-import '../../../models/user/local_user.dart';
-import '../../auth/controllers/auth_controller.dart';
-import '../controllers/gift_add_form_controller.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:get/get.dart';
+
+import '../../../core/image/image_upload_helper.dart';
+import '../../../models/gift/gift.dart';
 import '../../../shared/config.dart';
 import '../../../shared/my_bottomsheets.dart';
-import '../../../shared/shared_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-
-import '../gift_exception.dart';
 
 abstract class BaseGiftGiverService {
-  Future<void> addGift();
+  Future<void> addGift({required Gift gift, required File imageFile});
 }
 
-class GiftService implements BaseGiftGiverService {
+class GiftService extends GetConnect implements BaseGiftGiverService {
+  GiftService(this._storage);
+
+  final FirebaseStorage _storage;
+
   @override
-  Future<void> addGift() async {
-    final client = http.Client();
-
-    final controller = Get.find<GiftAddFormController>();
-
-    final Geometry geometry =
-        Geometry(coordinates: [controller.selectedLatLng.value.longitude, controller.selectedLatLng.value.latitude]);
-
+  Future<void> addGift({required Gift gift, required File imageFile}) async {
     String giftImageUrl = '';
 
     try {
-      final uid = FirebaseAuth.instance.currentUser?.uid;
-      giftImageUrl = await FirebaseService.uploadImageAndReturnDownloadURL(controller.imageFile.value, 'users/$uid');
+      giftImageUrl =
+          await ImageUploadHelper.uploadImageAndGetDownloadUrl(imageFile, 'users/${gift.user?.uid}/gift', _storage);
+
+      gift = gift.copyWith(imageUrl: giftImageUrl);
     } catch (e) {
-      throw GiftException(message: 'Gift image Upload Fail');
+      await MySnackbar.showErrorSnackbar('Gift image Upload Fail');
+      return;
     }
 
-    final LocalUser? currentUser =
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
-
     try {
-      final gift = Gift(
-        userId: currentUser!.id?? '',
-        user: currentUser,
-        listingForDays: controller.givingGiftInDays.value,
-        canLeaveOutside: controller.canLeaveOutside.value,
-        geometry: geometry,
-        giftType: convertGiftType(controller.giftType.value).toLowerCase(),
-        giftDetails: controller.giftDetails.value,
-        pickUpTime: DateTime.fromMicrosecondsSinceEpoch(controller.pickUpTime.value!.microsecondsSinceEpoch),
-        area: controller.area.value,
-        location: controller.location.value,
-        imageUrl: giftImageUrl,
-        distance: 15,
-      );
-
       // * Add Gift to DB
-      final http.Response response = await client
-          .post(
-            Uri.parse('$baseUrl/gift/store'),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: giftToJson(gift),
-          )
-          .timeout(const Duration(seconds: timeout));
+      final Response response = await post(
+        '${MyConfig.baseUrl}/gift/store',
+        giftToJson(gift),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      ).timeout(const Duration(seconds: myTimeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         await MySnackbar.showSuccessSnackbar('Gift Added');
       } else {
-        await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
+        await MySnackbar.showErrorSnackbar('${response.statusCode}: Something went wrong');
         return;
       }
     } catch (e) {
-      await MyBottomSheet.showErrorBottomSheet('$e: Something went wrong');
+      await MySnackbar.showErrorSnackbar('$e: Something went wrong');
     }
   }
 }

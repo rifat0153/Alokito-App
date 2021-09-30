@@ -35,9 +35,11 @@ class GetPages {
         name: '/',
         page: () => AuthenticationWrapper(),
         binding: BindingsBuilder(() {
-          Get.lazyPut(() => AuthController(AuthService(FirebaseAuth.instance, FirebaseFirestore.instance)));
+          Get.lazyPut(() => AuthController(AuthService(
+                Get.find<FirebaseDI>().auth,
+                Get.find<FirebaseDI>().firestore,
+              )));
           Get.lazyPut(() => LoginController());
-          Get.lazyPut(() => AuthService(FirebaseAuth.instance, FirebaseFirestore.instance));
           Get.lazyPut(() => LanguageController());
         })),
     GetPage(
@@ -81,7 +83,7 @@ class GetPages {
       name: GiftAddView.route,
       page: () => GiftAddView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => GiftAddFormController(GiftService()));
+        Get.lazyPut(() => GiftAddFormController(GiftService(Get.find<FirebaseDI>().storage)));
       }),
     ),
     GetPage(
@@ -98,7 +100,7 @@ class GetPages {
       transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
-        Get.lazyPut(() => GiftAddFormController(GiftService()));
+        Get.lazyPut(() => GiftAddFormController(GiftService(Get.find<FirebaseDI>().storage)));
       }),
     ),
 
