@@ -27,3 +27,5 @@ class NotificationListStatus with _$NotificationListStatus {
   const factory NotificationListStatus.loading() = Loading;
   const factory NotificationListStatus.error(String message) = Error;
 }
+
+

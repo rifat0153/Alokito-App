@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-GiftDto giftDtoFromJson(String str) => GiftDto.fromJson(json.decode(str) as Map<String, dynamic >);
+NotificationDto giftDtoFromJson(String str) => NotificationDto.fromJson(json.decode(str) as Map<String, dynamic >);
 
-String giftDtoToJson(GiftDto data) => json.encode(data.toJson());
+String giftDtoToJson(NotificationDto data) => json.encode(data.toJson());
 
-class GiftDto {
-    GiftDto({
+class NotificationDto {
+    NotificationDto({
          required this.id,
          required this.relatedDocId,
          required this.text,
@@ -27,7 +27,7 @@ class GiftDto {
     String modelToPopulate;
     String giftDtoId;
 
-    factory GiftDto.fromJson(Map<String, dynamic> json) => GiftDto(
+    factory NotificationDto.fromJson(Map<String, dynamic> json) => NotificationDto(
         id: json["_id"]  as String,
         relatedDocId: RelatedDocId.fromJson(json["relatedDocId"] as Map<String, dynamic>) ,
         text: json["text"] as String,
