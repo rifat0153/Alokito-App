@@ -449,8 +449,8 @@ abstract class _MyNotification implements MyNotification {
 }
 
 /// @nodoc
-class _$NotificationListStatusTearOff {
-  const _$NotificationListStatusTearOff();
+class _$MyNotificationListStatusTearOff {
+  const _$MyNotificationListStatusTearOff();
 
   Data data(List<MyNotification> myNotification) {
     return Data(
@@ -474,10 +474,10 @@ class _$NotificationListStatusTearOff {
 }
 
 /// @nodoc
-const $NotificationListStatus = _$NotificationListStatusTearOff();
+const $MyNotificationListStatus = _$MyNotificationListStatusTearOff();
 
 /// @nodoc
-mixin _$NotificationListStatus {
+mixin _$MyNotificationListStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<MyNotification> myNotification) data,
@@ -515,20 +515,20 @@ mixin _$NotificationListStatus {
 }
 
 /// @nodoc
-abstract class $NotificationListStatusCopyWith<$Res> {
-  factory $NotificationListStatusCopyWith(NotificationListStatus value,
-          $Res Function(NotificationListStatus) then) =
-      _$NotificationListStatusCopyWithImpl<$Res>;
+abstract class $MyNotificationListStatusCopyWith<$Res> {
+  factory $MyNotificationListStatusCopyWith(MyNotificationListStatus value,
+          $Res Function(MyNotificationListStatus) then) =
+      _$MyNotificationListStatusCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NotificationListStatusCopyWithImpl<$Res>
-    implements $NotificationListStatusCopyWith<$Res> {
-  _$NotificationListStatusCopyWithImpl(this._value, this._then);
+class _$MyNotificationListStatusCopyWithImpl<$Res>
+    implements $MyNotificationListStatusCopyWith<$Res> {
+  _$MyNotificationListStatusCopyWithImpl(this._value, this._then);
 
-  final NotificationListStatus _value;
+  final MyNotificationListStatus _value;
   // ignore: unused_field
-  final $Res Function(NotificationListStatus) _then;
+  final $Res Function(MyNotificationListStatus) _then;
 }
 
 /// @nodoc
@@ -540,7 +540,7 @@ abstract class $DataCopyWith<$Res> {
 
 /// @nodoc
 class _$DataCopyWithImpl<$Res>
-    extends _$NotificationListStatusCopyWithImpl<$Res>
+    extends _$MyNotificationListStatusCopyWithImpl<$Res>
     implements $DataCopyWith<$Res> {
   _$DataCopyWithImpl(Data _value, $Res Function(Data) _then)
       : super(_value, (v) => _then(v as Data));
@@ -571,7 +571,7 @@ class _$Data implements Data {
 
   @override
   String toString() {
-    return 'NotificationListStatus.data(myNotification: $myNotification)';
+    return 'MyNotificationListStatus.data(myNotification: $myNotification)';
   }
 
   @override
@@ -646,7 +646,7 @@ class _$Data implements Data {
   }
 }
 
-abstract class Data implements NotificationListStatus {
+abstract class Data implements MyNotificationListStatus {
   const factory Data(List<MyNotification> myNotification) = _$Data;
 
   List<MyNotification> get myNotification => throw _privateConstructorUsedError;
@@ -662,7 +662,7 @@ abstract class $EmptyCopyWith<$Res> {
 
 /// @nodoc
 class _$EmptyCopyWithImpl<$Res>
-    extends _$NotificationListStatusCopyWithImpl<$Res>
+    extends _$MyNotificationListStatusCopyWithImpl<$Res>
     implements $EmptyCopyWith<$Res> {
   _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
       : super(_value, (v) => _then(v as Empty));
@@ -678,7 +678,7 @@ class _$Empty implements Empty {
 
   @override
   String toString() {
-    return 'NotificationListStatus.empty()';
+    return 'MyNotificationListStatus.empty()';
   }
 
   @override
@@ -742,7 +742,7 @@ class _$Empty implements Empty {
   }
 }
 
-abstract class Empty implements NotificationListStatus {
+abstract class Empty implements MyNotificationListStatus {
   const factory Empty() = _$Empty;
 }
 
@@ -754,7 +754,7 @@ abstract class $LoadingCopyWith<$Res> {
 
 /// @nodoc
 class _$LoadingCopyWithImpl<$Res>
-    extends _$NotificationListStatusCopyWithImpl<$Res>
+    extends _$MyNotificationListStatusCopyWithImpl<$Res>
     implements $LoadingCopyWith<$Res> {
   _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
       : super(_value, (v) => _then(v as Loading));
@@ -770,7 +770,7 @@ class _$Loading implements Loading {
 
   @override
   String toString() {
-    return 'NotificationListStatus.loading()';
+    return 'MyNotificationListStatus.loading()';
   }
 
   @override
@@ -834,7 +834,7 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements NotificationListStatus {
+abstract class Loading implements MyNotificationListStatus {
   const factory Loading() = _$Loading;
 }
 
@@ -847,7 +847,7 @@ abstract class $ErrorCopyWith<$Res> {
 
 /// @nodoc
 class _$ErrorCopyWithImpl<$Res>
-    extends _$NotificationListStatusCopyWithImpl<$Res>
+    extends _$MyNotificationListStatusCopyWithImpl<$Res>
     implements $ErrorCopyWith<$Res> {
   _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
       : super(_value, (v) => _then(v as Error));
@@ -878,7 +878,7 @@ class _$Error implements Error {
 
   @override
   String toString() {
-    return 'NotificationListStatus.error(message: $message)';
+    return 'MyNotificationListStatus.error(message: $message)';
   }
 
   @override
@@ -951,7 +951,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements NotificationListStatus {
+abstract class Error implements MyNotificationListStatus {
   const factory Error(String message) = _$Error;
 
   String get message => throw _privateConstructorUsedError;

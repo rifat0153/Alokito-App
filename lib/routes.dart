@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/notification/service/notification_service.dart';
 import 'package:get/get.dart';
 
 import 'core/language/language_controller.dart';
@@ -114,7 +115,7 @@ class GetPages {
       name: NotificationView.route,
       page: () => NotificationView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => NotificationController());
+        Get.lazyPut(() => NotificationController(NotificationService()));
       }),
     ),
 

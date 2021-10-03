@@ -41,9 +41,9 @@ GiftAsk? giftAskDocFromJson(Map<String, dynamic>? json) {
 }
 
 @freezed
-class NotificationListStatus with _$NotificationListStatus {
-  const factory NotificationListStatus.data(List<MyNotification> myNotification) = Data;
-  const factory NotificationListStatus.empty() = Empty;
-  const factory NotificationListStatus.loading() = Loading;
-  const factory NotificationListStatus.error(String message) = Error;
+class MyNotificationListStatus with _$MyNotificationListStatus {
+  const factory MyNotificationListStatus.data(List<MyNotification> myNotification) = Data;
+  const factory MyNotificationListStatus.empty() = Empty;
+  const factory MyNotificationListStatus.loading() = Loading;
+  const factory MyNotificationListStatus.error(String message) = Error;
 }

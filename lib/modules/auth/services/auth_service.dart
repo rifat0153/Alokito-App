@@ -74,7 +74,6 @@ class AuthService extends GetConnect implements BaseAuthService {
     try {
       final stream = _firestore.collection('users').doc(_firebaseAuth.currentUser?.uid ?? 'abc').snapshots().map((doc) {
         final val = (doc.data()?['notificationCount'] ?? 0) as int;
-        print('NotificationNUmber: ' + val.toString());
         return val;
       });
 
@@ -87,7 +86,7 @@ class AuthService extends GetConnect implements BaseAuthService {
   @override
   Future<bool> updateUserNotificationStatus(String id, bool notificationStatus) async {
     try {
-      await _firestore.collection('users').doc(id).update({'hasNotifications': notificationStatus});
+      await _firestore.collection('users').doc(id).update({'notificationCount': 0});
 
       return true;
     } on FirebaseAuthException catch (e) {
@@ -217,23 +216,4 @@ class AuthService extends GetConnect implements BaseAuthService {
     await _firebaseAuth.signOut();
   }
 
-  // @override
-  // Future<LocalUserInfo> getLocalUserDB(String id) async {
-  //   final client = http.Client();
-
-  //   try {
-  //     final http.Response response = await client.get(
-  //       Uri.parse('$baseUrl/user/show?id=$id'),
-  //       headers: {"Content-Type": "application/json"},
-  //     ).timeout(const Duration(seconds: 5));
-
-  //     print('GEt user status: ' + response.statusCode.toString());
-  //     final LocalUser localUser = localUserFromJson(response.body);
-  //     print('User: ' + localUser.uid.toString());
-
-  //     return LocalUserInfo.data(localUser);
-  //   } catch (e) {
-  //     return LocalUserInfo.error(e.toString());
-  //   }
-  // }
 }

@@ -20,18 +20,16 @@ class NotificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.bindNotificationStream(Get.find<AuthController>().currentUser.value.id ?? '');
 
     final notificationController = Get.find<NotificationController>();
 
     return SkeletonWidget(
-      titleWidget: MyText('Notification', fontSize: 20, fontWeight: FontWeight.bold),
+      titleWidget: const MyText('Notification', fontWeight: FontWeight.bold),
       assetPath: 'assets/images/notification-background.png',
       child: SizedBox(
         height: Get.height,
         width: Get.width,
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(
               height: 50,
@@ -52,19 +50,19 @@ class NotificationView extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 itemCount: list.length,
                 itemBuilder: (_, i) {
-                  if (list[i].notificationType == NotificationType.giftGiver) {
+                  if (list[i].notificationType == 'giftRequest') {
                     return GiftGiverNotificationView(
                       key: ValueKey(list[i].createdAt),
                       notification: list[i],
                     );
                   }
-                  if (list[i].notificationType == NotificationType.giftAsk) {
+                  if (list[i].notificationType == 'giftAskRequest') {
                     return GiftAskNotificationView(
                       key: ValueKey(list[i].createdAt),
                       notification: list[i],
                     );
                   }
-                  if (list[i].notificationType == NotificationType.text) {
+                  if (list[i].notificationType == 'text') {
                     return TextNotificationWidget(
                       key: ValueKey(list[i].createdAt),
                       notification: list[i],
