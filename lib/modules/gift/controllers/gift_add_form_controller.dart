@@ -24,7 +24,6 @@ class GiftAddFormController extends GetxController {
 
   final loading = false.obs;
 
-  final isUploading = false.obs;
   final giftFor = 0.obs;
   Rx<GiftType> giftType = GiftType.packageFor3Days.obs;
   final distance = 1.obs;
@@ -74,7 +73,8 @@ class GiftAddFormController extends GetxController {
     final LocalUser? currentUser =
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
 
-    final Geometry geometry = Geometry(coordinates: [selectedLatLng.value.longitude, selectedLatLng.value.latitude]);
+    final Geometry geometry =
+        Geometry(coordinates: [selectedLatLng.value.longitude, selectedLatLng.value.latitude]);
 
     final gift = Gift(
       userId: currentUser!.id ?? '',
@@ -92,6 +92,9 @@ class GiftAddFormController extends GetxController {
     );
 
     await giftGiverService.addGift(gift: gift, imageFile: imageFile.value);
+
+    loading.value = false;
+
   }
 
   String showPickupTime() {
@@ -106,8 +109,8 @@ class GiftAddFormController extends GetxController {
   }
 
   Future<void> setLocationFromMapCordinates() async {
-    final List<Placemark> placemarks =
-        await GeocodingHelper.getAddressFromPosition(selectedLatLng.value.latitude, selectedLatLng.value.longitude);
+    final List<Placemark> placemarks = await GeocodingHelper.getAddressFromPosition(
+        selectedLatLng.value.latitude, selectedLatLng.value.longitude);
 
     location.value = placemarks.first.locality ?? 'N/A';
     area.value = placemarks.first.name ?? 'N/A';

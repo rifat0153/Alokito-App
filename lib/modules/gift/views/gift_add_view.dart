@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../models/my_enums.dart';
 import '../../../shared/config.dart';
 import '../controllers/gift_add_form_controller.dart';
 import '../controllers/gift_controller.dart';
 import '../widgets/custom_gift_widget.dart';
-import '../widgets/distance_row_widget.dart';
 import '../widgets/family_option_widget.dart';
 import '../widgets/gift_detail_widget.dart';
 import '../widgets/gift_location_widget.dart';
@@ -58,17 +56,13 @@ class GiftAddView extends StatelessWidget {
           ],
           title: Text(
             'My Gift - $giftType',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
-              fontFamily: GoogleFonts.aclonica().fontFamily,
             ),
           ),
           backgroundColor: Colors.grey[200],
           shadowColor: Colors.white,
         ),
-        // persistentFooterButtons: [
-        //   const Icon(Icons.ac_unit_outlined),
-        // ],
         body: Stack(
           children: [
             Container(
@@ -83,7 +77,6 @@ class GiftAddView extends StatelessWidget {
                 children: <Widget>[
                   if (controller.giftType.value == GiftType.anyRetailItem) FamilyOptionWidget(),
                   if (controller.giftType.value == GiftType.customizedPackage) CustomGiftOptionWidget(),
-
                   ImageInputWidget(),
                   GiftDetailWidget(),
                   ListingDateWidget(),
@@ -91,7 +84,7 @@ class GiftAddView extends StatelessWidget {
                   CurrentAddressFromCordinate(),
                   GiftLocationWidget(),
                   Obx(
-                    () => controller.isUploading.value
+                    () => controller.loading.value
                         ? const CircularProgressIndicator()
                         : MaterialButton(
                             onPressed: controller.addGift,
@@ -107,7 +100,6 @@ class GiftAddView extends StatelessWidget {
                             ),
                           ),
                   ),
-                  // const SizedBox(height: 500)
                 ],
               ),
             ),

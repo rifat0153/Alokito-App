@@ -2,17 +2,19 @@ import '../models/user/local_user.dart';
 import 'package:flutter/material.dart';
 
 class MyConfig {
-  static const baseUrl = 'https://aalokito-dev-07-jyguqmmqea-uc.a.run.app/api/v1';
+  // static const baseUrl = 'https://aalokito-dev-07-jyguqmmqea-uc.a.run.app/api/v1';
   // static const baseUrl = 'https://aalokito-v06-dev-jyguqmmqea-el.a.run.app/api/v1';
   // static const baseUrl = 'http://192.168.0.121:80/api/v1';
+static const baseUrl = 'http://192.168.0.105:80/api/v1';
+
 
   static const myTimeout = 15;
 }
 
 // URL
-// const baseUrl = 'http://192.168.0.108:80/api/v1';
+const baseUrl = 'http://192.168.0.105:80/api/v1';
 // const baseUrl = 'http://192.168.0.121:80/api/v1';
-const baseUrl = 'https://aalokito-dev-07-jyguqmmqea-uc.a.run.app/api/v1';
+// const baseUrl = 'https://aalokito-dev-07-jyguqmmqea-uc.a.run.app/api/v1';
 // const baseUrl = 'https://aalokito-v06-dev-jyguqmmqea-el.a.run.app/api/v1';
 
 const myTimeout = 8;
