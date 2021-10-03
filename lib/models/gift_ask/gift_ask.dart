@@ -36,6 +36,10 @@ class GiftAsk with _$GiftAsk {
 }
 
 
+Map<String, dynamic> giftAskToMap(GiftAsk giftAsk) => giftAsk.toJson();
+GiftAsk giftAskFromMap(Map<String, dynamic> json) => GiftAsk.fromJson(json);
+
+
 @freezed
 class GiftAskListUnion with _$GiftAskListUnion{
 

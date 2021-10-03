@@ -34,8 +34,8 @@ abstract class Gift with _$Gift {
 
 
 
-Map<String, dynamic> giftToMap(Gift gift) => gift.toJson();
 Gift giftFromMap(Map<String, dynamic> json) => Gift.fromJson(json);
+Map<String, dynamic> giftToMap(Gift gift) => gift.toJson();
 
 
 @freezed

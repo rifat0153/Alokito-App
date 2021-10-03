@@ -23,15 +23,18 @@ class _$MyNotificationTearOff {
   _MyNotification data(
       {required String id,
       required String text,
-      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          required NotificationType notificationType,
       required String releatedDocId,
+      required String notificationType,
+      @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
+      @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
       required DateTime createdAt}) {
     return _MyNotification(
       id: id,
       text: text,
-      notificationType: notificationType,
       releatedDocId: releatedDocId,
+      notificationType: notificationType,
+      giftDoc: giftDoc,
+      giftAskDoc: giftAskDoc,
       createdAt: createdAt,
     );
   }
@@ -48,9 +51,12 @@ const $MyNotification = _$MyNotificationTearOff();
 mixin _$MyNotification {
   String get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-  NotificationType get notificationType => throw _privateConstructorUsedError;
   String get releatedDocId => throw _privateConstructorUsedError;
+  String get notificationType => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftDocFromJson)
+  Gift? get giftDoc => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftAskDocFromJson)
+  GiftAsk? get giftAskDoc => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -58,9 +64,10 @@ mixin _$MyNotification {
     required TResult Function(
             String id,
             String text,
-            @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType,
             String releatedDocId,
+            String notificationType,
+            @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
+            @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
             DateTime createdAt)
         data,
   }) =>
@@ -70,9 +77,10 @@ mixin _$MyNotification {
     TResult Function(
             String id,
             String text,
-            @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType,
             String releatedDocId,
+            String notificationType,
+            @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
+            @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
             DateTime createdAt)?
         data,
     required TResult orElse(),
@@ -103,10 +111,14 @@ abstract class $MyNotificationCopyWith<$Res> {
   $Res call(
       {String id,
       String text,
-      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          NotificationType notificationType,
       String releatedDocId,
+      String notificationType,
+      @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
+      @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
       DateTime createdAt});
+
+  $GiftCopyWith<$Res>? get giftDoc;
+  $GiftAskCopyWith<$Res>? get giftAskDoc;
 }
 
 /// @nodoc
@@ -122,8 +134,10 @@ class _$MyNotificationCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? text = freezed,
-    Object? notificationType = freezed,
     Object? releatedDocId = freezed,
+    Object? notificationType = freezed,
+    Object? giftDoc = freezed,
+    Object? giftAskDoc = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -135,19 +149,49 @@ class _$MyNotificationCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      notificationType: notificationType == freezed
-          ? _value.notificationType
-          : notificationType // ignore: cast_nullable_to_non_nullable
-              as NotificationType,
       releatedDocId: releatedDocId == freezed
           ? _value.releatedDocId
           : releatedDocId // ignore: cast_nullable_to_non_nullable
               as String,
+      notificationType: notificationType == freezed
+          ? _value.notificationType
+          : notificationType // ignore: cast_nullable_to_non_nullable
+              as String,
+      giftDoc: giftDoc == freezed
+          ? _value.giftDoc
+          : giftDoc // ignore: cast_nullable_to_non_nullable
+              as Gift?,
+      giftAskDoc: giftAskDoc == freezed
+          ? _value.giftAskDoc
+          : giftAskDoc // ignore: cast_nullable_to_non_nullable
+              as GiftAsk?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
+  }
+
+  @override
+  $GiftCopyWith<$Res>? get giftDoc {
+    if (_value.giftDoc == null) {
+      return null;
+    }
+
+    return $GiftCopyWith<$Res>(_value.giftDoc!, (value) {
+      return _then(_value.copyWith(giftDoc: value));
+    });
+  }
+
+  @override
+  $GiftAskCopyWith<$Res>? get giftAskDoc {
+    if (_value.giftAskDoc == null) {
+      return null;
+    }
+
+    return $GiftAskCopyWith<$Res>(_value.giftAskDoc!, (value) {
+      return _then(_value.copyWith(giftAskDoc: value));
+    });
   }
 }
 
@@ -161,10 +205,16 @@ abstract class _$MyNotificationCopyWith<$Res>
   $Res call(
       {String id,
       String text,
-      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          NotificationType notificationType,
       String releatedDocId,
+      String notificationType,
+      @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
+      @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
       DateTime createdAt});
+
+  @override
+  $GiftCopyWith<$Res>? get giftDoc;
+  @override
+  $GiftAskCopyWith<$Res>? get giftAskDoc;
 }
 
 /// @nodoc
@@ -182,8 +232,10 @@ class __$MyNotificationCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? text = freezed,
-    Object? notificationType = freezed,
     Object? releatedDocId = freezed,
+    Object? notificationType = freezed,
+    Object? giftDoc = freezed,
+    Object? giftAskDoc = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_MyNotification(
@@ -195,14 +247,22 @@ class __$MyNotificationCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      notificationType: notificationType == freezed
-          ? _value.notificationType
-          : notificationType // ignore: cast_nullable_to_non_nullable
-              as NotificationType,
       releatedDocId: releatedDocId == freezed
           ? _value.releatedDocId
           : releatedDocId // ignore: cast_nullable_to_non_nullable
               as String,
+      notificationType: notificationType == freezed
+          ? _value.notificationType
+          : notificationType // ignore: cast_nullable_to_non_nullable
+              as String,
+      giftDoc: giftDoc == freezed
+          ? _value.giftDoc
+          : giftDoc // ignore: cast_nullable_to_non_nullable
+              as Gift?,
+      giftAskDoc: giftAskDoc == freezed
+          ? _value.giftAskDoc
+          : giftAskDoc // ignore: cast_nullable_to_non_nullable
+              as GiftAsk?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -217,9 +277,10 @@ class _$_MyNotification implements _MyNotification {
   const _$_MyNotification(
       {required this.id,
       required this.text,
-      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          required this.notificationType,
       required this.releatedDocId,
+      required this.notificationType,
+      @JsonKey(fromJson: giftDocFromJson) this.giftDoc,
+      @JsonKey(fromJson: giftAskDocFromJson) this.giftAskDoc,
       required this.createdAt});
 
   factory _$_MyNotification.fromJson(Map<String, dynamic> json) =>
@@ -230,16 +291,21 @@ class _$_MyNotification implements _MyNotification {
   @override
   final String text;
   @override
-  @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-  final NotificationType notificationType;
-  @override
   final String releatedDocId;
+  @override
+  final String notificationType;
+  @override
+  @JsonKey(fromJson: giftDocFromJson)
+  final Gift? giftDoc;
+  @override
+  @JsonKey(fromJson: giftAskDocFromJson)
+  final GiftAsk? giftAskDoc;
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'MyNotification.data(id: $id, text: $text, notificationType: $notificationType, releatedDocId: $releatedDocId, createdAt: $createdAt)';
+    return 'MyNotification.data(id: $id, text: $text, releatedDocId: $releatedDocId, notificationType: $notificationType, giftDoc: $giftDoc, giftAskDoc: $giftAskDoc, createdAt: $createdAt)';
   }
 
   @override
@@ -250,12 +316,18 @@ class _$_MyNotification implements _MyNotification {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.text, text) ||
                 const DeepCollectionEquality().equals(other.text, text)) &&
-            (identical(other.notificationType, notificationType) ||
-                const DeepCollectionEquality()
-                    .equals(other.notificationType, notificationType)) &&
             (identical(other.releatedDocId, releatedDocId) ||
                 const DeepCollectionEquality()
                     .equals(other.releatedDocId, releatedDocId)) &&
+            (identical(other.notificationType, notificationType) ||
+                const DeepCollectionEquality()
+                    .equals(other.notificationType, notificationType)) &&
+            (identical(other.giftDoc, giftDoc) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftDoc, giftDoc)) &&
+            (identical(other.giftAskDoc, giftAskDoc) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftAskDoc, giftAskDoc)) &&
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
                     .equals(other.createdAt, createdAt)));
@@ -266,8 +338,10 @@ class _$_MyNotification implements _MyNotification {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(text) ^
-      const DeepCollectionEquality().hash(notificationType) ^
       const DeepCollectionEquality().hash(releatedDocId) ^
+      const DeepCollectionEquality().hash(notificationType) ^
+      const DeepCollectionEquality().hash(giftDoc) ^
+      const DeepCollectionEquality().hash(giftAskDoc) ^
       const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
@@ -281,13 +355,15 @@ class _$_MyNotification implements _MyNotification {
     required TResult Function(
             String id,
             String text,
-            @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType,
             String releatedDocId,
+            String notificationType,
+            @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
+            @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
             DateTime createdAt)
         data,
   }) {
-    return data(id, text, notificationType, releatedDocId, createdAt);
+    return data(id, text, releatedDocId, notificationType, giftDoc, giftAskDoc,
+        createdAt);
   }
 
   @override
@@ -296,15 +372,17 @@ class _$_MyNotification implements _MyNotification {
     TResult Function(
             String id,
             String text,
-            @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-                NotificationType notificationType,
             String releatedDocId,
+            String notificationType,
+            @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
+            @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
             DateTime createdAt)?
         data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(id, text, notificationType, releatedDocId, createdAt);
+      return data(id, text, releatedDocId, notificationType, giftDoc,
+          giftAskDoc, createdAt);
     }
     return orElse();
   }
@@ -339,9 +417,10 @@ abstract class _MyNotification implements MyNotification {
   const factory _MyNotification(
       {required String id,
       required String text,
-      @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-          required NotificationType notificationType,
       required String releatedDocId,
+      required String notificationType,
+      @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
+      @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
       required DateTime createdAt}) = _$_MyNotification;
 
   factory _MyNotification.fromJson(Map<String, dynamic> json) =
@@ -352,10 +431,15 @@ abstract class _MyNotification implements MyNotification {
   @override
   String get text => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: notificationTypeFromJson, toJson: notificationTypeToJson)
-  NotificationType get notificationType => throw _privateConstructorUsedError;
-  @override
   String get releatedDocId => throw _privateConstructorUsedError;
+  @override
+  String get notificationType => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: giftDocFromJson)
+  Gift? get giftDoc => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: giftAskDocFromJson)
+  GiftAsk? get giftAskDoc => throw _privateConstructorUsedError;
   @override
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
