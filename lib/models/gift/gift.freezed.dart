@@ -27,11 +27,11 @@ class _$GiftTearOff {
       required String userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           LocalUser? user,
+      required String giftDetails,
+      required String giftType,
+      required DateTime pickUpTime,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required Geometry geometry,
-      required String giftType,
-      required String giftDetails,
-      required DateTime pickUpTime,
       required String area,
       required String location,
       required String imageUrl,
@@ -42,10 +42,10 @@ class _$GiftTearOff {
       canLeaveOutside: canLeaveOutside,
       userId: userId,
       user: user,
-      geometry: geometry,
-      giftType: giftType,
       giftDetails: giftDetails,
+      giftType: giftType,
       pickUpTime: pickUpTime,
+      geometry: geometry,
       area: area,
       location: location,
       imageUrl: imageUrl,
@@ -69,11 +69,11 @@ mixin _$Gift {
   String get userId => throw _privateConstructorUsedError;
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
   LocalUser? get user => throw _privateConstructorUsedError;
+  String get giftDetails => throw _privateConstructorUsedError;
+  String get giftType => throw _privateConstructorUsedError;
+  DateTime get pickUpTime => throw _privateConstructorUsedError;
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
   Geometry get geometry => throw _privateConstructorUsedError;
-  String get giftType => throw _privateConstructorUsedError;
-  String get giftDetails => throw _privateConstructorUsedError;
-  DateTime get pickUpTime => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
@@ -95,11 +95,11 @@ abstract class $GiftCopyWith<$Res> {
       String userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           LocalUser? user,
+      String giftDetails,
+      String giftType,
+      DateTime pickUpTime,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           Geometry geometry,
-      String giftType,
-      String giftDetails,
-      DateTime pickUpTime,
       String area,
       String location,
       String imageUrl,
@@ -124,10 +124,10 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
     Object? canLeaveOutside = freezed,
     Object? userId = freezed,
     Object? user = freezed,
-    Object? geometry = freezed,
-    Object? giftType = freezed,
     Object? giftDetails = freezed,
+    Object? giftType = freezed,
     Object? pickUpTime = freezed,
+    Object? geometry = freezed,
     Object? area = freezed,
     Object? location = freezed,
     Object? imageUrl = freezed,
@@ -154,22 +154,22 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as LocalUser?,
-      geometry: geometry == freezed
-          ? _value.geometry
-          : geometry // ignore: cast_nullable_to_non_nullable
-              as Geometry,
-      giftType: giftType == freezed
-          ? _value.giftType
-          : giftType // ignore: cast_nullable_to_non_nullable
-              as String,
       giftDetails: giftDetails == freezed
           ? _value.giftDetails
           : giftDetails // ignore: cast_nullable_to_non_nullable
+              as String,
+      giftType: giftType == freezed
+          ? _value.giftType
+          : giftType // ignore: cast_nullable_to_non_nullable
               as String,
       pickUpTime: pickUpTime == freezed
           ? _value.pickUpTime
           : pickUpTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
@@ -220,11 +220,11 @@ abstract class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
       String userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           LocalUser? user,
+      String giftDetails,
+      String giftType,
+      DateTime pickUpTime,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           Geometry geometry,
-      String giftType,
-      String giftDetails,
-      DateTime pickUpTime,
       String area,
       String location,
       String imageUrl,
@@ -252,10 +252,10 @@ class __$GiftCopyWithImpl<$Res> extends _$GiftCopyWithImpl<$Res>
     Object? canLeaveOutside = freezed,
     Object? userId = freezed,
     Object? user = freezed,
-    Object? geometry = freezed,
-    Object? giftType = freezed,
     Object? giftDetails = freezed,
+    Object? giftType = freezed,
     Object? pickUpTime = freezed,
+    Object? geometry = freezed,
     Object? area = freezed,
     Object? location = freezed,
     Object? imageUrl = freezed,
@@ -282,22 +282,22 @@ class __$GiftCopyWithImpl<$Res> extends _$GiftCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as LocalUser?,
-      geometry: geometry == freezed
-          ? _value.geometry
-          : geometry // ignore: cast_nullable_to_non_nullable
-              as Geometry,
-      giftType: giftType == freezed
-          ? _value.giftType
-          : giftType // ignore: cast_nullable_to_non_nullable
-              as String,
       giftDetails: giftDetails == freezed
           ? _value.giftDetails
           : giftDetails // ignore: cast_nullable_to_non_nullable
+              as String,
+      giftType: giftType == freezed
+          ? _value.giftType
+          : giftType // ignore: cast_nullable_to_non_nullable
               as String,
       pickUpTime: pickUpTime == freezed
           ? _value.pickUpTime
           : pickUpTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
       area: area == freezed
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
@@ -328,11 +328,11 @@ class _$_Gift implements _Gift {
       required this.userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           this.user,
+      required this.giftDetails,
+      required this.giftType,
+      required this.pickUpTime,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required this.geometry,
-      required this.giftType,
-      required this.giftDetails,
-      required this.pickUpTime,
       required this.area,
       required this.location,
       required this.imageUrl,
@@ -353,14 +353,14 @@ class _$_Gift implements _Gift {
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
   final LocalUser? user;
   @override
-  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
-  final Geometry geometry;
+  final String giftDetails;
   @override
   final String giftType;
   @override
-  final String giftDetails;
-  @override
   final DateTime pickUpTime;
+  @override
+  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  final Geometry geometry;
   @override
   final String area;
   @override
@@ -372,7 +372,7 @@ class _$_Gift implements _Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, userId: $userId, user: $user, geometry: $geometry, giftType: $giftType, giftDetails: $giftDetails, pickUpTime: $pickUpTime, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
+    return 'Gift(id: $id, listingForDays: $listingForDays, canLeaveOutside: $canLeaveOutside, userId: $userId, user: $user, giftDetails: $giftDetails, giftType: $giftType, pickUpTime: $pickUpTime, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, distance: $distance)';
   }
 
   @override
@@ -391,18 +391,18 @@ class _$_Gift implements _Gift {
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.geometry, geometry) ||
-                const DeepCollectionEquality()
-                    .equals(other.geometry, geometry)) &&
-            (identical(other.giftType, giftType) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftType, giftType)) &&
             (identical(other.giftDetails, giftDetails) ||
                 const DeepCollectionEquality()
                     .equals(other.giftDetails, giftDetails)) &&
+            (identical(other.giftType, giftType) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftType, giftType)) &&
             (identical(other.pickUpTime, pickUpTime) ||
                 const DeepCollectionEquality()
                     .equals(other.pickUpTime, pickUpTime)) &&
+            (identical(other.geometry, geometry) ||
+                const DeepCollectionEquality()
+                    .equals(other.geometry, geometry)) &&
             (identical(other.area, area) ||
                 const DeepCollectionEquality().equals(other.area, area)) &&
             (identical(other.location, location) ||
@@ -424,10 +424,10 @@ class _$_Gift implements _Gift {
       const DeepCollectionEquality().hash(canLeaveOutside) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(geometry) ^
-      const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(giftDetails) ^
+      const DeepCollectionEquality().hash(giftType) ^
       const DeepCollectionEquality().hash(pickUpTime) ^
+      const DeepCollectionEquality().hash(geometry) ^
       const DeepCollectionEquality().hash(area) ^
       const DeepCollectionEquality().hash(location) ^
       const DeepCollectionEquality().hash(imageUrl) ^
@@ -452,11 +452,11 @@ abstract class _Gift implements Gift {
       required String userId,
       @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
           LocalUser? user,
+      required String giftDetails,
+      required String giftType,
+      required DateTime pickUpTime,
       @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
           required Geometry geometry,
-      required String giftType,
-      required String giftDetails,
-      required DateTime pickUpTime,
       required String area,
       required String location,
       required String imageUrl,
@@ -476,14 +476,14 @@ abstract class _Gift implements Gift {
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
   LocalUser? get user => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
-  Geometry get geometry => throw _privateConstructorUsedError;
+  String get giftDetails => throw _privateConstructorUsedError;
   @override
   String get giftType => throw _privateConstructorUsedError;
   @override
-  String get giftDetails => throw _privateConstructorUsedError;
-  @override
   DateTime get pickUpTime => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  Geometry get geometry => throw _privateConstructorUsedError;
   @override
   String get area => throw _privateConstructorUsedError;
   @override

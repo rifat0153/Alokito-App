@@ -23,8 +23,12 @@ class NotificationDto {
   List<MyNotification> results;
 
   factory NotificationDto.fromJson(Map<String, dynamic> json) => NotificationDto(
-      total: json["total"] as int,
-      page: json["page"] as int,
-      lastPage: json["last_page"] as int,
-      results: json["results"] as List<MyNotification>);
+        total: json["total"] as int, page: json["page"] as int, lastPage: json["last_page"] as int,
+        results: dtoToNotificationList(json['results'] as List<dynamic>),
+        // results: [],
+      );
+}
+
+List<MyNotification> dtoToNotificationList(List<dynamic> list) {
+  return list.map((e) => MyNotification.fromJson(e as Map<String, dynamic>)).toList();
 }

@@ -10,7 +10,8 @@ _$_MyNotification _$_$_MyNotificationFromJson(Map<String, dynamic> json) {
   return _$_MyNotification(
     id: json['id'] as String,
     text: json['text'] as String,
-    releatedDocId: json['releatedDocId'] as String,
+    user: json['user'] as String?,
+    relatedDocId: json['relatedDocId'] as String,
     notificationType: json['notificationType'] as String,
     giftDoc: giftDocFromJson(json['giftDoc'] as Map<String, dynamic>?),
     giftAskDoc: giftAskDocFromJson(json['giftAskDoc'] as Map<String, dynamic>?),
@@ -22,7 +23,8 @@ Map<String, dynamic> _$_$_MyNotificationToJson(_$_MyNotification instance) =>
     <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
-      'releatedDocId': instance.releatedDocId,
+      'user': instance.user,
+      'relatedDocId': instance.relatedDocId,
       'notificationType': instance.notificationType,
       'giftDoc': instance.giftDoc,
       'giftAskDoc': instance.giftAskDoc,

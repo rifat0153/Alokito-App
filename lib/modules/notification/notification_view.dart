@@ -1,15 +1,13 @@
-import 'dart:math';
 
-import '../../models/my_enums.dart';
-import '../auth/controllers/auth_controller.dart';
-import 'gift_ask/views/gift_ask_notification_view.dart';
-import 'notification_controller.dart';
-import 'widgets/text_notification_widget.dart';
-import '../../shared/skeleton_widget.dart';
-import '../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../shared/skeleton_widget.dart';
+import '../../shared/widget/my_text.dart';
+import 'gift_ask/views/gift_ask_notification_view.dart';
 import 'gift_giver/gift_giver_notification_view.dart';
+import 'notification_controller.dart';
+import 'widgets/text_notification_widget.dart';
 
 class NotificationView extends StatelessWidget {
   NotificationView({Key? key}) : super(key: key);
@@ -43,29 +41,29 @@ class NotificationView extends StatelessWidget {
 
   Obx _buildNotificationTile(NotificationController notificationController) {
     return Obx(
-      () => notificationController.notificationList.value.when(
-          data: (list) {
+      () => notificationController.notificationDto.value.when(
+          data: (notificationList) {
             return Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.zero,
-                itemCount: list.length,
+                itemCount: notificationList.length,
                 itemBuilder: (_, i) {
-                  if (list[i].notificationType == 'giftRequest') {
+                  if (notificationList[i].notificationType == 'giftRequest') {
                     return GiftGiverNotificationView(
-                      key: ValueKey(list[i].createdAt),
-                      notification: list[i],
+                      key: ValueKey(notificationList[i].createdAt),
+                      notification: notificationList[i],
                     );
                   }
-                  if (list[i].notificationType == 'giftAskRequest') {
+                  if (notificationList[i].notificationType == 'giftAskRequest') {
                     return GiftAskNotificationView(
-                      key: ValueKey(list[i].createdAt),
-                      notification: list[i],
+                      key: ValueKey(notificationList[i].createdAt),
+                      notification: notificationList[i],
                     );
                   }
-                  if (list[i].notificationType == 'text') {
+                  if (notificationList[i].notificationType == 'text') {
                     return TextNotificationWidget(
-                      key: ValueKey(list[i].createdAt),
-                      notification: list[i],
+                      key: ValueKey(notificationList[i].createdAt),
+                      notification: notificationList[i],
                     );
                   }
 

@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/notification/notification_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,17 +33,24 @@ class UserNavbar extends StatelessWidget {
             ),
           ),
           Obx(
-            () => Badge(
-              badgeContent: MyText(
-                authController.newNotifications.value > 10 ? '10+' : authController.newNotifications.value.toString(),
-                color: Colors.white,
-                fontSize: 14.sp,
-              ),
-              alignment: Alignment.topRight,
-              child: SvgPicture.asset(
-                'assets/svgs/bell_icon.svg',
-                height: 40.w,
-                width: 40.w,
+            () => GestureDetector(
+              onTap: () {
+                Get.toNamed(NotificationView.route);
+              },
+              child: Badge(
+                badgeContent: MyText(
+                  authController.newNotifications.value > 10
+                      ? '10+'
+                      : authController.newNotifications.value.toString(),
+                  color: Colors.white,
+                  fontSize: 14.sp,
+                ),
+                alignment: Alignment.topRight,
+                child: SvgPicture.asset(
+                  'assets/svgs/bell_icon.svg',
+                  height: 40.w,
+                  width: 40.w,
+                ),
               ),
             ),
           ),

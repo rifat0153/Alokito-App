@@ -27,7 +27,7 @@ class GiftAskNotificationView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: FutureBuilder<GiftAskGiver>(
-          future: giftAskGiverController.getGift(notification.releatedDocId), // function where you call your api
+          future: giftAskGiverController.getGift(notification.relatedDocId), // function where you call your api
           builder: (BuildContext context, AsyncSnapshot<GiftAskGiver> snapshot) {
             // AsyncSnapshot<Your object type>
             if (snapshot.connectionState == ConnectionState.waiting) {
