@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/gift_ask_giver/controller/gift_ask_giver_controller.dart';
 import 'package:alokito_new/modules/notification/service/notification_service.dart';
 import 'package:get/get.dart';
 
@@ -116,6 +117,8 @@ class GetPages {
       page: () => NotificationView(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => NotificationController(NotificationService()));
+        Get.lazyPut(() => GiftAskGiverController());
+        Get.lazyPut(() => GiftRequesterController(GiftRequesterService()));
       }),
     ),
 

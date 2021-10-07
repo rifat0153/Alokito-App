@@ -1,18 +1,15 @@
-import '../../../models/gift_ask/gift_ask_giver.dart';
-import '../../../models/my_enums.dart';
-import '../../../models/notification/notification.dart';
-import '../../../models/user/local_user.dart';
-import '../../auth/controllers/auth_controller.dart';
-import '../../gift_ask/controllers/gift_ask_controller.dart';
-import '../service/gift_ask_giver_service.dart';
-import '../../notification/notification_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../models/gift_ask/gift_ask.dart';
+import '../../../models/gift_ask/gift_ask_giver.dart';
+import '../../../models/my_enums.dart';
+import '../../../models/user/local_user.dart';
 import '../../../shared/success_error_sheet.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../service/gift_ask_giver_service.dart';
 
 class GiftAskGiverController extends GetxController {
   GiftAskGiverService giftAskGiverService = GiftAskGiverService(FirebaseFirestore.instance);

@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final notificationDto = notificationDtoFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:alokito_new/models/notification/notification.dart';
@@ -30,5 +26,5 @@ class NotificationDto {
 }
 
 List<MyNotification> dtoToNotificationList(List<dynamic> list) {
-  return list.map((e) => MyNotification.fromJson(e as Map<String, dynamic>)).toList();
+  return list.isEmpty ? [] : list.map((e) => MyNotification.fromJson(e as Map<String, dynamic>)).toList();
 }

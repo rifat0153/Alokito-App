@@ -1,13 +1,14 @@
-import '../../../models/gift_request/gift_request.dart';
-import '../../../models/notification/notification.dart';
-import '../../gift_requester/controllers/gift_requester_controller.dart';
-import 'gift_giver_notification_details_view.dart';
-import '../../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class GiftGiverNotificationView extends StatelessWidget {
-  GiftGiverNotificationView({Key? key, required this.notification}) : super(key: key);
+import '../../../models/gift_request/gift_request.dart';
+import '../../../models/notification/notification.dart';
+import '../../../shared/widget/my_text.dart';
+import '../../gift_requester/controllers/gift_requester_controller.dart';
+import 'gift_giver_notification_details_view.dart';
+
+class GiftNotificationView extends StatelessWidget {
+  GiftNotificationView({Key? key, required this.notification}) : super(key: key);
 
   final MyNotification notification;
 

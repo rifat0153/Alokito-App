@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,12 +12,10 @@ class NotificationView extends StatelessWidget {
   NotificationView({Key? key}) : super(key: key);
   static const route = 'NotificationView';
 
-
   final NotificationController controller = Get.find<NotificationController>();
 
   @override
   Widget build(BuildContext context) {
-
     final notificationController = Get.find<NotificationController>();
 
     return SkeletonWidget(
@@ -49,7 +46,7 @@ class NotificationView extends StatelessWidget {
                 itemCount: notificationList.length,
                 itemBuilder: (_, i) {
                   if (notificationList[i].notificationType == 'giftRequest') {
-                    return GiftGiverNotificationView(
+                    return GiftNotificationView(
                       key: ValueKey(notificationList[i].createdAt),
                       notification: notificationList[i],
                     );

@@ -32,7 +32,7 @@ class NotificationService extends GetConnect implements BaseNotificationService 
         decoder: (data) => NotificationDto.fromJson(data as Map<String, dynamic>),
       ).timeout(const Duration(seconds: myTimeout));
 
-      print(response.body!.results.length);
+      // print(response.body!.results.length);
 
       return MyNotificationListStatus.data(response.body!.results);
     } on HttpException catch (e) {

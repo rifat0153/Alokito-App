@@ -28,6 +28,8 @@ class NotificationController extends GetxController {
       page: 1,
     );
 
+    notificationDto.value = res;
+
     print(res.maybeWhen(data: (data) => data, orElse: () => 'Not data'));
   }
 }
