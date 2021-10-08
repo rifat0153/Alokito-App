@@ -13,6 +13,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class GiftAskRequestView extends StatelessWidget {
   GiftAskRequestView({Key? key}) : super(key: key);
 
+  static const route = 'giftaskrequestview';
+
   final GiftAskController giftAskController = Get.find<GiftAskController>();
 
   @override

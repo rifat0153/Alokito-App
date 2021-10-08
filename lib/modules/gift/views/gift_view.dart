@@ -327,7 +327,7 @@ class _MyButtonRowWidget extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            Get.to(() => GiftAskRequestView());
+            Get.toNamed(GiftAskRequestView.route);
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.grey),

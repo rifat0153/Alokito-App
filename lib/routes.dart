@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/gift_ask/views/gift_ask_request_view.dart';
 import 'package:alokito_new/modules/gift_ask_giver/controller/gift_ask_giver_controller.dart';
 import 'package:alokito_new/modules/notification/service/notification_service.dart';
 import 'package:get/get.dart';
@@ -67,6 +68,18 @@ class GetPages {
     GetPage(
       name: GiftAskView.route,
       page: () => GiftAskView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(
+          () => GiftAskController(
+            GiftAskService(Get.find<FirebaseDI>().firestore, Get.find<FirebaseDI>().storage),
+          ),
+        );
+      }),
+    ),
+    GetPage(
+      name: GiftAskRequestView.route,
+      page: () => GiftAskRequestView(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
         Get.lazyPut(
