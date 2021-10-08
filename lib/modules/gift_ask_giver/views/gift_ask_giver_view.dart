@@ -7,6 +7,7 @@ import 'package:alokito_new/modules/gift_ask_giver_details/view/gift_ask_detail_
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -53,7 +54,7 @@ class GiftAskGiverView extends StatelessWidget {
       //     ),
       //   ),
       // ),
-      body: _BuildBody(giftAskGiverController: giftAskGiverController),
+      body: _BuildBody(controller: giftAskGiverController),
     );
   }
 }
@@ -61,10 +62,10 @@ class GiftAskGiverView extends StatelessWidget {
 class _BuildBody extends StatelessWidget {
   _BuildBody({
     Key? key,
-    required this.giftAskGiverController,
+    required this.controller,
   }) : super(key: key);
 
-  final GiftAskGiverController giftAskGiverController;
+  final GiftAskGiverController controller;
   final AuthController authController = Get.find();
 
   @override
@@ -77,7 +78,7 @@ class _BuildBody extends StatelessWidget {
         children: [
           Obx(
             () => MapWithMarkersWidget(
-              markers: giftAskGiverController.markers,
+              markers: controller.markers,
               initialCameraPosition: CameraPosition(
                 target: LatLng(authController.currentUserPosition.value.latitude,
                     authController.currentUserPosition.value.longitude),
@@ -87,7 +88,7 @@ class _BuildBody extends StatelessWidget {
           ),
           Obx(
             () => Text(
-              '${giftAskGiverController.giftAskList.value.maybeWhen(data: (data) => data.length, orElse: () => 0)} requests around\nyou right now',
+              '${controller.giftAskList.value.maybeWhen(data: (data) => data.length, orElse: () => 0)} requests around\nyou right now',
               style: boldFontStyle.copyWith(fontSize: 25),
               overflow: TextOverflow.ellipsis,
               softWrap: false,
@@ -95,18 +96,31 @@ class _BuildBody extends StatelessWidget {
             ),
           ),
           Obx(
-            () => giftAskGiverController.giftAskList.value.when(
+            () => controller.giftAskList.value.when(
               data: (giftAskList) => Expanded(
                 child: ListView.builder(
-                  controller: giftAskGiverController.scrollController,
-                  itemCount: giftAskList.length,
-                  itemBuilder: (_, i) => _GiftAskRequestTile(
-                    key: ValueKey(giftAskList[i].id),
-                    giftAsk: giftAskList[i],
-                    giftAskGiverController: giftAskGiverController,
-                    width: Get.width * 0.8,
-                  ),
-                  physics: const BouncingScrollPhysics(),
+                  controller: controller.scrollController,
+                  itemCount:  controller.allGiftsFetched.value
+                        // * Show Loading Indicator if More gifts needs to be loaded
+                        ? controller.giftAskList.value.maybeWhen(data: (giftAskList) => giftAskList.length, orElse: () => 0)
+                        : controller.giftAskList.value
+                            .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
+                  itemBuilder: (_, i) {
+                    if (i ==
+                            controller.giftAskList.value.maybeWhen(
+                              data: (giftList) => giftList.length,
+                              orElse: () => 0,
+                            ) &&
+                        !controller.allGiftsFetched.value) {
+                      return const CupertinoActivityIndicator(radius: 15);
+                    }
+                    return _GiftAskRequestTile(
+                      key: ValueKey(giftAskList[i].id),
+                      giftAsk: giftAskList[i],
+                      giftAskGiverController: controller,
+                      width: Get.width * 0.8,
+                    );
+                  },
                 ),
               ),
               empty: () => const SizedBox(),

@@ -29,7 +29,7 @@ class GiftAskGiverController extends GetxController {
   Rx<GiftAskLoadingOption> giftRetriveOption = const GiftAskLoadingOption.byLocation().obs;
 
   Rx<int> page = 1.obs;
-  Rx<int> limit = 4.obs;
+  Rx<int> limit = 2.obs;
   Rx<int> radius = 400.obs;
   Rx<String> searchString = ''.obs;
 
