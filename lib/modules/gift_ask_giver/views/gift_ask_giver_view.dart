@@ -41,18 +41,19 @@ class GiftAskGiverView extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         shadowColor: Colors.white,
       ),
-      body: Obx(
-        () => Center(
-          child: Text(
-            giftAskGiverController.giftAskList.value.when(
-              data: (data) => data.length.toString(),
-              empty: () => '00',
-              error: (e) => e.toString(),
-              loading: () => '......',
-            ),
-          ),
-        ),
-      ),
+      // body: Obx(
+      //   () => Center(
+      //     child: Text(
+      //       giftAskGiverController.giftAskList.value.when(
+      //         data: (data) => data.length.toString(),
+      //         empty: () => '00',
+      //         error: (e) => e.toString(),
+      //         loading: () => '......',
+      //       ),
+      //     ),
+      //   ),
+      // ),
+      body: _BuildBody(giftAskGiverController: giftAskGiverController),
     );
   }
 }
@@ -93,35 +94,28 @@ class _BuildBody extends StatelessWidget {
               maxLines: 2,
             ),
           ),
-          Expanded(
-            child: Obx(() => giftAskGiverController.giftAskList.value.when(
-                data: (giftAskList) => ListView.builder(
-                      itemCount: giftAskList.length,
-                      itemBuilder: (_, i) => _GiftAskRequestTile(
-                        key: ValueKey(giftAskList[i].id),
-                        giftAskList: giftAskList,
-                        giftAskGiverController: giftAskGiverController,
-                        index: i,
-                        width: Get.width * 0.8,
-                      ),
-                      physics: const BouncingScrollPhysics(),
-                    ),
-                empty: () => const SizedBox(),
-                loading: () => const LinearProgressIndicator(),
-                error: (error) {
-                  return Text(error.toString());
-                })),
+          Obx(
+            () => giftAskGiverController.giftAskList.value.when(
+              data: (giftAskList) => Expanded(
+                child: ListView.builder(
+                  controller: giftAskGiverController.scrollController,
+                  itemCount: giftAskList.length,
+                  itemBuilder: (_, i) => _GiftAskRequestTile(
+                    key: ValueKey(giftAskList[i].id),
+                    giftAsk: giftAskList[i],
+                    giftAskGiverController: giftAskGiverController,
+                    width: Get.width * 0.8,
+                  ),
+                  physics: const BouncingScrollPhysics(),
+                ),
+              ),
+              empty: () => const SizedBox(),
+              loading: () => const LinearProgressIndicator(),
+              error: (error) {
+                return Text(error.toString());
+              },
+            ),
           ),
-          // Obx(
-          //   () => Slider(
-          //     value: giftAskGiverController.radius.value.toDouble(),
-          //     label: giftAskGiverController.radius.value.toInt().toString(),
-          //     min: 0,
-          //     max: 200,
-          //     divisions: 200,
-          //     onChanged: (value) => giftAskGiverController.radius.value = value.toInt(),
-          //   ),
-          // ),
         ],
       ),
     );
@@ -131,93 +125,87 @@ class _BuildBody extends StatelessWidget {
 class _GiftAskRequestTile extends StatelessWidget {
   _GiftAskRequestTile({
     Key? key,
-    required this.giftAskList,
     required this.giftAskGiverController,
-    required this.index,
+    required this.giftAsk,
     required this.width,
   }) : super(key: key);
 
-  final List<GiftAsk> giftAskList;
-  final int index;
+  final GiftAsk giftAsk;
   final double width;
   final GiftAskGiverController giftAskGiverController;
   final AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
-    return authController.currentUserInfo.value.when(
-      data: (user) => GestureDetector(
-        onTap: () {
-          Get.to(() => GiftAskDetailView(giftAsk: giftAskList[index]));
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.grey.withOpacity(0.3)),
-            ),
-            width: 300,
-            height: 80,
-            child: Row(
-              children: [
-                Container(
-                  width: 100,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                      color: giftAskColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                      )),
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => GiftAskDetailView(giftAsk: giftAsk));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.grey.withOpacity(0.3)),
+          ),
+          width: 300,
+          height: 300,
+          child: Row(
+            children: [
+              Container(
+                width: 100,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                    color: giftAskColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                    )),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
+                    Text(
+                      '0${giftAsk.requestForNoOfPeople}',
+                      style: const TextStyle(
+                        color: Color(0xff11CFE7),
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Request For', style: whiteFontStyle.copyWith(fontWeight: FontWeight.bold)),
-                      Text(
-                        '0${giftAskList[index].requestForNoOfPeople}',
-                        style: const TextStyle(
-                          color: Color(0xff11CFE7),
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      Text('Any Retail Item', style: boldFontStyle.copyWith(fontSize: 16)),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              convertGiftAskType(giftAskType: giftAsk.giftAskType),
+                              softWrap: false,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Text(giftAsk.area, style: boldFontStyle.copyWith(fontSize: 13)),
+                        ],
+                      )
                     ],
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Any Retail Item', style: boldFontStyle.copyWith(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                convertGiftAskType(giftAskType: giftAskList[index].giftAskType),
-                                softWrap: false,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            Text(giftAskList[index].area, style: boldFontStyle.copyWith(fontSize: 13)),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
-      loading: () => const CircularProgressIndicator.adaptive(),
-      error: (error) => const Text('Something went Wrong'),
     );
   }
 }

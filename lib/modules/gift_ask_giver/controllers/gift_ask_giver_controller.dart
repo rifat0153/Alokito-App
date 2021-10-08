@@ -83,10 +83,12 @@ class GiftAskGiverController extends GetxController {
 
     scrollController.addListener(() async {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        print('extent reached');
+
         page.value += 1;
         if (allGiftsFetched.value) {
           // * Show snackbar if all gifts are fethced
-          // await MyUserNotify.showAllFetchedSnackbar('you have caught up');
+          await MyUserNotify.showAllFetchedSnackbar('you have caught up');
         } else {
           await retrieveGifts();
         }
