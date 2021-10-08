@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../modules/gift_ask_giver/dto/gift_ask_dto.dart';
 import '../json_converters.dart';
 import '../user/local_user.dart';
 
@@ -41,3 +42,19 @@ class GiftAskListUnion with _$GiftAskListUnion {
   const factory GiftAskListUnion.loading() = Loading;
   const factory GiftAskListUnion.error(Object error) = Error;
 }
+
+@freezed
+class GiftAskLoadingOption with _$GiftAskLoadingOption{
+    const factory GiftAskLoadingOption.byLocation() = ByLocation;
+  const factory GiftAskLoadingOption.bySearch() = BySearch;
+
+}
+
+
+@freezed
+class GiftAskListDtoState with _$GiftAskListDtoState{
+  const factory GiftAskListDtoState.success(GiftAskDto giftAskDto) = DtoSuccess;
+  const factory GiftAskListDtoState.error(Object e) = DtoError;
+  const factory GiftAskListDtoState.loading() = DtoLoading;
+}
+

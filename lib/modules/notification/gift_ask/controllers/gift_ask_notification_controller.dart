@@ -19,7 +19,7 @@ class GiftAskNotificationController extends GetxController {
 
     //* changeGiftASkGiver to completed and delete the GiftASk request
     final updatedGiftAskGiver = giftAskGiver.copyWith(messageForGiverrSent: true);
-    await Get.find<GiftAskGiverController>().changeGiftAskGiverAndDeleteGiftAsk(updatedGiftAskGiver);
+    await Get.find<GiftAskGiverDetailsController>().changeGiftAskGiverAndDeleteGiftAsk(updatedGiftAskGiver);
 
     // *update requester userinfo to no request
     final updatedUser = giftAskGiver.requester.copyWith(hasGiftAskRequest: false);
@@ -36,7 +36,7 @@ class GiftAskNotificationController extends GetxController {
 
     //* changeGiftASkGiver to completed and delete the GiftASk request
     final updatedGiftAskGiver = giftAskGiver.copyWith(messageForRequesterSent: true);
-    await Get.find<GiftAskGiverController>().changeGiftAskGiverAndDeleteGiftAsk(updatedGiftAskGiver);
+    await Get.find<GiftAskGiverDetailsController>().changeGiftAskGiverAndDeleteGiftAsk(updatedGiftAskGiver);
 
     // *update giver userinfo to no request
     final updatedUser = giftAskGiver.giver.copyWith(hasGiftAskRequest: false);
@@ -48,20 +48,20 @@ class GiftAskNotificationController extends GetxController {
 
   //* MARKED AS DONE BY GIVER
   Future<void> doneGiftRequestByGiver(GiftAskGiver giftAskGiver) async {
-    await Get.find<GiftAskGiverController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestDelivered);
+    await Get.find<GiftAskGiverDetailsController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestDelivered);
 
   }
 
   //* AFTER CONFIRMATION BY GIVER, Gift ACCEPTED BY REUQESTER, makes no sense IK, BUT its how app was made :3
   Future<void> aceeptGiftRequestByRequester(GiftAskGiver giftAskGiver) async {
-    await Get.find<GiftAskGiverController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestAccepted);
+    await Get.find<GiftAskGiverDetailsController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestAccepted);
 
 
   }
 
   //* CANCELED BY REQUESTER
   Future<void> cancelGiftRequestByRequester(GiftAskGiver giftAskGiver) async {
-    await Get.find<GiftAskGiverController>()
+    await Get.find<GiftAskGiverDetailsController>()
         .changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestCanceledByRequester);
 
 
@@ -70,7 +70,7 @@ class GiftAskNotificationController extends GetxController {
 
   //* CONFIRMED BY GIVER
   Future<void> confirmGift(GiftAskGiver giftAskGiver) async {
-    await Get.find<GiftAskGiverController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestConfirmed);
+    await Get.find<GiftAskGiverDetailsController>().changeGiftAskGiverStatus(giftAskGiver, GiftAskStatus.requestConfirmed);
 
 
    

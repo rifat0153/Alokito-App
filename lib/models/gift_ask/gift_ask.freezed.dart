@@ -1037,3 +1037,637 @@ abstract class Error implements GiftAskListUnion {
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$GiftAskLoadingOptionTearOff {
+  const _$GiftAskLoadingOptionTearOff();
+
+  ByLocation byLocation() {
+    return const ByLocation();
+  }
+
+  BySearch bySearch() {
+    return const BySearch();
+  }
+}
+
+/// @nodoc
+const $GiftAskLoadingOption = _$GiftAskLoadingOptionTearOff();
+
+/// @nodoc
+mixin _$GiftAskLoadingOption {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftAskLoadingOptionCopyWith<$Res> {
+  factory $GiftAskLoadingOptionCopyWith(GiftAskLoadingOption value,
+          $Res Function(GiftAskLoadingOption) then) =
+      _$GiftAskLoadingOptionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftAskLoadingOptionCopyWithImpl<$Res>
+    implements $GiftAskLoadingOptionCopyWith<$Res> {
+  _$GiftAskLoadingOptionCopyWithImpl(this._value, this._then);
+
+  final GiftAskLoadingOption _value;
+  // ignore: unused_field
+  final $Res Function(GiftAskLoadingOption) _then;
+}
+
+/// @nodoc
+abstract class $ByLocationCopyWith<$Res> {
+  factory $ByLocationCopyWith(
+          ByLocation value, $Res Function(ByLocation) then) =
+      _$ByLocationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ByLocationCopyWithImpl<$Res>
+    extends _$GiftAskLoadingOptionCopyWithImpl<$Res>
+    implements $ByLocationCopyWith<$Res> {
+  _$ByLocationCopyWithImpl(ByLocation _value, $Res Function(ByLocation) _then)
+      : super(_value, (v) => _then(v as ByLocation));
+
+  @override
+  ByLocation get _value => super._value as ByLocation;
+}
+
+/// @nodoc
+
+class _$ByLocation implements ByLocation {
+  const _$ByLocation();
+
+  @override
+  String toString() {
+    return 'GiftAskLoadingOption.byLocation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is ByLocation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) {
+    return byLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) {
+    if (byLocation != null) {
+      return byLocation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) {
+    return byLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) {
+    if (byLocation != null) {
+      return byLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ByLocation implements GiftAskLoadingOption {
+  const factory ByLocation() = _$ByLocation;
+}
+
+/// @nodoc
+abstract class $BySearchCopyWith<$Res> {
+  factory $BySearchCopyWith(BySearch value, $Res Function(BySearch) then) =
+      _$BySearchCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$BySearchCopyWithImpl<$Res>
+    extends _$GiftAskLoadingOptionCopyWithImpl<$Res>
+    implements $BySearchCopyWith<$Res> {
+  _$BySearchCopyWithImpl(BySearch _value, $Res Function(BySearch) _then)
+      : super(_value, (v) => _then(v as BySearch));
+
+  @override
+  BySearch get _value => super._value as BySearch;
+}
+
+/// @nodoc
+
+class _$BySearch implements BySearch {
+  const _$BySearch();
+
+  @override
+  String toString() {
+    return 'GiftAskLoadingOption.bySearch()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is BySearch);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) {
+    return bySearch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) {
+    if (bySearch != null) {
+      return bySearch();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) {
+    return bySearch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) {
+    if (bySearch != null) {
+      return bySearch(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BySearch implements GiftAskLoadingOption {
+  const factory BySearch() = _$BySearch;
+}
+
+/// @nodoc
+class _$GiftAskListDtoStateTearOff {
+  const _$GiftAskListDtoStateTearOff();
+
+  DtoSuccess success(GiftAskDto giftAskDto) {
+    return DtoSuccess(
+      giftAskDto,
+    );
+  }
+
+  DtoError error(Object e) {
+    return DtoError(
+      e,
+    );
+  }
+
+  DtoLoading loading() {
+    return const DtoLoading();
+  }
+}
+
+/// @nodoc
+const $GiftAskListDtoState = _$GiftAskListDtoStateTearOff();
+
+/// @nodoc
+mixin _$GiftAskListDtoState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftAskDto giftAskDto) success,
+    required TResult Function(Object e) error,
+    required TResult Function() loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DtoSuccess value) success,
+    required TResult Function(DtoError value) error,
+    required TResult Function(DtoLoading value) loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftAskListDtoStateCopyWith<$Res> {
+  factory $GiftAskListDtoStateCopyWith(
+          GiftAskListDtoState value, $Res Function(GiftAskListDtoState) then) =
+      _$GiftAskListDtoStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftAskListDtoStateCopyWithImpl<$Res>
+    implements $GiftAskListDtoStateCopyWith<$Res> {
+  _$GiftAskListDtoStateCopyWithImpl(this._value, this._then);
+
+  final GiftAskListDtoState _value;
+  // ignore: unused_field
+  final $Res Function(GiftAskListDtoState) _then;
+}
+
+/// @nodoc
+abstract class $DtoSuccessCopyWith<$Res> {
+  factory $DtoSuccessCopyWith(
+          DtoSuccess value, $Res Function(DtoSuccess) then) =
+      _$DtoSuccessCopyWithImpl<$Res>;
+  $Res call({GiftAskDto giftAskDto});
+}
+
+/// @nodoc
+class _$DtoSuccessCopyWithImpl<$Res>
+    extends _$GiftAskListDtoStateCopyWithImpl<$Res>
+    implements $DtoSuccessCopyWith<$Res> {
+  _$DtoSuccessCopyWithImpl(DtoSuccess _value, $Res Function(DtoSuccess) _then)
+      : super(_value, (v) => _then(v as DtoSuccess));
+
+  @override
+  DtoSuccess get _value => super._value as DtoSuccess;
+
+  @override
+  $Res call({
+    Object? giftAskDto = freezed,
+  }) {
+    return _then(DtoSuccess(
+      giftAskDto == freezed
+          ? _value.giftAskDto
+          : giftAskDto // ignore: cast_nullable_to_non_nullable
+              as GiftAskDto,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DtoSuccess implements DtoSuccess {
+  const _$DtoSuccess(this.giftAskDto);
+
+  @override
+  final GiftAskDto giftAskDto;
+
+  @override
+  String toString() {
+    return 'GiftAskListDtoState.success(giftAskDto: $giftAskDto)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DtoSuccess &&
+            (identical(other.giftAskDto, giftAskDto) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftAskDto, giftAskDto)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftAskDto);
+
+  @JsonKey(ignore: true)
+  @override
+  $DtoSuccessCopyWith<DtoSuccess> get copyWith =>
+      _$DtoSuccessCopyWithImpl<DtoSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftAskDto giftAskDto) success,
+    required TResult Function(Object e) error,
+    required TResult Function() loading,
+  }) {
+    return success(giftAskDto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(giftAskDto);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DtoSuccess value) success,
+    required TResult Function(DtoError value) error,
+    required TResult Function(DtoLoading value) loading,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DtoSuccess implements GiftAskListDtoState {
+  const factory DtoSuccess(GiftAskDto giftAskDto) = _$DtoSuccess;
+
+  GiftAskDto get giftAskDto => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DtoSuccessCopyWith<DtoSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DtoErrorCopyWith<$Res> {
+  factory $DtoErrorCopyWith(DtoError value, $Res Function(DtoError) then) =
+      _$DtoErrorCopyWithImpl<$Res>;
+  $Res call({Object e});
+}
+
+/// @nodoc
+class _$DtoErrorCopyWithImpl<$Res>
+    extends _$GiftAskListDtoStateCopyWithImpl<$Res>
+    implements $DtoErrorCopyWith<$Res> {
+  _$DtoErrorCopyWithImpl(DtoError _value, $Res Function(DtoError) _then)
+      : super(_value, (v) => _then(v as DtoError));
+
+  @override
+  DtoError get _value => super._value as DtoError;
+
+  @override
+  $Res call({
+    Object? e = freezed,
+  }) {
+    return _then(DtoError(
+      e == freezed
+          ? _value.e
+          : e // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DtoError implements DtoError {
+  const _$DtoError(this.e);
+
+  @override
+  final Object e;
+
+  @override
+  String toString() {
+    return 'GiftAskListDtoState.error(e: $e)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DtoError &&
+            (identical(other.e, e) ||
+                const DeepCollectionEquality().equals(other.e, e)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(e);
+
+  @JsonKey(ignore: true)
+  @override
+  $DtoErrorCopyWith<DtoError> get copyWith =>
+      _$DtoErrorCopyWithImpl<DtoError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftAskDto giftAskDto) success,
+    required TResult Function(Object e) error,
+    required TResult Function() loading,
+  }) {
+    return error(e);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(e);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DtoSuccess value) success,
+    required TResult Function(DtoError value) error,
+    required TResult Function(DtoLoading value) loading,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DtoError implements GiftAskListDtoState {
+  const factory DtoError(Object e) = _$DtoError;
+
+  Object get e => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DtoErrorCopyWith<DtoError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DtoLoadingCopyWith<$Res> {
+  factory $DtoLoadingCopyWith(
+          DtoLoading value, $Res Function(DtoLoading) then) =
+      _$DtoLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DtoLoadingCopyWithImpl<$Res>
+    extends _$GiftAskListDtoStateCopyWithImpl<$Res>
+    implements $DtoLoadingCopyWith<$Res> {
+  _$DtoLoadingCopyWithImpl(DtoLoading _value, $Res Function(DtoLoading) _then)
+      : super(_value, (v) => _then(v as DtoLoading));
+
+  @override
+  DtoLoading get _value => super._value as DtoLoading;
+}
+
+/// @nodoc
+
+class _$DtoLoading implements DtoLoading {
+  const _$DtoLoading();
+
+  @override
+  String toString() {
+    return 'GiftAskListDtoState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is DtoLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftAskDto giftAskDto) success,
+    required TResult Function(Object e) error,
+    required TResult Function() loading,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DtoSuccess value) success,
+    required TResult Function(DtoError value) error,
+    required TResult Function(DtoLoading value) loading,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DtoLoading implements GiftAskListDtoState {
+  const factory DtoLoading() = _$DtoLoading;
+}

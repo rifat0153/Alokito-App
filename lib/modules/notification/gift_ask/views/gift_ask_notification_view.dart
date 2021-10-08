@@ -12,7 +12,7 @@ class GiftAskNotificationView extends StatelessWidget {
   GiftAskNotificationView({Key? key, required this.notification}) : super(key: key);
 
   final MyNotification notification;
-  final GiftAskGiverController giftAskGiverController = Get.find<GiftAskGiverController>();
+  final GiftAskGiverDetailsController giftAskGiverController = Get.find<GiftAskGiverDetailsController>();
 
   @override
   Widget build(BuildContext context) {

@@ -126,7 +126,7 @@ class AcceptAndDenyWidget extends StatelessWidget {
 
   final GiftAsk giftAsk;
 
-  final GiftAskGiverController giftAskGiverController = Get.find<GiftAskGiverController>();
+  final GiftAskGiverDetailsController giftAskGiverController = Get.find<GiftAskGiverDetailsController>();
   final AuthController authController = Get.find<AuthController>();
 
   @override
