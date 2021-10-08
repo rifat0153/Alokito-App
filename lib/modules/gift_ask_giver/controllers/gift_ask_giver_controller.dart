@@ -33,7 +33,7 @@ class GiftAskGiverController extends GetxController {
   Rx<int> radius = 400.obs;
   Rx<String> searchString = ''.obs;
 
-  Rx<GiftAskListUnion> giftList = const GiftAskListUnion.loading().obs;
+  Rx<GiftAskListUnion> giftAskList = const GiftAskListUnion.loading().obs;
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
 
   Rx<bool> allGiftsFetched = false.obs;
@@ -55,11 +55,12 @@ class GiftAskGiverController extends GetxController {
         allGiftsFetched.value = false;
 
         //* if search string exists get gift by search, otherwise get gift by location
-        giftRetriveOption.value =
-            searchString.value.isNotEmpty ? const GiftAskLoadingOption.bySearch() : const GiftAskLoadingOption.byLocation();
+        giftRetriveOption.value = searchString.value.isNotEmpty
+            ? const GiftAskLoadingOption.bySearch()
+            : const GiftAskLoadingOption.byLocation();
 
         //* set GiftAskListUnion to loading
-        giftList.value = const GiftAskListUnion.loading();
+        giftAskList.value = const GiftAskListUnion.loading();
 
         await retrieveGifts();
       },
@@ -97,23 +98,26 @@ class GiftAskGiverController extends GetxController {
 
   Future<void> bindLocationData() async {}
 
-  // Retrieve giftList by location from MongoDB
+  // Retrieve giftAskList by location from MongoDB
   Future<void> retrieveGifts() async {
+    print('retrive gift called');
     // Return if all gifts are already fetched
     if (allGiftsFetched.value) {
       return;
     }
 
-    // Search by filter called for first time, set page to 1 and giftList to loading state
+    // Search by filter called for first time, set page to 1 and giftAskList to loading state
 
-    GiftAskListDtoState newGiftDto = const GiftAskListDtoState.loading();
+    GiftAskListDtoState newGiftAskDto = const GiftAskListDtoState.loading();
 
-    final currentUserId =
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
+    final currentUserId = Get.find<AuthController>()
+        .currentUserInfo
+        .value
+        .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
     try {
       if (giftRetriveOption.value == const GiftAskLoadingOption.bySearch()) {
-        newGiftDto = await giftAskGiverService.getGiftByFilterDB(
+        newGiftAskDto = await giftAskGiverService.getGiftByFilterDB(
           searchString.value,
           page.value.toString(),
           limit.value.toString(),
@@ -123,7 +127,7 @@ class GiftAskGiverController extends GetxController {
           currentUserId,
         );
       } else {
-        newGiftDto = await giftAskGiverService.getGiftDB(
+        newGiftAskDto = await giftAskGiverService.getGiftDB(
           page.value.toString(),
           limit.value.toString(),
           userPosition.value.latitude,
@@ -136,15 +140,16 @@ class GiftAskGiverController extends GetxController {
       await MySnackbar.showErrorSnackbar(e.toString());
     }
 
-    newGiftDto.when(success: (data) {
+    newGiftAskDto.when(success: (data) {
       if (data.page == 1) {
         // Set data
-        giftList.value = GiftAskListUnion.data(data.results);
+        giftAskList.value = GiftAskListUnion.data(data.results);
       } else if (data.page > 1) {
-        final List<GiftAsk> oldGiftData = giftList.value.maybeWhen(data: (oldData) => oldData, orElse: () => []);
+        final List<GiftAsk> oldGiftData =
+            giftAskList.value.maybeWhen(data: (oldData) => oldData, orElse: () => []);
 
         // Append data
-        giftList.value = GiftAskListUnion.data([...oldGiftData, ...data.results]);
+        giftAskList.value = GiftAskListUnion.data([...oldGiftData, ...data.results]);
       }
 
       print(data.page);
@@ -155,8 +160,8 @@ class GiftAskGiverController extends GetxController {
       }
     }, error: (e) {
       if (page.value == 1) {
-        print('Page value isside if is: ${page.value}');
-        giftList.value = GiftAskListUnion.error(e);
+        print('Page value is side if is: ${page.value}');
+        giftAskList.value = GiftAskListUnion.error(e);
         // MySnackbar.showErrorSnackbar(e.toString());
       } else {
         print('Page value inside else is: ${page.value}');
@@ -166,19 +171,19 @@ class GiftAskGiverController extends GetxController {
         MySnackbar.showErrorSnackbar(e.toString());
       }
     }, loading: () {
-      giftList.value = const GiftAskListUnion.loading();
+      giftAskList.value = const GiftAskListUnion.loading();
     });
 
     // If Error Found stop function
-    // final bool error = newGiftDto.maybeMap(error: (e) {
-    //   giftList.value = GiftAskListUnion.error(e);
+    // final bool error = newGiftAskDto.maybeMap(error: (e) {
+    //   giftAskList.value = GiftAskListUnion.error(e);
     //   return true;
     // }, orElse: () {
     //   return false;
     // });
     // if (error) return;
 
-    _updateMarkers(giftList.value.maybeWhen(data: (giftAskList) => giftAskList, orElse: () => []));
+    _updateMarkers(giftAskList.value.maybeWhen(data: (giftAskList) => giftAskList, orElse: () => []));
   }
 
   void _updateMarkers(List<GiftAsk> documentList) {

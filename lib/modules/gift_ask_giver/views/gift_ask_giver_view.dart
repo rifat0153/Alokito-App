@@ -1,21 +1,25 @@
+import 'package:alokito_new/models/gift_ask/gift_ask.dart';
+import 'package:alokito_new/models/my_enums.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver/controllers/gift_ask_giver_controller.dart';
 import 'package:alokito_new/modules/gift_ask_giver_details/controller/gift_ask_giver_controller.dart';
+import 'package:alokito_new/modules/gift_ask_giver_details/view/gift_ask_detail_view.dart';
+import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/shared/styles.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 class GiftAskGiverView extends StatelessWidget {
   GiftAskGiverView({Key? key}) : super(key: key);
 
-  static const route = 'giftaskGiverview';
+  static const route = 'giftaskgiverview';
 
   final GiftAskGiverController giftAskGiverController = Get.find<GiftAskGiverController>();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -37,20 +41,30 @@ class GiftAskGiverView extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         shadowColor: Colors.white,
       ),
-
-      body: _BuildBody(giftAskGiverController: giftAskGiverController),
-      // body: MyMapView(),
+      body: Obx(
+        () => Center(
+          child: Text(
+            giftAskGiverController.giftAskList.value.when(
+              data: (data) => data.length.toString(),
+              empty: () => '00',
+              error: (e) => e.toString(),
+              loading: () => '......',
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
 
 class _BuildBody extends StatelessWidget {
-  const _BuildBody({
+  _BuildBody({
     Key? key,
     required this.giftAskGiverController,
   }) : super(key: key);
 
   final GiftAskGiverController giftAskGiverController;
+  final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -59,21 +73,20 @@ class _BuildBody extends StatelessWidget {
         image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Obx(
             () => MapWithMarkersWidget(
               markers: giftAskGiverController.markers,
               initialCameraPosition: CameraPosition(
-                target: LatLng(giftAskGiverController.currentUserPosition.value.latitude,
-                    giftAskGiverController.currentUserPosition.value.longitude),
-                zoom: 9.0,
+                target: LatLng(authController.currentUserPosition.value.latitude,
+                    authController.currentUserPosition.value.longitude),
+                zoom: 9,
               ),
             ),
           ),
           Obx(
             () => Text(
-              '${giftAskController.filteredGiftRequestList.value.maybeWhen(data: (data) => data.length, orElse: () => 0)} requests around\nyou right now',
+              '${giftAskGiverController.giftAskList.value.maybeWhen(data: (data) => data.length, orElse: () => 0)} requests around\nyou right now',
               style: boldFontStyle.copyWith(fontSize: 25),
               overflow: TextOverflow.ellipsis,
               softWrap: false,
@@ -81,13 +94,13 @@ class _BuildBody extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Obx(() => giftAskController.filteredGiftRequestList.value.when(
+            child: Obx(() => giftAskGiverController.giftAskList.value.when(
                 data: (giftAskList) => ListView.builder(
                       itemCount: giftAskList.length,
                       itemBuilder: (_, i) => _GiftAskRequestTile(
                         key: ValueKey(giftAskList[i].id),
                         giftAskList: giftAskList,
-                        giftAskController: giftAskController,
+                        giftAskGiverController: giftAskGiverController,
                         index: i,
                         width: Get.width * 0.8,
                       ),
@@ -99,16 +112,16 @@ class _BuildBody extends StatelessWidget {
                   return Text(error.toString());
                 })),
           ),
-          Obx(
-            () => Slider(
-              value: giftAskController.searchRadius.value,
-              label: giftAskController.searchRadius.value.toInt().toString(),
-              min: 0,
-              max: 200,
-              divisions: 200,
-              onChanged: (value) => giftAskController.searchRadius.value = value,
-            ),
-          ),
+          // Obx(
+          //   () => Slider(
+          //     value: giftAskGiverController.radius.value.toDouble(),
+          //     label: giftAskGiverController.radius.value.toInt().toString(),
+          //     min: 0,
+          //     max: 200,
+          //     divisions: 200,
+          //     onChanged: (value) => giftAskGiverController.radius.value = value.toInt(),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -119,7 +132,7 @@ class _GiftAskRequestTile extends StatelessWidget {
   _GiftAskRequestTile({
     Key? key,
     required this.giftAskList,
-    required this.giftAskController,
+    required this.giftAskGiverController,
     required this.index,
     required this.width,
   }) : super(key: key);
@@ -127,7 +140,7 @@ class _GiftAskRequestTile extends StatelessWidget {
   final List<GiftAsk> giftAskList;
   final int index;
   final double width;
-  final GiftAskController giftAskController;
+  final GiftAskGiverController giftAskGiverController;
   final AuthController authController = Get.find<AuthController>();
 
   @override
@@ -175,7 +188,7 @@ class _GiftAskRequestTile extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,

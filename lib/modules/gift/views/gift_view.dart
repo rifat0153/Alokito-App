@@ -1,3 +1,5 @@
+import 'package:alokito_new/modules/gift_ask_giver/views/gift_ask_giver_view.dart';
+
 import '../../gift_ask/views/gift_ask_request_view.dart';
 import '../controllers/gift_add_form_controller.dart';
 import 'gift_add_view.dart';
@@ -327,7 +329,7 @@ class _MyButtonRowWidget extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            Get.toNamed(GiftAskRequestView.route);
+            Get.toNamed(GiftAskGiverView.route);
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.grey),

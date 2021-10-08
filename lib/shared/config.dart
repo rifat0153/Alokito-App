@@ -5,14 +5,14 @@ class MyConfig {
   // static const baseUrl = 'https://aalokito-v0-9-dev-jyguqmmqea-uc.a.run.app/api/v1';
   // static const baseUrl = 'https://aalokito-dev-07-jyguqmmqea-uc.a.run.app/api/v1';
   // static const baseUrl = 'http://192.168.0.121:80/api/v1';
-static const baseUrl = 'http://192.168.0.106:80/api/v1';
+static const baseUrl = 'http://192.168.0.104:80/api/v1';
 
 
   static const myTimeout = 15;
 }
 
 // URL
-const baseUrl = 'http://192.168.0.106:80/api/v1';
+const baseUrl = 'http://192.168.0.104:80/api/v1';
 // const baseUrl = 'http://192.168.0.121:80/api/v1';
 // const baseUrl = 'https://aalokito-dev-07-jyguqmmqea-uc.a.run.app/api/v1';
 // const baseUrl = 'https://aalokito-v0-9-dev-jyguqmmqea-uc.a.run.app/api/v1';
