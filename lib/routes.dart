@@ -147,7 +147,6 @@ class GetPages {
       page: () => NotificationView(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => NotificationController(NotificationService()));
-        Get.lazyPut(() => GiftAskGiverDetailsController());
         Get.lazyPut(() => GiftRequesterController(GiftRequesterService()));
       }),
     ),

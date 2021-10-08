@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../shared/skeleton_widget.dart';
 import '../../shared/widget/my_text.dart';
-import 'gift_ask/views/gift_ask_notification_view.dart';
 import 'gift_giver/gift_giver_notification_view.dart';
 import 'notification_controller.dart';
 import 'widgets/text_notification_widget.dart';
@@ -52,10 +51,7 @@ class NotificationView extends StatelessWidget {
                     );
                   }
                   if (notificationList[i].notificationType == 'giftAskRequest') {
-                    return GiftAskNotificationView(
-                      key: ValueKey(notificationList[i].createdAt),
-                      notification: notificationList[i],
-                    );
+            
                   }
                   if (notificationList[i].notificationType == 'text') {
                     return TextNotificationWidget(

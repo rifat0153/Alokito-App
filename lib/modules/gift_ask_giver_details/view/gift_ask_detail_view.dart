@@ -1,7 +1,6 @@
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../models/my_enums.dart';
 import '../../auth/controllers/auth_controller.dart';
-import '../controller/gift_ask_giver_controller.dart';
 import '../../../shared/config.dart';
 import '../../../shared/styles.dart';
 import '../../../shared/widget/my_text.dart';
@@ -126,7 +125,6 @@ class AcceptAndDenyWidget extends StatelessWidget {
 
   final GiftAsk giftAsk;
 
-  final GiftAskGiverDetailsController giftAskGiverController = Get.find<GiftAskGiverDetailsController>();
   final AuthController authController = Get.find<AuthController>();
 
   @override
@@ -142,9 +140,7 @@ class AcceptAndDenyWidget extends StatelessWidget {
             children: [
               if (user.acceptedGiftId != giftAsk.id && user.acceptedGiftId.isEmpty)
                 MaterialButton(
-                  onPressed: () async {
-                    await giftAskGiverController.acceptGiftAskRequest(giftAsk);
-                  },
+                  onPressed: () async {},
                   color: giftAskColor,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
@@ -309,7 +305,9 @@ class _UserNameAndLocationWidget extends StatelessWidget {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      SizedBox(width: 120, child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
+                      SizedBox(
+                          width: 120,
+                          child: Text(giftAsk.area, overflow: TextOverflow.ellipsis, style: boldFontStyle)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
