@@ -1,13 +1,8 @@
-import '../../../../models/gift_ask/gift_ask_giver.dart';
-import '../../../../models/gift_request/gift_request.dart';
-import '../../../../models/my_enums.dart';
-import '../../../../models/notification/notification.dart';
-import '../../../auth/controllers/auth_controller.dart';
-import '../../../gift_ask_giver/controller/gift_ask_giver_controller.dart';
-import '../../notification_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
+import '../../../../models/gift_ask/gift_ask_giver.dart';
+import '../../../../models/my_enums.dart';
+import '../../../gift_ask_giver_details/controller/gift_ask_giver_controller.dart';
 
 class GiftAskNotificationController extends GetxController {
   GiftAskNotificationController();

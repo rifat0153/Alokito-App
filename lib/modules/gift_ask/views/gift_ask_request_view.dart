@@ -2,7 +2,7 @@ import '../../../models/gift_ask/gift_ask.dart';
 import '../../../models/my_enums.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../controllers/gift_ask_controller.dart';
-import '../../gift_ask_giver/view/gift_ask_detail_view.dart';
+import '../../gift_ask_giver_details/view/gift_ask_detail_view.dart';
 import '../../../shared/config.dart';
 import '../../../shared/styles.dart';
 import '../../../shared/widget/map_with_markers.dart';

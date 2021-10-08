@@ -7,15 +7,15 @@ import 'package:alokito_new/modules/gift_requester/dto/gift_dto.dart';
 import '../../../shared/config.dart';
 import 'package:get/get.dart';
 
-abstract class BaseGiftRequesterService {
+abstract class BaseGiftAskGiverService {
   Future<GiftListDtoState> getGiftDB(String page, String limit, double lat, double lng, double radius, String id);
 
   Future<GiftListDtoState> getGiftByFilterDB(
       String searchString, String page, String limit, double lat, double lng, double radius, String id);
 }
 
-class GiftRequesterService extends GetConnect implements BaseGiftRequesterService {
-  GiftRequesterService();
+class GiftAskGiverService extends GetConnect implements BaseGiftAskGiverService {
+  GiftAskGiverService();
 
   @override
   Future<GiftListDtoState> getGiftByFilterDB(

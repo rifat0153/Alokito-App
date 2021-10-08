@@ -1,7 +1,7 @@
 import '../../../../models/gift_ask/gift_ask_giver.dart';
 
 import '../../../../models/notification/notification.dart';
-import '../../../gift_ask_giver/controller/gift_ask_giver_controller.dart';
+import '../../../gift_ask_giver_details/controller/gift_ask_giver_controller.dart';
 import 'gift_ask_notification_details_view.dart';
 import '../../../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';

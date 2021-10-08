@@ -1,5 +1,5 @@
 import 'package:alokito_new/modules/gift_ask/views/gift_ask_request_view.dart';
-import 'package:alokito_new/modules/gift_ask_giver/controller/gift_ask_giver_controller.dart';
+import 'package:alokito_new/modules/gift_ask_giver_details/controller/gift_ask_giver_controller.dart';
 import 'package:alokito_new/modules/notification/service/notification_service.dart';
 import 'package:get/get.dart';
 
