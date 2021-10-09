@@ -12,7 +12,12 @@ abstract class BaseGiftRequesterDetailService {
 
   Future<void> update(GiftRequest giftRequest);
 
-  Future<void> remove(GiftRequest giftRequest);
+  Future<void> remove({
+    required String status,
+    String? giftRequestId,
+    String? giftId,
+    String? requesterId,
+  });
 }
 
 class GiftRequesterDetailService extends GetConnect implements BaseGiftRequesterDetailService {
@@ -37,18 +42,23 @@ class GiftRequesterDetailService extends GetConnect implements BaseGiftRequester
       }
     } catch (e) {
       throw MyException(exceptionFrom: 'GiftRequestDetailService');
-    } 
+    }
   }
 
   @override
-  Future<void> remove(GiftRequest giftRequest) async {
+  Future<void> remove({
+    required String status,
+    String? giftRequestId,
+    String? giftId,
+    String? requesterId,
+  }) async {
     // TODO: implement update
     throw UnimplementedError();
   }
 
   @override
   Future<void> update(GiftRequest giftRequest) async {
-        try {
+    try {
       final headers = <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       };
@@ -67,6 +77,6 @@ class GiftRequesterDetailService extends GetConnect implements BaseGiftRequester
       }
     } catch (e) {
       throw MyException(exceptionFrom: 'GiftRequestDetailService');
-    } 
+    }
   }
 }

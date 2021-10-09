@@ -10,11 +10,11 @@ import 'request_delete_widget.dart';
 
 class DecisionWidget extends StatelessWidget {
   const DecisionWidget(
-      {Key? key, required this.authController, required this.giftGiver, required this.giftRecieverDetailController})
+      {Key? key, required this.authController, required this.gift, required this.giftRecieverDetailController})
       : super(key: key);
 
   final AuthController authController;
-  final Gift giftGiver;
+  final Gift gift;
   final GiftRequesterDetailController giftRecieverDetailController;
 
   @override
@@ -22,7 +22,7 @@ class DecisionWidget extends StatelessWidget {
     return Obx(
       () => authController.currentUserInfo.value.when(
           data: (user) {
-            if (user.hasGiftGiverRequest && user.requestedGiftId == giftGiver.id) {
+            if (user.hasGiftGiverRequest && user.requestedGiftId == gift.id) {
               return Align(
                 alignment: Alignment.bottomCenter,
                 child: Row(
@@ -44,7 +44,7 @@ class DecisionWidget extends StatelessWidget {
                           context: context,
                           barrierDismissible: true,
                           builder: (BuildContext context) {
-                            return RequestDeleteWidget(giftGiver: giftGiver);
+                            return RequestDeleteWidget(gift: gift);
                           },
                         );
                       },
@@ -59,7 +59,7 @@ class DecisionWidget extends StatelessWidget {
                 ),
               );
             }
-            if (user.hasGiftGiverRequest && user.requestedGiftId != giftGiver.id) {
+            if (user.hasGiftGiverRequest && user.requestedGiftId != gift.id) {
               return Align(
                 alignment: Alignment.bottomCenter,
                 child: MaterialButton(
@@ -84,7 +84,7 @@ class DecisionWidget extends StatelessWidget {
                     context: context,
                     barrierDismissible: true,
                     builder: (BuildContext context) {
-                      return MessagePopUpWidget(giftGiver: giftGiver);
+                      return MessagePopUpWidget(gift: gift);
                     },
                   );
                 },

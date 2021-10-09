@@ -57,10 +57,10 @@ class GiftRequesterDetailController extends GetxController {
   }
 
   // * Delete GiftRequest
-  Future<void> canceledByRequester(GiftRequest giftRequest) async {
-    final GiftRequest updatedGiftRequest =
-        giftRequest.copyWith(giftRequestStatus: const GiftRequestStatus.canceledByRequester());
+  Future<void> canceledByRequester({GiftRequest? giftRequest, Gift? gift}) async {
+    final GiftRequest? updatedGiftRequest =
+        giftRequest?.copyWith(giftRequestStatus: const GiftRequestStatus.canceledByRequester());
 
-    await giftReceiverDetailService.remove(updatedGiftRequest);
+    await giftReceiverDetailService.remove(status: 'canceledByRequester');
   }
 }

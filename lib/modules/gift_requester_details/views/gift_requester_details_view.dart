@@ -20,11 +20,11 @@ import '../widgets/decision_widget.dart';
 import '../widgets/gift_details_widget.dart';
 
 class GiftRequesterDetailsView extends StatelessWidget {
-  GiftRequesterDetailsView({required this.giftGiver});
+  GiftRequesterDetailsView({required this.gift});
 
   static const route = 'giftdetailview';
 
-  final Gift giftGiver;
+  final Gift gift;
   final AuthController authController = Get.find<AuthController>();
 
   //* Initializing Controller
@@ -60,7 +60,7 @@ class GiftRequesterDetailsView extends StatelessWidget {
                 style: const TextStyle(color: Colors.black),
                 children: <TextSpan>[
                   TextSpan(
-                    text: giftGiver.giftType,
+                    text: gift.giftType,
                     style: boldFontStyle.copyWith(fontSize: 20),
                   ),
                 ],
@@ -72,7 +72,7 @@ class GiftRequesterDetailsView extends StatelessWidget {
             shadowColor: Colors.transparent,
           ),
           body: _BuildBody(
-            giftGiver: giftGiver,
+            gift: gift,
             authController: authController,
             giftRecieverDetailController: giftRecieverDetailController,
           ),
@@ -84,10 +84,10 @@ class GiftRequesterDetailsView extends StatelessWidget {
 
 class _BuildBody extends StatelessWidget {
   const _BuildBody(
-      {Key? key, required this.giftGiver, required this.authController, required this.giftRecieverDetailController})
+      {Key? key, required this.gift, required this.authController, required this.giftRecieverDetailController})
       : super(key: key);
 
-  final Gift giftGiver;
+  final Gift gift;
   final AuthController authController;
   final GiftRequesterDetailController giftRecieverDetailController;
 
@@ -104,13 +104,13 @@ class _BuildBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ImageWidget(giftGiver: giftGiver),
-                  PackageName(giftGiver: giftGiver),
-                  GiftDetails(giftGiver: giftGiver),
-                  UserDetail(giftGiver: giftGiver),
-                  UserRatingAndDistance(gift: giftGiver),
-                  Location(giftGiver: giftGiver),
-                  GiftDetailMapWidget(gift: giftGiver),
+                  ImageWidget(giftGiver: gift),
+                  PackageName(giftGiver: gift),
+                  GiftDetails(giftGiver: gift),
+                  UserDetail(giftGiver: gift),
+                  UserRatingAndDistance(gift: gift),
+                  Location(giftGiver: gift),
+                  GiftDetailMapWidget(gift: gift),
                 ],
               ),
             ),
@@ -118,7 +118,7 @@ class _BuildBody extends StatelessWidget {
         ),
         DecisionWidget(
           authController: authController,
-          giftGiver: giftGiver,
+          gift: gift,
           giftRecieverDetailController: giftRecieverDetailController,
         ),
       ],

@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MessagePopUpWidget extends StatelessWidget {
-  MessagePopUpWidget({required this.giftGiver});
+  MessagePopUpWidget({required this.gift});
   final GiftRequesterDetailController controller = Get.find();
 
-  final Gift giftGiver;
+  final Gift gift;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class MessagePopUpWidget extends StatelessWidget {
                           color: giftAddFormSubmitColor,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                           onPressed: () async {
-                            await controller.addGiftRequest(giftGiver);
+                            await controller.addGiftRequest(gift);
                           },
                           child: const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),

@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RequestDeleteWidget extends StatelessWidget {
-  RequestDeleteWidget({required this.giftGiver});
+  RequestDeleteWidget({required this.gift});
 
-  final Gift giftGiver;
+  final Gift gift;
 
   final GiftRequesterDetailController controller = Get.find();
 
@@ -20,47 +20,44 @@ class RequestDeleteWidget extends StatelessWidget {
       child: Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
-          // height: 300,
-          // width: Get.size.width,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Are you sure you want to delete the request?'),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    MaterialButton(
-                      onPressed: () async {
-                        // await controller.canceledByRequester(giftRequest);
-                        Get.back();
-                      },
-                      color: Colors.green,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      child: const Text(
-                        'Yes',
-                        style: TextStyle(color: Colors.white),
-                      ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8),
+                child: Text('Are you sure you want to delete the request?'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  MaterialButton(
+                    onPressed: () async {
+                      await controller.canceledByRequester(gift: gift);
+                      Get.back();
+                    },
+                    color: Colors.green,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    child: const Text(
+                      'Yes',
+                      style: TextStyle(color: Colors.white),
                     ),
-                    MaterialButton(
-                      onPressed: Get.back,
-                      color: Colors.red,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      child: const Text(
-                        'No',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                  ),
+                  MaterialButton(
+                    onPressed: Get.back,
+                    color: Colors.red,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    child: const Text(
+                      'No',
+                      style: TextStyle(color: Colors.white),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
