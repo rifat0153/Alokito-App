@@ -1,3 +1,4 @@
+import 'package:alokito_new/di/firebase_di.dart';
 import 'package:get/get.dart';
 
 import '../../../models/gift/gift.dart';
@@ -56,11 +57,25 @@ class GiftRequesterDetailController extends GetxController {
     }
   }
 
-  // * Delete GiftRequest
+  // * Delete GiftRequesta and update local user
   Future<void> canceledByRequester({GiftRequest? giftRequest, Gift? gift}) async {
-    final GiftRequest? updatedGiftRequest =
-        giftRequest?.copyWith(giftRequestStatus: const GiftRequestStatus.canceledByRequester());
+    try {
+      await giftReceiverDetailService.remove(
+        status: 'canceledByRequester',
+        giftId: gift!.id,
+        requesterId:
+            Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id, orElse: () => ''),
+      );
 
-    await giftReceiverDetailService.remove(status: 'canceledByRequester');
+      final LocalUser? currentUser =
+          Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
+
+      await Get.find<AuthController>().updateLocalUser(currentUser!.copyWith(
+        requestedGiftId: '',
+        hasGiftGiverRequest: false,
+      ));
+    } catch (e) {
+      await MySnackbar.showErrorSnackbar(e.toString());
+    }
   }
 }

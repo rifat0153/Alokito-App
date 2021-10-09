@@ -52,8 +52,29 @@ class GiftRequesterDetailService extends GetConnect implements BaseGiftRequester
     String? giftId,
     String? requesterId,
   }) async {
-    // TODO: implement update
-    throw UnimplementedError();
+    try {
+    
+      final body1 = {
+        'giftId': giftId,
+        'requester': requesterId,
+        'giftRequestStatus': status,
+      };
+
+      final response = await post(
+        '${MyConfig.baseUrl}/gift_request/updaterequeststatus',
+        jsonEncode(body1),
+        // headers: headers,
+      ).timeout(const Duration(seconds: myTimeout));
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        await MyBottomSheet.showSuccessBottomSheet('GiftRequest Updated');
+      } else {
+        await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
+        return;
+      }
+    } catch (e, s) {
+      throw MyException(exceptionFrom: 'GiftRequestDetailService');
+    }
   }
 
   @override
@@ -64,7 +85,7 @@ class GiftRequesterDetailService extends GetConnect implements BaseGiftRequester
       };
 
       final response = await post(
-        '$baseUrl/gift_request/updaterequeststatus',
+        '${MyConfig.baseUrl}/gift_request/updaterequeststatus',
         jsonEncode(giftRequest.toJson()),
         headers: headers,
       ).timeout(const Duration(seconds: myTimeout));
