@@ -14,8 +14,8 @@ import '../../../shared/styles.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../gift/widgets/user_joining_distance_widget.dart';
 import '../../gift_request/widgets/gift_detail_map_widget.dart';
-import '../controllers/gift_requester_detail_controller.dart';
-import '../services/gift_requester_detail_service.dart';
+import '../controllers/gift_detail_controller.dart';
+import '../services/gift_detail_service.dart';
 import '../widgets/decision_widget.dart';
 import '../widgets/gift_details_widget.dart';
 

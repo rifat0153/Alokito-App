@@ -82,3 +82,11 @@ class GiftRequestNotificationUnion with _$GiftRequestNotificationUnion {
   const factory GiftRequestNotificationUnion.loading() = Loading;
   const factory GiftRequestNotificationUnion.error(Object err) = Error;
 }
+
+
+@freezed
+class GiftRequestListState with _$GiftRequestListState{
+    const factory GiftRequestListState.data(List<GiftRequest> giftRequestList) = DataState;
+  const factory GiftRequestListState.loading() = LoadingState;
+  const factory GiftRequestListState.error(Object err) = ErrorState;
+}

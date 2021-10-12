@@ -1616,3 +1616,407 @@ abstract class Error implements GiftRequestNotificationUnion {
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$GiftRequestListStateTearOff {
+  const _$GiftRequestListStateTearOff();
+
+  DataState data(List<GiftRequest> giftRequestList) {
+    return DataState(
+      giftRequestList,
+    );
+  }
+
+  LoadingState loading() {
+    return const LoadingState();
+  }
+
+  ErrorState error(Object err) {
+    return ErrorState(
+      err,
+    );
+  }
+}
+
+/// @nodoc
+const $GiftRequestListState = _$GiftRequestListStateTearOff();
+
+/// @nodoc
+mixin _$GiftRequestListState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftRequest> giftRequestList) data,
+    required TResult Function() loading,
+    required TResult Function(Object err) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftRequest> giftRequestList)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataState value) data,
+    required TResult Function(LoadingState value) loading,
+    required TResult Function(ErrorState value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataState value)? data,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(ErrorState value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftRequestListStateCopyWith<$Res> {
+  factory $GiftRequestListStateCopyWith(GiftRequestListState value,
+          $Res Function(GiftRequestListState) then) =
+      _$GiftRequestListStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftRequestListStateCopyWithImpl<$Res>
+    implements $GiftRequestListStateCopyWith<$Res> {
+  _$GiftRequestListStateCopyWithImpl(this._value, this._then);
+
+  final GiftRequestListState _value;
+  // ignore: unused_field
+  final $Res Function(GiftRequestListState) _then;
+}
+
+/// @nodoc
+abstract class $DataStateCopyWith<$Res> {
+  factory $DataStateCopyWith(DataState value, $Res Function(DataState) then) =
+      _$DataStateCopyWithImpl<$Res>;
+  $Res call({List<GiftRequest> giftRequestList});
+}
+
+/// @nodoc
+class _$DataStateCopyWithImpl<$Res>
+    extends _$GiftRequestListStateCopyWithImpl<$Res>
+    implements $DataStateCopyWith<$Res> {
+  _$DataStateCopyWithImpl(DataState _value, $Res Function(DataState) _then)
+      : super(_value, (v) => _then(v as DataState));
+
+  @override
+  DataState get _value => super._value as DataState;
+
+  @override
+  $Res call({
+    Object? giftRequestList = freezed,
+  }) {
+    return _then(DataState(
+      giftRequestList == freezed
+          ? _value.giftRequestList
+          : giftRequestList // ignore: cast_nullable_to_non_nullable
+              as List<GiftRequest>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DataState implements DataState {
+  const _$DataState(this.giftRequestList);
+
+  @override
+  final List<GiftRequest> giftRequestList;
+
+  @override
+  String toString() {
+    return 'GiftRequestListState.data(giftRequestList: $giftRequestList)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DataState &&
+            (identical(other.giftRequestList, giftRequestList) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftRequestList, giftRequestList)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(giftRequestList);
+
+  @JsonKey(ignore: true)
+  @override
+  $DataStateCopyWith<DataState> get copyWith =>
+      _$DataStateCopyWithImpl<DataState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftRequest> giftRequestList) data,
+    required TResult Function() loading,
+    required TResult Function(Object err) error,
+  }) {
+    return data(giftRequestList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftRequest> giftRequestList)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(giftRequestList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataState value) data,
+    required TResult Function(LoadingState value) loading,
+    required TResult Function(ErrorState value) error,
+  }) {
+    return data(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataState value)? data,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(ErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DataState implements GiftRequestListState {
+  const factory DataState(List<GiftRequest> giftRequestList) = _$DataState;
+
+  List<GiftRequest> get giftRequestList => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DataStateCopyWith<DataState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoadingStateCopyWith<$Res> {
+  factory $LoadingStateCopyWith(
+          LoadingState value, $Res Function(LoadingState) then) =
+      _$LoadingStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoadingStateCopyWithImpl<$Res>
+    extends _$GiftRequestListStateCopyWithImpl<$Res>
+    implements $LoadingStateCopyWith<$Res> {
+  _$LoadingStateCopyWithImpl(
+      LoadingState _value, $Res Function(LoadingState) _then)
+      : super(_value, (v) => _then(v as LoadingState));
+
+  @override
+  LoadingState get _value => super._value as LoadingState;
+}
+
+/// @nodoc
+
+class _$LoadingState implements LoadingState {
+  const _$LoadingState();
+
+  @override
+  String toString() {
+    return 'GiftRequestListState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoadingState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftRequest> giftRequestList) data,
+    required TResult Function() loading,
+    required TResult Function(Object err) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftRequest> giftRequestList)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataState value) data,
+    required TResult Function(LoadingState value) loading,
+    required TResult Function(ErrorState value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataState value)? data,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(ErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadingState implements GiftRequestListState {
+  const factory LoadingState() = _$LoadingState;
+}
+
+/// @nodoc
+abstract class $ErrorStateCopyWith<$Res> {
+  factory $ErrorStateCopyWith(
+          ErrorState value, $Res Function(ErrorState) then) =
+      _$ErrorStateCopyWithImpl<$Res>;
+  $Res call({Object err});
+}
+
+/// @nodoc
+class _$ErrorStateCopyWithImpl<$Res>
+    extends _$GiftRequestListStateCopyWithImpl<$Res>
+    implements $ErrorStateCopyWith<$Res> {
+  _$ErrorStateCopyWithImpl(ErrorState _value, $Res Function(ErrorState) _then)
+      : super(_value, (v) => _then(v as ErrorState));
+
+  @override
+  ErrorState get _value => super._value as ErrorState;
+
+  @override
+  $Res call({
+    Object? err = freezed,
+  }) {
+    return _then(ErrorState(
+      err == freezed
+          ? _value.err
+          : err // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ErrorState implements ErrorState {
+  const _$ErrorState(this.err);
+
+  @override
+  final Object err;
+
+  @override
+  String toString() {
+    return 'GiftRequestListState.error(err: $err)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ErrorState &&
+            (identical(other.err, err) ||
+                const DeepCollectionEquality().equals(other.err, err)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(err);
+
+  @JsonKey(ignore: true)
+  @override
+  $ErrorStateCopyWith<ErrorState> get copyWith =>
+      _$ErrorStateCopyWithImpl<ErrorState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<GiftRequest> giftRequestList) data,
+    required TResult Function() loading,
+    required TResult Function(Object err) error,
+  }) {
+    return error(err);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<GiftRequest> giftRequestList)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(err);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataState value) data,
+    required TResult Function(LoadingState value) loading,
+    required TResult Function(ErrorState value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataState value)? data,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(ErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorState implements GiftRequestListState {
+  const factory ErrorState(Object err) = _$ErrorState;
+
+  Object get err => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ErrorStateCopyWith<ErrorState> get copyWith =>
+      throw _privateConstructorUsedError;
+}

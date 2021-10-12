@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../shared/config.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../gift_request/widgets/message_popup_widget.dart';
-import '../controllers/gift_requester_detail_controller.dart';
+import '../controllers/gift_detail_controller.dart';
 import 'request_delete_widget.dart';
 
 class DecisionWidget extends StatelessWidget {

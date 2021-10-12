@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:alokito_new/models/gift/gift.dart';
 
-import '../../gift_detail/controllers/gift_requester_detail_controller.dart';
+import '../../gift_detail/controllers/gift_detail_controller.dart';
 import '../../../shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
