@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import '../../../shared/styles.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../gift/widgets/user_joining_distance_widget.dart';
-import '../../gift_requester/widgets/gift_detail_map_widget.dart';
+import '../../gift_request/widgets/gift_detail_map_widget.dart';
 import '../controllers/gift_requester_detail_controller.dart';
 import '../services/gift_requester_detail_service.dart';
 import '../widgets/decision_widget.dart';
@@ -28,9 +28,9 @@ class GiftRequesterDetailsView extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();
 
   //* Initializing Controller
-  final GiftRequesterDetailController giftRecieverDetailController = Get.put(
-    GiftRequesterDetailController(
-      GiftRequesterDetailService(),
+  final GiftDetailController giftRecieverDetailController = Get.put(
+    GiftDetailController(
+      GiftDetailService(),
     ),
   );
 
@@ -89,7 +89,7 @@ class _BuildBody extends StatelessWidget {
 
   final Gift gift;
   final AuthController authController;
-  final GiftRequesterDetailController giftRecieverDetailController;
+  final GiftDetailController giftRecieverDetailController;
 
   @override
   Widget build(BuildContext context) {

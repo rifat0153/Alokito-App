@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../shared/config.dart';
 import '../../auth/controllers/auth_controller.dart';
-import '../../gift_requester/widgets/message_popup_widget.dart';
+import '../../gift_request/widgets/message_popup_widget.dart';
 import '../controllers/gift_requester_detail_controller.dart';
 import 'request_delete_widget.dart';
 
@@ -15,7 +15,7 @@ class DecisionWidget extends StatelessWidget {
 
   final AuthController authController;
   final Gift gift;
-  final GiftRequesterDetailController giftRecieverDetailController;
+  final GiftDetailController giftRecieverDetailController;
 
   @override
   Widget build(BuildContext context) {

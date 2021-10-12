@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/gift_requester/dto/gift_dto.dart';
+import 'package:alokito_new/modules/gift_request/dto/gift_dto.dart';
 
 import '../user/local_user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

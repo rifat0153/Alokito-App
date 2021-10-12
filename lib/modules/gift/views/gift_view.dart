@@ -1,10 +1,9 @@
 import 'package:alokito_new/modules/gift_ask_giver/views/gift_ask_giver_view.dart';
 
-import '../../gift_ask/views/gift_ask_request_view.dart';
 import '../controllers/gift_add_form_controller.dart';
 import 'gift_add_view.dart';
 import '../../../models/my_enums.dart';
-import '../../gift_requester/widgets/notification_icon_widget.dart';
+import '../../gift_request/widgets/notification_icon_widget.dart';
 import '../../../shared/config.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';

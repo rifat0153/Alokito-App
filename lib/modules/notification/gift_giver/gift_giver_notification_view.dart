@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../models/gift_request/gift_request.dart';
 import '../../../models/notification/notification.dart';
 import '../../../shared/widget/my_text.dart';
-import '../../gift_requester/controllers/gift_requester_controller.dart';
+import '../../gift_request/controllers/gift_requester_controller.dart';
 import 'gift_giver_notification_details_view.dart';
 
 class GiftNotificationView extends StatelessWidget {

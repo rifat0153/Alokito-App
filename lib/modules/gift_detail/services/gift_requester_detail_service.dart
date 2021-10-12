@@ -7,7 +7,7 @@ import '../../../shared/config.dart';
 import '../../../shared/my_bottomsheets.dart';
 import '../../../shared/shared_service.dart';
 
-abstract class BaseGiftRequesterDetailService {
+abstract class BaseGiftDetailService {
   Future<void> add(GiftRequest giftRequest);
 
   Future<void> update(GiftRequest giftRequest);
@@ -20,7 +20,7 @@ abstract class BaseGiftRequesterDetailService {
   });
 }
 
-class GiftRequesterDetailService extends GetConnect implements BaseGiftRequesterDetailService {
+class GiftDetailService extends GetConnect implements BaseGiftDetailService {
   @override
   Future<void> add(GiftRequest giftRequest) async {
     try {

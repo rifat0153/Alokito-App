@@ -1,4 +1,3 @@
-import 'package:alokito_new/di/firebase_di.dart';
 import 'package:get/get.dart';
 
 import '../../../models/gift/gift.dart';
@@ -8,10 +7,10 @@ import '../../../shared/my_bottomsheets.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../services/gift_requester_detail_service.dart';
 
-class GiftRequesterDetailController extends GetxController {
-  GiftRequesterDetailController(this.giftReceiverDetailService);
+class GiftDetailController extends GetxController {
+  GiftDetailController(this.giftReceiverDetailService);
 
-  GiftRequesterDetailService giftReceiverDetailService;
+  GiftDetailService giftReceiverDetailService;
 
   RxBool loading = false.obs;
 

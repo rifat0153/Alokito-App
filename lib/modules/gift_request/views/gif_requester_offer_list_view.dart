@@ -4,8 +4,6 @@ import '../widgets/gift_list_tile_widget.dart';
 
 import '../../auth/controllers/auth_controller.dart';
 import '../controllers/gift_requester_controller.dart';
-import '../../gift_requester_details/views/gift_requester_details_view.dart';
-import '../../../shared/config.dart';
 import '../../../shared/styles.dart';
 import '../../../shared/widget/map_with_markers.dart';
 import 'package:flutter/cupertino.dart';

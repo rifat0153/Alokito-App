@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import '../modules/auth/controllers/auth_controller.dart';
 import '../modules/gift/views/gift_view.dart';
-import '../modules/gift_requester/views/gift_requester_view.dart';
+import '../modules/gift_request/views/gift_requester_view.dart';
 import '../modules/notification/notification_view.dart';
 import 'widget/my_text.dart';
 import 'package:flutter/material.dart';

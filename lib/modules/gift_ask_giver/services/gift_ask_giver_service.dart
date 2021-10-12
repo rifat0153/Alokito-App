@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:alokito_new/models/gift/gift.dart';
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/modules/gift_ask_giver/dto/gift_ask_dto.dart';
 
-import 'package:alokito_new/modules/gift_requester/dto/gift_dto.dart';
-
-import '../../../shared/config.dart';
 import 'package:get/get.dart';
+
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../shared/config.dart';
+import '../dto/gift_ask_dto.dart';
 
 abstract class BaseGiftAskGiverService {
   Future<GiftAskListDtoState> getGiftDB(
