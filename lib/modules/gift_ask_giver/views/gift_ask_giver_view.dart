@@ -1,16 +1,16 @@
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_ask_giver/controllers/gift_ask_giver_controller.dart';
-import 'package:alokito_new/modules/gift_ask_giver_details/controller/gift_ask_giver_controller.dart';
-import 'package:alokito_new/modules/gift_ask_giver_details/view/gift_ask_detail_view.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/styles.dart';
-import 'package:alokito_new/shared/widget/map_with_markers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../models/my_enums.dart';
+import '../../../shared/config.dart';
+import '../../../shared/styles.dart';
+import '../../../shared/widget/map_with_markers.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../gift_ask_detail/view/gift_ask_detail_view.dart';
+import '../controllers/gift_ask_giver_controller.dart';
 
 class GiftAskGiverView extends StatelessWidget {
   GiftAskGiverView({Key? key}) : super(key: key);

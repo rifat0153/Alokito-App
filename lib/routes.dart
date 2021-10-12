@@ -1,9 +1,3 @@
-import 'package:alokito_new/modules/gift_ask/views/gift_ask_request_view.dart';
-import 'package:alokito_new/modules/gift_ask_giver/controllers/gift_ask_giver_controller.dart';
-import 'package:alokito_new/modules/gift_ask_giver/services/gift_ask_giver_service.dart';
-import 'package:alokito_new/modules/gift_ask_giver/views/gift_ask_giver_view.dart';
-import 'package:alokito_new/modules/gift_ask_giver_details/controller/gift_ask_giver_controller.dart';
-import 'package:alokito_new/modules/notification/service/notification_service.dart';
 import 'package:get/get.dart';
 
 import 'core/language/language_controller.dart';
@@ -21,13 +15,18 @@ import 'modules/gift/views/gift_add_view.dart';
 import 'modules/gift/views/gift_view.dart';
 import 'modules/gift_ask/controllers/gift_ask_controller.dart';
 import 'modules/gift_ask/services/gift_ask_service.dart';
+import 'modules/gift_ask/views/gift_ask_request_view.dart';
 import 'modules/gift_ask/views/gift_ask_view.dart';
+import 'modules/gift_ask_giver/controllers/gift_ask_giver_controller.dart';
+import 'modules/gift_ask_giver/services/gift_ask_giver_service.dart';
+import 'modules/gift_ask_giver/views/gift_ask_giver_view.dart';
 import 'modules/gift_request/controllers/gift_request_controller.dart';
 import 'modules/gift_request/services/gift_request_service.dart';
 import 'modules/gift_request/views/gif_request_list_view.dart';
 import 'modules/gift_request/views/gift_request_view.dart';
 import 'modules/notification/notification_controller.dart';
 import 'modules/notification/notification_view.dart';
+import 'modules/notification/service/notification_service.dart';
 import 'modules/settings/views/general_settings_view.dart';
 import 'modules/settings/views/settings_view.dart';
 

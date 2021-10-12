@@ -1,14 +1,15 @@
-import '../../../models/gift_ask/gift_ask.dart';
-import '../../../models/my_enums.dart';
-import '../../auth/controllers/auth_controller.dart';
-import '../controllers/gift_ask_controller.dart';
-import '../../gift_ask_giver_details/view/gift_ask_detail_view.dart';
-import '../../../shared/config.dart';
-import '../../../shared/styles.dart';
-import '../../../shared/widget/map_with_markers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../models/my_enums.dart';
+import '../../../shared/config.dart';
+import '../../../shared/styles.dart';
+import '../../../shared/widget/map_with_markers.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../gift_ask_detail/view/gift_ask_detail_view.dart';
+import '../controllers/gift_ask_controller.dart';
 
 class GiftAskRequestView extends StatelessWidget {
   GiftAskRequestView({Key? key}) : super(key: key);
