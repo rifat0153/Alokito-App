@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 import '../../../shared/widget/my_text.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../gift_ask/views/gift_ask_view.dart';
-import 'gif_requester_offer_list_view.dart';
+import 'gif_request_list_view.dart';
 
-class GiftRequesterView extends StatelessWidget {
+class GiftRequestView extends StatelessWidget {
   static const route = '/giftreceiverview';
 
   final AuthController authController = Get.find();
@@ -156,7 +156,7 @@ class _MyButtonRowWidget extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            Get.toNamed(GiftRequesterOfferListView.route);
+            Get.toNamed(GiftRequestListView.route);
           },
           style: ElevatedButton.styleFrom(
             primary: Colors.grey[400],

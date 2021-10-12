@@ -13,12 +13,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../core/location/location_helper.dart';
 import '../../auth/controllers/auth_controller.dart';
-import '../services/gift_requester_service.dart';
+import '../services/gift_request_service.dart';
 
-class GiftRequesterController extends GetxController {
-  GiftRequesterController(this.giftRequesterService);
+class GiftRequestController extends GetxController {
+  GiftRequestController(this.giftRequesterService);
 
-  final GiftRequesterService giftRequesterService;
+  final GiftRequestService giftRequesterService;
 
   RxBool loading = RxBool(false);
   RxString requesterMessage = RxString('');

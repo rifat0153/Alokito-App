@@ -22,10 +22,10 @@ import 'modules/gift/views/gift_view.dart';
 import 'modules/gift_ask/controllers/gift_ask_controller.dart';
 import 'modules/gift_ask/services/gift_ask_service.dart';
 import 'modules/gift_ask/views/gift_ask_view.dart';
-import 'modules/gift_request/controllers/gift_requester_controller.dart';
-import 'modules/gift_request/services/gift_requester_service.dart';
-import 'modules/gift_request/views/gif_requester_offer_list_view.dart';
-import 'modules/gift_request/views/gift_requester_view.dart';
+import 'modules/gift_request/controllers/gift_request_controller.dart';
+import 'modules/gift_request/services/gift_request_service.dart';
+import 'modules/gift_request/views/gif_request_list_view.dart';
+import 'modules/gift_request/views/gift_request_view.dart';
 import 'modules/notification/notification_controller.dart';
 import 'modules/notification/notification_view.dart';
 import 'modules/settings/views/general_settings_view.dart';
@@ -54,18 +54,18 @@ class GetPages {
 
     //* Gift Receiver Routes
     GetPage(
-      name: GiftRequesterView.route,
-      page: () => GiftRequesterView(),
+      name: GiftRequestView.route,
+      page: () => GiftRequestView(),
       binding: BindingsBuilder(() {
         // Get.put(GiftReceiverController());
       }),
     ),
     GetPage(
-      name: GiftRequesterOfferListView.route,
-      page: () => GiftRequesterOfferListView(),
+      name: GiftRequestListView.route,
+      page: () => GiftRequestListView(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => GiftRequesterController(GiftRequesterService()));
+        Get.lazyPut(() => GiftRequestController(GiftRequestService()));
       }),
     ),
     GetPage(
@@ -116,8 +116,8 @@ class GetPages {
       }),
     ),
     GetPage(
-      name: GiftRequesterOfferListView.route,
-      page: () => GiftRequesterOfferListView(),
+      name: GiftRequestListView.route,
+      page: () => GiftRequestListView(),
       transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
@@ -147,7 +147,7 @@ class GetPages {
       page: () => NotificationView(),
       binding: BindingsBuilder(() {
         Get.lazyPut(() => NotificationController(NotificationService()));
-        Get.lazyPut(() => GiftRequesterController(GiftRequesterService()));
+        Get.lazyPut(() => GiftRequestController(GiftRequestService()));
       }),
     ),
 

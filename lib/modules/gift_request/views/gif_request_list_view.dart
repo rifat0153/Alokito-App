@@ -3,7 +3,7 @@ import '../widgets/search_widget.dart';
 import '../widgets/gift_list_tile_widget.dart';
 
 import '../../auth/controllers/auth_controller.dart';
-import '../controllers/gift_requester_controller.dart';
+import '../controllers/gift_request_controller.dart';
 import '../../../shared/styles.dart';
 import '../../../shared/widget/map_with_markers.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,10 +12,10 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GiftRequesterOfferListView extends StatelessWidget {
+class GiftRequestListView extends StatelessWidget {
   static const route = 'giftoffer';
 
-  final GiftRequesterController controller = Get.find();
+  final GiftRequestController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _BuildBody extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final GiftRequesterController controller;
+  final GiftRequestController controller;
   final AuthController authController = Get.find();
 
   @override

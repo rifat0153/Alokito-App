@@ -7,7 +7,7 @@ import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 
 import '../../gift/views/gift_view.dart';
-import '../../gift_request/views/gift_requester_view.dart';
+import '../../gift_request/views/gift_request_view.dart';
 
 class MenuTileWidget extends StatelessWidget {
   const MenuTileWidget({
@@ -84,7 +84,7 @@ final List<MenuTileWidget> menuListTile = [
     positionTop: 0.08.sh / 2 - 0.08.sh * 0.25,
     positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
-      Get.toNamed(GiftRequesterView.route);
+      Get.toNamed(GiftRequestView.route);
     },
   ),
   MenuTileWidget(
@@ -95,7 +95,7 @@ final List<MenuTileWidget> menuListTile = [
     positionTop: 0.08.sh / 2 - 0.08.sh * 0.25,
     positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
-      Get.toNamed(GiftRequesterView.route);
+      Get.toNamed(GiftRequestView.route);
     },
   ),
   MenuTileWidget(
@@ -106,7 +106,7 @@ final List<MenuTileWidget> menuListTile = [
     positionTop: 0.08.sh / 2 - 0.08.sh * 0.37,
     positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
-      Get.toNamed(GiftRequesterView.route);
+      Get.toNamed(GiftRequestView.route);
     },
   ),
 ];

@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/config.dart';
-import '../controllers/gift_requester_controller.dart';
+import '../controllers/gift_request_controller.dart';
 
 class SearchWidget extends StatelessWidget {
-  final GiftRequesterController giftReceiverController = Get.find();
+  final GiftRequestController giftReceiverController = Get.find();
 
   @override
   Widget build(BuildContext context) {

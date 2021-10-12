@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../models/gift_request/gift_request.dart';
 import '../../../models/notification/notification.dart';
 import '../../../shared/widget/my_text.dart';
-import '../../gift_request/controllers/gift_requester_controller.dart';
+import '../../gift_request/controllers/gift_request_controller.dart';
 import 'gift_giver_notification_details_view.dart';
 
 class GiftNotificationView extends StatelessWidget {
@@ -12,7 +12,7 @@ class GiftNotificationView extends StatelessWidget {
 
   final MyNotification notification;
 
-  final GiftRequesterController giftReceiverController = Get.find<GiftRequesterController>();
+  final GiftRequestController giftReceiverController = Get.find<GiftRequestController>();
 
   @override
   Widget build(BuildContext context) {

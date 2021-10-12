@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../shared/config.dart';
 import '../../gift_detail/views/gift_requester_details_view.dart';
-import '../controllers/gift_requester_controller.dart';
+import '../controllers/gift_request_controller.dart';
 
 class GiftListTileWidget extends StatelessWidget {
   const GiftListTileWidget({
@@ -15,7 +15,7 @@ class GiftListTileWidget extends StatelessWidget {
     required this.index,
   }) : super(key: key);
 
-  final GiftRequesterController controller;
+  final GiftRequestController controller;
   final List<Gift> giftList;
   final int index;
 
