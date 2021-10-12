@@ -120,7 +120,7 @@ class _DecisionWidget extends StatelessWidget {
             MyText('r Request Canceled by You', textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
         accepted: () =>
             MyText('r Gift Accepted by You', textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
-        delivered: () => giftReceiver.messageForGiverrSent == true
+        delivered: () => giftReceiver.messageForGiverSent == true
             ? Column(
                 children: [
                   MyText('r Gift Received', color: Colors.blueAccent),

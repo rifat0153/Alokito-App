@@ -11,15 +11,19 @@ class GiftRequestDetailController extends GetxController {
   Future onInit() async {
     super.onInit();
 
-    await getGiftRequestsById();
+    await getGiftRequestsByRequestId();
   }
 
-  Future<void> getGiftRequestsById() async {
+  Future<void> getGiftRequestsByUserId() async {
     final userId = Get.find<AuthController>()
         .currentUserInfo
         .value
         .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
     await giftRequestDetailService.getGiftRequests(userId);
+  }
+
+  Future<void> getGiftRequestsByRequestId() async {
+    await giftRequestDetailService.getGiftRequestById('614877b93fce5f966938d010');
   }
 }

@@ -12,7 +12,7 @@ _$_GiftRequest _$_$_GiftRequestFromJson(Map<String, dynamic> json) {
     giverId: json['giverId'] as String?,
     comment: json['comment'] as String,
     messageForRequesterSent: json['messageForRequesterSent'] as bool? ?? false,
-    messageForGiverrSent: json['messageForGiverrSent'] as bool? ?? false,
+    messageForGiverSent: json['messageForGiverSent'] as bool? ?? false,
     giftRequestStatus:
         giftRequestStatusFromJson(json['giftRequestStatus'] as String),
     gift: giftFromMap(json['gift'] as Map<String, dynamic>),
@@ -28,7 +28,7 @@ Map<String, dynamic> _$_$_GiftRequestToJson(_$_GiftRequest instance) =>
       'giverId': instance.giverId,
       'comment': instance.comment,
       'messageForRequesterSent': instance.messageForRequesterSent,
-      'messageForGiverrSent': instance.messageForGiverrSent,
+      'messageForGiverSent': instance.messageForGiverSent,
       'giftRequestStatus': giftRequestStatusToJson(instance.giftRequestStatus),
       'gift': giftToMap(instance.gift),
       'requester': localUserNonNullToMap(instance.requester),

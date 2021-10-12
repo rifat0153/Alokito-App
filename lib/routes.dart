@@ -1,3 +1,6 @@
+import 'package:alokito_new/modules/gift_request_detail/controllers/gift_request_detail_controller.dart';
+import 'package:alokito_new/modules/gift_request_detail/services/gift_request_detail_service.dart';
+import 'package:alokito_new/modules/gift_request_detail/views/gift_request_detail_view.dart';
 import 'package:get/get.dart';
 
 import 'core/language/language_controller.dart';
@@ -129,6 +132,14 @@ class GetPages {
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
         Get.lazyPut(() => GiftAddFormController(GiftService(Get.find<FirebaseDI>().storage)));
+      }),
+    ),
+    GetPage(
+      name: GiftRequestDetailView.route,
+      page: () => GiftRequestDetailView(),
+      transition: Transition.native,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => GiftRequestDetailController(GiftRequestDetailService()));
       }),
     ),
 

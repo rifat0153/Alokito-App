@@ -25,7 +25,7 @@ class _$GiftRequestTearOff {
       String? giverId,
       required String comment,
       bool messageForRequesterSent = false,
-      bool messageForGiverrSent = false,
+      bool messageForGiverSent = false,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus
               giftRequestStatus = const GiftRequestStatus.pending(),
@@ -39,7 +39,7 @@ class _$GiftRequestTearOff {
       giverId: giverId,
       comment: comment,
       messageForRequesterSent: messageForRequesterSent,
-      messageForGiverrSent: messageForGiverrSent,
+      messageForGiverSent: messageForGiverSent,
       giftRequestStatus: giftRequestStatus,
       gift: gift,
       requester: requester,
@@ -61,7 +61,7 @@ mixin _$GiftRequest {
   String? get giverId => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
   bool get messageForRequesterSent => throw _privateConstructorUsedError;
-  bool get messageForGiverrSent => throw _privateConstructorUsedError;
+  bool get messageForGiverSent => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -86,7 +86,7 @@ abstract class $GiftRequestCopyWith<$Res> {
       String? giverId,
       String comment,
       bool messageForRequesterSent,
-      bool messageForGiverrSent,
+      bool messageForGiverSent,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -114,7 +114,7 @@ class _$GiftRequestCopyWithImpl<$Res> implements $GiftRequestCopyWith<$Res> {
     Object? giverId = freezed,
     Object? comment = freezed,
     Object? messageForRequesterSent = freezed,
-    Object? messageForGiverrSent = freezed,
+    Object? messageForGiverSent = freezed,
     Object? giftRequestStatus = freezed,
     Object? gift = freezed,
     Object? requester = freezed,
@@ -137,9 +137,9 @@ class _$GiftRequestCopyWithImpl<$Res> implements $GiftRequestCopyWith<$Res> {
           ? _value.messageForRequesterSent
           : messageForRequesterSent // ignore: cast_nullable_to_non_nullable
               as bool,
-      messageForGiverrSent: messageForGiverrSent == freezed
-          ? _value.messageForGiverrSent
-          : messageForGiverrSent // ignore: cast_nullable_to_non_nullable
+      messageForGiverSent: messageForGiverSent == freezed
+          ? _value.messageForGiverSent
+          : messageForGiverSent // ignore: cast_nullable_to_non_nullable
               as bool,
       giftRequestStatus: giftRequestStatus == freezed
           ? _value.giftRequestStatus
@@ -194,7 +194,7 @@ abstract class _$GiftRequestCopyWith<$Res>
       String? giverId,
       String comment,
       bool messageForRequesterSent,
-      bool messageForGiverrSent,
+      bool messageForGiverSent,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -227,7 +227,7 @@ class __$GiftRequestCopyWithImpl<$Res> extends _$GiftRequestCopyWithImpl<$Res>
     Object? giverId = freezed,
     Object? comment = freezed,
     Object? messageForRequesterSent = freezed,
-    Object? messageForGiverrSent = freezed,
+    Object? messageForGiverSent = freezed,
     Object? giftRequestStatus = freezed,
     Object? gift = freezed,
     Object? requester = freezed,
@@ -250,9 +250,9 @@ class __$GiftRequestCopyWithImpl<$Res> extends _$GiftRequestCopyWithImpl<$Res>
           ? _value.messageForRequesterSent
           : messageForRequesterSent // ignore: cast_nullable_to_non_nullable
               as bool,
-      messageForGiverrSent: messageForGiverrSent == freezed
-          ? _value.messageForGiverrSent
-          : messageForGiverrSent // ignore: cast_nullable_to_non_nullable
+      messageForGiverSent: messageForGiverSent == freezed
+          ? _value.messageForGiverSent
+          : messageForGiverSent // ignore: cast_nullable_to_non_nullable
               as bool,
       giftRequestStatus: giftRequestStatus == freezed
           ? _value.giftRequestStatus
@@ -282,7 +282,7 @@ class _$_GiftRequest implements _GiftRequest {
       this.giverId,
       required this.comment,
       this.messageForRequesterSent = false,
-      this.messageForGiverrSent = false,
+      this.messageForGiverSent = false,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           this.giftRequestStatus = const GiftRequestStatus.pending(),
       @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -305,7 +305,7 @@ class _$_GiftRequest implements _GiftRequest {
   final bool messageForRequesterSent;
   @JsonKey(defaultValue: false)
   @override
-  final bool messageForGiverrSent;
+  final bool messageForGiverSent;
   @override
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   final GiftRequestStatus giftRequestStatus;
@@ -320,7 +320,7 @@ class _$_GiftRequest implements _GiftRequest {
 
   @override
   String toString() {
-    return 'GiftRequest(id: $id, giverId: $giverId, comment: $comment, messageForRequesterSent: $messageForRequesterSent, messageForGiverrSent: $messageForGiverrSent, giftRequestStatus: $giftRequestStatus, gift: $gift, requester: $requester, createdAt: $createdAt)';
+    return 'GiftRequest(id: $id, giverId: $giverId, comment: $comment, messageForRequesterSent: $messageForRequesterSent, messageForGiverSent: $messageForGiverSent, giftRequestStatus: $giftRequestStatus, gift: $gift, requester: $requester, createdAt: $createdAt)';
   }
 
   @override
@@ -339,9 +339,9 @@ class _$_GiftRequest implements _GiftRequest {
                     other.messageForRequesterSent, messageForRequesterSent) ||
                 const DeepCollectionEquality().equals(
                     other.messageForRequesterSent, messageForRequesterSent)) &&
-            (identical(other.messageForGiverrSent, messageForGiverrSent) ||
-                const DeepCollectionEquality().equals(
-                    other.messageForGiverrSent, messageForGiverrSent)) &&
+            (identical(other.messageForGiverSent, messageForGiverSent) ||
+                const DeepCollectionEquality()
+                    .equals(other.messageForGiverSent, messageForGiverSent)) &&
             (identical(other.giftRequestStatus, giftRequestStatus) ||
                 const DeepCollectionEquality()
                     .equals(other.giftRequestStatus, giftRequestStatus)) &&
@@ -362,7 +362,7 @@ class _$_GiftRequest implements _GiftRequest {
       const DeepCollectionEquality().hash(giverId) ^
       const DeepCollectionEquality().hash(comment) ^
       const DeepCollectionEquality().hash(messageForRequesterSent) ^
-      const DeepCollectionEquality().hash(messageForGiverrSent) ^
+      const DeepCollectionEquality().hash(messageForGiverSent) ^
       const DeepCollectionEquality().hash(giftRequestStatus) ^
       const DeepCollectionEquality().hash(gift) ^
       const DeepCollectionEquality().hash(requester) ^
@@ -385,7 +385,7 @@ abstract class _GiftRequest implements GiftRequest {
       String? giverId,
       required String comment,
       bool messageForRequesterSent,
-      bool messageForGiverrSent,
+      bool messageForGiverSent,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -406,7 +406,7 @@ abstract class _GiftRequest implements GiftRequest {
   @override
   bool get messageForRequesterSent => throw _privateConstructorUsedError;
   @override
-  bool get messageForGiverrSent => throw _privateConstructorUsedError;
+  bool get messageForGiverSent => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
@@ -1615,6 +1615,421 @@ abstract class Error implements GiftRequestNotificationUnion {
   Object get err => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$GiftRequestStateTearOff {
+  const _$GiftRequestStateTearOff();
+
+  GiftRequestData data(GiftRequest giftRequest) {
+    return GiftRequestData(
+      giftRequest,
+    );
+  }
+
+  GiftRequestLoading loading() {
+    return const GiftRequestLoading();
+  }
+
+  GiftRequestError error(Object err) {
+    return GiftRequestError(
+      err,
+    );
+  }
+}
+
+/// @nodoc
+const $GiftRequestState = _$GiftRequestStateTearOff();
+
+/// @nodoc
+mixin _$GiftRequestState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftRequest giftRequest) data,
+    required TResult Function() loading,
+    required TResult Function(Object err) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GiftRequestData value) data,
+    required TResult Function(GiftRequestLoading value) loading,
+    required TResult Function(GiftRequestError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GiftRequestData value)? data,
+    TResult Function(GiftRequestLoading value)? loading,
+    TResult Function(GiftRequestError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftRequestStateCopyWith<$Res> {
+  factory $GiftRequestStateCopyWith(
+          GiftRequestState value, $Res Function(GiftRequestState) then) =
+      _$GiftRequestStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftRequestStateCopyWithImpl<$Res>
+    implements $GiftRequestStateCopyWith<$Res> {
+  _$GiftRequestStateCopyWithImpl(this._value, this._then);
+
+  final GiftRequestState _value;
+  // ignore: unused_field
+  final $Res Function(GiftRequestState) _then;
+}
+
+/// @nodoc
+abstract class $GiftRequestDataCopyWith<$Res> {
+  factory $GiftRequestDataCopyWith(
+          GiftRequestData value, $Res Function(GiftRequestData) then) =
+      _$GiftRequestDataCopyWithImpl<$Res>;
+  $Res call({GiftRequest giftRequest});
+
+  $GiftRequestCopyWith<$Res> get giftRequest;
+}
+
+/// @nodoc
+class _$GiftRequestDataCopyWithImpl<$Res>
+    extends _$GiftRequestStateCopyWithImpl<$Res>
+    implements $GiftRequestDataCopyWith<$Res> {
+  _$GiftRequestDataCopyWithImpl(
+      GiftRequestData _value, $Res Function(GiftRequestData) _then)
+      : super(_value, (v) => _then(v as GiftRequestData));
+
+  @override
+  GiftRequestData get _value => super._value as GiftRequestData;
+
+  @override
+  $Res call({
+    Object? giftRequest = freezed,
+  }) {
+    return _then(GiftRequestData(
+      giftRequest == freezed
+          ? _value.giftRequest
+          : giftRequest // ignore: cast_nullable_to_non_nullable
+              as GiftRequest,
+    ));
+  }
+
+  @override
+  $GiftRequestCopyWith<$Res> get giftRequest {
+    return $GiftRequestCopyWith<$Res>(_value.giftRequest, (value) {
+      return _then(_value.copyWith(giftRequest: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$GiftRequestData implements GiftRequestData {
+  const _$GiftRequestData(this.giftRequest);
+
+  @override
+  final GiftRequest giftRequest;
+
+  @override
+  String toString() {
+    return 'GiftRequestState.data(giftRequest: $giftRequest)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GiftRequestData &&
+            (identical(other.giftRequest, giftRequest) ||
+                const DeepCollectionEquality()
+                    .equals(other.giftRequest, giftRequest)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftRequest);
+
+  @JsonKey(ignore: true)
+  @override
+  $GiftRequestDataCopyWith<GiftRequestData> get copyWith =>
+      _$GiftRequestDataCopyWithImpl<GiftRequestData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftRequest giftRequest) data,
+    required TResult Function() loading,
+    required TResult Function(Object err) error,
+  }) {
+    return data(giftRequest);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(giftRequest);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GiftRequestData value) data,
+    required TResult Function(GiftRequestLoading value) loading,
+    required TResult Function(GiftRequestError value) error,
+  }) {
+    return data(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GiftRequestData value)? data,
+    TResult Function(GiftRequestLoading value)? loading,
+    TResult Function(GiftRequestError value)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GiftRequestData implements GiftRequestState {
+  const factory GiftRequestData(GiftRequest giftRequest) = _$GiftRequestData;
+
+  GiftRequest get giftRequest => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GiftRequestDataCopyWith<GiftRequestData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftRequestLoadingCopyWith<$Res> {
+  factory $GiftRequestLoadingCopyWith(
+          GiftRequestLoading value, $Res Function(GiftRequestLoading) then) =
+      _$GiftRequestLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftRequestLoadingCopyWithImpl<$Res>
+    extends _$GiftRequestStateCopyWithImpl<$Res>
+    implements $GiftRequestLoadingCopyWith<$Res> {
+  _$GiftRequestLoadingCopyWithImpl(
+      GiftRequestLoading _value, $Res Function(GiftRequestLoading) _then)
+      : super(_value, (v) => _then(v as GiftRequestLoading));
+
+  @override
+  GiftRequestLoading get _value => super._value as GiftRequestLoading;
+}
+
+/// @nodoc
+
+class _$GiftRequestLoading implements GiftRequestLoading {
+  const _$GiftRequestLoading();
+
+  @override
+  String toString() {
+    return 'GiftRequestState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is GiftRequestLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftRequest giftRequest) data,
+    required TResult Function() loading,
+    required TResult Function(Object err) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GiftRequestData value) data,
+    required TResult Function(GiftRequestLoading value) loading,
+    required TResult Function(GiftRequestError value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GiftRequestData value)? data,
+    TResult Function(GiftRequestLoading value)? loading,
+    TResult Function(GiftRequestError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GiftRequestLoading implements GiftRequestState {
+  const factory GiftRequestLoading() = _$GiftRequestLoading;
+}
+
+/// @nodoc
+abstract class $GiftRequestErrorCopyWith<$Res> {
+  factory $GiftRequestErrorCopyWith(
+          GiftRequestError value, $Res Function(GiftRequestError) then) =
+      _$GiftRequestErrorCopyWithImpl<$Res>;
+  $Res call({Object err});
+}
+
+/// @nodoc
+class _$GiftRequestErrorCopyWithImpl<$Res>
+    extends _$GiftRequestStateCopyWithImpl<$Res>
+    implements $GiftRequestErrorCopyWith<$Res> {
+  _$GiftRequestErrorCopyWithImpl(
+      GiftRequestError _value, $Res Function(GiftRequestError) _then)
+      : super(_value, (v) => _then(v as GiftRequestError));
+
+  @override
+  GiftRequestError get _value => super._value as GiftRequestError;
+
+  @override
+  $Res call({
+    Object? err = freezed,
+  }) {
+    return _then(GiftRequestError(
+      err == freezed
+          ? _value.err
+          : err // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GiftRequestError implements GiftRequestError {
+  const _$GiftRequestError(this.err);
+
+  @override
+  final Object err;
+
+  @override
+  String toString() {
+    return 'GiftRequestState.error(err: $err)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GiftRequestError &&
+            (identical(other.err, err) ||
+                const DeepCollectionEquality().equals(other.err, err)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(err);
+
+  @JsonKey(ignore: true)
+  @override
+  $GiftRequestErrorCopyWith<GiftRequestError> get copyWith =>
+      _$GiftRequestErrorCopyWithImpl<GiftRequestError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftRequest giftRequest) data,
+    required TResult Function() loading,
+    required TResult Function(Object err) error,
+  }) {
+    return error(err);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(err);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GiftRequestData value) data,
+    required TResult Function(GiftRequestLoading value) loading,
+    required TResult Function(GiftRequestError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GiftRequestData value)? data,
+    TResult Function(GiftRequestLoading value)? loading,
+    TResult Function(GiftRequestError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GiftRequestError implements GiftRequestState {
+  const factory GiftRequestError(Object err) = _$GiftRequestError;
+
+  Object get err => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GiftRequestErrorCopyWith<GiftRequestError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

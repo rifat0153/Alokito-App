@@ -14,7 +14,7 @@ class GiftRequest with _$GiftRequest {
     String? giverId,
     required String comment,
     @Default(false) bool messageForRequesterSent,
-    @Default(false) bool messageForGiverrSent,
+    @Default(false) bool messageForGiverSent,
     @Default(GiftRequestStatus.pending())
     @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
         GiftRequestStatus giftRequestStatus,
@@ -81,6 +81,14 @@ class GiftRequestNotificationUnion with _$GiftRequestNotificationUnion {
   const factory GiftRequestNotificationUnion.dataa(GiftRequest giftRequest) = Data;
   const factory GiftRequestNotificationUnion.loading() = Loading;
   const factory GiftRequestNotificationUnion.error(Object err) = Error;
+}
+
+
+@freezed
+class GiftRequestState with _$GiftRequestState {
+  const factory GiftRequestState.data(GiftRequest giftRequest) = GiftRequestData;
+  const factory GiftRequestState.loading() = GiftRequestLoading;
+  const factory GiftRequestState.error(Object err) = GiftRequestError;
 }
 
 
