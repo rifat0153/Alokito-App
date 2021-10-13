@@ -20,7 +20,6 @@ _$_GiftAsk _$_$_GiftAskFromJson(Map<String, dynamic> json) {
     geometry: geometryFromMap(json['geometry'] as Map<String, dynamic>),
     area: json['area'] as String,
     location: json['location'] as String,
-    giftTitle: json['giftTitle'] as String? ?? 'Default Title',
     giftForSmallFamily: json['giftForSmallFamily'] as bool? ?? false,
   );
 }
@@ -39,6 +38,5 @@ Map<String, dynamic> _$_$_GiftAskToJson(_$_GiftAsk instance) =>
       'geometry': geometryToMap(instance.geometry),
       'area': instance.area,
       'location': instance.location,
-      'giftTitle': instance.giftTitle,
       'giftForSmallFamily': instance.giftForSmallFamily,
     };

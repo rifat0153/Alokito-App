@@ -1,9 +1,8 @@
-import 'package:alokito_new/models/gift/gift.dart';
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/modules/notification/service/notification_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../gift/gift.dart';
+import '../gift_ask/gift_ask.dart';
 
 part 'notification.freezed.dart';
 part 'notification.g.dart';

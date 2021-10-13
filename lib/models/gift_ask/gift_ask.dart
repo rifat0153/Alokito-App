@@ -25,7 +25,7 @@ class GiftAsk with _$GiftAsk {
     @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap) required Geometry geometry,
     required String area,
     required String location,
-    @Default('Default Title') String giftTitle,
+    // @Default('Default Title') String giftTitle,
     @Default(false) bool giftForSmallFamily,
   }) = _GiftAsk;
 

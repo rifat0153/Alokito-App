@@ -153,7 +153,7 @@ class GiftAskController extends GetxController {
       geometry: Geometry(coordinates: [formMarker.value.position.longitude, formMarker.value.position.latitude]),
       requestForNoOfPeople: requestForNoOfPeople,
       giftAskType: getGiftAskType(),
-      giftTitle: giftTitle.value,
+      // giftTitle: giftTitle.value,
       giftForSmallFamily: _packageSmallFamilty.value,
       note: note.value,
     );

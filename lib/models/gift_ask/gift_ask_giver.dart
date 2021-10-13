@@ -1,9 +1,8 @@
-import 'gift_ask.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../json_converters.dart';
 import '../my_enums.dart';
 import '../user/local_user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'gift_ask_giver.freezed.dart';
 part 'gift_ask_giver.g.dart';

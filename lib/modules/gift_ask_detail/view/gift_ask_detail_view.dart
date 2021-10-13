@@ -81,7 +81,7 @@ class GiftAskDetailView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(giftAsk.giftTitle, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                  Text("giftAsk.giftTitle", style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
                 ],
               )),
           _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
