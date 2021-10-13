@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../gift/gift.dart';
-import '../gift_ask/gift_ask.dart';
+import '../gift_ask_request.dart/gift_ask_request.dart';
+import '../gift_request/gift_request.dart';
 
 part 'notification.freezed.dart';
 part 'notification.g.dart';
@@ -15,27 +15,27 @@ class MyNotification with _$MyNotification {
     String? user,
     required String relatedDocId,
     required String notificationType,
-    @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-    @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+    @JsonKey(fromJson: giftRequestDocFromJson) GiftRequest? giftDoc,
+    @JsonKey(fromJson: giftAskRequestDocFromJson) GiftAskRequest? giftAskDoc,
     required DateTime createdAt,
   }) = _MyNotification;
 
   factory MyNotification.fromJson(Map<String, dynamic> json) => _$MyNotificationFromJson(json);
 }
 
-Gift? giftDocFromJson(Map<String, dynamic>? json) {
+GiftRequest? giftRequestDocFromJson(Map<String, dynamic>? json) {
   if (json == null) {
     return null;
   } else {
-    return Gift.fromJson(json);
+    return GiftRequest.fromJson(json);
   }
 }
 
-GiftAsk? giftAskDocFromJson(Map<String, dynamic>? json) {
+GiftAskRequest? giftAskRequestDocFromJson(Map<String, dynamic>? json) {
   if (json == null) {
     return null;
   } else {
-    return GiftAsk.fromJson(json);
+    return GiftAskRequest.fromJson(json);
   }
 }
 

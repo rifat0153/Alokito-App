@@ -13,8 +13,9 @@ _$_MyNotification _$_$_MyNotificationFromJson(Map<String, dynamic> json) {
     user: json['user'] as String?,
     relatedDocId: json['relatedDocId'] as String,
     notificationType: json['notificationType'] as String,
-    giftDoc: giftDocFromJson(json['giftDoc'] as Map<String, dynamic>?),
-    giftAskDoc: giftAskDocFromJson(json['giftAskDoc'] as Map<String, dynamic>?),
+    giftDoc: giftRequestDocFromJson(json['giftDoc'] as Map<String, dynamic>?),
+    giftAskDoc:
+        giftAskRequestDocFromJson(json['giftAskDoc'] as Map<String, dynamic>?),
     createdAt: DateTime.parse(json['createdAt'] as String),
   );
 }

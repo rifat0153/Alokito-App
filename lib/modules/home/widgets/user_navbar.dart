@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/notification/notification_view.dart';
+import 'package:alokito_new/modules/notification/views/notification_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

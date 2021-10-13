@@ -26,8 +26,8 @@ class _$MyNotificationTearOff {
       String? user,
       required String relatedDocId,
       required String notificationType,
-      @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-      @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+      @JsonKey(fromJson: giftRequestDocFromJson) GiftRequest? giftDoc,
+      @JsonKey(fromJson: giftAskRequestDocFromJson) GiftAskRequest? giftAskDoc,
       required DateTime createdAt}) {
     return _MyNotification(
       id: id,
@@ -56,10 +56,10 @@ mixin _$MyNotification {
   String? get user => throw _privateConstructorUsedError;
   String get relatedDocId => throw _privateConstructorUsedError;
   String get notificationType => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: giftDocFromJson)
-  Gift? get giftDoc => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: giftAskDocFromJson)
-  GiftAsk? get giftAskDoc => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftRequestDocFromJson)
+  GiftRequest? get giftDoc => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftAskRequestDocFromJson)
+  GiftAskRequest? get giftAskDoc => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -70,8 +70,10 @@ mixin _$MyNotification {
             String? user,
             String relatedDocId,
             String notificationType,
-            @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-            @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+            @JsonKey(fromJson: giftRequestDocFromJson)
+                GiftRequest? giftDoc,
+            @JsonKey(fromJson: giftAskRequestDocFromJson)
+                GiftAskRequest? giftAskDoc,
             DateTime createdAt)
         data,
   }) =>
@@ -84,8 +86,10 @@ mixin _$MyNotification {
             String? user,
             String relatedDocId,
             String notificationType,
-            @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-            @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+            @JsonKey(fromJson: giftRequestDocFromJson)
+                GiftRequest? giftDoc,
+            @JsonKey(fromJson: giftAskRequestDocFromJson)
+                GiftAskRequest? giftAskDoc,
             DateTime createdAt)?
         data,
     required TResult orElse(),
@@ -119,12 +123,12 @@ abstract class $MyNotificationCopyWith<$Res> {
       String? user,
       String relatedDocId,
       String notificationType,
-      @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-      @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+      @JsonKey(fromJson: giftRequestDocFromJson) GiftRequest? giftDoc,
+      @JsonKey(fromJson: giftAskRequestDocFromJson) GiftAskRequest? giftAskDoc,
       DateTime createdAt});
 
-  $GiftCopyWith<$Res>? get giftDoc;
-  $GiftAskCopyWith<$Res>? get giftAskDoc;
+  $GiftRequestCopyWith<$Res>? get giftDoc;
+  $GiftAskRequestCopyWith<$Res>? get giftAskDoc;
 }
 
 /// @nodoc
@@ -171,11 +175,11 @@ class _$MyNotificationCopyWithImpl<$Res>
       giftDoc: giftDoc == freezed
           ? _value.giftDoc
           : giftDoc // ignore: cast_nullable_to_non_nullable
-              as Gift?,
+              as GiftRequest?,
       giftAskDoc: giftAskDoc == freezed
           ? _value.giftAskDoc
           : giftAskDoc // ignore: cast_nullable_to_non_nullable
-              as GiftAsk?,
+              as GiftAskRequest?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -184,23 +188,23 @@ class _$MyNotificationCopyWithImpl<$Res>
   }
 
   @override
-  $GiftCopyWith<$Res>? get giftDoc {
+  $GiftRequestCopyWith<$Res>? get giftDoc {
     if (_value.giftDoc == null) {
       return null;
     }
 
-    return $GiftCopyWith<$Res>(_value.giftDoc!, (value) {
+    return $GiftRequestCopyWith<$Res>(_value.giftDoc!, (value) {
       return _then(_value.copyWith(giftDoc: value));
     });
   }
 
   @override
-  $GiftAskCopyWith<$Res>? get giftAskDoc {
+  $GiftAskRequestCopyWith<$Res>? get giftAskDoc {
     if (_value.giftAskDoc == null) {
       return null;
     }
 
-    return $GiftAskCopyWith<$Res>(_value.giftAskDoc!, (value) {
+    return $GiftAskRequestCopyWith<$Res>(_value.giftAskDoc!, (value) {
       return _then(_value.copyWith(giftAskDoc: value));
     });
   }
@@ -219,14 +223,14 @@ abstract class _$MyNotificationCopyWith<$Res>
       String? user,
       String relatedDocId,
       String notificationType,
-      @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-      @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+      @JsonKey(fromJson: giftRequestDocFromJson) GiftRequest? giftDoc,
+      @JsonKey(fromJson: giftAskRequestDocFromJson) GiftAskRequest? giftAskDoc,
       DateTime createdAt});
 
   @override
-  $GiftCopyWith<$Res>? get giftDoc;
+  $GiftRequestCopyWith<$Res>? get giftDoc;
   @override
-  $GiftAskCopyWith<$Res>? get giftAskDoc;
+  $GiftAskRequestCopyWith<$Res>? get giftAskDoc;
 }
 
 /// @nodoc
@@ -275,11 +279,11 @@ class __$MyNotificationCopyWithImpl<$Res>
       giftDoc: giftDoc == freezed
           ? _value.giftDoc
           : giftDoc // ignore: cast_nullable_to_non_nullable
-              as Gift?,
+              as GiftRequest?,
       giftAskDoc: giftAskDoc == freezed
           ? _value.giftAskDoc
           : giftAskDoc // ignore: cast_nullable_to_non_nullable
-              as GiftAsk?,
+              as GiftAskRequest?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -297,8 +301,8 @@ class _$_MyNotification implements _MyNotification {
       this.user,
       required this.relatedDocId,
       required this.notificationType,
-      @JsonKey(fromJson: giftDocFromJson) this.giftDoc,
-      @JsonKey(fromJson: giftAskDocFromJson) this.giftAskDoc,
+      @JsonKey(fromJson: giftRequestDocFromJson) this.giftDoc,
+      @JsonKey(fromJson: giftAskRequestDocFromJson) this.giftAskDoc,
       required this.createdAt});
 
   factory _$_MyNotification.fromJson(Map<String, dynamic> json) =>
@@ -315,11 +319,11 @@ class _$_MyNotification implements _MyNotification {
   @override
   final String notificationType;
   @override
-  @JsonKey(fromJson: giftDocFromJson)
-  final Gift? giftDoc;
+  @JsonKey(fromJson: giftRequestDocFromJson)
+  final GiftRequest? giftDoc;
   @override
-  @JsonKey(fromJson: giftAskDocFromJson)
-  final GiftAsk? giftAskDoc;
+  @JsonKey(fromJson: giftAskRequestDocFromJson)
+  final GiftAskRequest? giftAskDoc;
   @override
   final DateTime createdAt;
 
@@ -381,8 +385,10 @@ class _$_MyNotification implements _MyNotification {
             String? user,
             String relatedDocId,
             String notificationType,
-            @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-            @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+            @JsonKey(fromJson: giftRequestDocFromJson)
+                GiftRequest? giftDoc,
+            @JsonKey(fromJson: giftAskRequestDocFromJson)
+                GiftAskRequest? giftAskDoc,
             DateTime createdAt)
         data,
   }) {
@@ -399,8 +405,10 @@ class _$_MyNotification implements _MyNotification {
             String? user,
             String relatedDocId,
             String notificationType,
-            @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-            @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+            @JsonKey(fromJson: giftRequestDocFromJson)
+                GiftRequest? giftDoc,
+            @JsonKey(fromJson: giftAskRequestDocFromJson)
+                GiftAskRequest? giftAskDoc,
             DateTime createdAt)?
         data,
     required TResult orElse(),
@@ -445,8 +453,8 @@ abstract class _MyNotification implements MyNotification {
       String? user,
       required String relatedDocId,
       required String notificationType,
-      @JsonKey(fromJson: giftDocFromJson) Gift? giftDoc,
-      @JsonKey(fromJson: giftAskDocFromJson) GiftAsk? giftAskDoc,
+      @JsonKey(fromJson: giftRequestDocFromJson) GiftRequest? giftDoc,
+      @JsonKey(fromJson: giftAskRequestDocFromJson) GiftAskRequest? giftAskDoc,
       required DateTime createdAt}) = _$_MyNotification;
 
   factory _MyNotification.fromJson(Map<String, dynamic> json) =
@@ -463,11 +471,11 @@ abstract class _MyNotification implements MyNotification {
   @override
   String get notificationType => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: giftDocFromJson)
-  Gift? get giftDoc => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftRequestDocFromJson)
+  GiftRequest? get giftDoc => throw _privateConstructorUsedError;
   @override
-  @JsonKey(fromJson: giftAskDocFromJson)
-  GiftAsk? get giftAskDoc => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: giftAskRequestDocFromJson)
+  GiftAskRequest? get giftAskDoc => throw _privateConstructorUsedError;
   @override
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override

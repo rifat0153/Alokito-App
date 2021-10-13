@@ -1,9 +1,8 @@
-import 'package:alokito_new/models/gift/gift.dart';
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-
-import '../user/local_user.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+import '../gift_ask/gift_ask.dart';
+import '../user/local_user.dart';
 
 part 'gift_ask_request.freezed.dart';
 part 'gift_ask_request.g.dart';
@@ -79,7 +78,7 @@ GiftAskRequestStatus giftAskRequestStatusFromJson(String giftAskRequestStatus) {
 
 @freezed
 class GiftAskRequestNotificationUnion with _$GiftAskRequestNotificationUnion {
-  const factory GiftAskRequestNotificationUnion.dataa(GiftAskRequest giftAskRequest) = Data;
+  const factory GiftAskRequestNotificationUnion.data(GiftAskRequest giftAskRequest) = Data;
   const factory GiftAskRequestNotificationUnion.loading() = Loading;
   const factory GiftAskRequestNotificationUnion.error(Object err) = Error;
 }

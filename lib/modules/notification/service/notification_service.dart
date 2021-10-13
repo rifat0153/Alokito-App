@@ -4,7 +4,6 @@ import 'package:alokito_new/models/notification/notification.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:get/get.dart';
 
-import '../../../models/response/my_response.dart';
 import 'notification_dto.dart';
 
 abstract class BaseNotificationService {

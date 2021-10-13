@@ -1226,7 +1226,7 @@ abstract class Delivered implements GiftAskRequestStatus {
 class _$GiftAskRequestNotificationUnionTearOff {
   const _$GiftAskRequestNotificationUnionTearOff();
 
-  Data dataa(GiftAskRequest giftAskRequest) {
+  Data data(GiftAskRequest giftAskRequest) {
     return Data(
       giftAskRequest,
     );
@@ -1251,14 +1251,14 @@ const $GiftAskRequestNotificationUnion =
 mixin _$GiftAskRequestNotificationUnion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GiftAskRequest giftAskRequest) dataa,
+    required TResult Function(GiftAskRequest giftAskRequest) data,
     required TResult Function() loading,
     required TResult Function(Object err) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GiftAskRequest giftAskRequest)? dataa,
+    TResult Function(GiftAskRequest giftAskRequest)? data,
     TResult Function()? loading,
     TResult Function(Object err)? error,
     required TResult orElse(),
@@ -1266,14 +1266,14 @@ mixin _$GiftAskRequestNotificationUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Data value) dataa,
+    required TResult Function(Data value) data,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Data value)? dataa,
+    TResult Function(Data value)? data,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -1348,7 +1348,7 @@ class _$Data implements Data {
 
   @override
   String toString() {
-    return 'GiftAskRequestNotificationUnion.dataa(giftAskRequest: $giftAskRequest)';
+    return 'GiftAskRequestNotificationUnion.data(giftAskRequest: $giftAskRequest)';
   }
 
   @override
@@ -1373,23 +1373,23 @@ class _$Data implements Data {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GiftAskRequest giftAskRequest) dataa,
+    required TResult Function(GiftAskRequest giftAskRequest) data,
     required TResult Function() loading,
     required TResult Function(Object err) error,
   }) {
-    return dataa(giftAskRequest);
+    return data(giftAskRequest);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GiftAskRequest giftAskRequest)? dataa,
+    TResult Function(GiftAskRequest giftAskRequest)? data,
     TResult Function()? loading,
     TResult Function(Object err)? error,
     required TResult orElse(),
   }) {
-    if (dataa != null) {
-      return dataa(giftAskRequest);
+    if (data != null) {
+      return data(giftAskRequest);
     }
     return orElse();
   }
@@ -1397,23 +1397,23 @@ class _$Data implements Data {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Data value) dataa,
+    required TResult Function(Data value) data,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
   }) {
-    return dataa(this);
+    return data(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Data value)? dataa,
+    TResult Function(Data value)? data,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
-    if (dataa != null) {
-      return dataa(this);
+    if (data != null) {
+      return data(this);
     }
     return orElse();
   }
@@ -1465,7 +1465,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GiftAskRequest giftAskRequest) dataa,
+    required TResult Function(GiftAskRequest giftAskRequest) data,
     required TResult Function() loading,
     required TResult Function(Object err) error,
   }) {
@@ -1475,7 +1475,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GiftAskRequest giftAskRequest)? dataa,
+    TResult Function(GiftAskRequest giftAskRequest)? data,
     TResult Function()? loading,
     TResult Function(Object err)? error,
     required TResult orElse(),
@@ -1489,7 +1489,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Data value) dataa,
+    required TResult Function(Data value) data,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
   }) {
@@ -1499,7 +1499,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Data value)? dataa,
+    TResult Function(Data value)? data,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -1578,7 +1578,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GiftAskRequest giftAskRequest) dataa,
+    required TResult Function(GiftAskRequest giftAskRequest) data,
     required TResult Function() loading,
     required TResult Function(Object err) error,
   }) {
@@ -1588,7 +1588,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GiftAskRequest giftAskRequest)? dataa,
+    TResult Function(GiftAskRequest giftAskRequest)? data,
     TResult Function()? loading,
     TResult Function(Object err)? error,
     required TResult orElse(),
@@ -1602,7 +1602,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Data value) dataa,
+    required TResult Function(Data value) data,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
   }) {
@@ -1612,7 +1612,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Data value)? dataa,
+    TResult Function(Data value)? data,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
     required TResult orElse(),
