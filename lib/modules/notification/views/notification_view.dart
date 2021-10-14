@@ -1,3 +1,4 @@
+import 'package:alokito_new/core/date/date_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -87,7 +88,9 @@ class NotificationTile extends StatelessWidget {
     if (notification.notificationType == 'giftRequest') {
       return _buildGiftRequestNotificationTile(notification, context);
     }
-    if (notification.notificationType == 'giftAskRequest') {}
+    if (notification.notificationType == 'giftAskRequest') {
+      return _buildGiftAskRequestNotificationTile(notification, context);
+    }
     if (notification.notificationType == 'text') {}
 
     return ListTile(
@@ -96,7 +99,62 @@ class NotificationTile extends StatelessWidget {
     );
   }
 
+  Widget _buildGiftAskRequestNotificationTile(MyNotification notification, BuildContext context) {
+    final String timeDiff = DateHelper.findTimeDifference(DateTime.now(), notification.createdAt);
+
+    return notification.giftAskRequestDoc != null
+        ? GestureDetector(
+            onTap: () {
+              // Todo
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Image.network(
+                          notification.giftAskRequestDoc!.giftAsk.imageUrl ?? '',
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, s) {
+                            return SizedBox();
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        flex: 8,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MyText(
+                                notification.text,
+                                maxLines: 2,
+                              ),
+                              MyText('$timeDiff ago', fontSize: 15.sp),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
+        : Container();
+  }
+
   Widget _buildGiftRequestNotificationTile(MyNotification notification, BuildContext context) {
+    final String timeDiff = DateHelper.findTimeDifference(DateTime.now(), notification.createdAt);
+
     return notification.giftRequestDoc != null
         ? GestureDetector(
             onTap: () {
@@ -112,17 +170,17 @@ class NotificationTile extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      SizedBox(
-                        height: 85,
-                        width: 80,
+                      Expanded(
+                        flex: 2,
                         child: Image.network(
                           notification.giftRequestDoc!.gift.imageUrl,
                           fit: BoxFit.cover,
                         ),
                       ),
                       Expanded(
+                        flex: 8,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -130,7 +188,7 @@ class NotificationTile extends StatelessWidget {
                                 notification.text,
                                 maxLines: 2,
                               ),
-                              MyText('7 hours ago', fontSize: 15.sp),
+                              MyText('$timeDiff ago', fontSize: 15.sp),
                             ],
                           ),
                         ),
