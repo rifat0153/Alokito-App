@@ -55,8 +55,9 @@ class GiftRequestController extends GetxController {
         allGiftsFetched.value = false;
 
         //* if search string exists get gift by search, otherwise get gift by location
-        giftRetriveOption.value =
-            searchString.value.isNotEmpty ? const GiftLoadingOption.bySearch() : const GiftLoadingOption.byLocation();
+        giftRetriveOption.value = searchString.value.isNotEmpty
+            ? const GiftLoadingOption.bySearch()
+            : const GiftLoadingOption.byLocation();
 
         //* set giftListState to loading
         giftList.value = const GiftListState.loading();
@@ -108,8 +109,10 @@ class GiftRequestController extends GetxController {
 
     GiftListDtoState newGiftDto = const GiftListDtoState.loading();
 
-    final currentUserId =
-        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
+    final currentUserId = Get.find<AuthController>()
+        .currentUserInfo
+        .value
+        .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
     try {
       if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {

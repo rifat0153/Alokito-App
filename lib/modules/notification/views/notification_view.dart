@@ -1,4 +1,5 @@
 import 'package:alokito_new/core/date/date_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -42,25 +43,15 @@ class NotificationView extends StatelessWidget {
           data: (notificationList) {
             return Expanded(
               child: ListView.builder(
+                controller: controller.scrollController,
                 padding: EdgeInsets.zero,
-                itemCount: notificationList.length,
+                itemCount: controller.loading.value && !controller.firstFetch.value
+                    ? notificationList.length + 1
+                    : notificationList.length,
                 itemBuilder: (_, i) {
-                  // if (notificationList[i].notificationType == 'giftRequest') {
-                  //   return GiftNotificationView(
-                  //     key: ValueKey(notificationList[i].createdAt),
-                  //     notification: notificationList[i],
-                  //   );
-                  // }
-                  // if (notificationList[i].notificationType == 'giftAskRequest') {}
-                  // if (notificationList[i].notificationType == 'text') {
-                  //   return TextNotificationWidget(
-                  //     key: ValueKey(notificationList[i].createdAt),
-                  //     notification: notificationList[i],
-                  //   );
-                  // }
-
-                  // return const Text('data');
-
+                  if (controller.loading.value && !controller.firstFetch.value && i == notificationList.length) {
+                    return const CupertinoActivityIndicator(radius: 15);
+                  }
                   return NotificationTile(
                     key: ValueKey(i),
                     notification: notificationList[i],
@@ -72,7 +63,7 @@ class NotificationView extends StatelessWidget {
           empty: () => const Center(
                 child: Text('No Notification'),
               ),
-          loading: () => const CircularProgressIndicator(),
+          loading: () => const LinearProgressIndicator(),
           error: (err) => Text(err)),
     );
   }
@@ -108,17 +99,19 @@ class NotificationTile extends StatelessWidget {
               // Todo
             },
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
+                  height: 100,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                   ),
                   child: Row(
                     children: [
-                      Expanded(
-                        flex: 2,
+                      SizedBox(
+                        width: 100,
+                        height: 100,
                         child: Image.network(
                           notification.giftAskRequestDoc!.giftAsk.imageUrl ?? '',
                           fit: BoxFit.cover,
@@ -128,16 +121,17 @@ class NotificationTile extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        flex: 8,
                         child: Padding(
                           padding: const EdgeInsets.all(8),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               MyText(
                                 notification.text,
                                 maxLines: 2,
                               ),
+                              const Spacer(),
                               MyText('$timeDiff ago', fontSize: 15.sp),
                             ],
                           ),
@@ -161,24 +155,25 @@ class NotificationTile extends StatelessWidget {
               // Todo
             },
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
+                  height: 100,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                   ),
                   child: Row(
                     children: [
-                      Expanded(
-                        flex: 2,
+                      SizedBox(
+                        width: 100,
+                        height: 100,
                         child: Image.network(
                           notification.giftRequestDoc!.gift.imageUrl,
                           fit: BoxFit.cover,
                         ),
                       ),
                       Expanded(
-                        flex: 8,
                         child: Padding(
                           padding: const EdgeInsets.all(8),
                           child: Column(
@@ -188,6 +183,7 @@ class NotificationTile extends StatelessWidget {
                                 notification.text,
                                 maxLines: 2,
                               ),
+                              const Spacer(),
                               MyText('$timeDiff ago', fontSize: 15.sp),
                             ],
                           ),

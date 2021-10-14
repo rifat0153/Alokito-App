@@ -24,6 +24,8 @@ class NotificationService extends GetConnect implements BaseNotificationService 
     int limit = 10,
   }) async {
     print('Notification Service called');
+    print(page);
+    print(limit);
 
     try {
       final response = await get(
@@ -32,6 +34,7 @@ class NotificationService extends GetConnect implements BaseNotificationService 
       ).timeout(const Duration(seconds: myTimeout));
 
       // print(response.body!.results.length);
+
 
       return MyNotificationListStatus.data(response.body!.results);
     } on HttpException catch (e) {
