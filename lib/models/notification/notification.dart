@@ -15,8 +15,8 @@ class MyNotification with _$MyNotification {
     String? user,
     required String relatedDocId,
     required String notificationType,
-    @JsonKey(fromJson: giftRequestDocFromJson) GiftRequest? giftDoc,
-    @JsonKey(fromJson: giftAskRequestDocFromJson) GiftAskRequest? giftAskDoc,
+    @JsonKey(fromJson: giftRequestDocFromJson) GiftRequest? giftRequestDoc,
+    @JsonKey(fromJson: giftAskRequestDocFromJson) GiftAskRequest? giftAskRequestDoc,
     required DateTime createdAt,
   }) = _MyNotification;
 

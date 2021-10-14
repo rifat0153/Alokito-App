@@ -10,6 +10,7 @@ class NotificationController extends GetxController {
 
   final NotificationService notificationService;
 
+  final firstFetch = true.obs;
   final notificationList = const MyNotificationListStatus.loading().obs;
 
   @override

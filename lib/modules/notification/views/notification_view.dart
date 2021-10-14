@@ -1,12 +1,11 @@
-import 'package:alokito_new/models/notification/notification.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../models/notification/notification.dart';
 import '../../../shared/skeleton_widget.dart';
 import '../../../shared/widget/my_text.dart';
-import '../gift_giver/gift_giver_notification_view.dart';
 import '../controllers/notification_controller.dart';
-import '../widgets/text_notification_widget.dart';
 
 class NotificationView extends StatelessWidget {
   NotificationView({Key? key}) : super(key: key);
@@ -85,9 +84,63 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (notification.notificationType == 'giftRequest') {
+      return _buildGiftRequestNotificationTile(notification, context);
+    }
+    if (notification.notificationType == 'giftAskRequest') {}
+    if (notification.notificationType == 'text') {}
+
     return ListTile(
       leading: Text(notification.notificationType),
       title: Text(notification.relatedDocId),
     );
+  }
+
+  Widget _buildGiftRequestNotificationTile(MyNotification notification, BuildContext context) {
+    return notification.giftRequestDoc != null
+        ? GestureDetector(
+            onTap: () {
+              // Todo
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 85,
+                        width: 80,
+                        child: Image.network(
+                          notification.giftRequestDoc!.gift.imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MyText(
+                                notification.text,
+                                maxLines: 2,
+                              ),
+                              MyText('7 hours ago', fontSize: 15.sp),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
+        : Container();
   }
 }

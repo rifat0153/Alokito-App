@@ -13,9 +13,10 @@ _$_MyNotification _$_$_MyNotificationFromJson(Map<String, dynamic> json) {
     user: json['user'] as String?,
     relatedDocId: json['relatedDocId'] as String,
     notificationType: json['notificationType'] as String,
-    giftDoc: giftRequestDocFromJson(json['giftDoc'] as Map<String, dynamic>?),
-    giftAskDoc:
-        giftAskRequestDocFromJson(json['giftAskDoc'] as Map<String, dynamic>?),
+    giftRequestDoc:
+        giftRequestDocFromJson(json['giftRequestDoc'] as Map<String, dynamic>?),
+    giftAskRequestDoc: giftAskRequestDocFromJson(
+        json['giftAskRequestDoc'] as Map<String, dynamic>?),
     createdAt: DateTime.parse(json['createdAt'] as String),
   );
 }
@@ -27,7 +28,7 @@ Map<String, dynamic> _$_$_MyNotificationToJson(_$_MyNotification instance) =>
       'user': instance.user,
       'relatedDocId': instance.relatedDocId,
       'notificationType': instance.notificationType,
-      'giftDoc': instance.giftDoc,
-      'giftAskDoc': instance.giftAskDoc,
+      'giftRequestDoc': instance.giftRequestDoc,
+      'giftAskRequestDoc': instance.giftAskRequestDoc,
       'createdAt': instance.createdAt.toIso8601String(),
     };
