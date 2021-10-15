@@ -1,10 +1,9 @@
-import 'package:alokito_new/di/firebase_di.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../models/notification/notification.dart';
+import '../../../shared/my_bottomsheets.dart';
+import '../../auth/controllers/auth_controller.dart';
 import '../service/notification_service.dart';
 
 class NotificationController extends GetxController {
@@ -28,7 +27,17 @@ class NotificationController extends GetxController {
     scrollController.addListener(() async {
       if (scrollController.position.atEdge && !allFethced.value) {
         if (scrollController.position.pixels != 0) {
+          final pixels = scrollController.position.maxScrollExtent;
+
+          // Get new notification
           await getNotifications();
+
+          // Animate down the new laoded notification list
+          await scrollController.animateTo(
+            pixels + 320,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeIn,
+          );
         }
       }
     });
@@ -41,6 +50,7 @@ class NotificationController extends GetxController {
     await getNotifications();
   }
 
+  // Retrive notifications
   Future<void> getNotifications() async {
     loading.value = true;
     page.value = page.value + 1;
@@ -56,9 +66,6 @@ class NotificationController extends GetxController {
 
     if (firstFetch.value) {
       notificationList.value = res;
-
-      firstFetch.value = false;
-      print(res.maybeWhen(data: (data) => data, orElse: () => 'Not data'));
     } else {
       final List<MyNotification> existingList =
           notificationList.value.maybeWhen(data: (list) => list, orElse: () => []);
@@ -78,10 +85,14 @@ class NotificationController extends GetxController {
 
             notificationList.value = MyNotificationListStatus.data(newList);
           },
-          error: (e) => {MySnackbar.showErrorSnackbar(e)},
+          error: (e) {
+            MySnackbar.showErrorSnackbar(e);
+            page.value = page.value - 1;
+          },
           orElse: () {});
     }
 
+    firstFetch.value = false;
     loading.value = false;
   }
 }

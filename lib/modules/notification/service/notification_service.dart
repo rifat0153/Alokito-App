@@ -35,16 +35,20 @@ class NotificationService extends GetConnect implements BaseNotificationService 
 
       // print(response.body!.results.length);
 
-
-      return MyNotificationListStatus.data(response.body!.results);
+      return response.body != null
+          ? MyNotificationListStatus.data(response.body!.results)
+          : const MyNotificationListStatus.error('Could not reach server. Please check your internet connection');
     } on HttpException catch (e) {
       return MyNotificationListStatus.error(e.message);
+    } on SocketException catch (_) {
+      return const MyNotificationListStatus.error('Could not reach server. Please check your internet connection');
     } on IOException catch (_) {
       return const MyNotificationListStatus.error('Could not reach server. Please check your internet connection');
     } catch (e, s) {
       print(e);
       print(s);
-      return const MyNotificationListStatus.error('An unexpected error occurred');
+      return const MyNotificationListStatus.error(
+          'An unexpected error occurred, make sure you have internet connection turned on');
     }
   }
 }
