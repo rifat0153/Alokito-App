@@ -21,7 +21,7 @@ class NotificationController extends GetxController {
   final ScrollController scrollController = ScrollController();
 
   @override
-  void onInit() {
+  Future onInit() async {
     super.onInit();
 
     scrollController.addListener(() async {
@@ -41,13 +41,15 @@ class NotificationController extends GetxController {
         }
       }
     });
+
+    await getNotifications();
   }
 
   @override
-  Future onReady() async {
-    super.onReady();
+  void onClose() {
+    super.onClose();
 
-    await getNotifications();
+    scrollController.dispose();
   }
 
   // Retrive notifications
