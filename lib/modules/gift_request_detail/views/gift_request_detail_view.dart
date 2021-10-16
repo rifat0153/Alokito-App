@@ -1,11 +1,15 @@
-import 'package:alokito_new/modules/gift_request_detail/widgets/requester_detail_widget.dart';
-import 'package:alokito_new/shared/skeleton_widget.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
+import 'package:alokito_new/modules/gift_request_detail/widgets/gift_request_decision_widget.dart';
+import 'package:alokito_new/modules/gift_request_detail/widgets/gift_request_map_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/modules/gift_request_detail/controllers/gift_request_detail_controller.dart';
+import '../../../models/gift_request/gift_request.dart';
+import '../../../shared/skeleton_widget.dart';
+import '../../../shared/widget/my_text.dart';
+import '../controllers/gift_request_detail_controller.dart';
+import '../widgets/gift_request_comment_widget.dart';
+import '../widgets/gift_request_location_gift_details_widget.dart';
+import '../widgets/gift_requester_detail_widget.dart';
 
 class GiftRequestDetailView extends StatelessWidget {
   GiftRequestDetailView({
@@ -29,10 +33,19 @@ class GiftRequestDetailView extends StatelessWidget {
           ? const Center(
               child: Text('No Request Data Found'),
             )
-          : Column(
-              children: [
-                RequesterDetailWidget(giftRequest: giftRequest),
-              ],
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: GiftRequesterDetailWidget(giftRequest: giftRequest),
+                  ),
+                  GiftCommentWidget(giftRequest: giftRequest),
+                  GiftRequesteLocationAndGiftDetailsWidget(giftRequest: giftRequest!),
+                  GiftRequestDetailDecisionWidget(giftRequest: giftRequest!),
+                  GiftRequestDetailMapWidget(giftRequest: giftRequest!),
+                ],
+              ),
             ),
     );
   }

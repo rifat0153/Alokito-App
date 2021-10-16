@@ -8,8 +8,8 @@ import '../../gift_request/widgets/message_popup_widget.dart';
 import '../controllers/gift_detail_controller.dart';
 import 'request_delete_widget.dart';
 
-class DecisionWidget extends StatelessWidget {
-  const DecisionWidget(
+class GiftDetailDecisionWidget extends StatelessWidget {
+  const GiftDetailDecisionWidget(
       {Key? key, required this.authController, required this.gift, required this.giftRecieverDetailController})
       : super(key: key);
 

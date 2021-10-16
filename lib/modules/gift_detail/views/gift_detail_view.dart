@@ -16,7 +16,7 @@ import '../../gift/widgets/user_joining_distance_widget.dart';
 import '../../gift_request/widgets/gift_detail_map_widget.dart';
 import '../controllers/gift_detail_controller.dart';
 import '../services/gift_detail_service.dart';
-import '../widgets/decision_widget.dart';
+import '../widgets/gift_detail_decision_widget.dart';
 import '../widgets/gift_details_widget.dart';
 
 class GiftRequesterDetailsView extends StatelessWidget {
@@ -116,7 +116,7 @@ class _BuildBody extends StatelessWidget {
             ),
           ),
         ),
-        DecisionWidget(
+        GiftDetailDecisionWidget(
           authController: authController,
           gift: gift,
           giftRecieverDetailController: giftRecieverDetailController,

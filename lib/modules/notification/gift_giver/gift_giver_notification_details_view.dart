@@ -116,10 +116,10 @@ class _DecisionWidget extends StatelessWidget {
         ),
         canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.gift.user!.userName}',
             textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
-        canceledByRequester: () =>
-            MyText('r Request Canceled by You', textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
-        accepted: () =>
-            MyText('r Gift Accepted by You', textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
+        canceledByRequester: () => MyText('r Request Canceled by You',
+            textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
+        accepted: () => MyText('r Gift Accepted by You',
+            textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
         delivered: () => giftReceiver.messageForGiverSent == true
             ? Column(
                 children: [
@@ -161,7 +161,8 @@ class _DecisionWidget extends StatelessWidget {
               maxLines: 2,
               textAlign: TextAlign.center,
             ),
-        canceledByGiver: () => MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        canceledByGiver: () =>
+            MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
         canceledByRequester: () => Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -370,7 +371,7 @@ class _RequesterDetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: Get.width * 0.7,
           height: 60,
           child: Row(
