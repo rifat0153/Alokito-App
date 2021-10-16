@@ -1,18 +1,22 @@
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:alokito_new/modules/gift_request_detail/controllers/gift_request_detail_controller.dart';
 import 'package:alokito_new/modules/notification/gift_giver/widgets/feedback_widget.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class GiftRequestDetailDecisionWidget extends StatelessWidget {
-  const GiftRequestDetailDecisionWidget({
+  GiftRequestDetailDecisionWidget({
     Key? key,
     required this.giftRequest,
   }) : super(key: key);
 
   final GiftRequest giftRequest;
+
+  final GiftRequestDetailController controller = Get.find<GiftRequestDetailController>();
 
   @override
   Widget build(BuildContext context) {
@@ -106,15 +110,23 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
 
     return giftRequest.giftRequestStatus.when(
       // Pending
-      pending: () => MaterialButton(
-        onPressed: () {
-          
-        },
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        height: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        color: giftAskColor,
-        child: const MyText('Accept for confirmation', color: Colors.white),
+      pending: () => Obx(
+        () => controller.loading.value
+            ? const CupertinoActivityIndicator()
+            : MaterialButton(
+                onPressed: () {
+                  controller.updateGiftRequestStatus(
+                    giftRequest,
+                    'confirmed',
+                    const GiftRequestStatus.confirmed(),
+                  );
+                },
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                height: 0,
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                color: giftAskColor,
+                child: const MyText('Accept for confirmation', color: Colors.white),
+              ),
       ),
       // Confirmed
       confirmed: () => const MyText(

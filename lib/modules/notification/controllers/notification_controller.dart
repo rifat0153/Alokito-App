@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,6 +51,25 @@ class NotificationController extends GetxController {
     super.onClose();
 
     scrollController.dispose();
+  }
+
+  // Update Local Notification by GiftRequest Id
+  Future<void> updateLocalNotification(
+      {required GiftRequest giftRequest, required GiftRequestStatus status}) async {
+    final List<MyNotification> existingList = await notificationList.value.maybeWhen(
+      data: (list) => list,
+      orElse: () => [],
+    );
+
+    final updatedList = existingList.map((notif) {
+      if (notif.relatedDocId == giftRequest.id) {
+        return notif.copyWith(giftRequestDoc: notif.giftRequestDoc?.copyWith(giftRequestStatus: status));
+      } else {
+        return notif;
+      }
+    }).toList();
+
+    notificationList.value = MyNotificationListStatus.data(updatedList);
   }
 
   // Retrive notifications

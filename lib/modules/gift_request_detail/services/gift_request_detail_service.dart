@@ -13,26 +13,21 @@ abstract class BaseGiftRequestDetailService {
 
   Future<GiftRequestState> getGiftRequestById(String requestId);
 
-  Future<void> remove({
+  Future<void> updateStatus({
     required String status,
-    String? giftRequestId,
-    String? giftId,
-    String? requesterId,
+    required String giftRequestId,
   });
 }
 
 class GiftRequestDetailService extends GetConnect implements BaseGiftRequestDetailService {
   @override
-  Future<void> remove({
+  Future<void> updateStatus({
     required String status,
-    String? giftRequestId,
-    String? giftId,
-    String? requesterId,
+    required String giftRequestId,
   }) async {
     try {
       final body1 = {
-        'giftId': giftId,
-        'requester': requesterId,
+        'id': giftRequestId,
         'giftRequestStatus': status,
       };
 
@@ -48,6 +43,8 @@ class GiftRequestDetailService extends GetConnect implements BaseGiftRequestDeta
         return;
       }
     } catch (e, s) {
+      print(e);
+      print(s);
       throw MyException(exceptionFrom: 'GiftRequestDetailService');
     }
   }
