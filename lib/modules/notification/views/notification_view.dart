@@ -1,4 +1,5 @@
 import 'package:alokito_new/core/date/date_helper.dart';
+import 'package:alokito_new/modules/gift_request_detail/views/gift_request_detail_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,9 +28,6 @@ class NotificationView extends StatelessWidget {
         width: Get.width,
         child: Column(
           children: [
-            const SizedBox(
-              height: 50,
-            ),
             _buildNotificationTile(notificationController),
           ],
         ),
@@ -205,7 +203,7 @@ class NotificationTile extends StatelessWidget {
     return notification.giftRequestDoc != null
         ? GestureDetector(
             onTap: () {
-              // Todo
+              Get.toNamed(GiftRequestDetailView.route, arguments: notification.giftRequestDoc);
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
