@@ -25,8 +25,11 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
         .value
         .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
+    print(currentUserId);
+    print(controller.currentUserInfo?.id);
+
     //*************************** If its requester notification   ********************************
-    if (giftRequest.requester.id == currentUserId) {
+    if (giftRequest.requester.id == controller.currentUserInfo?.id) {
       return giftRequest.giftRequestStatus.when(
         // Pending
         pending: () => MaterialButton(
@@ -38,27 +41,45 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
           child: const MyText('r Cancel', color: Colors.white),
         ),
         // Confirmed
-        confirmed: () => Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MaterialButton(
-              onPressed: () {},
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-              height: 0,
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              color: giftAskColor,
-              child: const MyText('r Accept Gift', color: Colors.white),
-            ),
-            const SizedBox(width: 30),
-            MaterialButton(
-              onPressed: () {},
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-              height: 0,
-              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-              color: giftAskColor,
-              child: const MyText('r Cancel', color: Colors.white),
-            )
-          ],
+        confirmed: () => Obx(
+          () => controller.loading.value
+              ? const CircularProgressIndicator()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MaterialButton(
+                      onPressed: () {
+                        // Accept Gift by requester
+                        controller.updateGiftRequestStatus(
+                          giftRequest,
+                          'accepted',
+                          const GiftRequestStatus.confirmed(),
+                        );
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      height: 0,
+                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                      color: giftAskColor,
+                      child: const MyText('r Accept Gift', color: Colors.white),
+                    ),
+                    const SizedBox(width: 30),
+                    MaterialButton(
+                      onPressed: () {
+                        // Cancel GiftRequest by requester
+                        controller.updateGiftRequestStatus(
+                          giftRequest,
+                          'canceledByRequester',
+                          const GiftRequestStatus.canceledByRequester(),
+                        );
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      height: 0,
+                      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+                      color: giftAskColor,
+                      child: const MyText('r Cancel', color: Colors.white),
+                    )
+                  ],
+                ),
         ),
         // Canceled by giver
         canceledByGiver: () => MyText(

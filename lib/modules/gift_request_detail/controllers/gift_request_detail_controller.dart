@@ -1,4 +1,5 @@
 import 'package:alokito_new/models/gift_request/gift_request.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/gift_request_detail/services/gift_request_detail_service.dart';
 import 'package:alokito_new/modules/notification/controllers/notification_controller.dart';
@@ -10,12 +11,19 @@ class GiftRequestDetailController extends GetxController {
   GiftRequestDetailService giftRequestDetailService;
 
   final loading = false.obs;
+  LocalUser? currentUserInfo;
 
   @override
   Future onInit() async {
     super.onInit();
 
+    getLocalUserInfo();
     await getGiftRequestsByRequestId();
+  }
+
+  void getLocalUserInfo() {
+    currentUserInfo =
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
   }
 
   Future<void> getGiftRequestsByUserId() async {
@@ -28,7 +36,10 @@ class GiftRequestDetailController extends GetxController {
   }
 
   Future<void> updateGiftRequestStatus(
-      GiftRequest giftRequest, String status, GiftRequestStatus giftRequestStatus) async {
+    GiftRequest giftRequest,
+    String status,
+    GiftRequestStatus giftRequestStatus,
+  ) async {
     loading.value = true;
 
     await giftRequestDetailService.updateStatus(status: status, giftRequestId: giftRequest.id ?? '');
