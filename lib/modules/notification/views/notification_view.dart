@@ -75,9 +75,14 @@ class NotificationTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (notification.notificationType == 'giftRequest') {
+      print(notification.giftRequestDoc);
+      // return Text('Gift Request' + notification.giftRequestDoc!.id.toString());
       return _buildGiftRequestNotificationTile(notification, context);
     }
     if (notification.notificationType == 'giftAskRequest') {
+      print(notification.giftAskRequestDoc);
+
+      // return Text('Gift Ask Request' + notification.giftAskRequestDoc!.id.toString());
       return _buildGiftAskRequestNotificationTile(notification, context);
     }
     if (notification.notificationType == 'text') {}
@@ -108,7 +113,7 @@ class NotificationTile extends StatelessWidget {
                         width: 100,
                         height: 100,
                         child: Image.asset(
-                          notification.giftAskRequestDoc!.giftAsk.imageUrl ?? '',
+                          '',
                           fit: BoxFit.cover,
                           errorBuilder: (_, __, s) {
                             return SizedBox();

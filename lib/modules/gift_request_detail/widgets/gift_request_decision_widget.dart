@@ -1,12 +1,12 @@
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_request_detail/controllers/gift_request_detail_controller.dart';
-import 'package:alokito_new/modules/notification/gift_giver/widgets/feedback_widget.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../models/gift_request/gift_request.dart';
+import '../../../shared/config.dart';
+import '../../../shared/widget/my_text.dart';
+import '../../notification/gift_giver/widgets/feedback_widget.dart';
+import '../controllers/gift_request_detail_controller.dart';
 
 class GiftRequestDetailDecisionWidget extends StatelessWidget {
   GiftRequestDetailDecisionWidget({
@@ -20,14 +20,6 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUserId = Get.find<AuthController>()
-        .currentUserInfo
-        .value
-        .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
-
-    print(currentUserId);
-    print(controller.currentUserInfo?.id);
-
     //*************************** If its requester notification   ********************************
     if (giftRequest.requester.id == controller.currentUserInfo?.id) {
       return giftRequest.giftRequestStatus.when(
@@ -43,7 +35,7 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
         // Confirmed
         confirmed: () => Obx(
           () => controller.loading.value
-              ? const CircularProgressIndicator()
+              ? const CupertinoActivityIndicator(radius: 14)
               : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -177,14 +169,22 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
         children: [
           MyText('Gift Accepted by ${giftRequest.requester.userName}',
               textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
-          MaterialButton(
-            onPressed: () {},
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            height: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            color: giftAskColor,
-            child: const MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+          Obx(() => controller.loading.value
+              ? const CircularProgressIndicator()
+              : MaterialButton(
+                  onPressed: () {
+                    controller.updateGiftRequestStatus(
+                      giftRequest,
+                      'delivered',
+                      const GiftRequestStatus.delivered(),
+                    );
+                  },
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                  height: 0,
+                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  color: giftAskColor,
+                  child: const MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
+                )),
         ],
       ),
       // Delivered
