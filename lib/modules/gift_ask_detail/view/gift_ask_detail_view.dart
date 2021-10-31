@@ -30,7 +30,7 @@ class GiftAskDetailView extends StatelessWidget {
           foregroundColor: appBarColor,
           elevation: 5,
           title: Text(
-            'Gift Request 2 - ${convertGiftAskType(giftAskType: giftAsk.giftAskType)} ',
+            'Gift Request 22 - ${convertGiftAskType(giftAskType: giftAsk.giftAskType)} ',
             style: const TextStyle(color: Colors.black),
           ),
         ),
@@ -71,7 +71,7 @@ class GiftAskDetailView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(giftAsk.note, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                  Text(giftAsk.title.toString(), style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
                 ],
               )),
           _RequestForAndDateWidget(giftAsk: giftAsk, date: 'date'),

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gift.dart';
 
@@ -53,7 +54,7 @@ class _$GiftTearOff {
     );
   }
 
-  Gift fromJson(Map<String, Object> json) {
+  Gift fromJson(Map<String, Object?> json) {
     return Gift.fromJson(json);
   }
 }
@@ -338,8 +339,7 @@ class _$_Gift implements _Gift {
       required this.imageUrl,
       this.distance});
 
-  factory _$_Gift.fromJson(Map<String, dynamic> json) =>
-      _$_$_GiftFromJson(json);
+  factory _$_Gift.fromJson(Map<String, dynamic> json) => _$$_GiftFromJson(json);
 
   @override
   final String? id;
@@ -378,60 +378,48 @@ class _$_Gift implements _Gift {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Gift &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _Gift &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.listingForDays, listingForDays) ||
-                const DeepCollectionEquality()
-                    .equals(other.listingForDays, listingForDays)) &&
+                other.listingForDays == listingForDays) &&
             (identical(other.canLeaveOutside, canLeaveOutside) ||
-                const DeepCollectionEquality()
-                    .equals(other.canLeaveOutside, canLeaveOutside)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+                other.canLeaveOutside == canLeaveOutside) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.giftDetails, giftDetails) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftDetails, giftDetails)) &&
+                other.giftDetails == giftDetails) &&
             (identical(other.giftType, giftType) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftType, giftType)) &&
+                other.giftType == giftType) &&
             (identical(other.pickUpTime, pickUpTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.pickUpTime, pickUpTime)) &&
+                other.pickUpTime == pickUpTime) &&
             (identical(other.geometry, geometry) ||
-                const DeepCollectionEquality()
-                    .equals(other.geometry, geometry)) &&
-            (identical(other.area, area) ||
-                const DeepCollectionEquality().equals(other.area, area)) &&
+                other.geometry == geometry) &&
+            (identical(other.area, area) || other.area == area) &&
             (identical(other.location, location) ||
-                const DeepCollectionEquality()
-                    .equals(other.location, location)) &&
+                other.location == location) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                other.imageUrl == imageUrl) &&
             (identical(other.distance, distance) ||
-                const DeepCollectionEquality()
-                    .equals(other.distance, distance)));
+                other.distance == distance));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(listingForDays) ^
-      const DeepCollectionEquality().hash(canLeaveOutside) ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(giftDetails) ^
-      const DeepCollectionEquality().hash(giftType) ^
-      const DeepCollectionEquality().hash(pickUpTime) ^
-      const DeepCollectionEquality().hash(geometry) ^
-      const DeepCollectionEquality().hash(area) ^
-      const DeepCollectionEquality().hash(location) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(distance);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      listingForDays,
+      canLeaveOutside,
+      userId,
+      user,
+      giftDetails,
+      giftType,
+      pickUpTime,
+      geometry,
+      area,
+      location,
+      imageUrl,
+      distance);
 
   @JsonKey(ignore: true)
   @override
@@ -440,7 +428,7 @@ class _$_Gift implements _Gift {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GiftToJson(this);
+    return _$$_GiftToJson(this);
   }
 }
 
@@ -465,33 +453,33 @@ abstract class _Gift implements Gift {
   factory _Gift.fromJson(Map<String, dynamic> json) = _$_Gift.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  int get listingForDays => throw _privateConstructorUsedError;
+  int get listingForDays;
   @override
-  bool get canLeaveOutside => throw _privateConstructorUsedError;
+  bool get canLeaveOutside;
   @override
-  String get userId => throw _privateConstructorUsedError;
+  String get userId;
   @override
   @JsonKey(fromJson: localUserFromMap, toJson: localUserToMap)
-  LocalUser? get user => throw _privateConstructorUsedError;
+  LocalUser? get user;
   @override
-  String get giftDetails => throw _privateConstructorUsedError;
+  String get giftDetails;
   @override
-  String get giftType => throw _privateConstructorUsedError;
+  String get giftType;
   @override
-  DateTime get pickUpTime => throw _privateConstructorUsedError;
+  DateTime get pickUpTime;
   @override
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
-  Geometry get geometry => throw _privateConstructorUsedError;
+  Geometry get geometry;
   @override
-  String get area => throw _privateConstructorUsedError;
+  String get area;
   @override
-  String get location => throw _privateConstructorUsedError;
+  String get location;
   @override
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get imageUrl;
   @override
-  double? get distance => throw _privateConstructorUsedError;
+  double? get distance;
   @override
   @JsonKey(ignore: true)
   _$GiftCopyWith<_Gift> get copyWith => throw _privateConstructorUsedError;
@@ -522,6 +510,12 @@ mixin _$GiftLoadingOption {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? byLocation,
     TResult Function()? bySearch,
@@ -532,6 +526,12 @@ mixin _$GiftLoadingOption {
   TResult map<TResult extends Object?>({
     required TResult Function(ByLocation value) byLocation,
     required TResult Function(BySearch value) bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -590,7 +590,8 @@ class _$ByLocation implements ByLocation {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ByLocation);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ByLocation);
   }
 
   @override
@@ -603,6 +604,15 @@ class _$ByLocation implements ByLocation {
     required TResult Function() bySearch,
   }) {
     return byLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+  }) {
+    return byLocation?.call();
   }
 
   @override
@@ -625,6 +635,15 @@ class _$ByLocation implements ByLocation {
     required TResult Function(BySearch value) bySearch,
   }) {
     return byLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+  }) {
+    return byLocation?.call(this);
   }
 
   @override
@@ -673,7 +692,8 @@ class _$BySearch implements BySearch {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is BySearch);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is BySearch);
   }
 
   @override
@@ -686,6 +706,15 @@ class _$BySearch implements BySearch {
     required TResult Function() bySearch,
   }) {
     return bySearch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+  }) {
+    return bySearch?.call();
   }
 
   @override
@@ -708,6 +737,15 @@ class _$BySearch implements BySearch {
     required TResult Function(BySearch value) bySearch,
   }) {
     return bySearch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+  }) {
+    return bySearch?.call(this);
   }
 
   @override
@@ -767,6 +805,14 @@ mixin _$GiftListState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Gift> giftList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Gift> giftList)? data,
     TResult Function()? empty,
@@ -781,6 +827,14 @@ mixin _$GiftListState {
     required TResult Function(Empty value) empty,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -856,15 +910,14 @@ class _$Data implements Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Data &&
-            (identical(other.giftList, giftList) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftList, giftList)));
+        (other.runtimeType == runtimeType &&
+            other is Data &&
+            const DeepCollectionEquality().equals(other.giftList, giftList));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftList);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(giftList));
 
   @JsonKey(ignore: true)
   @override
@@ -880,6 +933,17 @@ class _$Data implements Data {
     required TResult Function(Object error) error,
   }) {
     return data(giftList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Gift> giftList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) {
+    return data?.call(giftList);
   }
 
   @override
@@ -910,6 +974,17 @@ class _$Data implements Data {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
     TResult Function(Empty value)? empty,
@@ -927,7 +1002,7 @@ class _$Data implements Data {
 abstract class Data implements GiftListState {
   const factory Data(List<Gift> giftList) = _$Data;
 
-  List<Gift> get giftList => throw _privateConstructorUsedError;
+  List<Gift> get giftList;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -960,7 +1035,8 @@ class _$Empty implements Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Empty);
   }
 
   @override
@@ -975,6 +1051,17 @@ class _$Empty implements Empty {
     required TResult Function(Object error) error,
   }) {
     return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Gift> giftList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) {
+    return empty?.call();
   }
 
   @override
@@ -1001,6 +1088,17 @@ class _$Empty implements Empty {
     required TResult Function(Error value) error,
   }) {
     return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return empty?.call(this);
   }
 
   @override
@@ -1051,7 +1149,8 @@ class _$Loading implements Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Loading);
   }
 
   @override
@@ -1066,6 +1165,17 @@ class _$Loading implements Loading {
     required TResult Function(Object error) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Gift> giftList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -1092,6 +1202,17 @@ class _$Loading implements Loading {
     required TResult Function(Error value) error,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -1159,14 +1280,14 @@ class _$Error implements Error {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Error &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is Error &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -1182,6 +1303,17 @@ class _$Error implements Error {
     required TResult Function(Object error) error,
   }) {
     return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Gift> giftList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) {
+    return error?.call(this.error);
   }
 
   @override
@@ -1212,6 +1344,17 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
     TResult Function(Empty value)? empty,
@@ -1229,7 +1372,7 @@ class _$Error implements Error {
 abstract class Error implements GiftListState {
   const factory Error(Object error) = _$Error;
 
-  Object get error => throw _privateConstructorUsedError;
+  Object get error;
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }
@@ -1268,6 +1411,13 @@ mixin _$GiftListDtoState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftDto giftDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GiftDto giftDto)? success,
     TResult Function(Object e)? error,
@@ -1280,6 +1430,13 @@ mixin _$GiftListDtoState {
     required TResult Function(DtoSuccess value) success,
     required TResult Function(DtoError value) error,
     required TResult Function(DtoLoading value) loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1356,14 +1513,13 @@ class _$DtoSuccess implements DtoSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DtoSuccess &&
-            (identical(other.giftDto, giftDto) ||
-                const DeepCollectionEquality().equals(other.giftDto, giftDto)));
+        (other.runtimeType == runtimeType &&
+            other is DtoSuccess &&
+            (identical(other.giftDto, giftDto) || other.giftDto == giftDto));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftDto);
+  int get hashCode => Object.hash(runtimeType, giftDto);
 
   @JsonKey(ignore: true)
   @override
@@ -1378,6 +1534,16 @@ class _$DtoSuccess implements DtoSuccess {
     required TResult Function() loading,
   }) {
     return success(giftDto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftDto giftDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+  }) {
+    return success?.call(giftDto);
   }
 
   @override
@@ -1406,6 +1572,16 @@ class _$DtoSuccess implements DtoSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DtoSuccess value)? success,
     TResult Function(DtoError value)? error,
@@ -1422,7 +1598,7 @@ class _$DtoSuccess implements DtoSuccess {
 abstract class DtoSuccess implements GiftListDtoState {
   const factory DtoSuccess(GiftDto giftDto) = _$DtoSuccess;
 
-  GiftDto get giftDto => throw _privateConstructorUsedError;
+  GiftDto get giftDto;
   @JsonKey(ignore: true)
   $DtoSuccessCopyWith<DtoSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1473,14 +1649,14 @@ class _$DtoError implements DtoError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DtoError &&
-            (identical(other.e, e) ||
-                const DeepCollectionEquality().equals(other.e, e)));
+        (other.runtimeType == runtimeType &&
+            other is DtoError &&
+            const DeepCollectionEquality().equals(other.e, e));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(e);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(e));
 
   @JsonKey(ignore: true)
   @override
@@ -1495,6 +1671,16 @@ class _$DtoError implements DtoError {
     required TResult Function() loading,
   }) {
     return error(e);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftDto giftDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+  }) {
+    return error?.call(e);
   }
 
   @override
@@ -1523,6 +1709,16 @@ class _$DtoError implements DtoError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DtoSuccess value)? success,
     TResult Function(DtoError value)? error,
@@ -1539,7 +1735,7 @@ class _$DtoError implements DtoError {
 abstract class DtoError implements GiftListDtoState {
   const factory DtoError(Object e) = _$DtoError;
 
-  Object get e => throw _privateConstructorUsedError;
+  Object get e;
   @JsonKey(ignore: true)
   $DtoErrorCopyWith<DtoError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1575,7 +1771,8 @@ class _$DtoLoading implements DtoLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DtoLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DtoLoading);
   }
 
   @override
@@ -1589,6 +1786,16 @@ class _$DtoLoading implements DtoLoading {
     required TResult Function() loading,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftDto giftDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -1613,6 +1820,16 @@ class _$DtoLoading implements DtoLoading {
     required TResult Function(DtoLoading value) loading,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+  }) {
+    return loading?.call(this);
   }
 
   @override

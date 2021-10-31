@@ -12,17 +12,22 @@ enum GiftAskType { food, medicine, others }
 
 @freezed
 class GiftAsk with _$GiftAsk {
+
+  @JsonSerializable(explicitToJson: true)
   const factory GiftAsk({
     String? id,
     @Default(false) bool giftCompleted,
     @Default(false) bool giftGiven,
     @Default('small family package') String familyType,
-    @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap) required LocalUser user,
+    // @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+     required LocalUser user,
+    String? title,
     required int requestForNoOfPeople,
     required String note,
     String? imageUrl,
     @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson) required GiftAskType giftAskType,
-    @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap) required Geometry geometry,
+    // @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap) 
+    required Geometry geometry,
     required String area,
     required String location,
     // @Default('Default Title') String giftTitle,

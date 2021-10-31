@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gift_request.dart';
 
@@ -47,7 +48,7 @@ class _$GiftRequestTearOff {
     );
   }
 
-  GiftRequest fromJson(Map<String, Object> json) {
+  GiftRequest fromJson(Map<String, Object?> json) {
     return GiftRequest.fromJson(json);
   }
 }
@@ -292,7 +293,7 @@ class _$_GiftRequest implements _GiftRequest {
       required this.createdAt});
 
   factory _$_GiftRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_GiftRequestFromJson(json);
+      _$$_GiftRequestFromJson(json);
 
   @override
   final String? id;
@@ -326,47 +327,37 @@ class _$_GiftRequest implements _GiftRequest {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GiftRequest &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.giverId, giverId) ||
-                const DeepCollectionEquality()
-                    .equals(other.giverId, giverId)) &&
-            (identical(other.comment, comment) ||
-                const DeepCollectionEquality()
-                    .equals(other.comment, comment)) &&
+        (other.runtimeType == runtimeType &&
+            other is _GiftRequest &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.giverId, giverId) || other.giverId == giverId) &&
+            (identical(other.comment, comment) || other.comment == comment) &&
             (identical(
                     other.messageForRequesterSent, messageForRequesterSent) ||
-                const DeepCollectionEquality().equals(
-                    other.messageForRequesterSent, messageForRequesterSent)) &&
+                other.messageForRequesterSent == messageForRequesterSent) &&
             (identical(other.messageForGiverSent, messageForGiverSent) ||
-                const DeepCollectionEquality()
-                    .equals(other.messageForGiverSent, messageForGiverSent)) &&
+                other.messageForGiverSent == messageForGiverSent) &&
             (identical(other.giftRequestStatus, giftRequestStatus) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftRequestStatus, giftRequestStatus)) &&
-            (identical(other.gift, gift) ||
-                const DeepCollectionEquality().equals(other.gift, gift)) &&
+                other.giftRequestStatus == giftRequestStatus) &&
+            (identical(other.gift, gift) || other.gift == gift) &&
             (identical(other.requester, requester) ||
-                const DeepCollectionEquality()
-                    .equals(other.requester, requester)) &&
+                other.requester == requester) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(giverId) ^
-      const DeepCollectionEquality().hash(comment) ^
-      const DeepCollectionEquality().hash(messageForRequesterSent) ^
-      const DeepCollectionEquality().hash(messageForGiverSent) ^
-      const DeepCollectionEquality().hash(giftRequestStatus) ^
-      const DeepCollectionEquality().hash(gift) ^
-      const DeepCollectionEquality().hash(requester) ^
-      const DeepCollectionEquality().hash(createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      giverId,
+      comment,
+      messageForRequesterSent,
+      messageForGiverSent,
+      giftRequestStatus,
+      gift,
+      requester,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -375,7 +366,7 @@ class _$_GiftRequest implements _GiftRequest {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GiftRequestToJson(this);
+    return _$$_GiftRequestToJson(this);
   }
 }
 
@@ -398,26 +389,26 @@ abstract class _GiftRequest implements GiftRequest {
       _$_GiftRequest.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get giverId => throw _privateConstructorUsedError;
+  String? get giverId;
   @override
-  String get comment => throw _privateConstructorUsedError;
+  String get comment;
   @override
-  bool get messageForRequesterSent => throw _privateConstructorUsedError;
+  bool get messageForRequesterSent;
   @override
-  bool get messageForGiverSent => throw _privateConstructorUsedError;
+  bool get messageForGiverSent;
   @override
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
-  GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
+  GiftRequestStatus get giftRequestStatus;
   @override
   @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
-  Gift get gift => throw _privateConstructorUsedError;
+  Gift get gift;
   @override
   @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
-  LocalUser get requester => throw _privateConstructorUsedError;
+  LocalUser get requester;
   @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$GiftRequestCopyWith<_GiftRequest> get copyWith =>
@@ -425,7 +416,7 @@ abstract class _GiftRequest implements GiftRequest {
 }
 
 GiftRequestStatus _$GiftRequestStatusFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
+  switch (json['runtimeType'] as String?) {
     case 'pending':
       return Pending.fromJson(json);
     case 'confirmed':
@@ -440,7 +431,8 @@ GiftRequestStatus _$GiftRequestStatusFromJson(Map<String, dynamic> json) {
       return Delivered.fromJson(json);
 
     default:
-      throw FallThroughError();
+      throw CheckedFromJsonException(json, 'runtimeType', 'GiftRequestStatus',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -472,7 +464,7 @@ class _$GiftRequestStatusTearOff {
     return const Delivered();
   }
 
-  GiftRequestStatus fromJson(Map<String, Object> json) {
+  GiftRequestStatus fromJson(Map<String, Object?> json) {
     return GiftRequestStatus.fromJson(json);
   }
 }
@@ -490,6 +482,16 @@ mixin _$GiftRequestStatus {
     required TResult Function() canceledByRequester,
     required TResult Function() accepted,
     required TResult Function() delivered,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? pending,
+    TResult Function()? confirmed,
+    TResult Function()? canceledByGiver,
+    TResult Function()? canceledByRequester,
+    TResult Function()? accepted,
+    TResult Function()? delivered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -511,6 +513,16 @@ mixin _$GiftRequestStatus {
     required TResult Function(CanceledByRequester value) canceledByRequester,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Delivered value) delivered,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Pending value)? pending,
+    TResult Function(Confirmed value)? confirmed,
+    TResult Function(CanceledByGiver value)? canceledByGiver,
+    TResult Function(CanceledByRequester value)? canceledByRequester,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Delivered value)? delivered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -566,7 +578,7 @@ class _$Pending implements Pending {
   const _$Pending();
 
   factory _$Pending.fromJson(Map<String, dynamic> json) =>
-      _$_$PendingFromJson(json);
+      _$$PendingFromJson(json);
 
   @override
   String toString() {
@@ -575,7 +587,8 @@ class _$Pending implements Pending {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Pending);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Pending);
   }
 
   @override
@@ -592,6 +605,19 @@ class _$Pending implements Pending {
     required TResult Function() delivered,
   }) {
     return pending();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? pending,
+    TResult Function()? confirmed,
+    TResult Function()? canceledByGiver,
+    TResult Function()? canceledByRequester,
+    TResult Function()? accepted,
+    TResult Function()? delivered,
+  }) {
+    return pending?.call();
   }
 
   @override
@@ -626,6 +652,19 @@ class _$Pending implements Pending {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Pending value)? pending,
+    TResult Function(Confirmed value)? confirmed,
+    TResult Function(CanceledByGiver value)? canceledByGiver,
+    TResult Function(CanceledByRequester value)? canceledByRequester,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Delivered value)? delivered,
+  }) {
+    return pending?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Pending value)? pending,
     TResult Function(Confirmed value)? confirmed,
@@ -643,7 +682,7 @@ class _$Pending implements Pending {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$PendingToJson(this)..['runtimeType'] = 'pending';
+    return _$$PendingToJson(this)..['runtimeType'] = 'pending';
   }
 }
 
@@ -676,7 +715,7 @@ class _$Confirmed implements Confirmed {
   const _$Confirmed();
 
   factory _$Confirmed.fromJson(Map<String, dynamic> json) =>
-      _$_$ConfirmedFromJson(json);
+      _$$ConfirmedFromJson(json);
 
   @override
   String toString() {
@@ -685,7 +724,8 @@ class _$Confirmed implements Confirmed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Confirmed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Confirmed);
   }
 
   @override
@@ -702,6 +742,19 @@ class _$Confirmed implements Confirmed {
     required TResult Function() delivered,
   }) {
     return confirmed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? pending,
+    TResult Function()? confirmed,
+    TResult Function()? canceledByGiver,
+    TResult Function()? canceledByRequester,
+    TResult Function()? accepted,
+    TResult Function()? delivered,
+  }) {
+    return confirmed?.call();
   }
 
   @override
@@ -736,6 +789,19 @@ class _$Confirmed implements Confirmed {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Pending value)? pending,
+    TResult Function(Confirmed value)? confirmed,
+    TResult Function(CanceledByGiver value)? canceledByGiver,
+    TResult Function(CanceledByRequester value)? canceledByRequester,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Delivered value)? delivered,
+  }) {
+    return confirmed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Pending value)? pending,
     TResult Function(Confirmed value)? confirmed,
@@ -753,7 +819,7 @@ class _$Confirmed implements Confirmed {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$ConfirmedToJson(this)..['runtimeType'] = 'confirmed';
+    return _$$ConfirmedToJson(this)..['runtimeType'] = 'confirmed';
   }
 }
 
@@ -788,7 +854,7 @@ class _$CanceledByGiver implements CanceledByGiver {
   const _$CanceledByGiver();
 
   factory _$CanceledByGiver.fromJson(Map<String, dynamic> json) =>
-      _$_$CanceledByGiverFromJson(json);
+      _$$CanceledByGiverFromJson(json);
 
   @override
   String toString() {
@@ -797,7 +863,8 @@ class _$CanceledByGiver implements CanceledByGiver {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CanceledByGiver);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CanceledByGiver);
   }
 
   @override
@@ -814,6 +881,19 @@ class _$CanceledByGiver implements CanceledByGiver {
     required TResult Function() delivered,
   }) {
     return canceledByGiver();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? pending,
+    TResult Function()? confirmed,
+    TResult Function()? canceledByGiver,
+    TResult Function()? canceledByRequester,
+    TResult Function()? accepted,
+    TResult Function()? delivered,
+  }) {
+    return canceledByGiver?.call();
   }
 
   @override
@@ -848,6 +928,19 @@ class _$CanceledByGiver implements CanceledByGiver {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Pending value)? pending,
+    TResult Function(Confirmed value)? confirmed,
+    TResult Function(CanceledByGiver value)? canceledByGiver,
+    TResult Function(CanceledByRequester value)? canceledByRequester,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Delivered value)? delivered,
+  }) {
+    return canceledByGiver?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Pending value)? pending,
     TResult Function(Confirmed value)? confirmed,
@@ -865,7 +958,7 @@ class _$CanceledByGiver implements CanceledByGiver {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CanceledByGiverToJson(this)..['runtimeType'] = 'canceledByGiver';
+    return _$$CanceledByGiverToJson(this)..['runtimeType'] = 'canceledByGiver';
   }
 }
 
@@ -901,7 +994,7 @@ class _$CanceledByRequester implements CanceledByRequester {
   const _$CanceledByRequester();
 
   factory _$CanceledByRequester.fromJson(Map<String, dynamic> json) =>
-      _$_$CanceledByRequesterFromJson(json);
+      _$$CanceledByRequesterFromJson(json);
 
   @override
   String toString() {
@@ -910,7 +1003,8 @@ class _$CanceledByRequester implements CanceledByRequester {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CanceledByRequester);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CanceledByRequester);
   }
 
   @override
@@ -927,6 +1021,19 @@ class _$CanceledByRequester implements CanceledByRequester {
     required TResult Function() delivered,
   }) {
     return canceledByRequester();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? pending,
+    TResult Function()? confirmed,
+    TResult Function()? canceledByGiver,
+    TResult Function()? canceledByRequester,
+    TResult Function()? accepted,
+    TResult Function()? delivered,
+  }) {
+    return canceledByRequester?.call();
   }
 
   @override
@@ -961,6 +1068,19 @@ class _$CanceledByRequester implements CanceledByRequester {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Pending value)? pending,
+    TResult Function(Confirmed value)? confirmed,
+    TResult Function(CanceledByGiver value)? canceledByGiver,
+    TResult Function(CanceledByRequester value)? canceledByRequester,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Delivered value)? delivered,
+  }) {
+    return canceledByRequester?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Pending value)? pending,
     TResult Function(Confirmed value)? confirmed,
@@ -978,7 +1098,7 @@ class _$CanceledByRequester implements CanceledByRequester {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CanceledByRequesterToJson(this)
+    return _$$CanceledByRequesterToJson(this)
       ..['runtimeType'] = 'canceledByRequester';
   }
 }
@@ -1012,7 +1132,7 @@ class _$Accepted implements Accepted {
   const _$Accepted();
 
   factory _$Accepted.fromJson(Map<String, dynamic> json) =>
-      _$_$AcceptedFromJson(json);
+      _$$AcceptedFromJson(json);
 
   @override
   String toString() {
@@ -1021,7 +1141,8 @@ class _$Accepted implements Accepted {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Accepted);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Accepted);
   }
 
   @override
@@ -1038,6 +1159,19 @@ class _$Accepted implements Accepted {
     required TResult Function() delivered,
   }) {
     return accepted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? pending,
+    TResult Function()? confirmed,
+    TResult Function()? canceledByGiver,
+    TResult Function()? canceledByRequester,
+    TResult Function()? accepted,
+    TResult Function()? delivered,
+  }) {
+    return accepted?.call();
   }
 
   @override
@@ -1072,6 +1206,19 @@ class _$Accepted implements Accepted {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Pending value)? pending,
+    TResult Function(Confirmed value)? confirmed,
+    TResult Function(CanceledByGiver value)? canceledByGiver,
+    TResult Function(CanceledByRequester value)? canceledByRequester,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Delivered value)? delivered,
+  }) {
+    return accepted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Pending value)? pending,
     TResult Function(Confirmed value)? confirmed,
@@ -1089,7 +1236,7 @@ class _$Accepted implements Accepted {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$AcceptedToJson(this)..['runtimeType'] = 'accepted';
+    return _$$AcceptedToJson(this)..['runtimeType'] = 'accepted';
   }
 }
 
@@ -1122,7 +1269,7 @@ class _$Delivered implements Delivered {
   const _$Delivered();
 
   factory _$Delivered.fromJson(Map<String, dynamic> json) =>
-      _$_$DeliveredFromJson(json);
+      _$$DeliveredFromJson(json);
 
   @override
   String toString() {
@@ -1131,7 +1278,8 @@ class _$Delivered implements Delivered {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Delivered);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Delivered);
   }
 
   @override
@@ -1148,6 +1296,19 @@ class _$Delivered implements Delivered {
     required TResult Function() delivered,
   }) {
     return delivered();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? pending,
+    TResult Function()? confirmed,
+    TResult Function()? canceledByGiver,
+    TResult Function()? canceledByRequester,
+    TResult Function()? accepted,
+    TResult Function()? delivered,
+  }) {
+    return delivered?.call();
   }
 
   @override
@@ -1182,6 +1343,19 @@ class _$Delivered implements Delivered {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Pending value)? pending,
+    TResult Function(Confirmed value)? confirmed,
+    TResult Function(CanceledByGiver value)? canceledByGiver,
+    TResult Function(CanceledByRequester value)? canceledByRequester,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Delivered value)? delivered,
+  }) {
+    return delivered?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Pending value)? pending,
     TResult Function(Confirmed value)? confirmed,
@@ -1199,7 +1373,7 @@ class _$Delivered implements Delivered {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$DeliveredToJson(this)..['runtimeType'] = 'delivered';
+    return _$$DeliveredToJson(this)..['runtimeType'] = 'delivered';
   }
 }
 
@@ -1243,6 +1417,13 @@ mixin _$GiftRequestNotificationUnion {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? dataa,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GiftRequest giftRequest)? dataa,
     TResult Function()? loading,
@@ -1255,6 +1436,13 @@ mixin _$GiftRequestNotificationUnion {
     required TResult Function(Data value) dataa,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? dataa,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1340,15 +1528,14 @@ class _$Data implements Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Data &&
+        (other.runtimeType == runtimeType &&
+            other is Data &&
             (identical(other.giftRequest, giftRequest) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftRequest, giftRequest)));
+                other.giftRequest == giftRequest));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftRequest);
+  int get hashCode => Object.hash(runtimeType, giftRequest);
 
   @JsonKey(ignore: true)
   @override
@@ -1363,6 +1550,16 @@ class _$Data implements Data {
     required TResult Function(Object err) error,
   }) {
     return dataa(giftRequest);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? dataa,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return dataa?.call(giftRequest);
   }
 
   @override
@@ -1391,6 +1588,16 @@ class _$Data implements Data {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? dataa,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return dataa?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? dataa,
     TResult Function(Loading value)? loading,
@@ -1407,7 +1614,7 @@ class _$Data implements Data {
 abstract class Data implements GiftRequestNotificationUnion {
   const factory Data(GiftRequest giftRequest) = _$Data;
 
-  GiftRequest get giftRequest => throw _privateConstructorUsedError;
+  GiftRequest get giftRequest;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -1441,7 +1648,8 @@ class _$Loading implements Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Loading);
   }
 
   @override
@@ -1455,6 +1663,16 @@ class _$Loading implements Loading {
     required TResult Function(Object err) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? dataa,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -1479,6 +1697,16 @@ class _$Loading implements Loading {
     required TResult Function(Error value) error,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? dataa,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -1546,14 +1774,14 @@ class _$Error implements Error {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Error &&
-            (identical(other.err, err) ||
-                const DeepCollectionEquality().equals(other.err, err)));
+        (other.runtimeType == runtimeType &&
+            other is Error &&
+            const DeepCollectionEquality().equals(other.err, err));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(err);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(err));
 
   @JsonKey(ignore: true)
   @override
@@ -1568,6 +1796,16 @@ class _$Error implements Error {
     required TResult Function(Object err) error,
   }) {
     return error(err);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? dataa,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return error?.call(err);
   }
 
   @override
@@ -1596,6 +1834,16 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? dataa,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? dataa,
     TResult Function(Loading value)? loading,
@@ -1612,7 +1860,7 @@ class _$Error implements Error {
 abstract class Error implements GiftRequestNotificationUnion {
   const factory Error(Object err) = _$Error;
 
-  Object get err => throw _privateConstructorUsedError;
+  Object get err;
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }
@@ -1651,6 +1899,13 @@ mixin _$GiftRequestState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GiftRequest giftRequest)? data,
     TResult Function()? loading,
@@ -1663,6 +1918,13 @@ mixin _$GiftRequestState {
     required TResult Function(GiftRequestData value) data,
     required TResult Function(GiftRequestLoading value) loading,
     required TResult Function(GiftRequestError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GiftRequestData value)? data,
+    TResult Function(GiftRequestLoading value)? loading,
+    TResult Function(GiftRequestError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1749,15 +2011,14 @@ class _$GiftRequestData implements GiftRequestData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GiftRequestData &&
+        (other.runtimeType == runtimeType &&
+            other is GiftRequestData &&
             (identical(other.giftRequest, giftRequest) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftRequest, giftRequest)));
+                other.giftRequest == giftRequest));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftRequest);
+  int get hashCode => Object.hash(runtimeType, giftRequest);
 
   @JsonKey(ignore: true)
   @override
@@ -1772,6 +2033,16 @@ class _$GiftRequestData implements GiftRequestData {
     required TResult Function(Object err) error,
   }) {
     return data(giftRequest);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return data?.call(giftRequest);
   }
 
   @override
@@ -1800,6 +2071,16 @@ class _$GiftRequestData implements GiftRequestData {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GiftRequestData value)? data,
+    TResult Function(GiftRequestLoading value)? loading,
+    TResult Function(GiftRequestError value)? error,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GiftRequestData value)? data,
     TResult Function(GiftRequestLoading value)? loading,
@@ -1816,7 +2097,7 @@ class _$GiftRequestData implements GiftRequestData {
 abstract class GiftRequestData implements GiftRequestState {
   const factory GiftRequestData(GiftRequest giftRequest) = _$GiftRequestData;
 
-  GiftRequest get giftRequest => throw _privateConstructorUsedError;
+  GiftRequest get giftRequest;
   @JsonKey(ignore: true)
   $GiftRequestDataCopyWith<GiftRequestData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1853,7 +2134,8 @@ class _$GiftRequestLoading implements GiftRequestLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GiftRequestLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GiftRequestLoading);
   }
 
   @override
@@ -1867,6 +2149,16 @@ class _$GiftRequestLoading implements GiftRequestLoading {
     required TResult Function(Object err) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -1891,6 +2183,16 @@ class _$GiftRequestLoading implements GiftRequestLoading {
     required TResult Function(GiftRequestError value) error,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GiftRequestData value)? data,
+    TResult Function(GiftRequestLoading value)? loading,
+    TResult Function(GiftRequestError value)? error,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -1960,14 +2262,14 @@ class _$GiftRequestError implements GiftRequestError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GiftRequestError &&
-            (identical(other.err, err) ||
-                const DeepCollectionEquality().equals(other.err, err)));
+        (other.runtimeType == runtimeType &&
+            other is GiftRequestError &&
+            const DeepCollectionEquality().equals(other.err, err));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(err);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(err));
 
   @JsonKey(ignore: true)
   @override
@@ -1982,6 +2284,16 @@ class _$GiftRequestError implements GiftRequestError {
     required TResult Function(Object err) error,
   }) {
     return error(err);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftRequest giftRequest)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return error?.call(err);
   }
 
   @override
@@ -2010,6 +2322,16 @@ class _$GiftRequestError implements GiftRequestError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GiftRequestData value)? data,
+    TResult Function(GiftRequestLoading value)? loading,
+    TResult Function(GiftRequestError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GiftRequestData value)? data,
     TResult Function(GiftRequestLoading value)? loading,
@@ -2026,7 +2348,7 @@ class _$GiftRequestError implements GiftRequestError {
 abstract class GiftRequestError implements GiftRequestState {
   const factory GiftRequestError(Object err) = _$GiftRequestError;
 
-  Object get err => throw _privateConstructorUsedError;
+  Object get err;
   @JsonKey(ignore: true)
   $GiftRequestErrorCopyWith<GiftRequestError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2066,6 +2388,13 @@ mixin _$GiftRequestListState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftRequest> giftRequestList)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<GiftRequest> giftRequestList)? data,
     TResult Function()? loading,
@@ -2078,6 +2407,13 @@ mixin _$GiftRequestListState {
     required TResult Function(DataState value) data,
     required TResult Function(LoadingState value) loading,
     required TResult Function(ErrorState value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DataState value)? data,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(ErrorState value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2153,16 +2489,15 @@ class _$DataState implements DataState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DataState &&
-            (identical(other.giftRequestList, giftRequestList) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftRequestList, giftRequestList)));
+        (other.runtimeType == runtimeType &&
+            other is DataState &&
+            const DeepCollectionEquality()
+                .equals(other.giftRequestList, giftRequestList));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(giftRequestList);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(giftRequestList));
 
   @JsonKey(ignore: true)
   @override
@@ -2177,6 +2512,16 @@ class _$DataState implements DataState {
     required TResult Function(Object err) error,
   }) {
     return data(giftRequestList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftRequest> giftRequestList)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return data?.call(giftRequestList);
   }
 
   @override
@@ -2205,6 +2550,16 @@ class _$DataState implements DataState {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DataState value)? data,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(ErrorState value)? error,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DataState value)? data,
     TResult Function(LoadingState value)? loading,
@@ -2221,7 +2576,7 @@ class _$DataState implements DataState {
 abstract class DataState implements GiftRequestListState {
   const factory DataState(List<GiftRequest> giftRequestList) = _$DataState;
 
-  List<GiftRequest> get giftRequestList => throw _privateConstructorUsedError;
+  List<GiftRequest> get giftRequestList;
   @JsonKey(ignore: true)
   $DataStateCopyWith<DataState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2258,7 +2613,8 @@ class _$LoadingState implements LoadingState {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingState);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is LoadingState);
   }
 
   @override
@@ -2272,6 +2628,16 @@ class _$LoadingState implements LoadingState {
     required TResult Function(Object err) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftRequest> giftRequestList)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -2296,6 +2662,16 @@ class _$LoadingState implements LoadingState {
     required TResult Function(ErrorState value) error,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DataState value)? data,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(ErrorState value)? error,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -2364,14 +2740,14 @@ class _$ErrorState implements ErrorState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorState &&
-            (identical(other.err, err) ||
-                const DeepCollectionEquality().equals(other.err, err)));
+        (other.runtimeType == runtimeType &&
+            other is ErrorState &&
+            const DeepCollectionEquality().equals(other.err, err));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(err);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(err));
 
   @JsonKey(ignore: true)
   @override
@@ -2386,6 +2762,16 @@ class _$ErrorState implements ErrorState {
     required TResult Function(Object err) error,
   }) {
     return error(err);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftRequest> giftRequestList)? data,
+    TResult Function()? loading,
+    TResult Function(Object err)? error,
+  }) {
+    return error?.call(err);
   }
 
   @override
@@ -2414,6 +2800,16 @@ class _$ErrorState implements ErrorState {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DataState value)? data,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(ErrorState value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DataState value)? data,
     TResult Function(LoadingState value)? loading,
@@ -2430,7 +2826,7 @@ class _$ErrorState implements ErrorState {
 abstract class ErrorState implements GiftRequestListState {
   const factory ErrorState(Object err) = _$ErrorState;
 
-  Object get err => throw _privateConstructorUsedError;
+  Object get err;
   @JsonKey(ignore: true)
   $ErrorStateCopyWith<ErrorState> get copyWith =>
       throw _privateConstructorUsedError;

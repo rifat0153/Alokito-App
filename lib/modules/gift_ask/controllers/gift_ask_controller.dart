@@ -94,7 +94,7 @@ class GiftAskController extends GetxController {
   // * Delete GiftASk
   Future<void> deleteGiftAsk(GiftAsk giftAsk) async {
     try {
-      await giftAskService.deleteGiftAsk(giftAsk);
+    //  TODO
     } catch (e) {
       await MyBottomSheet.showErrorBottomSheet('GiftAsk could not be deleted');
     }
@@ -148,12 +148,12 @@ class GiftAskController extends GetxController {
 
     final GiftAsk giftAsk = GiftAsk(
       user: Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => initialUser),
+      title: giftTitle.value,
       location: location.value,
       area: area.value,
       geometry: Geometry(coordinates: [formMarker.value.position.longitude, formMarker.value.position.latitude]),
       requestForNoOfPeople: requestForNoOfPeople,
       giftAskType: getGiftAskType(),
-      // giftTitle: giftTitle.value,
       giftForSmallFamily: _packageSmallFamilty.value,
       note: note.value,
     );
@@ -169,11 +169,6 @@ class GiftAskController extends GetxController {
     loading.value = false;
   }
 
-  Future<void> findGiftExistsOrNot({required String giftAskId}) async {
-    final responseStatus = await giftAskService.findGiftById(giftAskId);
-
-    await MyBottomSheet.showErrorBottomSheet('gift exists gift does not exists');
-  }
 
   GiftAskType getGiftAskType() {
     if (selectedGiftType == 'Food') return GiftAskType.food;

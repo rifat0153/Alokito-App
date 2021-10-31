@@ -14,9 +14,9 @@ import '../gift_ask_exception.dart';
 abstract class BaseGiftAskService {
   Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile});
 
-  Future<void> findGiftById(String id);
+  // Future<void> findGiftById(String id);
 
-  Future<void> deleteGiftAsk(GiftAsk giftAsk);
+  // Future<void> deleteGiftAsk(GiftAsk giftAsk);
 }
 
 class GiftAskService extends GetConnect implements BaseGiftAskService {
@@ -67,25 +67,25 @@ class GiftAskService extends GetConnect implements BaseGiftAskService {
     }
   }
 
-  @override
-  Future<bool> findGiftById(String id) async {
-    try {
-      final docRef = await _firestore.collection('gift_ask').doc(id).get();
+  // @override
+  // Future<bool> findGiftById(String id) async {
+  //   try {
+  //     final docRef = await _firestore.collection('gift_ask').doc(id).get();
 
-      return docRef.data() != null ? true : false;
-    } on FirebaseException catch (e) {
-      throw GiftAskException(message: 'GiftRequest finding error: ${e.message}');
-    }
-  }
+  //     return docRef.data() != null ? true : false;
+  //   } on FirebaseException catch (e) {
+  //     throw GiftAskException(message: 'GiftRequest finding error: ${e.message}');
+  //   }
+  // }
 
-  @override
-  Future<void> deleteGiftAsk(GiftAsk giftAsk) async {
-    try {
-      await _firestore.collection('gift_ask').doc(giftAsk.id).delete();
-    } on FirebaseException catch (e) {
-      throw GiftAskException(message: e.toString());
-    } catch (e) {
-      throw GiftAskException(message: e.toString());
-    }
-  }
+  // @override
+  // Future<void> deleteGiftAsk(GiftAsk giftAsk) async {
+  //   try {
+  //     await _firestore.collection('gift_ask').doc(giftAsk.id).delete();
+  //   } on FirebaseException catch (e) {
+  //     throw GiftAskException(message: e.toString());
+  //   } catch (e) {
+  //     throw GiftAskException(message: e.toString());
+  //   }
+  // }
 }

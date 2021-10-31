@@ -1,5 +1,4 @@
 import 'package:alokito_new/di/firebase_di.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/language/translations.dart';
 import 'routes.dart';
@@ -33,9 +32,7 @@ Future<void> main() async {
   Get.put(FirebaseDI(), permanent: true);
 
   runApp(
-    ProviderScope(
-      child: AlokitoApp(),
-    ),
+    AlokitoApp(),
   );
 }
 

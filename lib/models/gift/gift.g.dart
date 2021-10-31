@@ -6,25 +6,23 @@ part of 'gift.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Gift _$_$_GiftFromJson(Map<String, dynamic> json) {
-  return _$_Gift(
-    id: json['id'] as String?,
-    listingForDays: json['listingForDays'] as int,
-    canLeaveOutside: json['canLeaveOutside'] as bool,
-    userId: json['userId'] as String,
-    user: localUserFromMap(json['user'] as Map<String, dynamic>?),
-    giftDetails: json['giftDetails'] as String,
-    giftType: json['giftType'] as String,
-    pickUpTime: DateTime.parse(json['pickUpTime'] as String),
-    geometry: geometryFromMap(json['geometry'] as Map<String, dynamic>),
-    area: json['area'] as String,
-    location: json['location'] as String,
-    imageUrl: json['imageUrl'] as String,
-    distance: (json['distance'] as num?)?.toDouble(),
-  );
-}
+_$_Gift _$$_GiftFromJson(Map<String, dynamic> json) => _$_Gift(
+      id: json['id'] as String?,
+      listingForDays: json['listingForDays'] as int,
+      canLeaveOutside: json['canLeaveOutside'] as bool,
+      userId: json['userId'] as String,
+      user: localUserFromMap(json['user'] as Map<String, dynamic>?),
+      giftDetails: json['giftDetails'] as String,
+      giftType: json['giftType'] as String,
+      pickUpTime: DateTime.parse(json['pickUpTime'] as String),
+      geometry: geometryFromMap(json['geometry'] as Map<String, dynamic>),
+      area: json['area'] as String,
+      location: json['location'] as String,
+      imageUrl: json['imageUrl'] as String,
+      distance: (json['distance'] as num?)?.toDouble(),
+    );
 
-Map<String, dynamic> _$_$_GiftToJson(_$_Gift instance) => <String, dynamic>{
+Map<String, dynamic> _$$_GiftToJson(_$_Gift instance) => <String, dynamic>{
       'id': instance.id,
       'listingForDays': instance.listingForDays,
       'canLeaveOutside': instance.canLeaveOutside,

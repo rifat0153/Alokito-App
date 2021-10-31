@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "22.0.0"
+    version: "30.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.2"
+    version: "2.7.0"
   args:
     dependency: transitive
     description:
@@ -49,7 +49,7 @@ packages:
       name: build
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.1"
   build_config:
     dependency: transitive
     description:
@@ -70,21 +70,21 @@ packages:
       name: build_resolvers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   build_runner:
     dependency: "direct dev"
     description:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.1.4"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.0"
+    version: "7.2.2"
   built_collection:
     dependency: transitive
     description:
@@ -224,7 +224,7 @@ packages:
       name: dart_style
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.2.0"
   fake_async:
     dependency: transitive
     description:
@@ -328,13 +328,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
-  flutter_riverpod:
-    dependency: "direct main"
-    description:
-      name: flutter_riverpod
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0-dev.7"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -367,19 +360,19 @@ packages:
     source: hosted
     version: "9.0.0"
   freezed:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: freezed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.2"
+    version: "0.15.0+1"
   freezed_annotation:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.2"
+    version: "0.15.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -542,19 +535,19 @@ packages:
     source: hosted
     version: "0.6.3"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.1"
+    version: "4.3.0"
   json_serializable:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.4"
+    version: "6.0.1"
   logging:
     dependency: transitive
     description:
@@ -702,13 +695,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  riverpod:
-    dependency: transitive
-    description:
-      name: riverpod
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0-dev.7"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -776,7 +762,14 @@ packages:
       name: source_gen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.1.1"
+  source_helper:
+    dependency: transitive
+    description:
+      name: source_helper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.0"
   source_span:
     dependency: transitive
     description:
@@ -791,13 +784,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
-  state_notifier:
-    dependency: transitive
-    description:
-      name: state_notifier
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.1"
   stream_channel:
     dependency: transitive
     description:
@@ -911,5 +897,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.13.0 <3.0.0"
+  dart: ">=2.14.0 <3.0.0"
   flutter: ">=2.0.0"

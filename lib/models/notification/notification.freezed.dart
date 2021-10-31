@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'notification.dart';
 
@@ -43,7 +44,7 @@ class _$MyNotificationTearOff {
     );
   }
 
-  MyNotification fromJson(Map<String, Object> json) {
+  MyNotification fromJson(Map<String, Object?> json) {
     return MyNotification.fromJson(json);
   }
 }
@@ -81,6 +82,22 @@ mixin _$MyNotification {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            String id,
+            String text,
+            String? user,
+            String relatedDocId,
+            String notificationType,
+            @JsonKey(fromJson: giftRequestDocFromJson)
+                GiftRequest? giftRequestDoc,
+            @JsonKey(fromJson: giftAskRequestDocFromJson)
+                GiftAskRequest? giftAskRequestDoc,
+            DateTime createdAt)?
+        data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String id,
@@ -100,6 +117,11 @@ mixin _$MyNotification {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MyNotification value) data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_MyNotification value)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -312,7 +334,7 @@ class _$_MyNotification implements _MyNotification {
       required this.createdAt});
 
   factory _$_MyNotification.fromJson(Map<String, dynamic> json) =>
-      _$_$_MyNotificationFromJson(json);
+      _$$_MyNotificationFromJson(json);
 
   @override
   final String id;
@@ -341,41 +363,26 @@ class _$_MyNotification implements _MyNotification {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MyNotification &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.text, text) ||
-                const DeepCollectionEquality().equals(other.text, text)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other.runtimeType == runtimeType &&
+            other is _MyNotification &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.relatedDocId, relatedDocId) ||
-                const DeepCollectionEquality()
-                    .equals(other.relatedDocId, relatedDocId)) &&
+                other.relatedDocId == relatedDocId) &&
             (identical(other.notificationType, notificationType) ||
-                const DeepCollectionEquality()
-                    .equals(other.notificationType, notificationType)) &&
+                other.notificationType == notificationType) &&
             (identical(other.giftRequestDoc, giftRequestDoc) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftRequestDoc, giftRequestDoc)) &&
+                other.giftRequestDoc == giftRequestDoc) &&
             (identical(other.giftAskRequestDoc, giftAskRequestDoc) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftAskRequestDoc, giftAskRequestDoc)) &&
+                other.giftAskRequestDoc == giftAskRequestDoc) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(text) ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(relatedDocId) ^
-      const DeepCollectionEquality().hash(notificationType) ^
-      const DeepCollectionEquality().hash(giftRequestDoc) ^
-      const DeepCollectionEquality().hash(giftAskRequestDoc) ^
-      const DeepCollectionEquality().hash(createdAt);
+  int get hashCode => Object.hash(runtimeType, id, text, user, relatedDocId,
+      notificationType, giftRequestDoc, giftAskRequestDoc, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -400,6 +407,26 @@ class _$_MyNotification implements _MyNotification {
   }) {
     return data(id, text, user, relatedDocId, notificationType, giftRequestDoc,
         giftAskRequestDoc, createdAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            String id,
+            String text,
+            String? user,
+            String relatedDocId,
+            String notificationType,
+            @JsonKey(fromJson: giftRequestDocFromJson)
+                GiftRequest? giftRequestDoc,
+            @JsonKey(fromJson: giftAskRequestDocFromJson)
+                GiftAskRequest? giftAskRequestDoc,
+            DateTime createdAt)?
+        data,
+  }) {
+    return data?.call(id, text, user, relatedDocId, notificationType,
+        giftRequestDoc, giftAskRequestDoc, createdAt);
   }
 
   @override
@@ -436,6 +463,14 @@ class _$_MyNotification implements _MyNotification {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_MyNotification value)? data,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MyNotification value)? data,
     required TResult orElse(),
@@ -448,7 +483,7 @@ class _$_MyNotification implements _MyNotification {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MyNotificationToJson(this);
+    return _$$_MyNotificationToJson(this);
   }
 }
 
@@ -469,23 +504,23 @@ abstract class _MyNotification implements MyNotification {
       _$_MyNotification.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get text => throw _privateConstructorUsedError;
+  String get text;
   @override
-  String? get user => throw _privateConstructorUsedError;
+  String? get user;
   @override
-  String get relatedDocId => throw _privateConstructorUsedError;
+  String get relatedDocId;
   @override
-  String get notificationType => throw _privateConstructorUsedError;
+  String get notificationType;
   @override
   @JsonKey(fromJson: giftRequestDocFromJson)
-  GiftRequest? get giftRequestDoc => throw _privateConstructorUsedError;
+  GiftRequest? get giftRequestDoc;
   @override
   @JsonKey(fromJson: giftAskRequestDocFromJson)
-  GiftAskRequest? get giftAskRequestDoc => throw _privateConstructorUsedError;
+  GiftAskRequest? get giftAskRequestDoc;
   @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$MyNotificationCopyWith<_MyNotification> get copyWith =>
@@ -531,6 +566,14 @@ mixin _$MyNotificationListStatus {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<MyNotification> notificationList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<MyNotification> notificationList)? data,
     TResult Function()? empty,
@@ -545,6 +588,14 @@ mixin _$MyNotificationListStatus {
     required TResult Function(Empty value) empty,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -621,16 +672,15 @@ class _$Data implements Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Data &&
-            (identical(other.notificationList, notificationList) ||
-                const DeepCollectionEquality()
-                    .equals(other.notificationList, notificationList)));
+        (other.runtimeType == runtimeType &&
+            other is Data &&
+            const DeepCollectionEquality()
+                .equals(other.notificationList, notificationList));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(notificationList);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(notificationList));
 
   @JsonKey(ignore: true)
   @override
@@ -646,6 +696,17 @@ class _$Data implements Data {
     required TResult Function(String message) error,
   }) {
     return data(notificationList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<MyNotification> notificationList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) {
+    return data?.call(notificationList);
   }
 
   @override
@@ -676,6 +737,17 @@ class _$Data implements Data {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
     TResult Function(Empty value)? empty,
@@ -693,8 +765,7 @@ class _$Data implements Data {
 abstract class Data implements MyNotificationListStatus {
   const factory Data(List<MyNotification> notificationList) = _$Data;
 
-  List<MyNotification> get notificationList =>
-      throw _privateConstructorUsedError;
+  List<MyNotification> get notificationList;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -728,7 +799,8 @@ class _$Empty implements Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Empty);
   }
 
   @override
@@ -743,6 +815,17 @@ class _$Empty implements Empty {
     required TResult Function(String message) error,
   }) {
     return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<MyNotification> notificationList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) {
+    return empty?.call();
   }
 
   @override
@@ -769,6 +852,17 @@ class _$Empty implements Empty {
     required TResult Function(Error value) error,
   }) {
     return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return empty?.call(this);
   }
 
   @override
@@ -820,7 +914,8 @@ class _$Loading implements Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Loading);
   }
 
   @override
@@ -835,6 +930,17 @@ class _$Loading implements Loading {
     required TResult Function(String message) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<MyNotification> notificationList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -861,6 +967,17 @@ class _$Loading implements Loading {
     required TResult Function(Error value) error,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -929,14 +1046,13 @@ class _$Error implements Error {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Error &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is Error &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -952,6 +1068,17 @@ class _$Error implements Error {
     required TResult Function(String message) error,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<MyNotification> notificationList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -982,6 +1109,17 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
     TResult Function(Empty value)? empty,
@@ -999,7 +1137,7 @@ class _$Error implements Error {
 abstract class Error implements MyNotificationListStatus {
   const factory Error(String message) = _$Error;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }

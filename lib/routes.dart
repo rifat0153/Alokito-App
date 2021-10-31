@@ -83,18 +83,18 @@ class GetPages {
         );
       }),
     ),
-    GetPage(
-      name: GiftAskRequestView.route,
-      page: () => GiftAskRequestView(),
-      transition: Transition.fadeIn,
-      binding: BindingsBuilder(() {
-        Get.lazyPut(
-          () => GiftAskController(
-            GiftAskService(Get.find<FirebaseDI>().firestore, Get.find<FirebaseDI>().storage),
-          ),
-        );
-      }),
-    ),
+    // GetPage(
+    //   name: GiftAskRequestView.route,
+    //   page: () => GiftAskRequestView(),
+    //   transition: Transition.fadeIn,
+    //   binding: BindingsBuilder(() {
+    //     Get.lazyPut(
+    //       () => GiftAskController(
+    //         GiftAskService(Get.find<FirebaseDI>().firestore, Get.find<FirebaseDI>().storage),
+    //       ),
+    //     );
+    //   }),
+    // ),
 
     // Gift Ask View
     GetPage(

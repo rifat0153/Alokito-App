@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'login.dart';
 
@@ -49,6 +50,14 @@ mixin _$LoginStatus {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? logginIn,
+    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(Object error)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? logginIn,
     TResult Function()? loggedIn,
@@ -63,6 +72,14 @@ mixin _$LoginStatus {
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(NotLoggedIn value) notLoggedIn,
     required TResult Function(Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(LogginIn value)? logginIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(NotLoggedIn value)? notLoggedIn,
+    TResult Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -120,7 +137,8 @@ class _$LogginIn implements LogginIn {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LogginIn);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is LogginIn);
   }
 
   @override
@@ -135,6 +153,17 @@ class _$LogginIn implements LogginIn {
     required TResult Function(Object error) error,
   }) {
     return logginIn();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? logginIn,
+    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(Object error)? error,
+  }) {
+    return logginIn?.call();
   }
 
   @override
@@ -161,6 +190,17 @@ class _$LogginIn implements LogginIn {
     required TResult Function(Error value) error,
   }) {
     return logginIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(LogginIn value)? logginIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(NotLoggedIn value)? notLoggedIn,
+    TResult Function(Error value)? error,
+  }) {
+    return logginIn?.call(this);
   }
 
   @override
@@ -211,7 +251,8 @@ class _$LoggedIn implements LoggedIn {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoggedIn);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is LoggedIn);
   }
 
   @override
@@ -226,6 +267,17 @@ class _$LoggedIn implements LoggedIn {
     required TResult Function(Object error) error,
   }) {
     return loggedIn();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? logginIn,
+    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(Object error)? error,
+  }) {
+    return loggedIn?.call();
   }
 
   @override
@@ -252,6 +304,17 @@ class _$LoggedIn implements LoggedIn {
     required TResult Function(Error value) error,
   }) {
     return loggedIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(LogginIn value)? logginIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(NotLoggedIn value)? notLoggedIn,
+    TResult Function(Error value)? error,
+  }) {
+    return loggedIn?.call(this);
   }
 
   @override
@@ -304,7 +367,8 @@ class _$NotLoggedIn implements NotLoggedIn {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NotLoggedIn);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NotLoggedIn);
   }
 
   @override
@@ -319,6 +383,17 @@ class _$NotLoggedIn implements NotLoggedIn {
     required TResult Function(Object error) error,
   }) {
     return notLoggedIn();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? logginIn,
+    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(Object error)? error,
+  }) {
+    return notLoggedIn?.call();
   }
 
   @override
@@ -345,6 +420,17 @@ class _$NotLoggedIn implements NotLoggedIn {
     required TResult Function(Error value) error,
   }) {
     return notLoggedIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(LogginIn value)? logginIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(NotLoggedIn value)? notLoggedIn,
+    TResult Function(Error value)? error,
+  }) {
+    return notLoggedIn?.call(this);
   }
 
   @override
@@ -412,14 +498,14 @@ class _$Error implements Error {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Error &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is Error &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -435,6 +521,17 @@ class _$Error implements Error {
     required TResult Function(Object error) error,
   }) {
     return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? logginIn,
+    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(Object error)? error,
+  }) {
+    return error?.call(this.error);
   }
 
   @override
@@ -465,6 +562,17 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(LogginIn value)? logginIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(NotLoggedIn value)? notLoggedIn,
+    TResult Function(Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LogginIn value)? logginIn,
     TResult Function(LoggedIn value)? loggedIn,
@@ -482,7 +590,7 @@ class _$Error implements Error {
 abstract class Error implements LoginStatus {
   const factory Error(Object error) = _$Error;
 
-  Object get error => throw _privateConstructorUsedError;
+  Object get error;
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }
@@ -517,6 +625,13 @@ mixin _$RegStatus {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function()? notRegistered,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? registering,
     TResult Function()? registered,
@@ -529,6 +644,13 @@ mixin _$RegStatus {
     required TResult Function(Registering value) registering,
     required TResult Function(Registered value) registered,
     required TResult Function(NotRegistered value) notRegistered,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Registering value)? registering,
+    TResult Function(Registered value)? registered,
+    TResult Function(NotRegistered value)? notRegistered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -586,7 +708,8 @@ class _$Registering implements Registering {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Registering);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Registering);
   }
 
   @override
@@ -600,6 +723,16 @@ class _$Registering implements Registering {
     required TResult Function() notRegistered,
   }) {
     return registering();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function()? notRegistered,
+  }) {
+    return registering?.call();
   }
 
   @override
@@ -624,6 +757,16 @@ class _$Registering implements Registering {
     required TResult Function(NotRegistered value) notRegistered,
   }) {
     return registering(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Registering value)? registering,
+    TResult Function(Registered value)? registered,
+    TResult Function(NotRegistered value)? notRegistered,
+  }) {
+    return registering?.call(this);
   }
 
   @override
@@ -674,7 +817,8 @@ class _$Registered implements Registered {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Registered);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Registered);
   }
 
   @override
@@ -688,6 +832,16 @@ class _$Registered implements Registered {
     required TResult Function() notRegistered,
   }) {
     return registered();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function()? notRegistered,
+  }) {
+    return registered?.call();
   }
 
   @override
@@ -712,6 +866,16 @@ class _$Registered implements Registered {
     required TResult Function(NotRegistered value) notRegistered,
   }) {
     return registered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Registering value)? registering,
+    TResult Function(Registered value)? registered,
+    TResult Function(NotRegistered value)? notRegistered,
+  }) {
+    return registered?.call(this);
   }
 
   @override
@@ -763,7 +927,8 @@ class _$NotRegistered implements NotRegistered {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NotRegistered);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NotRegistered);
   }
 
   @override
@@ -777,6 +942,16 @@ class _$NotRegistered implements NotRegistered {
     required TResult Function() notRegistered,
   }) {
     return notRegistered();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function()? notRegistered,
+  }) {
+    return notRegistered?.call();
   }
 
   @override
@@ -801,6 +976,16 @@ class _$NotRegistered implements NotRegistered {
     required TResult Function(NotRegistered value) notRegistered,
   }) {
     return notRegistered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Registering value)? registering,
+    TResult Function(Registered value)? registered,
+    TResult Function(NotRegistered value)? notRegistered,
+  }) {
+    return notRegistered?.call(this);
   }
 
   @override

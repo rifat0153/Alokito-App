@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'local_user.dart';
 
@@ -72,7 +73,7 @@ class _$LocalUserTearOff {
     );
   }
 
-  LocalUser fromJson(Map<String, Object> json) {
+  LocalUser fromJson(Map<String, Object?> json) {
     return LocalUser.fromJson(json);
   }
 }
@@ -482,7 +483,7 @@ class _$_LocalUser implements _LocalUser {
       this.v = 1});
 
   factory _$_LocalUser.fromJson(Map<String, dynamic> json) =>
-      _$_$_LocalUserFromJson(json);
+      _$$_LocalUserFromJson(json);
 
   @override
   final String? id;
@@ -554,99 +555,78 @@ class _$_LocalUser implements _LocalUser {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LocalUser &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+        (other.runtimeType == runtimeType &&
+            other is _LocalUser &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.distance, distance) ||
-                const DeepCollectionEquality()
-                    .equals(other.distance, distance)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
+                other.distance == distance) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
+                other.userName == userName) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                other.imageUrl == imageUrl) &&
             (identical(other.geometry, geometry) ||
-                const DeepCollectionEquality()
-                    .equals(other.geometry, geometry)) &&
+                other.geometry == geometry) &&
             (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
+                other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
+                other.lastName == lastName) &&
             (identical(other.hasNotifications, hasNotifications) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasNotifications, hasNotifications)) &&
+                other.hasNotifications == hasNotifications) &&
             (identical(other.ratingSum, ratingSum) ||
-                const DeepCollectionEquality()
-                    .equals(other.ratingSum, ratingSum)) &&
+                other.ratingSum == ratingSum) &&
             (identical(other.totalRating, totalRating) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalRating, totalRating)) &&
+                other.totalRating == totalRating) &&
             (identical(other.averageRating, averageRating) ||
-                const DeepCollectionEquality()
-                    .equals(other.averageRating, averageRating)) &&
+                other.averageRating == averageRating) &&
             (identical(other.giftGiven, giftGiven) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftGiven, giftGiven)) &&
+                other.giftGiven == giftGiven) &&
             (identical(other.giftReceived, giftReceived) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftReceived, giftReceived)) &&
+                other.giftReceived == giftReceived) &&
             (identical(other.hasGiftGiverRequest, hasGiftGiverRequest) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasGiftGiverRequest, hasGiftGiverRequest)) &&
+                other.hasGiftGiverRequest == hasGiftGiverRequest) &&
             (identical(other.hasGiftAskRequest, hasGiftAskRequest) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasGiftAskRequest, hasGiftAskRequest)) &&
+                other.hasGiftAskRequest == hasGiftAskRequest) &&
             (identical(other.requestedGiftId, requestedGiftId) ||
-                const DeepCollectionEquality()
-                    .equals(other.requestedGiftId, requestedGiftId)) &&
+                other.requestedGiftId == requestedGiftId) &&
             (identical(other.acceptedGiftId, acceptedGiftId) ||
-                const DeepCollectionEquality()
-                    .equals(other.acceptedGiftId, acceptedGiftId)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
+                other.acceptedGiftId == acceptedGiftId) &&
+            (identical(other.role, role) || other.role == role) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
+                other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.updatedAt, updatedAt)) &&
-            (identical(other.v, v) ||
-                const DeepCollectionEquality().equals(other.v, v)));
+                other.updatedAt == updatedAt) &&
+            (identical(other.v, v) || other.v == v));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(uid) ^
-      const DeepCollectionEquality().hash(distance) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(geometry) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(hasNotifications) ^
-      const DeepCollectionEquality().hash(ratingSum) ^
-      const DeepCollectionEquality().hash(totalRating) ^
-      const DeepCollectionEquality().hash(averageRating) ^
-      const DeepCollectionEquality().hash(giftGiven) ^
-      const DeepCollectionEquality().hash(giftReceived) ^
-      const DeepCollectionEquality().hash(hasGiftGiverRequest) ^
-      const DeepCollectionEquality().hash(hasGiftAskRequest) ^
-      const DeepCollectionEquality().hash(requestedGiftId) ^
-      const DeepCollectionEquality().hash(acceptedGiftId) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(updatedAt) ^
-      const DeepCollectionEquality().hash(v);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        uid,
+        distance,
+        email,
+        userName,
+        imageUrl,
+        geometry,
+        firstName,
+        lastName,
+        hasNotifications,
+        ratingSum,
+        totalRating,
+        averageRating,
+        giftGiven,
+        giftReceived,
+        hasGiftGiverRequest,
+        hasGiftAskRequest,
+        requestedGiftId,
+        acceptedGiftId,
+        role,
+        createdAt,
+        updatedAt,
+        v
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -655,7 +635,7 @@ class _$_LocalUser implements _LocalUser {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LocalUserToJson(this);
+    return _$$_LocalUserToJson(this);
   }
 }
 
@@ -690,52 +670,52 @@ abstract class _LocalUser implements LocalUser {
       _$_LocalUser.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get uid => throw _privateConstructorUsedError;
+  String? get uid;
   @override
-  double? get distance => throw _privateConstructorUsedError;
+  double? get distance;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get userName => throw _privateConstructorUsedError;
+  String get userName;
   @override
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get imageUrl;
   @override
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
-  Geometry get geometry => throw _privateConstructorUsedError;
+  Geometry get geometry;
   @override
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
   @override
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName;
   @override
-  bool get hasNotifications => throw _privateConstructorUsedError;
+  bool get hasNotifications;
   @override
-  double get ratingSum => throw _privateConstructorUsedError;
+  double get ratingSum;
   @override
-  double get totalRating => throw _privateConstructorUsedError;
+  double get totalRating;
   @override
-  double get averageRating => throw _privateConstructorUsedError;
+  double get averageRating;
   @override
-  double get giftGiven => throw _privateConstructorUsedError;
+  double get giftGiven;
   @override
-  double get giftReceived => throw _privateConstructorUsedError;
+  double get giftReceived;
   @override
-  bool get hasGiftGiverRequest => throw _privateConstructorUsedError;
+  bool get hasGiftGiverRequest;
   @override
-  bool get hasGiftAskRequest => throw _privateConstructorUsedError;
+  bool get hasGiftAskRequest;
   @override
-  String get requestedGiftId => throw _privateConstructorUsedError;
+  String get requestedGiftId;
   @override
-  String get acceptedGiftId => throw _privateConstructorUsedError;
+  String get acceptedGiftId;
   @override
-  String get role => throw _privateConstructorUsedError;
+  String get role;
   @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt;
   @override
-  int get v => throw _privateConstructorUsedError;
+  int get v;
   @override
   @JsonKey(ignore: true)
   _$LocalUserCopyWith<_LocalUser> get copyWith =>
@@ -759,7 +739,7 @@ class _$GeometryTearOff {
     );
   }
 
-  Geometry fromJson(Map<String, Object> json) {
+  Geometry fromJson(Map<String, Object?> json) {
     return Geometry.fromJson(json);
   }
 }
@@ -863,7 +843,7 @@ class _$_Geometry implements _Geometry {
   const _$_Geometry({this.type = 'Point', this.id, required this.coordinates});
 
   factory _$_Geometry.fromJson(Map<String, dynamic> json) =>
-      _$_$_GeometryFromJson(json);
+      _$$_GeometryFromJson(json);
 
   @JsonKey(defaultValue: 'Point')
   @override
@@ -881,22 +861,17 @@ class _$_Geometry implements _Geometry {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Geometry &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.coordinates, coordinates) ||
-                const DeepCollectionEquality()
-                    .equals(other.coordinates, coordinates)));
+        (other.runtimeType == runtimeType &&
+            other is _Geometry &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other.coordinates, coordinates));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(coordinates);
+  int get hashCode => Object.hash(
+      runtimeType, type, id, const DeepCollectionEquality().hash(coordinates));
 
   @JsonKey(ignore: true)
   @override
@@ -905,7 +880,7 @@ class _$_Geometry implements _Geometry {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GeometryToJson(this);
+    return _$$_GeometryToJson(this);
   }
 }
 
@@ -918,11 +893,11 @@ abstract class _Geometry implements Geometry {
   factory _Geometry.fromJson(Map<String, dynamic> json) = _$_Geometry.fromJson;
 
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  List<double> get coordinates => throw _privateConstructorUsedError;
+  List<double> get coordinates;
   @override
   @JsonKey(ignore: true)
   _$GeometryCopyWith<_Geometry> get copyWith =>
@@ -963,6 +938,13 @@ mixin _$LocalUserInfo {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(LocalUser localUser)? data,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LocalUser localUser)? data,
     TResult Function()? loading,
@@ -975,6 +957,13 @@ mixin _$LocalUserInfo {
     required TResult Function(Data value) data,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1058,15 +1047,14 @@ class _$Data implements Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Data &&
+        (other.runtimeType == runtimeType &&
+            other is Data &&
             (identical(other.localUser, localUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.localUser, localUser)));
+                other.localUser == localUser));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(localUser);
+  int get hashCode => Object.hash(runtimeType, localUser);
 
   @JsonKey(ignore: true)
   @override
@@ -1081,6 +1069,16 @@ class _$Data implements Data {
     required TResult Function(String message) error,
   }) {
     return data(localUser);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(LocalUser localUser)? data,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) {
+    return data?.call(localUser);
   }
 
   @override
@@ -1109,6 +1107,16 @@ class _$Data implements Data {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
     TResult Function(Loading value)? loading,
@@ -1125,7 +1133,7 @@ class _$Data implements Data {
 abstract class Data implements LocalUserInfo {
   const factory Data(LocalUser localUser) = _$Data;
 
-  LocalUser get localUser => throw _privateConstructorUsedError;
+  LocalUser get localUser;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -1158,7 +1166,8 @@ class _$Loading implements Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Loading);
   }
 
   @override
@@ -1172,6 +1181,16 @@ class _$Loading implements Loading {
     required TResult Function(String message) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(LocalUser localUser)? data,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -1196,6 +1215,16 @@ class _$Loading implements Loading {
     required TResult Function(Error value) error,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -1262,14 +1291,13 @@ class _$Error implements Error {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Error &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is Error &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -1284,6 +1312,16 @@ class _$Error implements Error {
     required TResult Function(String message) error,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(LocalUser localUser)? data,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -1312,6 +1350,16 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
     TResult Function(Loading value)? loading,
@@ -1328,7 +1376,7 @@ class _$Error implements Error {
 abstract class Error implements LocalUserInfo {
   const factory Error(String message) = _$Error;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }

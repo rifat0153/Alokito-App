@@ -6,23 +6,24 @@ part of 'gift_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GiftRequest _$_$_GiftRequestFromJson(Map<String, dynamic> json) {
-  return _$_GiftRequest(
-    id: json['id'] as String?,
-    giverId: json['giverId'] as String?,
-    comment: json['comment'] as String,
-    messageForRequesterSent: json['messageForRequesterSent'] as bool? ?? false,
-    messageForGiverSent: json['messageForGiverSent'] as bool? ?? false,
-    giftRequestStatus:
-        giftRequestStatusFromJson(json['giftRequestStatus'] as String),
-    gift: giftFromMap(json['gift'] as Map<String, dynamic>),
-    requester:
-        localUserNonNullFromMap(json['requester'] as Map<String, dynamic>),
-    createdAt: DateTime.parse(json['createdAt'] as String),
-  );
-}
+_$_GiftRequest _$$_GiftRequestFromJson(Map<String, dynamic> json) =>
+    _$_GiftRequest(
+      id: json['id'] as String?,
+      giverId: json['giverId'] as String?,
+      comment: json['comment'] as String,
+      messageForRequesterSent:
+          json['messageForRequesterSent'] as bool? ?? false,
+      messageForGiverSent: json['messageForGiverSent'] as bool? ?? false,
+      giftRequestStatus: json['giftRequestStatus'] == null
+          ? const GiftRequestStatus.pending()
+          : giftRequestStatusFromJson(json['giftRequestStatus'] as String),
+      gift: giftFromMap(json['gift'] as Map<String, dynamic>),
+      requester:
+          localUserNonNullFromMap(json['requester'] as Map<String, dynamic>),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+    );
 
-Map<String, dynamic> _$_$_GiftRequestToJson(_$_GiftRequest instance) =>
+Map<String, dynamic> _$$_GiftRequestToJson(_$_GiftRequest instance) =>
     <String, dynamic>{
       'id': instance.id,
       'giverId': instance.giverId,
@@ -35,46 +36,36 @@ Map<String, dynamic> _$_$_GiftRequestToJson(_$_GiftRequest instance) =>
       'createdAt': instance.createdAt.toIso8601String(),
     };
 
-_$Pending _$_$PendingFromJson(Map<String, dynamic> json) {
-  return _$Pending();
-}
+_$Pending _$$PendingFromJson(Map<String, dynamic> json) => _$Pending();
 
-Map<String, dynamic> _$_$PendingToJson(_$Pending instance) =>
+Map<String, dynamic> _$$PendingToJson(_$Pending instance) =>
     <String, dynamic>{};
 
-_$Confirmed _$_$ConfirmedFromJson(Map<String, dynamic> json) {
-  return _$Confirmed();
-}
+_$Confirmed _$$ConfirmedFromJson(Map<String, dynamic> json) => _$Confirmed();
 
-Map<String, dynamic> _$_$ConfirmedToJson(_$Confirmed instance) =>
+Map<String, dynamic> _$$ConfirmedToJson(_$Confirmed instance) =>
     <String, dynamic>{};
 
-_$CanceledByGiver _$_$CanceledByGiverFromJson(Map<String, dynamic> json) {
-  return _$CanceledByGiver();
-}
+_$CanceledByGiver _$$CanceledByGiverFromJson(Map<String, dynamic> json) =>
+    _$CanceledByGiver();
 
-Map<String, dynamic> _$_$CanceledByGiverToJson(_$CanceledByGiver instance) =>
+Map<String, dynamic> _$$CanceledByGiverToJson(_$CanceledByGiver instance) =>
     <String, dynamic>{};
 
-_$CanceledByRequester _$_$CanceledByRequesterFromJson(
-    Map<String, dynamic> json) {
-  return _$CanceledByRequester();
-}
+_$CanceledByRequester _$$CanceledByRequesterFromJson(
+        Map<String, dynamic> json) =>
+    _$CanceledByRequester();
 
-Map<String, dynamic> _$_$CanceledByRequesterToJson(
+Map<String, dynamic> _$$CanceledByRequesterToJson(
         _$CanceledByRequester instance) =>
     <String, dynamic>{};
 
-_$Accepted _$_$AcceptedFromJson(Map<String, dynamic> json) {
-  return _$Accepted();
-}
+_$Accepted _$$AcceptedFromJson(Map<String, dynamic> json) => _$Accepted();
 
-Map<String, dynamic> _$_$AcceptedToJson(_$Accepted instance) =>
+Map<String, dynamic> _$$AcceptedToJson(_$Accepted instance) =>
     <String, dynamic>{};
 
-_$Delivered _$_$DeliveredFromJson(Map<String, dynamic> json) {
-  return _$Delivered();
-}
+_$Delivered _$$DeliveredFromJson(Map<String, dynamic> json) => _$Delivered();
 
-Map<String, dynamic> _$_$DeliveredToJson(_$Delivered instance) =>
+Map<String, dynamic> _$$DeliveredToJson(_$Delivered instance) =>
     <String, dynamic>{};

@@ -42,18 +42,6 @@ class GiftAskGiverView extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         shadowColor: Colors.white,
       ),
-      // body: Obx(
-      //   () => Center(
-      //     child: Text(
-      //       giftAskGiverController.giftAskList.value.when(
-      //         data: (data) => data.length.toString(),
-      //         empty: () => '00',
-      //         error: (e) => e.toString(),
-      //         loading: () => '......',
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: _BuildBody(controller: giftAskGiverController),
     );
   }
@@ -100,11 +88,12 @@ class _BuildBody extends StatelessWidget {
               data: (giftAskList) => Expanded(
                 child: ListView.builder(
                   controller: controller.scrollController,
-                  itemCount:  controller.allGiftsFetched.value
-                        // * Show Loading Indicator if More gifts needs to be loaded
-                        ? controller.giftAskList.value.maybeWhen(data: (giftAskList) => giftAskList.length, orElse: () => 0)
-                        : controller.giftAskList.value
-                            .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
+                  itemCount: controller.allGiftsFetched.value
+                      // * Show Loading Indicator if More gifts needs to be loaded
+                      ? controller.giftAskList.value
+                          .maybeWhen(data: (giftAskList) => giftAskList.length, orElse: () => 0)
+                      : controller.giftAskList.value
+                          .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
                   itemBuilder: (_, i) {
                     if (i ==
                             controller.giftAskList.value.maybeWhen(
@@ -114,6 +103,8 @@ class _BuildBody extends StatelessWidget {
                         !controller.allGiftsFetched.value) {
                       return const CupertinoActivityIndicator(radius: 15);
                     }
+
+                    print('GiftAsk $i:' + giftAskList[i].title.toString());
                     return _GiftAskRequestTile(
                       key: ValueKey(giftAskList[i].id),
                       giftAsk: giftAskList[i],
