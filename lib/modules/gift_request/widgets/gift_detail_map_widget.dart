@@ -33,7 +33,7 @@ class GiftDetailMapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final distanceOfGift = authController.calculateDistanceForGiftDetail(gift: gift);
+    final distanceOfGift = authController.calculateDistanceFromGiftOrGiftAsk(gift: gift);
 
     final markers = [
       Marker(

@@ -1,3 +1,5 @@
+import 'package:alokito_new/core/date/date_helper.dart';
+
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../models/my_enums.dart';
 import '../../auth/controllers/auth_controller.dart';
@@ -17,21 +19,6 @@ class GiftAskDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var date = '';
-    // TODO FIX
-    // var distance = calculateDistance(
-    //   giftAsk.user.position,
-    //   Get.find<AuthController>().currentUser.value.geometry,
-    // );
-    var userJoinedAt = DateTime.now()
-            .difference(
-              DateTime.fromMillisecondsSinceEpoch(giftAsk.user.createdAt.millisecondsSinceEpoch),
-            )
-            .inDays ~/
-        30;
-
-    var markers = [Marker(markerId: const MarkerId('1'), position: LatLng(0, 9))];
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -43,7 +30,7 @@ class GiftAskDetailView extends StatelessWidget {
           foregroundColor: appBarColor,
           elevation: 5,
           title: Text(
-            'Gift Request - ${convertGiftAskType(giftAskType: giftAsk.giftAskType)} ',
+            'Gift Request 2 - ${convertGiftAskType(giftAskType: giftAsk.giftAskType)} ',
             style: const TextStyle(color: Colors.black),
           ),
         ),
@@ -58,21 +45,24 @@ class GiftAskDetailView extends StatelessWidget {
             ),
             // _buildBody(date, distance, userJoinedAt, markers),
             // TODO FIX
-            _buildBody(date, 1, userJoinedAt, markers),
+            _buildBody(giftAsk: giftAsk),
           ],
         ),
       ),
     );
   }
 
-  SingleChildScrollView _buildBody(
-    String date,
-    double distance,
-    int userJoinedAt,
-    List<Marker> markers,
-  ) {
+  SingleChildScrollView _buildBody({
+    // List<Marker> markers,
+    required GiftAsk giftAsk,
+  }) {
+    final userJoinedAt = DateHelper.findTimeDifference(DateTime.now(), giftAsk.user.createdAt);
+
+    final distance = Get.find<AuthController>().calculateDistanceFromGiftOrGiftAsk(giftAsk: giftAsk);
+
+    final markers = [Marker(markerId: const MarkerId('1'), position: LatLng(0, 9))];
+
     return SingleChildScrollView(
-      // physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,10 +71,10 @@ class GiftAskDetailView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("giftAsk.giftTitle", style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                  Text(giftAsk.note, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
                 ],
               )),
-          _RequestForAndDateWidget(giftAsk: giftAsk, date: date),
+          _RequestForAndDateWidget(giftAsk: giftAsk, date: 'date'),
           _NoteWidget(giftAsk: giftAsk),
           _UserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
           _RequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
@@ -183,7 +173,7 @@ class _RequesterLocationAndGiftDetailsWidget extends StatelessWidget {
     required this.giftAsk,
   }) : super(key: key);
 
-  final int userJoinedAt;
+  final String userJoinedAt;
   final GiftAsk giftAsk;
 
   @override

@@ -145,13 +145,13 @@ class GetPages {
       }),
     ),
 
-    //* Map
-    GetPage(
-      name: MyMapView.route,
-      transition: Transition.cupertino,
-      page: () => MyMapView(),
-      binding: BindingsBuilder(() {}),
-    ),
+    // //* Map
+    // GetPage(
+    //   name: MyMapView.route,
+    //   transition: Transition.cupertino,
+    //   page: () => MyMapView(),
+    //   binding: BindingsBuilder(() {}),
+    // ),
 
     //*   Notification Routes
     GetPage(

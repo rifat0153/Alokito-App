@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -56,8 +57,8 @@ class AuthController extends GetxController {
   }
 
   void bindNewNotificationStream() {
-    newNotifications.bindStream(authService
-        .streamNewNotificationNumber(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as')));
+    newNotifications.bindStream(authService.streamNewNotificationNumber(
+        currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as')));
   }
 
   Future signOut() async {
@@ -68,13 +69,25 @@ class AuthController extends GetxController {
     newNotifications.refresh();
   }
 
-  double calculateDistanceForGiftDetail({required Gift gift}) {
-    final distance = LocationHelper.determineDistance(
-      gift.geometry.coordinates.last,
-      gift.geometry.coordinates.first,
-      currentUserPosition.value.latitude,
-      currentUserPosition.value.longitude,
+  double calculateDistanceFromGiftOrGiftAsk({Gift? gift, GiftAsk? giftAsk}) {
+    final currentUserLatLng = currentUserInfo.value.maybeWhen(
+      data: (data) => LatLng(data.geometry.coordinates.last, data.geometry.coordinates.first),
+      orElse: () => const LatLng(0, 0),
     );
+
+    final distance = gift != null
+        ? LocationHelper.determineDistance(
+            gift.geometry.coordinates.last,
+            gift.geometry.coordinates.first,
+            currentUserLatLng.latitude,
+            currentUserLatLng.longitude,
+          )
+        : LocationHelper.determineDistance(
+            giftAsk!.geometry.coordinates.last,
+            giftAsk.geometry.coordinates.first,
+            currentUserLatLng.latitude,
+            currentUserLatLng.longitude,
+          );
 
     return distance / 10000 > 100 ? 101 : (distance / 1000).toPrecision(2);
   }
@@ -85,7 +98,8 @@ class AuthController extends GetxController {
     currentUserInfo.value = const LocalUserInfo.loading();
 
     try {
-      final LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
+      final LocalUserInfo userInfo =
+          await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
       currentUserInfo.value = userInfo;
 
