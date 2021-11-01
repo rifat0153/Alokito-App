@@ -1,7 +1,9 @@
 import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:alokito_new/modules/gift_ask_detail/controller/gift_ask_detail_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,10 +11,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class GiftAskDetailDecisionWidget extends StatelessWidget {
   GiftAskDetailDecisionWidget({
     required this.giftAsk,
+    required this.controller,
     Key? key,
   }) : super(key: key);
 
   final GiftAsk giftAsk;
+  final GiftAskDetailController controller;
 
   final AuthController authController = Get.find<AuthController>();
 
@@ -28,19 +32,24 @@ class GiftAskDetailDecisionWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (user.acceptedGiftId != giftAsk.id && user.acceptedGiftId.isEmpty)
-                MaterialButton(
-                  onPressed: () async {},
-                  color: giftAskColor,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                  height: 0,
-                  child: MyText(
-                    'Accept for confirmation',
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.sp,
-                  ),
-                ),
+                Obx(() => controller.loading.value
+                    ? const CupertinoActivityIndicator()
+                    : MaterialButton(
+                        onPressed: () async {
+                          // Add GiftAskREquest
+                          await controller.addGiftAskRequest(giftAsk);
+                        },
+                        color: giftAskColor,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                        height: 0,
+                        child: MyText(
+                          'Accept for confirmation',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp,
+                        ),
+                      )),
               if (user.acceptedGiftId != giftAsk.id && user.acceptedGiftId.isNotEmpty)
                 MyText(
                   'Another Request Ongoing',

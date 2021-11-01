@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/gift_ask_detail/view/gift_ask_detail_view.dart';
 import 'package:alokito_new/modules/gift_request_detail/controllers/gift_request_detail_controller.dart';
 import 'package:alokito_new/modules/gift_request_detail/services/gift_request_detail_service.dart';
 import 'package:alokito_new/modules/gift_request_detail/views/gift_request_detail_view.dart';

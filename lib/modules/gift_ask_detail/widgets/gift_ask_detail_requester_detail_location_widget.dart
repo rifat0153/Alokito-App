@@ -35,7 +35,7 @@ class GiftAskDetailRequesterLocationAndGiftDetailsWidget extends StatelessWidget
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MyText('Joined $userJoinedAt months ago', fontSize: 18),
+                MyText('Joined $userJoinedAt ago', fontSize: 18),
                 const SizedBox(height: 8),
                 Text('Location', style: boldFontStyle),
                 const SizedBox(height: 4),

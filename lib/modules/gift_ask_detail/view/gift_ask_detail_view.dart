@@ -1,25 +1,29 @@
-import 'package:alokito_new/modules/gift_ask_detail/widgets/gift_ask_detail_decision_widget.dart';
-import 'package:alokito_new/modules/gift_ask_detail/widgets/gift_ask_detail_note_widget.dart';
-import 'package:alokito_new/modules/gift_ask_detail/widgets/gift_ask_detail_requester_detail_location_widget.dart';
-import 'package:alokito_new/modules/gift_ask_detail/widgets/gift_ask_detail_user_name_widget.dart';
+import 'package:alokito_new/modules/gift_ask_detail/controller/gift_ask_detail_controller.dart';
+import 'package:alokito_new/modules/gift_ask_detail/service/gift_ask_detail_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../core/date/date_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../models/my_enums.dart';
 import '../../../shared/config.dart';
-import '../../../shared/styles.dart';
 import '../../../shared/widget/my_text.dart';
 import '../../auth/controllers/auth_controller.dart';
+import '../widgets/gift_ask_detail_decision_widget.dart';
 import '../widgets/gift_ask_detail_map_widget.dart';
+import '../widgets/gift_ask_detail_note_widget.dart';
+import '../widgets/gift_ask_detail_requester_detail_location_widget.dart';
+import '../widgets/gift_ask_detail_user_name_widget.dart';
 import '../widgets/request_for_date_widget.dart';
 
 class GiftAskDetailView extends StatelessWidget {
-  const GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
+   GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
+
+  static const route = 'giftaskdetailview';
+
+  // initialize controller
+  final GiftAskDetailController controller = Get.put(GiftAskDetailController(GiftAskDetailService()));
 
   final GiftAsk giftAsk;
 
@@ -61,10 +65,7 @@ class GiftAskDetailView extends StatelessWidget {
     required GiftAsk giftAsk,
   }) {
     final userJoinedAt = DateHelper.findTimeDifference(DateTime.now(), giftAsk.user.createdAt);
-
     final distance = Get.find<AuthController>().calculateDistanceFromGiftOrGiftAsk(giftAsk: giftAsk);
-
-    final markers = [Marker(markerId: const MarkerId('1'), position: LatLng(0, 9))];
 
     return SingleChildScrollView(
       child: Column(
@@ -78,7 +79,10 @@ class GiftAskDetailView extends StatelessWidget {
           GiftAskDetailNoteWidget(giftAsk: giftAsk),
           GiftAskDetailUserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
           GiftAskDetailRequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
-          GiftAskDetailDecisionWidget(giftAsk: giftAsk),
+
+          // Decision Widget
+          GiftAskDetailDecisionWidget(giftAsk: giftAsk, controller: controller),
+
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8.h),
             child: const MyText('Pickup Location', fontWeight: FontWeight.bold),
@@ -89,5 +93,3 @@ class GiftAskDetailView extends StatelessWidget {
     );
   }
 }
-
-
