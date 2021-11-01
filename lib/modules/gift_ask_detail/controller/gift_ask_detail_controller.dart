@@ -34,18 +34,13 @@ class GiftAskDetailController extends GetxController {
       try {
         loading.value = true;
 
-        await giftAskDetailService.add(giftAskRequest);
+        final isGiftAskRequestAdded = await giftAskDetailService.add(giftAskRequest);
 
-        // Update LocalUser after giftAsk request has been added
-        final LocalUser? localuser =
-            Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
-
-        if (localuser != null) {
-          final LocalUser updatedUser =
-              localuser.copyWith(hasGiftAskRequest: true, acceptedGiftId: giftAsk.id!);
-
-          await Get.find<AuthController>().updateLocalUser(updatedUser);
+        // Update LocalUser after giftAsk only when request has been added successfully
+        if (isGiftAskRequestAdded) {
+          await updateLocalUser(true, giftAsk.id!);
         }
+
         loading.value = false;
       } catch (e) {
         loading.value = false;
@@ -59,11 +54,24 @@ class GiftAskDetailController extends GetxController {
     }
   }
 
+  Future<void> updateLocalUser(bool hasGiftAskRequest, String acceptedGiftId) async {
+    // Update LocalUser after giftAsk request has been added
+    final LocalUser? localuser =
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
+
+    if (localuser != null) {
+      final LocalUser updatedUser =
+          localuser.copyWith(hasGiftAskRequest: hasGiftAskRequest, acceptedGiftId: acceptedGiftId);
+
+      await Get.find<AuthController>().updateLocalUser(updatedUser);
+    }
+  }
+
   // * Delete GiftRequesta and update local user
-  Future<void> canceledByRequester({GiftAskRequest? giftRequest, GiftAsk? giftAsk}) async {
+  Future<void> canceledByGiver({GiftAsk? giftAsk}) async {
     try {
       await giftAskDetailService.remove(
-        status: 'canceledByRequester',
+        status: 'canceledByGiver',
         giftAskId: giftAsk!.id,
         giverId:
             Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.id, orElse: () => ''),

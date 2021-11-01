@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
 
 abstract class BaseGiftAskDetailService {
-  Future<void> add(GiftAskRequest giftAskRequest);
+  Future<bool> add(GiftAskRequest giftAskRequest);
 
   Future<void> update(GiftAskRequest giftAskRequest);
 
@@ -24,7 +24,7 @@ class GiftAskDetailService extends GetConnect implements BaseGiftAskDetailServic
   final url = '${MyConfig.baseUrl}/gift_ask_request';
 
   @override
-  Future<void> add(GiftAskRequest giftAskRequest) async {
+  Future<bool> add(GiftAskRequest giftAskRequest) async {
     try {
       final headers = <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -37,13 +37,15 @@ class GiftAskDetailService extends GetConnect implements BaseGiftAskDetailServic
       ).timeout(const Duration(seconds: myTimeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        await MyBottomSheet.showSuccessBottomSheet('GiftAskRequest Added');
+        await MySnackbar.showErrorSnackbar('GiftAskRequest Added');
+        return true;
       } else {
-        await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
-        return;
+        await MySnackbar.showErrorSnackbar('${response.statusCode}: Something went wrong');
+        return false;
       }
     } catch (e) {
-      throw MyException(exceptionFrom: 'GiftRequestDetailService');
+      await MySnackbar.showErrorSnackbar('Something went wrong');
+      return false;
     }
   }
 
@@ -57,8 +59,8 @@ class GiftAskDetailService extends GetConnect implements BaseGiftAskDetailServic
     try {
       final body1 = {
         'giftId': giftAskRequestId,
-        'requester': giverId,
-        'giftRequestStatus': status,
+        'giver': giverId,
+        'giftAskRequestStatus': status,
       };
 
       final response = await post(
