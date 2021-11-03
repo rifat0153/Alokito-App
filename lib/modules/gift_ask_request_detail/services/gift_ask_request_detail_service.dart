@@ -13,7 +13,7 @@ abstract class BaseGiftAskRequestDetailService {
 
   // Future<GiftAskRequestState> getGiftAskRequestById(String askRequestId);
 
-  Future<void> updateStatus({
+  Future<bool> updateStatus({
     required String status,
     required String giftAskRequestId,
   });
@@ -23,31 +23,33 @@ class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskReque
   final url = '${MyConfig.baseUrl}/gift_ask_request';
 
   @override
-  Future<void> updateStatus({
+  Future<bool> updateStatus({
     required String status,
     required String giftAskRequestId,
   }) async {
     try {
       final body1 = {
         'id': giftAskRequestId,
-        'giftRequestStatus': status,
+        'giftAskRequestStatus': status,
       };
 
       final response = await post(
-        '$url/updaterequeststatus',
+        '$url/updateaskrequeststatus',
         jsonEncode(body1),
       ).timeout(const Duration(seconds: myTimeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         await MyBottomSheet.showSuccessBottomSheet('GiftRequest Updated');
+        return true;
       } else {
         await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
-        return;
+        return false;
       }
     } catch (e, s) {
       print(e);
       print(s);
-      throw MyException(exceptionFrom: 'GiftRequestDetailService');
+        return false;
+
     }
   }
 

@@ -58,7 +58,7 @@ class GiftAskDetailService extends GetConnect implements BaseGiftAskDetailServic
   }) async {
     try {
       final body1 = {
-        'giftId': giftAskRequestId,
+        'giftAskId': giftAskRequestId,
         'giver': giverId,
         'giftAskRequestStatus': status,
       };

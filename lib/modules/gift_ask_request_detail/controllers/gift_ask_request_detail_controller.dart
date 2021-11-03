@@ -43,12 +43,15 @@ class GiftAskRequestDetailController extends GetxController {
   ) async {
     loading.value = true;
 
-    await giftAskRequestDetailService.updateStatus(status: status, giftAskRequestId: giftAskRequest.id ?? '');
+    final isStatusUpdated =
+        await giftAskRequestDetailService.updateStatus(status: status, giftAskRequestId: giftAskRequest.id ?? '');
 
-    await Get.find<NotificationController>().updateLocalNotificationForRequests(
-      giftAskRequest: giftAskRequest,
-      giftAskRequestStatus: giftRequestStatus,
-    );
+    if (isStatusUpdated) {
+      await Get.find<NotificationController>().updateLocalNotificationForRequests(
+        giftAskRequest: giftAskRequest,
+        giftAskRequestStatus: giftRequestStatus,
+      );
+    }
 
     Get.back();
 
