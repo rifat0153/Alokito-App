@@ -200,7 +200,7 @@ class NotificationTile extends StatelessWidget {
               ),
             ),
           )
-        : Container();
+        : Text(notification.text);
   }
 
   Widget _buildGiftRequestNotificationTile(MyNotification notification, BuildContext context) {

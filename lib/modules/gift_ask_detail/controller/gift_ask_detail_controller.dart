@@ -26,6 +26,7 @@ class GiftAskDetailController extends GetxController {
     if (currentUser != null) {
       final GiftAskRequest giftAskRequest = GiftAskRequest(
         comment: comment.value,
+        giftAskRequestStatus: const GiftAskRequestStatus.confirmed(),
         giftAsk: giftAsk,
         giver: currentUser,
         createdAt: DateTime.now(),

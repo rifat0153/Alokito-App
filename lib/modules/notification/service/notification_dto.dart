@@ -26,5 +26,13 @@ class NotificationDto {
 }
 
 List<MyNotification> dtoToNotificationList(List<dynamic> list) {
-  return list.isEmpty ? [] : list.map((e) => MyNotification.fromJson(e as Map<String, dynamic>)).toList();
+  return list.isEmpty
+      ? []
+      : list.map((e) {
+          final notification = MyNotification.fromJson(e as Map<String, dynamic>);
+
+          print(notification);
+
+          return notification;
+        }).toList();
 }

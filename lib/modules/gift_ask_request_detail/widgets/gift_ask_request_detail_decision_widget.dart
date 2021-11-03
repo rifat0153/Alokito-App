@@ -21,8 +21,8 @@ class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //*************************** If its giver notification   ********************************
-    if (giftAskRequest.giver.id == controller.currentUserInfo?.id) {
+    //*************************** If its requester notification   ********************************
+    if (giftAskRequest.giftAsk.user.id == controller.currentUserInfo?.id) {
       return giftAskRequest.giftAskRequestStatus.when(
         // Pending
         pending: () => MaterialButton(
@@ -121,7 +121,7 @@ class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
       );
     }
 
-    // ************************* If its requester notification ************************
+    // ************************* If its giver notification ************************
 
     return giftAskRequest.giftAskRequestStatus.when(
       // Pending
