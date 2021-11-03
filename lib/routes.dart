@@ -1,4 +1,7 @@
 import 'package:alokito_new/modules/gift_ask_detail/view/gift_ask_detail_view.dart';
+import 'package:alokito_new/modules/gift_ask_request_detail/controllers/gift_ask_request_detail_controller.dart';
+import 'package:alokito_new/modules/gift_ask_request_detail/services/gift_ask_request_detail_service.dart';
+import 'package:alokito_new/modules/gift_ask_request_detail/views/gift_ask_request_detail_view.dart';
 import 'package:alokito_new/modules/gift_request_detail/controllers/gift_request_detail_controller.dart';
 import 'package:alokito_new/modules/gift_request_detail/services/gift_request_detail_service.dart';
 import 'package:alokito_new/modules/gift_request_detail/views/gift_request_detail_view.dart';
@@ -56,6 +59,7 @@ class GetPages {
           Get.lazyPut(() => LoginController());
         })),
 
+
     //* Gift Receiver Routes
     GetPage(
       name: GiftRequestView.route,
@@ -110,6 +114,16 @@ class GetPages {
         );
       }),
     ),
+        GetPage(
+      name: GiftAskRequestDetailView.route,
+      page: () => GiftAskRequestDetailView(),
+  
+      transition: Transition.native,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => GiftAskRequestDetailController(GiftAskRequestDetailService()));
+      }),
+    ),
+
 
     // * Gift Giver Routes
     GetPage(

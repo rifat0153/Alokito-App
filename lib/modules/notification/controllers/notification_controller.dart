@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_ask_request.dart/gift_ask_request.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,16 +55,31 @@ class NotificationController extends GetxController {
   }
 
   // Update Local Notification by GiftRequest Id
-  Future<void> updateLocalNotification(
-      {required GiftRequest giftRequest, required GiftRequestStatus status}) async {
+  Future<void> updateLocalNotificationForRequests({
+    GiftRequest? giftRequest,
+    GiftRequestStatus? status,
+    GiftAskRequest? giftAskRequest,
+    GiftAskRequestStatus? giftAskRequestStatus,
+  }) async {
     final List<MyNotification> existingList = await notificationList.value.maybeWhen(
       data: (list) => list,
       orElse: () => [],
     );
 
     final updatedList = existingList.map((notif) {
-      if (notif.relatedDocId == giftRequest.id) {
-        return notif.copyWith(giftRequestDoc: notif.giftRequestDoc?.copyWith(giftRequestStatus: status));
+      if (giftRequest != null) {
+        if (notif.relatedDocId == giftRequest.id) {
+          return notif.copyWith(giftRequestDoc: notif.giftRequestDoc?.copyWith(giftRequestStatus: status!));
+        } else {
+          return notif;
+        }
+      } else if (giftAskRequest != null) {
+        if (notif.relatedDocId == giftAskRequest.id) {
+          return notif.copyWith(
+              giftAskRequestDoc: notif.giftAskRequestDoc?.copyWith(giftAskRequestStatus: giftAskRequestStatus!));
+        } else {
+          return notif;
+        }
       } else {
         return notif;
       }

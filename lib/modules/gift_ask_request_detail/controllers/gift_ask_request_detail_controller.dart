@@ -1,14 +1,16 @@
+import 'package:alokito_new/models/gift_ask_request.dart/gift_ask_request.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:alokito_new/modules/gift_ask_request_detail/services/gift_ask_request_detail_service.dart';
 import 'package:alokito_new/modules/gift_request_detail/services/gift_request_detail_service.dart';
 import 'package:alokito_new/modules/notification/controllers/notification_controller.dart';
 import 'package:get/get.dart';
 
-class GiftRequestDetailController extends GetxController {
-  GiftRequestDetailController(this.giftRequestDetailService);
+class GiftAskRequestDetailController extends GetxController {
+  GiftAskRequestDetailController(this.giftAskRequestDetailService);
 
-  GiftRequestDetailService giftRequestDetailService;
+  GiftAskRequestDetailService giftAskRequestDetailService;
 
   final loading = false.obs;
   LocalUser? currentUserInfo;
@@ -18,7 +20,7 @@ class GiftRequestDetailController extends GetxController {
     super.onInit();
 
     getLocalUserInfo();
-    await getGiftRequestsByRequestId();
+    // await getGiftRequestsByRequestId();
   }
 
   void getLocalUserInfo() {
@@ -32,21 +34,21 @@ class GiftRequestDetailController extends GetxController {
         .value
         .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
-    await giftRequestDetailService.getGiftRequests(userId);
+    await giftAskRequestDetailService.getGiftAskRequests(userId);
   }
 
-  Future<void> updateGiftRequestStatus(
-    GiftRequest giftRequest,
+  Future<void> updateGiftAskRequestStatus(
+    GiftAskRequest giftAskRequest,
     String status,
-    GiftRequestStatus giftRequestStatus,
+    GiftAskRequestStatus giftRequestStatus,
   ) async {
     loading.value = true;
 
-    await giftRequestDetailService.updateStatus(status: status, giftRequestId: giftRequest.id ?? '');
+    await giftAskRequestDetailService.updateStatus(status: status, giftAskRequestId: giftAskRequest.id ?? '');
 
     await Get.find<NotificationController>().updateLocalNotificationForRequests(
-      giftRequest: giftRequest,
-      status: giftRequestStatus,
+      giftAskRequest: giftAskRequest,
+      giftAskRequestStatus: giftRequestStatus,
     );
 
     Get.back();
@@ -54,7 +56,7 @@ class GiftRequestDetailController extends GetxController {
     loading.value = false;
   }
 
-  Future<void> getGiftRequestsByRequestId() async {
-    await giftRequestDetailService.getGiftRequestById('614877b93fce5f966938d010');
-  }
+  // Future<void> getGiftRequestsByRequestId() async {
+  //   await giftAskRequestDetailService.getGiftAskRequests('614877b93fce5f966938d010');
+  // }
 }
