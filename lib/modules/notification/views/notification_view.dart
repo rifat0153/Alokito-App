@@ -88,63 +88,107 @@ class NotificationTile extends StatelessWidget {
     }
     if (notification.notificationType == 'text') {}
 
-    return _buildTextNotificationTile(notification, context);
+    return _buildTextNotificationTile(notification);
   }
 
-  Widget _buildTextNotificationTile(MyNotification notification, BuildContext context) {
+  // Widget _buildTextNotificationTile(MyNotification notification, BuildContext context) {
+  //   final String timeDiff = DateHelper.findTimeDifference(DateTime.now(), notification.createdAt);
+
+  //   return notification.giftAskRequestDoc != null
+  //       ? GestureDetector(
+  //           onTap: () {
+  //             // Todo
+  //           },
+  //           child: Padding(
+  //             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+  //             child: ClipRRect(
+  //               borderRadius: BorderRadius.circular(10),
+  //               child: Container(
+  //                 height: 100,
+  //                 decoration: const BoxDecoration(
+  //                   color: Colors.white,
+  //                 ),
+  //                 child: Row(
+  //                   children: [
+  //                     SizedBox(
+  //                       width: 100,
+  //                       height: 100,
+  //                       child: Image.asset(
+  //                         '',
+  //                         fit: BoxFit.cover,
+  //                         errorBuilder: (_, __, s) {
+  //                           return SizedBox();
+  //                         },
+  //                       ),
+  //                     ),
+  //                     Expanded(
+  //                       child: Padding(
+  //                         padding: const EdgeInsets.all(8),
+  //                         child: Column(
+  //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                           crossAxisAlignment: CrossAxisAlignment.start,
+  //                           children: [
+  //                             MyText(
+  //                               notification.text,
+  //                               maxLines: 2,
+  //                             ),
+  //                             const Spacer(),
+  //                             MyText('$timeDiff ago', fontSize: 15.sp),
+  //                           ],
+  //                         ),
+  //                       ),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //         )
+  //       : Container();
+  // }
+
+  Padding _buildTextNotificationTile(MyNotification notification) {
     final String timeDiff = DateHelper.findTimeDifference(DateTime.now(), notification.createdAt);
 
-    return notification.giftAskRequestDoc != null
-        ? GestureDetector(
-            onTap: () {
-              // Todo
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  height: 100,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Row(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          height: 100,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Row(
+            children: [
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.amber,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: Image.asset(
-                          '',
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, s) {
-                            return SizedBox();
-                          },
-                        ),
+                      MyText(
+                        notification.text,
+                        maxLines: 2,
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              MyText(
-                                notification.text,
-                                maxLines: 2,
-                              ),
-                              const Spacer(),
-                              MyText('$timeDiff ago', fontSize: 15.sp),
-                            ],
-                          ),
-                        ),
-                      ),
+                      const Spacer(),
+                      MyText('$timeDiff ago', fontSize: 15.sp),
                     ],
                   ),
                 ),
               ),
-            ),
-          )
-        : Container();
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildGiftAskRequestNotificationTile(MyNotification notification, BuildContext context) {
@@ -200,7 +244,7 @@ class NotificationTile extends StatelessWidget {
               ),
             ),
           )
-        : Text(notification.text);
+        : _buildTextNotificationTile(notification);
   }
 
   Widget _buildGiftRequestNotificationTile(MyNotification notification, BuildContext context) {
@@ -252,6 +296,6 @@ class NotificationTile extends StatelessWidget {
               ),
             ),
           )
-        : Container();
+        : _buildTextNotificationTile(notification);
   }
 }
