@@ -7,8 +7,8 @@ import '../../../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FeedbackWidget extends StatelessWidget {
-  FeedbackWidget({Key? key, required this.giftReceiver, required this.isRequester}) : super(key: key);
+class FeedbackWidgetForGiftRequest extends StatelessWidget {
+  FeedbackWidgetForGiftRequest({Key? key, required this.giftReceiver, required this.isRequester}) : super(key: key);
 
   final bool isRequester;
   final GiftRequest? giftReceiver;

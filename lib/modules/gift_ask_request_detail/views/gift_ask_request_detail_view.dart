@@ -1,13 +1,14 @@
-import 'package:alokito_new/models/gift_ask_request.dart/gift_ask_request.dart';
-import 'package:alokito_new/modules/gift_request_detail/widgets/gift_request_decision_widget.dart';
-import 'package:alokito_new/modules/gift_request_detail/widgets/gift_request_map_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/gift_request/gift_request.dart';
+import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
 import '../../../shared/skeleton_widget.dart';
 import '../../../shared/widget/my_text.dart';
-
+import '../widgets/gift_ask_request_decision_widget.dart';
+import '../widgets/gift_ask_request_detail_comment_widget.dart';
+import '../widgets/gift_ask_request_detail_giver_widget.dart';
+import '../widgets/gift_ask_request_detail_location_gift_details_widget.dart';
+import '../widgets/gift_ask_request_detail_map_widget.dart';
 
 class GiftAskRequestDetailView extends StatelessWidget {
   GiftAskRequestDetailView({
@@ -34,15 +35,15 @@ class GiftAskRequestDetailView extends StatelessWidget {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  Text(giftAskRequest.toString())
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  //   child: GiftRequesterDetailWidget(giftAskRequest: giftAskRequest),
-                  // ),
-                  // GiftCommentWidget(giftAskRequest: giftAskRequest),
-                  // GiftRequesteLocationAndGiftDetailsWidget(giftAskRequest: giftAskRequest!),
-                  // GiftRequestDetailDecisionWidget(giftAskRequest: giftAskRequest!),
-                  // GiftRequestDetailMapWidget(giftAskRequest: giftAskRequest!),
+                  // Text(giftAskRequest.toString())
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: GiftAskRequesterDetailGiverWidget(giftAskRequest: giftAskRequest),
+                  ),
+                  GiftAskRequestDetailCommentWidget(giftAskRequest: giftAskRequest!),
+                  GiftAskRequestDetailLocationAndGiftDetailsWidget(giftAskRequest: giftAskRequest!),
+                  GiftAskRequestDetailDecisionWidget(giftAskRequest: giftAskRequest!),
+                  GiftAskRequestDetailMapWidget(giftAskRequest: giftAskRequest!),
                 ],
               ),
             ),

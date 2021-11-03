@@ -1,11 +1,10 @@
-import 'package:alokito_new/models/gift_ask_request.dart/gift_ask_request.dart';
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_ask_request_detail/services/gift_ask_request_detail_service.dart';
-import 'package:alokito_new/modules/gift_request_detail/services/gift_request_detail_service.dart';
-import 'package:alokito_new/modules/notification/controllers/notification_controller.dart';
 import 'package:get/get.dart';
+
+import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
+import '../../../models/user/local_user.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../notification/controllers/notification_controller.dart';
+import '../services/gift_ask_request_detail_service.dart';
 
 class GiftAskRequestDetailController extends GetxController {
   GiftAskRequestDetailController(this.giftAskRequestDetailService);

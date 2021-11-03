@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/gift_ask_request.dart/gift_ask_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,23 +7,23 @@ import '../../../models/gift_request/gift_request.dart';
 import '../../../shared/config.dart';
 import '../../../shared/widget/my_text.dart';
 import '../../notification/gift_giver/widgets/feedback_widget.dart';
-import '../controllers/gift_request_detail_controller.dart';
+import '../controllers/gift_ask_request_detail_controller.dart';
 
-class GiftRequestDetailDecisionWidget extends StatelessWidget {
-  GiftRequestDetailDecisionWidget({
+class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
+  GiftAskRequestDetailDecisionWidget({
     Key? key,
-    required this.giftRequest,
+    required this.giftAskRequest,
   }) : super(key: key);
 
-  final GiftRequest giftRequest;
+  final GiftAskRequest giftAskRequest;
 
-  final GiftRequestDetailController controller = Get.find<GiftRequestDetailController>();
+  final GiftAskRequestDetailController controller = Get.find<GiftAskRequestDetailController>();
 
   @override
   Widget build(BuildContext context) {
     //*************************** If its requester notification   ********************************
-    if (giftRequest.requester.id == controller.currentUserInfo?.id) {
-      return giftRequest.giftRequestStatus.when(
+    if (giftAskRequest.giver.id == controller.currentUserInfo?.id) {
+      return giftAskRequest.giftAskRequestStatus.when(
         // Pending
         pending: () => MaterialButton(
           onPressed: () {},
@@ -42,10 +43,10 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
                     MaterialButton(
                       onPressed: () {
                         // Accept Gift by requester
-                        controller.updateGiftRequestStatus(
-                          giftRequest,
+                        controller.updateGiftAskRequestStatus(
+                          giftAskRequest,
                           'accepted',
-                          const GiftRequestStatus.confirmed(),
+                          const GiftAskRequestStatus.confirmed(),
                         );
                       },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -58,10 +59,10 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
                     MaterialButton(
                       onPressed: () {
                         // Cancel GiftRequest by requester
-                        controller.updateGiftRequestStatus(
-                          giftRequest,
+                        controller.updateGiftAskRequestStatus(
+                          giftAskRequest,
                           'canceledByRequester',
-                          const GiftRequestStatus.canceledByRequester(),
+                          const GiftAskRequestStatus.canceledByRequester(),
                         );
                       },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -75,7 +76,7 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
         ),
         // Canceled by giver
         canceledByGiver: () => MyText(
-          'r Request Canceled by ${giftRequest.gift.user!.userName}',
+          'r Request Canceled by ${giftAskRequest.giftAsk.user.userName}',
           textAlign: TextAlign.center,
           color: Colors.red,
           fontWeight: FontWeight.bold,
@@ -95,7 +96,7 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
         // Gift Delivered
-        delivered: () => giftRequest.messageForGiverSent == true
+        delivered: () => giftAskRequest.messageForGiverSent == true
             ? Column(
                 children: [
                   const MyText('r Gift Received', color: Colors.blueAccent),
@@ -106,7 +107,8 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
                   const MyText('r Gift Received', color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
-                      Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftRequest, isRequester: true));
+                      // Todo
+                      // Get.dialog(FeedbackWidget(giftReceiver: giftAskRequest, isRequester: true));
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
@@ -121,17 +123,17 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
 
     // ************************* If its giver notification ************************
 
-    return giftRequest.giftRequestStatus.when(
+    return giftAskRequest.giftAskRequestStatus.when(
       // Pending
       pending: () => Obx(
         () => controller.loading.value
             ? const CupertinoActivityIndicator()
             : MaterialButton(
                 onPressed: () {
-                  controller.updateGiftRequestStatus(
-                    giftRequest,
+                  controller.updateGiftAskRequestStatus(
+                    giftAskRequest,
                     'confirmed',
-                    const GiftRequestStatus.confirmed(),
+                    const GiftAskRequestStatus.confirmed(),
                   );
                 },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -158,7 +160,7 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
         children: [
           const MyText('Request Canceled by', color: Colors.red, fontWeight: FontWeight.bold),
           MyText(
-            giftRequest.requester.userName,
+            giftAskRequest.giver.userName,
             textAlign: TextAlign.center,
             fontSize: 25,
           ),
@@ -167,16 +169,16 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
       // Gift Accepted
       accepted: () => Column(
         children: [
-          MyText('Gift Accepted by ${giftRequest.requester.userName}',
+          MyText('Gift Accepted by ${giftAskRequest.giver.userName}',
               textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
           Obx(() => controller.loading.value
               ? const CircularProgressIndicator()
               : MaterialButton(
                   onPressed: () {
-                    controller.updateGiftRequestStatus(
-                      giftRequest,
+                    controller.updateGiftAskRequestStatus(
+                      giftAskRequest,
                       'delivered',
-                      const GiftRequestStatus.delivered(),
+                      const GiftAskRequestStatus.delivered(),
                     );
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -188,14 +190,15 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
         ],
       ),
       // Delivered
-      delivered: () => giftRequest.messageForRequesterSent
+      delivered: () => giftAskRequest.messageForRequesterSent
           ? const MyText('Delivered', color: Colors.blueAccent)
           : Column(
               children: [
                 const MyText('Delivered', color: Colors.blueAccent),
                 MaterialButton(
                   onPressed: () {
-                    Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftRequest, isRequester: false));
+                    // Todo
+                    // Get.dialog(FeedbackWidget(giftReceiver: giftAskRequest, isRequester: false));
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   height: 0,

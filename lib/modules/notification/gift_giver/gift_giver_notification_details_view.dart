@@ -131,7 +131,7 @@ class _DecisionWidget extends StatelessWidget {
                   MyText('r Gift Received', color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
-                      Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: true));
+                      Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftReceiver, isRequester: true));
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
@@ -195,7 +195,7 @@ class _DecisionWidget extends StatelessWidget {
                   MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
-                      Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: false));
+                      Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftReceiver, isRequester: false));
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
