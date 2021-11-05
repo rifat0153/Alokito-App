@@ -58,6 +58,29 @@ class GiftAskRequestDetailController extends GetxController {
     loading.value = false;
   }
 
+  // // Update giverText and requesterText field
+  //  Future<void> updateGiftAskRequestMessageFields(
+  //   GiftAskRequest giftAskRequest,
+  //   bool?   messageForRequesterSent,
+  //   bool?   messageForGiverSent,
+  // ) async {
+  //   loading.value = true;
+
+  //   final isStatusUpdated =
+  //       await giftAskRequestDetailService.updateStatus(status: status, giftAskRequestId: giftAskRequest.id ?? '');
+
+  //   if (isStatusUpdated) {
+  //     await Get.find<NotificationController>().updateLocalNotificationForRequests(
+  //       giftAskRequest: giftAskRequest,
+  //       giftAskRequestStatus: giftRequestStatus,
+  //     );
+  //   }
+
+  //   Get.back();
+
+  //   loading.value = false;
+  // }
+
   // Future<void> getGiftRequestsByRequestId() async {
   //   await giftAskRequestDetailService.getGiftAskRequests('614877b93fce5f966938d010');
   // }

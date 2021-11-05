@@ -1,19 +1,20 @@
 // import 'dart:ui';
 
+// import 'package:alokito_new/modules/gift_ask_request_detail/controllers/gift_ask_request_detail_controller.dart';
+
 // import '../../../../models/gift_request/gift_request.dart';
-// import '../gift_giver_notification_controller.dart';
 // import '../../../../shared/config.dart';
 // import '../../../../shared/widget/my_text.dart';
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 
-// class FeedbackWidgetForGiftRequest extends StatelessWidget {
-//   FeedbackWidgetForGiftRequest({Key? key, required this.giftReceiver, required this.isRequester}) : super(key: key);
+// class GiftAskRequestDetailFeedbackWidget extends StatelessWidget {
+//   GiftAskRequestDetailFeedbackWidget({Key? key, required this.giftReceiver, required this.isRequester}) : super(key: key);
 
 //   final bool isRequester;
 //   final GiftRequest? giftReceiver;
 
-//   final GiftGiverNotificationController controller = Get.find();
+//   final GiftAskRequestDetailController controller = Get.find();
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -39,12 +40,12 @@
 //                 const SizedBox(height: 8),
 //                 MyText(giftReceiver!.requester.userName),
 //                 Padding(
-//                   padding: const EdgeInsets.all(8.0),
+//                   padding: const EdgeInsets.all(8),
 //                   child: TextField(
 //                     decoration: InputDecoration(
 //                         border: const OutlineInputBorder(
-//                           borderSide: BorderSide(width: 0, style: BorderStyle.none),
-//                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
+//                           borderSide: BorderSide.none,
+//                           borderRadius: BorderRadius.all(Radius.circular(10)),
 //                         ),
 //                         fillColor: Colors.grey[400],
 //                         // hoverColor: Colors.grey,

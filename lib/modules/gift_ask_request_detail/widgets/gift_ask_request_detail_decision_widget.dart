@@ -198,7 +198,7 @@ class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
                 MaterialButton(
                   onPressed: () {
                     // Todo
-                    // Get.dialog(FeedbackWidget(giftReceiver: giftAskRequest, isRequester: false));
+                    // Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftAskRequest, isRequester: false));
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   height: 0,
