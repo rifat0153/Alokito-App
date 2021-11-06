@@ -17,9 +17,21 @@ abstract class BaseGiftRequestDetailService {
     required String status,
     required String giftRequestId,
   });
+
+  Future<bool> updateRatingAndSendMessage(
+      {required String id,
+      required bool isUpdatingRequester,
+      required String messageForRequester,
+      required String messageForGiver,
+      required int ratingForRequester,
+      required int ratingForGiver,
+      required String requesterId,
+      required String giverId});
 }
 
 class GiftRequestDetailService extends GetConnect implements BaseGiftRequestDetailService {
+  final url = '${MyConfig.baseUrl}/gift_request';
+
   @override
   Future<void> updateStatus({
     required String status,
@@ -56,7 +68,7 @@ class GiftRequestDetailService extends GetConnect implements BaseGiftRequestDeta
 
     try {
       final Response<GiftRequest> response = await get(
-        '${MyConfig.baseUrl}/gift_request?id=$requestId',
+        '$url?id=$requestId',
         decoder: (data) => GiftRequest.fromJson(
           data as Map<String, dynamic>,
         ),
@@ -84,7 +96,7 @@ class GiftRequestDetailService extends GetConnect implements BaseGiftRequestDeta
 
     try {
       final Response response = await get(
-        '${MyConfig.baseUrl}/gift_request/show_by_requester_id?requester=$userId',
+        '$url/show_by_requester_id?requester=$userId',
       ).timeout(const Duration(seconds: myTimeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -112,6 +124,49 @@ class GiftRequestDetailService extends GetConnect implements BaseGiftRequestDeta
       print(e);
       print(s);
       return const GiftRequestListState.error('Opps. Looks like something went wrong');
+    }
+  }
+
+  @override
+  Future<bool> updateRatingAndSendMessage(
+      {required String id,
+      required bool isUpdatingRequester,
+      required String messageForRequester,
+      required String messageForGiver,
+      required int ratingForRequester,
+      required int ratingForGiver,
+      required String requesterId,
+      required String giverId}) async {
+    try {
+      final body = {
+        "id": id,
+        "isUpdatingRequester": isUpdatingRequester,
+        "messageForRequesterSent": true,
+        "messageForRequester": messageForRequester,
+        "ratingForRequester": ratingForRequester,
+        "messageForGiverSent": true,
+        "messageForGiver": messageForGiver,
+        "ratingForGiver": ratingForGiver,
+        "requesterId": requesterId,
+        "giverId": giverId
+      };
+
+      print(body);
+
+      final response = await post(
+        '$url/update',
+        jsonEncode(body),
+      ).timeout(const Duration(seconds: myTimeout));
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        await MySnackbar.showErrorSnackbar('GiftAskRequest Updated');
+        return true;
+      } else {
+        await MySnackbar.showErrorSnackbar('${response.statusCode}: Something went wrong');
+        return false;
+      }
+    } catch (e) {
+      return false;
     }
   }
 }

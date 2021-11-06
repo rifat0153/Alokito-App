@@ -13,6 +13,9 @@ class GiftRequestDetailController extends GetxController {
   final loading = false.obs;
   LocalUser? currentUserInfo;
 
+  final message = ''.obs;
+  final rating = 0.obs;
+
   @override
   Future onInit() async {
     super.onInit();
@@ -52,6 +55,54 @@ class GiftRequestDetailController extends GetxController {
     Get.back();
 
     loading.value = false;
+  }
+
+  // Update giverText and requesterText field
+  Future<void> updateUserRatingAndAddMessage(
+    GiftRequest giftRequest,
+  ) async {
+    loading.value = true;
+
+    // Set isUpdatingRequester to false if it is Giver
+    final bool isUpdatingRequester = isCurrentUserRequester(giftRequest);
+
+    print({'isUpdatingReqeuster': isUpdatingRequester});
+
+    final isSuccessful = await giftRequestDetailService.updateRatingAndSendMessage(
+        id: giftRequest.id ?? '',
+        isUpdatingRequester: isUpdatingRequester,
+        messageForRequester: message.value,
+        messageForGiver: message.value,
+        ratingForRequester: rating.value,
+        ratingForGiver: rating.value,
+        requesterId: giftRequest.requester.id ?? '',
+        giverId: giftRequest.gift.user!.id ?? '');
+
+    if (isSuccessful) {
+      // Update Local Notificaiton DOc
+      isUpdatingRequester
+          ? await Get.find<NotificationController>().updateLocalNotificationForRequests(
+              giftRequest:
+                  giftRequest.copyWith(messageForRequester: message.value, messageForRequesterSent: true))
+          : await Get.find<NotificationController>().updateLocalNotificationForRequests(
+              giftRequest: giftRequest.copyWith(messageForGiver: message.value, messageForGiverSent: true));
+    }
+
+    Get.back();
+
+    loading.value = false;
+  }
+
+  bool isCurrentUserRequester(GiftRequest giftRequest) {
+    final currentUserId = Get.find<AuthController>().getCurrentUserId();
+
+    print({'currentUserId': currentUserId, 'giverId': giftRequest.gift.user!.id});
+
+    if (currentUserId == giftRequest.gift.user!.id) {
+      return true;
+    }
+
+    return false;
   }
 
   Future<void> getGiftRequestsByRequestId() async {

@@ -29,14 +29,14 @@ class GiftAskRequestDetailController extends GetxController {
         Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
   }
 
-  Future<void> getGiftRequestsByUserId() async {
-    final userId = Get.find<AuthController>()
-        .currentUserInfo
-        .value
-        .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
+  // Future<void> getGiftRequestsByUserId() async {
+  //   final userId = Get.find<AuthController>()
+  //       .currentUserInfo
+  //       .value
+  //       .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
-    await giftAskRequestDetailService.getGiftAskRequests(userId);
-  }
+  //   await giftAskRequestDetailService.getGiftAskRequests(userId);
+  // }
 
   Future<void> updateGiftAskRequestStatus(
     GiftAskRequest giftAskRequest,

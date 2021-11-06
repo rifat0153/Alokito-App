@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/gift_request_detail/widgets/gift_request_detail_feedback_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -106,7 +107,7 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
                   const MyText('r Gift Received', color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
-                      Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftRequest, isRequester: true));
+                      Get.dialog(GiftRequestDetailFeedbackWidget(giftRequest: giftRequest, isRequester: true));
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
@@ -170,7 +171,7 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
           MyText('Gift Accepted by ${giftRequest.requester.userName}',
               textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
           Obx(() => controller.loading.value
-              ? const CircularProgressIndicator()
+              ? const CupertinoActivityIndicator()
               : MaterialButton(
                   onPressed: () {
                     controller.updateGiftRequestStatus(
@@ -195,7 +196,7 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
                 const MyText('Delivered', color: Colors.blueAccent),
                 MaterialButton(
                   onPressed: () {
-                    Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftRequest, isRequester: false));
+                    Get.dialog(GiftRequestDetailFeedbackWidget(giftRequest: giftRequest, isRequester: false));
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   height: 0,
