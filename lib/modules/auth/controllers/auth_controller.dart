@@ -133,4 +133,8 @@ class AuthController extends GetxController {
           'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters properly');
     }
   }
+
+  String getCurrentUserId() {
+    return currentUserInfo.value.maybeWhen(data: (data) => data.id!, orElse: () => '');
+  }
 }

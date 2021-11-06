@@ -1,13 +1,13 @@
 import 'dart:ui';
 
-import 'package:alokito_new/models/gift_ask_request.dart/gift_ask_request.dart';
-import 'package:alokito_new/modules/gift_ask_request_detail/controllers/gift_ask_request_detail_controller.dart';
-
-import '../../../../models/gift_request/gift_request.dart';
-import '../../../../shared/config.dart';
-import '../../../../shared/widget/my_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../shared/config.dart';
+import '../../../../shared/widget/my_text.dart';
+import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
+import '../controllers/gift_ask_request_detail_controller.dart';
 
 class GiftAskRequestDetailFeedbackWidget extends StatelessWidget {
   GiftAskRequestDetailFeedbackWidget({Key? key, required this.giftAskRequest, required this.isRequester})
@@ -20,6 +20,8 @@ class GiftAskRequestDetailFeedbackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print({'inFeedBackWidget_isRequester': isRequester});
+
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10.5, sigmaY: 10.5),
       child: Dialog(
@@ -37,11 +39,12 @@ class GiftAskRequestDetailFeedbackWidget extends StatelessWidget {
                 const SizedBox(height: 8),
                 CircleAvatar(
                   backgroundImage: NetworkImage(
-                      isRequester ? giftAskRequest!.giftAsk.user.imageUrl : giftAskRequest!.giver.imageUrl),
+                    isRequester ? giftAskRequest!.giver.imageUrl : giftAskRequest!.giftAsk.user.imageUrl,
+                  ),
                   radius: 30,
                 ),
                 const SizedBox(height: 8),
-                MyText(isRequester ? giftAskRequest!.giftAsk.user.userName : giftAskRequest!.giver.userName),
+                MyText(isRequester ? giftAskRequest!.giver.userName : giftAskRequest!.giftAsk.user.userName),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: TextField(
@@ -63,13 +66,16 @@ class GiftAskRequestDetailFeedbackWidget extends StatelessWidget {
                 MaterialButton(
                   color: giftAddFormSubmitColor,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  onPressed: () {
+                  onPressed: () async {
                     print('Change Rating and Message');
                     print({'rating': controller.rating.value, 'message': controller.message.value});
+
+                   await controller.updateUserRatingAndAddMessage(giftAskRequest!);
                   },
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Text('send'),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Obx(
+                        () => controller.loading.value ? const CupertinoActivityIndicator() : const Text('send')),
                   ),
                 ),
               ],

@@ -64,7 +64,10 @@ class GiftAskRequestDetailController extends GetxController {
   ) async {
     loading.value = true;
 
-    final bool isUpdatingRequester = isCurrentUserRequester(giftAskRequest);
+    // Set isUpdatingRequester to false if it is Giver
+    final bool isUpdatingRequester = !isCurrentUserRequester(giftAskRequest);
+
+    print({'isReqeuster': isUpdatingRequester});
 
     final isSuccessful = await giftAskRequestDetailService.updateRatingAndSendMessage(
         id: giftAskRequest.id ?? '',
@@ -80,9 +83,10 @@ class GiftAskRequestDetailController extends GetxController {
       // Update Local Notificaiton DOc
       isUpdatingRequester
           ? await Get.find<NotificationController>().updateLocalNotificationForRequests(
-              giftAskRequest: giftAskRequest.copyWith(messageForRequester: message.value))
+              giftAskRequest:
+                  giftAskRequest.copyWith(messageForRequester: message.value, messageForRequesterSent: true))
           : await Get.find<NotificationController>().updateLocalNotificationForRequests(
-              giftAskRequest: giftAskRequest.copyWith(messageForGiver: message.value));
+              giftAskRequest: giftAskRequest.copyWith(messageForGiver: message.value, messageForGiverSent: true));
     }
 
     Get.back();
@@ -91,11 +95,15 @@ class GiftAskRequestDetailController extends GetxController {
   }
 
   bool isCurrentUserRequester(GiftAskRequest giftAskRequest) {
-    return Get.find<AuthController>()
-            .currentUserInfo
-            .value
-            .maybeWhen(data: (data) => data.id!, orElse: () => '') ==
-        giftAskRequest.giftAsk.user.id;
+    final currentUserId = Get.find<AuthController>().getCurrentUserId();
+
+    print({'currentUserId': currentUserId, 'giverId': giftAskRequest.giver.id});
+
+    if (currentUserId == giftAskRequest.giver.id) {
+      return true;
+    }
+
+    return false;
   }
 
   // Future<void> getGiftRequestsByRequestId() async {

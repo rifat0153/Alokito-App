@@ -124,14 +124,15 @@ class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskReque
         "giverId": giverId
       };
 
-      
+      print(body);
+
       final response = await post(
         '$url/update',
         jsonEncode(body),
       ).timeout(const Duration(seconds: myTimeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        await MySnackbar.showErrorSnackbar('GiftRequest Updated');
+        await MySnackbar.showErrorSnackbar('GiftAskRequest Updated');
         return true;
       } else {
         await MySnackbar.showErrorSnackbar('${response.statusCode}: Something went wrong');

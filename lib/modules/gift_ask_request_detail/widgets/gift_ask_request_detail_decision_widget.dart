@@ -95,19 +95,18 @@ class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
         // Gift Delivered
-        delivered: () => giftAskRequest.messageForGiverSent == true
-            ? Column(
-                children: [
-                  const MyText('r Gift Received', color: Colors.blueAccent),
-                ],
-              )
+        delivered: () => giftAskRequest.messageForGiverSent
+            ? const MyText('r Gift Received', color: Colors.blueAccent)
             : Column(
                 children: [
                   const MyText('r Gift Received', color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
-                      // Todo
-                      // Get.dialog(FeedbackWidget(giftReceiver: giftAskRequest, isRequester: true));
+                      Get.dialog(
+                        GiftAskRequestDetailFeedbackWidget(
+                            giftAskRequest: giftAskRequest,
+                            isRequester: controller.isCurrentUserRequester(giftAskRequest)),
+                      );
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
@@ -196,7 +195,7 @@ class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
                 const MyText('g Delivered', color: Colors.blueAccent),
                 MaterialButton(
                   onPressed: () {
-                    // SHow the feedback widget, show requester/giver image based on isRequester value 
+                    // SHow the feedback widget, show requester/giver image based on isRequester value
                     Get.dialog(GiftAskRequestDetailFeedbackWidget(
                       giftAskRequest: giftAskRequest,
                       isRequester: controller.isCurrentUserRequester(giftAskRequest),
