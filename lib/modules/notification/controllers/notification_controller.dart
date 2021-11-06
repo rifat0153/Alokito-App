@@ -54,12 +54,12 @@ class NotificationController extends GetxController {
     scrollController.dispose();
   }
 
-  // Update Local Notification by GiftRequest Id
+  // Update Local Notification by GiftRequest/GiftASkRequest Id
   Future<void> updateLocalNotificationForRequests({
     GiftRequest? giftRequest,
-    GiftRequestStatus? status,
+    // GiftRequestStatus? status,
     GiftAskRequest? giftAskRequest,
-    GiftAskRequestStatus? giftAskRequestStatus,
+    // GiftAskRequestStatus? giftAskRequestStatus,
   }) async {
     final List<MyNotification> existingList = await notificationList.value.maybeWhen(
       data: (list) => list,
@@ -67,20 +67,27 @@ class NotificationController extends GetxController {
     );
 
     final updatedList = existingList.map((notif) {
+      // if GiftRequest doc is send update that
       if (giftRequest != null) {
         if (notif.relatedDocId == giftRequest.id) {
-          return notif.copyWith(giftRequestDoc: notif.giftRequestDoc?.copyWith(giftRequestStatus: status!));
+          // return notif.copyWith(giftRequestDoc: notif.giftRequestDoc?.copyWith(giftRequestStatus: status!));
+          return notif.copyWith(giftRequestDoc: giftRequest);
         } else {
           return notif;
         }
-      } else if (giftAskRequest != null) {
+      }
+      // if GiftAskRequest doc is send update that
+      else if (giftAskRequest != null) {
         if (notif.relatedDocId == giftAskRequest.id) {
-          return notif.copyWith(
-              giftAskRequestDoc: notif.giftAskRequestDoc?.copyWith(giftAskRequestStatus: giftAskRequestStatus!));
+          // return notif.copyWith(
+          //     giftAskRequestDoc: notif.giftAskRequestDoc?.copyWith(giftAskRequestStatus: giftAskRequestStatus!));
+          return notif.copyWith(giftAskRequestDoc: giftAskRequest);
         } else {
           return notif;
         }
-      } else {
+      }
+      // if no doc is send Return notfi as it is
+      else {
         return notif;
       }
     }).toList();

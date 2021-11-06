@@ -15,6 +15,8 @@ class GiftAskRequest with _$GiftAskRequest {
     required String comment,
     @Default(false) bool messageForRequesterSent,
     @Default(false) bool messageForGiverSent,
+    @Default('')  String    messageForRequester,
+    @Default('')  String    messageForGiver,
     @Default(GiftAskRequestStatus.pending())
     @JsonKey(fromJson: giftAskRequestStatusFromJson, toJson: giftAskRequestStatusToJson)
         GiftAskRequestStatus giftAskRequestStatus,

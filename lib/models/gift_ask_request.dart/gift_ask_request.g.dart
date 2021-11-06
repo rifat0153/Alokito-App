@@ -14,6 +14,8 @@ _$_GiftAskRequest _$$_GiftAskRequestFromJson(Map<String, dynamic> json) =>
       messageForRequesterSent:
           json['messageForRequesterSent'] as bool? ?? false,
       messageForGiverSent: json['messageForGiverSent'] as bool? ?? false,
+      messageForRequester: json['messageForRequester'] as String? ?? '',
+      messageForGiver: json['messageForGiver'] as String? ?? '',
       giftAskRequestStatus: json['giftAskRequestStatus'] == null
           ? const GiftAskRequestStatus.pending()
           : giftAskRequestStatusFromJson(
@@ -30,6 +32,8 @@ Map<String, dynamic> _$$_GiftAskRequestToJson(_$_GiftAskRequest instance) =>
       'comment': instance.comment,
       'messageForRequesterSent': instance.messageForRequesterSent,
       'messageForGiverSent': instance.messageForGiverSent,
+      'messageForRequester': instance.messageForRequester,
+      'messageForGiver': instance.messageForGiver,
       'giftAskRequestStatus':
           giftAskRequestStatusToJson(instance.giftAskRequestStatus),
       'giftAsk': giftAskToMap(instance.giftAsk),

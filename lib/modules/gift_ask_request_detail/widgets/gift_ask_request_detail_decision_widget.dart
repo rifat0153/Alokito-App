@@ -1,12 +1,11 @@
-import 'package:alokito_new/models/gift_ask_request.dart/gift_ask_request.dart';
+import 'package:alokito_new/modules/gift_ask_request_detail/widgets/gift_ask_request_detail_feedback_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/gift_request/gift_request.dart';
+import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
 import '../../../shared/config.dart';
 import '../../../shared/widget/my_text.dart';
-import '../../notification/gift_giver/widgets/feedback_widget.dart';
 import '../controllers/gift_ask_request_detail_controller.dart';
 
 class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
@@ -194,11 +193,14 @@ class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
           ? const MyText('Delivered', color: Colors.blueAccent)
           : Column(
               children: [
-                const MyText('Delivered', color: Colors.blueAccent),
+                const MyText('g Delivered', color: Colors.blueAccent),
                 MaterialButton(
                   onPressed: () {
-                    // Todo
-                    // Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftAskRequest, isRequester: false));
+                    // SHow the feedback widget, show requester/giver image based on isRequester value 
+                    Get.dialog(GiftAskRequestDetailFeedbackWidget(
+                      giftAskRequest: giftAskRequest,
+                      isRequester: controller.isCurrentUserRequester(giftAskRequest),
+                    ));
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   height: 0,

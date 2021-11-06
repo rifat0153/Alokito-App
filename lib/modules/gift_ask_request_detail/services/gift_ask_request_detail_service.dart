@@ -17,6 +17,16 @@ abstract class BaseGiftAskRequestDetailService {
     required String status,
     required String giftAskRequestId,
   });
+
+  Future<bool> updateRatingAndSendMessage(
+      {required String id,
+      required bool isUpdatingRequester,
+      required String messageForRequester,
+      required String messageForGiver,
+      required int ratingForRequester,
+      required int ratingForGiver,
+      required String requesterId,
+      required String giverId});
 }
 
 class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskRequestDetailService {
@@ -48,8 +58,7 @@ class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskReque
     } catch (e, s) {
       print(e);
       print(s);
-        return false;
-
+      return false;
     }
   }
 
@@ -88,6 +97,48 @@ class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskReque
       print(e);
       print(s);
       return const GiftAskRequestListState.error('Opps. Looks like something went wrong');
+    }
+  }
+
+  @override
+  Future<bool> updateRatingAndSendMessage(
+      {required String id,
+      required bool isUpdatingRequester,
+      required String messageForRequester,
+      required String messageForGiver,
+      required int ratingForRequester,
+      required int ratingForGiver,
+      required String requesterId,
+      required String giverId}) async {
+    try {
+      final body = {
+        "id": id,
+        "isUpdatingRequester": isUpdatingRequester,
+        "messageForRequesterSent": true,
+        "messageForRequester": messageForRequester,
+        "ratingForRequester": ratingForRequester,
+        "messageForGiverSent": true,
+        "messageForGiver": messageForGiver,
+        "ratingForGiver": ratingForGiver,
+        "requesterId": requesterId,
+        "giverId": giverId
+      };
+
+      
+      final response = await post(
+        '$url/update',
+        jsonEncode(body),
+      ).timeout(const Duration(seconds: myTimeout));
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        await MySnackbar.showErrorSnackbar('GiftRequest Updated');
+        return true;
+      } else {
+        await MySnackbar.showErrorSnackbar('${response.statusCode}: Something went wrong');
+        return false;
+      }
+    } catch (e) {
+      return false;
     }
   }
 

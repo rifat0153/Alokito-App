@@ -14,12 +14,14 @@ class GiftAskRequestDetailController extends GetxController {
   final loading = false.obs;
   LocalUser? currentUserInfo;
 
+  final message = ''.obs;
+  final rating = 0.obs;
+
   @override
   Future onInit() async {
     super.onInit();
 
     getLocalUserInfo();
-    // await getGiftRequestsByRequestId();
   }
 
   void getLocalUserInfo() {
@@ -48,9 +50,7 @@ class GiftAskRequestDetailController extends GetxController {
 
     if (isStatusUpdated) {
       await Get.find<NotificationController>().updateLocalNotificationForRequests(
-        giftAskRequest: giftAskRequest,
-        giftAskRequestStatus: giftRequestStatus,
-      );
+          giftAskRequest: giftAskRequest.copyWith(giftAskRequestStatus: giftRequestStatus));
     }
 
     Get.back();
@@ -58,28 +58,45 @@ class GiftAskRequestDetailController extends GetxController {
     loading.value = false;
   }
 
-  // // Update giverText and requesterText field
-  //  Future<void> updateGiftAskRequestMessageFields(
-  //   GiftAskRequest giftAskRequest,
-  //   bool?   messageForRequesterSent,
-  //   bool?   messageForGiverSent,
-  // ) async {
-  //   loading.value = true;
+  // Update giverText and requesterText field
+  Future<void> updateUserRatingAndAddMessage(
+    GiftAskRequest giftAskRequest,
+  ) async {
+    loading.value = true;
 
-  //   final isStatusUpdated =
-  //       await giftAskRequestDetailService.updateStatus(status: status, giftAskRequestId: giftAskRequest.id ?? '');
+    final bool isUpdatingRequester = isCurrentUserRequester(giftAskRequest);
 
-  //   if (isStatusUpdated) {
-  //     await Get.find<NotificationController>().updateLocalNotificationForRequests(
-  //       giftAskRequest: giftAskRequest,
-  //       giftAskRequestStatus: giftRequestStatus,
-  //     );
-  //   }
+    final isSuccessful = await giftAskRequestDetailService.updateRatingAndSendMessage(
+        id: giftAskRequest.id ?? '',
+        isUpdatingRequester: isUpdatingRequester,
+        messageForRequester: message.value,
+        messageForGiver: message.value,
+        ratingForRequester: rating.value,
+        ratingForGiver: rating.value,
+        requesterId: giftAskRequest.giftAsk.user.id ?? '',
+        giverId: giftAskRequest.giver.id ?? '');
 
-  //   Get.back();
+    if (isSuccessful) {
+      // Update Local Notificaiton DOc
+      isUpdatingRequester
+          ? await Get.find<NotificationController>().updateLocalNotificationForRequests(
+              giftAskRequest: giftAskRequest.copyWith(messageForRequester: message.value))
+          : await Get.find<NotificationController>().updateLocalNotificationForRequests(
+              giftAskRequest: giftAskRequest.copyWith(messageForGiver: message.value));
+    }
 
-  //   loading.value = false;
-  // }
+    Get.back();
+
+    loading.value = false;
+  }
+
+  bool isCurrentUserRequester(GiftAskRequest giftAskRequest) {
+    return Get.find<AuthController>()
+            .currentUserInfo
+            .value
+            .maybeWhen(data: (data) => data.id!, orElse: () => '') ==
+        giftAskRequest.giftAsk.user.id;
+  }
 
   // Future<void> getGiftRequestsByRequestId() async {
   //   await giftAskRequestDetailService.getGiftAskRequests('614877b93fce5f966938d010');

@@ -27,6 +27,8 @@ class _$GiftRequestTearOff {
       required String comment,
       bool messageForRequesterSent = false,
       bool messageForGiverSent = false,
+      String messageForRequester = '',
+      String messageForGiver = '',
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus
               giftRequestStatus = const GiftRequestStatus.pending(),
@@ -41,6 +43,8 @@ class _$GiftRequestTearOff {
       comment: comment,
       messageForRequesterSent: messageForRequesterSent,
       messageForGiverSent: messageForGiverSent,
+      messageForRequester: messageForRequester,
+      messageForGiver: messageForGiver,
       giftRequestStatus: giftRequestStatus,
       gift: gift,
       requester: requester,
@@ -63,6 +67,8 @@ mixin _$GiftRequest {
   String get comment => throw _privateConstructorUsedError;
   bool get messageForRequesterSent => throw _privateConstructorUsedError;
   bool get messageForGiverSent => throw _privateConstructorUsedError;
+  String get messageForRequester => throw _privateConstructorUsedError;
+  String get messageForGiver => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   GiftRequestStatus get giftRequestStatus => throw _privateConstructorUsedError;
   @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -88,6 +94,8 @@ abstract class $GiftRequestCopyWith<$Res> {
       String comment,
       bool messageForRequesterSent,
       bool messageForGiverSent,
+      String messageForRequester,
+      String messageForGiver,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -116,6 +124,8 @@ class _$GiftRequestCopyWithImpl<$Res> implements $GiftRequestCopyWith<$Res> {
     Object? comment = freezed,
     Object? messageForRequesterSent = freezed,
     Object? messageForGiverSent = freezed,
+    Object? messageForRequester = freezed,
+    Object? messageForGiver = freezed,
     Object? giftRequestStatus = freezed,
     Object? gift = freezed,
     Object? requester = freezed,
@@ -142,6 +152,14 @@ class _$GiftRequestCopyWithImpl<$Res> implements $GiftRequestCopyWith<$Res> {
           ? _value.messageForGiverSent
           : messageForGiverSent // ignore: cast_nullable_to_non_nullable
               as bool,
+      messageForRequester: messageForRequester == freezed
+          ? _value.messageForRequester
+          : messageForRequester // ignore: cast_nullable_to_non_nullable
+              as String,
+      messageForGiver: messageForGiver == freezed
+          ? _value.messageForGiver
+          : messageForGiver // ignore: cast_nullable_to_non_nullable
+              as String,
       giftRequestStatus: giftRequestStatus == freezed
           ? _value.giftRequestStatus
           : giftRequestStatus // ignore: cast_nullable_to_non_nullable
@@ -196,6 +214,8 @@ abstract class _$GiftRequestCopyWith<$Res>
       String comment,
       bool messageForRequesterSent,
       bool messageForGiverSent,
+      String messageForRequester,
+      String messageForGiver,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -229,6 +249,8 @@ class __$GiftRequestCopyWithImpl<$Res> extends _$GiftRequestCopyWithImpl<$Res>
     Object? comment = freezed,
     Object? messageForRequesterSent = freezed,
     Object? messageForGiverSent = freezed,
+    Object? messageForRequester = freezed,
+    Object? messageForGiver = freezed,
     Object? giftRequestStatus = freezed,
     Object? gift = freezed,
     Object? requester = freezed,
@@ -255,6 +277,14 @@ class __$GiftRequestCopyWithImpl<$Res> extends _$GiftRequestCopyWithImpl<$Res>
           ? _value.messageForGiverSent
           : messageForGiverSent // ignore: cast_nullable_to_non_nullable
               as bool,
+      messageForRequester: messageForRequester == freezed
+          ? _value.messageForRequester
+          : messageForRequester // ignore: cast_nullable_to_non_nullable
+              as String,
+      messageForGiver: messageForGiver == freezed
+          ? _value.messageForGiver
+          : messageForGiver // ignore: cast_nullable_to_non_nullable
+              as String,
       giftRequestStatus: giftRequestStatus == freezed
           ? _value.giftRequestStatus
           : giftRequestStatus // ignore: cast_nullable_to_non_nullable
@@ -284,6 +314,8 @@ class _$_GiftRequest implements _GiftRequest {
       required this.comment,
       this.messageForRequesterSent = false,
       this.messageForGiverSent = false,
+      this.messageForRequester = '',
+      this.messageForGiver = '',
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           this.giftRequestStatus = const GiftRequestStatus.pending(),
       @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -307,6 +339,12 @@ class _$_GiftRequest implements _GiftRequest {
   @JsonKey(defaultValue: false)
   @override
   final bool messageForGiverSent;
+  @JsonKey(defaultValue: '')
+  @override
+  final String messageForRequester;
+  @JsonKey(defaultValue: '')
+  @override
+  final String messageForGiver;
   @override
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   final GiftRequestStatus giftRequestStatus;
@@ -321,7 +359,7 @@ class _$_GiftRequest implements _GiftRequest {
 
   @override
   String toString() {
-    return 'GiftRequest(id: $id, giverId: $giverId, comment: $comment, messageForRequesterSent: $messageForRequesterSent, messageForGiverSent: $messageForGiverSent, giftRequestStatus: $giftRequestStatus, gift: $gift, requester: $requester, createdAt: $createdAt)';
+    return 'GiftRequest(id: $id, giverId: $giverId, comment: $comment, messageForRequesterSent: $messageForRequesterSent, messageForGiverSent: $messageForGiverSent, messageForRequester: $messageForRequester, messageForGiver: $messageForGiver, giftRequestStatus: $giftRequestStatus, gift: $gift, requester: $requester, createdAt: $createdAt)';
   }
 
   @override
@@ -337,6 +375,10 @@ class _$_GiftRequest implements _GiftRequest {
                 other.messageForRequesterSent == messageForRequesterSent) &&
             (identical(other.messageForGiverSent, messageForGiverSent) ||
                 other.messageForGiverSent == messageForGiverSent) &&
+            (identical(other.messageForRequester, messageForRequester) ||
+                other.messageForRequester == messageForRequester) &&
+            (identical(other.messageForGiver, messageForGiver) ||
+                other.messageForGiver == messageForGiver) &&
             (identical(other.giftRequestStatus, giftRequestStatus) ||
                 other.giftRequestStatus == giftRequestStatus) &&
             (identical(other.gift, gift) || other.gift == gift) &&
@@ -354,6 +396,8 @@ class _$_GiftRequest implements _GiftRequest {
       comment,
       messageForRequesterSent,
       messageForGiverSent,
+      messageForRequester,
+      messageForGiver,
       giftRequestStatus,
       gift,
       requester,
@@ -377,6 +421,8 @@ abstract class _GiftRequest implements GiftRequest {
       required String comment,
       bool messageForRequesterSent,
       bool messageForGiverSent,
+      String messageForRequester,
+      String messageForGiver,
       @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
           GiftRequestStatus giftRequestStatus,
       @JsonKey(fromJson: giftFromMap, toJson: giftToMap)
@@ -398,6 +444,10 @@ abstract class _GiftRequest implements GiftRequest {
   bool get messageForRequesterSent;
   @override
   bool get messageForGiverSent;
+  @override
+  String get messageForRequester;
+  @override
+  String get messageForGiver;
   @override
   @JsonKey(fromJson: giftRequestStatusFromJson, toJson: giftRequestStatusToJson)
   GiftRequestStatus get giftRequestStatus;

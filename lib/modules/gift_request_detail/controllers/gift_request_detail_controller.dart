@@ -45,8 +45,8 @@ class GiftRequestDetailController extends GetxController {
     await giftRequestDetailService.updateStatus(status: status, giftRequestId: giftRequest.id ?? '');
 
     await Get.find<NotificationController>().updateLocalNotificationForRequests(
-      giftRequest: giftRequest,
-      status: giftRequestStatus,
+      giftRequest: giftRequest.copyWith(giftRequestStatus: giftRequestStatus),
+      // status: giftRequestStatus,
     );
 
     Get.back();
