@@ -65,9 +65,9 @@ class GiftAskRequestDetailController extends GetxController {
     loading.value = true;
 
     // Set isUpdatingRequester to false if it is Giver
-    final bool isUpdatingRequester = !isCurrentUserRequester(giftAskRequest);
+    final bool isUpdatingRequester = isCurrentUserRequester(giftAskRequest);
 
-    print({'isReqeuster': isUpdatingRequester});
+    print({'isUpdatingReqeuster': isUpdatingRequester});
 
     final isSuccessful = await giftAskRequestDetailService.updateRatingAndSendMessage(
         id: giftAskRequest.id ?? '',

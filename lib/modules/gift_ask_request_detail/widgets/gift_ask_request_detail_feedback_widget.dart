@@ -39,12 +39,12 @@ class GiftAskRequestDetailFeedbackWidget extends StatelessWidget {
                 const SizedBox(height: 8),
                 CircleAvatar(
                   backgroundImage: NetworkImage(
-                    isRequester ? giftAskRequest!.giver.imageUrl : giftAskRequest!.giftAsk.user.imageUrl,
+                    isRequester ? giftAskRequest!.giftAsk.user.imageUrl : giftAskRequest!.giver.imageUrl,
                   ),
                   radius: 30,
                 ),
                 const SizedBox(height: 8),
-                MyText(isRequester ? giftAskRequest!.giver.userName : giftAskRequest!.giftAsk.user.userName),
+                MyText(isRequester ? giftAskRequest!.giftAsk.user.userName : giftAskRequest!.giver.userName),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: TextField(
@@ -70,7 +70,7 @@ class GiftAskRequestDetailFeedbackWidget extends StatelessWidget {
                     print('Change Rating and Message');
                     print({'rating': controller.rating.value, 'message': controller.message.value});
 
-                   await controller.updateUserRatingAndAddMessage(giftAskRequest!);
+                    await controller.updateUserRatingAndAddMessage(giftAskRequest!);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
