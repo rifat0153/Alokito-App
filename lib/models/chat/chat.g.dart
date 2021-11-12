@@ -8,12 +8,16 @@ part of 'chat.dart';
 
 _$_Chat _$$_ChatFromJson(Map<String, dynamic> json) => _$_Chat(
       id: json['id'] as String?,
-      text: json['text'] as String?,
-      created_at: timestampFromJson(json['created_at'] as String?),
+      message: json['message'] as String?,
+      senderId: json['senderId'] as String?,
+      receiverId: json['receiverId'] as String?,
+      createdAt: timestampFromJson(json['createdAt'] as Timestamp?),
     );
 
 Map<String, dynamic> _$$_ChatToJson(_$_Chat instance) => <String, dynamic>{
       'id': instance.id,
-      'text': instance.text,
-      'created_at': timestampToJson(instance.created_at),
+      'message': instance.message,
+      'senderId': instance.senderId,
+      'receiverId': instance.receiverId,
+      'createdAt': timestampToJson(instance.createdAt),
     };

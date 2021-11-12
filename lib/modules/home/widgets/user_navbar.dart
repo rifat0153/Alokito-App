@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/chat/views/chat_view.dart';
 import 'package:alokito_new/modules/notification/views/notification_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,9 @@ class UserNavbar extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Get.to(() => ChatView());
+            },
             child: SvgPicture.asset(
               'assets/svgs/message_icon.svg',
               height: 40.w,

@@ -23,13 +23,17 @@ class _$ChatTearOff {
 
   _Chat call(
       {String? id,
-      String? text,
+      String? message,
+      String? senderId,
+      String? receiverId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? created_at}) {
+          Timestamp? createdAt}) {
     return _Chat(
       id: id,
-      text: text,
-      created_at: created_at,
+      message: message,
+      senderId: senderId,
+      receiverId: receiverId,
+      createdAt: createdAt,
     );
   }
 
@@ -44,9 +48,11 @@ const $Chat = _$ChatTearOff();
 /// @nodoc
 mixin _$Chat {
   String? get id => throw _privateConstructorUsedError;
-  String? get text => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  String? get senderId => throw _privateConstructorUsedError;
+  String? get receiverId => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get created_at => throw _privateConstructorUsedError;
+  Timestamp? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,9 +65,11 @@ abstract class $ChatCopyWith<$Res> {
       _$ChatCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      String? text,
+      String? message,
+      String? senderId,
+      String? receiverId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? created_at});
+          Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -75,21 +83,31 @@ class _$ChatCopyWithImpl<$Res> implements $ChatCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? text = freezed,
-    Object? created_at = freezed,
+    Object? message = freezed,
+    Object? senderId = freezed,
+    Object? receiverId = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      created_at: created_at == freezed
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
+      senderId: senderId == freezed
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      receiverId: receiverId == freezed
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
     ));
   }
@@ -102,9 +120,11 @@ abstract class _$ChatCopyWith<$Res> implements $ChatCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
-      String? text,
+      String? message,
+      String? senderId,
+      String? receiverId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? created_at});
+          Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -119,21 +139,31 @@ class __$ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? text = freezed,
-    Object? created_at = freezed,
+    Object? message = freezed,
+    Object? senderId = freezed,
+    Object? receiverId = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_Chat(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      created_at: created_at == freezed
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
+      senderId: senderId == freezed
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      receiverId: receiverId == freezed
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
     ));
   }
@@ -144,23 +174,29 @@ class __$ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res>
 class _$_Chat implements _Chat {
   const _$_Chat(
       {this.id,
-      this.text,
+      this.message,
+      this.senderId,
+      this.receiverId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          this.created_at});
+          this.createdAt});
 
   factory _$_Chat.fromJson(Map<String, dynamic> json) => _$$_ChatFromJson(json);
 
   @override
   final String? id;
   @override
-  final String? text;
+  final String? message;
+  @override
+  final String? senderId;
+  @override
+  final String? receiverId;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  final Timestamp? created_at;
+  final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'Chat(id: $id, text: $text, created_at: $created_at)';
+    return 'Chat(id: $id, message: $message, senderId: $senderId, receiverId: $receiverId, createdAt: $createdAt)';
   }
 
   @override
@@ -169,13 +205,18 @@ class _$_Chat implements _Chat {
         (other.runtimeType == runtimeType &&
             other is _Chat &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.text, text) || other.text == text) &&
-            (identical(other.created_at, created_at) ||
-                other.created_at == created_at));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.senderId, senderId) ||
+                other.senderId == senderId) &&
+            (identical(other.receiverId, receiverId) ||
+                other.receiverId == receiverId) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, text, created_at);
+  int get hashCode =>
+      Object.hash(runtimeType, id, message, senderId, receiverId, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -191,19 +232,25 @@ class _$_Chat implements _Chat {
 abstract class _Chat implements Chat {
   const factory _Chat(
       {String? id,
-      String? text,
+      String? message,
+      String? senderId,
+      String? receiverId,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          Timestamp? created_at}) = _$_Chat;
+          Timestamp? createdAt}) = _$_Chat;
 
   factory _Chat.fromJson(Map<String, dynamic> json) = _$_Chat.fromJson;
 
   @override
   String? get id;
   @override
-  String? get text;
+  String? get message;
+  @override
+  String? get senderId;
+  @override
+  String? get receiverId;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-  Timestamp? get created_at;
+  Timestamp? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$ChatCopyWith<_Chat> get copyWith => throw _privateConstructorUsedError;
