@@ -1,0 +1,3 @@
+class BaseChatService {
+  // Future<>
+}
