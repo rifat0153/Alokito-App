@@ -27,7 +27,7 @@ Widget _buildTilte(ChatRoom chatRoom) {
     case 'giftRequest':
       return const MyText('Gift Giving');
     case 'giftAskRequest':
-      return const MyText('Gift Request');
+      return const MyText('Gift Ask Request');
     default:
       return const MyText('N/A');
   }
