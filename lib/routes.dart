@@ -1,3 +1,6 @@
+import 'package:alokito_new/modules/chat_room.dart/controllers/chat_room_controller.dart';
+import 'package:alokito_new/modules/chat_room.dart/services/chat_room_service.dart';
+import 'package:alokito_new/modules/chat_room.dart/views/chat_room_view.dart';
 import 'package:alokito_new/modules/gift_ask_detail/view/gift_ask_detail_view.dart';
 import 'package:alokito_new/modules/gift_ask_request_detail/controllers/gift_ask_request_detail_controller.dart';
 import 'package:alokito_new/modules/gift_ask_request_detail/services/gift_ask_request_detail_service.dart';
@@ -59,6 +62,19 @@ class GetPages {
           Get.lazyPut(() => LoginController());
         })),
 
+    //* Chat ROutes
+    GetPage(
+      name: ChatRoomView.route,
+      page: () => ChatRoomView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(
+          () => ChatRoomController(
+            chatRoomService: ChatRoomService(firestore: FirebaseDI().firestore),
+          ),
+        );
+      }),
+    ),
 
     //* Gift Receiver Routes
     GetPage(
@@ -114,16 +130,14 @@ class GetPages {
         );
       }),
     ),
-        GetPage(
+    GetPage(
       name: GiftAskRequestDetailView.route,
       page: () => GiftAskRequestDetailView(),
-  
       transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftAskRequestDetailController(GiftAskRequestDetailService()));
       }),
     ),
-
 
     // * Gift Giver Routes
     GetPage(
@@ -153,7 +167,6 @@ class GetPages {
     GetPage(
       name: GiftRequestDetailView.route,
       page: () => GiftRequestDetailView(),
-  
       transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftRequestDetailController(GiftRequestDetailService()));

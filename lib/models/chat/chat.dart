@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:alokito_new/models/user/firebase_converters.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

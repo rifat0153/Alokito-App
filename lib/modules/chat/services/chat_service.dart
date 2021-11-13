@@ -21,8 +21,8 @@ class ChatService implements BaseChatService {
 
     return firestore
         .collection('chats')
-        .doc('chat_list')
-        .collection('1')
+        .doc(chatId)
+        .collection('%1%')
         .orderBy('createdAt', descending: true)
         .limit(25)
         .snapshots()
