@@ -2,8 +2,6 @@ import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'my_appbar.dart';
-
 class MyScaffold extends StatelessWidget {
   const MyScaffold({
     Key? key,
@@ -11,7 +9,7 @@ class MyScaffold extends StatelessWidget {
     required this.appBarTitle,
     required this.child,
     this.centerTitle = true,
-    this.leading = const Icon(Icons.chevron_left),
+    this.leading = const Icon(Icons.chevron_left, color: Colors.black),
   }) : super(key: key);
 
   final String assetPath;
@@ -23,7 +21,7 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(assetPath),
           fit: BoxFit.fill,

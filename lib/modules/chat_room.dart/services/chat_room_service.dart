@@ -34,7 +34,7 @@ class ChatRoomService implements BaseChatRoomService {
       }).toList();
 
       // Success Case
-      return ChatRoomListUnion.data(chatRooms: chatRooms);
+      return chatRooms.isEmpty ? const ChatRoomListUnion.empty() : ChatRoomListUnion.data(chatRooms: chatRooms);
     } on FirebaseException catch (e) {
       return ChatRoomListUnion.error(e.message ?? 'Something went wrong');
     } on Exception catch (e) {

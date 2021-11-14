@@ -9,7 +9,8 @@ class ChatRoomController extends GetxController {
   });
   ChatRoomService chatRoomService;
 
-  final chatList = const ChatRoomListUnion.loading().obs;
+  final chatRoomList = const ChatRoomListUnion.loading().obs;
+  final currentUserId = ''.obs;
 
   @override
   void onReady() {
@@ -17,9 +18,34 @@ class ChatRoomController extends GetxController {
     super.onReady();
   }
 
-  void retriveChatRoomsByUserId() async {
+  Future<void> retriveChatRoomsByUserId() async {
     final userId = Get.find<AuthController>().getCurrentUserId();
+    currentUserId.value = userId;
 
-    chatList.value = await chatRoomService.getChatRooms(userId: userId);
+    chatRoomList.value = await chatRoomService.getChatRooms(userId: userId);
+  }
+
+  String getImageUrlToShowInTile({required ChatRoom chatRoom}) {
+    String imageUrl = '';
+
+    for (final key in chatRoom.images!.keys) {
+      if (key != currentUserId.value) {
+        imageUrl = chatRoom.images![key] ?? '';
+      }
+    }
+
+    return imageUrl;
+  }
+
+  String getUserNameToShowInTile({required ChatRoom chatRoom}) {
+    String name = '';
+
+    for (final key in chatRoom.names!.keys) {
+      if (key != currentUserId.value) {
+        name = chatRoom.names![key] ?? '';
+      }
+    }
+
+    return name;
   }
 }

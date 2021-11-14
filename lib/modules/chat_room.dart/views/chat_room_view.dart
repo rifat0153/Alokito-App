@@ -1,3 +1,4 @@
+import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,11 +17,12 @@ class ChatRoomView extends StatelessWidget {
       assetPath: 'assets/images/settings_bg.png',
       appBarTitle: 'appBarTitle',
       child: Obx(
-        () => controller.chatList.value.when(
+        () => controller.chatRoomList.value.when(
           data: (chatRoomList) => ListView.builder(
             itemCount: chatRoomList.length,
             itemBuilder: (context, i) => ChatRoomChatTileWidget(chatRoom: chatRoomList[i]),
           ),
+          empty: () => const Center(child: MyText('No Chat Room')),
           loading: () => const LinearProgressIndicator(),
           error: (e) => Text(e.toString()),
         ),

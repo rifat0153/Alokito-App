@@ -24,6 +24,8 @@ class _$ChatRoomTearOff {
   _ChatRoom call(
       {String? id,
       String? roomType,
+      Map<String, String>? names,
+      Map<String, String>? images,
       @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
           List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -31,6 +33,8 @@ class _$ChatRoomTearOff {
     return _ChatRoom(
       id: id,
       roomType: roomType,
+      names: names,
+      images: images,
       users: users,
       createdAt: createdAt,
     );
@@ -48,6 +52,8 @@ const $ChatRoom = _$ChatRoomTearOff();
 mixin _$ChatRoom {
   String? get id => throw _privateConstructorUsedError;
   String? get roomType => throw _privateConstructorUsedError;
+  Map<String, String>? get names => throw _privateConstructorUsedError;
+  Map<String, String>? get images => throw _privateConstructorUsedError;
   @JsonKey(
       fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
   List<String>? get users => throw _privateConstructorUsedError;
@@ -67,6 +73,8 @@ abstract class $ChatRoomCopyWith<$Res> {
   $Res call(
       {String? id,
       String? roomType,
+      Map<String, String>? names,
+      Map<String, String>? images,
       @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
           List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -85,6 +93,8 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? roomType = freezed,
+    Object? names = freezed,
+    Object? images = freezed,
     Object? users = freezed,
     Object? createdAt = freezed,
   }) {
@@ -97,6 +107,14 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
           ? _value.roomType
           : roomType // ignore: cast_nullable_to_non_nullable
               as String?,
+      names: names == freezed
+          ? _value.names
+          : names // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
       users: users == freezed
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
@@ -117,6 +135,8 @@ abstract class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res> {
   $Res call(
       {String? id,
       String? roomType,
+      Map<String, String>? names,
+      Map<String, String>? images,
       @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
           List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -136,6 +156,8 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? roomType = freezed,
+    Object? names = freezed,
+    Object? images = freezed,
     Object? users = freezed,
     Object? createdAt = freezed,
   }) {
@@ -148,6 +170,14 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
           ? _value.roomType
           : roomType // ignore: cast_nullable_to_non_nullable
               as String?,
+      names: names == freezed
+          ? _value.names
+          : names // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
       users: users == freezed
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
@@ -166,6 +196,8 @@ class _$_ChatRoom extends _ChatRoom {
   _$_ChatRoom(
       {this.id,
       this.roomType,
+      this.names,
+      this.images,
       @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
           this.users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -180,6 +212,10 @@ class _$_ChatRoom extends _ChatRoom {
   @override
   final String? roomType;
   @override
+  final Map<String, String>? names;
+  @override
+  final Map<String, String>? images;
+  @override
   @JsonKey(
       fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
   final List<String>? users;
@@ -189,7 +225,7 @@ class _$_ChatRoom extends _ChatRoom {
 
   @override
   String toString() {
-    return 'ChatRoom(id: $id, roomType: $roomType, users: $users, createdAt: $createdAt)';
+    return 'ChatRoom(id: $id, roomType: $roomType, names: $names, images: $images, users: $users, createdAt: $createdAt)';
   }
 
   @override
@@ -200,14 +236,22 @@ class _$_ChatRoom extends _ChatRoom {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.roomType, roomType) ||
                 other.roomType == roomType) &&
+            const DeepCollectionEquality().equals(other.names, names) &&
+            const DeepCollectionEquality().equals(other.images, images) &&
             const DeepCollectionEquality().equals(other.users, users) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, roomType,
-      const DeepCollectionEquality().hash(users), createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      roomType,
+      const DeepCollectionEquality().hash(names),
+      const DeepCollectionEquality().hash(images),
+      const DeepCollectionEquality().hash(users),
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -224,6 +268,8 @@ abstract class _ChatRoom extends ChatRoom {
   factory _ChatRoom(
       {String? id,
       String? roomType,
+      Map<String, String>? names,
+      Map<String, String>? images,
       @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
           List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -236,6 +282,10 @@ abstract class _ChatRoom extends ChatRoom {
   String? get id;
   @override
   String? get roomType;
+  @override
+  Map<String, String>? get names;
+  @override
+  Map<String, String>? get images;
   @override
   @JsonKey(
       fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
@@ -259,6 +309,10 @@ class _$ChatRoomListUnionTearOff {
     );
   }
 
+  ListEmpty empty() {
+    return const ListEmpty();
+  }
+
   ListLoading loading() {
     return const ListLoading();
   }
@@ -278,6 +332,7 @@ mixin _$ChatRoomListUnion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ChatRoom> chatRooms) data,
+    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object e) error,
   }) =>
@@ -285,6 +340,7 @@ mixin _$ChatRoomListUnion {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object e)? error,
   }) =>
@@ -292,6 +348,7 @@ mixin _$ChatRoomListUnion {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object e)? error,
     required TResult orElse(),
@@ -300,6 +357,7 @@ mixin _$ChatRoomListUnion {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ListSuccess value) data,
+    required TResult Function(ListEmpty value) empty,
     required TResult Function(ListLoading value) loading,
     required TResult Function(ListError value) error,
   }) =>
@@ -307,6 +365,7 @@ mixin _$ChatRoomListUnion {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
     TResult Function(ListLoading value)? loading,
     TResult Function(ListError value)? error,
   }) =>
@@ -314,6 +373,7 @@ mixin _$ChatRoomListUnion {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
     TResult Function(ListLoading value)? loading,
     TResult Function(ListError value)? error,
     required TResult orElse(),
@@ -404,6 +464,7 @@ class _$ListSuccess implements ListSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ChatRoom> chatRooms) data,
+    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object e) error,
   }) {
@@ -414,6 +475,7 @@ class _$ListSuccess implements ListSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object e)? error,
   }) {
@@ -424,6 +486,7 @@ class _$ListSuccess implements ListSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object e)? error,
     required TResult orElse(),
@@ -438,6 +501,7 @@ class _$ListSuccess implements ListSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ListSuccess value) data,
+    required TResult Function(ListEmpty value) empty,
     required TResult Function(ListLoading value) loading,
     required TResult Function(ListError value) error,
   }) {
@@ -448,6 +512,7 @@ class _$ListSuccess implements ListSuccess {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
     TResult Function(ListLoading value)? loading,
     TResult Function(ListError value)? error,
   }) {
@@ -458,6 +523,7 @@ class _$ListSuccess implements ListSuccess {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
     TResult Function(ListLoading value)? loading,
     TResult Function(ListError value)? error,
     required TResult orElse(),
@@ -477,6 +543,121 @@ abstract class ListSuccess implements ChatRoomListUnion {
   @JsonKey(ignore: true)
   $ListSuccessCopyWith<ListSuccess> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ListEmptyCopyWith<$Res> {
+  factory $ListEmptyCopyWith(ListEmpty value, $Res Function(ListEmpty) then) =
+      _$ListEmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ListEmptyCopyWithImpl<$Res>
+    extends _$ChatRoomListUnionCopyWithImpl<$Res>
+    implements $ListEmptyCopyWith<$Res> {
+  _$ListEmptyCopyWithImpl(ListEmpty _value, $Res Function(ListEmpty) _then)
+      : super(_value, (v) => _then(v as ListEmpty));
+
+  @override
+  ListEmpty get _value => super._value as ListEmpty;
+}
+
+/// @nodoc
+
+class _$ListEmpty implements ListEmpty {
+  const _$ListEmpty();
+
+  @override
+  String toString() {
+    return 'ChatRoomListUnion.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ListEmpty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<ChatRoom> chatRooms) data,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(Object e) error,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object e)? error,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListSuccess value) data,
+    required TResult Function(ListEmpty value) empty,
+    required TResult Function(ListLoading value) loading,
+    required TResult Function(ListError value) error,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
+    TResult Function(ListLoading value)? loading,
+    TResult Function(ListError value)? error,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
+    TResult Function(ListLoading value)? loading,
+    TResult Function(ListError value)? error,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ListEmpty implements ChatRoomListUnion {
+  const factory ListEmpty() = _$ListEmpty;
 }
 
 /// @nodoc
@@ -521,6 +702,7 @@ class _$ListLoading implements ListLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ChatRoom> chatRooms) data,
+    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object e) error,
   }) {
@@ -531,6 +713,7 @@ class _$ListLoading implements ListLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object e)? error,
   }) {
@@ -541,6 +724,7 @@ class _$ListLoading implements ListLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object e)? error,
     required TResult orElse(),
@@ -555,6 +739,7 @@ class _$ListLoading implements ListLoading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ListSuccess value) data,
+    required TResult Function(ListEmpty value) empty,
     required TResult Function(ListLoading value) loading,
     required TResult Function(ListError value) error,
   }) {
@@ -565,6 +750,7 @@ class _$ListLoading implements ListLoading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
     TResult Function(ListLoading value)? loading,
     TResult Function(ListError value)? error,
   }) {
@@ -575,6 +761,7 @@ class _$ListLoading implements ListLoading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
     TResult Function(ListLoading value)? loading,
     TResult Function(ListError value)? error,
     required TResult orElse(),
@@ -654,6 +841,7 @@ class _$ListError implements ListError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ChatRoom> chatRooms) data,
+    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(Object e) error,
   }) {
@@ -664,6 +852,7 @@ class _$ListError implements ListError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object e)? error,
   }) {
@@ -674,6 +863,7 @@ class _$ListError implements ListError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ChatRoom> chatRooms)? data,
+    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(Object e)? error,
     required TResult orElse(),
@@ -688,6 +878,7 @@ class _$ListError implements ListError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ListSuccess value) data,
+    required TResult Function(ListEmpty value) empty,
     required TResult Function(ListLoading value) loading,
     required TResult Function(ListError value) error,
   }) {
@@ -698,6 +889,7 @@ class _$ListError implements ListError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
     TResult Function(ListLoading value)? loading,
     TResult Function(ListError value)? error,
   }) {
@@ -708,6 +900,7 @@ class _$ListError implements ListError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ListSuccess value)? data,
+    TResult Function(ListEmpty value)? empty,
     TResult Function(ListLoading value)? loading,
     TResult Function(ListError value)? error,
     required TResult orElse(),

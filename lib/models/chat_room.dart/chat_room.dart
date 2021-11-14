@@ -13,6 +13,8 @@ class ChatRoom with _$ChatRoom {
   factory ChatRoom({
     String? id,
     String? roomType,
+    Map<String, String>? names,
+    Map<String, String>? images,
     @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson) List<String>? users,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) Timestamp? createdAt,
   }) = _ChatRoom;
@@ -23,15 +25,14 @@ class ChatRoom with _$ChatRoom {
 @freezed
 class ChatRoomListUnion with _$ChatRoomListUnion {
   const factory ChatRoomListUnion.data({required List<ChatRoom> chatRooms}) = ListSuccess;
+  const factory ChatRoomListUnion.empty() = ListEmpty;
   const factory ChatRoomListUnion.loading() = ListLoading;
   const factory ChatRoomListUnion.error(Object e) = ListError;
 }
 
 // Converters
 List<String>? chatRoomUserIdArrayFromJson(List<dynamic> json) {
-  final list = json;
   return json.map((e) => e.toString()).toList();
-  return json != null ? json as List<String> : null;
 }
 
 List<String>? chatRoomUserIdArrayToJson(List<String>? json) {
