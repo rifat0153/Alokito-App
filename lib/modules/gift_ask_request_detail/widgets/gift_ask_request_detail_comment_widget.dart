@@ -1,15 +1,12 @@
+import 'package:alokito_new/modules/chat_room/controllers/chat_room_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
 
 class GiftAskRequestDetailCommentWidget extends StatelessWidget {
-  const GiftAskRequestDetailCommentWidget({
-    Key? key,
-    required this.giftAskRequest,
-  }) : super(key: key);
+  const GiftAskRequestDetailCommentWidget({Key? key, required this.giftAskRequest}) : super(key: key);
 
   final GiftAskRequest giftAskRequest;
-
   @override
   Widget build(BuildContext context) {
     return Padding(

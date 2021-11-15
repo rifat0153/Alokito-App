@@ -31,9 +31,8 @@ class ChatRoomListUnion with _$ChatRoomListUnion {
 
 @freezed
 class ChatRoomCreateUnion with _$ChatRoomCreateUnion{
-  const factory ChatRoomCreateUnion.creating() = CreateCreating;
   const factory ChatRoomCreateUnion.success() = CreateSuccess;
-  const factory ChatRoomCreateUnion.loding() = CreateLoding;
+  const factory ChatRoomCreateUnion.loading() = CreateLoding;
   const factory ChatRoomCreateUnion.error(Object e) = CreateError;
 }
 

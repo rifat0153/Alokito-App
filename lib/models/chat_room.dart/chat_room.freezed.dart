@@ -923,15 +923,11 @@ abstract class ListError implements ChatRoomListUnion {
 class _$ChatRoomCreateUnionTearOff {
   const _$ChatRoomCreateUnionTearOff();
 
-  CreateCreating creating() {
-    return const CreateCreating();
-  }
-
   CreateSuccess success() {
     return const CreateSuccess();
   }
 
-  CreateLoding loding() {
+  CreateLoding loading() {
     return const CreateLoding();
   }
 
@@ -949,50 +945,44 @@ const $ChatRoomCreateUnion = _$ChatRoomCreateUnionTearOff();
 mixin _$ChatRoomCreateUnion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creating,
     required TResult Function() success,
-    required TResult Function() loding,
+    required TResult Function() loading,
     required TResult Function(Object e) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? creating,
     TResult Function()? success,
-    TResult Function()? loding,
+    TResult Function()? loading,
     TResult Function(Object e)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creating,
     TResult Function()? success,
-    TResult Function()? loding,
+    TResult Function()? loading,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateCreating value) creating,
     required TResult Function(CreateSuccess value) success,
-    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateLoding value) loading,
     required TResult Function(CreateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
     TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateLoding value)? loading,
     TResult Function(CreateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
     TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateLoding value)? loading,
     TResult Function(CreateError value)? error,
     required TResult orElse(),
   }) =>
@@ -1014,123 +1004,6 @@ class _$ChatRoomCreateUnionCopyWithImpl<$Res>
   final ChatRoomCreateUnion _value;
   // ignore: unused_field
   final $Res Function(ChatRoomCreateUnion) _then;
-}
-
-/// @nodoc
-abstract class $CreateCreatingCopyWith<$Res> {
-  factory $CreateCreatingCopyWith(
-          CreateCreating value, $Res Function(CreateCreating) then) =
-      _$CreateCreatingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CreateCreatingCopyWithImpl<$Res>
-    extends _$ChatRoomCreateUnionCopyWithImpl<$Res>
-    implements $CreateCreatingCopyWith<$Res> {
-  _$CreateCreatingCopyWithImpl(
-      CreateCreating _value, $Res Function(CreateCreating) _then)
-      : super(_value, (v) => _then(v as CreateCreating));
-
-  @override
-  CreateCreating get _value => super._value as CreateCreating;
-}
-
-/// @nodoc
-
-class _$CreateCreating implements CreateCreating {
-  const _$CreateCreating();
-
-  @override
-  String toString() {
-    return 'ChatRoomCreateUnion.creating()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CreateCreating);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() creating,
-    required TResult Function() success,
-    required TResult Function() loding,
-    required TResult Function(Object e) error,
-  }) {
-    return creating();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? creating,
-    TResult Function()? success,
-    TResult Function()? loding,
-    TResult Function(Object e)? error,
-  }) {
-    return creating?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creating,
-    TResult Function()? success,
-    TResult Function()? loding,
-    TResult Function(Object e)? error,
-    required TResult orElse(),
-  }) {
-    if (creating != null) {
-      return creating();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CreateCreating value) creating,
-    required TResult Function(CreateSuccess value) success,
-    required TResult Function(CreateLoding value) loding,
-    required TResult Function(CreateError value) error,
-  }) {
-    return creating(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
-    TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
-    TResult Function(CreateError value)? error,
-  }) {
-    return creating?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
-    TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
-    TResult Function(CreateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (creating != null) {
-      return creating(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CreateCreating implements ChatRoomCreateUnion {
-  const factory CreateCreating() = _$CreateCreating;
 }
 
 /// @nodoc
@@ -1174,9 +1047,8 @@ class _$CreateSuccess implements CreateSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creating,
     required TResult Function() success,
-    required TResult Function() loding,
+    required TResult Function() loading,
     required TResult Function(Object e) error,
   }) {
     return success();
@@ -1185,9 +1057,8 @@ class _$CreateSuccess implements CreateSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? creating,
     TResult Function()? success,
-    TResult Function()? loding,
+    TResult Function()? loading,
     TResult Function(Object e)? error,
   }) {
     return success?.call();
@@ -1196,9 +1067,8 @@ class _$CreateSuccess implements CreateSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creating,
     TResult Function()? success,
-    TResult Function()? loding,
+    TResult Function()? loading,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
@@ -1211,9 +1081,8 @@ class _$CreateSuccess implements CreateSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateCreating value) creating,
     required TResult Function(CreateSuccess value) success,
-    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateLoding value) loading,
     required TResult Function(CreateError value) error,
   }) {
     return success(this);
@@ -1222,9 +1091,8 @@ class _$CreateSuccess implements CreateSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
     TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateLoding value)? loading,
     TResult Function(CreateError value)? error,
   }) {
     return success?.call(this);
@@ -1233,9 +1101,8 @@ class _$CreateSuccess implements CreateSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
     TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateLoding value)? loading,
     TResult Function(CreateError value)? error,
     required TResult orElse(),
   }) {
@@ -1276,7 +1143,7 @@ class _$CreateLoding implements CreateLoding {
 
   @override
   String toString() {
-    return 'ChatRoomCreateUnion.loding()';
+    return 'ChatRoomCreateUnion.loading()';
   }
 
   @override
@@ -1291,36 +1158,33 @@ class _$CreateLoding implements CreateLoding {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creating,
     required TResult Function() success,
-    required TResult Function() loding,
+    required TResult Function() loading,
     required TResult Function(Object e) error,
   }) {
-    return loding();
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? creating,
     TResult Function()? success,
-    TResult Function()? loding,
+    TResult Function()? loading,
     TResult Function(Object e)? error,
   }) {
-    return loding?.call();
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creating,
     TResult Function()? success,
-    TResult Function()? loding,
+    TResult Function()? loading,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
-    if (loding != null) {
-      return loding();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -1328,36 +1192,33 @@ class _$CreateLoding implements CreateLoding {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateCreating value) creating,
     required TResult Function(CreateSuccess value) success,
-    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateLoding value) loading,
     required TResult Function(CreateError value) error,
   }) {
-    return loding(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
     TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateLoding value)? loading,
     TResult Function(CreateError value)? error,
   }) {
-    return loding?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
     TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateLoding value)? loading,
     TResult Function(CreateError value)? error,
     required TResult orElse(),
   }) {
-    if (loding != null) {
-      return loding(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
@@ -1432,9 +1293,8 @@ class _$CreateError implements CreateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creating,
     required TResult Function() success,
-    required TResult Function() loding,
+    required TResult Function() loading,
     required TResult Function(Object e) error,
   }) {
     return error(e);
@@ -1443,9 +1303,8 @@ class _$CreateError implements CreateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? creating,
     TResult Function()? success,
-    TResult Function()? loding,
+    TResult Function()? loading,
     TResult Function(Object e)? error,
   }) {
     return error?.call(e);
@@ -1454,9 +1313,8 @@ class _$CreateError implements CreateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creating,
     TResult Function()? success,
-    TResult Function()? loding,
+    TResult Function()? loading,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
@@ -1469,9 +1327,8 @@ class _$CreateError implements CreateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateCreating value) creating,
     required TResult Function(CreateSuccess value) success,
-    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateLoding value) loading,
     required TResult Function(CreateError value) error,
   }) {
     return error(this);
@@ -1480,9 +1337,8 @@ class _$CreateError implements CreateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
     TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateLoding value)? loading,
     TResult Function(CreateError value)? error,
   }) {
     return error?.call(this);
@@ -1491,9 +1347,8 @@ class _$CreateError implements CreateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateCreating value)? creating,
     TResult Function(CreateSuccess value)? success,
-    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateLoding value)? loading,
     TResult Function(CreateError value)? error,
     required TResult orElse(),
   }) {

@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/chat_room/controllers/chat_room_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,9 +12,11 @@ class GiftAskRequestDetailLocationAndGiftDetailsWidget extends StatelessWidget {
   const GiftAskRequestDetailLocationAndGiftDetailsWidget({
     Key? key,
     required this.giftAskRequest,
+    required this.chatRoomController,
   }) : super(key: key);
 
   final GiftAskRequest giftAskRequest;
+  final ChatRoomController chatRoomController;
 
   @override
   Widget build(BuildContext context) {
@@ -76,21 +79,26 @@ class GiftAskRequestDetailLocationAndGiftDetailsWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 60,
-                    width: 66,
-                    decoration: BoxDecoration(
-                      color: giftAskColor,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.zero,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(FontAwesomeIcons.commentAlt, color: Colors.white),
-                          const MyText('Conversation', fontSize: 9, color: Colors.white),
-                        ],
+                  GestureDetector(
+                    onTap: () {
+                      print('object');
+                    },
+                    child: Container(
+                      height: 60,
+                      width: 66,
+                      decoration: BoxDecoration(
+                        color: giftAskColor,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.zero,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(FontAwesomeIcons.commentAlt, color: Colors.white),
+                            const MyText('Conversation', fontSize: 9, color: Colors.white),
+                          ],
+                        ),
                       ),
                     ),
                   ),

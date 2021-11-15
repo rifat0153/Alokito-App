@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/chat_room/controllers/chat_room_controller.dart';
 import 'package:alokito_new/modules/gift_request_detail/widgets/gift_request_detail_decision_widget.dart';
 import 'package:alokito_new/modules/gift_request_detail/widgets/gift_request_detail_map_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,8 @@ class GiftRequestDetailView extends StatelessWidget {
   // final GiftRequest? giftRequest;
   static const route = 'gift_request_detail_view';
 
-  final GiftRequestDetailController controller = Get.find();
+  final GiftRequestDetailController controller = Get.find<GiftRequestDetailController>();
+  final ChatRoomController chatRoomController = Get.find<ChatRoomController>();
 
   final GiftRequest? giftRequest = Get.arguments as GiftRequest?;
 
@@ -41,7 +43,10 @@ class GiftRequestDetailView extends StatelessWidget {
                     child: GiftRequesterDetailWidget(giftRequest: giftRequest),
                   ),
                   GiftCommentWidget(giftRequest: giftRequest),
-                  GiftRequesteLocationAndGiftDetailsWidget(giftRequest: giftRequest!),
+                  GiftRequesteLocationAndGiftDetailsWidget(
+                    giftRequest: giftRequest!,
+                    chatRoomController: chatRoomController,
+                  ),
                   GiftRequestDetailDecisionWidget(giftRequest: giftRequest!),
                   GiftRequestDetailMapWidget(giftRequest: giftRequest!),
                 ],

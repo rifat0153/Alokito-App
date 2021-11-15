@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/chat_room/controllers/chat_room_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,7 @@ class GiftAskRequestDetailView extends StatelessWidget {
   // final GiftRequest? giftAskRequest;
   static const route = 'gift_ask_request_detail_view';
 
-  // final GiftAskRequestDetailController controller = Get.find();
+  final ChatRoomController chatRoomController = Get.find();
 
   final GiftAskRequest? giftAskRequest = Get.arguments as GiftAskRequest?;
 
@@ -40,8 +41,9 @@ class GiftAskRequestDetailView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: GiftAskRequesterDetailGiverWidget(giftAskRequest: giftAskRequest),
                   ),
-                  GiftAskRequestDetailCommentWidget(giftAskRequest: giftAskRequest!),
-                  GiftAskRequestDetailLocationAndGiftDetailsWidget(giftAskRequest: giftAskRequest!),
+                  GiftAskRequestDetailCommentWidget(
+                      giftAskRequest: giftAskRequest!),
+                  GiftAskRequestDetailLocationAndGiftDetailsWidget(giftAskRequest: giftAskRequest!, chatRoomController: chatRoomController),
                   GiftAskRequestDetailDecisionWidget(giftAskRequest: giftAskRequest!),
                   GiftAskRequestDetailMapWidget(giftAskRequest: giftAskRequest!),
                 ],

@@ -55,8 +55,14 @@ class ChatRoomService implements BaseChatRoomService {
     required Map<String, String> names,
     required Map<String, String> images,
   }) async {
-    
     try {
+      // First find if chat_room with id already exists
+      final doc = await firestore.collection('chat_room').doc('1').get();
+      if (doc.exists) {
+        return const ChatRoomCreateUnion.success();
+      }
+
+      // If chat_room does not exist create a new room
       final chatRoom = ChatRoom(
         id: id,
         roomType: roomTopic,

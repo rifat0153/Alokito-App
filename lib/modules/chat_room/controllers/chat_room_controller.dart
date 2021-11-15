@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/chat_room/views/chat_room_view.dart';
 import 'package:get/get.dart';
 
 import '../../../models/chat_room.dart/chat_room.dart';
@@ -13,7 +14,7 @@ class ChatRoomController extends GetxController {
   // List State
   final chatRoomList = const ChatRoomListUnion.loading().obs;
   // Creating State
-  final chatRoomCreateState = const ChatRoomCreateUnion.creating().obs;
+  final chatRoomCreateState = const ChatRoomCreateUnion.loading().obs;
   final currentUserId = ''.obs;
 
   @override
@@ -32,7 +33,7 @@ class ChatRoomController extends GetxController {
     required String user2Name,
     required String roomType,
   }) async {
-    chatRoomCreateState.value = const ChatRoomCreateUnion.loding();
+    chatRoomCreateState.value = const ChatRoomCreateUnion.loading();
 
     final Map<String, String> names = {user1: user1Name, user2: user2Name};
     final Map<String, String> images = {user1: user1Image, user2: user2Image};
@@ -44,6 +45,10 @@ class ChatRoomController extends GetxController {
       names: names,
       images: images,
     );
+
+    if (chatRoomCreateState.value == const ChatRoomCreateUnion.success()) {
+      await Get.toNamed(ChatRoomView.route);
+    }
   }
 
   Future<void> retriveChatRoomsByUserId() async {

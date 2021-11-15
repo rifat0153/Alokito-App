@@ -4,6 +4,6 @@ Timestamp? timestampFromJson(Timestamp? timestamp) {
   return timestamp != null ? timestamp : null;
 }
 
-String? timestampToJson(Timestamp? timestamp) {
-  return timestamp != null ? timestamp.toString() : null;
+Timestamp? timestampToJson(Timestamp? timestamp) {
+  return timestamp != null ? timestamp : null;
 }

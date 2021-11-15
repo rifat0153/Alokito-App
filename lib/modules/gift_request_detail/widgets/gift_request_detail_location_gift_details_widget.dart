@@ -1,6 +1,9 @@
+import 'package:alokito_new/modules/chat_room/controllers/chat_room_controller.dart';
+import 'package:alokito_new/modules/chat_room/views/chat_room_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 import '../../../models/gift_request/gift_request.dart';
 import '../../../shared/config.dart';
@@ -11,9 +14,11 @@ class GiftRequesteLocationAndGiftDetailsWidget extends StatelessWidget {
   const GiftRequesteLocationAndGiftDetailsWidget({
     Key? key,
     required this.giftRequest,
+    required this.chatRoomController,
   }) : super(key: key);
 
   final GiftRequest giftRequest;
+  final ChatRoomController chatRoomController;
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +88,30 @@ class GiftRequesteLocationAndGiftDetailsWidget extends StatelessWidget {
                       color: giftAskColor,
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.zero,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(FontAwesomeIcons.commentAlt, color: Colors.white),
-                          const MyText('Conversation', fontSize: 9, color: Colors.white),
-                        ],
+                    child: InkWell(
+                      onTap: () async {
+                        // create chat_room for GIftRequest and Navigate to chat_room_view
+                        await chatRoomController.createChatRoom(
+                            id: giftRequest.id!,
+                            user1: giftRequest.requester.id!,
+                            user1Image: giftRequest.requester.imageUrl,
+                            user1Name: giftRequest.requester.userName,
+                            user2: giftRequest.gift.user!.id!,
+                            user2Image: giftRequest.gift.user!.imageUrl,
+                            user2Name: giftRequest.gift.user!.userName,
+                            roomType: 'giftRequest');
+
+                      
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.zero,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(FontAwesomeIcons.commentAlt, color: Colors.white),
+                            const MyText('Conversation', fontSize: 9, color: Colors.white),
+                          ],
+                        ),
                       ),
                     ),
                   ),
