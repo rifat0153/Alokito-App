@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:alokito_new/shared/config.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
 import '../../../core/image/image_upload_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
+import '../../../shared/config.dart';
 import '../../../shared/my_bottomsheets.dart';
-import '../gift_ask_exception.dart';
 
 abstract class BaseGiftAskService {
   Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile});

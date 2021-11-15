@@ -82,12 +82,12 @@ class GiftRequestDetailController extends GetxController {
       // Update Local Notificaiton DOc
       isUpdatingRequester
           ? await Get.find<NotificationController>().updateLocalNotificationForRequests(
-              giftRequest:
-                  giftRequest.copyWith(messageForRequester: message.value, messageForRequesterSent: true))
+              giftRequest: giftRequest.copyWith(messageForRequester: message.value, messageForRequesterSent: true))
           : await Get.find<NotificationController>().updateLocalNotificationForRequests(
               giftRequest: giftRequest.copyWith(messageForGiver: message.value, messageForGiverSent: true));
     }
 
+    Get.back();
     Get.back();
 
     loading.value = false;

@@ -154,12 +154,11 @@ class _GiftAskRequestTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.grey.withOpacity(0.3)),
           ),
-          width: 300,
-          height: 300,
+          height: 120,
           child: Row(
             children: [
               Container(
-                width: 100,
+                padding: const EdgeInsets.all(8),
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
                     color: giftAskColor,

@@ -1,4 +1,3 @@
-import 'package:alokito_new/modules/gift_request_detail/widgets/gift_request_detail_feedback_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,8 +5,8 @@ import 'package:get/get.dart';
 import '../../../models/gift_request/gift_request.dart';
 import '../../../shared/config.dart';
 import '../../../shared/widget/my_text.dart';
-import '../../notification/gift_giver/widgets/feedback_widget.dart';
 import '../controllers/gift_request_detail_controller.dart';
+import 'gift_request_detail_feedback_widget.dart';
 
 class GiftRequestDetailDecisionWidget extends StatelessWidget {
   GiftRequestDetailDecisionWidget({
@@ -46,7 +45,7 @@ class GiftRequestDetailDecisionWidget extends StatelessWidget {
                         controller.updateGiftRequestStatus(
                           giftRequest,
                           'accepted',
-                          const GiftRequestStatus.confirmed(),
+                          const GiftRequestStatus.accepted(),
                         );
                       },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

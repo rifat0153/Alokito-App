@@ -37,22 +37,30 @@ class UserNavbar extends StatelessWidget {
             () => GestureDetector(
               onTap: () {
                 Get.toNamed(NotificationView.route);
+                // reset notificaiton count in Firebase
+                authController.resetNotificationCount();
               },
-              child: Badge(
-                badgeContent: MyText(
-                  authController.newNotifications.value > 10
-                      ? '10+'
-                      : authController.newNotifications.value.toString(),
-                  color: Colors.white,
-                  fontSize: 14.sp,
-                ),
-                alignment: Alignment.topRight,
-                child: SvgPicture.asset(
-                  'assets/svgs/bell_icon.svg',
-                  height: 40.w,
-                  width: 40.w,
-                ),
-              ),
+              child: authController.newNotifications.value > 0
+                  ? Badge(
+                      badgeContent: MyText(
+                        authController.newNotifications.value > 10
+                            ? '10+'
+                            : authController.newNotifications.value.toString(),
+                        color: Colors.white,
+                        fontSize: 14.sp,
+                      ),
+                      alignment: Alignment.topRight,
+                      child: SvgPicture.asset(
+                        'assets/svgs/bell_icon.svg',
+                        height: 40.w,
+                        width: 40.w,
+                      ),
+                    )
+                  : SvgPicture.asset(
+                      'assets/svgs/bell_icon.svg',
+                      height: 40.w,
+                      width: 40.w,
+                    ),
             ),
           ),
           GestureDetector(

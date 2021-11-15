@@ -90,6 +90,7 @@ class GiftAskRequestDetailController extends GetxController {
     }
 
     Get.back();
+    Get.back();
 
     loading.value = false;
   }

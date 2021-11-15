@@ -49,15 +49,19 @@ class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskReque
       ).timeout(const Duration(seconds: myTimeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        await MyBottomSheet.showSuccessBottomSheet('GiftRequest Updated');
+        await MySnackbar.showSuccessSnackbar('GiftRequest Updated');
         return true;
       } else {
-        await MyBottomSheet.showErrorBottomSheet('${response.statusCode}: Something went wrong');
+        await MySnackbar.showErrorSnackbar('server could not be reached');
         return false;
       }
+    } on TimeoutException catch (e) {
+      await MySnackbar.showErrorSnackbar('server could not be reached');
+      return false;
     } catch (e, s) {
       print(e);
       print(s);
+      await MySnackbar.showErrorSnackbar('some unexpected error occurred');
       return false;
     }
   }

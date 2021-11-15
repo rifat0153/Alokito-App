@@ -31,7 +31,10 @@ abstract class BaseAuthService {
     required File localImageFile,
   });
 
+  // New notification count
   Stream<int> streamNewNotificationNumber(String userUid);
+  // Reset new notification count
+  Future<bool> resetNewNotificationCount(String id);
 
   Future<LocalUserInfo> getLocalUserDB(String id);
 
@@ -72,7 +75,8 @@ class AuthService extends GetConnect implements BaseAuthService {
   @override
   Stream<int> streamNewNotificationNumber(String userUid) {
     try {
-      final stream = _firestore.collection('users').doc(_firebaseAuth.currentUser?.uid ?? 'abc').snapshots().map((doc) {
+      final stream =
+          _firestore.collection('users').doc(_firebaseAuth.currentUser?.uid ?? 'abc').snapshots().map((doc) {
         final val = (doc.data()?['notificationCount'] ?? 0) as int;
         return val;
       });
@@ -80,6 +84,16 @@ class AuthService extends GetConnect implements BaseAuthService {
       return stream;
     } catch (e) {
       throw e;
+    }
+  }
+
+  @override
+  Future<bool> resetNewNotificationCount(String id) async {
+    try {
+      await _firestore.collection('users').doc(id).update({'notificationCount': 0});
+      return true;
+    } on FirebaseException catch (_) {
+      return true;
     }
   }
 
@@ -215,5 +229,4 @@ class AuthService extends GetConnect implements BaseAuthService {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
-
 }

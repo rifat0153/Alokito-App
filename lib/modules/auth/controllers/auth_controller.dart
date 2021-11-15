@@ -61,6 +61,11 @@ class AuthController extends GetxController {
         currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as')));
   }
 
+  Future<void> resetNotificationCount() async {
+    await authService
+        .resetNewNotificationCount(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as'));
+  }
+
   Future signOut() async {
     await authService.signOut();
 

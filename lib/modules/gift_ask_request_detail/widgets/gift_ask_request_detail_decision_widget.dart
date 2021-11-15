@@ -45,7 +45,7 @@ class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
                         controller.updateGiftAskRequestStatus(
                           giftAskRequest,
                           'accepted',
-                          const GiftAskRequestStatus.confirmed(),
+                          const GiftAskRequestStatus.accepted(),
                         );
                       },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -183,7 +183,7 @@ class GiftAskRequestDetailDecisionWidget extends StatelessWidget {
                   height: 0,
                   padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                   color: giftAskColor,
-                  child: const MyText('Done', color: Colors.white, fontWeight: FontWeight.bold),
+                  child: const MyText('g Done', color: Colors.white, fontWeight: FontWeight.bold),
                 )),
         ],
       ),
