@@ -115,7 +115,9 @@ class GiftRequestController extends GetxController {
         .maybeWhen(data: (user) => user.id ?? '', orElse: () => '');
 
     try {
+      // Load Gift Data
       if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
+        print('Loading by search');
         newGiftDto = await giftRequesterService.getGiftByFilterDB(
           searchString.value,
           page.value.toString(),
@@ -126,6 +128,7 @@ class GiftRequestController extends GetxController {
           currentUserId,
         );
       } else {
+        print('Loading by distance');
         newGiftDto = await giftRequesterService.getGiftDB(
           page.value.toString(),
           limit.value.toString(),
@@ -156,16 +159,20 @@ class GiftRequestController extends GetxController {
       if (data.page == data.lastPage) {
         allGiftsFetched.value = true;
       }
+      // If No gift is found by search/distance query
+      if (data.results.isEmpty) {
+        giftList.value = const GiftListState.empty();
+      }
     }, error: (e) {
       if (page.value == 1) {
-        print('Page value isside if is: ${page.value}');
+        print('Error: Page value isside if is: ${page.value}');
         giftList.value = GiftListState.error(e);
         // MySnackbar.showErrorSnackbar(e.toString());
       } else {
-        print('Page value inside else is: ${page.value}');
+        print('Error: Page value inside else is: ${page.value}');
 
         page.value -= 1;
-
+        giftList.value = GiftListState.error(e.toString());
         MySnackbar.showErrorSnackbar(e.toString());
       }
     }, loading: () {

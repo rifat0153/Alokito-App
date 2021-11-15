@@ -29,11 +29,16 @@ class GiftRequestService extends GetConnect implements BaseGiftRequestService {
   ) async {
     try {
       final Response<GiftDto> response = await get(
-          '$baseUrl/gift/search?page=$page&limit=$limit&searchString=$searchString&userId=$id',
-          decoder: (data) => GiftDto.fromJson(data as Map<String, dynamic>)).timeout(const Duration(seconds: myTimeout));
+              '$baseUrl/gift/search?page=$page&limit=$limit&searchString=$searchString&userId=$id',
+              decoder: (data) => GiftDto.fromJson(data as Map<String, dynamic>))
+          .timeout(const Duration(seconds: myTimeout));
+
+      print('Response is: \n\n\n' + response.body.toString());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final GiftDto giftDto = response.body!;
+
+        print('Response is: ' + response.body.toString());
 
         return GiftListDtoState.success(giftDto);
       } else {
@@ -61,8 +66,9 @@ class GiftRequestService extends GetConnect implements BaseGiftRequestService {
   ) async {
     try {
       final Response<GiftDto> response = await get(
-          '$baseUrl/gift/near?lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit&userId=$id',
-          decoder: (data) => GiftDto.fromJson(data as Map<String, dynamic>)).timeout(const Duration(seconds: myTimeout));
+              '$baseUrl/gift/near?lat=$lat&lng=$lng&maxDistance=$radius&page=$page&limit=$limit&userId=$id',
+              decoder: (data) => GiftDto.fromJson(data as Map<String, dynamic>))
+          .timeout(const Duration(seconds: myTimeout));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final GiftDto giftDto = response.body!;

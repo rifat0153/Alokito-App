@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:alokito_new/models/gift/gift.dart';
 
-
 class GiftDto {
   GiftDto({required this.total, required this.page, required this.lastPage, required this.results});
 
@@ -25,6 +24,7 @@ List<Gift> giftDtoToGiftList(List<dynamic> results) {
   final List<Gift> giftList = [];
 
   if (results.isEmpty) {
+    print('New Gift List is empty');
     return giftList;
   } else {
     for (final giftDto in results) {
