@@ -8,10 +8,9 @@ part 'chat_room.g.dart';
 
 @freezed
 class ChatRoom with _$ChatRoom {
-  const ChatRoom._();
 
   factory ChatRoom({
-    String? id,
+    required String id,
     String? roomType,
     Map<String, String>? names,
     Map<String, String>? images,
@@ -28,6 +27,14 @@ class ChatRoomListUnion with _$ChatRoomListUnion {
   const factory ChatRoomListUnion.empty() = ListEmpty;
   const factory ChatRoomListUnion.loading() = ListLoading;
   const factory ChatRoomListUnion.error(Object e) = ListError;
+}
+
+@freezed
+class ChatRoomCreateUnion with _$ChatRoomCreateUnion{
+  const factory ChatRoomCreateUnion.creating() = CreateCreating;
+  const factory ChatRoomCreateUnion.success() = CreateSuccess;
+  const factory ChatRoomCreateUnion.loding() = CreateLoding;
+  const factory ChatRoomCreateUnion.error(Object e) = CreateError;
 }
 
 // Converters

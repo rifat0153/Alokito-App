@@ -1,6 +1,3 @@
-import 'package:alokito_new/modules/chat/views/chat_view.dart';
-import 'package:alokito_new/modules/chat_room.dart/views/chat_room_view.dart';
-import 'package:alokito_new/modules/notification/views/notification_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +7,8 @@ import 'package:get/get.dart';
 import '../../../shared/my_drawer_widget.dart';
 import '../../../shared/widget/my_text.dart';
 import '../../auth/controllers/auth_controller.dart';
+import '../../chat_room/views/chat_room_view.dart';
+import '../../notification/views/notification_view.dart';
 
 class UserNavbar extends StatelessWidget {
   final height = Get.size.height;

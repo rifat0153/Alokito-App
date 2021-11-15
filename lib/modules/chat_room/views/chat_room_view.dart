@@ -1,9 +1,9 @@
-import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/widget/my_scaffold.dart';
+import '../../../shared/widget/my_text.dart';
 import '../controllers/chat_room_controller.dart';
 import '../widgets/chat_room_chat_tile_widget.dart';
 

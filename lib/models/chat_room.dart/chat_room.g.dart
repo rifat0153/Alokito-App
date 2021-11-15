@@ -7,7 +7,7 @@ part of 'chat_room.dart';
 // **************************************************************************
 
 _$_ChatRoom _$$_ChatRoomFromJson(Map<String, dynamic> json) => _$_ChatRoom(
-      id: json['id'] as String?,
+      id: json['id'] as String,
       roomType: json['roomType'] as String?,
       names: (json['names'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),

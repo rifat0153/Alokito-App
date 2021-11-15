@@ -22,7 +22,7 @@ class _$ChatRoomTearOff {
   const _$ChatRoomTearOff();
 
   _ChatRoom call(
-      {String? id,
+      {required String id,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
@@ -50,7 +50,7 @@ const $ChatRoom = _$ChatRoomTearOff();
 
 /// @nodoc
 mixin _$ChatRoom {
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String? get roomType => throw _privateConstructorUsedError;
   Map<String, String>? get names => throw _privateConstructorUsedError;
   Map<String, String>? get images => throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ abstract class $ChatRoomCopyWith<$Res> {
   factory $ChatRoomCopyWith(ChatRoom value, $Res Function(ChatRoom) then) =
       _$ChatRoomCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
+      {String id,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
@@ -102,7 +102,7 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       roomType: roomType == freezed
           ? _value.roomType
           : roomType // ignore: cast_nullable_to_non_nullable
@@ -133,7 +133,7 @@ abstract class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res> {
       __$ChatRoomCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
+      {String id,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
@@ -165,7 +165,7 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       roomType: roomType == freezed
           ? _value.roomType
           : roomType // ignore: cast_nullable_to_non_nullable
@@ -192,23 +192,22 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatRoom extends _ChatRoom {
+class _$_ChatRoom implements _ChatRoom {
   _$_ChatRoom(
-      {this.id,
+      {required this.id,
       this.roomType,
       this.names,
       this.images,
       @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
           this.users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
-          this.createdAt})
-      : super._();
+          this.createdAt});
 
   factory _$_ChatRoom.fromJson(Map<String, dynamic> json) =>
       _$$_ChatRoomFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
   final String? roomType;
   @override
@@ -264,9 +263,9 @@ class _$_ChatRoom extends _ChatRoom {
   }
 }
 
-abstract class _ChatRoom extends ChatRoom {
+abstract class _ChatRoom implements ChatRoom {
   factory _ChatRoom(
-      {String? id,
+      {required String id,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
@@ -274,12 +273,11 @@ abstract class _ChatRoom extends ChatRoom {
           List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt}) = _$_ChatRoom;
-  _ChatRoom._() : super._();
 
   factory _ChatRoom.fromJson(Map<String, dynamic> json) = _$_ChatRoom.fromJson;
 
   @override
-  String? get id;
+  String get id;
   @override
   String? get roomType;
   @override
@@ -918,5 +916,599 @@ abstract class ListError implements ChatRoomListUnion {
   Object get e;
   @JsonKey(ignore: true)
   $ListErrorCopyWith<ListError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$ChatRoomCreateUnionTearOff {
+  const _$ChatRoomCreateUnionTearOff();
+
+  CreateCreating creating() {
+    return const CreateCreating();
+  }
+
+  CreateSuccess success() {
+    return const CreateSuccess();
+  }
+
+  CreateLoding loding() {
+    return const CreateLoding();
+  }
+
+  CreateError error(Object e) {
+    return CreateError(
+      e,
+    );
+  }
+}
+
+/// @nodoc
+const $ChatRoomCreateUnion = _$ChatRoomCreateUnionTearOff();
+
+/// @nodoc
+mixin _$ChatRoomCreateUnion {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() creating,
+    required TResult Function() success,
+    required TResult Function() loding,
+    required TResult Function(Object e) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateCreating value) creating,
+    required TResult Function(CreateSuccess value) success,
+    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChatRoomCreateUnionCopyWith<$Res> {
+  factory $ChatRoomCreateUnionCopyWith(
+          ChatRoomCreateUnion value, $Res Function(ChatRoomCreateUnion) then) =
+      _$ChatRoomCreateUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ChatRoomCreateUnionCopyWithImpl<$Res>
+    implements $ChatRoomCreateUnionCopyWith<$Res> {
+  _$ChatRoomCreateUnionCopyWithImpl(this._value, this._then);
+
+  final ChatRoomCreateUnion _value;
+  // ignore: unused_field
+  final $Res Function(ChatRoomCreateUnion) _then;
+}
+
+/// @nodoc
+abstract class $CreateCreatingCopyWith<$Res> {
+  factory $CreateCreatingCopyWith(
+          CreateCreating value, $Res Function(CreateCreating) then) =
+      _$CreateCreatingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CreateCreatingCopyWithImpl<$Res>
+    extends _$ChatRoomCreateUnionCopyWithImpl<$Res>
+    implements $CreateCreatingCopyWith<$Res> {
+  _$CreateCreatingCopyWithImpl(
+      CreateCreating _value, $Res Function(CreateCreating) _then)
+      : super(_value, (v) => _then(v as CreateCreating));
+
+  @override
+  CreateCreating get _value => super._value as CreateCreating;
+}
+
+/// @nodoc
+
+class _$CreateCreating implements CreateCreating {
+  const _$CreateCreating();
+
+  @override
+  String toString() {
+    return 'ChatRoomCreateUnion.creating()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CreateCreating);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() creating,
+    required TResult Function() success,
+    required TResult Function() loding,
+    required TResult Function(Object e) error,
+  }) {
+    return creating();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+  }) {
+    return creating?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (creating != null) {
+      return creating();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateCreating value) creating,
+    required TResult Function(CreateSuccess value) success,
+    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateError value) error,
+  }) {
+    return creating(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+  }) {
+    return creating?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (creating != null) {
+      return creating(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateCreating implements ChatRoomCreateUnion {
+  const factory CreateCreating() = _$CreateCreating;
+}
+
+/// @nodoc
+abstract class $CreateSuccessCopyWith<$Res> {
+  factory $CreateSuccessCopyWith(
+          CreateSuccess value, $Res Function(CreateSuccess) then) =
+      _$CreateSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CreateSuccessCopyWithImpl<$Res>
+    extends _$ChatRoomCreateUnionCopyWithImpl<$Res>
+    implements $CreateSuccessCopyWith<$Res> {
+  _$CreateSuccessCopyWithImpl(
+      CreateSuccess _value, $Res Function(CreateSuccess) _then)
+      : super(_value, (v) => _then(v as CreateSuccess));
+
+  @override
+  CreateSuccess get _value => super._value as CreateSuccess;
+}
+
+/// @nodoc
+
+class _$CreateSuccess implements CreateSuccess {
+  const _$CreateSuccess();
+
+  @override
+  String toString() {
+    return 'ChatRoomCreateUnion.success()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CreateSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() creating,
+    required TResult Function() success,
+    required TResult Function() loding,
+    required TResult Function(Object e) error,
+  }) {
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+  }) {
+    return success?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateCreating value) creating,
+    required TResult Function(CreateSuccess value) success,
+    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateError value) error,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateSuccess implements ChatRoomCreateUnion {
+  const factory CreateSuccess() = _$CreateSuccess;
+}
+
+/// @nodoc
+abstract class $CreateLodingCopyWith<$Res> {
+  factory $CreateLodingCopyWith(
+          CreateLoding value, $Res Function(CreateLoding) then) =
+      _$CreateLodingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CreateLodingCopyWithImpl<$Res>
+    extends _$ChatRoomCreateUnionCopyWithImpl<$Res>
+    implements $CreateLodingCopyWith<$Res> {
+  _$CreateLodingCopyWithImpl(
+      CreateLoding _value, $Res Function(CreateLoding) _then)
+      : super(_value, (v) => _then(v as CreateLoding));
+
+  @override
+  CreateLoding get _value => super._value as CreateLoding;
+}
+
+/// @nodoc
+
+class _$CreateLoding implements CreateLoding {
+  const _$CreateLoding();
+
+  @override
+  String toString() {
+    return 'ChatRoomCreateUnion.loding()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CreateLoding);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() creating,
+    required TResult Function() success,
+    required TResult Function() loding,
+    required TResult Function(Object e) error,
+  }) {
+    return loding();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+  }) {
+    return loding?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (loding != null) {
+      return loding();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateCreating value) creating,
+    required TResult Function(CreateSuccess value) success,
+    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateError value) error,
+  }) {
+    return loding(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+  }) {
+    return loding?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loding != null) {
+      return loding(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateLoding implements ChatRoomCreateUnion {
+  const factory CreateLoding() = _$CreateLoding;
+}
+
+/// @nodoc
+abstract class $CreateErrorCopyWith<$Res> {
+  factory $CreateErrorCopyWith(
+          CreateError value, $Res Function(CreateError) then) =
+      _$CreateErrorCopyWithImpl<$Res>;
+  $Res call({Object e});
+}
+
+/// @nodoc
+class _$CreateErrorCopyWithImpl<$Res>
+    extends _$ChatRoomCreateUnionCopyWithImpl<$Res>
+    implements $CreateErrorCopyWith<$Res> {
+  _$CreateErrorCopyWithImpl(
+      CreateError _value, $Res Function(CreateError) _then)
+      : super(_value, (v) => _then(v as CreateError));
+
+  @override
+  CreateError get _value => super._value as CreateError;
+
+  @override
+  $Res call({
+    Object? e = freezed,
+  }) {
+    return _then(CreateError(
+      e == freezed
+          ? _value.e
+          : e // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateError implements CreateError {
+  const _$CreateError(this.e);
+
+  @override
+  final Object e;
+
+  @override
+  String toString() {
+    return 'ChatRoomCreateUnion.error(e: $e)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CreateError &&
+            const DeepCollectionEquality().equals(other.e, e));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(e));
+
+  @JsonKey(ignore: true)
+  @override
+  $CreateErrorCopyWith<CreateError> get copyWith =>
+      _$CreateErrorCopyWithImpl<CreateError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() creating,
+    required TResult Function() success,
+    required TResult Function() loding,
+    required TResult Function(Object e) error,
+  }) {
+    return error(e);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+  }) {
+    return error?.call(e);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? creating,
+    TResult Function()? success,
+    TResult Function()? loding,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(e);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateCreating value) creating,
+    required TResult Function(CreateSuccess value) success,
+    required TResult Function(CreateLoding value) loding,
+    required TResult Function(CreateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateCreating value)? creating,
+    TResult Function(CreateSuccess value)? success,
+    TResult Function(CreateLoding value)? loding,
+    TResult Function(CreateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateError implements ChatRoomCreateUnion {
+  const factory CreateError(Object e) = _$CreateError;
+
+  Object get e;
+  @JsonKey(ignore: true)
+  $CreateErrorCopyWith<CreateError> get copyWith =>
       throw _privateConstructorUsedError;
 }

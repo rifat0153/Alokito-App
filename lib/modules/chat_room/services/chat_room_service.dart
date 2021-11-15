@@ -1,12 +1,17 @@
-import 'package:alokito_new/models/chat_room.dart/chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:alokito_new/models/chat/chat.dart';
+import '../../../models/chat_room.dart/chat_room.dart';
 
 abstract class BaseChatRoomService {
   Future<ChatRoomListUnion> getChatRooms({required String userId});
 
-  Future<ChatRoom> createChatRoom({required List<String> users, required String roomTopic});
+  Future<ChatRoomCreateUnion> createChatRoom({
+    required String id,
+    required List<String> users,
+    required String roomTopic,
+    required Map<String, String> names,
+    required Map<String, String> images,
+  });
 }
 
 class ChatRoomService implements BaseChatRoomService {
@@ -43,8 +48,29 @@ class ChatRoomService implements BaseChatRoomService {
   }
 
   @override
-  Future<ChatRoom> createChatRoom({required List<String> users, required String roomTopic}) async {
-    // TODO: implement addMessage
-    throw UnimplementedError();
+  Future<ChatRoomCreateUnion> createChatRoom({
+    required String id,
+    required List<String> users,
+    required String roomTopic,
+    required Map<String, String> names,
+    required Map<String, String> images,
+  }) async {
+    
+    try {
+      final chatRoom = ChatRoom(
+        id: id,
+        roomType: roomTopic,
+        users: users,
+        names: names,
+        images: images,
+        createdAt: Timestamp.now(),
+      );
+
+      await firestore.collection('chat_rooms').doc(id).set(chatRoom.toJson());
+
+      return const ChatRoomCreateUnion.success();
+    } on FirebaseException catch (e) {
+      return ChatRoomCreateUnion.error(e.message ?? 'some unexpected error occurred');
+    }
   }
 }

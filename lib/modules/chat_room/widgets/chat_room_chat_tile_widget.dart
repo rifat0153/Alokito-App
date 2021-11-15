@@ -1,12 +1,12 @@
-import 'package:alokito_new/core/date/date_helper.dart';
-import 'package:alokito_new/modules/chat_room.dart/controllers/chat_room_controller.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:alokito_new/models/chat_room.dart/chat_room.dart';
 import 'package:get/get.dart';
+
+import '../../../core/date/date_helper.dart';
+import '../../../models/chat_room.dart/chat_room.dart';
+import '../../../shared/widget/my_text.dart';
+import '../controllers/chat_room_controller.dart';
 
 class ChatRoomChatTileWidget extends StatelessWidget {
   ChatRoomChatTileWidget({
@@ -22,7 +22,8 @@ class ChatRoomChatTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final String userNameToShow = controller.getUserNameToShowInTile(chatRoom: chatRoom);
     final String userImageToShow = controller.getImageUrlToShowInTile(chatRoom: chatRoom);
-    final String timeDiff = DateHelper.timeDifferenceFromTimestamp(chatRoom.createdAt ?? Timestamp.now());
+    final String timeDiff =
+        DateHelper.timeDifferenceFromTimestamp(chatRoom.createdAt ?? Timestamp.now());
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
