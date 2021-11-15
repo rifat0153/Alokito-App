@@ -1,11 +1,10 @@
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/styles.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
+
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../shared/config.dart';
+import '../../../shared/styles.dart';
+import '../../../shared/widget/my_text.dart';
 
 class GiftAskDetailRequesterLocationAndGiftDetailsWidget extends StatelessWidget {
   const GiftAskDetailRequesterLocationAndGiftDetailsWidget({
@@ -19,11 +18,6 @@ class GiftAskDetailRequesterLocationAndGiftDetailsWidget extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    // final int giftGivenByUser = Get.find<AuthController>()
-    //     .currentUserInfo
-    //     .value
-    //     .maybeWhen(data: (data) => data.giftGiven.toInt(), orElse: () => -1);
-
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
         child: Container(

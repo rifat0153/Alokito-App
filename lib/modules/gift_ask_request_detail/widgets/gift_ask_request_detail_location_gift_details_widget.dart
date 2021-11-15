@@ -80,9 +80,18 @@ class GiftAskRequestDetailLocationAndGiftDetailsWidget extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      print('object');
-                    },
+                    onTap: () async {
+                        // create chat_room for GIftAskRequest and Navigate to chat_room_view
+                        await chatRoomController.createChatRoom(
+                            id: giftAskRequest.id!,
+                            user1: giftAskRequest.giver.id!,
+                            user1Image: giftAskRequest.giver.imageUrl,
+                            user1Name: giftAskRequest.giver.userName,
+                            user2: giftAskRequest.giftAsk.user.id!,
+                            user2Image: giftAskRequest.giftAsk.user.imageUrl,
+                            user2Name: giftAskRequest.giftAsk.user.userName,
+                            roomType: 'giftAskRequest');
+                      },
                     child: Container(
                       height: 60,
                       width: 66,

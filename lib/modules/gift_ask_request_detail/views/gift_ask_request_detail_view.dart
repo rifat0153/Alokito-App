@@ -41,9 +41,9 @@ class GiftAskRequestDetailView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: GiftAskRequesterDetailGiverWidget(giftAskRequest: giftAskRequest),
                   ),
-                  GiftAskRequestDetailCommentWidget(
-                      giftAskRequest: giftAskRequest!),
-                  GiftAskRequestDetailLocationAndGiftDetailsWidget(giftAskRequest: giftAskRequest!, chatRoomController: chatRoomController),
+                  GiftAskRequestDetailCommentWidget(giftAskRequest: giftAskRequest!),
+                  GiftAskRequestDetailLocationAndGiftDetailsWidget(
+                      giftAskRequest: giftAskRequest!, chatRoomController: chatRoomController),
                   GiftAskRequestDetailDecisionWidget(giftAskRequest: giftAskRequest!),
                   GiftAskRequestDetailMapWidget(giftAskRequest: giftAskRequest!),
                 ],
