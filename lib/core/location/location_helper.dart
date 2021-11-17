@@ -1,4 +1,3 @@
-import 'package:alokito_new/shared/my_bottomsheets.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationHelper {
@@ -13,8 +12,6 @@ class LocationHelper {
     // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-    
-
       return Future.error('error');
     }
 
@@ -38,6 +35,7 @@ class LocationHelper {
 
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
+
     return Geolocator.getCurrentPosition();
   }
 

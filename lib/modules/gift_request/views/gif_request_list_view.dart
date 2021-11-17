@@ -1,16 +1,15 @@
-import '../widgets/search_widget.dart';
-
-import '../widgets/gift_list_tile_widget.dart';
-
-import '../../auth/controllers/auth_controller.dart';
-import '../controllers/gift_request_controller.dart';
-import '../../../shared/styles.dart';
-import '../../../shared/widget/map_with_markers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../shared/styles.dart';
+import '../../../shared/widget/map_with_markers.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../controllers/gift_request_controller.dart';
+import '../widgets/gift_list_tile_widget.dart';
+import '../widgets/search_widget.dart';
 
 class GiftRequestListView extends StatelessWidget {
   static const route = 'giftoffer';

@@ -37,7 +37,7 @@ class GiftRequestController extends GetxController {
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
 
   Rx<bool> allGiftsFetched = false.obs;
-  Rx<LatLng> userPosition = const LatLng(0, 0).obs;
+  Rx<LatLng> userPosition = const LatLng(28, 85).obs;
   Rx<bool> searchCalledOnce = false.obs;
 
   final ScrollController scrollController = ScrollController();

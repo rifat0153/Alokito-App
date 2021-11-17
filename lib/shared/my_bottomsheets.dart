@@ -1,7 +1,8 @@
-import 'widget/my_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
+import 'widget/my_text.dart';
 
 class MyBottomSheet {
   static Future<void> showSuccessBottomSheet(String successMessage) async {
@@ -22,6 +23,7 @@ class MyBottomSheet {
   static Future<void> showErrorBottomSheet(String errorMessage) async {
     await Get.bottomSheet(SafeArea(
         child: Container(
+      height: 200.h,
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.9),
         borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),

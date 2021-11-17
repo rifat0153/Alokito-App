@@ -32,7 +32,7 @@ class AuthController extends GetxController {
   final Rx<LocalUserInfo> currentUserInfo = const LocalUserInfo.loading().obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
-  final Rx<LatLng> currentUserPosition = const LatLng(0, 0).obs;
+  final Rx<LatLng> currentUserPosition = const LatLng(28, 85).obs;
 
   @override
   Future<void> onInit() async {
