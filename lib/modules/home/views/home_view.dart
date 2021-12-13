@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,6 +28,7 @@ class HomeView extends StatelessWidget {
         extendBody: true,
         drawer: MyDrawer(),
         appBar: AppBar(
+          elevation: 0,
           toolbarHeight: 100.h,
           centerTitle: true,
           title: const Text(

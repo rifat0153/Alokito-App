@@ -73,10 +73,14 @@ class GiftRequestController extends GetxController {
     try {
       final Position position = await LocationHelper.determinePosition();
       userPosition.value = LatLng(position.latitude, position.longitude);
+
+      Get.find<AuthController>().currentUserPosition.value = LatLng(position.latitude, position.longitude);
     } catch (e) {
       await MyBottomSheet.showErrorBottomSheet(
           'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters');
     }
+
+    print('Gift request controller: user loc: ' + userPosition.value.toString());
 
     // * Get Gifts on Page Loads 2nd frame
     await retrieveGifts();

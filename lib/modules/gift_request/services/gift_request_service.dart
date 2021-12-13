@@ -70,19 +70,19 @@ class GiftRequestService extends GetConnect implements BaseGiftRequestService {
               decoder: (data) => GiftDto.fromJson(data as Map<String, dynamic>))
           .timeout(const Duration(seconds: myTimeout));
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final GiftDto giftDto = response.body!;
-
-        return GiftListDtoState.success(giftDto);
-      } else {
-        return const GiftListDtoState.error('Some unexpected error occurred');
+      if (response.statusCode != 200) {
+        throw const SocketException('');
       }
+
+      final GiftDto giftDto = response.body!;
+
+      return GiftListDtoState.success(giftDto);
+    } on SocketException catch (e) {
+      return const GiftListDtoState.error('Server could not be reached. Please check internet connection');
     } on TimeoutException catch (_) {
       return const GiftListDtoState.error('Server could not be reached');
-    } on IOException catch (_) {
-      return const GiftListDtoState.error('Server could not be reached. Please check internet connection');
     } catch (e) {
-      return const GiftListDtoState.error('Opps. Looks like something went wrong');
+      return GiftListDtoState.error('Opps. Looks like something went wrong' + e.toString());
     }
   }
 }

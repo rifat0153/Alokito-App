@@ -107,7 +107,7 @@ class _BuildBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'No Gift Nearby',
+                        'No Gift Found',
                         style: boldFontStyle.copyWith(fontSize: 21.sp),
                       ),
                     ],
@@ -118,20 +118,23 @@ class _BuildBody extends StatelessWidget {
                 radius: 15.sp,
               ),
               error: (e) => Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(e.toString()),
-                    ElevatedButton(
-                      onPressed: () async {
-                        await controller.retrieveGifts();
-                      },
-                      child: Text(
-                        'Retry',
-                        style: boldFontStyle.copyWith(color: Colors.white),
-                      ),
-                    )
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(e.toString()),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await controller.retrieveGifts();
+                        },
+                        child: Text(
+                          'Retry',
+                          style: boldFontStyle.copyWith(color: Colors.white),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

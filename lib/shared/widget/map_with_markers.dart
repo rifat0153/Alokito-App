@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapWithMarkersWidget extends StatelessWidget {
-  const MapWithMarkersWidget({
+   MapWithMarkersWidget({
     Key? key,
     required this.markers,
     required this.initialCameraPosition,
