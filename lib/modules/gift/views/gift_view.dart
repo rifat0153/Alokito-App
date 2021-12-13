@@ -25,8 +25,10 @@ class GiftView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
+
         // drawer: MyDrawer(),
         appBar: AppBar(
+          elevation: 0,
           toolbarHeight: 80,
           centerTitle: true,
           title: const Text(

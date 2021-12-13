@@ -44,6 +44,7 @@ class GiftAddView extends StatelessWidget {
       child: Scaffold(
         // resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          elevation: 0,
           automaticallyImplyLeading: false,
           actions: [
             IconButton(

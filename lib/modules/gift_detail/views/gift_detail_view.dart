@@ -66,7 +66,7 @@ class GiftRequesterDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            elevation: 10,
+            elevation: 0,
             foregroundColor: Colors.transparent,
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,

@@ -27,6 +27,7 @@ class GiftRequestView extends StatelessWidget {
         extendBodyBehindAppBar: true,
         // drawer: MyDrawer(),
         appBar: AppBar(
+          elevation: 0,
           toolbarHeight: 80,
           centerTitle: true,
           title: const Text(

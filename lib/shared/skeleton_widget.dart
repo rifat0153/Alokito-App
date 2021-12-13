@@ -6,6 +6,7 @@ class SkeletonWidget extends StatelessWidget {
     required this.titleWidget,
     required this.assetPath,
     required this.child,
+    this.elevation = 0,
     this.centerTitle = false,
     this.extendBody = false,
   });
@@ -15,6 +16,7 @@ class SkeletonWidget extends StatelessWidget {
   final Widget child;
   final bool centerTitle;
   final bool extendBody;
+  final double elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class SkeletonWidget extends StatelessWidget {
             extendBodyBehindAppBar: extendBody,
             backgroundColor: Colors.transparent,
             appBar: AppBar(
+              elevation: elevation,
               shadowColor: Colors.transparent,
               backgroundColor: Colors.transparent,
               leading: IconButton(

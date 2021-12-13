@@ -29,6 +29,7 @@ class GiftRequestListView extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            elevation: 0,
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
             leading: IconButton(
