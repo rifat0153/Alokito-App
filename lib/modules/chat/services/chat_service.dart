@@ -30,9 +30,9 @@ class ChatService implements BaseChatService {
       final List<Chat> retVal = [];
       querySnapshot.docs.forEach((doc) {
         print('Inside Loop');
-        print(Chat.fromJson(doc.data()));
+        print(Chat.fromJson(doc.data() as Map<String, dynamic>));
 
-        retVal.add(Chat.fromJson(doc.data()));
+        retVal.add(Chat.fromJson(doc.data() as Map<String, dynamic>));
       });
       return retVal;
     });

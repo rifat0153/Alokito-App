@@ -31,11 +31,12 @@ class ChatRoomService implements BaseChatRoomService {
           .collection('chat_rooms')
           .where('users', arrayContainsAny: [userId])
           .orderBy('createdAt', descending: true)
+  
           .get();
 
       // Convert from DocumentSnapshot to ChatRoom
       final List<ChatRoom> chatRooms = chatRoomSnapshot.docs.map((QueryDocumentSnapshot documentSnapshot) {
-        return ChatRoom.fromJson(documentSnapshot.data());
+        return ChatRoom.fromJson(documentSnapshot.data() as Map<String, dynamic>);
       }).toList();
 
       // Success Case

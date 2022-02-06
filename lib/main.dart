@@ -19,12 +19,14 @@ Future<void> main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.white,
-    statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: Colors.white,
-    systemNavigationBarIconBrightness: Brightness.dark,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
+  );
 
   FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: false);
 
@@ -51,7 +53,7 @@ class AlokitoApp extends StatelessWidget {
         title: 'Alokito',
         theme: ThemeData(
           fontFamily: 'Playtime',
-          textTheme: TextTheme(bodyText2: TextStyle(fontSize: 20.sp)),
+          textTheme: TextTheme(bodyText2: TextStyle(fontSize: 20)),
           primarySwatch: Colors.teal,
           colorScheme: theme.colorScheme.copyWith(secondary: const Color(0xff1b2e59)),
         ),
