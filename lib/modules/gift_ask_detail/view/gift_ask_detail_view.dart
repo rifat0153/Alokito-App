@@ -118,7 +118,11 @@ class GiftAskDetailView extends StatelessWidget {
                       point: LatLng(
                           giftAsk.geometry.coordinates.last, giftAsk.geometry.coordinates.first),
                       builder: (ctx) => Container(
-                        child:  Icon(Icons.map),
+                        child: const Icon(
+                          Icons.location_on,
+                          color: Colors.blue,
+                          size: 40,
+                        ),
                       ),
                     ),
                   ],
