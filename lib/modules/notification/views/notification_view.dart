@@ -13,7 +13,7 @@ import '../controllers/notification_controller.dart';
 
 class NotificationView extends StatelessWidget {
   NotificationView({Key? key}) : super(key: key);
-  static const route = 'NotificationView';
+  static const route = '/NotificationView';
 
   final NotificationController controller = Get.find<NotificationController>();
 

@@ -13,7 +13,7 @@ import '../widgets/request_image_row_widget.dart';
 class GiftAskView extends StatelessWidget {
   GiftAskView({Key? key}) : super(key: key);
 
-  static const route = 'gift_ask_view';
+  static const route = '/gift_ask_view';
 
   final GiftAskController giftAskController = Get.find<GiftAskController>()..loading.value = false;
 

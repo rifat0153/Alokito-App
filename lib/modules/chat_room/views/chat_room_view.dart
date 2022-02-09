@@ -8,7 +8,7 @@ import '../controllers/chat_room_controller.dart';
 import '../widgets/chat_room_chat_tile_widget.dart';
 
 class ChatRoomView extends StatelessWidget {
-  static const route = 'chat_room';
+  static const route = '/chat_room';
   final ChatRoomController controller = Get.find<ChatRoomController>();
 
   @override

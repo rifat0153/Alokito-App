@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({Key? key}) : super(key: key);
-  static const route = 'SettingsView';
+  static const route = '/SettingsView';
 
   @override
   Widget build(BuildContext context) {

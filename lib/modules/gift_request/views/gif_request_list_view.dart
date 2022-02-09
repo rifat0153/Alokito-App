@@ -12,7 +12,7 @@ import '../widgets/gift_list_tile_widget.dart';
 import '../widgets/search_widget.dart';
 
 class GiftRequestListView extends StatelessWidget {
-  static const route = 'giftoffer';
+  static const route = '/giftoffer';
 
   final GiftRequestController controller = Get.find();
 

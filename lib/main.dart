@@ -43,22 +43,25 @@ class AlokitoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData();
 
-    return ScreenUtilInit(
-      designSize: const Size(392, 780),
-      builder: () => GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        translations: MyTranslations(),
-        locale: const Locale('en', 'US'),
-        fallbackLocale: const Locale('en', 'US'),
-        title: 'Alokito',
-        theme: ThemeData(
-          fontFamily: 'Playtime',
-          textTheme: TextTheme(bodyText2: TextStyle(fontSize: 20)),
-          primarySwatch: Colors.teal,
-          colorScheme: theme.colorScheme.copyWith(secondary: const Color(0xff1b2e59)),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ScreenUtilInit(
+        designSize: const Size(392, 780),
+        builder: () => GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          translations: MyTranslations(),
+          locale: const Locale('en', 'US'),
+          fallbackLocale: const Locale('en', 'US'),
+          title: 'Alokito',
+          theme: ThemeData(
+            fontFamily: 'Playtime',
+            textTheme: TextTheme(bodyText2: TextStyle(fontSize: 20.sp)),
+            primarySwatch: Colors.teal,
+            colorScheme: theme.colorScheme.copyWith(secondary: const Color(0xff1b2e59)),
+          ),
+          initialRoute: '/',
+          getPages: GetPages().getPages,
         ),
-        initialRoute: '/',
-        getPages: GetPages().getPages,
       ),
     );
   }

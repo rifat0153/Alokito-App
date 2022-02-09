@@ -12,7 +12,7 @@ import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class LoginRegFormView extends StatefulWidget {
   const LoginRegFormView();
-  static const route = 'LoginFormView';
+  static const route = '/LoginFormView';
 
   @override
   _LoginRegFormViewState createState() => _LoginRegFormViewState();

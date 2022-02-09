@@ -18,7 +18,7 @@ class GiftAskRequestDetailView extends StatelessWidget {
   }) : super(key: key);
 
   // final GiftRequest? giftAskRequest;
-  static const route = 'gift_ask_request_detail_view';
+  static const route = '/gift_ask_request_detail_view';
 
   final ChatRoomController chatRoomController = Get.find();
 

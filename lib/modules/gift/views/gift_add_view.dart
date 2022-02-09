@@ -15,7 +15,7 @@ import '../widgets/location_search_widget.dart';
 import '../widgets/pickup_time_wdiget.dart';
 
 class GiftAddView extends StatelessWidget {
-  static const route = 'giftaddview';
+  static const route = '/giftaddview';
   final GiftAddFormController controller = Get.find();
   final GiftController giftController = Get.find();
 

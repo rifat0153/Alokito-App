@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class GeneralSettingsView extends StatelessWidget {
   const GeneralSettingsView({Key? key}) : super(key: key);
-  static const route = 'GeneralSettingsView';
+  static const route = '/GeneralSettingsView';
 
   @override
   Widget build(BuildContext context) {

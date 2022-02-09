@@ -15,7 +15,7 @@ import '../controllers/gift_ask_giver_controller.dart';
 class GiftAskGiverView extends StatelessWidget {
   GiftAskGiverView({Key? key}) : super(key: key);
 
-  static const route = 'giftaskgiverview';
+  static const route = '/giftaskgiverview';
 
   final GiftAskGiverController giftAskGiverController = Get.find<GiftAskGiverController>();
 
