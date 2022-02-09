@@ -1,10 +1,14 @@
 import 'dart:io';
 
-import 'package:alokito_new/core/location/geocoding_helper.dart';
-import 'package:alokito_new/core/location/location_helper.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/gift/controllers/gift_controller.dart';
-import 'package:alokito_new/modules/gift/services/gift_service.dart';
+import 'package:alokito_new/models/gift/gift.dart';
+import 'package:alokito_new/models/user/local_user.dart';
+import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+
+import '../../../core/location/geocoding_helper.dart';
+import '../../../core/location/location_helper.dart';
+import '../../../models/my_enums.dart';
+import 'gift_controller.dart';
+import '../services/gift_service.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +22,8 @@ class GiftAddFormController extends GetxController {
 
   GiftService giftGiverService;
 
-  final isUploading = false.obs;
+  final loading = false.obs;
+
   final giftFor = 0.obs;
   Rx<GiftType> giftType = GiftType.packageFor3Days.obs;
   final distance = 1.obs;
@@ -54,8 +59,8 @@ class GiftAddFormController extends GetxController {
 
   Future<void> addGift() async {
     if (area.value.isEmpty) {
-      Get.snackbar('Gift Add Error', 'Area cant be empty',
-          backgroundColor: Colors.red.withOpacity(0.5), duration: const Duration(milliseconds: 2000));
+      Get.snackbar('Pick a location', 'Pick a location',
+          backgroundColor: Colors.red.withOpacity(0.7), duration: const Duration(milliseconds: 3000));
       return;
     }
     if (location.value.isEmpty) {
@@ -63,7 +68,33 @@ class GiftAddFormController extends GetxController {
       return;
     }
 
-    await giftGiverService.addGift();
+    loading.value = true;
+
+    final LocalUser? currentUser =
+        Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
+
+    final Geometry geometry =
+        Geometry(coordinates: [selectedLatLng.value.longitude, selectedLatLng.value.latitude]);
+
+    final gift = Gift(
+      userId: currentUser!.id ?? '',
+      user: currentUser,
+      listingForDays: givingGiftInDays.value,
+      canLeaveOutside: canLeaveOutside.value,
+      geometry: geometry,
+      giftType: convertGiftType(giftType.value).toLowerCase(),
+      giftDetails: giftDetails.value,
+      pickUpTime: DateTime.fromMicrosecondsSinceEpoch(pickUpTime.value!.microsecondsSinceEpoch),
+      area: area.value,
+      location: location.value,
+      imageUrl: '',
+      distance: 15,
+    );
+
+    await giftGiverService.addGift(gift: gift, imageFile: imageFile.value);
+
+    loading.value = false;
+
   }
 
   String showPickupTime() {
@@ -78,8 +109,8 @@ class GiftAddFormController extends GetxController {
   }
 
   Future<void> setLocationFromMapCordinates() async {
-    final List<Placemark> placemarks =
-        await GeocodingHelper.getAddressFromPosition(selectedLatLng.value.latitude, selectedLatLng.value.longitude);
+    final List<Placemark> placemarks = await GeocodingHelper.getAddressFromPosition(
+        selectedLatLng.value.latitude, selectedLatLng.value.longitude);
 
     location.value = placemarks.first.locality ?? 'N/A';
     area.value = placemarks.first.name ?? 'N/A';

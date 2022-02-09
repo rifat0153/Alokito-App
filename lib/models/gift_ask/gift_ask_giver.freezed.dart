@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gift_ask_giver.dart';
 
@@ -42,7 +43,7 @@ class _$GiftAskGiverTearOff {
     );
   }
 
-  GiftAskGiver fromJson(Map<String, Object> json) {
+  GiftAskGiver fromJson(Map<String, Object?> json) {
     return GiftAskGiver.fromJson(json);
   }
 }
@@ -249,7 +250,7 @@ class _$_GiftAskGiver implements _GiftAskGiver {
           required this.requester});
 
   factory _$_GiftAskGiver.fromJson(Map<String, dynamic> json) =>
-      _$_$_GiftAskGiverFromJson(json);
+      _$$_GiftAskGiverFromJson(json);
 
   @override
   final String? id;
@@ -280,39 +281,33 @@ class _$_GiftAskGiver implements _GiftAskGiver {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GiftAskGiver &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _GiftAskGiver &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.requestComplete, requestComplete) ||
-                const DeepCollectionEquality()
-                    .equals(other.requestComplete, requestComplete)) &&
+                other.requestComplete == requestComplete) &&
             (identical(other.giftAskStatus, giftAskStatus) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftAskStatus, giftAskStatus)) &&
+                other.giftAskStatus == giftAskStatus) &&
             (identical(
                     other.messageForRequesterSent, messageForRequesterSent) ||
-                const DeepCollectionEquality().equals(
-                    other.messageForRequesterSent, messageForRequesterSent)) &&
+                other.messageForRequesterSent == messageForRequesterSent) &&
             (identical(other.messageForGiverrSent, messageForGiverrSent) ||
-                const DeepCollectionEquality().equals(
-                    other.messageForGiverrSent, messageForGiverrSent)) &&
-            (identical(other.giver, giver) ||
-                const DeepCollectionEquality().equals(other.giver, giver)) &&
+                other.messageForGiverrSent == messageForGiverrSent) &&
+            (identical(other.giver, giver) || other.giver == giver) &&
             (identical(other.requester, requester) ||
-                const DeepCollectionEquality()
-                    .equals(other.requester, requester)));
+                other.requester == requester));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(requestComplete) ^
-      const DeepCollectionEquality().hash(giftAskStatus) ^
-      const DeepCollectionEquality().hash(messageForRequesterSent) ^
-      const DeepCollectionEquality().hash(messageForGiverrSent) ^
-      const DeepCollectionEquality().hash(giver) ^
-      const DeepCollectionEquality().hash(requester);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      requestComplete,
+      giftAskStatus,
+      messageForRequesterSent,
+      messageForGiverrSent,
+      giver,
+      requester);
 
   @JsonKey(ignore: true)
   @override
@@ -321,7 +316,7 @@ class _$_GiftAskGiver implements _GiftAskGiver {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GiftAskGiverToJson(this);
+    return _$$_GiftAskGiverToJson(this);
   }
 }
 
@@ -342,22 +337,22 @@ abstract class _GiftAskGiver implements GiftAskGiver {
       _$_GiftAskGiver.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  bool get requestComplete => throw _privateConstructorUsedError;
+  bool get requestComplete;
   @override
   @JsonKey(toJson: giftAskStatusToJson, fromJson: giftAskStatusFromJson)
-  GiftAskStatus get giftAskStatus => throw _privateConstructorUsedError;
+  GiftAskStatus get giftAskStatus;
   @override
-  bool get messageForRequesterSent => throw _privateConstructorUsedError;
+  bool get messageForRequesterSent;
   @override
-  bool get messageForGiverrSent => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-  LocalUser get giver => throw _privateConstructorUsedError;
+  bool get messageForGiverrSent;
   @override
   @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-  LocalUser get requester => throw _privateConstructorUsedError;
+  LocalUser get giver;
+  @override
+  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
+  LocalUser get requester;
   @override
   @JsonKey(ignore: true)
   _$GiftAskGiverCopyWith<_GiftAskGiver> get copyWith =>

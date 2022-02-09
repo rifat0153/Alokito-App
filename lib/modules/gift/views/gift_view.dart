@@ -1,9 +1,10 @@
-import 'package:alokito_new/modules/gift_ask/views/gift_ask_request_view.dart';
-import 'package:alokito_new/modules/gift/controllers/gift_add_form_controller.dart';
-import 'package:alokito_new/modules/gift/views/gift_add_view.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/gift_requester/widgets/notification_icon_widget.dart';
-import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/modules/gift_ask_giver/views/gift_ask_giver_view.dart';
+
+import '../controllers/gift_add_form_controller.dart';
+import 'gift_add_view.dart';
+import '../../../models/my_enums.dart';
+import '../../gift_request/widgets/notification_icon_widget.dart';
+import '../../../shared/config.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
@@ -24,8 +25,10 @@ class GiftView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
+
         // drawer: MyDrawer(),
         appBar: AppBar(
+          elevation: 0,
           toolbarHeight: 80,
           centerTitle: true,
           title: const Text(
@@ -327,7 +330,7 @@ class _MyButtonRowWidget extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            Get.to(() => GiftAskRequestView());
+            Get.toNamed(GiftAskGiverView.route);
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.grey),

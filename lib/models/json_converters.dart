@@ -1,9 +1,6 @@
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/models/user/local_user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'gift_ask/gift_ask.dart';
+import 'my_enums.dart';
 
 //* Testing Freezed for request status
 
@@ -142,28 +139,26 @@ GiftType giftTypeFromJson(int json) {
   }
 }
 
-int giftAskTypeToJson(GiftAskType giftAskType) {
+String giftAskTypeToJson(GiftAskType giftAskType) {
   switch (giftAskType) {
     case GiftAskType.food:
-      return 0;
+      return "food";
     case GiftAskType.medicine:
-      return 1;
+      return "medicine";
     case GiftAskType.others:
-      return 2;
-    case GiftAskType.error:
-      return 3;
+      return "others";
   }
 }
 
-GiftAskType giftAskTypeFromJson(int json) {
+GiftAskType giftAskTypeFromJson(String json) {
   switch (json) {
-    case 0:
+    case "food":
       return GiftAskType.food;
-    case 1:
+    case "medicine":
       return GiftAskType.medicine;
-    case 2:
+    case "others":
       return GiftAskType.others;
     default:
-      return GiftAskType.error;
+        return GiftAskType.food;
   }
 }

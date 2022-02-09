@@ -1,22 +1,23 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:alokito_new/core/location/geocoding_helper.dart';
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/models/my_enums.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/gift_ask/services/gift_ask_service.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../core/location/geocoding_helper.dart';
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../models/user/local_user.dart';
+import '../../../shared/config.dart';
+import '../../../shared/my_bottomsheets.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../services/gift_ask_service.dart';
+
 class GiftAskController extends GetxController {
-  final GiftAskService giftAskService =
-      GiftAskService(FirebaseFirestore.instance, FirebaseStorage.instance);
+  GiftAskController(this.giftAskService);
+
+  final GiftAskService giftAskService;
 
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   final RxDouble searchRadius = 50.0.obs;
@@ -30,7 +31,7 @@ class GiftAskController extends GetxController {
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
   var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(23, 90).obs;
-  var address = ''.obs;
+  var location = ''.obs;
   var area = ''.obs;
   Rx<LatLng> locationInLatLng = const LatLng(0, 0).obs;
   Rx<Timestamp> requestDate = Timestamp.now().obs;
@@ -46,14 +47,14 @@ class GiftAskController extends GetxController {
   StreamSubscription? streamSubscription;
 
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     streamSubscription = giftRequestList.listen((docListUnion) {
       docListUnion.when(data: (docList) {
         filteredGiftRequestList.value = const GiftAskListUnion.loading();
 
-        for (var doc in docList) {
+        for (final doc in docList) {
           if (doc.id != Get.find<AuthController>().currentUser.value.id && !doc.giftCompleted) {
-            List<GiftAsk> tempFilteredList = [
+            final List<GiftAsk> tempFilteredList = [
               ...filteredGiftRequestList.value.maybeWhen(data: (data) => data, orElse: () => []),
               doc
             ];
@@ -73,7 +74,8 @@ class GiftAskController extends GetxController {
       });
     });
 
-    bindLocationData();
+    await bindLocationData();
+
     bindGiftRequestStream();
     debounce(searchRadius, (_) => bindGiftRequestStream());
 
@@ -92,9 +94,9 @@ class GiftAskController extends GetxController {
   // * Delete GiftASk
   Future<void> deleteGiftAsk(GiftAsk giftAsk) async {
     try {
-      await giftAskService.delete(giftAsk);
+    //  TODO
     } catch (e) {
-      showSuccessOrErrorBottomSheet(false, '', 'GiftAsk could not be deleted');
+      await MyBottomSheet.showErrorBottomSheet('GiftAsk could not be deleted');
     }
   }
 
@@ -105,9 +107,6 @@ class GiftAskController extends GetxController {
       if (giftAsk.id == Get.find<AuthController>().currentUser.value.id) return;
 
       final GeoPoint point = GeoPoint(0, 2);
-
-
-
 
       _addMarker(point.latitude, point.longitude, 1);
     });
@@ -125,9 +124,9 @@ class GiftAskController extends GetxController {
     markers[id] = _marker;
   }
 
-  void bindLocationData() async {
+  Future<void> bindLocationData() async {
     // LocationData loc = await Location().getLocation();
-    var userLocation = Get.find<AuthController>().currentUserPosition.value;
+    final userLocation = Get.find<AuthController>().currentUserPosition.value;
     currentUserPosition.value = userLocation;
     formMarker.value = Marker(markerId: const MarkerId('123'), position: currentUserPosition.value);
 
@@ -141,57 +140,41 @@ class GiftAskController extends GetxController {
 
   void bindGiftRequestStream() {
     bindLocationData();
-
-  
   }
 
-  // FIREBASE REQUESTS
+  // ADD GiftAsk to DB
   Future<void> addGift() async {
     loading.value = true;
 
-
-    GiftAsk giftAsk = GiftAsk(
-      requester: Get.find<AuthController>().currentUser.value,
-      address: address.value,
+    final GiftAsk giftAsk = GiftAsk(
+      user: Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => initialUser),
+      title: giftTitle.value,
+      location: location.value,
       area: area.value,
+      geometry: Geometry(coordinates: [formMarker.value.position.longitude, formMarker.value.position.latitude]),
       requestForNoOfPeople: requestForNoOfPeople,
       giftAskType: getGiftAskType(),
-      giftTitle: giftTitle.value,
       giftForSmallFamily: _packageSmallFamilty.value,
       note: note.value,
     );
 
-    String userId = Get.find<AuthController>().currentUser.value.id ?? '';
-    bool giftExists = await giftAskService.findGiftById(userId);
-    if (giftExists) {
-      loading.value = false;
-      return showSuccessOrErrorBottomSheet(!giftExists, 'No request exists', 'Only one request at a time');
-    }
+    final String userId = Get.find<AuthController>().currentUser.value.id ?? '';
 
-    String prescriptionUrl = '';
-    if (showPrescription.value && precriptionImageFile.value.path.isNotEmpty) {
-      prescriptionUrl = await giftAskService.uploadImageAndGetDownloadUrl(precriptionImageFile.value);
-    }
+    await giftAskService.addGift(
+      giftAsk: giftAsk,
+      userId: userId,
+      imageFile: precriptionImageFile.value,
+    );
 
-    giftAsk = giftAsk.copyWith(prescriptionImageUrl: prescriptionUrl);
-
-    bool status = await giftAskService.addGift(giftAsk: giftAsk, userId: userId);
     loading.value = false;
-
-    showSuccessOrErrorBottomSheet(status, 'Success: Gift request added', 'Something went wrong');
   }
 
-  Future<void> findGiftExistsOrNot({required String giftAskId}) async {
-    var responseStatus = await giftAskService.findGiftById(giftAskId);
-
-    showSuccessOrErrorBottomSheet(responseStatus, 'gift exists', 'gift does not exists');
-  }
 
   GiftAskType getGiftAskType() {
     if (selectedGiftType == 'Food') return GiftAskType.food;
     if (selectedGiftType == 'Medicine') return GiftAskType.medicine;
     if (selectedGiftType == 'Others') return GiftAskType.others;
-    return GiftAskType.error;
+    return GiftAskType.food;
   }
 
   void setLocationFromMapCordinates() async {
@@ -200,7 +183,7 @@ class GiftAskController extends GetxController {
       final List<Placemark> placemarks = await GeocodingHelper.getAddressFromPosition(
           formMarker.value.position.latitude, formMarker.value.position.longitude);
 
-      address.value = placemarks.first.country ?? 'N/A';
+      location.value = placemarks.first.country ?? 'N/A';
       area.value = placemarks.first.name ?? 'N/A';
 
       print(area.value);
@@ -226,46 +209,8 @@ class GiftAskController extends GetxController {
   String get selectedGiftType => _selectedGiftType.value;
 
   void setSelectedGiftType(String newValue) {
-    showPrescription.value = (newValue == 'Medicine') ? true : false;
+    showPrescription.value = newValue == 'Medicine';
     precriptionImageFile.value = (newValue == 'Medicine') ? precriptionImageFile.value : File('');
     _selectedGiftType.value = newValue;
-  }
-
-  void showSuccessOrErrorBottomSheet(
-    bool status,
-    String successMessage,
-    String errorMessage,
-  ) async {
-    if (status) {
-      Get.back();
-
-      await Get.bottomSheet(
-        SizedBox(
-          height: 50,
-          child: Center(
-            child: Text(
-              successMessage,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 15),
-            ),
-          ),
-        ),
-        backgroundColor: Colors.greenAccent,
-      );
-    } else {
-      await Get.bottomSheet(
-        SizedBox(
-          height: 50,
-          child: Center(
-            child: Text(
-              errorMessage,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 15),
-            ),
-          ),
-        ),
-        backgroundColor: Colors.redAccent,
-      );
-    }
   }
 }

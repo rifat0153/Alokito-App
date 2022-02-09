@@ -1,21 +1,26 @@
-import 'package:alokito_new/core/language/language_controller.dart';
-import 'package:alokito_new/core/location/location_helper.dart';
-import 'package:alokito_new/models/login/login.dart';
-import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/modules/auth/auth_exception.dart';
-import 'package:alokito_new/modules/auth/controllers/login_controller.dart';
-import 'package:alokito_new/models/gift_giver/gift.dart';
-import 'package:alokito_new/modules/auth/services/auth_service.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:alokito_new/models/gift_ask/gift_ask.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../core/language/language_controller.dart';
+import '../../../core/location/location_helper.dart';
+import '../../../models/gift/gift.dart';
+import '../../../models/login/login.dart';
+import '../../../models/user/local_user.dart';
+import '../../../shared/config.dart';
+import '../../../shared/my_bottomsheets.dart';
+import '../auth_exception.dart';
+import '../services/auth_service.dart';
+import 'login_controller.dart';
+
 class AuthController extends GetxController {
   AuthController(this.authService);
-  AuthService authService;
+  final AuthService authService;
+
+  // track notification number from firestore
+  final Rx<int> newNotifications = 0.obs;
 
   final Rx<LocalUser> currentUser = initialUser.obs;
 
@@ -27,7 +32,7 @@ class AuthController extends GetxController {
   final Rx<LocalUserInfo> currentUserInfo = const LocalUserInfo.loading().obs;
   final authStream = FirebaseAuth.instance.currentUser.obs;
 
-  final Rx<LatLng> currentUserPosition = const LatLng(0, 0).obs;
+  final Rx<LatLng> currentUserPosition = const LatLng(28, 85).obs;
 
   @override
   Future<void> onInit() async {
@@ -36,6 +41,10 @@ class AuthController extends GetxController {
     // Set Language
     await Get.find<LanguageController>().setSavedLocal();
 
+    // bind newNotification
+    bindNewNotificationStream();
+
+    // bind user value
     authStream.bindStream(authService.authStateChanges);
     await bindLocationData();
   }
@@ -47,22 +56,45 @@ class AuthController extends GetxController {
     super.onClose();
   }
 
+  void bindNewNotificationStream() {
+    newNotifications.bindStream(authService.streamNewNotificationNumber(
+        currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as')));
+  }
+
+  Future<void> resetNotificationCount() async {
+    await authService
+        .resetNewNotificationCount(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as'));
+  }
+
   Future signOut() async {
     await authService.signOut();
 
     Get.find<LoginController>().loginStatus.value = const LoginStatus.notLoggedIn();
     authCompleted.value = false;
+    newNotifications.refresh();
   }
 
-  double calculateDistanceForGiftDetail({required Gift gift}) {
-    final distance = LocationHelper.determineDistance(
-      gift.geometry.coordinates.last,
-      gift.geometry.coordinates.first,
-      currentUserPosition.value.latitude,
-      currentUserPosition.value.longitude,
+  double calculateDistanceFromGiftOrGiftAsk({Gift? gift, GiftAsk? giftAsk}) {
+    final currentUserLatLng = currentUserInfo.value.maybeWhen(
+      data: (data) => LatLng(data.geometry.coordinates.last, data.geometry.coordinates.first),
+      orElse: () => const LatLng(0, 0),
     );
 
-    return distance;
+    final distance = gift != null
+        ? LocationHelper.determineDistance(
+            gift.geometry.coordinates.last,
+            gift.geometry.coordinates.first,
+            currentUserLatLng.latitude,
+            currentUserLatLng.longitude,
+          )
+        : LocationHelper.determineDistance(
+            giftAsk!.geometry.coordinates.last,
+            giftAsk.geometry.coordinates.first,
+            currentUserLatLng.latitude,
+            currentUserLatLng.longitude,
+          );
+
+    return distance / 10000 > 100 ? 101 : (distance / 1000).toPrecision(2);
   }
 
   Future<void> getUserInfoAndSetCurrentUser() async {
@@ -71,9 +103,12 @@ class AuthController extends GetxController {
     currentUserInfo.value = const LocalUserInfo.loading();
 
     try {
-      final LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
+      final LocalUserInfo userInfo =
+          await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
       currentUserInfo.value = userInfo;
+
+      bindNewNotificationStream();
     } on AuthException catch (e) {
       errors.value = true;
       currentUserInfo.value = LocalUserInfo.error(e.toString());
@@ -89,13 +124,22 @@ class AuthController extends GetxController {
   }
 
   Future<void> bindLocationData() async {
-    print('Getting user location');
-    final Position position = await LocationHelper.determinePosition();
+    try {
+      print('Getting user location');
+      final Position position = await LocationHelper.determinePosition();
 
-    print(position);
+      print(position);
 
-    currentUserPosition.value = LatLng(position.latitude, position.longitude);
+      currentUserPosition.value = LatLng(position.latitude, position.longitude);
 
-    print('AuthController: ' + currentUserPosition.value.toString());
+      print('AuthController: ' + currentUserPosition.value.toString());
+    } catch (e) {
+      await MyBottomSheet.showErrorBottomSheet(
+          'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters properly');
+    }
+  }
+
+  String getCurrentUserId() {
+    return currentUserInfo.value.maybeWhen(data: (data) => data.id!, orElse: () => '');
   }
 }

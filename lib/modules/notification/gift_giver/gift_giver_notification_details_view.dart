@@ -1,13 +1,13 @@
-import 'package:alokito_new/core/location/location_helper.dart';
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_controller.dart';
-import 'package:alokito_new/modules/notification/gift_giver/widgets/feedback_widget.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/skeleton_widget.dart';
-import 'package:alokito_new/shared/styles.dart';
-import 'package:alokito_new/shared/widget/covid_guidelines_widget.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
+import '../../../core/location/location_helper.dart';
+import '../../../models/gift_request/gift_request.dart';
+import '../../auth/controllers/auth_controller.dart';
+import 'gift_giver_notification_controller.dart';
+import 'widgets/feedback_widget.dart';
+import '../../../shared/config.dart';
+import '../../../shared/skeleton_widget.dart';
+import '../../../shared/styles.dart';
+import '../../../shared/widget/covid_guidelines_widget.dart';
+import '../../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -116,11 +116,11 @@ class _DecisionWidget extends StatelessWidget {
         ),
         canceledByGiver: () => MyText('r Request Canceled by ${giftReceiver.gift.user!.userName}',
             textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
-        canceledByRequester: () =>
-            MyText('r Request Canceled by You', textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
-        accepted: () =>
-            MyText('r Gift Accepted by You', textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
-        delivered: () => giftReceiver.messageForGiverrSent == true
+        canceledByRequester: () => MyText('r Request Canceled by You',
+            textAlign: TextAlign.center, color: Colors.red, fontWeight: FontWeight.bold),
+        accepted: () => MyText('r Gift Accepted by You',
+            textAlign: TextAlign.center, color: Colors.green, fontWeight: FontWeight.bold),
+        delivered: () => giftReceiver.messageForGiverSent == true
             ? Column(
                 children: [
                   MyText('r Gift Received', color: Colors.blueAccent),
@@ -131,7 +131,7 @@ class _DecisionWidget extends StatelessWidget {
                   MyText('r Gift Received', color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
-                      Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: true));
+                      Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftReceiver, isRequester: true));
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
@@ -161,7 +161,8 @@ class _DecisionWidget extends StatelessWidget {
               maxLines: 2,
               textAlign: TextAlign.center,
             ),
-        canceledByGiver: () => MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        canceledByGiver: () =>
+            MyText('Request Canceled by', color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
         canceledByRequester: () => Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -194,7 +195,7 @@ class _DecisionWidget extends StatelessWidget {
                   MyText('Delivered', fontSize: 20, color: Colors.blueAccent),
                   MaterialButton(
                     onPressed: () {
-                      Get.dialog(FeedbackWidget(giftReceiver: giftReceiver, isRequester: false));
+                      Get.dialog(FeedbackWidgetForGiftRequest(giftReceiver: giftReceiver, isRequester: false));
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     height: 0,
@@ -370,7 +371,7 @@ class _RequesterDetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: Get.width * 0.7,
           height: 60,
           child: Row(

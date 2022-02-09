@@ -1,17 +1,18 @@
-import 'package:alokito_new/models/gift_request/gift_request.dart';
-import 'package:alokito_new/models/notification/notification.dart';
-import 'package:alokito_new/modules/gift_requester/controllers/gift_requester_controller.dart';
-import 'package:alokito_new/modules/notification/gift_giver/gift_giver_notification_details_view.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class GiftGiverNotificationView extends StatelessWidget {
-  GiftGiverNotificationView({Key? key, required this.notification}) : super(key: key);
+import '../../../models/gift_request/gift_request.dart';
+import '../../../models/notification/notification.dart';
+import '../../../shared/widget/my_text.dart';
+import '../../gift_request/controllers/gift_request_controller.dart';
+import 'gift_giver_notification_details_view.dart';
+
+class GiftNotificationView extends StatelessWidget {
+  GiftNotificationView({Key? key, required this.notification}) : super(key: key);
 
   final MyNotification notification;
 
-  final GiftRequesterController giftReceiverController = Get.find<GiftRequesterController>();
+  final GiftRequestController giftReceiverController = Get.find<GiftRequestController>();
 
   @override
   Widget build(BuildContext context) {

@@ -1,77 +1,90 @@
+import 'dart:async';
 import 'dart:io';
 
-import 'package:alokito_new/models/gift_ask/gift_ask.dart';
-import 'package:alokito_new/modules/gift_ask/gift_ask_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart' as path;
-import 'package:uuid/uuid.dart';
+import 'package:get/get.dart';
+
+import '../../../core/image/image_upload_helper.dart';
+import '../../../models/gift_ask/gift_ask.dart';
+import '../../../shared/config.dart';
+import '../../../shared/my_bottomsheets.dart';
 
 abstract class BaseGiftAskService {
-  Future<bool> addGift({required GiftAsk giftAsk, required String userId});
+  Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile});
 
-  Future<String> uploadImageAndGetDownloadUrl(File file);
+  // Future<void> findGiftById(String id);
 
-  Future<bool> findGiftById(String id);
-
-  Future<void> delete(GiftAsk giftAsk);
+  // Future<void> deleteGiftAsk(GiftAsk giftAsk);
 }
 
-class GiftAskService implements BaseGiftAskService {
+class GiftAskService extends GetConnect implements BaseGiftAskService {
   GiftAskService(this._firestore, this._storage);
 
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
 
   @override
-  Future<bool> addGift({required GiftAsk giftAsk, required String userId}) async {
+  Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile}) async {
     try {
-      var docRef = _firestore.collection('gift_ask').doc(userId);
-      giftAsk = giftAsk.copyWith(id: userId);
+      if (giftAsk.giftAskType == GiftAskType.medicine && imageFile.path.isNotEmpty) {
+        final String prescriptionImageUrl =
+            await ImageUploadHelper.uploadImageAndGetDownloadUrl(imageFile, 'user/gift_ask', _storage);
 
-      await docRef.set(giftAsk.toJson());
+        giftAsk = giftAsk.copyWith(imageUrl: prescriptionImageUrl);
+      }
 
-      return true;
-    } on FirebaseException catch (e) {
-      throw GiftAskException(message: e.message);
-    }
-  }
+      print('GiftASk: ' + giftAsk.toJson().toString());
 
-  @override
-  Future<String> uploadImageAndGetDownloadUrl(File file) async {
-    var fileExtension = path.extension(file.path);
-    var uuid = const Uuid().v4();
-    var firebaseStorageRef = _storage.ref().child('gift_ask/images/$uuid$fileExtension');
+      final Response respose = await post(
+        "${MyConfig.baseUrl}/gift_ask/store",
+        giftAsk.toJson(),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
 
-    try {
-      await firebaseStorageRef.putFile(file);
-      String url = await firebaseStorageRef.getDownloadURL();
+      print(respose);
 
-      return url;
-    } on FirebaseException catch (e) {
-      throw GiftAskException(message: 'Prescription Image upload error');
-    }
-  }
+      if (respose.statusCode == 200 || respose.statusCode == 201) {
+        await MySnackbar.showSuccessSnackbar('Gift request complete');
+      } else {
+        await MySnackbar.showErrorSnackbar('An unexpected error occurred');
+      }
 
-  @override
-  Future<bool> findGiftById(String id) async {
-    try {
-      var docRef = await _firestore.collection('gift_ask').doc(id).get();
-
-      return docRef.data() != null ? true : false;
-    } on FirebaseException catch (e) {
-      throw GiftAskException(message: 'GiftRequest finding error: ${e.message}');
-    }
-  }
-
-  @override
-  Future<void> delete(GiftAsk giftAsk) async {
-    try {
-      await _firestore.collection('gift_ask').doc(giftAsk.id).delete();
-    } on FirebaseException catch (e) {
-      throw GiftAskException(message: e.toString());
+      return;
+    } on FirebaseException catch (_) {
+      await MySnackbar.showErrorSnackbar('Image upload failed');
+    } on IOException catch (_) {
+      await MySnackbar.showErrorSnackbar('Could not connect to server. Please check your Internet');
+    } on TimeoutException catch (_) {
+      await MySnackbar.showErrorSnackbar('Could not connect to server. An unexpected error occurred');
     } catch (e) {
-      throw GiftAskException(message: e.toString());
+      print(e);
+
+      await MySnackbar.showErrorSnackbar('An unexpected error occurred');
     }
   }
+
+  // @override
+  // Future<bool> findGiftById(String id) async {
+  //   try {
+  //     final docRef = await _firestore.collection('gift_ask').doc(id).get();
+
+  //     return docRef.data() != null ? true : false;
+  //   } on FirebaseException catch (e) {
+  //     throw GiftAskException(message: 'GiftRequest finding error: ${e.message}');
+  //   }
+  // }
+
+  // @override
+  // Future<void> deleteGiftAsk(GiftAsk giftAsk) async {
+  //   try {
+  //     await _firestore.collection('gift_ask').doc(giftAsk.id).delete();
+  //   } on FirebaseException catch (e) {
+  //     throw GiftAskException(message: e.toString());
+  //   } catch (e) {
+  //     throw GiftAskException(message: e.toString());
+  //   }
+  // }
 }

@@ -1,7 +1,6 @@
-import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:alokito_new/modules/auth/widgets/login_reg_form.dart';
-import 'package:alokito_new/modules/home/views/home_view.dart';
-import 'package:flutter/cupertino.dart';
+import 'controllers/auth_controller.dart';
+import 'widgets/login_reg_form.dart';
+import '../home/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';

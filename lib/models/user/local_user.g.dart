@@ -6,35 +6,33 @@ part of 'local_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LocalUser _$_$_LocalUserFromJson(Map<String, dynamic> json) {
-  return _$_LocalUser(
-    id: json['id'] as String?,
-    uid: json['uid'] as String?,
-    distance: (json['distance'] as num?)?.toDouble(),
-    email: json['email'] as String,
-    userName: json['userName'] as String,
-    imageUrl: json['imageUrl'] as String,
-    geometry: geometryFromMap(json['geometry'] as Map<String, dynamic>),
-    firstName: json['firstName'] as String? ?? '',
-    lastName: json['lastName'] as String? ?? '',
-    hasNotifications: json['hasNotifications'] as bool? ?? false,
-    ratingSum: (json['ratingSum'] as num?)?.toDouble() ?? 0,
-    totalRating: (json['totalRating'] as num?)?.toDouble() ?? 0,
-    averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0,
-    giftGiven: (json['giftGiven'] as num?)?.toDouble() ?? 0,
-    giftReceived: (json['giftReceived'] as num?)?.toDouble() ?? 0,
-    hasGiftGiverRequest: json['hasGiftGiverRequest'] as bool? ?? false,
-    hasGiftAskRequest: json['hasGiftAskRequest'] as bool? ?? false,
-    requestedGiftId: json['requestedGiftId'] as String? ?? '',
-    acceptedGiftId: json['acceptedGiftId'] as String? ?? '',
-    role: json['role'] as String? ?? 'user',
-    createdAt: DateTime.parse(json['createdAt'] as String),
-    updatedAt: DateTime.parse(json['updatedAt'] as String),
-    v: json['v'] as int? ?? 1,
-  );
-}
+_$_LocalUser _$$_LocalUserFromJson(Map<String, dynamic> json) => _$_LocalUser(
+      id: json['id'] as String?,
+      uid: json['uid'] as String?,
+      distance: (json['distance'] as num?)?.toDouble(),
+      email: json['email'] as String,
+      userName: json['userName'] as String,
+      imageUrl: json['imageUrl'] as String,
+      geometry: geometryFromMap(json['geometry'] as Map<String, dynamic>),
+      firstName: json['firstName'] as String? ?? '',
+      lastName: json['lastName'] as String? ?? '',
+      hasNotifications: json['hasNotifications'] as bool? ?? false,
+      ratingSum: (json['ratingSum'] as num?)?.toDouble() ?? 0,
+      totalRating: (json['totalRating'] as num?)?.toDouble() ?? 0,
+      averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0,
+      giftGiven: (json['giftGiven'] as num?)?.toDouble() ?? 0,
+      giftReceived: (json['giftReceived'] as num?)?.toDouble() ?? 0,
+      hasGiftGiverRequest: json['hasGiftGiverRequest'] as bool? ?? false,
+      hasGiftAskRequest: json['hasGiftAskRequest'] as bool? ?? false,
+      requestedGiftId: json['requestedGiftId'] as String? ?? '',
+      acceptedGiftId: json['acceptedGiftId'] as String? ?? '',
+      role: json['role'] as String? ?? 'user',
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      v: json['v'] as int? ?? 1,
+    );
 
-Map<String, dynamic> _$_$_LocalUserToJson(_$_LocalUser instance) =>
+Map<String, dynamic> _$$_LocalUserToJson(_$_LocalUser instance) =>
     <String, dynamic>{
       'id': instance.id,
       'uid': instance.uid,
@@ -61,17 +59,15 @@ Map<String, dynamic> _$_$_LocalUserToJson(_$_LocalUser instance) =>
       'v': instance.v,
     };
 
-_$_Geometry _$_$_GeometryFromJson(Map<String, dynamic> json) {
-  return _$_Geometry(
-    type: json['type'] as String? ?? 'Point',
-    id: json['id'] as String?,
-    coordinates: (json['coordinates'] as List<dynamic>)
-        .map((e) => (e as num).toDouble())
-        .toList(),
-  );
-}
+_$_Geometry _$$_GeometryFromJson(Map<String, dynamic> json) => _$_Geometry(
+      type: json['type'] as String? ?? 'Point',
+      id: json['id'] as String?,
+      coordinates: (json['coordinates'] as List<dynamic>)
+          .map((e) => (e as num).toDouble())
+          .toList(),
+    );
 
-Map<String, dynamic> _$_$_GeometryToJson(_$_Geometry instance) =>
+Map<String, dynamic> _$$_GeometryToJson(_$_Geometry instance) =>
     <String, dynamic>{
       'type': instance.type,
       'id': instance.id,

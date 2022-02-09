@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:alokito_new/core/location/location_helper.dart';
-import 'package:alokito_new/models/user/local_user.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
+import '../../../core/location/location_helper.dart';
+import '../../../models/user/local_user.dart';
+import '../../../shared/config.dart';
+import '../../../shared/my_bottomsheets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:alokito_new/modules/auth/auth_exception.dart';
+import '../auth_exception.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
@@ -31,6 +31,11 @@ abstract class BaseAuthService {
     required File localImageFile,
   });
 
+  // New notification count
+  Stream<int> streamNewNotificationNumber(String userUid);
+  // Reset new notification count
+  Future<bool> resetNewNotificationCount(String id);
+
   Future<LocalUserInfo> getLocalUserDB(String id);
 
   Future<LocalUser> uploadImageToFirebase(LocalUser user, bool isUpdating, File localFile);
@@ -42,16 +47,60 @@ abstract class BaseAuthService {
   Future<void> signOut();
 }
 
-class AuthService implements BaseAuthService {
+class AuthService extends GetConnect implements BaseAuthService {
   AuthService(this._firebaseAuth, this._firestore);
 
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
 
   @override
+  Future<LocalUserInfo> getLocalUserDB(String id) async {
+    try {
+      final Response<LocalUser> response = await get(
+        '$baseUrl/user/show?id=$id',
+        headers: {},
+        decoder: (data) => LocalUser.fromJson(data as Map<String, dynamic>),
+      ).timeout(const Duration(seconds: myTimeout));
+
+      if (response.body != null) {
+        return LocalUserInfo.data(response.body!);
+      } else {
+        return const LocalUserInfo.error('User not found');
+      }
+    } catch (e) {
+      return LocalUserInfo.error(e.toString());
+    }
+  }
+
+  @override
+  Stream<int> streamNewNotificationNumber(String userUid) {
+    try {
+      final stream =
+          _firestore.collection('users').doc(_firebaseAuth.currentUser?.uid ?? 'abc').snapshots().map((doc) {
+        final val = (doc.data()?['notificationCount'] ?? 0) as int;
+        return val;
+      });
+
+      return stream;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @override
+  Future<bool> resetNewNotificationCount(String id) async {
+    try {
+      await _firestore.collection('users').doc(id).update({'notificationCount': 0});
+      return true;
+    } on FirebaseException catch (_) {
+      return true;
+    }
+  }
+
+  @override
   Future<bool> updateUserNotificationStatus(String id, bool notificationStatus) async {
     try {
-      await _firestore.collection('users').doc(id).update({'hasNotifications': notificationStatus});
+      await _firestore.collection('users').doc(id).update({'notificationCount': 0});
 
       return true;
     } on FirebaseAuthException catch (e) {
@@ -179,25 +228,5 @@ class AuthService implements BaseAuthService {
   @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
-  }
-
-  @override
-  Future<LocalUserInfo> getLocalUserDB(String id) async {
-    final client = http.Client();
-
-    try {
-      final http.Response response = await client.get(
-        Uri.parse('$baseUrl/user/show?id=$id'),
-        headers: {"Content-Type": "application/json"},
-      ).timeout(const Duration(seconds: 5));
-
-      print('GEt user status: ' + response.statusCode.toString());
-      final LocalUser localUser = localUserFromJson(response.body);
-      print('User: ' + localUser.id.toString());
-
-      return LocalUserInfo.data(localUser);
-    } catch (e) {
-      return LocalUserInfo.error(e.toString());
-    }
   }
 }

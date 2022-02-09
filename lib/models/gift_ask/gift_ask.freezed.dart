@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gift_ask.dart';
 
@@ -24,34 +25,37 @@ class _$GiftAskTearOff {
       {String? id,
       bool giftCompleted = false,
       bool giftGiven = false,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required LocalUser requester,
-      required String address,
-      required String area,
+      String familyType = 'small family package',
+      required LocalUser user,
+      String? title,
       required int requestForNoOfPeople,
-      String? prescriptionImageUrl,
+      required String note,
+      String? imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required GiftAskType giftAskType,
-      required String giftTitle,
-      required bool giftForSmallFamily,
-      required String note}) {
+      required Geometry geometry,
+      required String area,
+      required String location,
+      bool giftForSmallFamily = false}) {
     return _GiftAsk(
       id: id,
       giftCompleted: giftCompleted,
       giftGiven: giftGiven,
-      requester: requester,
-      address: address,
-      area: area,
+      familyType: familyType,
+      user: user,
+      title: title,
       requestForNoOfPeople: requestForNoOfPeople,
-      prescriptionImageUrl: prescriptionImageUrl,
-      giftAskType: giftAskType,
-      giftTitle: giftTitle,
-      giftForSmallFamily: giftForSmallFamily,
       note: note,
+      imageUrl: imageUrl,
+      giftAskType: giftAskType,
+      geometry: geometry,
+      area: area,
+      location: location,
+      giftForSmallFamily: giftForSmallFamily,
     );
   }
 
-  GiftAsk fromJson(Map<String, Object> json) {
+  GiftAsk fromJson(Map<String, Object?> json) {
     return GiftAsk.fromJson(json);
   }
 }
@@ -64,17 +68,21 @@ mixin _$GiftAsk {
   String? get id => throw _privateConstructorUsedError;
   bool get giftCompleted => throw _privateConstructorUsedError;
   bool get giftGiven => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-  LocalUser get requester => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
-  String get area => throw _privateConstructorUsedError;
+  String get familyType =>
+      throw _privateConstructorUsedError; // @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+  LocalUser get user => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   int get requestForNoOfPeople => throw _privateConstructorUsedError;
-  String? get prescriptionImageUrl => throw _privateConstructorUsedError;
-  @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
-  GiftAskType get giftAskType => throw _privateConstructorUsedError;
-  String get giftTitle => throw _privateConstructorUsedError;
-  bool get giftForSmallFamily => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
+  @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
+  GiftAskType get giftAskType =>
+      throw _privateConstructorUsedError; // @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  Geometry get geometry => throw _privateConstructorUsedError;
+  String get area => throw _privateConstructorUsedError;
+  String get location =>
+      throw _privateConstructorUsedError; // @Default('Default Title') String giftTitle,
+  bool get giftForSmallFamily => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -89,19 +97,21 @@ abstract class $GiftAskCopyWith<$Res> {
       {String? id,
       bool giftCompleted,
       bool giftGiven,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          LocalUser requester,
-      String address,
-      String area,
+      String familyType,
+      LocalUser user,
+      String? title,
       int requestForNoOfPeople,
-      String? prescriptionImageUrl,
+      String note,
+      String? imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           GiftAskType giftAskType,
-      String giftTitle,
-      bool giftForSmallFamily,
-      String note});
+      Geometry geometry,
+      String area,
+      String location,
+      bool giftForSmallFamily});
 
-  $LocalUserCopyWith<$Res> get requester;
+  $LocalUserCopyWith<$Res> get user;
+  $GeometryCopyWith<$Res> get geometry;
 }
 
 /// @nodoc
@@ -117,15 +127,17 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
     Object? id = freezed,
     Object? giftCompleted = freezed,
     Object? giftGiven = freezed,
-    Object? requester = freezed,
-    Object? address = freezed,
-    Object? area = freezed,
+    Object? familyType = freezed,
+    Object? user = freezed,
+    Object? title = freezed,
     Object? requestForNoOfPeople = freezed,
-    Object? prescriptionImageUrl = freezed,
-    Object? giftAskType = freezed,
-    Object? giftTitle = freezed,
-    Object? giftForSmallFamily = freezed,
     Object? note = freezed,
+    Object? imageUrl = freezed,
+    Object? giftAskType = freezed,
+    Object? geometry = freezed,
+    Object? area = freezed,
+    Object? location = freezed,
+    Object? giftForSmallFamily = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -140,49 +152,64 @@ class _$GiftAskCopyWithImpl<$Res> implements $GiftAskCopyWith<$Res> {
           ? _value.giftGiven
           : giftGiven // ignore: cast_nullable_to_non_nullable
               as bool,
-      requester: requester == freezed
-          ? _value.requester
-          : requester // ignore: cast_nullable_to_non_nullable
+      familyType: familyType == freezed
+          ? _value.familyType
+          : familyType // ignore: cast_nullable_to_non_nullable
+              as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as LocalUser,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      area: area == freezed
-          ? _value.area
-          : area // ignore: cast_nullable_to_non_nullable
-              as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
       requestForNoOfPeople: requestForNoOfPeople == freezed
           ? _value.requestForNoOfPeople
           : requestForNoOfPeople // ignore: cast_nullable_to_non_nullable
               as int,
-      prescriptionImageUrl: prescriptionImageUrl == freezed
-          ? _value.prescriptionImageUrl
-          : prescriptionImageUrl // ignore: cast_nullable_to_non_nullable
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       giftAskType: giftAskType == freezed
           ? _value.giftAskType
           : giftAskType // ignore: cast_nullable_to_non_nullable
               as GiftAskType,
-      giftTitle: giftTitle == freezed
-          ? _value.giftTitle
-          : giftTitle // ignore: cast_nullable_to_non_nullable
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String,
       giftForSmallFamily: giftForSmallFamily == freezed
           ? _value.giftForSmallFamily
           : giftForSmallFamily // ignore: cast_nullable_to_non_nullable
               as bool,
-      note: note == freezed
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 
   @override
-  $LocalUserCopyWith<$Res> get requester {
-    return $LocalUserCopyWith<$Res>(_value.requester, (value) {
-      return _then(_value.copyWith(requester: value));
+  $LocalUserCopyWith<$Res> get user {
+    return $LocalUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+
+  @override
+  $GeometryCopyWith<$Res> get geometry {
+    return $GeometryCopyWith<$Res>(_value.geometry, (value) {
+      return _then(_value.copyWith(geometry: value));
     });
   }
 }
@@ -196,20 +223,23 @@ abstract class _$GiftAskCopyWith<$Res> implements $GiftAskCopyWith<$Res> {
       {String? id,
       bool giftCompleted,
       bool giftGiven,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          LocalUser requester,
-      String address,
-      String area,
+      String familyType,
+      LocalUser user,
+      String? title,
       int requestForNoOfPeople,
-      String? prescriptionImageUrl,
+      String note,
+      String? imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           GiftAskType giftAskType,
-      String giftTitle,
-      bool giftForSmallFamily,
-      String note});
+      Geometry geometry,
+      String area,
+      String location,
+      bool giftForSmallFamily});
 
   @override
-  $LocalUserCopyWith<$Res> get requester;
+  $LocalUserCopyWith<$Res> get user;
+  @override
+  $GeometryCopyWith<$Res> get geometry;
 }
 
 /// @nodoc
@@ -226,15 +256,17 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
     Object? id = freezed,
     Object? giftCompleted = freezed,
     Object? giftGiven = freezed,
-    Object? requester = freezed,
-    Object? address = freezed,
-    Object? area = freezed,
+    Object? familyType = freezed,
+    Object? user = freezed,
+    Object? title = freezed,
     Object? requestForNoOfPeople = freezed,
-    Object? prescriptionImageUrl = freezed,
-    Object? giftAskType = freezed,
-    Object? giftTitle = freezed,
-    Object? giftForSmallFamily = freezed,
     Object? note = freezed,
+    Object? imageUrl = freezed,
+    Object? giftAskType = freezed,
+    Object? geometry = freezed,
+    Object? area = freezed,
+    Object? location = freezed,
+    Object? giftForSmallFamily = freezed,
   }) {
     return _then(_GiftAsk(
       id: id == freezed
@@ -249,67 +281,77 @@ class __$GiftAskCopyWithImpl<$Res> extends _$GiftAskCopyWithImpl<$Res>
           ? _value.giftGiven
           : giftGiven // ignore: cast_nullable_to_non_nullable
               as bool,
-      requester: requester == freezed
-          ? _value.requester
-          : requester // ignore: cast_nullable_to_non_nullable
+      familyType: familyType == freezed
+          ? _value.familyType
+          : familyType // ignore: cast_nullable_to_non_nullable
+              as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as LocalUser,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      area: area == freezed
-          ? _value.area
-          : area // ignore: cast_nullable_to_non_nullable
-              as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
       requestForNoOfPeople: requestForNoOfPeople == freezed
           ? _value.requestForNoOfPeople
           : requestForNoOfPeople // ignore: cast_nullable_to_non_nullable
               as int,
-      prescriptionImageUrl: prescriptionImageUrl == freezed
-          ? _value.prescriptionImageUrl
-          : prescriptionImageUrl // ignore: cast_nullable_to_non_nullable
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       giftAskType: giftAskType == freezed
           ? _value.giftAskType
           : giftAskType // ignore: cast_nullable_to_non_nullable
               as GiftAskType,
-      giftTitle: giftTitle == freezed
-          ? _value.giftTitle
-          : giftTitle // ignore: cast_nullable_to_non_nullable
+      geometry: geometry == freezed
+          ? _value.geometry
+          : geometry // ignore: cast_nullable_to_non_nullable
+              as Geometry,
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String,
       giftForSmallFamily: giftForSmallFamily == freezed
           ? _value.giftForSmallFamily
           : giftForSmallFamily // ignore: cast_nullable_to_non_nullable
               as bool,
-      note: note == freezed
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_GiftAsk implements _GiftAsk {
   const _$_GiftAsk(
       {this.id,
       this.giftCompleted = false,
       this.giftGiven = false,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required this.requester,
-      required this.address,
-      required this.area,
+      this.familyType = 'small family package',
+      required this.user,
+      this.title,
       required this.requestForNoOfPeople,
-      this.prescriptionImageUrl,
+      required this.note,
+      this.imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required this.giftAskType,
-      required this.giftTitle,
-      required this.giftForSmallFamily,
-      required this.note});
+      required this.geometry,
+      required this.area,
+      required this.location,
+      this.giftForSmallFamily = false});
 
   factory _$_GiftAsk.fromJson(Map<String, dynamic> json) =>
-      _$_$_GiftAskFromJson(json);
+      _$$_GiftAskFromJson(json);
 
   @override
   final String? id;
@@ -319,86 +361,84 @@ class _$_GiftAsk implements _GiftAsk {
   @JsonKey(defaultValue: false)
   @override
   final bool giftGiven;
+  @JsonKey(defaultValue: 'small family package')
   @override
-  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-  final LocalUser requester;
+  final String familyType;
+  @override // @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+  final LocalUser user;
   @override
-  final String address;
-  @override
-  final String area;
+  final String? title;
   @override
   final int requestForNoOfPeople;
   @override
-  final String? prescriptionImageUrl;
+  final String note;
+  @override
+  final String? imageUrl;
   @override
   @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
   final GiftAskType giftAskType;
+  @override // @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  final Geometry geometry;
   @override
-  final String giftTitle;
+  final String area;
   @override
+  final String location;
+  @JsonKey(defaultValue: false)
+  @override // @Default('Default Title') String giftTitle,
   final bool giftForSmallFamily;
-  @override
-  final String note;
 
   @override
   String toString() {
-    return 'GiftAsk(id: $id, giftCompleted: $giftCompleted, giftGiven: $giftGiven, requester: $requester, address: $address, area: $area, requestForNoOfPeople: $requestForNoOfPeople, prescriptionImageUrl: $prescriptionImageUrl, giftAskType: $giftAskType, giftTitle: $giftTitle, giftForSmallFamily: $giftForSmallFamily, note: $note)';
+    return 'GiftAsk(id: $id, giftCompleted: $giftCompleted, giftGiven: $giftGiven, familyType: $familyType, user: $user, title: $title, requestForNoOfPeople: $requestForNoOfPeople, note: $note, imageUrl: $imageUrl, giftAskType: $giftAskType, geometry: $geometry, area: $area, location: $location, giftForSmallFamily: $giftForSmallFamily)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GiftAsk &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _GiftAsk &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.giftCompleted, giftCompleted) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftCompleted, giftCompleted)) &&
+                other.giftCompleted == giftCompleted) &&
             (identical(other.giftGiven, giftGiven) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftGiven, giftGiven)) &&
-            (identical(other.requester, requester) ||
-                const DeepCollectionEquality()
-                    .equals(other.requester, requester)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.area, area) ||
-                const DeepCollectionEquality().equals(other.area, area)) &&
+                other.giftGiven == giftGiven) &&
+            (identical(other.familyType, familyType) ||
+                other.familyType == familyType) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.requestForNoOfPeople, requestForNoOfPeople) ||
-                const DeepCollectionEquality().equals(
-                    other.requestForNoOfPeople, requestForNoOfPeople)) &&
-            (identical(other.prescriptionImageUrl, prescriptionImageUrl) ||
-                const DeepCollectionEquality().equals(
-                    other.prescriptionImageUrl, prescriptionImageUrl)) &&
+                other.requestForNoOfPeople == requestForNoOfPeople) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             (identical(other.giftAskType, giftAskType) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftAskType, giftAskType)) &&
-            (identical(other.giftTitle, giftTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftTitle, giftTitle)) &&
+                other.giftAskType == giftAskType) &&
+            (identical(other.geometry, geometry) ||
+                other.geometry == geometry) &&
+            (identical(other.area, area) || other.area == area) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
             (identical(other.giftForSmallFamily, giftForSmallFamily) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftForSmallFamily, giftForSmallFamily)) &&
-            (identical(other.note, note) ||
-                const DeepCollectionEquality().equals(other.note, note)));
+                other.giftForSmallFamily == giftForSmallFamily));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(giftCompleted) ^
-      const DeepCollectionEquality().hash(giftGiven) ^
-      const DeepCollectionEquality().hash(requester) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(area) ^
-      const DeepCollectionEquality().hash(requestForNoOfPeople) ^
-      const DeepCollectionEquality().hash(prescriptionImageUrl) ^
-      const DeepCollectionEquality().hash(giftAskType) ^
-      const DeepCollectionEquality().hash(giftTitle) ^
-      const DeepCollectionEquality().hash(giftForSmallFamily) ^
-      const DeepCollectionEquality().hash(note);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      giftCompleted,
+      giftGiven,
+      familyType,
+      user,
+      title,
+      requestForNoOfPeople,
+      note,
+      imageUrl,
+      giftAskType,
+      geometry,
+      area,
+      location,
+      giftForSmallFamily);
 
   @JsonKey(ignore: true)
   @override
@@ -407,7 +447,7 @@ class _$_GiftAsk implements _GiftAsk {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GiftAskToJson(this);
+    return _$$_GiftAskToJson(this);
   }
 }
 
@@ -416,46 +456,50 @@ abstract class _GiftAsk implements GiftAsk {
       {String? id,
       bool giftCompleted,
       bool giftGiven,
-      @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-          required LocalUser requester,
-      required String address,
-      required String area,
+      String familyType,
+      required LocalUser user,
+      String? title,
       required int requestForNoOfPeople,
-      String? prescriptionImageUrl,
+      required String note,
+      String? imageUrl,
       @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
           required GiftAskType giftAskType,
-      required String giftTitle,
-      required bool giftForSmallFamily,
-      required String note}) = _$_GiftAsk;
+      required Geometry geometry,
+      required String area,
+      required String location,
+      bool giftForSmallFamily}) = _$_GiftAsk;
 
   factory _GiftAsk.fromJson(Map<String, dynamic> json) = _$_GiftAsk.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  bool get giftCompleted => throw _privateConstructorUsedError;
+  bool get giftCompleted;
   @override
-  bool get giftGiven => throw _privateConstructorUsedError;
+  bool get giftGiven;
   @override
-  @JsonKey(fromJson: localUserFromJson, toJson: localUserToJson)
-  LocalUser get requester => throw _privateConstructorUsedError;
+  String get familyType;
+  @override // @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
+  LocalUser get user;
   @override
-  String get address => throw _privateConstructorUsedError;
+  String? get title;
   @override
-  String get area => throw _privateConstructorUsedError;
+  int get requestForNoOfPeople;
   @override
-  int get requestForNoOfPeople => throw _privateConstructorUsedError;
+  String get note;
   @override
-  String? get prescriptionImageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl;
   @override
   @JsonKey(toJson: giftAskTypeToJson, fromJson: giftAskTypeFromJson)
-  GiftAskType get giftAskType => throw _privateConstructorUsedError;
+  GiftAskType get giftAskType;
+  @override // @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
+  Geometry get geometry;
   @override
-  String get giftTitle => throw _privateConstructorUsedError;
+  String get area;
   @override
-  bool get giftForSmallFamily => throw _privateConstructorUsedError;
-  @override
-  String get note => throw _privateConstructorUsedError;
+  String get location;
+  @override // @Default('Default Title') String giftTitle,
+  bool get giftForSmallFamily;
   @override
   @JsonKey(ignore: true)
   _$GiftAskCopyWith<_GiftAsk> get copyWith =>
@@ -501,6 +545,14 @@ mixin _$GiftAskListUnion {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<GiftAsk> giftAskList)? data,
     TResult Function()? empty,
@@ -515,6 +567,14 @@ mixin _$GiftAskListUnion {
     required TResult Function(Empty value) empty,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -590,15 +650,15 @@ class _$Data implements Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Data &&
-            (identical(other.giftAskList, giftAskList) ||
-                const DeepCollectionEquality()
-                    .equals(other.giftAskList, giftAskList)));
+        (other.runtimeType == runtimeType &&
+            other is Data &&
+            const DeepCollectionEquality()
+                .equals(other.giftAskList, giftAskList));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(giftAskList);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(giftAskList));
 
   @JsonKey(ignore: true)
   @override
@@ -614,6 +674,17 @@ class _$Data implements Data {
     required TResult Function(Object error) error,
   }) {
     return data(giftAskList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) {
+    return data?.call(giftAskList);
   }
 
   @override
@@ -644,6 +715,17 @@ class _$Data implements Data {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
     TResult Function(Empty value)? empty,
@@ -661,7 +743,7 @@ class _$Data implements Data {
 abstract class Data implements GiftAskListUnion {
   const factory Data(List<GiftAsk> giftAskList) = _$Data;
 
-  List<GiftAsk> get giftAskList => throw _privateConstructorUsedError;
+  List<GiftAsk> get giftAskList;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -694,7 +776,8 @@ class _$Empty implements Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Empty);
   }
 
   @override
@@ -709,6 +792,17 @@ class _$Empty implements Empty {
     required TResult Function(Object error) error,
   }) {
     return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) {
+    return empty?.call();
   }
 
   @override
@@ -735,6 +829,17 @@ class _$Empty implements Empty {
     required TResult Function(Error value) error,
   }) {
     return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return empty?.call(this);
   }
 
   @override
@@ -785,7 +890,8 @@ class _$Loading implements Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Loading);
   }
 
   @override
@@ -800,6 +906,17 @@ class _$Loading implements Loading {
     required TResult Function(Object error) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -826,6 +943,17 @@ class _$Loading implements Loading {
     required TResult Function(Error value) error,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -893,14 +1021,14 @@ class _$Error implements Error {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Error &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is Error &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -916,6 +1044,17 @@ class _$Error implements Error {
     required TResult Function(Object error) error,
   }) {
     return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<GiftAsk> giftAskList)? data,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(Object error)? error,
+  }) {
+    return error?.call(this.error);
   }
 
   @override
@@ -946,6 +1085,17 @@ class _$Error implements Error {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    TResult Function(Empty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Data value)? data,
     TResult Function(Empty value)? empty,
@@ -963,7 +1113,765 @@ class _$Error implements Error {
 abstract class Error implements GiftAskListUnion {
   const factory Error(Object error) = _$Error;
 
-  Object get error => throw _privateConstructorUsedError;
+  Object get error;
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$GiftAskLoadingOptionTearOff {
+  const _$GiftAskLoadingOptionTearOff();
+
+  ByLocation byLocation() {
+    return const ByLocation();
+  }
+
+  BySearch bySearch() {
+    return const BySearch();
+  }
+}
+
+/// @nodoc
+const $GiftAskLoadingOption = _$GiftAskLoadingOptionTearOff();
+
+/// @nodoc
+mixin _$GiftAskLoadingOption {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftAskLoadingOptionCopyWith<$Res> {
+  factory $GiftAskLoadingOptionCopyWith(GiftAskLoadingOption value,
+          $Res Function(GiftAskLoadingOption) then) =
+      _$GiftAskLoadingOptionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftAskLoadingOptionCopyWithImpl<$Res>
+    implements $GiftAskLoadingOptionCopyWith<$Res> {
+  _$GiftAskLoadingOptionCopyWithImpl(this._value, this._then);
+
+  final GiftAskLoadingOption _value;
+  // ignore: unused_field
+  final $Res Function(GiftAskLoadingOption) _then;
+}
+
+/// @nodoc
+abstract class $ByLocationCopyWith<$Res> {
+  factory $ByLocationCopyWith(
+          ByLocation value, $Res Function(ByLocation) then) =
+      _$ByLocationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ByLocationCopyWithImpl<$Res>
+    extends _$GiftAskLoadingOptionCopyWithImpl<$Res>
+    implements $ByLocationCopyWith<$Res> {
+  _$ByLocationCopyWithImpl(ByLocation _value, $Res Function(ByLocation) _then)
+      : super(_value, (v) => _then(v as ByLocation));
+
+  @override
+  ByLocation get _value => super._value as ByLocation;
+}
+
+/// @nodoc
+
+class _$ByLocation implements ByLocation {
+  const _$ByLocation();
+
+  @override
+  String toString() {
+    return 'GiftAskLoadingOption.byLocation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ByLocation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) {
+    return byLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+  }) {
+    return byLocation?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) {
+    if (byLocation != null) {
+      return byLocation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) {
+    return byLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+  }) {
+    return byLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) {
+    if (byLocation != null) {
+      return byLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ByLocation implements GiftAskLoadingOption {
+  const factory ByLocation() = _$ByLocation;
+}
+
+/// @nodoc
+abstract class $BySearchCopyWith<$Res> {
+  factory $BySearchCopyWith(BySearch value, $Res Function(BySearch) then) =
+      _$BySearchCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$BySearchCopyWithImpl<$Res>
+    extends _$GiftAskLoadingOptionCopyWithImpl<$Res>
+    implements $BySearchCopyWith<$Res> {
+  _$BySearchCopyWithImpl(BySearch _value, $Res Function(BySearch) _then)
+      : super(_value, (v) => _then(v as BySearch));
+
+  @override
+  BySearch get _value => super._value as BySearch;
+}
+
+/// @nodoc
+
+class _$BySearch implements BySearch {
+  const _$BySearch();
+
+  @override
+  String toString() {
+    return 'GiftAskLoadingOption.bySearch()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is BySearch);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() byLocation,
+    required TResult Function() bySearch,
+  }) {
+    return bySearch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+  }) {
+    return bySearch?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? byLocation,
+    TResult Function()? bySearch,
+    required TResult orElse(),
+  }) {
+    if (bySearch != null) {
+      return bySearch();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ByLocation value) byLocation,
+    required TResult Function(BySearch value) bySearch,
+  }) {
+    return bySearch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+  }) {
+    return bySearch?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ByLocation value)? byLocation,
+    TResult Function(BySearch value)? bySearch,
+    required TResult orElse(),
+  }) {
+    if (bySearch != null) {
+      return bySearch(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BySearch implements GiftAskLoadingOption {
+  const factory BySearch() = _$BySearch;
+}
+
+/// @nodoc
+class _$GiftAskListDtoStateTearOff {
+  const _$GiftAskListDtoStateTearOff();
+
+  DtoSuccess success(GiftAskDto giftAskDto) {
+    return DtoSuccess(
+      giftAskDto,
+    );
+  }
+
+  DtoError error(Object e) {
+    return DtoError(
+      e,
+    );
+  }
+
+  DtoLoading loading() {
+    return const DtoLoading();
+  }
+}
+
+/// @nodoc
+const $GiftAskListDtoState = _$GiftAskListDtoStateTearOff();
+
+/// @nodoc
+mixin _$GiftAskListDtoState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftAskDto giftAskDto) success,
+    required TResult Function(Object e) error,
+    required TResult Function() loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DtoSuccess value) success,
+    required TResult Function(DtoError value) error,
+    required TResult Function(DtoLoading value) loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GiftAskListDtoStateCopyWith<$Res> {
+  factory $GiftAskListDtoStateCopyWith(
+          GiftAskListDtoState value, $Res Function(GiftAskListDtoState) then) =
+      _$GiftAskListDtoStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GiftAskListDtoStateCopyWithImpl<$Res>
+    implements $GiftAskListDtoStateCopyWith<$Res> {
+  _$GiftAskListDtoStateCopyWithImpl(this._value, this._then);
+
+  final GiftAskListDtoState _value;
+  // ignore: unused_field
+  final $Res Function(GiftAskListDtoState) _then;
+}
+
+/// @nodoc
+abstract class $DtoSuccessCopyWith<$Res> {
+  factory $DtoSuccessCopyWith(
+          DtoSuccess value, $Res Function(DtoSuccess) then) =
+      _$DtoSuccessCopyWithImpl<$Res>;
+  $Res call({GiftAskDto giftAskDto});
+}
+
+/// @nodoc
+class _$DtoSuccessCopyWithImpl<$Res>
+    extends _$GiftAskListDtoStateCopyWithImpl<$Res>
+    implements $DtoSuccessCopyWith<$Res> {
+  _$DtoSuccessCopyWithImpl(DtoSuccess _value, $Res Function(DtoSuccess) _then)
+      : super(_value, (v) => _then(v as DtoSuccess));
+
+  @override
+  DtoSuccess get _value => super._value as DtoSuccess;
+
+  @override
+  $Res call({
+    Object? giftAskDto = freezed,
+  }) {
+    return _then(DtoSuccess(
+      giftAskDto == freezed
+          ? _value.giftAskDto
+          : giftAskDto // ignore: cast_nullable_to_non_nullable
+              as GiftAskDto,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DtoSuccess implements DtoSuccess {
+  const _$DtoSuccess(this.giftAskDto);
+
+  @override
+  final GiftAskDto giftAskDto;
+
+  @override
+  String toString() {
+    return 'GiftAskListDtoState.success(giftAskDto: $giftAskDto)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DtoSuccess &&
+            (identical(other.giftAskDto, giftAskDto) ||
+                other.giftAskDto == giftAskDto));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, giftAskDto);
+
+  @JsonKey(ignore: true)
+  @override
+  $DtoSuccessCopyWith<DtoSuccess> get copyWith =>
+      _$DtoSuccessCopyWithImpl<DtoSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftAskDto giftAskDto) success,
+    required TResult Function(Object e) error,
+    required TResult Function() loading,
+  }) {
+    return success(giftAskDto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+  }) {
+    return success?.call(giftAskDto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(giftAskDto);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DtoSuccess value) success,
+    required TResult Function(DtoError value) error,
+    required TResult Function(DtoLoading value) loading,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DtoSuccess implements GiftAskListDtoState {
+  const factory DtoSuccess(GiftAskDto giftAskDto) = _$DtoSuccess;
+
+  GiftAskDto get giftAskDto;
+  @JsonKey(ignore: true)
+  $DtoSuccessCopyWith<DtoSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DtoErrorCopyWith<$Res> {
+  factory $DtoErrorCopyWith(DtoError value, $Res Function(DtoError) then) =
+      _$DtoErrorCopyWithImpl<$Res>;
+  $Res call({Object e});
+}
+
+/// @nodoc
+class _$DtoErrorCopyWithImpl<$Res>
+    extends _$GiftAskListDtoStateCopyWithImpl<$Res>
+    implements $DtoErrorCopyWith<$Res> {
+  _$DtoErrorCopyWithImpl(DtoError _value, $Res Function(DtoError) _then)
+      : super(_value, (v) => _then(v as DtoError));
+
+  @override
+  DtoError get _value => super._value as DtoError;
+
+  @override
+  $Res call({
+    Object? e = freezed,
+  }) {
+    return _then(DtoError(
+      e == freezed
+          ? _value.e
+          : e // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DtoError implements DtoError {
+  const _$DtoError(this.e);
+
+  @override
+  final Object e;
+
+  @override
+  String toString() {
+    return 'GiftAskListDtoState.error(e: $e)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DtoError &&
+            const DeepCollectionEquality().equals(other.e, e));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(e));
+
+  @JsonKey(ignore: true)
+  @override
+  $DtoErrorCopyWith<DtoError> get copyWith =>
+      _$DtoErrorCopyWithImpl<DtoError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftAskDto giftAskDto) success,
+    required TResult Function(Object e) error,
+    required TResult Function() loading,
+  }) {
+    return error(e);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+  }) {
+    return error?.call(e);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(e);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DtoSuccess value) success,
+    required TResult Function(DtoError value) error,
+    required TResult Function(DtoLoading value) loading,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DtoError implements GiftAskListDtoState {
+  const factory DtoError(Object e) = _$DtoError;
+
+  Object get e;
+  @JsonKey(ignore: true)
+  $DtoErrorCopyWith<DtoError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DtoLoadingCopyWith<$Res> {
+  factory $DtoLoadingCopyWith(
+          DtoLoading value, $Res Function(DtoLoading) then) =
+      _$DtoLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DtoLoadingCopyWithImpl<$Res>
+    extends _$GiftAskListDtoStateCopyWithImpl<$Res>
+    implements $DtoLoadingCopyWith<$Res> {
+  _$DtoLoadingCopyWithImpl(DtoLoading _value, $Res Function(DtoLoading) _then)
+      : super(_value, (v) => _then(v as DtoLoading));
+
+  @override
+  DtoLoading get _value => super._value as DtoLoading;
+}
+
+/// @nodoc
+
+class _$DtoLoading implements DtoLoading {
+  const _$DtoLoading();
+
+  @override
+  String toString() {
+    return 'GiftAskListDtoState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DtoLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GiftAskDto giftAskDto) success,
+    required TResult Function(Object e) error,
+    required TResult Function() loading,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GiftAskDto giftAskDto)? success,
+    TResult Function(Object e)? error,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DtoSuccess value) success,
+    required TResult Function(DtoError value) error,
+    required TResult Function(DtoLoading value) loading,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DtoSuccess value)? success,
+    TResult Function(DtoError value)? error,
+    TResult Function(DtoLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DtoLoading implements GiftAskListDtoState {
+  const factory DtoLoading() = _$DtoLoading;
 }

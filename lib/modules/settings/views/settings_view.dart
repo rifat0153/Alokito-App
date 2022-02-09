@@ -1,7 +1,7 @@
-import 'package:alokito_new/core/language/language_controller.dart';
-import 'package:alokito_new/modules/settings/views/general_settings_view.dart';
-import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/widget/my_text.dart';
+import '../../../core/language/language_controller.dart';
+import 'general_settings_view.dart';
+import '../../../shared/config.dart';
+import '../../../shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({Key? key}) : super(key: key);
-  static const route = 'SettingsView';
+  static const route = '/SettingsView';
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,8 @@ class SettingsView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
+          // foregroundColor: Colors.transparent,
+          elevation: 0,
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),

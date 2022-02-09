@@ -6,35 +6,37 @@ part of 'gift_ask.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GiftAsk _$_$_GiftAskFromJson(Map<String, dynamic> json) {
-  return _$_GiftAsk(
-    id: json['id'] as String?,
-    giftCompleted: json['giftCompleted'] as bool? ?? false,
-    giftGiven: json['giftGiven'] as bool? ?? false,
-    requester: localUserFromJson(json['requester'] as String),
-    address: json['address'] as String,
-    area: json['area'] as String,
-    requestForNoOfPeople: json['requestForNoOfPeople'] as int,
-    prescriptionImageUrl: json['prescriptionImageUrl'] as String?,
-    giftAskType: giftAskTypeFromJson(json['giftAskType'] as int),
-    giftTitle: json['giftTitle'] as String,
-    giftForSmallFamily: json['giftForSmallFamily'] as bool,
-    note: json['note'] as String,
-  );
-}
+_$_GiftAsk _$$_GiftAskFromJson(Map<String, dynamic> json) => _$_GiftAsk(
+      id: json['id'] as String?,
+      giftCompleted: json['giftCompleted'] as bool? ?? false,
+      giftGiven: json['giftGiven'] as bool? ?? false,
+      familyType: json['familyType'] as String? ?? 'small family package',
+      user: LocalUser.fromJson(json['user'] as Map<String, dynamic>),
+      title: json['title'] as String?,
+      requestForNoOfPeople: json['requestForNoOfPeople'] as int,
+      note: json['note'] as String,
+      imageUrl: json['imageUrl'] as String?,
+      giftAskType: giftAskTypeFromJson(json['giftAskType'] as String),
+      geometry: Geometry.fromJson(json['geometry'] as Map<String, dynamic>),
+      area: json['area'] as String,
+      location: json['location'] as String,
+      giftForSmallFamily: json['giftForSmallFamily'] as bool? ?? false,
+    );
 
-Map<String, dynamic> _$_$_GiftAskToJson(_$_GiftAsk instance) =>
+Map<String, dynamic> _$$_GiftAskToJson(_$_GiftAsk instance) =>
     <String, dynamic>{
       'id': instance.id,
       'giftCompleted': instance.giftCompleted,
       'giftGiven': instance.giftGiven,
-      'requester': localUserToJson(instance.requester),
-      'address': instance.address,
-      'area': instance.area,
+      'familyType': instance.familyType,
+      'user': instance.user.toJson(),
+      'title': instance.title,
       'requestForNoOfPeople': instance.requestForNoOfPeople,
-      'prescriptionImageUrl': instance.prescriptionImageUrl,
-      'giftAskType': giftAskTypeToJson(instance.giftAskType),
-      'giftTitle': instance.giftTitle,
-      'giftForSmallFamily': instance.giftForSmallFamily,
       'note': instance.note,
+      'imageUrl': instance.imageUrl,
+      'giftAskType': giftAskTypeToJson(instance.giftAskType),
+      'geometry': instance.geometry.toJson(),
+      'area': instance.area,
+      'location': instance.location,
+      'giftForSmallFamily': instance.giftForSmallFamily,
     };

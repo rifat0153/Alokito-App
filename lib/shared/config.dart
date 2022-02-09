@@ -1,18 +1,20 @@
-import 'package:alokito_new/models/user/local_user.dart';
+import '../models/user/local_user.dart';
 import 'package:flutter/material.dart';
 
+class MyConfig {
+  static const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
+// static const baseUrl = 'http://192.168.118.176:80/api/v1';
+
+
+  static const myTimeout = 15;
+}
+
 // URL
-// const baseUrl = 'http://192.168.0.108:3000/api/v1';
-// const baseUrl = 'http://192.168.0.121:3000/api/v1';
-const baseUrl = 'https://aalokito-dev1-always-on-jyguqmmqea-uc.a.run.app/api/v1';
+// const baseUrl = 'http://192.168.118.176:80/api/v1';
+const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
 
-const myTimeout = 15;
-
-const GOOGLE_API_KEY = 'AIzaSyDEpVNWlsKHsvJHAEjaMjKi1mtVoUFyXU8';
-
+const myTimeout = 8;
 const imageAssetPath = 'assets/images/';
-
-const PLACEHOLDER_IMAGE_URL = 'https://workhound.com/wp-content/uploads/2017/05/placeholder-profile-pic.png';
 
 // Colors
 class MyColors {
