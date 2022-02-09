@@ -4,6 +4,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+final List<Factory<OneSequenceGestureRecognizer>> kGestureRecognizerForMap = [
+  Factory<PanGestureRecognizer>(() => PanGestureRecognizer()),
+  Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()),
+  Factory<TapGestureRecognizer>(() => TapGestureRecognizer()),
+  Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()),
+];
+
 class GiftAskDetailMapWidget extends StatelessWidget {
   const GiftAskDetailMapWidget({
     Key? key,
@@ -14,12 +21,7 @@ class GiftAskDetailMapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Factory<OneSequenceGestureRecognizer>> gestureRecognizerForMap = [
-      Factory<PanGestureRecognizer>(() => PanGestureRecognizer()),
-      Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()),
-      Factory<TapGestureRecognizer>(() => TapGestureRecognizer()),
-      Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()),
-    ];
+  
 
     final Marker giftMarker = Marker(
       markerId: MarkerId(giftAsk.id.toString()),
@@ -32,7 +34,7 @@ class GiftAskDetailMapWidget extends StatelessWidget {
         height: 300,
         width: double.infinity,
         child: GoogleMap(
-          gestureRecognizers: gestureRecognizerForMap.toSet(),
+          gestureRecognizers: kGestureRecognizerForMap.toSet(),
           initialCameraPosition: CameraPosition(
             target:
                 LatLng(giftAsk.geometry.coordinates.last, giftAsk.geometry.coordinates.first),
