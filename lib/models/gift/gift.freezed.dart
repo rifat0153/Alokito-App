@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gift.dart';
@@ -380,46 +381,41 @@ class _$_Gift implements _Gift {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Gift &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.listingForDays, listingForDays) ||
-                other.listingForDays == listingForDays) &&
-            (identical(other.canLeaveOutside, canLeaveOutside) ||
-                other.canLeaveOutside == canLeaveOutside) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.giftDetails, giftDetails) ||
-                other.giftDetails == giftDetails) &&
-            (identical(other.giftType, giftType) ||
-                other.giftType == giftType) &&
-            (identical(other.pickUpTime, pickUpTime) ||
-                other.pickUpTime == pickUpTime) &&
-            (identical(other.geometry, geometry) ||
-                other.geometry == geometry) &&
-            (identical(other.area, area) || other.area == area) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.distance, distance) ||
-                other.distance == distance));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.listingForDays, listingForDays) &&
+            const DeepCollectionEquality()
+                .equals(other.canLeaveOutside, canLeaveOutside) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.giftDetails, giftDetails) &&
+            const DeepCollectionEquality().equals(other.giftType, giftType) &&
+            const DeepCollectionEquality()
+                .equals(other.pickUpTime, pickUpTime) &&
+            const DeepCollectionEquality().equals(other.geometry, geometry) &&
+            const DeepCollectionEquality().equals(other.area, area) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.distance, distance));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      listingForDays,
-      canLeaveOutside,
-      userId,
-      user,
-      giftDetails,
-      giftType,
-      pickUpTime,
-      geometry,
-      area,
-      location,
-      imageUrl,
-      distance);
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(listingForDays),
+      const DeepCollectionEquality().hash(canLeaveOutside),
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(giftDetails),
+      const DeepCollectionEquality().hash(giftType),
+      const DeepCollectionEquality().hash(pickUpTime),
+      const DeepCollectionEquality().hash(geometry),
+      const DeepCollectionEquality().hash(area),
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(distance));
 
   @JsonKey(ignore: true)
   @override
@@ -1515,11 +1511,12 @@ class _$DtoSuccess implements DtoSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DtoSuccess &&
-            (identical(other.giftDto, giftDto) || other.giftDto == giftDto));
+            const DeepCollectionEquality().equals(other.giftDto, giftDto));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, giftDto);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(giftDto));
 
   @JsonKey(ignore: true)
   @override

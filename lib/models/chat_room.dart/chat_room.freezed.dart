@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'chat_room.dart';
@@ -232,25 +233,23 @@ class _$_ChatRoom implements _ChatRoom {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ChatRoom &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.roomType, roomType) ||
-                other.roomType == roomType) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.roomType, roomType) &&
             const DeepCollectionEquality().equals(other.names, names) &&
             const DeepCollectionEquality().equals(other.images, images) &&
             const DeepCollectionEquality().equals(other.users, users) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      roomType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(roomType),
       const DeepCollectionEquality().hash(names),
       const DeepCollectionEquality().hash(images),
       const DeepCollectionEquality().hash(users),
-      createdAt);
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override

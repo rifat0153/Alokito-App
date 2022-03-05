@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gift_ask.dart';
@@ -355,13 +356,13 @@ class _$_GiftAsk implements _GiftAsk {
 
   @override
   final String? id;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool giftCompleted;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool giftGiven;
-  @JsonKey(defaultValue: 'small family package')
+  @JsonKey()
   @override
   final String familyType;
   @override // @JsonKey(fromJson: localUserNonNullFromMap, toJson: localUserNonNullToMap)
@@ -383,7 +384,7 @@ class _$_GiftAsk implements _GiftAsk {
   final String area;
   @override
   final String location;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override // @Default('Default Title') String giftTitle,
   final bool giftForSmallFamily;
 
@@ -397,48 +398,44 @@ class _$_GiftAsk implements _GiftAsk {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _GiftAsk &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.giftCompleted, giftCompleted) ||
-                other.giftCompleted == giftCompleted) &&
-            (identical(other.giftGiven, giftGiven) ||
-                other.giftGiven == giftGiven) &&
-            (identical(other.familyType, familyType) ||
-                other.familyType == familyType) &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.requestForNoOfPeople, requestForNoOfPeople) ||
-                other.requestForNoOfPeople == requestForNoOfPeople) &&
-            (identical(other.note, note) || other.note == note) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.giftAskType, giftAskType) ||
-                other.giftAskType == giftAskType) &&
-            (identical(other.geometry, geometry) ||
-                other.geometry == geometry) &&
-            (identical(other.area, area) || other.area == area) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.giftForSmallFamily, giftForSmallFamily) ||
-                other.giftForSmallFamily == giftForSmallFamily));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.giftCompleted, giftCompleted) &&
+            const DeepCollectionEquality().equals(other.giftGiven, giftGiven) &&
+            const DeepCollectionEquality()
+                .equals(other.familyType, familyType) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.requestForNoOfPeople, requestForNoOfPeople) &&
+            const DeepCollectionEquality().equals(other.note, note) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.giftAskType, giftAskType) &&
+            const DeepCollectionEquality().equals(other.geometry, geometry) &&
+            const DeepCollectionEquality().equals(other.area, area) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality()
+                .equals(other.giftForSmallFamily, giftForSmallFamily));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      giftCompleted,
-      giftGiven,
-      familyType,
-      user,
-      title,
-      requestForNoOfPeople,
-      note,
-      imageUrl,
-      giftAskType,
-      geometry,
-      area,
-      location,
-      giftForSmallFamily);
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(giftCompleted),
+      const DeepCollectionEquality().hash(giftGiven),
+      const DeepCollectionEquality().hash(familyType),
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(requestForNoOfPeople),
+      const DeepCollectionEquality().hash(note),
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(giftAskType),
+      const DeepCollectionEquality().hash(geometry),
+      const DeepCollectionEquality().hash(area),
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(giftForSmallFamily));
 
   @JsonKey(ignore: true)
   @override
@@ -1538,12 +1535,13 @@ class _$DtoSuccess implements DtoSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DtoSuccess &&
-            (identical(other.giftAskDto, giftAskDto) ||
-                other.giftAskDto == giftAskDto));
+            const DeepCollectionEquality()
+                .equals(other.giftAskDto, giftAskDto));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, giftAskDto);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(giftAskDto));
 
   @JsonKey(ignore: true)
   @override

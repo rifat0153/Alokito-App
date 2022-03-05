@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'chat.dart';
@@ -204,19 +205,22 @@ class _$_Chat implements _Chat {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Chat &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.senderId, senderId) ||
-                other.senderId == senderId) &&
-            (identical(other.receiverId, receiverId) ||
-                other.receiverId == receiverId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.senderId, senderId) &&
+            const DeepCollectionEquality()
+                .equals(other.receiverId, receiverId) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, message, senderId, receiverId, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(senderId),
+      const DeepCollectionEquality().hash(receiverId),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
