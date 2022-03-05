@@ -1,10 +1,11 @@
+import 'package:alokito_new/models/chat_room.dart/chat_room.dart';
+import 'package:alokito_new/shared/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../core/date/date_helper.dart';
-import '../../../models/chat_room.dart/chat_room.dart';
 import '../../../shared/widget/my_text.dart';
 import '../controllers/chat_room_controller.dart';
 
@@ -26,37 +27,43 @@ class ChatRoomChatTileWidget extends StatelessWidget {
         DateHelper.timeDifferenceFromTimestamp(chatRoom.createdAt ?? Timestamp.now());
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: kSpacing * 1.5, vertical: 8),
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Colors.orange.shade200.withOpacity(0.7),
-            Colors.orange.shade100.withOpacity(0.7),
-          ]),
+          // color: Colors.blue,
           borderRadius: BorderRadius.circular(10.r),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Row(
+        child: Column(
           children: [
-            CircleAvatar(
-              radius: 40.r,
-              backgroundImage: NetworkImage(userImageToShow),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MyText(userNameToShow, fontSize: 24.sp),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      MyText('$timeDiff ago'),
-                    ],
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: kRadius * 4,
+                  backgroundImage: NetworkImage(userImageToShow),
+                ),
+                const SizedBox(width: kSpacing),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: kSpacing, horizontal: kSpacing),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MyText(userNameToShow, fontSize: 24.sp),
+                        MyText(
+                          '$timeDiff ago',
+                          fontSize: 12,
+                          color: Colors.grey.shade500,
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+            const SizedBox(height: kSpacing),
+            const Divider(height: 1, color: Color(0XFFCDD4D9))
           ],
         ),
       ),

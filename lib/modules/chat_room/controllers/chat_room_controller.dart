@@ -1,7 +1,7 @@
+import 'package:alokito_new/models/chat_room.dart/chat_room.dart';
 import 'package:alokito_new/modules/chat_room/views/chat_room_view.dart';
 import 'package:get/get.dart';
 
-import '../../../models/chat_room.dart/chat_room.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../services/chat_room_service.dart';
 
