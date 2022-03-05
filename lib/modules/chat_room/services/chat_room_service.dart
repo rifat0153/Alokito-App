@@ -4,13 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 abstract class BaseChatRoomService {
   Future<ChatRoomListUnion> getChatRooms({required String userId});
 
-  Future<ChatRoomCreateUnion> createChatRoom({
-    required String id,
-    required List<String> users,
-    required String roomTopic,
-    required Map<String, String> names,
-    required Map<String, String> images,
-  });
+  Future<ChatRoomCreateUnion> createChatRoom({required ChatRoom chatRoom});
 }
 
 class ChatRoomService implements BaseChatRoomService {
@@ -48,31 +42,18 @@ class ChatRoomService implements BaseChatRoomService {
   }
 
   @override
-  Future<ChatRoomCreateUnion> createChatRoom({
-    required String id,
-    required List<String> users,
-    required String roomTopic,
-    required Map<String, String> names,
-    required Map<String, String> images,
-  }) async {
+  Future<ChatRoomCreateUnion> createChatRoom({required ChatRoom chatRoom}) async {
     try {
       // First find if chat_room with id already exists
-      final doc = await firestore.collection('chat_room').doc('1').get();
-      if (doc.exists) {
-        return const ChatRoomCreateUnion.success();
-      }
+      final querySnapshot = await firestore
+          .collection('chat_room')
+          .where('relatedDocId', isEqualTo: chatRoom.relatedDocId)
+          .where('users', arrayContains: chatRoom.users)
+          .get();
 
-      // If chat_room does not exist create a new room
-      final chatRoom = ChatRoom(
-        id: id,
-        roomType: roomTopic,
-        // users: [],
-        names: names,
-        images: images,
-        // createdAt: Timestamp.now(),
-      );
+      if (querySnapshot.docs.isNotEmpty) return const ChatRoomCreateUnion.success();
 
-      await firestore.collection('chat_rooms').doc(id).set(chatRoom.toJson());
+      await firestore.collection('chat_rooms').add(chatRoom.toJson());
 
       return const ChatRoomCreateUnion.success();
     } on FirebaseException catch (e) {

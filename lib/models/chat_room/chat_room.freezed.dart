@@ -23,19 +23,21 @@ class _$ChatRoomTearOff {
   const _$ChatRoomTearOff();
 
   _ChatRoom call(
-      {required String id,
+      {required String relatedDocId,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
       List<String>? users,
+      String? usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt}) {
     return _ChatRoom(
-      id: id,
+      relatedDocId: relatedDocId,
       roomType: roomType,
       names: names,
       images: images,
       users: users,
+      usersIds: usersIds,
       createdAt: createdAt,
     );
   }
@@ -50,11 +52,12 @@ const $ChatRoom = _$ChatRoomTearOff();
 
 /// @nodoc
 mixin _$ChatRoom {
-  String get id => throw _privateConstructorUsedError;
+  String get relatedDocId => throw _privateConstructorUsedError;
   String? get roomType => throw _privateConstructorUsedError;
   Map<String, String>? get names => throw _privateConstructorUsedError;
   Map<String, String>? get images => throw _privateConstructorUsedError;
   List<String>? get users => throw _privateConstructorUsedError;
+  String? get usersIds => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt => throw _privateConstructorUsedError;
 
@@ -69,11 +72,12 @@ abstract class $ChatRoomCopyWith<$Res> {
   factory $ChatRoomCopyWith(ChatRoom value, $Res Function(ChatRoom) then) =
       _$ChatRoomCopyWithImpl<$Res>;
   $Res call(
-      {String id,
+      {String relatedDocId,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
       List<String>? users,
+      String? usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -88,17 +92,18 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? relatedDocId = freezed,
     Object? roomType = freezed,
     Object? names = freezed,
     Object? images = freezed,
     Object? users = freezed,
+    Object? usersIds = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      relatedDocId: relatedDocId == freezed
+          ? _value.relatedDocId
+          : relatedDocId // ignore: cast_nullable_to_non_nullable
               as String,
       roomType: roomType == freezed
           ? _value.roomType
@@ -116,6 +121,10 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      usersIds: usersIds == freezed
+          ? _value.usersIds
+          : usersIds // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -130,11 +139,12 @@ abstract class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res> {
       __$ChatRoomCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
+      {String relatedDocId,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
       List<String>? users,
+      String? usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -150,17 +160,18 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? relatedDocId = freezed,
     Object? roomType = freezed,
     Object? names = freezed,
     Object? images = freezed,
     Object? users = freezed,
+    Object? usersIds = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_ChatRoom(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      relatedDocId: relatedDocId == freezed
+          ? _value.relatedDocId
+          : relatedDocId // ignore: cast_nullable_to_non_nullable
               as String,
       roomType: roomType == freezed
           ? _value.roomType
@@ -178,6 +189,10 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      usersIds: usersIds == freezed
+          ? _value.usersIds
+          : usersIds // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -190,11 +205,12 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ChatRoom implements _ChatRoom {
   _$_ChatRoom(
-      {required this.id,
+      {required this.relatedDocId,
       this.roomType,
       this.names,
       this.images,
       this.users,
+      this.usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           this.createdAt});
 
@@ -202,7 +218,7 @@ class _$_ChatRoom implements _ChatRoom {
       _$$_ChatRoomFromJson(json);
 
   @override
-  final String id;
+  final String relatedDocId;
   @override
   final String? roomType;
   @override
@@ -212,12 +228,14 @@ class _$_ChatRoom implements _ChatRoom {
   @override
   final List<String>? users;
   @override
+  final String? usersIds;
+  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'ChatRoom(id: $id, roomType: $roomType, names: $names, images: $images, users: $users, createdAt: $createdAt)';
+    return 'ChatRoom(relatedDocId: $relatedDocId, roomType: $roomType, names: $names, images: $images, users: $users, usersIds: $usersIds, createdAt: $createdAt)';
   }
 
   @override
@@ -225,22 +243,25 @@ class _$_ChatRoom implements _ChatRoom {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ChatRoom &&
-            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.relatedDocId, relatedDocId) &&
             const DeepCollectionEquality().equals(other.roomType, roomType) &&
             const DeepCollectionEquality().equals(other.names, names) &&
             const DeepCollectionEquality().equals(other.images, images) &&
             const DeepCollectionEquality().equals(other.users, users) &&
+            const DeepCollectionEquality().equals(other.usersIds, usersIds) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(relatedDocId),
       const DeepCollectionEquality().hash(roomType),
       const DeepCollectionEquality().hash(names),
       const DeepCollectionEquality().hash(images),
       const DeepCollectionEquality().hash(users),
+      const DeepCollectionEquality().hash(usersIds),
       const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
@@ -256,18 +277,19 @@ class _$_ChatRoom implements _ChatRoom {
 
 abstract class _ChatRoom implements ChatRoom {
   factory _ChatRoom(
-      {required String id,
+      {required String relatedDocId,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
       List<String>? users,
+      String? usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt}) = _$_ChatRoom;
 
   factory _ChatRoom.fromJson(Map<String, dynamic> json) = _$_ChatRoom.fromJson;
 
   @override
-  String get id;
+  String get relatedDocId;
   @override
   String? get roomType;
   @override
@@ -276,6 +298,8 @@ abstract class _ChatRoom implements ChatRoom {
   Map<String, String>? get images;
   @override
   List<String>? get users;
+  @override
+  String? get usersIds;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt;

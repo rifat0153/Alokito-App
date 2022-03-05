@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/chat_room/chat_room.dart';
 import 'package:alokito_new/modules/chat_room/views/chat_room_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../../auth/controllers/auth_controller.dart';
@@ -24,7 +25,7 @@ class ChatRoomController extends GetxController {
   }
 
   Future<void> createChatRoom({
-    required String id,
+    required String relatedDocId,
     required String user1,
     required String user1Image,
     required String user1Name,
@@ -38,13 +39,17 @@ class ChatRoomController extends GetxController {
     final Map<String, String> names = {user1: user1Name, user2: user2Name};
     final Map<String, String> images = {user1: user1Image, user2: user2Image};
 
-    chatRoomCreateState.value = await chatRoomService.createChatRoom(
-      id: id,
+    final chatRoom = ChatRoom(
+      relatedDocId: relatedDocId,
+      roomType: roomType,
       users: [user1, user2],
-      roomTopic: roomType,
+      usersIds: '$user1$user2',
       names: names,
       images: images,
+      createdAt: Timestamp.now(),
     );
+
+    chatRoomCreateState.value = await chatRoomService.createChatRoom(chatRoom: chatRoom);
 
     if (chatRoomCreateState.value == const ChatRoomCreateUnion.success()) {
       await Get.toNamed(ChatRoomView.route);
