@@ -1,10 +1,8 @@
 import 'package:alokito_new/modules/gift_ask_detail/controller/gift_ask_detail_controller.dart';
 import 'package:alokito_new/modules/gift_ask_detail/service/gift_ask_detail_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:latlong2/latlong.dart';
 
 import '../../../core/date/date_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
@@ -95,41 +93,6 @@ class GiftAskDetailView extends StatelessWidget {
             child: const MyText('Pickup Location', fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 200.h, child: GiftAskDetailMapWidget(giftAsk: giftAsk)),
-          SizedBox(
-            height: 200.h,
-            child: FlutterMap(
-              options: MapOptions(
-                center:
-                    LatLng(giftAsk.geometry.coordinates.last, giftAsk.geometry.coordinates.first),
-              ),
-              layers: [
-                TileLayerOptions(
-                  urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                  subdomains: ['a', 'b', 'c'],
-                  attributionBuilder: (_) {
-                    return const Text("© OpenStreetMap contributors");
-                  },
-                ),
-                MarkerLayerOptions(
-                  markers: [
-                    Marker(
-                      width: 80.0,
-                      height: 80.0,
-                      point: LatLng(
-                          giftAsk.geometry.coordinates.last, giftAsk.geometry.coordinates.first),
-                      builder: (ctx) => Container(
-                        child: const Icon(
-                          Icons.location_on,
-                          color: Colors.blue,
-                          size: 40,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );
