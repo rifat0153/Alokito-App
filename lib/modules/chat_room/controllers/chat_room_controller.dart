@@ -43,7 +43,6 @@ class ChatRoomController extends GetxController {
       relatedDocId: relatedDocId,
       roomType: roomType,
       users: [user1, user2],
-      usersIds: '$user1$user2',
       names: names,
       images: images,
       createdAt: Timestamp.now(),

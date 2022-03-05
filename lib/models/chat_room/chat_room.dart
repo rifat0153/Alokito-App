@@ -13,7 +13,6 @@ class ChatRoom with _$ChatRoom {
     Map<String, String>? names,
     Map<String, String>? images,
     List<String>? users,
-    String? usersIds,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) Timestamp? createdAt,
   }) = _ChatRoom;
 

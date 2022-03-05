@@ -28,7 +28,6 @@ class _$ChatRoomTearOff {
       Map<String, String>? names,
       Map<String, String>? images,
       List<String>? users,
-      String? usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt}) {
     return _ChatRoom(
@@ -37,7 +36,6 @@ class _$ChatRoomTearOff {
       names: names,
       images: images,
       users: users,
-      usersIds: usersIds,
       createdAt: createdAt,
     );
   }
@@ -57,7 +55,6 @@ mixin _$ChatRoom {
   Map<String, String>? get names => throw _privateConstructorUsedError;
   Map<String, String>? get images => throw _privateConstructorUsedError;
   List<String>? get users => throw _privateConstructorUsedError;
-  String? get usersIds => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt => throw _privateConstructorUsedError;
 
@@ -77,7 +74,6 @@ abstract class $ChatRoomCopyWith<$Res> {
       Map<String, String>? names,
       Map<String, String>? images,
       List<String>? users,
-      String? usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -97,7 +93,6 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
     Object? names = freezed,
     Object? images = freezed,
     Object? users = freezed,
-    Object? usersIds = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -121,10 +116,6 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      usersIds: usersIds == freezed
-          ? _value.usersIds
-          : usersIds // ignore: cast_nullable_to_non_nullable
-              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -144,7 +135,6 @@ abstract class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res> {
       Map<String, String>? names,
       Map<String, String>? images,
       List<String>? users,
-      String? usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -165,7 +155,6 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
     Object? names = freezed,
     Object? images = freezed,
     Object? users = freezed,
-    Object? usersIds = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_ChatRoom(
@@ -189,10 +178,6 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      usersIds: usersIds == freezed
-          ? _value.usersIds
-          : usersIds // ignore: cast_nullable_to_non_nullable
-              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -210,7 +195,6 @@ class _$_ChatRoom implements _ChatRoom {
       this.names,
       this.images,
       this.users,
-      this.usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           this.createdAt});
 
@@ -228,14 +212,12 @@ class _$_ChatRoom implements _ChatRoom {
   @override
   final List<String>? users;
   @override
-  final String? usersIds;
-  @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'ChatRoom(relatedDocId: $relatedDocId, roomType: $roomType, names: $names, images: $images, users: $users, usersIds: $usersIds, createdAt: $createdAt)';
+    return 'ChatRoom(relatedDocId: $relatedDocId, roomType: $roomType, names: $names, images: $images, users: $users, createdAt: $createdAt)';
   }
 
   @override
@@ -249,7 +231,6 @@ class _$_ChatRoom implements _ChatRoom {
             const DeepCollectionEquality().equals(other.names, names) &&
             const DeepCollectionEquality().equals(other.images, images) &&
             const DeepCollectionEquality().equals(other.users, users) &&
-            const DeepCollectionEquality().equals(other.usersIds, usersIds) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
@@ -261,7 +242,6 @@ class _$_ChatRoom implements _ChatRoom {
       const DeepCollectionEquality().hash(names),
       const DeepCollectionEquality().hash(images),
       const DeepCollectionEquality().hash(users),
-      const DeepCollectionEquality().hash(usersIds),
       const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
@@ -282,7 +262,6 @@ abstract class _ChatRoom implements ChatRoom {
       Map<String, String>? names,
       Map<String, String>? images,
       List<String>? users,
-      String? usersIds,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt}) = _$_ChatRoom;
 
@@ -298,8 +277,6 @@ abstract class _ChatRoom implements ChatRoom {
   Map<String, String>? get images;
   @override
   List<String>? get users;
-  @override
-  String? get usersIds;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt;
