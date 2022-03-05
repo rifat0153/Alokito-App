@@ -15,7 +15,8 @@ _$_ChatRoom _$$_ChatRoomFromJson(Map<String, dynamic> json) => _$_ChatRoom(
       images: (json['images'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
-      users: chatRoomUserIdArrayFromJson(json['users'] as List),
+      users:
+          (json['users'] as List<dynamic>?)?.map((e) => e as String).toList(),
       createdAt: timestampFromJson(json['createdAt'] as Timestamp?),
     );
 
@@ -25,6 +26,6 @@ Map<String, dynamic> _$$_ChatRoomToJson(_$_ChatRoom instance) =>
       'roomType': instance.roomType,
       'names': instance.names,
       'images': instance.images,
-      'users': chatRoomUserIdArrayToJson(instance.users),
+      'users': instance.users,
       'createdAt': timestampToJson(instance.createdAt),
     };

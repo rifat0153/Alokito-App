@@ -1,20 +1,18 @@
 import 'package:alokito_new/models/user/firebase_converters.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_room.freezed.dart';
 part 'chat_room.g.dart';
 
 @freezed
 class ChatRoom with _$ChatRoom {
-
   factory ChatRoom({
     required String id,
     String? roomType,
     Map<String, String>? names,
     Map<String, String>? images,
-    @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson) List<String>? users,
+    List<String>? users,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) Timestamp? createdAt,
   }) = _ChatRoom;
 
@@ -30,7 +28,7 @@ class ChatRoomListUnion with _$ChatRoomListUnion {
 }
 
 @freezed
-class ChatRoomCreateUnion with _$ChatRoomCreateUnion{
+class ChatRoomCreateUnion with _$ChatRoomCreateUnion {
   const factory ChatRoomCreateUnion.success() = CreateSuccess;
   const factory ChatRoomCreateUnion.loading() = CreateLoding;
   const factory ChatRoomCreateUnion.error(Object e) = CreateError;

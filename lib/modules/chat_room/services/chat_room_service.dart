@@ -1,4 +1,4 @@
-import 'package:alokito_new/models/chat_room.dart/chat_room.dart';
+import 'package:alokito_new/models/chat_room/chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class BaseChatRoomService {

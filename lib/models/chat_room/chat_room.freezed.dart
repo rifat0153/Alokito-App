@@ -27,8 +27,7 @@ class _$ChatRoomTearOff {
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
-      @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
-          List<String>? users,
+      List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt}) {
     return _ChatRoom(
@@ -55,8 +54,6 @@ mixin _$ChatRoom {
   String? get roomType => throw _privateConstructorUsedError;
   Map<String, String>? get names => throw _privateConstructorUsedError;
   Map<String, String>? get images => throw _privateConstructorUsedError;
-  @JsonKey(
-      fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
   List<String>? get users => throw _privateConstructorUsedError;
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
   Timestamp? get createdAt => throw _privateConstructorUsedError;
@@ -76,8 +73,7 @@ abstract class $ChatRoomCopyWith<$Res> {
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
-      @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
-          List<String>? users,
+      List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -138,8 +134,7 @@ abstract class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res> {
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
-      @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
-          List<String>? users,
+      List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt});
 }
@@ -199,8 +194,7 @@ class _$_ChatRoom implements _ChatRoom {
       this.roomType,
       this.names,
       this.images,
-      @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
-          this.users,
+      this.users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           this.createdAt});
 
@@ -216,8 +210,6 @@ class _$_ChatRoom implements _ChatRoom {
   @override
   final Map<String, String>? images;
   @override
-  @JsonKey(
-      fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
   final List<String>? users;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
@@ -268,8 +260,7 @@ abstract class _ChatRoom implements ChatRoom {
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
-      @JsonKey(fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
-          List<String>? users,
+      List<String>? users,
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt}) = _$_ChatRoom;
 
@@ -284,8 +275,6 @@ abstract class _ChatRoom implements ChatRoom {
   @override
   Map<String, String>? get images;
   @override
-  @JsonKey(
-      fromJson: chatRoomUserIdArrayFromJson, toJson: chatRoomUserIdArrayToJson)
   List<String>? get users;
   @override
   @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
