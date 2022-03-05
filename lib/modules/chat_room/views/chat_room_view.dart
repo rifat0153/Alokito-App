@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,8 +14,8 @@ class ChatRoomView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
-      assetPath: 'assets/images/settings_bg.png',
-      appBarTitle: 'appBarTitle',
+      assetPath: MyPaths.settingsBgImage,
+      appBarTitle: 'Your Chats',
       child: Obx(
         () => controller.chatRoomList.value.when(
           data: (chatRoomList) => ListView.builder(

@@ -1,6 +1,5 @@
+import 'package:alokito_new/models/chat_room.dart/chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../../../models/chat_room.dart/chat_room.dart';
 
 abstract class BaseChatRoomService {
   Future<ChatRoomListUnion> getChatRooms({required String userId});
@@ -24,23 +23,23 @@ class ChatRoomService implements BaseChatRoomService {
   @override
   Future<ChatRoomListUnion> getChatRooms({required String userId}) async {
     try {
-      print('ChatRoomService Called');
-
       // Get chat rooms for UserId
       final chatRoomSnapshot = await firestore
           .collection('chat_rooms')
           .where('users', arrayContainsAny: [userId])
           .orderBy('createdAt', descending: true)
-  
           .get();
 
       // Convert from DocumentSnapshot to ChatRoom
-      final List<ChatRoom> chatRooms = chatRoomSnapshot.docs.map((QueryDocumentSnapshot documentSnapshot) {
+      final List<ChatRoom> chatRooms =
+          chatRoomSnapshot.docs.map((QueryDocumentSnapshot documentSnapshot) {
         return ChatRoom.fromJson(documentSnapshot.data() as Map<String, dynamic>);
       }).toList();
 
       // Success Case
-      return chatRooms.isEmpty ? const ChatRoomListUnion.empty() : ChatRoomListUnion.data(chatRooms: chatRooms);
+      return chatRooms.isEmpty
+          ? const ChatRoomListUnion.empty()
+          : ChatRoomListUnion.data(chatRooms: chatRooms);
     } on FirebaseException catch (e) {
       return ChatRoomListUnion.error(e.message ?? 'Something went wrong');
     } on Exception catch (e) {
@@ -67,10 +66,10 @@ class ChatRoomService implements BaseChatRoomService {
       final chatRoom = ChatRoom(
         id: id,
         roomType: roomTopic,
-        users: users,
+        // users: [],
         names: names,
         images: images,
-        createdAt: Timestamp.now(),
+        // createdAt: Timestamp.now(),
       );
 
       await firestore.collection('chat_rooms').doc(id).set(chatRoom.toJson());

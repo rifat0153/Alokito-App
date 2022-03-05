@@ -5,7 +5,6 @@ class MyConfig {
   static const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
 // static const baseUrl = 'http://192.168.118.176:80/api/v1';
 
-
   static const myTimeout = 15;
 }
 
@@ -15,6 +14,10 @@ const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
 
 const myTimeout = 8;
 const imageAssetPath = 'assets/images/';
+
+class MyPaths {
+  static const settingsBgImage = 'assets/images/settings_bg.png';
+}
 
 // Colors
 class MyColors {

@@ -1,8 +1,10 @@
 import 'package:alokito_new/modules/gift_ask_detail/controller/gift_ask_detail_controller.dart';
 import 'package:alokito_new/modules/gift_ask_detail/service/gift_ask_detail_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
 
 import '../../../core/date/date_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
@@ -20,10 +22,11 @@ import '../widgets/request_for_date_widget.dart';
 class GiftAskDetailView extends StatelessWidget {
   GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
 
-  static const route = 'giftaskdetailview';
+  static const route = '/giftaskdetailview';
 
   // initialize controller
-  final GiftAskDetailController controller = Get.put(GiftAskDetailController(GiftAskDetailService()));
+  final GiftAskDetailController controller =
+      Get.put(GiftAskDetailController(GiftAskDetailService()));
 
   final GiftAsk giftAsk;
 
@@ -50,7 +53,8 @@ class GiftAskDetailView extends StatelessWidget {
               width: Get.width,
               height: Get.height,
               decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
+                image: DecorationImage(
+                    image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
             _buildBody(giftAsk: giftAsk),
@@ -65,7 +69,8 @@ class GiftAskDetailView extends StatelessWidget {
     required GiftAsk giftAsk,
   }) {
     final userJoinedAt = DateHelper.findTimeDifference(DateTime.now(), giftAsk.user.createdAt);
-    final distance = Get.find<AuthController>().calculateDistanceFromGiftOrGiftAsk(giftAsk: giftAsk);
+    final distance =
+        Get.find<AuthController>().calculateDistanceFromGiftOrGiftAsk(giftAsk: giftAsk);
 
     return SingleChildScrollView(
       child: Column(
@@ -73,12 +78,14 @@ class GiftAskDetailView extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(8.sp),
-            child: Text(giftAsk.title.toString(), style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+            child: Text(giftAsk.title.toString(),
+                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
           ),
           GiftAskDetailRequestForAndDateWidget(giftAsk: giftAsk, date: 'date'),
           GiftAskDetailNoteWidget(giftAsk: giftAsk),
           GiftAskDetailUserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
-          GiftAskDetailRequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
+          GiftAskDetailRequesterLocationAndGiftDetailsWidget(
+              userJoinedAt: userJoinedAt, giftAsk: giftAsk),
 
           // Decision Widget
           GiftAskDetailDecisionWidget(giftAsk: giftAsk, controller: controller),
@@ -88,6 +95,41 @@ class GiftAskDetailView extends StatelessWidget {
             child: const MyText('Pickup Location', fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 200.h, child: GiftAskDetailMapWidget(giftAsk: giftAsk)),
+          SizedBox(
+            height: 200.h,
+            child: FlutterMap(
+              options: MapOptions(
+                center:
+                    LatLng(giftAsk.geometry.coordinates.last, giftAsk.geometry.coordinates.first),
+              ),
+              layers: [
+                TileLayerOptions(
+                  urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: ['a', 'b', 'c'],
+                  attributionBuilder: (_) {
+                    return const Text("© OpenStreetMap contributors");
+                  },
+                ),
+                MarkerLayerOptions(
+                  markers: [
+                    Marker(
+                      width: 80.0,
+                      height: 80.0,
+                      point: LatLng(
+                          giftAsk.geometry.coordinates.last, giftAsk.geometry.coordinates.first),
+                      builder: (ctx) => Container(
+                        child: const Icon(
+                          Icons.location_on,
+                          color: Colors.blue,
+                          size: 40,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
