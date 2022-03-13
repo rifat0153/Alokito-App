@@ -7,7 +7,6 @@ import 'package:flutterfire_ui/firestore.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/widget/my_scaffold.dart';
-import '../../../shared/widget/my_text.dart';
 import '../controllers/chat_room_controller.dart';
 import '../widgets/chat_room_chat_tile_widget.dart';
 
@@ -33,7 +32,7 @@ class ChatRoomView extends StatelessWidget {
             toFirestore: (chatRoom, _) => chatRoom.toJson());
 
     return MyScaffold(
-      assetPath: MyPaths.settingsBgImage,
+      assetPath: MyAssets.settingsBgImage,
       appBarTitle: 'Your Chats',
       child: FirestoreListView<ChatRoom>(
           query: query,

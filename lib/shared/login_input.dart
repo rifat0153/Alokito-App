@@ -1,9 +1,9 @@
-import '../shared/config.dart';
+import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginInput extends StatefulWidget {
-  const LoginInput({required this.hint, required this.onChanged});
+   const LoginInput({Key? key, required this.hint, required this.onChanged}) : super(key: key);
 
   final String hint;
   final Function onChanged;

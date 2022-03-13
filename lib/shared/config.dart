@@ -15,8 +15,9 @@ const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
 const myTimeout = 8;
 const imageAssetPath = 'assets/images/';
 
-class MyPaths {
+class MyAssets {
   static const settingsBgImage = 'assets/images/settings_bg.png';
+  static const paperClipIcon = 'assets/svgs/paper_clip.svg';
 }
 
 // Colors

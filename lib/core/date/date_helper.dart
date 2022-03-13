@@ -6,20 +6,16 @@ class DateHelper {
     final int diffInMin = dateTime1.difference(dateTime2).inMinutes;
 
     // Retunr Time DIff in min if DIff in less than 1 hour
-    if (diffInMin < 60) {
-      return '$diffInMin minute';
-    }
+    if (diffInMin < 60) return '$diffInMin minute';
 
     // Retunr Time DIff in hour if DIff in less than 2 day
-    if (diffInHour < 48) {
-      return '$diffInHour hour';
-    } else {
-      return '${dateTime1.difference(dateTime2).inDays} day';
-    }
+    if (diffInHour < 48) return '$diffInHour hour';
+
+    return '${dateTime1.difference(dateTime2).inDays} day';
   }
 
   static String timeDifferenceFromTimestamp(Timestamp timestamp) {
-    final date = DateTime.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch);
+    final date = timestamp.toDate();
 
     return findTimeDifference(DateTime.now(), date);
   }
