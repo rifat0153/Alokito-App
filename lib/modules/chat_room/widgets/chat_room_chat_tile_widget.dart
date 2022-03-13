@@ -27,15 +27,15 @@ class ChatRoomChatTileWidget extends StatelessWidget {
     final String timeDiff =
         DateHelper.timeDifferenceFromTimestamp(chatRoom.createdAt ?? Timestamp.now());
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kSpacing * 1.5, vertical: 8),
-      child: Container(
-        decoration: BoxDecoration(
-          // color: Colors.blue,
-          borderRadius: BorderRadius.circular(10.r),
-        ),
-        child: InkWell(
-          onTap: () => Get.to(() => ChatView(chatRoomId: chatRoom.relatedDocId)),
+    return InkWell(
+      onTap: () => Get.to(() => ChatView(chatRoom: chatRoom)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: kSpacing * 1.5, vertical: 8),
+        child: Container(
+          decoration: BoxDecoration(
+            // color: Colors.blue,
+            borderRadius: BorderRadius.circular(10.r),
+          ),
           child: Column(
             children: [
               Row(

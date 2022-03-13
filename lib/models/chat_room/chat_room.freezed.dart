@@ -23,7 +23,8 @@ class _$ChatRoomTearOff {
   const _$ChatRoomTearOff();
 
   _ChatRoom call(
-      {required String relatedDocId,
+      {String? id,
+      required String relatedDocId,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
@@ -31,6 +32,7 @@ class _$ChatRoomTearOff {
       @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson)
           Timestamp? createdAt}) {
     return _ChatRoom(
+      id: id,
       relatedDocId: relatedDocId,
       roomType: roomType,
       names: names,
@@ -50,6 +52,7 @@ const $ChatRoom = _$ChatRoomTearOff();
 
 /// @nodoc
 mixin _$ChatRoom {
+  String? get id => throw _privateConstructorUsedError;
   String get relatedDocId => throw _privateConstructorUsedError;
   String? get roomType => throw _privateConstructorUsedError;
   Map<String, String>? get names => throw _privateConstructorUsedError;
@@ -69,7 +72,8 @@ abstract class $ChatRoomCopyWith<$Res> {
   factory $ChatRoomCopyWith(ChatRoom value, $Res Function(ChatRoom) then) =
       _$ChatRoomCopyWithImpl<$Res>;
   $Res call(
-      {String relatedDocId,
+      {String? id,
+      String relatedDocId,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
@@ -88,6 +92,7 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? relatedDocId = freezed,
     Object? roomType = freezed,
     Object? names = freezed,
@@ -96,6 +101,10 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       relatedDocId: relatedDocId == freezed
           ? _value.relatedDocId
           : relatedDocId // ignore: cast_nullable_to_non_nullable
@@ -130,7 +139,8 @@ abstract class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res> {
       __$ChatRoomCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String relatedDocId,
+      {String? id,
+      String relatedDocId,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
@@ -150,6 +160,7 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? relatedDocId = freezed,
     Object? roomType = freezed,
     Object? names = freezed,
@@ -158,6 +169,10 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
     Object? createdAt = freezed,
   }) {
     return _then(_ChatRoom(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       relatedDocId: relatedDocId == freezed
           ? _value.relatedDocId
           : relatedDocId // ignore: cast_nullable_to_non_nullable
@@ -190,7 +205,8 @@ class __$ChatRoomCopyWithImpl<$Res> extends _$ChatRoomCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ChatRoom implements _ChatRoom {
   _$_ChatRoom(
-      {required this.relatedDocId,
+      {this.id,
+      required this.relatedDocId,
       this.roomType,
       this.names,
       this.images,
@@ -201,6 +217,8 @@ class _$_ChatRoom implements _ChatRoom {
   factory _$_ChatRoom.fromJson(Map<String, dynamic> json) =>
       _$$_ChatRoomFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String relatedDocId;
   @override
@@ -217,7 +235,7 @@ class _$_ChatRoom implements _ChatRoom {
 
   @override
   String toString() {
-    return 'ChatRoom(relatedDocId: $relatedDocId, roomType: $roomType, names: $names, images: $images, users: $users, createdAt: $createdAt)';
+    return 'ChatRoom(id: $id, relatedDocId: $relatedDocId, roomType: $roomType, names: $names, images: $images, users: $users, createdAt: $createdAt)';
   }
 
   @override
@@ -225,6 +243,7 @@ class _$_ChatRoom implements _ChatRoom {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ChatRoom &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.relatedDocId, relatedDocId) &&
             const DeepCollectionEquality().equals(other.roomType, roomType) &&
@@ -237,6 +256,7 @@ class _$_ChatRoom implements _ChatRoom {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(relatedDocId),
       const DeepCollectionEquality().hash(roomType),
       const DeepCollectionEquality().hash(names),
@@ -257,7 +277,8 @@ class _$_ChatRoom implements _ChatRoom {
 
 abstract class _ChatRoom implements ChatRoom {
   factory _ChatRoom(
-      {required String relatedDocId,
+      {String? id,
+      required String relatedDocId,
       String? roomType,
       Map<String, String>? names,
       Map<String, String>? images,
@@ -267,6 +288,8 @@ abstract class _ChatRoom implements ChatRoom {
 
   factory _ChatRoom.fromJson(Map<String, dynamic> json) = _$_ChatRoom.fromJson;
 
+  @override
+  String? get id;
   @override
   String get relatedDocId;
   @override

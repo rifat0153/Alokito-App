@@ -46,14 +46,17 @@ class ChatRoomService implements BaseChatRoomService {
     try {
       // First find if chat_room with id already exists
       final querySnapshot = await firestore
-          .collection('chat_room')
+          .collection('chat_rooms')
           .where('relatedDocId', isEqualTo: chatRoom.relatedDocId)
-          .where('users', arrayContains: chatRoom.users)
+          .where('users', arrayContainsAny: chatRoom.users)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) return const ChatRoomCreateUnion.success();
 
-      await firestore.collection('chat_rooms').add(chatRoom.toJson());
+      final docRef = firestore.collection('chat_rooms').doc();
+      final data = chatRoom.copyWith(id: docRef.id);
+
+      await docRef.set(data.toJson());
 
       return const ChatRoomCreateUnion.success();
     } on FirebaseException catch (e) {

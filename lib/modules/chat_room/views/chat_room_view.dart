@@ -12,6 +12,8 @@ import '../controllers/chat_room_controller.dart';
 import '../widgets/chat_room_chat_tile_widget.dart';
 
 class ChatRoomView extends StatelessWidget {
+  ChatRoomView({Key? key}) : super(key: key);
+
   static const route = '/chat_room';
   final controller = Get.find<ChatRoomController>();
   final AuthController authController = Get.find<AuthController>();
@@ -33,22 +35,13 @@ class ChatRoomView extends StatelessWidget {
     return MyScaffold(
       assetPath: MyPaths.settingsBgImage,
       appBarTitle: 'Your Chats',
-      child: Obx(
-        () => controller.chatRoomList.value.when(
-          data: (chatRoomList) => FirestoreListView<ChatRoom>(
-              query: query,
-              itemBuilder: (context, snapshot) {
-                final chatRoom = snapshot.data();
+      child: FirestoreListView<ChatRoom>(
+          query: query,
+          itemBuilder: (context, snapshot) {
+            final chatRoom = snapshot.data();
 
-                // print('ChatRoomView' + chatRoom.toString());
-
-                return ChatRoomChatTileWidget(chatRoom: chatRoom);
-              }),
-          empty: () => const Center(child: MyText('No Chat Room')),
-          loading: () => const LinearProgressIndicator(),
-          error: (e) => Text(e.toString()),
-        ),
-      ),
+            return ChatRoomChatTileWidget(chatRoom: chatRoom);
+          }),
     );
   }
 }

@@ -8,6 +8,7 @@ part 'chat_room.g.dart';
 @freezed
 class ChatRoom with _$ChatRoom {
   factory ChatRoom({
+     String? id,
     required String relatedDocId,
     String? roomType,
     Map<String, String>? names,
