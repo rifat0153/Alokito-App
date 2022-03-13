@@ -1,5 +1,5 @@
 import 'package:alokito_new/models/chat_room/chat_room.dart';
-import 'package:alokito_new/modules/chat/views/chat_view.dart';
+import 'package:alokito_new/modules/chat/chat_view.dart';
 import 'package:alokito_new/shared/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

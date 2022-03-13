@@ -1,9 +1,7 @@
-import 'dart:ui';
 
 import 'package:alokito_new/modules/gift_request_detail/views/gift_request_detail_view.dart';
 
 import '../modules/auth/controllers/auth_controller.dart';
-import '../modules/gift/views/gift_view.dart';
 import '../modules/gift_request/views/gift_request_view.dart';
 import '../modules/notification/views/notification_view.dart';
 import 'widget/my_text.dart';
@@ -13,7 +11,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
+  const MyDrawer({Key? key}) : super(key: key);
+
   final double menuItemHeight = 35;
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,6 @@ class MyDrawer extends StatelessWidget {
       height: 1.sh,
       width: 0.7.sw,
       decoration: BoxDecoration(
-        // color: Colors.red,
         image: DecorationImage(
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(

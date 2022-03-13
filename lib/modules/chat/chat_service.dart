@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/chat_room/chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:alokito_new/models/chat/chat.dart';
@@ -5,7 +6,11 @@ import 'package:alokito_new/models/chat/chat.dart';
 abstract class BaseChatService {
   Stream<List<Chat>> streamMessage({required String chatId});
 
-  Future<bool> addMessage({required String message, required String senderId, required String receiverId});
+  Future<bool> addMessage(
+      {required ChatRoom chatRoom,
+      required String message,
+      required String senderId,
+      required String receiverId});
 }
 
 class ChatService implements BaseChatService {
@@ -40,11 +45,13 @@ class ChatService implements BaseChatService {
 
   @override
   Future<bool> addMessage({
+    required ChatRoom chatRoom,
     required String message,
     required String senderId,
     required String receiverId,
-  }) {
-    // TODO: implement addMessage
-    throw UnimplementedError();
+  }) async {
+    final docRef = firestore.collection('chats').doc();
+
+    return true;
   }
 }
