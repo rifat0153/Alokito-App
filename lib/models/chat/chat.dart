@@ -9,9 +9,9 @@ part 'chat.g.dart';
 class Chat with _$Chat {
   const factory Chat({
     String? id,
-    String? message,
-    String? senderId,
-    String? receiverId,
+    required String message,
+    required String senderId,
+    required String chatRoomId,
     @JsonKey(fromJson: timestampFromJson, toJson: timestampToJson) Timestamp? createdAt,
   }) = _Chat;
 

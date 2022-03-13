@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'local_user.dart';
@@ -500,50 +501,50 @@ class _$_LocalUser implements _LocalUser {
   @override
   @JsonKey(fromJson: geometryFromMap, toJson: geometryToMap)
   final Geometry geometry;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   @override
   final String firstName;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   @override
   final String lastName;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool hasNotifications;
-  @JsonKey(defaultValue: 0)
+  @JsonKey()
   @override
   final double ratingSum;
-  @JsonKey(defaultValue: 0)
+  @JsonKey()
   @override
   final double totalRating;
-  @JsonKey(defaultValue: 0)
+  @JsonKey()
   @override
   final double averageRating;
-  @JsonKey(defaultValue: 0)
+  @JsonKey()
   @override
   final double giftGiven;
-  @JsonKey(defaultValue: 0)
+  @JsonKey()
   @override
   final double giftReceived;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool hasGiftGiverRequest;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool hasGiftAskRequest;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   @override
   final String requestedGiftId;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   @override
   final String acceptedGiftId;
-  @JsonKey(defaultValue: 'user')
+  @JsonKey()
   @override
   final String role;
   @override
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
-  @JsonKey(defaultValue: 1)
+  @JsonKey()
   @override
   final int v;
 
@@ -557,75 +558,65 @@ class _$_LocalUser implements _LocalUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LocalUser &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.distance, distance) ||
-                other.distance == distance) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.geometry, geometry) ||
-                other.geometry == geometry) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.hasNotifications, hasNotifications) ||
-                other.hasNotifications == hasNotifications) &&
-            (identical(other.ratingSum, ratingSum) ||
-                other.ratingSum == ratingSum) &&
-            (identical(other.totalRating, totalRating) ||
-                other.totalRating == totalRating) &&
-            (identical(other.averageRating, averageRating) ||
-                other.averageRating == averageRating) &&
-            (identical(other.giftGiven, giftGiven) ||
-                other.giftGiven == giftGiven) &&
-            (identical(other.giftReceived, giftReceived) ||
-                other.giftReceived == giftReceived) &&
-            (identical(other.hasGiftGiverRequest, hasGiftGiverRequest) ||
-                other.hasGiftGiverRequest == hasGiftGiverRequest) &&
-            (identical(other.hasGiftAskRequest, hasGiftAskRequest) ||
-                other.hasGiftAskRequest == hasGiftAskRequest) &&
-            (identical(other.requestedGiftId, requestedGiftId) ||
-                other.requestedGiftId == requestedGiftId) &&
-            (identical(other.acceptedGiftId, acceptedGiftId) ||
-                other.acceptedGiftId == acceptedGiftId) &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.v, v) || other.v == v));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
+            const DeepCollectionEquality().equals(other.distance, distance) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.geometry, geometry) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
+            const DeepCollectionEquality()
+                .equals(other.hasNotifications, hasNotifications) &&
+            const DeepCollectionEquality().equals(other.ratingSum, ratingSum) &&
+            const DeepCollectionEquality()
+                .equals(other.totalRating, totalRating) &&
+            const DeepCollectionEquality()
+                .equals(other.averageRating, averageRating) &&
+            const DeepCollectionEquality().equals(other.giftGiven, giftGiven) &&
+            const DeepCollectionEquality()
+                .equals(other.giftReceived, giftReceived) &&
+            const DeepCollectionEquality()
+                .equals(other.hasGiftGiverRequest, hasGiftGiverRequest) &&
+            const DeepCollectionEquality()
+                .equals(other.hasGiftAskRequest, hasGiftAskRequest) &&
+            const DeepCollectionEquality()
+                .equals(other.requestedGiftId, requestedGiftId) &&
+            const DeepCollectionEquality()
+                .equals(other.acceptedGiftId, acceptedGiftId) &&
+            const DeepCollectionEquality().equals(other.role, role) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
+            const DeepCollectionEquality().equals(other.v, v));
   }
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
-        uid,
-        distance,
-        email,
-        userName,
-        imageUrl,
-        geometry,
-        firstName,
-        lastName,
-        hasNotifications,
-        ratingSum,
-        totalRating,
-        averageRating,
-        giftGiven,
-        giftReceived,
-        hasGiftGiverRequest,
-        hasGiftAskRequest,
-        requestedGiftId,
-        acceptedGiftId,
-        role,
-        createdAt,
-        updatedAt,
-        v
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(uid),
+        const DeepCollectionEquality().hash(distance),
+        const DeepCollectionEquality().hash(email),
+        const DeepCollectionEquality().hash(userName),
+        const DeepCollectionEquality().hash(imageUrl),
+        const DeepCollectionEquality().hash(geometry),
+        const DeepCollectionEquality().hash(firstName),
+        const DeepCollectionEquality().hash(lastName),
+        const DeepCollectionEquality().hash(hasNotifications),
+        const DeepCollectionEquality().hash(ratingSum),
+        const DeepCollectionEquality().hash(totalRating),
+        const DeepCollectionEquality().hash(averageRating),
+        const DeepCollectionEquality().hash(giftGiven),
+        const DeepCollectionEquality().hash(giftReceived),
+        const DeepCollectionEquality().hash(hasGiftGiverRequest),
+        const DeepCollectionEquality().hash(hasGiftAskRequest),
+        const DeepCollectionEquality().hash(requestedGiftId),
+        const DeepCollectionEquality().hash(acceptedGiftId),
+        const DeepCollectionEquality().hash(role),
+        const DeepCollectionEquality().hash(createdAt),
+        const DeepCollectionEquality().hash(updatedAt),
+        const DeepCollectionEquality().hash(v)
       ]);
 
   @JsonKey(ignore: true)
@@ -845,7 +836,7 @@ class _$_Geometry implements _Geometry {
   factory _$_Geometry.fromJson(Map<String, dynamic> json) =>
       _$$_GeometryFromJson(json);
 
-  @JsonKey(defaultValue: 'Point')
+  @JsonKey()
   @override
   final String type;
   @override
@@ -863,15 +854,18 @@ class _$_Geometry implements _Geometry {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Geometry &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.coordinates, coordinates));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, type, id, const DeepCollectionEquality().hash(coordinates));
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(coordinates));
 
   @JsonKey(ignore: true)
   @override
@@ -1049,12 +1043,12 @@ class _$Data implements Data {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Data &&
-            (identical(other.localUser, localUser) ||
-                other.localUser == localUser));
+            const DeepCollectionEquality().equals(other.localUser, localUser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, localUser);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(localUser));
 
   @JsonKey(ignore: true)
   @override
@@ -1293,11 +1287,12 @@ class _$Error implements Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Error &&
-            (identical(other.message, message) || other.message == message));
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override

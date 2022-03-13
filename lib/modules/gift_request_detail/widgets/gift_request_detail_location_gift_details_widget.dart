@@ -92,7 +92,7 @@ class GiftRequesteLocationAndGiftDetailsWidget extends StatelessWidget {
                       onTap: () async {
                         // create chat_room for GIftRequest and Navigate to chat_room_view
                         await chatRoomController.createChatRoom(
-                            id: giftRequest.id!,
+                            relatedDocId:  giftRequest.id!,
                             user1: giftRequest.requester.id!,
                             user1Image: giftRequest.requester.imageUrl,
                             user1Name: giftRequest.requester.userName,

@@ -7,7 +7,8 @@ part of 'chat_room.dart';
 // **************************************************************************
 
 _$_ChatRoom _$$_ChatRoomFromJson(Map<String, dynamic> json) => _$_ChatRoom(
-      id: json['id'] as String,
+      id: json['id'] as String?,
+      relatedDocId: json['relatedDocId'] as String,
       roomType: json['roomType'] as String?,
       names: (json['names'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
@@ -15,16 +16,18 @@ _$_ChatRoom _$$_ChatRoomFromJson(Map<String, dynamic> json) => _$_ChatRoom(
       images: (json['images'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
-      users: chatRoomUserIdArrayFromJson(json['users'] as List),
+      users:
+          (json['users'] as List<dynamic>?)?.map((e) => e as String).toList(),
       createdAt: timestampFromJson(json['createdAt'] as Timestamp?),
     );
 
 Map<String, dynamic> _$$_ChatRoomToJson(_$_ChatRoom instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'relatedDocId': instance.relatedDocId,
       'roomType': instance.roomType,
       'names': instance.names,
       'images': instance.images,
-      'users': chatRoomUserIdArrayToJson(instance.users),
+      'users': instance.users,
       'createdAt': timestampToJson(instance.createdAt),
     };

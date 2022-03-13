@@ -1,4 +1,5 @@
-import 'package:alokito_new/models/chat_room.dart/chat_room.dart';
+import 'package:alokito_new/models/chat_room/chat_room.dart';
+import 'package:alokito_new/modules/chat/views/chat_view.dart';
 import 'package:alokito_new/shared/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -26,45 +27,48 @@ class ChatRoomChatTileWidget extends StatelessWidget {
     final String timeDiff =
         DateHelper.timeDifferenceFromTimestamp(chatRoom.createdAt ?? Timestamp.now());
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kSpacing * 1.5, vertical: 8),
-      child: Container(
-        decoration: BoxDecoration(
-          // color: Colors.blue,
-          borderRadius: BorderRadius.circular(10.r),
-        ),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  radius: kRadius * 4,
-                  backgroundImage: NetworkImage(userImageToShow),
-                ),
-                const SizedBox(width: kSpacing),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: kSpacing, horizontal: kSpacing),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        MyText(userNameToShow, fontSize: 24.sp),
-                        MyText(
-                          '$timeDiff ago',
-                          fontSize: 12,
-                          color: Colors.grey.shade500,
-                        ),
-                      ],
+    return InkWell(
+      onTap: () => Get.to(() => ChatView(chatRoom: chatRoom)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: kSpacing * 1.5, vertical: 8),
+        child: Container(
+          decoration: BoxDecoration(
+            // color: Colors.blue,
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: kRadius * 4,
+                    backgroundImage: NetworkImage(userImageToShow),
+                  ),
+                  const SizedBox(width: kSpacing),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: kSpacing, horizontal: kSpacing),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          MyText(userNameToShow, fontSize: 24.sp),
+                          MyText(
+                            '$timeDiff ago',
+                            fontSize: 12,
+                            color: Colors.grey.shade500,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: kSpacing),
-            const Divider(height: 1, color: Color(0XFFCDD4D9))
-          ],
+                ],
+              ),
+              const SizedBox(height: kSpacing),
+              const Divider(height: 1, color: Color(0XFFCDD4D9))
+            ],
+          ),
         ),
       ),
     );

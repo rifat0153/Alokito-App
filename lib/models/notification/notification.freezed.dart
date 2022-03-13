@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'notification.dart';
@@ -365,24 +366,31 @@ class _$_MyNotification implements _MyNotification {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MyNotification &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.text, text) || other.text == text) &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.relatedDocId, relatedDocId) ||
-                other.relatedDocId == relatedDocId) &&
-            (identical(other.notificationType, notificationType) ||
-                other.notificationType == notificationType) &&
-            (identical(other.giftRequestDoc, giftRequestDoc) ||
-                other.giftRequestDoc == giftRequestDoc) &&
-            (identical(other.giftAskRequestDoc, giftAskRequestDoc) ||
-                other.giftAskRequestDoc == giftAskRequestDoc) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.relatedDocId, relatedDocId) &&
+            const DeepCollectionEquality()
+                .equals(other.notificationType, notificationType) &&
+            const DeepCollectionEquality()
+                .equals(other.giftRequestDoc, giftRequestDoc) &&
+            const DeepCollectionEquality()
+                .equals(other.giftAskRequestDoc, giftAskRequestDoc) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, text, user, relatedDocId,
-      notificationType, giftRequestDoc, giftAskRequestDoc, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(text),
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(relatedDocId),
+      const DeepCollectionEquality().hash(notificationType),
+      const DeepCollectionEquality().hash(giftRequestDoc),
+      const DeepCollectionEquality().hash(giftAskRequestDoc),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
@@ -1048,11 +1056,12 @@ class _$Error implements Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Error &&
-            (identical(other.message, message) || other.message == message));
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override

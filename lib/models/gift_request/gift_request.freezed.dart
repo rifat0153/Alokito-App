@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gift_request.dart';
@@ -333,16 +334,16 @@ class _$_GiftRequest implements _GiftRequest {
   final String? giverId;
   @override
   final String comment;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool messageForRequesterSent;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool messageForGiverSent;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   @override
   final String messageForRequester;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   @override
   final String messageForGiver;
   @override
@@ -367,41 +368,38 @@ class _$_GiftRequest implements _GiftRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _GiftRequest &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.giverId, giverId) || other.giverId == giverId) &&
-            (identical(other.comment, comment) || other.comment == comment) &&
-            (identical(
-                    other.messageForRequesterSent, messageForRequesterSent) ||
-                other.messageForRequesterSent == messageForRequesterSent) &&
-            (identical(other.messageForGiverSent, messageForGiverSent) ||
-                other.messageForGiverSent == messageForGiverSent) &&
-            (identical(other.messageForRequester, messageForRequester) ||
-                other.messageForRequester == messageForRequester) &&
-            (identical(other.messageForGiver, messageForGiver) ||
-                other.messageForGiver == messageForGiver) &&
-            (identical(other.giftRequestStatus, giftRequestStatus) ||
-                other.giftRequestStatus == giftRequestStatus) &&
-            (identical(other.gift, gift) || other.gift == gift) &&
-            (identical(other.requester, requester) ||
-                other.requester == requester) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.giverId, giverId) &&
+            const DeepCollectionEquality().equals(other.comment, comment) &&
+            const DeepCollectionEquality().equals(
+                other.messageForRequesterSent, messageForRequesterSent) &&
+            const DeepCollectionEquality()
+                .equals(other.messageForGiverSent, messageForGiverSent) &&
+            const DeepCollectionEquality()
+                .equals(other.messageForRequester, messageForRequester) &&
+            const DeepCollectionEquality()
+                .equals(other.messageForGiver, messageForGiver) &&
+            const DeepCollectionEquality()
+                .equals(other.giftRequestStatus, giftRequestStatus) &&
+            const DeepCollectionEquality().equals(other.gift, gift) &&
+            const DeepCollectionEquality().equals(other.requester, requester) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      giverId,
-      comment,
-      messageForRequesterSent,
-      messageForGiverSent,
-      messageForRequester,
-      messageForGiver,
-      giftRequestStatus,
-      gift,
-      requester,
-      createdAt);
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(giverId),
+      const DeepCollectionEquality().hash(comment),
+      const DeepCollectionEquality().hash(messageForRequesterSent),
+      const DeepCollectionEquality().hash(messageForGiverSent),
+      const DeepCollectionEquality().hash(messageForRequester),
+      const DeepCollectionEquality().hash(messageForGiver),
+      const DeepCollectionEquality().hash(giftRequestStatus),
+      const DeepCollectionEquality().hash(gift),
+      const DeepCollectionEquality().hash(requester),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
@@ -466,7 +464,7 @@ abstract class _GiftRequest implements GiftRequest {
 }
 
 GiftRequestStatus _$GiftRequestStatusFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String?) {
+  switch (json['runtimeType']) {
     case 'pending':
       return Pending.fromJson(json);
     case 'confirmed':
@@ -625,10 +623,13 @@ class _$PendingCopyWithImpl<$Res> extends _$GiftRequestStatusCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$Pending implements Pending {
-  const _$Pending();
+  const _$Pending({String? $type}) : $type = $type ?? 'pending';
 
   factory _$Pending.fromJson(Map<String, dynamic> json) =>
       _$$PendingFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -732,7 +733,7 @@ class _$Pending implements Pending {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PendingToJson(this)..['runtimeType'] = 'pending';
+    return _$$PendingToJson(this);
   }
 }
 
@@ -762,10 +763,13 @@ class _$ConfirmedCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$Confirmed implements Confirmed {
-  const _$Confirmed();
+  const _$Confirmed({String? $type}) : $type = $type ?? 'confirmed';
 
   factory _$Confirmed.fromJson(Map<String, dynamic> json) =>
       _$$ConfirmedFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -869,7 +873,7 @@ class _$Confirmed implements Confirmed {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ConfirmedToJson(this)..['runtimeType'] = 'confirmed';
+    return _$$ConfirmedToJson(this);
   }
 }
 
@@ -901,10 +905,13 @@ class _$CanceledByGiverCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CanceledByGiver implements CanceledByGiver {
-  const _$CanceledByGiver();
+  const _$CanceledByGiver({String? $type}) : $type = $type ?? 'canceledByGiver';
 
   factory _$CanceledByGiver.fromJson(Map<String, dynamic> json) =>
       _$$CanceledByGiverFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1008,7 +1015,7 @@ class _$CanceledByGiver implements CanceledByGiver {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CanceledByGiverToJson(this)..['runtimeType'] = 'canceledByGiver';
+    return _$$CanceledByGiverToJson(this);
   }
 }
 
@@ -1041,10 +1048,14 @@ class _$CanceledByRequesterCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CanceledByRequester implements CanceledByRequester {
-  const _$CanceledByRequester();
+  const _$CanceledByRequester({String? $type})
+      : $type = $type ?? 'canceledByRequester';
 
   factory _$CanceledByRequester.fromJson(Map<String, dynamic> json) =>
       _$$CanceledByRequesterFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1148,8 +1159,7 @@ class _$CanceledByRequester implements CanceledByRequester {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CanceledByRequesterToJson(this)
-      ..['runtimeType'] = 'canceledByRequester';
+    return _$$CanceledByRequesterToJson(this);
   }
 }
 
@@ -1179,10 +1189,13 @@ class _$AcceptedCopyWithImpl<$Res> extends _$GiftRequestStatusCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$Accepted implements Accepted {
-  const _$Accepted();
+  const _$Accepted({String? $type}) : $type = $type ?? 'accepted';
 
   factory _$Accepted.fromJson(Map<String, dynamic> json) =>
       _$$AcceptedFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1286,7 +1299,7 @@ class _$Accepted implements Accepted {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AcceptedToJson(this)..['runtimeType'] = 'accepted';
+    return _$$AcceptedToJson(this);
   }
 }
 
@@ -1316,10 +1329,13 @@ class _$DeliveredCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$Delivered implements Delivered {
-  const _$Delivered();
+  const _$Delivered({String? $type}) : $type = $type ?? 'delivered';
 
   factory _$Delivered.fromJson(Map<String, dynamic> json) =>
       _$$DeliveredFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1423,7 +1439,7 @@ class _$Delivered implements Delivered {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DeliveredToJson(this)..['runtimeType'] = 'delivered';
+    return _$$DeliveredToJson(this);
   }
 }
 
@@ -1580,12 +1596,13 @@ class _$Data implements Data {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Data &&
-            (identical(other.giftRequest, giftRequest) ||
-                other.giftRequest == giftRequest));
+            const DeepCollectionEquality()
+                .equals(other.giftRequest, giftRequest));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, giftRequest);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(giftRequest));
 
   @JsonKey(ignore: true)
   @override
@@ -2063,12 +2080,13 @@ class _$GiftRequestData implements GiftRequestData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GiftRequestData &&
-            (identical(other.giftRequest, giftRequest) ||
-                other.giftRequest == giftRequest));
+            const DeepCollectionEquality()
+                .equals(other.giftRequest, giftRequest));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, giftRequest);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(giftRequest));
 
   @JsonKey(ignore: true)
   @override
