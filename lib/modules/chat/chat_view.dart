@@ -51,7 +51,9 @@ class ChatView extends StatelessWidget {
           Expanded(
             child: FirestoreListView<Chat>(
               controller: controller.scrollController,
+              pageSize: 20,
               reverse: true,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               query: query,
               itemBuilder: (_, snapshot) {
                 final chat = snapshot.data();
@@ -63,31 +65,28 @@ class ChatView extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: IntrinsicWidth(
-                        child: Column(
-                          crossAxisAlignment:
-                              isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color:
-                                      isMyMessage ? Colors.grey.shade100 : const Color(0xFF353445),
-                                  borderRadius: BorderRadius.circular(kRadius * 3)),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: kSpacing * 2, vertical: kSpacing),
-                              child: MyText(
-                                chat.message,
-                                color: isMyMessage ? Colors.black : Colors.white,
-                              ),
+                      child: Column(
+                        crossAxisAlignment:
+                            isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: isMyMessage ? Colors.grey.shade100 : const Color(0xFF353445),
+                                borderRadius: BorderRadius.circular(kRadius * 3)),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: kSpacing * 2, vertical: kSpacing),
+                            child: MyText(
+                              chat.message,
+                              color: isMyMessage ? Colors.black : Colors.white,
                             ),
-                            MyText(
-                              DateHelper.timeDifferenceFromTimestamp(
-                                  chat.createdAt ?? Timestamp.now()),
-                              fontSize: 10,
-                              color: Colors.grey.shade500,
-                            )
-                          ],
-                        ),
+                          ),
+                          MyText(
+                            DateHelper.timeDifferenceFromTimestamp(
+                                chat.createdAt ?? Timestamp.now()),
+                            fontSize: 10,
+                            color: Colors.grey.shade500,
+                          )
+                        ],
                       ),
                     ),
                   ],

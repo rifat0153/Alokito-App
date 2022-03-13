@@ -52,8 +52,9 @@ class ChatController extends GetxController {
     final isSuccess = await chatService.addMessage(chat: chat);
 
     if (isSuccess) textController.text = '';
+    if (isSuccess) message.value = '';
 
-    // scrollController.animateTo(scrollController.position.maxScrollExtent,
-    //     duration: const Duration(milliseconds: 100), curve: Curves.easeInOutSine);
+    scrollController.animateTo(scrollController.position.minScrollExtent,
+        duration: const Duration(milliseconds: 100), curve: Curves.easeInOutSine);
   }
 }
