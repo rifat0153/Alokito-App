@@ -455,7 +455,8 @@ class __$LocalUserCopyWithImpl<$Res> extends _$LocalUserCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_LocalUser implements _LocalUser {
   const _$_LocalUser(
       {this.id,

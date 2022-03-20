@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
@@ -10,6 +9,7 @@ String localUserToJson(LocalUser data) => json.encode(data.toJson());
 
 @freezed
 abstract class LocalUser with _$LocalUser {
+  @JsonSerializable(explicitToJson: true)
   const factory LocalUser({
     String? id,
     String? uid,
