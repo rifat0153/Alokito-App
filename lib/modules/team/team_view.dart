@@ -1,6 +1,10 @@
 import 'package:alokito_new/modules/team/team_controller.dart';
+import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/shared/constants.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class TeamView extends StatelessWidget {
@@ -15,7 +19,20 @@ class TeamView extends StatelessWidget {
     return Scaffold(
       body: Obx(
         () => SafeArea(
-          child: MyText(controller.teamList.length.toString()),
+          child: SizedBox(
+            width: 1.sw,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(MyAssets.teamPeopleIcon),
+                SvgPicture.asset(MyAssets.joinTeamIcon),
+                const SizedBox(
+                  height: kSpacing * 2,
+                ),
+                SvgPicture.asset(MyAssets.createTeamIcon),
+              ],
+            ),
+          ),
         ),
       ),
     );
