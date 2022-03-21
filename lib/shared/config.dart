@@ -9,8 +9,8 @@ class MyConfig {
 }
 
 // URL
-// const baseUrl = 'http://192.168.118.176:80/api/v1';
-const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
+const baseUrl = 'http://192.168.1.64:80/api/v1';
+// const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
 
 const myTimeout = 8;
 const imageAssetPath = 'assets/images/';

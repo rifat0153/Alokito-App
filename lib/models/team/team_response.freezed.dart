@@ -22,7 +22,9 @@ TeamResponse _$TeamResponseFromJson(Map<String, dynamic> json) {
 class _$TeamResponseTearOff {
   const _$TeamResponseTearOff();
 
-  _TeamResponse call({required int page, List<Team> teams = const []}) {
+  _TeamResponse call(
+      {required int page,
+      @JsonKey(name: 'results') List<Team> teams = const []}) {
     return _TeamResponse(
       page: page,
       teams: teams,
@@ -40,6 +42,7 @@ const $TeamResponse = _$TeamResponseTearOff();
 /// @nodoc
 mixin _$TeamResponse {
   int get page => throw _privateConstructorUsedError;
+  @JsonKey(name: 'results')
   List<Team> get teams => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,7 +56,7 @@ abstract class $TeamResponseCopyWith<$Res> {
   factory $TeamResponseCopyWith(
           TeamResponse value, $Res Function(TeamResponse) then) =
       _$TeamResponseCopyWithImpl<$Res>;
-  $Res call({int page, List<Team> teams});
+  $Res call({int page, @JsonKey(name: 'results') List<Team> teams});
 }
 
 /// @nodoc
@@ -89,7 +92,7 @@ abstract class _$TeamResponseCopyWith<$Res>
           _TeamResponse value, $Res Function(_TeamResponse) then) =
       __$TeamResponseCopyWithImpl<$Res>;
   @override
-  $Res call({int page, List<Team> teams});
+  $Res call({int page, @JsonKey(name: 'results') List<Team> teams});
 }
 
 /// @nodoc
@@ -123,15 +126,16 @@ class __$TeamResponseCopyWithImpl<$Res> extends _$TeamResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TeamResponse implements _TeamResponse {
-  const _$_TeamResponse({required this.page, this.teams = const []});
+  const _$_TeamResponse(
+      {required this.page, @JsonKey(name: 'results') this.teams = const []});
 
   factory _$_TeamResponse.fromJson(Map<String, dynamic> json) =>
       _$$_TeamResponseFromJson(json);
 
   @override
   final int page;
-  @JsonKey()
   @override
+  @JsonKey(name: 'results')
   final List<Team> teams;
 
   @override
@@ -166,8 +170,9 @@ class _$_TeamResponse implements _TeamResponse {
 }
 
 abstract class _TeamResponse implements TeamResponse {
-  const factory _TeamResponse({required int page, List<Team> teams}) =
-      _$_TeamResponse;
+  const factory _TeamResponse(
+      {required int page,
+      @JsonKey(name: 'results') List<Team> teams}) = _$_TeamResponse;
 
   factory _TeamResponse.fromJson(Map<String, dynamic> json) =
       _$_TeamResponse.fromJson;
@@ -175,6 +180,7 @@ abstract class _TeamResponse implements TeamResponse {
   @override
   int get page;
   @override
+  @JsonKey(name: 'results')
   List<Team> get teams;
   @override
   @JsonKey(ignore: true)

@@ -9,7 +9,7 @@ part of 'team_response.dart';
 _$_TeamResponse _$$_TeamResponseFromJson(Map<String, dynamic> json) =>
     _$_TeamResponse(
       page: json['page'] as int,
-      teams: (json['teams'] as List<dynamic>?)
+      teams: (json['results'] as List<dynamic>?)
               ?.map((e) => Team.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -18,7 +18,7 @@ _$_TeamResponse _$$_TeamResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_TeamResponseToJson(_$_TeamResponse instance) =>
     <String, dynamic>{
       'page': instance.page,
-      'teams': instance.teams,
+      'results': instance.teams,
     };
 
 _$_Team _$$_TeamFromJson(Map<String, dynamic> json) => _$_Team(

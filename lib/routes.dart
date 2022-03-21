@@ -1,3 +1,6 @@
+import 'package:alokito_new/modules/team/team_controller.dart';
+import 'package:alokito_new/modules/team/team_service.dart';
+import 'package:alokito_new/modules/team/team_view.dart';
 import 'package:get/get.dart';
 
 import 'core/language/language_controller.dart';
@@ -57,6 +60,18 @@ class GetPages {
         binding: BindingsBuilder(() {
           Get.lazyPut(() => LoginController());
         })),
+
+    //* Team Routes
+    GetPage(
+      name: TeamView.route,
+      page: () => const TeamView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(
+          () => TeamController(service: TeamService()),
+        );
+      }),
+    ),
 
     //* Chat ROutes
     GetPage(
@@ -132,7 +147,8 @@ class GetPages {
       transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftAskRequestDetailController(GiftAskRequestDetailService()));
-        Get.lazyPut(() => ChatRoomController(chatRoomService: ChatRoomService(firestore: FirebaseDI().firestore)));
+        Get.lazyPut(() => ChatRoomController(
+            chatRoomService: ChatRoomService(firestore: FirebaseDI().firestore)));
       }),
     ),
 
@@ -167,7 +183,8 @@ class GetPages {
       transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftRequestDetailController(GiftRequestDetailService()));
-        Get.lazyPut(() => ChatRoomController(chatRoomService: ChatRoomService(firestore: FirebaseDI().firestore)));
+        Get.lazyPut(() => ChatRoomController(
+            chatRoomService: ChatRoomService(firestore: FirebaseDI().firestore)));
       }),
     ),
 
