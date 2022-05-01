@@ -49,7 +49,7 @@ class GiftMapWidgetState extends State<GiftMapWidget> {
   late LatLng myLocation;
 
   var markers = [
-    const Marker(
+    Marker(
       markerId: MarkerId('1'),
       position: LatLng(23.7590, 90.4119),
     )

@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/team/team_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +12,8 @@ import '../../chat_room/views/chat_room_view.dart';
 import '../../notification/views/notification_view.dart';
 
 class UserNavbar extends StatelessWidget {
+  UserNavbar({Key? key}) : super(key: key);
+
   final height = Get.size.height;
   final width = Get.size.width;
 
@@ -64,9 +67,8 @@ class UserNavbar extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            // TODO: Removed this
             onTap: () {
-              Get.to(() => const _ShowSVG());
+              Get.toNamed(TeamView.route);
             },
             child: SvgPicture.asset(
               'assets/svgs/red_button_icon.svg',
@@ -95,24 +97,6 @@ class UserNavbar extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _ShowSVG extends StatelessWidget {
-  const _ShowSVG({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue,
-      body: Center(
-        child: SvgPicture.asset(
-          'assets/svgs/shape.svg',
-          height: Get.height,
-          width: Get.width,
-        ),
       ),
     );
   }

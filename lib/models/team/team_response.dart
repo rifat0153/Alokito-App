@@ -13,6 +13,7 @@ String teamResponseToJson(TeamResponse data) => json.encode(data.toJson());
 abstract class TeamResponse with _$TeamResponse {
   const factory TeamResponse({
     required int page,
+    @JsonKey(name: 'results')
     @Default([]) List<Team> teams,
   }) = _TeamResponse;
 
@@ -33,6 +34,7 @@ abstract class Team with _$Team {
     String? area,
     String? location,
     String? imageUrl,
+    String? coverImageUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
     double? distance,

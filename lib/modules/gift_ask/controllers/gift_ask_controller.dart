@@ -29,7 +29,7 @@ class GiftAskController extends GetxController {
   RxBool hasError = false.obs;
 
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
-  var formMarker = const Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
+  var formMarker =  Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(23, 90).obs;
   var location = ''.obs;
   var area = ''.obs;

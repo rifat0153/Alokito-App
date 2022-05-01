@@ -22,7 +22,9 @@ TeamResponse _$TeamResponseFromJson(Map<String, dynamic> json) {
 class _$TeamResponseTearOff {
   const _$TeamResponseTearOff();
 
-  _TeamResponse call({required int page, List<Team> teams = const []}) {
+  _TeamResponse call(
+      {required int page,
+      @JsonKey(name: 'results') List<Team> teams = const []}) {
     return _TeamResponse(
       page: page,
       teams: teams,
@@ -40,6 +42,7 @@ const $TeamResponse = _$TeamResponseTearOff();
 /// @nodoc
 mixin _$TeamResponse {
   int get page => throw _privateConstructorUsedError;
+  @JsonKey(name: 'results')
   List<Team> get teams => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,7 +56,7 @@ abstract class $TeamResponseCopyWith<$Res> {
   factory $TeamResponseCopyWith(
           TeamResponse value, $Res Function(TeamResponse) then) =
       _$TeamResponseCopyWithImpl<$Res>;
-  $Res call({int page, List<Team> teams});
+  $Res call({int page, @JsonKey(name: 'results') List<Team> teams});
 }
 
 /// @nodoc
@@ -89,7 +92,7 @@ abstract class _$TeamResponseCopyWith<$Res>
           _TeamResponse value, $Res Function(_TeamResponse) then) =
       __$TeamResponseCopyWithImpl<$Res>;
   @override
-  $Res call({int page, List<Team> teams});
+  $Res call({int page, @JsonKey(name: 'results') List<Team> teams});
 }
 
 /// @nodoc
@@ -123,15 +126,16 @@ class __$TeamResponseCopyWithImpl<$Res> extends _$TeamResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TeamResponse implements _TeamResponse {
-  const _$_TeamResponse({required this.page, this.teams = const []});
+  const _$_TeamResponse(
+      {required this.page, @JsonKey(name: 'results') this.teams = const []});
 
   factory _$_TeamResponse.fromJson(Map<String, dynamic> json) =>
       _$$_TeamResponseFromJson(json);
 
   @override
   final int page;
-  @JsonKey()
   @override
+  @JsonKey(name: 'results')
   final List<Team> teams;
 
   @override
@@ -166,8 +170,9 @@ class _$_TeamResponse implements _TeamResponse {
 }
 
 abstract class _TeamResponse implements TeamResponse {
-  const factory _TeamResponse({required int page, List<Team> teams}) =
-      _$_TeamResponse;
+  const factory _TeamResponse(
+      {required int page,
+      @JsonKey(name: 'results') List<Team> teams}) = _$_TeamResponse;
 
   factory _TeamResponse.fromJson(Map<String, dynamic> json) =
       _$_TeamResponse.fromJson;
@@ -175,6 +180,7 @@ abstract class _TeamResponse implements TeamResponse {
   @override
   int get page;
   @override
+  @JsonKey(name: 'results')
   List<Team> get teams;
   @override
   @JsonKey(ignore: true)
@@ -201,6 +207,7 @@ class _$TeamTearOff {
       String? area,
       String? location,
       String? imageUrl,
+      String? coverImageUrl,
       DateTime? createdAt,
       DateTime? updatedAt,
       double? distance}) {
@@ -215,6 +222,7 @@ class _$TeamTearOff {
       area: area,
       location: location,
       imageUrl: imageUrl,
+      coverImageUrl: coverImageUrl,
       createdAt: createdAt,
       updatedAt: updatedAt,
       distance: distance,
@@ -241,6 +249,7 @@ mixin _$Team {
   String? get area => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  String? get coverImageUrl => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
@@ -265,6 +274,7 @@ abstract class $TeamCopyWith<$Res> {
       String? area,
       String? location,
       String? imageUrl,
+      String? coverImageUrl,
       DateTime? createdAt,
       DateTime? updatedAt,
       double? distance});
@@ -292,6 +302,7 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
     Object? area = freezed,
     Object? location = freezed,
     Object? imageUrl = freezed,
+    Object? coverImageUrl = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? distance = freezed,
@@ -337,6 +348,10 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      coverImageUrl: coverImageUrl == freezed
+          ? _value.coverImageUrl
+          : coverImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -380,6 +395,7 @@ abstract class _$TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
       String? area,
       String? location,
       String? imageUrl,
+      String? coverImageUrl,
       DateTime? createdAt,
       DateTime? updatedAt,
       double? distance});
@@ -409,6 +425,7 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
     Object? area = freezed,
     Object? location = freezed,
     Object? imageUrl = freezed,
+    Object? coverImageUrl = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? distance = freezed,
@@ -454,6 +471,10 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      coverImageUrl: coverImageUrl == freezed
+          ? _value.coverImageUrl
+          : coverImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -485,6 +506,7 @@ class _$_Team implements _Team {
       this.area,
       this.location,
       this.imageUrl,
+      this.coverImageUrl,
       this.createdAt,
       this.updatedAt,
       this.distance});
@@ -513,6 +535,8 @@ class _$_Team implements _Team {
   @override
   final String? imageUrl;
   @override
+  final String? coverImageUrl;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
@@ -521,7 +545,7 @@ class _$_Team implements _Team {
 
   @override
   String toString() {
-    return 'Team(id: $id, members: $members, creatorId: $creatorId, creator: $creator, teamName: $teamName, teamDetails: $teamDetails, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, createdAt: $createdAt, updatedAt: $updatedAt, distance: $distance)';
+    return 'Team(id: $id, members: $members, creatorId: $creatorId, creator: $creator, teamName: $teamName, teamDetails: $teamDetails, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, coverImageUrl: $coverImageUrl, createdAt: $createdAt, updatedAt: $updatedAt, distance: $distance)';
   }
 
   @override
@@ -540,6 +564,8 @@ class _$_Team implements _Team {
             const DeepCollectionEquality().equals(other.area, area) &&
             const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.coverImageUrl, coverImageUrl) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
             const DeepCollectionEquality().equals(other.distance, distance));
@@ -558,6 +584,7 @@ class _$_Team implements _Team {
       const DeepCollectionEquality().hash(area),
       const DeepCollectionEquality().hash(location),
       const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(coverImageUrl),
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(updatedAt),
       const DeepCollectionEquality().hash(distance));
@@ -585,6 +612,7 @@ abstract class _Team implements Team {
       String? area,
       String? location,
       String? imageUrl,
+      String? coverImageUrl,
       DateTime? createdAt,
       DateTime? updatedAt,
       double? distance}) = _$_Team;
@@ -611,6 +639,8 @@ abstract class _Team implements Team {
   String? get location;
   @override
   String? get imageUrl;
+  @override
+  String? get coverImageUrl;
   @override
   DateTime? get createdAt;
   @override

@@ -9,8 +9,8 @@ class MyConfig {
 }
 
 // URL
-// const baseUrl = 'http://192.168.118.176:80/api/v1';
-const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
+const baseUrl = 'http://192.168.1.64:80/api/v1';
+// const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
 
 const myTimeout = 8;
 const imageAssetPath = 'assets/images/';
@@ -18,6 +18,11 @@ const imageAssetPath = 'assets/images/';
 class MyAssets {
   static const settingsBgImage = 'assets/images/settings_bg.png';
   static const paperClipIcon = 'assets/svgs/paper_clip.svg';
+
+  static const teamPeopleIcon = 'assets/svgs/team_people.svg';
+  static const joinTeamIcon = 'assets/svgs/join_team.svg';
+  static const createTeamIcon = 'assets/svgs/create_team.svg';
+  static const cameraIcon = 'assets/svgs/camera.svg';
 }
 
 // Colors
@@ -30,6 +35,8 @@ class MyColors {
   static const giftAskColor = Color(0xff353445);
   static final giftAddFormColor = Colors.grey[300]!.withOpacity(0.5);
   static final giftAddFormSubmitColor = Colors.blueGrey[700];
+
+  static const darkBlue = Color(0xFF353445);
 }
 
 const loginColor = Color(0xff34fae3);
