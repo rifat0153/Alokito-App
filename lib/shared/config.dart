@@ -22,6 +22,7 @@ class MyAssets {
   static const teamPeopleIcon = 'assets/svgs/team_people.svg';
   static const joinTeamIcon = 'assets/svgs/join_team.svg';
   static const createTeamIcon = 'assets/svgs/create_team.svg';
+  static const cameraIcon = 'assets/svgs/camera.svg';
 }
 
 // Colors
@@ -34,6 +35,8 @@ class MyColors {
   static const giftAskColor = Color(0xff353445);
   static final giftAddFormColor = Colors.grey[300]!.withOpacity(0.5);
   static final giftAddFormSubmitColor = Colors.blueGrey[700];
+
+  static const darkBlue = Color(0xFF353445);
 }
 
 const loginColor = Color(0xff34fae3);

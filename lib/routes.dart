@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/team/create_team_view.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
 import 'package:alokito_new/modules/team/team_view.dart';
@@ -71,6 +72,11 @@ class GetPages {
           () => TeamController(service: TeamService()),
         );
       }),
+    ),
+    GetPage(
+      name: CreateTeamView.route,
+      page: () => const CreateTeamView(),
+      transition: Transition.fadeIn,
     ),
 
     //* Chat ROutes

@@ -37,6 +37,7 @@ _$_Team _$$_TeamFromJson(Map<String, dynamic> json) => _$_Team(
       area: json['area'] as String?,
       location: json['location'] as String?,
       imageUrl: json['imageUrl'] as String?,
+      coverImageUrl: json['coverImageUrl'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -57,6 +58,7 @@ Map<String, dynamic> _$$_TeamToJson(_$_Team instance) => <String, dynamic>{
       'area': instance.area,
       'location': instance.location,
       'imageUrl': instance.imageUrl,
+      'coverImageUrl': instance.coverImageUrl,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'distance': instance.distance,

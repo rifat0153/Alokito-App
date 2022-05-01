@@ -34,6 +34,7 @@ abstract class Team with _$Team {
     String? area,
     String? location,
     String? imageUrl,
+    String? coverImageUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
     double? distance,

@@ -25,9 +25,9 @@ class GiftDetailMapWidget extends StatelessWidget {
   ];
 
   final markers = [
-    const Marker(
-      markerId: MarkerId('1'),
-      position: LatLng(23.7590, 90.4119),
+     Marker(
+      markerId: const MarkerId('1'),
+      position: const LatLng(23.7590, 90.4119),
     )
   ];
 

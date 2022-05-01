@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/team/create_team_view.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/constants.dart';
@@ -17,21 +18,27 @@ class TeamView extends StatelessWidget {
     final TeamController controller = Get.find<TeamController>();
 
     return Scaffold(
-      body: Obx(
-        () => SafeArea(
-          child: SizedBox(
-            width: 1.sw,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SvgPicture.asset(MyAssets.teamPeopleIcon),
-                SvgPicture.asset(MyAssets.joinTeamIcon),
-                const SizedBox(
-                  height: kSpacing * 2,
-                ),
-                SvgPicture.asset(MyAssets.createTeamIcon),
-              ],
-            ),
+      body: SafeArea(
+        child: SizedBox(
+          width: 1.sw,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset(MyAssets.teamPeopleIcon),
+              InkWell(
+                onTap: () {
+                  // TODO
+                },
+                child: SvgPicture.asset(MyAssets.joinTeamIcon),
+              ),
+              const SizedBox(
+                height: kSpacing * 2,
+              ),
+              InkWell(
+                onTap: () => Get.toNamed(CreateTeamView.route),
+                child: SvgPicture.asset(MyAssets.createTeamIcon),
+              ),
+            ],
           ),
         ),
       ),
