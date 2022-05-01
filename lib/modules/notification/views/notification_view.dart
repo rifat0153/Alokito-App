@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../models/notification/notification.dart';
-import '../../../shared/skeleton_widget.dart';
+import '../../../shared/widget/skeleton_widget.dart';
 import '../../../shared/widget/my_text.dart';
 import '../controllers/notification_controller.dart';
 

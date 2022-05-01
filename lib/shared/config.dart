@@ -36,6 +36,7 @@ class MyColors {
   static final giftAddFormColor = Colors.grey[300]!.withOpacity(0.5);
   static final giftAddFormSubmitColor = Colors.blueGrey[700];
 
+  static const darkGrey = Color(0xff707070);
   static const darkBlue = Color(0xFF353445);
 }
 

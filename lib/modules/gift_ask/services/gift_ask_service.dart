@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../core/image/image_upload_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../shared/config.dart';
-import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/widget/my_bottomsheets.dart';
 
 abstract class BaseGiftAskService {
   Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile});

@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:alokito_new/models/team/team_response.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
 import 'package:image_picker/image_picker.dart';
+import 'team_ui_action.dart';
 
 class TeamController extends GetxController {
   TeamController({
@@ -20,11 +22,32 @@ class TeamController extends GetxController {
   Rx<File> coverTeamImage = File('').obs;
   Rx<File> profileTeamImage = File('').obs;
 
+  Rx<Geometry?> location = null.obs;
+  RxString name = ''.obs;
+  RxString objective = ''.obs;
+  RxString goal = ''.obs;
+  RxString summary = ''.obs;
+  Rx<DateTime?> startDate = null.obs;
+  Rx<DateTime?> endDate = null.obs;
+
   @override
   void onInit() {
     super.onInit();
 
     retriveTeams();
+  }
+
+  void handleUiAction(TeamUiAction action) {
+    action.when(
+      setName: (value) => name.value = value,
+      setLocation: (value) => name.value = value,
+      setObjective: (value) => objective.value = value,
+      setGoal: (value) => goal.value = value,
+      setSummary: (value) => summary.value = value,
+      setStartDate: (value) => startDate.value = value,
+      setEndDate: (value) => endDate.value = value,
+      create: () {},
+    );
   }
 
   Future<void> getCoverImage() async {

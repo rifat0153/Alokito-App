@@ -1,10 +1,10 @@
 
 import 'package:alokito_new/modules/gift_request_detail/views/gift_request_detail_view.dart';
 
-import '../modules/auth/controllers/auth_controller.dart';
-import '../modules/gift_request/views/gift_request_view.dart';
-import '../modules/notification/views/notification_view.dart';
-import 'widget/my_text.dart';
+import '../../modules/auth/controllers/auth_controller.dart';
+import '../../modules/gift_request/views/gift_request_view.dart';
+import '../../modules/notification/views/notification_view.dart';
+import 'my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

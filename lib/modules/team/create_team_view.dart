@@ -1,30 +1,47 @@
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/skeleton_widget.dart';
+import 'package:alokito_new/shared/widget/my_text_field_widget.dart';
+import 'package:alokito_new/shared/widget/skeleton_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'team_ui_action.dart';
 
 class CreateTeamView extends StatelessWidget {
-  const CreateTeamView({Key? key}) : super(key: key);
+  CreateTeamView({Key? key}) : super(key: key);
 
   static const route = '/create_team_view';
+
+  final TeamController controller = Get.find<TeamController>();
 
   @override
   Widget build(BuildContext context) {
     return SkeletonWidget(
       titleWidget: const MyText('Create a team', fontWeight: FontWeight.bold),
       assetPath: 'assets/images/notification-background.png',
-      child: Column(
-        children: [
-          TeamProfileImageWidget(),
-        ],
+      child: GestureDetector(
+        onTap: FocusScope.of(context).unfocus,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            TeamProfileImageWidget(),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MyTextField(
+                onChanged: (text) => controller.handleUiAction(TeamUiAction.setName(text)),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+
 
 class TeamProfileImageWidget extends StatelessWidget {
   TeamProfileImageWidget({

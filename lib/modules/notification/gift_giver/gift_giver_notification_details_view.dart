@@ -4,7 +4,7 @@ import '../../auth/controllers/auth_controller.dart';
 import 'gift_giver_notification_controller.dart';
 import 'widgets/feedback_widget.dart';
 import '../../../shared/config.dart';
-import '../../../shared/skeleton_widget.dart';
+import '../../../shared/widget/skeleton_widget.dart';
 import '../../../shared/styles.dart';
 import '../../../shared/widget/covid_guidelines_widget.dart';
 import '../../../shared/widget/my_text.dart';

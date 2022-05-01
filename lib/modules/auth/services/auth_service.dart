@@ -3,7 +3,7 @@ import 'dart:io';
 import '../../../core/location/location_helper.dart';
 import '../../../models/user/local_user.dart';
 import '../../../shared/config.dart';
-import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/widget/my_bottomsheets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 

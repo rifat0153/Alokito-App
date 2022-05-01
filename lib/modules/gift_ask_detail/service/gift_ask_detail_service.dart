@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
+import 'package:alokito_new/shared/widget/my_bottomsheets.dart';
 import 'package:alokito_new/shared/shared_service.dart';
 import 'package:get/get.dart';
 

@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:alokito_new/models/gift/gift.dart';
-import 'package:alokito_new/shared/my_bottomsheets.dart';
+import 'package:alokito_new/shared/widget/my_bottomsheets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
