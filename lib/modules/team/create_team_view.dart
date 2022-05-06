@@ -1,5 +1,9 @@
+import 'package:alokito_new/core/extensions/lat_lng_ext.dart';
+import 'package:alokito_new/modules/gift/widgets/gift_location_widget.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/shared/config.dart';
+import 'package:alokito_new/shared/constants.dart';
+import 'package:alokito_new/shared/widget/map_location_widget.dart';
 import 'package:alokito_new/shared/widget/my_text_field_widget.dart';
 import 'package:alokito_new/shared/widget/skeleton_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
@@ -7,7 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'team_ui_action.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'team_ui_event.dart';
 
 class CreateTeamView extends StatelessWidget {
   CreateTeamView({Key? key}) : super(key: key);
@@ -18,30 +23,96 @@ class CreateTeamView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SkeletonWidget(
-      titleWidget: const MyText('Create a team', fontWeight: FontWeight.bold),
-      assetPath: 'assets/images/notification-background.png',
-      child: GestureDetector(
-        onTap: FocusScope.of(context).unfocus,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            TeamProfileImageWidget(),
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MyTextField(
-                onChanged: (text) => controller.handleUiAction(TeamUiAction.setName(text)),
-              ),
+    return SingleChildScrollView(
+      child: SkeletonWidget(
+        titleWidget: const MyText('Create a team', fontWeight: FontWeight.bold),
+        assetPath: 'assets/images/notification-background.png',
+        child: GestureDetector(
+          onTap: FocusScope.of(context).unfocus,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                TeamProfileImageWidget(),
+                const SizedBox(height: 8),
+                _TeamTextField(
+                  hintText: '# team name',
+                  label: 'Name',
+                  onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                    onPressed: () {
+                      // Get.to(const TeamMapLocationWidget());
+                      Get.to(
+                        Obx(() => MapLocationWidget(
+                              title: 'Team location',
+                              markerList: controller.markerList.toSet(),
+                              onTap: (LatLng? latlng) async {
+                                controller.locationLatLng.value = latlng!;
+
+                                controller.handleUiEvent(TeamUiEvent.setLocation(latlng));
+                              },
+                              initialCameraPosition: const LatLng(23, 90),
+                            )),
+                      );
+                    },
+                    child: const MyText('Pick location', fontSize: 16)),
+                Obx(() => MyText(controller.locationAddress.value)),
+                const SizedBox(height: 8),
+                _TeamTextField(
+                  hintText: 'e.g. Helping in flood affected areas',
+                  label: 'Objective',
+                  onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+                ),
+                const SizedBox(height: 8),
+                _TeamTextField(
+                  hintText: 'e.g. Reach  175 people ...',
+                  label: 'Goal',
+                  onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 }
 
+class _TeamTextField extends StatelessWidget {
+  const _TeamTextField({
+    Key? key,
+    required this.label,
+    required this.hintText,
+    required this.onChanged,
+    this.suffixIcon,
+  }) : super(key: key);
 
+  final String label;
+  final String hintText;
+  final void Function(String) onChanged;
+  final Widget? suffixIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kSpacing * 4, vertical: kSpacing),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MyText(label),
+          const SizedBox(height: kSpacing),
+          MyTextField(
+            hintText: hintText,
+            onChanged: onChanged,
+            suffixIcon: suffixIcon,
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class TeamProfileImageWidget extends StatelessWidget {
   TeamProfileImageWidget({

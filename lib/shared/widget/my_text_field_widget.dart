@@ -6,10 +6,14 @@ class MyTextField extends StatelessWidget {
     Key? key,
     required this.onChanged,
     this.icon,
+    this.hintText,
+    this.suffixIcon,
   }) : super(key: key);
 
   final Function(String string) onChanged;
   final Widget? icon;
+  final String? hintText;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +27,13 @@ class MyTextField extends StatelessWidget {
           ),
         ),
         fillColor: MyColors.darkGrey.withOpacity(0.6),
-        hintText: 'name',
+        hintText: hintText,
+        floatingLabelAlignment: FloatingLabelAlignment.center,
+        alignLabelWithHint: false,
         isDense: true,
         contentPadding: const EdgeInsets.all(8),
         filled: true,
+        suffixIcon: suffixIcon,
         icon: icon,
       ),
     );

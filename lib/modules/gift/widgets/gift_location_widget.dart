@@ -7,6 +7,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 class GiftLocationWidget extends StatelessWidget {
+  GiftLocationWidget({Key? key}) : super(key: key);
+
   final GiftAddFormController controller = Get.find();
 
   @override
@@ -24,8 +26,7 @@ class GiftLocationWidget extends StatelessWidget {
           children: [
             const SizedBox(width: 20),
             Obx(
-              () => Checkbox(
-                  value: controller.canLeaveOutside.value, onChanged: (value) => controller.canLeaveOutside.value = value!),
+              () => Checkbox(value: controller.canLeaveOutside.value, onChanged: (value) => controller.canLeaveOutside.value = value!),
             ),
             const Text(
               ' I can leave it outside your home',
@@ -39,6 +40,8 @@ class GiftLocationWidget extends StatelessWidget {
 }
 
 class GiftMapWidget extends StatefulWidget {
+  const GiftMapWidget({Key? key}) : super(key: key);
+
   @override
   State<GiftMapWidget> createState() => GiftMapWidgetState();
 }
@@ -48,20 +51,9 @@ class GiftMapWidgetState extends State<GiftMapWidget> {
   final Completer<GoogleMapController> _controller = Completer();
   late LatLng myLocation;
 
-  var markers = [
-    Marker(
-      markerId: MarkerId('1'),
-      position: LatLng(23.7590, 90.4119),
-    )
-  ];
-
   @override
   Widget build(BuildContext context) {
-    print(controller.userLocation.value);
-
     return Scaffold(
-      // height: Get.size.height,
-      // width: Get.size.width,
       appBar: AppBar(
         title: const Text('Select Gift Location'),
       ),
@@ -73,7 +65,7 @@ class GiftMapWidgetState extends State<GiftMapWidget> {
           onMapCreated: _controller.complete,
           onTap: (LatLng postion) async {
             controller.markers.value = [];
-            controller.markers.value = markers = [
+            controller.markers.value = [
               Marker(
                 markerId: MarkerId(const Uuid().v4()),
                 position: LatLng(postion.latitude, postion.longitude),
@@ -81,8 +73,6 @@ class GiftMapWidgetState extends State<GiftMapWidget> {
             ];
 
             controller.selectedLatLng.value = postion;
-
-            print(controller.markers.first.position);
           },
         ),
       ),

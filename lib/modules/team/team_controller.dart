@@ -1,13 +1,15 @@
 import 'dart:io';
 
-import 'package:alokito_new/models/user/local_user.dart';
+import 'package:alokito_new/core/extensions/lat_lng_ext.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:alokito_new/models/team/team_response.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'team_ui_action.dart';
+import 'package:logger/logger.dart';
+import 'team_ui_event.dart';
 
 class TeamController extends GetxController {
   TeamController({
@@ -22,7 +24,10 @@ class TeamController extends GetxController {
   Rx<File> coverTeamImage = File('').obs;
   Rx<File> profileTeamImage = File('').obs;
 
-  Rx<Geometry?> location = null.obs;
+  final locationLatLng = const LatLng(23, 90).obs;
+  Rx<String> locationAddress = ''.obs;
+  RxList<Marker> markerList = RxList<Marker>.empty();
+
   RxString name = ''.obs;
   RxString objective = ''.obs;
   RxString goal = ''.obs;
@@ -37,10 +42,33 @@ class TeamController extends GetxController {
     retriveTeams();
   }
 
-  void handleUiAction(TeamUiAction action) {
-    action.when(
+  void setLocation(LatLng value) async {
+    Logger().i('location: location received: $value');
+
+    // locationLatLng.value = value.toGeometry();
+    // locationAddress.value = await value.toReadableAddress();
+    // markerList.value = [
+    //   Marker(markerId: MarkerId(locationLatLng.toString()), position: value),
+    // ];
+
+    // Logger().i('location: ${locationLatLng.value} , address: ${locationAddress.value}');
+  }
+
+  void handleUiEvent(TeamUiEvent event) {
+    event.when(
       setName: (value) => name.value = value,
-      setLocation: (value) => name.value = value,
+      setLocation: (value) async {
+        // Logger().i('location: location received: $value');
+        print('location: location received controller: $value');
+
+        locationLatLng.value = value;
+        locationAddress.value = await value.toReadableAddress();
+        markerList.value = [
+          Marker(markerId: MarkerId(locationLatLng.toString()), position: value),
+        ];
+        print('location: ${locationLatLng.value} , address: ${locationAddress.value}');
+        // Logger().i('location: ${locationLatLng.value} , address: ${locationAddress.value}');
+      },
       setObjective: (value) => objective.value = value,
       setGoal: (value) => goal.value = value,
       setSummary: (value) => summary.value = value,
