@@ -37,6 +37,7 @@ class MyColors {
   static final giftAddFormSubmitColor = Colors.blueGrey[700];
 
   static const darkGrey = Color(0xff707070);
+  static final lightGrey = MyColors.darkGrey.withOpacity(0.3);
   static const darkBlue = Color(0xFF353445);
 }
 

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DateHelper {
+class DateService {
   static String findTimeDifference(DateTime dateTime1, DateTime dateTime2) {
     final int diffInHour = dateTime1.difference(dateTime2).inHours;
     final int diffInMin = dateTime1.difference(dateTime2).inMinutes;

@@ -1,24 +1,29 @@
 import 'package:alokito_new/shared/config.dart';
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
-  const MyTextField({
+class MyTextFieldBase extends StatelessWidget {
+  const MyTextFieldBase({
     Key? key,
     required this.onChanged,
+    this.fillColor,
     this.icon,
     this.hintText,
+    this.maxLines,
     this.suffixIcon,
   }) : super(key: key);
 
   final Function(String string) onChanged;
+  final Color? fillColor;
   final Widget? icon;
   final String? hintText;
+  final int? maxLines;
   final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       onChanged: onChanged,
+      maxLines: maxLines,
       decoration: InputDecoration(
         border: const OutlineInputBorder(
           borderSide: BorderSide(
@@ -26,7 +31,7 @@ class MyTextField extends StatelessWidget {
             style: BorderStyle.none,
           ),
         ),
-        fillColor: MyColors.darkGrey.withOpacity(0.6),
+        fillColor: fillColor ?? MyColors.lightGrey,
         hintText: hintText,
         floatingLabelAlignment: FloatingLabelAlignment.center,
         alignLabelWithHint: false,

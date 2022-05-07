@@ -1,10 +1,8 @@
-import 'package:alokito_new/core/extensions/lat_lng_ext.dart';
-import 'package:alokito_new/modules/gift/widgets/gift_location_widget.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/constants.dart';
+import 'package:alokito_new/shared/widget/input/my_input.dart';
 import 'package:alokito_new/shared/widget/map_location_widget.dart';
-import 'package:alokito_new/shared/widget/my_text_field_widget.dart';
 import 'package:alokito_new/shared/widget/skeleton_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
@@ -23,56 +21,52 @@ class CreateTeamView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SkeletonWidget(
-        titleWidget: const MyText('Create a team', fontWeight: FontWeight.bold),
-        assetPath: 'assets/images/notification-background.png',
-        child: GestureDetector(
-          onTap: FocusScope.of(context).unfocus,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                TeamProfileImageWidget(),
-                const SizedBox(height: 8),
-                _TeamTextField(
-                  hintText: '# team name',
-                  label: 'Name',
-                  onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+    return SkeletonWidget(
+      titleWidget: const MyText('Create a team', fontWeight: FontWeight.bold),
+      assetPath: 'assets/images/notification-background.png',
+      child: GestureDetector(
+        onTap: FocusScope.of(context).unfocus,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              TeamProfileImageWidget(),
+              const SizedBox(height: 8),
+              MyTextFieldLabeled(
+                hintText: '# team name',
+                label: 'Name',
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+              const SizedBox(height: 8),
+              _TeamLocationWidget(controller: controller),
+              const SizedBox(height: 8),
+              MyTextFieldLabeled(
+                hintText: 'e.g. Helping in flood affected areas',
+                label: 'Objective',
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+              const SizedBox(height: 8),
+              MyTextFieldLabeled(
+                hintText: 'e.g. Reach  175 people ...',
+                label: 'Goal',
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+              const SizedBox(height: 8),
+              MyTextFieldLabeled(
+                hintText: 'e.g. Reach  175 people ...',
+                label: 'Summary',
+                maxLines: 10,
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kSpacing * 3),
+                child: MyCheckBox(
+                  label: 'Previous Goal Achivement',
+                  onChange: (val) => controller.handleUiEvent(TeamUiEvent.setPreviousGoalAchieved(val)),
                 ),
-                const SizedBox(height: 8),
-                ElevatedButton(
-                    onPressed: () {
-                      // Get.to(const TeamMapLocationWidget());
-                      Get.to(
-                        Obx(() => MapLocationWidget(
-                              title: 'Team location',
-                              markerList: controller.markerList.toSet(),
-                              onTap: (LatLng? latlng) async {
-                                controller.locationLatLng.value = latlng!;
-
-                                controller.handleUiEvent(TeamUiEvent.setLocation(latlng));
-                              },
-                              initialCameraPosition: const LatLng(23, 90),
-                            )),
-                      );
-                    },
-                    child: const MyText('Pick location', fontSize: 16)),
-                Obx(() => MyText(controller.locationAddress.value)),
-                const SizedBox(height: 8),
-                _TeamTextField(
-                  hintText: 'e.g. Helping in flood affected areas',
-                  label: 'Objective',
-                  onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
-                ),
-                const SizedBox(height: 8),
-                _TeamTextField(
-                  hintText: 'e.g. Reach  175 people ...',
-                  label: 'Goal',
-                  onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -80,33 +74,51 @@ class CreateTeamView extends StatelessWidget {
   }
 }
 
-class _TeamTextField extends StatelessWidget {
-  const _TeamTextField({
+class _TeamLocationWidget extends StatelessWidget {
+  const _TeamLocationWidget({
     Key? key,
-    required this.label,
-    required this.hintText,
-    required this.onChanged,
-    this.suffixIcon,
+    required this.controller,
   }) : super(key: key);
 
-  final String label;
-  final String hintText;
-  final void Function(String) onChanged;
-  final Widget? suffixIcon;
+  final TeamController controller;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kSpacing * 4, vertical: kSpacing),
+      padding: const EdgeInsets.symmetric(horizontal: kSpacing * 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyText(label),
-          const SizedBox(height: kSpacing),
-          MyTextField(
-            hintText: hintText,
-            onChanged: onChanged,
-            suffixIcon: suffixIcon,
+          const MyText('Location'),
+          const SizedBox(
+            height: kSpacing,
+          ),
+          GestureDetector(
+            onTap: () => Get.to(
+              Obx(() => MapLocationWidget(
+                    title: 'Team location',
+                    markerList: controller.markerList.toSet(),
+                    onTap: (LatLng? latlng) async {
+                      controller.locationLatLng.value = latlng!;
+
+                      controller.handleUiEvent(TeamUiEvent.setLocation(latlng));
+                    },
+                    initialCameraPosition: const LatLng(23, 90),
+                  )),
+            ),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: kSpacing, vertical: kSpacing),
+              decoration: BoxDecoration(
+                color: MyColors.lightGrey,
+                borderRadius: BorderRadius.circular(kRadius / 2),
+              ),
+              child: MyText(
+                controller.locationAddress.value.isEmpty ? 'Country, place' : controller.locationAddress.value,
+                fontSize: 14,
+                color: Colors.black.withOpacity(0.6),
+              ),
+            ),
           ),
         ],
       ),

@@ -12,5 +12,7 @@ class TeamUiEvent with _$TeamUiEvent {
   const factory TeamUiEvent.setSummary(String summary) = _TeamUiEvent_setSummary;
   const factory TeamUiEvent.setStartDate(DateTime date) = _TeamUiEvent_setStartDate;
   const factory TeamUiEvent.setEndDate(DateTime date) = _TeamUiEvent_setEndDate;
+  const factory TeamUiEvent.setPreviousGoalAchieved(bool checked) = _TeamUiEvent_setPreviousGoalAchieved;
+  const factory TeamUiEvent.setPreviousGoalSummary(DateTime date) = _TeamUiEvent_setPreviousGoalSummary;
   const factory TeamUiEvent.create() = _TeamUiEvent_create;
 }

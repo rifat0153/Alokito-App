@@ -13,8 +13,7 @@ String teamResponseToJson(TeamResponse data) => json.encode(data.toJson());
 abstract class TeamResponse with _$TeamResponse {
   const factory TeamResponse({
     required int page,
-    @JsonKey(name: 'results')
-    @Default([]) List<Team> teams,
+    @JsonKey(name: 'results') @Default([]) List<Team> teams,
   }) = _TeamResponse;
 
   factory TeamResponse.fromJson(Map<String, dynamic> json) => _$TeamResponseFromJson(json);
@@ -25,16 +24,22 @@ abstract class Team with _$Team {
   @JsonSerializable(explicitToJson: true)
   const factory Team({
     String? id,
-    @Default([]) List<LocalUser> members,
     String? creatorId,
     String? creator,
+    @Default([]) List<LocalUser> members,
     String? teamName,
-    String? teamDetails,
+    String? summary,
+    String? objective,
+    String? goal,
+    String? previousGoalSummary,
+    @Default(false) bool previousGoalAchieved,
     Geometry? geometry,
     String? area,
     String? location,
     String? imageUrl,
     String? coverImageUrl,
+    DateTime? startDate,
+    DateTime? endDate,
     DateTime? createdAt,
     DateTime? updatedAt,
     double? distance,

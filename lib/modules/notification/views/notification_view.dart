@@ -1,4 +1,4 @@
-import 'package:alokito_new/core/date/date_helper.dart';
+import 'package:alokito_new/core/date/date_service.dart';
 import 'package:alokito_new/modules/gift_ask_request_detail/views/gift_ask_request_detail_view.dart';
 import 'package:alokito_new/modules/gift_request_detail/views/gift_request_detail_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,9 +44,7 @@ class NotificationView extends StatelessWidget {
               child: ListView.builder(
                 controller: controller.scrollController,
                 padding: EdgeInsets.zero,
-                itemCount: controller.loading.value && !controller.firstFetch.value
-                    ? notificationList.length + 1
-                    : notificationList.length,
+                itemCount: controller.loading.value && !controller.firstFetch.value ? notificationList.length + 1 : notificationList.length,
                 itemBuilder: (_, i) {
                   if (controller.loading.value && !controller.firstFetch.value && i == notificationList.length) {
                     return const CupertinoActivityIndicator(radius: 15);
@@ -148,7 +146,7 @@ class NotificationTile extends StatelessWidget {
   // }
 
   Padding _buildTextNotificationTile(MyNotification notification) {
-    final String timeDiff = DateHelper.findTimeDifference(DateTime.now(), notification.createdAt);
+    final String timeDiff = DateService.findTimeDifference(DateTime.now(), notification.createdAt);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -192,7 +190,7 @@ class NotificationTile extends StatelessWidget {
   }
 
   Widget _buildGiftAskRequestNotificationTile(MyNotification notification, BuildContext context) {
-    final String timeDiff = DateHelper.findTimeDifference(DateTime.now(), notification.createdAt);
+    final String timeDiff = DateService.findTimeDifference(DateTime.now(), notification.createdAt);
 
     return notification.giftAskRequestDoc != null
         ? GestureDetector(
@@ -248,7 +246,7 @@ class NotificationTile extends StatelessWidget {
   }
 
   Widget _buildGiftRequestNotificationTile(MyNotification notification, BuildContext context) {
-    final String timeDiff = DateHelper.findTimeDifference(DateTime.now(), notification.createdAt);
+    final String timeDiff = DateService.findTimeDifference(DateTime.now(), notification.createdAt);
 
     return notification.giftRequestDoc != null
         ? GestureDetector(

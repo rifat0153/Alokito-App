@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../core/date/date_helper.dart';
+import '../../../core/date/date_service.dart';
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../models/my_enums.dart';
 import '../../../shared/config.dart';
@@ -23,8 +23,7 @@ class GiftAskDetailView extends StatelessWidget {
   static const route = '/giftaskdetailview';
 
   // initialize controller
-  final GiftAskDetailController controller =
-      Get.put(GiftAskDetailController(GiftAskDetailService()));
+  final GiftAskDetailController controller = Get.put(GiftAskDetailController(GiftAskDetailService()));
 
   final GiftAsk giftAsk;
 
@@ -51,8 +50,7 @@ class GiftAskDetailView extends StatelessWidget {
               width: Get.width,
               height: Get.height,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
+                image: DecorationImage(image: AssetImage('assets/images/gift_add_form.png'), fit: BoxFit.fill),
               ),
             ),
             _buildBody(giftAsk: giftAsk),
@@ -66,9 +64,8 @@ class GiftAskDetailView extends StatelessWidget {
     // List<Marker> markers,
     required GiftAsk giftAsk,
   }) {
-    final userJoinedAt = DateHelper.findTimeDifference(DateTime.now(), giftAsk.user.createdAt);
-    final distance =
-        Get.find<AuthController>().calculateDistanceFromGiftOrGiftAsk(giftAsk: giftAsk);
+    final userJoinedAt = DateService.findTimeDifference(DateTime.now(), giftAsk.user.createdAt);
+    final distance = Get.find<AuthController>().calculateDistanceFromGiftOrGiftAsk(giftAsk: giftAsk);
 
     return SingleChildScrollView(
       child: Column(
@@ -76,14 +73,12 @@ class GiftAskDetailView extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(8.sp),
-            child: Text(giftAsk.title.toString(),
-                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+            child: Text(giftAsk.title.toString(), style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
           ),
           GiftAskDetailRequestForAndDateWidget(giftAsk: giftAsk, date: 'date'),
           GiftAskDetailNoteWidget(giftAsk: giftAsk),
           GiftAskDetailUserNameAndLocationWidget(giftAsk: giftAsk, distance: distance),
-          GiftAskDetailRequesterLocationAndGiftDetailsWidget(
-              userJoinedAt: userJoinedAt, giftAsk: giftAsk),
+          GiftAskDetailRequesterLocationAndGiftDetailsWidget(userJoinedAt: userJoinedAt, giftAsk: giftAsk),
 
           // Decision Widget
           GiftAskDetailDecisionWidget(giftAsk: giftAsk, controller: controller),

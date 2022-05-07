@@ -1,4 +1,4 @@
-import 'package:alokito_new/core/date/date_helper.dart';
+import 'package:alokito_new/core/date/date_service.dart';
 import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
@@ -17,7 +17,7 @@ class GiftRequesterDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final requesterIdCreatedAgo = DateHelper.findTimeDifference(DateTime.now(), giftRequest!.requester.createdAt);
+    final requesterIdCreatedAgo = DateService.findTimeDifference(DateTime.now(), giftRequest!.requester.createdAt);
 
     final distanceBetweenRequesterAndGiver = LocationHelper.determineDistance(
       giftRequest!.gift.geometry.coordinates.last,
