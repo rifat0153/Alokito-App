@@ -23,6 +23,7 @@ class MyAssets {
   static const joinTeamIcon = 'assets/svgs/join_team.svg';
   static const createTeamIcon = 'assets/svgs/create_team.svg';
   static const cameraIcon = 'assets/svgs/camera.svg';
+  static const calendarIcon = 'assets/svgs/calendar.svg';
 }
 
 // Colors

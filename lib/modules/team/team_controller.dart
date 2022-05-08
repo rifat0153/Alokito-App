@@ -30,9 +30,11 @@ class TeamController extends GetxController {
   RxString name = ''.obs;
   RxString objective = ''.obs;
   RxString goal = ''.obs;
+  RxBool previousGoalAcheived = false.obs;
+  RxString previousGoalSummary = ''.obs;
   RxString summary = ''.obs;
-  Rx<DateTime?> startDate = null.obs;
-  Rx<DateTime?> endDate = null.obs;
+  Rx<DateTime> startDate = DateTime.now().obs;
+  Rx<DateTime> endDate = DateTime.now().obs;
 
   @override
   void onInit() {
@@ -54,8 +56,8 @@ class TeamController extends GetxController {
       setObjective: (value) => objective.value = value,
       setGoal: (value) => goal.value = value,
       setSummary: (value) => summary.value = value,
-      setPreviousGoalAchieved: (value) {},
-      setPreviousGoalSummary: (value) {},
+      setPreviousGoalAchieved: (value) => previousGoalAcheived.value = value,
+      setPreviousGoalSummary: (value) => previousGoalSummary.value = value,
       setStartDate: (value) => startDate.value = value,
       setEndDate: (value) => endDate.value = value,
       create: () {},

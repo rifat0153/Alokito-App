@@ -118,11 +118,11 @@ class _BuildBody extends StatelessWidget {
             ),
           ),
 
-          SvgPicture.asset(
-            'assets/svgs/Group 4302.svg',
-            width: Get.width,
-            height: 1.sh,
-          ),
+          // SvgPicture.asset(
+          //   'assets/svgs/Group 4302.svg',
+          //   width: Get.width,
+          //   height: 1.sh,
+          // ),
 
           // Middle Layer
           Column(

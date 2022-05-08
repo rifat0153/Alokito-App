@@ -66,9 +66,9 @@ class _$TeamUiEventTearOff {
     );
   }
 
-  _TeamUiEvent_setPreviousGoalSummary setPreviousGoalSummary(DateTime date) {
+  _TeamUiEvent_setPreviousGoalSummary setPreviousGoalSummary(String summary) {
     return _TeamUiEvent_setPreviousGoalSummary(
-      date,
+      summary,
     );
   }
 
@@ -92,7 +92,7 @@ mixin _$TeamUiEvent {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) =>
       throw _privateConstructorUsedError;
@@ -106,7 +106,7 @@ mixin _$TeamUiEvent {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ mixin _$TeamUiEvent {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) =>
@@ -266,7 +266,7 @@ class _$_TeamUiEvent_setName implements _TeamUiEvent_setName {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return setName(name);
@@ -283,7 +283,7 @@ class _$_TeamUiEvent_setName implements _TeamUiEvent_setName {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return setName?.call(name);
@@ -300,7 +300,7 @@ class _$_TeamUiEvent_setName implements _TeamUiEvent_setName {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
@@ -456,7 +456,7 @@ class _$_TeamUiEvent_setLocation implements _TeamUiEvent_setLocation {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return setLocation(latlng);
@@ -473,7 +473,7 @@ class _$_TeamUiEvent_setLocation implements _TeamUiEvent_setLocation {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return setLocation?.call(latlng);
@@ -490,7 +490,7 @@ class _$_TeamUiEvent_setLocation implements _TeamUiEvent_setLocation {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
@@ -647,7 +647,7 @@ class _$_TeamUiEvent_setObjective implements _TeamUiEvent_setObjective {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return setObjective(objective);
@@ -664,7 +664,7 @@ class _$_TeamUiEvent_setObjective implements _TeamUiEvent_setObjective {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return setObjective?.call(objective);
@@ -681,7 +681,7 @@ class _$_TeamUiEvent_setObjective implements _TeamUiEvent_setObjective {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
@@ -837,7 +837,7 @@ class _$_TeamUiEvent_setGoal implements _TeamUiEvent_setGoal {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return setGoal(goal);
@@ -854,7 +854,7 @@ class _$_TeamUiEvent_setGoal implements _TeamUiEvent_setGoal {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return setGoal?.call(goal);
@@ -871,7 +871,7 @@ class _$_TeamUiEvent_setGoal implements _TeamUiEvent_setGoal {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
@@ -1026,7 +1026,7 @@ class _$_TeamUiEvent_setSummary implements _TeamUiEvent_setSummary {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return setSummary(summary);
@@ -1043,7 +1043,7 @@ class _$_TeamUiEvent_setSummary implements _TeamUiEvent_setSummary {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return setSummary?.call(summary);
@@ -1060,7 +1060,7 @@ class _$_TeamUiEvent_setSummary implements _TeamUiEvent_setSummary {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
@@ -1217,7 +1217,7 @@ class _$_TeamUiEvent_setStartDate implements _TeamUiEvent_setStartDate {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return setStartDate(date);
@@ -1234,7 +1234,7 @@ class _$_TeamUiEvent_setStartDate implements _TeamUiEvent_setStartDate {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return setStartDate?.call(date);
@@ -1251,7 +1251,7 @@ class _$_TeamUiEvent_setStartDate implements _TeamUiEvent_setStartDate {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
@@ -1407,7 +1407,7 @@ class _$_TeamUiEvent_setEndDate implements _TeamUiEvent_setEndDate {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return setEndDate(date);
@@ -1424,7 +1424,7 @@ class _$_TeamUiEvent_setEndDate implements _TeamUiEvent_setEndDate {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return setEndDate?.call(date);
@@ -1441,7 +1441,7 @@ class _$_TeamUiEvent_setEndDate implements _TeamUiEvent_setEndDate {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
@@ -1602,7 +1602,7 @@ class _$_TeamUiEvent_setPreviousGoalAchieved
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return setPreviousGoalAchieved(checked);
@@ -1619,7 +1619,7 @@ class _$_TeamUiEvent_setPreviousGoalAchieved
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return setPreviousGoalAchieved?.call(checked);
@@ -1636,7 +1636,7 @@ class _$_TeamUiEvent_setPreviousGoalAchieved
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
@@ -1725,7 +1725,7 @@ abstract class _$TeamUiEvent_setPreviousGoalSummaryCopyWith<$Res> {
           _TeamUiEvent_setPreviousGoalSummary value,
           $Res Function(_TeamUiEvent_setPreviousGoalSummary) then) =
       __$TeamUiEvent_setPreviousGoalSummaryCopyWithImpl<$Res>;
-  $Res call({DateTime date});
+  $Res call({String summary});
 }
 
 /// @nodoc
@@ -1743,13 +1743,13 @@ class __$TeamUiEvent_setPreviousGoalSummaryCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? date = freezed,
+    Object? summary = freezed,
   }) {
     return _then(_TeamUiEvent_setPreviousGoalSummary(
-      date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      summary == freezed
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1758,14 +1758,14 @@ class __$TeamUiEvent_setPreviousGoalSummaryCopyWithImpl<$Res>
 
 class _$_TeamUiEvent_setPreviousGoalSummary
     implements _TeamUiEvent_setPreviousGoalSummary {
-  const _$_TeamUiEvent_setPreviousGoalSummary(this.date);
+  const _$_TeamUiEvent_setPreviousGoalSummary(this.summary);
 
   @override
-  final DateTime date;
+  final String summary;
 
   @override
   String toString() {
-    return 'TeamUiEvent.setPreviousGoalSummary(date: $date)';
+    return 'TeamUiEvent.setPreviousGoalSummary(summary: $summary)';
   }
 
   @override
@@ -1773,12 +1773,12 @@ class _$_TeamUiEvent_setPreviousGoalSummary
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TeamUiEvent_setPreviousGoalSummary &&
-            const DeepCollectionEquality().equals(other.date, date));
+            const DeepCollectionEquality().equals(other.summary, summary));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(date));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(summary));
 
   @JsonKey(ignore: true)
   @override
@@ -1798,10 +1798,10 @@ class _$_TeamUiEvent_setPreviousGoalSummary
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
-    return setPreviousGoalSummary(date);
+    return setPreviousGoalSummary(summary);
   }
 
   @override
@@ -1815,10 +1815,10 @@ class _$_TeamUiEvent_setPreviousGoalSummary
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
-    return setPreviousGoalSummary?.call(date);
+    return setPreviousGoalSummary?.call(summary);
   }
 
   @override
@@ -1832,12 +1832,12 @@ class _$_TeamUiEvent_setPreviousGoalSummary
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {
     if (setPreviousGoalSummary != null) {
-      return setPreviousGoalSummary(date);
+      return setPreviousGoalSummary(summary);
     }
     return orElse();
   }
@@ -1905,10 +1905,10 @@ class _$_TeamUiEvent_setPreviousGoalSummary
 }
 
 abstract class _TeamUiEvent_setPreviousGoalSummary implements TeamUiEvent {
-  const factory _TeamUiEvent_setPreviousGoalSummary(DateTime date) =
+  const factory _TeamUiEvent_setPreviousGoalSummary(String summary) =
       _$_TeamUiEvent_setPreviousGoalSummary;
 
-  DateTime get date;
+  String get summary;
   @JsonKey(ignore: true)
   _$TeamUiEvent_setPreviousGoalSummaryCopyWith<
           _TeamUiEvent_setPreviousGoalSummary>
@@ -1964,7 +1964,7 @@ class _$_TeamUiEvent_create implements _TeamUiEvent_create {
     required TResult Function(DateTime date) setStartDate,
     required TResult Function(DateTime date) setEndDate,
     required TResult Function(bool checked) setPreviousGoalAchieved,
-    required TResult Function(DateTime date) setPreviousGoalSummary,
+    required TResult Function(String summary) setPreviousGoalSummary,
     required TResult Function() create,
   }) {
     return create();
@@ -1981,7 +1981,7 @@ class _$_TeamUiEvent_create implements _TeamUiEvent_create {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
   }) {
     return create?.call();
@@ -1998,7 +1998,7 @@ class _$_TeamUiEvent_create implements _TeamUiEvent_create {
     TResult Function(DateTime date)? setStartDate,
     TResult Function(DateTime date)? setEndDate,
     TResult Function(bool checked)? setPreviousGoalAchieved,
-    TResult Function(DateTime date)? setPreviousGoalSummary,
+    TResult Function(String summary)? setPreviousGoalSummary,
     TResult Function()? create,
     required TResult orElse(),
   }) {

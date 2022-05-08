@@ -25,8 +25,8 @@ class MyTextFieldLabeled extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyText(label),
-          const SizedBox(height: kSpacing),
+          if (label.isNotEmpty) MyText(label),
+          if (label.isNotEmpty) const SizedBox(height: kSpacing),
           MyTextFieldBase(
             hintText: hintText,
             fillColor: fillColor,
@@ -39,5 +39,3 @@ class MyTextFieldLabeled extends StatelessWidget {
     );
   }
 }
-
-

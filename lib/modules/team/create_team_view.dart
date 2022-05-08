@@ -59,12 +59,50 @@ class CreateTeamView extends StatelessWidget {
                 onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
               ),
               const SizedBox(height: 8),
+              Obx(() => Row(
+                    children: [
+                      const SizedBox(
+                        width: kSpacing * 4,
+                      ),
+                      MyDatePicker(
+                        initialDate: controller.startDate.value,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime.now().add(const Duration(days: 365)),
+                        textSize: 12,
+                        onChange: (date) {
+                          controller.handleUiEvent(TeamUiEvent.setStartDate(date));
+                        },
+                      ),
+                      const Spacer(),
+                      const MyText('to'),
+                      const Spacer(),
+                      MyDatePicker(
+                        initialDate: controller.endDate.value.add(const Duration(days: 3)),
+                        firstDate: controller.startDate.value,
+                        lastDate: controller.startDate.value.add(const Duration(days: 365)),
+                        textSize: 12,
+                        onChange: (date) {
+                          controller.handleUiEvent(TeamUiEvent.setEndDate(date));
+                        },
+                      ),
+                      const SizedBox(
+                        width: kSpacing * 4,
+                      ),
+                    ],
+                  )),
+              const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kSpacing * 3),
                 child: MyCheckBox(
                   label: 'Previous Goal Achivement',
                   onChange: (val) => controller.handleUiEvent(TeamUiEvent.setPreviousGoalAchieved(val)),
                 ),
+              ),
+              MyTextFieldLabeled(
+                hintText: 'e.g. 2000 meals for street children.',
+                maxLines: 5,
+                label: '',
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
               ),
             ],
           ),
