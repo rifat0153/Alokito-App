@@ -198,31 +198,43 @@ class _$TeamTearOff {
 
   _Team call(
       {String? id,
-      List<LocalUser> members = const [],
       String? creatorId,
       String? creator,
+      List<LocalUser> members = const [],
       String? teamName,
-      String? teamDetails,
+      String? summary,
+      String? objective,
+      String? goal,
+      String? previousGoalSummary,
+      bool previousGoalAchieved = false,
       Geometry? geometry,
       String? area,
       String? location,
       String? imageUrl,
       String? coverImageUrl,
+      DateTime? startDate,
+      DateTime? endDate,
       DateTime? createdAt,
       DateTime? updatedAt,
       double? distance}) {
     return _Team(
       id: id,
-      members: members,
       creatorId: creatorId,
       creator: creator,
+      members: members,
       teamName: teamName,
-      teamDetails: teamDetails,
+      summary: summary,
+      objective: objective,
+      goal: goal,
+      previousGoalSummary: previousGoalSummary,
+      previousGoalAchieved: previousGoalAchieved,
       geometry: geometry,
       area: area,
       location: location,
       imageUrl: imageUrl,
       coverImageUrl: coverImageUrl,
+      startDate: startDate,
+      endDate: endDate,
       createdAt: createdAt,
       updatedAt: updatedAt,
       distance: distance,
@@ -240,16 +252,22 @@ const $Team = _$TeamTearOff();
 /// @nodoc
 mixin _$Team {
   String? get id => throw _privateConstructorUsedError;
-  List<LocalUser> get members => throw _privateConstructorUsedError;
   String? get creatorId => throw _privateConstructorUsedError;
   String? get creator => throw _privateConstructorUsedError;
+  List<LocalUser> get members => throw _privateConstructorUsedError;
   String? get teamName => throw _privateConstructorUsedError;
-  String? get teamDetails => throw _privateConstructorUsedError;
+  String? get summary => throw _privateConstructorUsedError;
+  String? get objective => throw _privateConstructorUsedError;
+  String? get goal => throw _privateConstructorUsedError;
+  String? get previousGoalSummary => throw _privateConstructorUsedError;
+  bool get previousGoalAchieved => throw _privateConstructorUsedError;
   Geometry? get geometry => throw _privateConstructorUsedError;
   String? get area => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get coverImageUrl => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
@@ -265,16 +283,22 @@ abstract class $TeamCopyWith<$Res> {
       _$TeamCopyWithImpl<$Res>;
   $Res call(
       {String? id,
-      List<LocalUser> members,
       String? creatorId,
       String? creator,
+      List<LocalUser> members,
       String? teamName,
-      String? teamDetails,
+      String? summary,
+      String? objective,
+      String? goal,
+      String? previousGoalSummary,
+      bool previousGoalAchieved,
       Geometry? geometry,
       String? area,
       String? location,
       String? imageUrl,
       String? coverImageUrl,
+      DateTime? startDate,
+      DateTime? endDate,
       DateTime? createdAt,
       DateTime? updatedAt,
       double? distance});
@@ -293,16 +317,22 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? members = freezed,
     Object? creatorId = freezed,
     Object? creator = freezed,
+    Object? members = freezed,
     Object? teamName = freezed,
-    Object? teamDetails = freezed,
+    Object? summary = freezed,
+    Object? objective = freezed,
+    Object? goal = freezed,
+    Object? previousGoalSummary = freezed,
+    Object? previousGoalAchieved = freezed,
     Object? geometry = freezed,
     Object? area = freezed,
     Object? location = freezed,
     Object? imageUrl = freezed,
     Object? coverImageUrl = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? distance = freezed,
@@ -312,10 +342,6 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      members: members == freezed
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<LocalUser>,
       creatorId: creatorId == freezed
           ? _value.creatorId
           : creatorId // ignore: cast_nullable_to_non_nullable
@@ -324,14 +350,34 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
               as String?,
+      members: members == freezed
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<LocalUser>,
       teamName: teamName == freezed
           ? _value.teamName
           : teamName // ignore: cast_nullable_to_non_nullable
               as String?,
-      teamDetails: teamDetails == freezed
-          ? _value.teamDetails
-          : teamDetails // ignore: cast_nullable_to_non_nullable
+      summary: summary == freezed
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
               as String?,
+      objective: objective == freezed
+          ? _value.objective
+          : objective // ignore: cast_nullable_to_non_nullable
+              as String?,
+      goal: goal == freezed
+          ? _value.goal
+          : goal // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previousGoalSummary: previousGoalSummary == freezed
+          ? _value.previousGoalSummary
+          : previousGoalSummary // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previousGoalAchieved: previousGoalAchieved == freezed
+          ? _value.previousGoalAchieved
+          : previousGoalAchieved // ignore: cast_nullable_to_non_nullable
+              as bool,
       geometry: geometry == freezed
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
@@ -352,6 +398,14 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
           ? _value.coverImageUrl
           : coverImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      startDate: startDate == freezed
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: endDate == freezed
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -386,16 +440,22 @@ abstract class _$TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
   @override
   $Res call(
       {String? id,
-      List<LocalUser> members,
       String? creatorId,
       String? creator,
+      List<LocalUser> members,
       String? teamName,
-      String? teamDetails,
+      String? summary,
+      String? objective,
+      String? goal,
+      String? previousGoalSummary,
+      bool previousGoalAchieved,
       Geometry? geometry,
       String? area,
       String? location,
       String? imageUrl,
       String? coverImageUrl,
+      DateTime? startDate,
+      DateTime? endDate,
       DateTime? createdAt,
       DateTime? updatedAt,
       double? distance});
@@ -416,16 +476,22 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? members = freezed,
     Object? creatorId = freezed,
     Object? creator = freezed,
+    Object? members = freezed,
     Object? teamName = freezed,
-    Object? teamDetails = freezed,
+    Object? summary = freezed,
+    Object? objective = freezed,
+    Object? goal = freezed,
+    Object? previousGoalSummary = freezed,
+    Object? previousGoalAchieved = freezed,
     Object? geometry = freezed,
     Object? area = freezed,
     Object? location = freezed,
     Object? imageUrl = freezed,
     Object? coverImageUrl = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? distance = freezed,
@@ -435,10 +501,6 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      members: members == freezed
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<LocalUser>,
       creatorId: creatorId == freezed
           ? _value.creatorId
           : creatorId // ignore: cast_nullable_to_non_nullable
@@ -447,14 +509,34 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
               as String?,
+      members: members == freezed
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<LocalUser>,
       teamName: teamName == freezed
           ? _value.teamName
           : teamName // ignore: cast_nullable_to_non_nullable
               as String?,
-      teamDetails: teamDetails == freezed
-          ? _value.teamDetails
-          : teamDetails // ignore: cast_nullable_to_non_nullable
+      summary: summary == freezed
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
               as String?,
+      objective: objective == freezed
+          ? _value.objective
+          : objective // ignore: cast_nullable_to_non_nullable
+              as String?,
+      goal: goal == freezed
+          ? _value.goal
+          : goal // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previousGoalSummary: previousGoalSummary == freezed
+          ? _value.previousGoalSummary
+          : previousGoalSummary // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previousGoalAchieved: previousGoalAchieved == freezed
+          ? _value.previousGoalAchieved
+          : previousGoalAchieved // ignore: cast_nullable_to_non_nullable
+              as bool,
       geometry: geometry == freezed
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
@@ -475,6 +557,14 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
           ? _value.coverImageUrl
           : coverImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      startDate: startDate == freezed
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: endDate == freezed
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -497,16 +587,22 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
 class _$_Team implements _Team {
   const _$_Team(
       {this.id,
-      this.members = const [],
       this.creatorId,
       this.creator,
+      this.members = const [],
       this.teamName,
-      this.teamDetails,
+      this.summary,
+      this.objective,
+      this.goal,
+      this.previousGoalSummary,
+      this.previousGoalAchieved = false,
       this.geometry,
       this.area,
       this.location,
       this.imageUrl,
       this.coverImageUrl,
+      this.startDate,
+      this.endDate,
       this.createdAt,
       this.updatedAt,
       this.distance});
@@ -515,17 +611,26 @@ class _$_Team implements _Team {
 
   @override
   final String? id;
-  @JsonKey()
-  @override
-  final List<LocalUser> members;
   @override
   final String? creatorId;
   @override
   final String? creator;
+  @JsonKey()
+  @override
+  final List<LocalUser> members;
   @override
   final String? teamName;
   @override
-  final String? teamDetails;
+  final String? summary;
+  @override
+  final String? objective;
+  @override
+  final String? goal;
+  @override
+  final String? previousGoalSummary;
+  @JsonKey()
+  @override
+  final bool previousGoalAchieved;
   @override
   final Geometry? geometry;
   @override
@@ -537,6 +642,10 @@ class _$_Team implements _Team {
   @override
   final String? coverImageUrl;
   @override
+  final DateTime? startDate;
+  @override
+  final DateTime? endDate;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
@@ -545,7 +654,7 @@ class _$_Team implements _Team {
 
   @override
   String toString() {
-    return 'Team(id: $id, members: $members, creatorId: $creatorId, creator: $creator, teamName: $teamName, teamDetails: $teamDetails, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, coverImageUrl: $coverImageUrl, createdAt: $createdAt, updatedAt: $updatedAt, distance: $distance)';
+    return 'Team(id: $id, creatorId: $creatorId, creator: $creator, members: $members, teamName: $teamName, summary: $summary, objective: $objective, goal: $goal, previousGoalSummary: $previousGoalSummary, previousGoalAchieved: $previousGoalAchieved, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, coverImageUrl: $coverImageUrl, startDate: $startDate, endDate: $endDate, createdAt: $createdAt, updatedAt: $updatedAt, distance: $distance)';
   }
 
   @override
@@ -554,40 +663,54 @@ class _$_Team implements _Team {
         (other.runtimeType == runtimeType &&
             other is _Team &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.members, members) &&
             const DeepCollectionEquality().equals(other.creatorId, creatorId) &&
             const DeepCollectionEquality().equals(other.creator, creator) &&
+            const DeepCollectionEquality().equals(other.members, members) &&
             const DeepCollectionEquality().equals(other.teamName, teamName) &&
+            const DeepCollectionEquality().equals(other.summary, summary) &&
+            const DeepCollectionEquality().equals(other.objective, objective) &&
+            const DeepCollectionEquality().equals(other.goal, goal) &&
             const DeepCollectionEquality()
-                .equals(other.teamDetails, teamDetails) &&
+                .equals(other.previousGoalSummary, previousGoalSummary) &&
+            const DeepCollectionEquality()
+                .equals(other.previousGoalAchieved, previousGoalAchieved) &&
             const DeepCollectionEquality().equals(other.geometry, geometry) &&
             const DeepCollectionEquality().equals(other.area, area) &&
             const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality()
                 .equals(other.coverImageUrl, coverImageUrl) &&
+            const DeepCollectionEquality().equals(other.startDate, startDate) &&
+            const DeepCollectionEquality().equals(other.endDate, endDate) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
             const DeepCollectionEquality().equals(other.distance, distance));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(members),
-      const DeepCollectionEquality().hash(creatorId),
-      const DeepCollectionEquality().hash(creator),
-      const DeepCollectionEquality().hash(teamName),
-      const DeepCollectionEquality().hash(teamDetails),
-      const DeepCollectionEquality().hash(geometry),
-      const DeepCollectionEquality().hash(area),
-      const DeepCollectionEquality().hash(location),
-      const DeepCollectionEquality().hash(imageUrl),
-      const DeepCollectionEquality().hash(coverImageUrl),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt),
-      const DeepCollectionEquality().hash(distance));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(creatorId),
+        const DeepCollectionEquality().hash(creator),
+        const DeepCollectionEquality().hash(members),
+        const DeepCollectionEquality().hash(teamName),
+        const DeepCollectionEquality().hash(summary),
+        const DeepCollectionEquality().hash(objective),
+        const DeepCollectionEquality().hash(goal),
+        const DeepCollectionEquality().hash(previousGoalSummary),
+        const DeepCollectionEquality().hash(previousGoalAchieved),
+        const DeepCollectionEquality().hash(geometry),
+        const DeepCollectionEquality().hash(area),
+        const DeepCollectionEquality().hash(location),
+        const DeepCollectionEquality().hash(imageUrl),
+        const DeepCollectionEquality().hash(coverImageUrl),
+        const DeepCollectionEquality().hash(startDate),
+        const DeepCollectionEquality().hash(endDate),
+        const DeepCollectionEquality().hash(createdAt),
+        const DeepCollectionEquality().hash(updatedAt),
+        const DeepCollectionEquality().hash(distance)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -603,16 +726,22 @@ class _$_Team implements _Team {
 abstract class _Team implements Team {
   const factory _Team(
       {String? id,
-      List<LocalUser> members,
       String? creatorId,
       String? creator,
+      List<LocalUser> members,
       String? teamName,
-      String? teamDetails,
+      String? summary,
+      String? objective,
+      String? goal,
+      String? previousGoalSummary,
+      bool previousGoalAchieved,
       Geometry? geometry,
       String? area,
       String? location,
       String? imageUrl,
       String? coverImageUrl,
+      DateTime? startDate,
+      DateTime? endDate,
       DateTime? createdAt,
       DateTime? updatedAt,
       double? distance}) = _$_Team;
@@ -622,15 +751,23 @@ abstract class _Team implements Team {
   @override
   String? get id;
   @override
-  List<LocalUser> get members;
-  @override
   String? get creatorId;
   @override
   String? get creator;
   @override
+  List<LocalUser> get members;
+  @override
   String? get teamName;
   @override
-  String? get teamDetails;
+  String? get summary;
+  @override
+  String? get objective;
+  @override
+  String? get goal;
+  @override
+  String? get previousGoalSummary;
+  @override
+  bool get previousGoalAchieved;
   @override
   Geometry? get geometry;
   @override
@@ -641,6 +778,10 @@ abstract class _Team implements Team {
   String? get imageUrl;
   @override
   String? get coverImageUrl;
+  @override
+  DateTime? get startDate;
+  @override
+  DateTime? get endDate;
   @override
   DateTime? get createdAt;
   @override

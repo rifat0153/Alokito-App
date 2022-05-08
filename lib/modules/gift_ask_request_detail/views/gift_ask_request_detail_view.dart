@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
-import '../../../shared/skeleton_widget.dart';
+import '../../../shared/widget/skeleton_widget.dart';
 import '../../../shared/widget/my_text.dart';
 import '../widgets/gift_ask_request_detail_decision_widget.dart';
 import '../widgets/gift_ask_request_detail_comment_widget.dart';

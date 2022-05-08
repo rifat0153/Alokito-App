@@ -11,7 +11,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../core/location/location_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
-import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/widget/my_bottomsheets.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../services/gift_ask_giver_service.dart';
 

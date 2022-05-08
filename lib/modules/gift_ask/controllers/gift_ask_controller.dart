@@ -10,7 +10,7 @@ import '../../../core/location/geocoding_helper.dart';
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../models/user/local_user.dart';
 import '../../../shared/config.dart';
-import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/widget/my_bottomsheets.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../services/gift_ask_service.dart';
 

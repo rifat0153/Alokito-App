@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../core/date/date_helper.dart';
+import '../../../core/date/date_service.dart';
 import '../../../core/location/location_helper.dart';
 import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
 import '../../../shared/widget/my_text.dart';
@@ -18,7 +18,7 @@ class GiftAskRequesterDetailGiverWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final requesterIdCreatedAgo = DateHelper.findTimeDifference(DateTime.now(), giftAskRequest!.giver.createdAt);
+    final requesterIdCreatedAgo = DateService.findTimeDifference(DateTime.now(), giftAskRequest!.giver.createdAt);
 
     final distanceBetweenRequesterAndGiver = LocationHelper.determineDistance(
       giftAskRequest!.giftAsk.geometry.coordinates.last,

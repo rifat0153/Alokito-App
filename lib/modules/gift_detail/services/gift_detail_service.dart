@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../models/gift_request/gift_request.dart';
 import '../../../shared/config.dart';
-import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/widget/my_bottomsheets.dart';
 import '../../../shared/shared_service.dart';
 
 abstract class BaseGiftDetailService {

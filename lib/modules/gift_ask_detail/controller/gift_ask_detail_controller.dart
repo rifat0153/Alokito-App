@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../models/gift_ask_request.dart/gift_ask_request.dart';
 import '../../../models/user/local_user.dart';
-import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/widget/my_bottomsheets.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../service/gift_ask_detail_service.dart';
 

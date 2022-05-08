@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../models/user/local_user.dart';
-import '../../../shared/my_drawer_widget.dart';
+import '../../../shared/widget/my_drawer_widget.dart';
 import '../../../shared/widget/my_text.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../settings/views/settings_view.dart';
@@ -118,11 +118,11 @@ class _BuildBody extends StatelessWidget {
             ),
           ),
 
-          SvgPicture.asset(
-            'assets/svgs/Group 4302.svg',
-            width: Get.width,
-            height: 1.sh,
-          ),
+          // SvgPicture.asset(
+          //   'assets/svgs/Group 4302.svg',
+          //   width: Get.width,
+          //   height: 1.sh,
+          // ),
 
           // Middle Layer
           Column(

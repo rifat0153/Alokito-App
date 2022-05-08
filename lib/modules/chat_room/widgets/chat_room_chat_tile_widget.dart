@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../core/date/date_helper.dart';
+import '../../../core/date/date_service.dart';
 import '../../../shared/widget/my_text.dart';
 import '../controllers/chat_room_controller.dart';
 
@@ -24,8 +24,7 @@ class ChatRoomChatTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final String userNameToShow = controller.getUserNameToShowInTile(chatRoom: chatRoom);
     final String userImageToShow = controller.getImageUrlToShowInTile(chatRoom: chatRoom);
-    final String timeDiff =
-        DateHelper.timeDifferenceFromTimestamp(chatRoom.createdAt ?? Timestamp.now());
+    final String timeDiff = DateService.timeDifferenceFromTimestamp(chatRoom.createdAt ?? Timestamp.now());
 
     return InkWell(
       onTap: () => Get.to(() => ChatView(chatRoom: chatRoom)),

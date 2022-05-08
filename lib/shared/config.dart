@@ -23,6 +23,7 @@ class MyAssets {
   static const joinTeamIcon = 'assets/svgs/join_team.svg';
   static const createTeamIcon = 'assets/svgs/create_team.svg';
   static const cameraIcon = 'assets/svgs/camera.svg';
+  static const calendarIcon = 'assets/svgs/calendar.svg';
 }
 
 // Colors
@@ -36,6 +37,8 @@ class MyColors {
   static final giftAddFormColor = Colors.grey[300]!.withOpacity(0.5);
   static final giftAddFormSubmitColor = Colors.blueGrey[700];
 
+  static const darkGrey = Color(0xff707070);
+  static final lightGrey = MyColors.darkGrey.withOpacity(0.3);
   static const darkBlue = Color(0xFF353445);
 }
 

@@ -3,7 +3,7 @@ import '../controllers/login_controller.dart';
 import 'reg_image_input.dart';
 import '../../../shared/config.dart';
 import '../../../shared/login_input.dart';
-import '../../../shared/my_name_input.dart';
+import '../../../shared/widget/my_name_input.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class LoginRegFormView extends StatefulWidget {
-  const LoginRegFormView();
+  const LoginRegFormView({Key? key}):super(key: key);
   static const route = '/LoginFormView';
 
   @override

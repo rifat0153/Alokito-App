@@ -5,10 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
-import '../../../core/image/image_upload_helper.dart';
+import '../../../core/image/image_service.dart';
 import '../../../models/gift_ask/gift_ask.dart';
 import '../../../shared/config.dart';
-import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/widget/my_bottomsheets.dart';
 
 abstract class BaseGiftAskService {
   Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile});
@@ -28,8 +28,7 @@ class GiftAskService extends GetConnect implements BaseGiftAskService {
   Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile}) async {
     try {
       if (giftAsk.giftAskType == GiftAskType.medicine && imageFile.path.isNotEmpty) {
-        final String prescriptionImageUrl =
-            await ImageUploadHelper.uploadImageAndGetDownloadUrl(imageFile, 'user/gift_ask', _storage);
+        final String prescriptionImageUrl = await ImageService.uploadImageToFirebaseAndGetUrl(imageFile, 'user/gift_ask', _storage);
 
         giftAsk = giftAsk.copyWith(imageUrl: prescriptionImageUrl);
       }

@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
-import '../../../core/image/image_upload_helper.dart';
+import '../../../core/image/image_service.dart';
 import '../../../models/gift/gift.dart';
 import '../../../shared/config.dart';
-import '../../../shared/my_bottomsheets.dart';
+import '../../../shared/widget/my_bottomsheets.dart';
 
 abstract class BaseGiftGiverService {
   Future<void> addGift({required Gift gift, required File imageFile});
@@ -22,8 +22,7 @@ class GiftService extends GetConnect implements BaseGiftGiverService {
     String giftImageUrl = '';
 
     try {
-      giftImageUrl =
-          await ImageUploadHelper.uploadImageAndGetDownloadUrl(imageFile, 'users/${gift.user?.uid}/gift', _storage);
+      giftImageUrl = await ImageService.uploadImageToFirebaseAndGetUrl(imageFile, 'users/${gift.user?.uid}/gift', _storage);
 
       gift = gift.copyWith(imageUrl: giftImageUrl);
     } catch (e) {

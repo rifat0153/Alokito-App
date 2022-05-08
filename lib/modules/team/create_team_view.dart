@@ -1,25 +1,163 @@
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/shared/config.dart';
-import 'package:alokito_new/shared/skeleton_widget.dart';
+import 'package:alokito_new/shared/constants.dart';
+import 'package:alokito_new/shared/widget/input/my_input.dart';
+import 'package:alokito_new/shared/widget/map_location_widget.dart';
+import 'package:alokito_new/shared/widget/skeleton_widget.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'team_ui_event.dart';
 
 class CreateTeamView extends StatelessWidget {
-  const CreateTeamView({Key? key}) : super(key: key);
+  CreateTeamView({Key? key}) : super(key: key);
 
   static const route = '/create_team_view';
+
+  final TeamController controller = Get.find<TeamController>();
 
   @override
   Widget build(BuildContext context) {
     return SkeletonWidget(
       titleWidget: const MyText('Create a team', fontWeight: FontWeight.bold),
       assetPath: 'assets/images/notification-background.png',
+      child: GestureDetector(
+        onTap: FocusScope.of(context).unfocus,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              TeamProfileImageWidget(),
+              const SizedBox(height: 8),
+              MyTextFieldLabeled(
+                hintText: '# team name',
+                label: 'Name',
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+              const SizedBox(height: 8),
+              _TeamLocationWidget(controller: controller),
+              const SizedBox(height: 8),
+              MyTextFieldLabeled(
+                hintText: 'e.g. Helping in flood affected areas',
+                label: 'Objective',
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+              const SizedBox(height: 8),
+              MyTextFieldLabeled(
+                hintText: 'e.g. Reach  175 people ...',
+                label: 'Goal',
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+              const SizedBox(height: 8),
+              MyTextFieldLabeled(
+                hintText: 'e.g. Reach  175 people ...',
+                label: 'Summary',
+                maxLines: 10,
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+              const SizedBox(height: 8),
+              Obx(() => Row(
+                    children: [
+                      const SizedBox(
+                        width: kSpacing * 4,
+                      ),
+                      MyDatePicker(
+                        initialDate: controller.startDate.value,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime.now().add(const Duration(days: 365)),
+                        textSize: 12,
+                        onChange: (date) {
+                          controller.handleUiEvent(TeamUiEvent.setStartDate(date));
+                        },
+                      ),
+                      const Spacer(),
+                      const MyText('to'),
+                      const Spacer(),
+                      MyDatePicker(
+                        initialDate: controller.endDate.value.add(const Duration(days: 3)),
+                        firstDate: controller.startDate.value,
+                        lastDate: controller.startDate.value.add(const Duration(days: 365)),
+                        textSize: 12,
+                        onChange: (date) {
+                          controller.handleUiEvent(TeamUiEvent.setEndDate(date));
+                        },
+                      ),
+                      const SizedBox(
+                        width: kSpacing * 4,
+                      ),
+                    ],
+                  )),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kSpacing * 3),
+                child: MyCheckBox(
+                  label: 'Previous Goal Achivement',
+                  onChange: (val) => controller.handleUiEvent(TeamUiEvent.setPreviousGoalAchieved(val)),
+                ),
+              ),
+              MyTextFieldLabeled(
+                hintText: 'e.g. 2000 meals for street children.',
+                maxLines: 5,
+                label: '',
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _TeamLocationWidget extends StatelessWidget {
+  const _TeamLocationWidget({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final TeamController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kSpacing * 4),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TeamProfileImageWidget(),
+          const MyText('Location'),
+          const SizedBox(
+            height: kSpacing,
+          ),
+          GestureDetector(
+            onTap: () => Get.to(
+              Obx(() => MapLocationWidget(
+                    title: 'Team location',
+                    markerList: controller.markerList.toSet(),
+                    onTap: (LatLng? latlng) async {
+                      controller.locationLatLng.value = latlng!;
+
+                      controller.handleUiEvent(TeamUiEvent.setLocation(latlng));
+                    },
+                    initialCameraPosition: const LatLng(23, 90),
+                  )),
+            ),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: kSpacing, vertical: kSpacing),
+              decoration: BoxDecoration(
+                color: MyColors.lightGrey,
+                borderRadius: BorderRadius.circular(kRadius / 2),
+              ),
+              child: MyText(
+                controller.locationAddress.value.isEmpty ? 'Country, place' : controller.locationAddress.value,
+                fontSize: 14,
+                color: Colors.black.withOpacity(0.6),
+              ),
+            ),
+          ),
         ],
       ),
     );

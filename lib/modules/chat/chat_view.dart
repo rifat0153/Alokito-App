@@ -1,4 +1,4 @@
-import 'package:alokito_new/core/date/date_helper.dart';
+import 'package:alokito_new/core/date/date_service.dart';
 import 'package:alokito_new/di/firebase_di.dart';
 import 'package:alokito_new/models/chat/chat.dart';
 import 'package:alokito_new/models/chat_room/chat_room.dart';
@@ -26,8 +26,7 @@ class ChatView extends StatelessWidget {
 
   final ChatRoom chatRoom;
 
-  final ChatController controller =
-      Get.put(ChatController(chatService: ChatService(firestore: FirebaseDI().firestore)));
+  final ChatController controller = Get.put(ChatController(chatService: ChatService(firestore: FirebaseDI().firestore)));
 
   final authController = Get.find<AuthController>();
 
@@ -39,9 +38,7 @@ class ChatView extends StatelessWidget {
         .collection('chats')
         .where('chatRoomId', isEqualTo: chatRoom.id)
         .orderBy('createdAt', descending: true)
-        .withConverter<Chat>(
-            fromFirestore: (snapshot, _) => Chat.fromJson(snapshot.data()!),
-            toFirestore: (chat, _) => chat.toJson());
+        .withConverter<Chat>(fromFirestore: (snapshot, _) => Chat.fromJson(snapshot.data()!), toFirestore: (chat, _) => chat.toJson());
 
     return MyScaffold(
       assetPath: MyAssets.settingsBgImage,
@@ -66,23 +63,18 @@ class ChatView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        crossAxisAlignment:
-                            isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                        crossAxisAlignment: isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                         children: [
                           Container(
-                            decoration: BoxDecoration(
-                                color: isMyMessage ? Colors.grey.shade100 : const Color(0xFF353445),
-                                borderRadius: BorderRadius.circular(kRadius * 3)),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: kSpacing * 2, vertical: kSpacing),
+                            decoration: BoxDecoration(color: isMyMessage ? Colors.grey.shade100 : const Color(0xFF353445), borderRadius: BorderRadius.circular(kRadius * 3)),
+                            padding: const EdgeInsets.symmetric(horizontal: kSpacing * 2, vertical: kSpacing),
                             child: MyText(
                               chat.message,
                               color: isMyMessage ? Colors.black : Colors.white,
                             ),
                           ),
                           MyText(
-                            DateHelper.timeDifferenceFromTimestamp(
-                                chat.createdAt ?? Timestamp.now()),
+                            DateService.timeDifferenceFromTimestamp(chat.createdAt ?? Timestamp.now()),
                             fontSize: 10,
                             color: Colors.grey.shade500,
                           )
