@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:alokito_new/core/extensions/lat_lng_ext.dart';
 import 'package:alokito_new/core/image/image_service.dart';
+import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
 import 'package:alokito_new/models/team/team_response.dart';
@@ -16,9 +18,10 @@ class TeamController extends GetxController {
   });
   ITeamService service;
 
+  RxBool loading = false.obs;
+
   RxList<Team> teamList = RxList<Team>();
   int page = 1;
-  RxBool loading = false.obs;
 
   Rx<File> coverTeamImage = File('').obs;
   Rx<File> profileTeamImage = File('').obs;
@@ -60,8 +63,53 @@ class TeamController extends GetxController {
       setPreviousGoalSummary: (value) => previousGoalSummary.value = value,
       setStartDate: (value) => startDate.value = value,
       setEndDate: (value) => endDate.value = value,
-      create: () {},
+      create: createTeam,
     );
+  }
+
+  Future<void> createTeam() async {
+    loading.value = true;
+
+    final coverImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(
+      coverTeamImage.value,
+      'teams',
+      FirebaseStorage.instance,
+    );
+    final porfileImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(
+      profileTeamImage.value,
+      'teams',
+      FirebaseStorage.instance,
+    );
+
+    final currentUserId = Get.find<AuthController>().getCurrentUserId();
+
+    print('Team: currentUserID: $currentUserId');
+
+    final team = Team(
+      area: locationAddress.value,
+      location: locationAddress.value,
+      imageUrl: porfileImageDownloadURL,
+      coverImageUrl: coverImageDownloadURL,
+      creatorId: currentUserId,
+      creator: currentUserId,
+      geometry: Geometry(coordinates: [locationLatLng.value.longitude, locationLatLng.value.latitude]),
+      teamName: name.value,
+      goal: goal.value,
+      objective: objective.value,
+      summary: summary.value,
+      previousGoalSummary: previousGoalSummary.value,
+      previousGoalAchieved: previousGoalAcheived.value,
+      startDate: startDate.value,
+      endDate: endDate.value,
+    );
+
+    try {
+      await service.createTeam(team: team);
+    } catch (e) {
+      print('Team: Error: $e');
+    }
+
+    loading.value = false;
   }
 
   Future<void> getCoverImage() async {

@@ -9,7 +9,7 @@ class MyConfig {
 }
 
 // URL
-const baseUrl = 'http://192.168.1.64:80/api/v1';
+const baseUrl = 'http://192.168.0.104:80/api/v1';
 // const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
 
 const myTimeout = 8;
@@ -37,8 +37,10 @@ class MyColors {
   static final giftAddFormColor = Colors.grey[300]!.withOpacity(0.5);
   static final giftAddFormSubmitColor = Colors.blueGrey[700];
 
+  static const white = Colors.white;
   static const darkGrey = Color(0xff707070);
   static final lightGrey = MyColors.darkGrey.withOpacity(0.3);
+  static const lighterGrey = Color(0xFFEBDCDC);
   static const darkBlue = Color(0xFF353445);
 }
 

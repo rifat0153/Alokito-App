@@ -43,20 +43,20 @@ class CreateTeamView extends StatelessWidget {
               MyTextFieldLabeled(
                 hintText: 'e.g. Helping in flood affected areas',
                 label: 'Objective',
-                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setObjective(text)),
               ),
               const SizedBox(height: 8),
               MyTextFieldLabeled(
                 hintText: 'e.g. Reach  175 people ...',
                 label: 'Goal',
-                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setGoal(text)),
               ),
               const SizedBox(height: 8),
               MyTextFieldLabeled(
                 hintText: 'e.g. Reach  175 people ...',
                 label: 'Summary',
                 maxLines: 10,
-                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setSummary(text)),
               ),
               const SizedBox(height: 8),
               Obx(() => Row(
@@ -102,8 +102,21 @@ class CreateTeamView extends StatelessWidget {
                 hintText: 'e.g. 2000 meals for street children.',
                 maxLines: 5,
                 label: '',
-                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setName(text)),
+                onChanged: (text) => controller.handleUiEvent(TeamUiEvent.setPreviousGoalSummary(text)),
               ),
+              Obx(
+                () => controller.loading.value
+                    ? const CircularProgressIndicator()
+                    : MyButton(
+                        text: 'Create',
+                        margin: const EdgeInsets.symmetric(horizontal: kSpacing * 8),
+                        width: double.infinity,
+                        onTap: () {
+                          controller.handleUiEvent(const TeamUiEvent.create());
+                        },
+                      ),
+              ),
+              const SizedBox(height: kSpacing)
             ],
           ),
         ),
