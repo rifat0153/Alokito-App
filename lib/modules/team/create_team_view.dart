@@ -65,7 +65,7 @@ class CreateTeamView extends StatelessWidget {
                         width: kSpacing * 4,
                       ),
                       MyDatePicker(
-                        initialDate: controller.startDate.value,
+                        initialDate: controller.newTeam.value.startDate!,
                         firstDate: DateTime.now(),
                         lastDate: DateTime.now().add(const Duration(days: 365)),
                         textSize: 12,
@@ -77,9 +77,9 @@ class CreateTeamView extends StatelessWidget {
                       const MyText('to'),
                       const Spacer(),
                       MyDatePicker(
-                        initialDate: controller.endDate.value.add(const Duration(days: 3)),
-                        firstDate: controller.startDate.value,
-                        lastDate: controller.startDate.value.add(const Duration(days: 365)),
+                        initialDate: controller.newTeam.value.endDate!,
+                        firstDate: controller.newTeam.value.startDate!,
+                        lastDate: controller.newTeam.value.startDate!.add(const Duration(days: 365)),
                         textSize: 12,
                         onChange: (date) {
                           controller.handleUiEvent(TeamUiEvent.setEndDate(date));
@@ -150,9 +150,7 @@ class _TeamLocationWidget extends StatelessWidget {
                     title: 'Team location',
                     markerList: controller.markerList.toSet(),
                     onTap: (LatLng? latlng) async {
-                      controller.locationLatLng.value = latlng!;
-
-                      controller.handleUiEvent(TeamUiEvent.setLocation(latlng));
+                      controller.handleUiEvent(TeamUiEvent.setLocation(latlng!));
                     },
                     initialCameraPosition: const LatLng(23, 90),
                   )),
@@ -165,7 +163,7 @@ class _TeamLocationWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(kRadius / 2),
               ),
               child: MyText(
-                controller.locationAddress.value.isEmpty ? 'Country, place' : controller.locationAddress.value,
+                controller.newTeam.value.location == null || controller.newTeam.value.location!.isEmpty ? 'Country, place' : controller.newTeam.value.location ?? '',
                 fontSize: 14,
                 color: Colors.black.withOpacity(0.6),
               ),

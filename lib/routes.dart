@@ -116,7 +116,7 @@ class GetPages {
       binding: BindingsBuilder(() {
         Get.lazyPut(
           () => GiftAskController(
-            GiftAskService(Get.find<FirebaseDI>().firestore, Get.find<FirebaseDI>().storage),
+            GiftAskService(),
           ),
         );
       }),
@@ -162,7 +162,7 @@ class GetPages {
       name: GiftAddView.route,
       page: () => GiftAddView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => GiftAddFormController(GiftService(Get.find<FirebaseDI>().storage)));
+        Get.lazyPut(() => GiftAddFormController(GiftService()));
       }),
     ),
     GetPage(
@@ -179,7 +179,7 @@ class GetPages {
       transition: Transition.native,
       binding: BindingsBuilder(() {
         Get.lazyPut(() => GiftController());
-        Get.lazyPut(() => GiftAddFormController(GiftService(Get.find<FirebaseDI>().storage)));
+        Get.lazyPut(() => GiftAddFormController(GiftService()));
       }),
     ),
     GetPage(

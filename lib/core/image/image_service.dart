@@ -16,7 +16,9 @@ class ImageService {
     return imageFile;
   }
 
-  static Future<String> uploadImageToFirebaseAndGetUrl(File file, String imagePath, FirebaseStorage storage) async {
+  static Future<String> uploadImageToFirebaseAndGetUrl(File file, String imagePath) async {
+    final storage = FirebaseStorage.instance;
+
     final fileExtension = path.extension(file.path);
     final uuid = const Uuid().v4();
     final firebaseStorageRef = storage.ref().child('$imagePath/$uuid$fileExtension');
@@ -27,7 +29,7 @@ class ImageService {
 
       return url;
     } on FirebaseException catch (_) {
-      throw Exception('Prescription Image upload error');
+      throw Exception('Image upload error');
     }
   }
 }

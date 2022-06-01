@@ -19,16 +19,13 @@ abstract class BaseGiftAskService {
 }
 
 class GiftAskService extends GetConnect implements BaseGiftAskService {
-  GiftAskService(this._firestore, this._storage);
-
-  final FirebaseFirestore _firestore;
-  final FirebaseStorage _storage;
+  GiftAskService();
 
   @override
   Future<void> addGift({required GiftAsk giftAsk, required String userId, required File imageFile}) async {
     try {
       if (giftAsk.giftAskType == GiftAskType.medicine && imageFile.path.isNotEmpty) {
-        final String prescriptionImageUrl = await ImageService.uploadImageToFirebaseAndGetUrl(imageFile, 'user/gift_ask', _storage);
+        final String prescriptionImageUrl = await ImageService.uploadImageToFirebaseAndGetUrl(imageFile, 'user/gift_ask');
 
         giftAsk = giftAsk.copyWith(imageUrl: prescriptionImageUrl);
       }

@@ -13,16 +13,14 @@ abstract class BaseGiftGiverService {
 }
 
 class GiftService extends GetConnect implements BaseGiftGiverService {
-  GiftService(this._storage);
-
-  final FirebaseStorage _storage;
+  GiftService();
 
   @override
   Future<void> addGift({required Gift gift, required File imageFile}) async {
     String giftImageUrl = '';
 
     try {
-      giftImageUrl = await ImageService.uploadImageToFirebaseAndGetUrl(imageFile, 'users/${gift.user?.uid}/gift', _storage);
+      giftImageUrl = await ImageService.uploadImageToFirebaseAndGetUrl(imageFile, 'users/${gift.user?.uid}/gift');
 
       gift = gift.copyWith(imageUrl: giftImageUrl);
     } catch (e) {

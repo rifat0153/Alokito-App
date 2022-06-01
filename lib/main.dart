@@ -1,4 +1,5 @@
 import 'package:alokito_new/di/firebase_di.dart';
+import 'package:alokito_new/di/navigation_key.dart';
 
 import 'core/language/translations.dart';
 import 'routes.dart';
@@ -32,13 +33,14 @@ Future<void> main() async {
 
   // Inject Instances
   Get.put(FirebaseDI(), permanent: true);
+  Get.put(NavigationKey(), permanent: true);
 
-  runApp(
-    AlokitoApp(),
-  );
+  runApp(const AlokitoApp());
 }
 
 class AlokitoApp extends StatelessWidget {
+  const AlokitoApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData();
@@ -47,7 +49,7 @@ class AlokitoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: ScreenUtilInit(
         designSize: const Size(392, 780),
-        builder: () => GetMaterialApp(
+        builder: (_, __) => GetMaterialApp(
           debugShowCheckedModeBanner: false,
           translations: MyTranslations(),
           locale: const Locale('en', 'US'),
@@ -61,6 +63,7 @@ class AlokitoApp extends StatelessWidget {
           ),
           initialRoute: '/',
           getPages: GetPages().getPages,
+          navigatorKey: Get.find<NavigationKey>().mainNavigator,
         ),
       ),
     );
