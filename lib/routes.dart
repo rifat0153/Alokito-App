@@ -1,7 +1,8 @@
-import 'package:alokito_new/modules/team/create_team_view.dart';
+import 'package:alokito_new/modules/team/views/create_team_view.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
-import 'package:alokito_new/modules/team/team_view.dart';
+import 'package:alokito_new/modules/team/views/join_team_view.dart';
+import 'package:alokito_new/modules/team/views/team_view.dart';
 import 'package:get/get.dart';
 
 import 'core/language/language_controller.dart';
@@ -65,13 +66,18 @@ class GetPages {
     //* Team Routes
     GetPage(
       name: TeamView.route,
-      page: () => const TeamView(),
+      page: () => TeamView(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
         Get.lazyPut(
           () => TeamController(service: TeamService()),
         );
       }),
+    ),
+    GetPage(
+      name: JoinTeamView.route,
+      page: () => const JoinTeamView(),
+      transition: Transition.fadeIn,
     ),
     GetPage(
       name: CreateTeamView.route,

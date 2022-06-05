@@ -19,6 +19,8 @@ class MyAssets {
   static const settingsBgImage = 'assets/images/settings_bg.png';
   static const paperClipIcon = 'assets/svgs/paper_clip.svg';
 
+  static const backgroundPeople = 'assets/images/notification-background.png';
+
   static const teamPeopleIcon = 'assets/svgs/team_people.svg';
   static const joinTeamIcon = 'assets/svgs/join_team.svg';
   static const createTeamIcon = 'assets/svgs/create_team.svg';

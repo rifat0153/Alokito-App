@@ -11,7 +11,7 @@ import '../../settings/views/settings_view.dart';
 import '../widgets/menu_tile_widget.dart';
 import '../widgets/user_email_widget.dart';
 import '../widgets/user_name_widget.dart';
-import '../widgets/user_navbar.dart';
+import '../widgets/my_bottom_nav_bar.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
@@ -156,7 +156,7 @@ class _BuildBody extends StatelessWidget {
           Positioned(
             width: Get.size.width,
             bottom: 0,
-            child: UserNavbar(),
+            child: MyBottomNavbar(),
           )
         ],
       ),

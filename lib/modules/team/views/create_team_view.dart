@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'team_ui_event.dart';
+import '../team_ui_event.dart';
 
 class CreateTeamView extends StatelessWidget {
   CreateTeamView({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class CreateTeamView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SkeletonWidget(
       titleWidget: const MyText('Create a team', fontWeight: FontWeight.bold),
-      assetPath: 'assets/images/notification-background.png',
+      assetPath: MyAssets.backgroundPeople,
       child: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: SingleChildScrollView(

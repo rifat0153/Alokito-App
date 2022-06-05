@@ -5,8 +5,8 @@ import 'package:alokito_new/core/image/image_service.dart';
 import 'package:alokito_new/di/navigation_key.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
+import 'package:collection/collection.dart';
 
 import 'package:alokito_new/models/team/team_response.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
@@ -20,9 +20,12 @@ class TeamController extends GetxController {
   ITeamService service;
 
   RxBool loading = false.obs;
-
-  RxList<Team> teamList = RxList<Team>();
   int page = 1;
+
+  RxList<Team> topTeamList = RxList<Team>();
+  RxList<Team> teamList = RxList<Team>();
+
+  Rx<Team?> get topTeam => topTeamList.firstOrNull.obs;
 
   Rx<File> coverTeamImage = File('').obs;
   Rx<File> profileTeamImage = File('').obs;
@@ -35,6 +38,31 @@ class TeamController extends GetxController {
     super.onInit();
 
     retriveTeams();
+
+    retriveTopTeams();
+  }
+
+  Future retriveTopTeams() async {
+    try {
+      final list = await service.getTopTeams(limit: 5);
+
+      topTeamList.value = list;
+    } catch (e) {
+      print('TeamController: Getting Top Team Error: $e');
+    }
+  }
+
+  Future retriveTeams() async {
+    try {
+      final list = await service.getAllTeams(
+        page: page,
+        userId: Get.find<AuthController>().getCurrentUserId(),
+      );
+
+      teamList.value = list;
+    } catch (e) {
+      print('TeamController: Getting Teams Error $e');
+    }
   }
 
   void handleUiEvent(TeamUiEvent event) {
@@ -68,18 +96,10 @@ class TeamController extends GetxController {
     final navKey = Get.find<NavigationKey>();
 
     try {
-      final coverImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(
-        coverTeamImage.value,
-        'teams',
-      );
-      final porfileImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(
-        profileTeamImage.value,
-        'teams',
-      );
+      final coverImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(coverTeamImage.value, 'teams');
+      final porfileImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(profileTeamImage.value, 'teams');
 
       final currentUserId = Get.find<AuthController>().getCurrentUserId();
-
-      print('Team: currentUserID: $currentUserId');
 
       newTeam.value = newTeam.value.copyWith(
         creatorId: currentUserId,
@@ -87,8 +107,6 @@ class TeamController extends GetxController {
         imageUrl: porfileImageDownloadURL,
         coverImageUrl: coverImageDownloadURL,
       );
-
-      print('Team: newTeam: ${newTeam.toJson()}');
 
       await service.createTeam(team: newTeam.value);
 
@@ -113,18 +131,5 @@ class TeamController extends GetxController {
     if (imageFile == null) return;
 
     profileTeamImage.value = imageFile;
-  }
-
-  Future retriveTeams() async {
-    try {
-      final list = await service.getAllTeams(
-        page: page,
-        userId: Get.find<AuthController>().getCurrentUserId(),
-      );
-
-      teamList.value = list;
-    } catch (e) {
-      print('TeamController: $e');
-    }
   }
 }

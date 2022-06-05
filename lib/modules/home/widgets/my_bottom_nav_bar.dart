@@ -1,4 +1,4 @@
-import 'package:alokito_new/modules/team/team_view.dart';
+import 'package:alokito_new/modules/team/views/team_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,8 +11,8 @@ import '../../auth/controllers/auth_controller.dart';
 import '../../chat_room/views/chat_room_view.dart';
 import '../../notification/views/notification_view.dart';
 
-class UserNavbar extends StatelessWidget {
-  UserNavbar({Key? key}) : super(key: key);
+class MyBottomNavbar extends StatelessWidget {
+  MyBottomNavbar({Key? key}) : super(key: key);
 
   final height = Get.size.height;
   final width = Get.size.width;
@@ -46,9 +46,7 @@ class UserNavbar extends StatelessWidget {
               child: authController.newNotifications.value > 0
                   ? Badge(
                       badgeContent: MyText(
-                        authController.newNotifications.value > 10
-                            ? '10+'
-                            : authController.newNotifications.value.toString(),
+                        authController.newNotifications.value > 10 ? '10+' : authController.newNotifications.value.toString(),
                         color: Colors.white,
                         fontSize: 14.sp,
                       ),
