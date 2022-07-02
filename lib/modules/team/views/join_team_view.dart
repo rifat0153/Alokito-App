@@ -6,6 +6,9 @@ import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:alokito_new/shared/widget/skeleton_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/team_header_section.dart';
 
 class JoinTeamView extends StatelessWidget {
   const JoinTeamView({Key? key}) : super(key: key);
@@ -20,13 +23,22 @@ class JoinTeamView extends StatelessWidget {
       titleWidget: const MyText('Join a team'),
       assetPath: MyAssets.backgroundPeople,
       child: Obx(
-        () => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kSpacing * 2),
-          child: Column(
-            children: [
-              if (controller.topTeam.value != null) TeamPreviewWidget(team: controller.topTeam.value!),
-            ],
-          ),
+        () => Column(
+          children: [
+            const AspectRatio(
+              aspectRatio: 16 / 10,
+              child: TeamHeaderSection(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kSpacing * 2),
+              child: Column(
+                children: [
+                  if (controller.topTeam.value != null)
+                    TeamPreviewWidget(team: controller.topTeam.value!),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

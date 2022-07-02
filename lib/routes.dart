@@ -78,6 +78,11 @@ class GetPages {
       name: JoinTeamView.route,
       page: () => const JoinTeamView(),
       transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(
+          () => TeamController(service: TeamService()),
+        );
+      }),
     ),
     GetPage(
       name: CreateTeamView.route,
@@ -158,8 +163,11 @@ class GetPages {
       page: () => GiftAskRequestDetailView(),
       transition: Transition.native,
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => GiftAskRequestDetailController(GiftAskRequestDetailService()));
-        Get.lazyPut(() => ChatRoomController(chatRoomService: ChatRoomService(firestore: FirebaseDI().firestore)));
+        Get.lazyPut(() =>
+            GiftAskRequestDetailController(GiftAskRequestDetailService()));
+        Get.lazyPut(() => ChatRoomController(
+            chatRoomService:
+                ChatRoomService(firestore: FirebaseDI().firestore)));
       }),
     ),
 
@@ -193,8 +201,11 @@ class GetPages {
       page: () => GiftRequestDetailView(),
       transition: Transition.native,
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => GiftRequestDetailController(GiftRequestDetailService()));
-        Get.lazyPut(() => ChatRoomController(chatRoomService: ChatRoomService(firestore: FirebaseDI().firestore)));
+        Get.lazyPut(
+            () => GiftRequestDetailController(GiftRequestDetailService()));
+        Get.lazyPut(() => ChatRoomController(
+            chatRoomService:
+                ChatRoomService(firestore: FirebaseDI().firestore)));
       }),
     ),
 

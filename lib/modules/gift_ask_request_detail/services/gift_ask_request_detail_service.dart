@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:alokito_new/models/gift_ask_request.dart/gift_ask_request.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/my_bottomsheets.dart';
-import 'package:alokito_new/shared/shared_service.dart';
 import 'package:get/get.dart';
 
 abstract class BaseGiftAskRequestDetailService {
@@ -29,7 +28,8 @@ abstract class BaseGiftAskRequestDetailService {
       required String giverId});
 }
 
-class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskRequestDetailService {
+class GiftAskRequestDetailService extends GetConnect
+    implements BaseGiftAskRequestDetailService {
   final url = '${MyConfig.baseUrl}/gift_ask_request';
 
   @override
@@ -83,7 +83,8 @@ class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskReque
 
         for (final item in body) {
           if (item != null) {
-            giftAskRequestList.add(GiftAskRequest.fromJson(item as Map<String, dynamic>));
+            giftAskRequestList
+                .add(GiftAskRequest.fromJson(item as Map<String, dynamic>));
           }
         }
 
@@ -91,16 +92,19 @@ class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskReque
 
         return GiftAskRequestListState.data(giftAskRequestList);
       } else {
-        return const GiftAskRequestListState.error('Some unexpected error occurred');
+        return const GiftAskRequestListState.error(
+            'Some unexpected error occurred');
       }
     } on TimeoutException catch (_) {
       return const GiftAskRequestListState.error('Server could not be reached');
     } on IOException catch (_) {
-      return const GiftAskRequestListState.error('Server could not be reached. Please check internet connection');
+      return const GiftAskRequestListState.error(
+          'Server could not be reached. Please check internet connection');
     } catch (e, s) {
       print(e);
       print(s);
-      return const GiftAskRequestListState.error('Opps. Looks like something went wrong');
+      return const GiftAskRequestListState.error(
+          'Opps. Looks like something went wrong');
     }
   }
 
@@ -139,7 +143,8 @@ class GiftAskRequestDetailService extends GetConnect implements BaseGiftAskReque
         await MySnackbar.showErrorSnackbar('GiftAskRequest Updated');
         return true;
       } else {
-        await MySnackbar.showErrorSnackbar('${response.statusCode}: Something went wrong');
+        await MySnackbar.showErrorSnackbar(
+            '${response.statusCode}: Something went wrong');
         return false;
       }
     } catch (e) {
