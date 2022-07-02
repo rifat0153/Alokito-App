@@ -9,7 +9,7 @@ class MyConfig {
 }
 
 // URL
-const baseUrl = 'http://192.168.0.104:80/api/v1';
+const baseUrl = 'http://192.168.0.215:80/api/v1';
 // const baseUrl = 'https://aalokito-dev-0-11-jyguqmmqea-uc.a.run.app/api/v1';
 
 const myTimeout = 8;

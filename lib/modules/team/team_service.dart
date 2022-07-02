@@ -7,20 +7,18 @@ abstract class ITeamService {
 
   Future<List<Team>> getTopTeams({int limit});
 
+  Future<List<Team>> searchTeams({required String searchTerm, required String userId, int limit});
+
   Future<Team> createTeam({required Team team});
 }
 
 class TeamService extends GetConnect implements ITeamService {
   @override
   Future<Team> createTeam({required Team team}) async {
-    print('Team: TeamService storing ${team.toJson()}');
-
     final Response response = await post(
       '$baseUrl/team/store',
       team.toJson(),
     ).timeout(const Duration(seconds: myTimeout));
-
-    print('TeamService: response: ${response.body}');
 
     return response.body!;
   }
@@ -32,26 +30,30 @@ class TeamService extends GetConnect implements ITeamService {
       decoder: (data) => TeamResponse.fromJson(data),
     ).timeout(const Duration(seconds: myTimeout));
 
-    print('TeamService: ${response.body}');
-    print('TeamService: team length ${response.body?.teams.length}');
-
     return response.body!.teams;
   }
 
   @override
   Future<List<Team>> getTopTeams({int limit = 10}) async {
-    print('TeamService: getting top team');
-
     final Response<TeamResponse> response = await get(
       '$baseUrl/team/top?limit=$limit',
       decoder: (data) => TeamResponse.fromJson(data),
     ).timeout(const Duration(seconds: myTimeout));
 
-    print('TeamService: getting top team ${response.body}');
     return response.body!.teams;
+  }
 
-    // final teamsRes = TeamResponse.fromJson(response.body);
+  @override
+  Future<List<Team>> searchTeams({
+    required String searchTerm,
+    required String userId,
+    int limit = 1000,
+  }) async {
+    final Response<TeamResponse> response = await get(
+      '$baseUrl/team/search?page=1&limit=$limit&searchString=$searchTerm&creatorId=$userId',
+      decoder: (data) => TeamResponse.fromJson(data),
+    ).timeout(const Duration(seconds: myTimeout));
 
-    // return teamsRes.teams;
+    return response.body!.teams;
   }
 }

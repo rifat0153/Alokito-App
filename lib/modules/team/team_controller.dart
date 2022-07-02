@@ -37,12 +37,11 @@ class TeamController extends GetxController {
   void onInit() {
     super.onInit();
 
-    retriveTeams();
-
-    retriveTopTeams();
+    retrieveTeams();
+    retrieveTopTeams();
   }
 
-  Future retriveTopTeams() async {
+  Future retrieveTopTeams() async {
     try {
       final list = await service.getTopTeams(limit: 5);
 
@@ -52,7 +51,7 @@ class TeamController extends GetxController {
     }
   }
 
-  Future retriveTeams() async {
+  Future retrieveTeams() async {
     try {
       final list = await service.getAllTeams(
         page: page,
@@ -97,14 +96,14 @@ class TeamController extends GetxController {
 
     try {
       final coverImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(coverTeamImage.value, 'teams');
-      final porfileImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(profileTeamImage.value, 'teams');
+      final profileImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(profileTeamImage.value, 'teams');
 
       final currentUserId = Get.find<AuthController>().getCurrentUserId();
 
       newTeam.value = newTeam.value.copyWith(
         creatorId: currentUserId,
         creator: currentUserId,
-        imageUrl: porfileImageDownloadURL,
+        imageUrl: profileImageDownloadURL,
         coverImageUrl: coverImageDownloadURL,
       );
 
