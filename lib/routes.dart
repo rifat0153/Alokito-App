@@ -1,7 +1,9 @@
+import 'package:alokito_new/models/team/team_response.dart';
 import 'package:alokito_new/modules/team/views/create_team_view.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
 import 'package:alokito_new/modules/team/views/join_team_view.dart';
+import 'package:alokito_new/modules/team/views/team_deails_view.dart';
 import 'package:alokito_new/modules/team/views/team_view.dart';
 import 'package:get/get.dart';
 
@@ -65,17 +67,26 @@ class GetPages {
 
     //* Team Routes
     GetPage(
-      name: TeamView.route,
-      page: () => TeamView(),
-      transition: Transition.fadeIn,
-      binding: BindingsBuilder(() {
-        Get.lazyPut(() => TeamController(service: TeamService()));
-        Get.lazyPut(() => AuthController(AuthService(
-              Get.find<FirebaseDI>().auth,
-              Get.find<FirebaseDI>().firestore,
-            )));
-      }),
-    ),
+        name: TeamView.route,
+        page: () => TeamView(),
+        transition: Transition.fadeIn,
+        binding: BindingsBuilder(() {
+          Get.lazyPut(() => TeamController(service: TeamService()));
+          Get.lazyPut(() => AuthController(AuthService(
+                Get.find<FirebaseDI>().auth,
+                Get.find<FirebaseDI>().firestore,
+              )));
+        })),
+
+    GetPage(
+        name: TeamDetailsView.route,
+        page: () => const TeamDetailsView(),
+        transition: Transition.fadeIn,
+        arguments: const Team(),
+        binding: BindingsBuilder(() {
+          Get.lazyPut(() => TeamController(service: TeamService()));
+        })),
+
     GetPage(
       name: JoinTeamView.route,
       page: () => const JoinTeamView(),

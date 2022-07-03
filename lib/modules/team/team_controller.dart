@@ -61,6 +61,7 @@ class TeamController extends GetxController {
   }) async {
     try {
       final searchResult = await service.searchTeams(
+        limit: 15,
         searchTerm: searchTerm,
         userId: authController.currentUser.value.id!,
       );

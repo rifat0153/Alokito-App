@@ -34,9 +34,11 @@ class JoinTeamView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const AspectRatio(
+                AspectRatio(
                   aspectRatio: 16 / 10.5,
-                  child: TeamHeaderSection(),
+                  child: TeamHeaderSection(
+                    topTeam: controller.topTeamList.first,
+                  ),
                 ),
                 SizedBox(height: 15.h),
                 Padding(
@@ -50,21 +52,28 @@ class JoinTeamView extends StatelessWidget {
                                   fontSize: 22.sp,
                                   fontWeight: FontWeight.w600))),
                       SizedBox(height: 8.h),
-                      if (controller.topTeam.value != null)
-                        ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: controller.topTeamList.length,
-                            itemBuilder: ((context, index) {
-                              return TeamPreviewWidget(
-                                  team: controller.topTeam.value!);
-                            }))
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: controller.topTeamList.length,
+                          itemBuilder: ((context, index) {
+                            return TeamPreviewWidget(
+                                team: controller.topTeamList[index]);
+                          }))
                     ])),
                 const Divider(color: Colors.transparent),
                 AspectRatio(
                   aspectRatio: 112 / 60,
                   child: TeamSearchSection(controller: controller),
                 ),
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.searchResultList.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return TeamPreviewWidget(
+                          team: controller.searchResultList.value[index]);
+                    }),
                 const Divider(color: Colors.transparent),
               ],
             ),

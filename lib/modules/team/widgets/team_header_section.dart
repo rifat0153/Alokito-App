@@ -1,12 +1,13 @@
+import 'package:alokito_new/models/team/team_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'c_shape.dart';
 
 class TeamHeaderSection extends StatelessWidget {
-  const TeamHeaderSection({
-    Key? key,
-  }) : super(key: key);
+  const TeamHeaderSection({Key? key, required this.topTeam}) : super(key: key);
+
+  final Team topTeam;
 
   @override
   Widget build(BuildContext context) {
@@ -101,16 +102,17 @@ class TeamHeaderSection extends StatelessWidget {
                       width: 100.w,
                       height: 100.w,
                       decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(10.r),
-                        border: Border.all(color: Colors.black, width: 3.w),
-                      ),
-                      child: const Placeholder(),
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(10.r),
+                          border: Border.all(color: Colors.black, width: 3.w),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(topTeam.imageUrl ?? ''))),
                     ),
-                    Text('Team Name',
+                    Text(topTeam.teamName ?? 'No Name Found',
                         style: TextStyle(fontSize: 16.sp, color: Colors.white)),
                     SizedBox(height: 2.h),
-                    Text('Bangladesh',
+                    Text(topTeam.location ?? 'No Location Found',
                         style:
                             TextStyle(fontSize: 12.sp, color: Colors.white60)),
                     SizedBox(height: 4.h),
@@ -122,7 +124,8 @@ class TeamHeaderSection extends StatelessWidget {
                         Icon(Icons.favorite,
                             size: 16.sp, color: const Color(0xff10CEE6)),
                         SizedBox(width: 4.w),
-                        Text('575',
+                        //TODO: Add likes count
+                        Text(topTeam.location ?? '575',
                             style:
                                 TextStyle(fontSize: 12.sp, color: Colors.white))
                       ],
