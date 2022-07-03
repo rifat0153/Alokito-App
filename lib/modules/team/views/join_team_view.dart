@@ -30,6 +30,7 @@ class JoinTeamView extends StatelessWidget {
         assetPath: MyAssets.backgroundPeople,
         child: Obx(
           () => SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -50,13 +51,21 @@ class JoinTeamView extends StatelessWidget {
                                   fontWeight: FontWeight.w600))),
                       SizedBox(height: 8.h),
                       if (controller.topTeam.value != null)
-                        TeamPreviewWidget(team: controller.topTeam.value!),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: controller.topTeamList.length,
+                            itemBuilder: ((context, index) {
+                              return TeamPreviewWidget(
+                                  team: controller.topTeam.value!);
+                            }))
                     ])),
                 const Divider(color: Colors.transparent),
                 AspectRatio(
                   aspectRatio: 112 / 60,
                   child: TeamSearchSection(controller: controller),
                 ),
+                const Divider(color: Colors.transparent),
               ],
             ),
           ),

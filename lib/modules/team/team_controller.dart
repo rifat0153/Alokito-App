@@ -15,9 +15,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'team_ui_event.dart';
 
 class TeamController extends GetxController {
-  TeamController({
-    required this.service,
-  });
+  final AuthController authController = Get.find<AuthController>();
+
+  TeamController({required this.service});
   ITeamService service;
 
   RxBool loading = false.obs;
@@ -25,6 +25,7 @@ class TeamController extends GetxController {
 
   RxList<Team> topTeamList = RxList<Team>();
   RxList<Team> teamList = RxList<Team>();
+  RxList<Team> searchResultList = RxList<Team>();
 
   Rx<Team?> get topTeam => topTeamList.firstOrNull.obs;
 
@@ -52,6 +53,22 @@ class TeamController extends GetxController {
   void dispose() {
     searchTextController.dispose();
     super.dispose();
+  }
+
+//! Search Team @monzim
+  Future searchTeams({
+    required String searchTerm,
+  }) async {
+    try {
+      final searchResult = await service.searchTeams(
+        searchTerm: searchTerm,
+        userId: authController.currentUser.value.id!,
+      );
+      searchResultList.value = searchResult;
+      print('search result: ${searchResult.length}');
+    } catch (e) {
+      print('TeamController: Getting Teams Error $e');
+    }
   }
 
   Future retrieveTopTeams() async {

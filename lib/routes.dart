@@ -69,15 +69,17 @@ class GetPages {
       page: () => TeamView(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
-        Get.lazyPut(
-          () => TeamController(service: TeamService()),
-        );
+        Get.lazyPut(() => TeamController(service: TeamService()));
+        Get.lazyPut(() => AuthController(AuthService(
+              Get.find<FirebaseDI>().auth,
+              Get.find<FirebaseDI>().firestore,
+            )));
       }),
     ),
     GetPage(
       name: JoinTeamView.route,
       page: () => const JoinTeamView(),
-      transition: Transition.fadeIn,
+      transition: Transition.noTransition,
       binding: BindingsBuilder(() {
         Get.lazyPut(
           () => TeamController(service: TeamService()),

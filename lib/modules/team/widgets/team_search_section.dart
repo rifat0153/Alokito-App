@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '../team_controller.dart';
 
 class TeamSearchSection extends StatelessWidget {
@@ -62,7 +63,19 @@ class TeamSearchSection extends StatelessWidget {
                           Icons.search,
                           color: Colors.white,
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          if (controller.searchTextController.text.isNotEmpty) {
+                            controller.searchTeams(
+                                searchTerm: controller.searchTextController.text
+                                    .trim());
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text('Please enter a name'),
+                              duration: Duration(seconds: 3),
+                            ));
+                          }
+                        }),
                   )
                 ],
               ),

@@ -64,20 +64,6 @@ class MenuTileWidget extends StatelessWidget {
 }
 
 final List<MenuTileWidget> menuListTile = [
-  //TODO @monzim: Put this in right place
-  // Gift Giver
-  MenuTileWidget(
-    assetPath: 'assets/svgs/gift giver.svg',
-    title: 'Gift Giver',
-    width: 0.7.sw,
-    height: 0.08.sh,
-    positionTop: 0.08.sh / 2 - 0.08.sh * 0.25,
-    positionLeft: 0.7.sw / 2 - 12.w,
-    function: () {
-      Get.toNamed(JoinTeamView.route);
-    },
-  ),
-
   // Gift Giver
   MenuTileWidget(
     assetPath: 'assets/svgs/gift giver.svg',

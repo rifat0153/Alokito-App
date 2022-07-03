@@ -17,7 +17,8 @@ class TeamPreviewWidget extends StatelessWidget {
         color: MyColors.lightGrey.withOpacity(0.3),
         borderRadius: BorderRadius.circular(kRadius),
       ),
-      padding: const EdgeInsets.all(kSpacing * 2),
+      margin: const EdgeInsets.only(bottom: kSpacing),
+      padding: const EdgeInsets.only(top: kSpacing * 2),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
