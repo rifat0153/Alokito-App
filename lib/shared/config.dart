@@ -2,7 +2,7 @@ import '../models/user/local_user.dart';
 import 'package:flutter/material.dart';
 
 class MyConfig {
-  static const baseUrl = 'https://aalokito-v-dev-13-jyguqmmqea-uc.a.run.app/api/v1';
+  static const baseUrl = 'https://aalokito-dev-v-0-14-jyguqmmqea-uc.a.run.app/api/v1';
 // static const baseUrl = 'http://192.168.118.176:80/api/v1';
 
   static const myTimeout = 30;
