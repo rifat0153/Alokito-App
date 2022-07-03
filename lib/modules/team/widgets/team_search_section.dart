@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../team_controller.dart';
 
-class TeamSearchSection extends StatelessWidget {
-  const TeamSearchSection({Key? key, required this.controller})
-      : super(key: key);
+class TeamSearchCard extends StatelessWidget {
+  const TeamSearchCard({Key? key, required this.controller}) : super(key: key);
 
   final TeamController controller;
 

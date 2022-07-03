@@ -9,6 +9,7 @@ import 'package:alokito_new/shared/widget/my_text.dart';
 
 import '../../gift/views/gift_view.dart';
 import '../../gift_request/views/gift_request_view.dart';
+import '../../team/views/team_view.dart';
 
 class MenuTileWidget extends StatelessWidget {
   const MenuTileWidget({
@@ -96,7 +97,7 @@ final List<MenuTileWidget> menuListTile = [
     positionTop: 0.08.sh / 2 - 0.08.sh * 0.25,
     positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
-      Get.toNamed(GiftRequestView.route);
+      Get.toNamed(TeamView.route);
     },
   ),
   MenuTileWidget(

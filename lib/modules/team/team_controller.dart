@@ -55,22 +55,41 @@ class TeamController extends GetxController {
     super.dispose();
   }
 
-//! Search Team @monzim
+//!
+  Future likeTeam({required String teamId}) async {
+    try {
+      final userID = authController.getCurrentUserId();
+      print(teamId);
+      print(userID);
+      final res = await service.addLikeToTeam(
+        teamId: teamId,
+        userId: userID,
+      );
+      print('>>>res: $res');
+    } catch (e) {
+      print('TeamController: Getting Teams Error $e');
+    }
+  }
+
   Future searchTeams({
     required String searchTerm,
   }) async {
     try {
+      loading.value = true;
       final searchResult = await service.searchTeams(
         limit: 15,
         searchTerm: searchTerm,
         userId: authController.currentUser.value.id!,
       );
       searchResultList.value = searchResult;
+      loading.value = false;
       print('search result: ${searchResult.length}');
     } catch (e) {
       print('TeamController: Getting Teams Error $e');
     }
   }
+
+  //!
 
   Future retrieveTopTeams() async {
     try {

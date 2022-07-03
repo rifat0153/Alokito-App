@@ -4,6 +4,7 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/constants.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:alokito_new/shared/widget/skeleton_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,16 +65,24 @@ class JoinTeamView extends StatelessWidget {
                 const Divider(color: Colors.transparent),
                 AspectRatio(
                   aspectRatio: 112 / 60,
-                  child: TeamSearchSection(controller: controller),
+                  child: TeamSearchCard(controller: controller),
                 ),
-                ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.searchResultList.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return TeamPreviewWidget(
-                          team: controller.searchResultList.value[index]);
-                    }),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: !controller.loading.value
+                      ? ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: controller.searchResultList.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return TeamPreviewWidget(
+                                team: controller.searchResultList[index]);
+                          })
+                      : const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        ),
+                ),
                 const Divider(color: Colors.transparent),
               ],
             ),

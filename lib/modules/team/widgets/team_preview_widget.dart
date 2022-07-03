@@ -16,7 +16,9 @@ class TeamPreviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(TeamDetailsView.route, arguments: team),
+      onTap: () => Get.toNamed(TeamDetailsView.route, arguments: {
+        'teamData': team,
+      }),
       child: Container(
         decoration: BoxDecoration(
           color: MyColors.lightGrey.withOpacity(0.3),
@@ -30,8 +32,8 @@ class TeamPreviewWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                width: 100.w,
-                height: 100.w,
+                width: 120.w,
+                height: 120.w,
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.white, width: 2.5.w),
                     borderRadius: BorderRadius.circular(kRadius * 2),
@@ -47,7 +49,7 @@ class TeamPreviewWidget extends StatelessWidget {
                   MyText(
                     team.teamName ?? '',
                     fontWeight: FontWeight.bold,
-                    fontSize: 20.sp,
+                    fontSize: 22.sp,
                   ),
                   SizedBox(
                     width: 180.w,
@@ -66,15 +68,19 @@ class TeamPreviewWidget extends StatelessWidget {
                       Icon(Icons.favorite,
                           size: 22.sp, color: const Color(0xff10CEE6)),
                       const SizedBox(width: kSpacing),
-                      const MyText('575'),
+                      MyText(team.likesCount.toString()),
                     ],
                   ),
+                  Divider(color: Colors.transparent, height: 10.h),
                   MyText(
                     'Objective',
                     fontWeight: FontWeight.bold,
                     fontSize: 18.sp,
                   ),
-                  MyText(team.objective ?? ''),
+                  MyText(
+                    team.objective ?? '',
+                    fontSize: 20.sp,
+                  ),
                 ],
               ),
             ],

@@ -80,9 +80,10 @@ class GetPages {
 
     GetPage(
         name: TeamDetailsView.route,
-        page: () => const TeamDetailsView(),
+        page: () => TeamDetailsView(
+              team: Get.arguments['teamData'] as Team,
+            ),
         transition: Transition.fadeIn,
-        arguments: const Team(),
         binding: BindingsBuilder(() {
           Get.lazyPut(() => TeamController(service: TeamService()));
         })),
