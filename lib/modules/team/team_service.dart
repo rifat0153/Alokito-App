@@ -7,7 +7,8 @@ abstract class ITeamService {
 
   Future<List<Team>> getTopTeams({int limit});
 
-  Future<List<Team>> searchTeams({required String searchTerm, required String userId, int limit});
+  Future<List<Team>> searchTeams(
+      {required String searchTerm, required String userId, int limit});
 
   Future<Team> createTeam({required Team team});
 }
@@ -24,7 +25,8 @@ class TeamService extends GetConnect implements ITeamService {
   }
 
   @override
-  Future<List<Team>> getAllTeams({required int page, required String userId, int limit = 10}) async {
+  Future<List<Team>> getAllTeams(
+      {required int page, required String userId, int limit = 10}) async {
     final Response<TeamResponse> response = await get(
       '$baseUrl/team?page=$page&limit=$limit&creatorId=$userId',
       decoder: (data) => TeamResponse.fromJson(data),

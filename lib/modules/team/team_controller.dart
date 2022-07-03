@@ -5,6 +5,7 @@ import 'package:alokito_new/core/image/image_service.dart';
 import 'package:alokito_new/di/navigation_key.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
 
@@ -14,9 +15,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'team_ui_event.dart';
 
 class TeamController extends GetxController {
-  TeamController({
-    required this.service,
-  });
+  final AuthController authController = Get.find<AuthController>();
+
+  TeamController({required this.service});
   ITeamService service;
 
   RxBool loading = false.obs;
@@ -24,14 +25,20 @@ class TeamController extends GetxController {
 
   RxList<Team> topTeamList = RxList<Team>();
   RxList<Team> teamList = RxList<Team>();
+  RxList<Team> searchResultList = RxList<Team>();
 
   Rx<Team?> get topTeam => topTeamList.firstOrNull.obs;
 
   Rx<File> coverTeamImage = File('').obs;
   Rx<File> profileTeamImage = File('').obs;
 
-  Rx<Team> newTeam = Team(startDate: DateTime.now(), endDate: DateTime.now().add(const Duration(days: 3))).obs;
+  Rx<Team> newTeam = Team(
+          startDate: DateTime.now(),
+          endDate: DateTime.now().add(const Duration(days: 3)))
+      .obs;
   RxList<Marker> markerList = RxList<Marker>.empty();
+
+  late TextEditingController searchTextController;
 
   @override
   void onInit() {
@@ -39,6 +46,30 @@ class TeamController extends GetxController {
 
     retrieveTeams();
     retrieveTopTeams();
+    searchTextController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    searchTextController.dispose();
+    super.dispose();
+  }
+
+//! Search Team @monzim
+  Future searchTeams({
+    required String searchTerm,
+  }) async {
+    try {
+      final searchResult = await service.searchTeams(
+        limit: 15,
+        searchTerm: searchTerm,
+        userId: authController.currentUser.value.id!,
+      );
+      searchResultList.value = searchResult;
+      print('search result: ${searchResult.length}');
+    } catch (e) {
+      print('TeamController: Getting Teams Error $e');
+    }
   }
 
   Future retrieveTopTeams() async {
@@ -66,7 +97,8 @@ class TeamController extends GetxController {
 
   void handleUiEvent(TeamUiEvent event) {
     event.when(
-      setName: (value) => newTeam.value = newTeam.value.copyWith(teamName: value),
+      setName: (value) =>
+          newTeam.value = newTeam.value.copyWith(teamName: value),
       setLocation: (value) async {
         markerList.value = [
           Marker(markerId: MarkerId(value.toString()), position: value),
@@ -78,13 +110,19 @@ class TeamController extends GetxController {
           geometry: Geometry(coordinates: [value.longitude, value.latitude]),
         );
       },
-      setObjective: (value) => newTeam.value = newTeam.value.copyWith(objective: value),
+      setObjective: (value) =>
+          newTeam.value = newTeam.value.copyWith(objective: value),
       setGoal: (value) => newTeam.value = newTeam.value.copyWith(goal: value),
-      setSummary: (value) => newTeam.value = newTeam.value.copyWith(summary: value),
-      setPreviousGoalAchieved: (value) => newTeam.value = newTeam.value.copyWith(previousGoalAchieved: value),
-      setPreviousGoalSummary: (value) => newTeam.value = newTeam.value.copyWith(previousGoalSummary: value),
-      setStartDate: (value) => newTeam.value = newTeam.value.copyWith(startDate: value),
-      setEndDate: (value) => newTeam.value = newTeam.value.copyWith(endDate: value),
+      setSummary: (value) =>
+          newTeam.value = newTeam.value.copyWith(summary: value),
+      setPreviousGoalAchieved: (value) =>
+          newTeam.value = newTeam.value.copyWith(previousGoalAchieved: value),
+      setPreviousGoalSummary: (value) =>
+          newTeam.value = newTeam.value.copyWith(previousGoalSummary: value),
+      setStartDate: (value) =>
+          newTeam.value = newTeam.value.copyWith(startDate: value),
+      setEndDate: (value) =>
+          newTeam.value = newTeam.value.copyWith(endDate: value),
       create: createTeam,
     );
   }
@@ -95,8 +133,12 @@ class TeamController extends GetxController {
     final navKey = Get.find<NavigationKey>();
 
     try {
-      final coverImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(coverTeamImage.value, 'teams');
-      final profileImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(profileTeamImage.value, 'teams');
+      final coverImageDownloadURL =
+          await ImageService.uploadImageToFirebaseAndGetUrl(
+              coverTeamImage.value, 'teams');
+      final profileImageDownloadURL =
+          await ImageService.uploadImageToFirebaseAndGetUrl(
+              profileTeamImage.value, 'teams');
 
       final currentUserId = Get.find<AuthController>().getCurrentUserId();
 

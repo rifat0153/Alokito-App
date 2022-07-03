@@ -34,7 +34,9 @@ class GiftAskRequestDetailLocationAndGiftDetailsWidget extends StatelessWidget {
               Text('Location', style: boldFontStyle),
               SizedBox(height: 4.h),
               MyText(
-                giftAskRequest.giftAsk.location.isEmpty ? 'N/A' : giftAskRequest.giftAsk.location,
+                giftAskRequest.giftAsk.location.isEmpty
+                    ? 'N/A'
+                    : giftAskRequest.giftAsk.location,
                 fontSize: 16.sp,
               ),
               SizedBox(height: 8.h),
@@ -51,9 +53,12 @@ class GiftAskRequestDetailLocationAndGiftDetailsWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const SizedBox(),
-                  MyText(giftAskRequest.giftAsk.user.giftGiven.toInt().toString(), color: Colors.red),
+                  MyText(
+                      giftAskRequest.giftAsk.user.giftGiven.toInt().toString(),
+                      color: Colors.red),
                   const MyText('All time', fontSize: 14),
-                  MyText(giftAskRequest.giver.giftReceived.toInt().toString(), color: Colors.red),
+                  MyText(giftAskRequest.giver.giftReceived.toInt().toString(),
+                      color: Colors.red),
                   const SizedBox(),
                 ],
               ),
@@ -73,25 +78,27 @@ class GiftAskRequestDetailLocationAndGiftDetailsWidget extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(FontAwesomeIcons.phone, color: Colors.white),
-                          const MyText('Voice Call', fontSize: 9, color: Colors.white),
+                          const Icon(FontAwesomeIcons.phone,
+                              color: Colors.white),
+                          const MyText('Voice Call',
+                              fontSize: 9, color: Colors.white),
                         ],
                       ),
                     ),
                   ),
                   GestureDetector(
                     onTap: () async {
-                        // create chat_room for GIftAskRequest and Navigate to chat_room_view
-                        await chatRoomController.createChatRoom(
-                            relatedDocId: giftAskRequest.id!,
-                            user1: giftAskRequest.giver.id!,
-                            user1Image: giftAskRequest.giver.imageUrl,
-                            user1Name: giftAskRequest.giver.userName,
-                            user2: giftAskRequest.giftAsk.user.id!,
-                            user2Image: giftAskRequest.giftAsk.user.imageUrl,
-                            user2Name: giftAskRequest.giftAsk.user.userName,
-                            roomType: 'giftAskRequest');
-                      },
+                      // create chat_room for GIftAskRequest and Navigate to chat_room_view
+                      await chatRoomController.createChatRoom(
+                          relatedDocId: giftAskRequest.id!,
+                          user1: giftAskRequest.giver.id!,
+                          user1Image: giftAskRequest.giver.imageUrl,
+                          user1Name: giftAskRequest.giver.userName,
+                          user2: giftAskRequest.giftAsk.user.id!,
+                          user2Image: giftAskRequest.giftAsk.user.imageUrl,
+                          user2Name: giftAskRequest.giftAsk.user.userName,
+                          roomType: 'giftAskRequest');
+                    },
                     child: Container(
                       height: 60,
                       width: 66,
@@ -103,9 +110,11 @@ class GiftAskRequestDetailLocationAndGiftDetailsWidget extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(FontAwesomeIcons.commentAlt, color: Colors.white),
-                            const MyText('Conversation', fontSize: 9, color: Colors.white),
+                          children: const [
+                            Icon(FontAwesomeIcons.commentAlt,
+                                color: Colors.white),
+                            MyText('Conversation',
+                                fontSize: 9, color: Colors.white),
                           ],
                         ),
                       ),

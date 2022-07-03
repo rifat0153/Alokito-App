@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,8 +18,9 @@ class MapWidgetState extends State<MapWidget> {
   final Completer<GoogleMapController> _controller = Completer();
   double zoom = 12;
 
-  late LatLng userPosition =
-      LatLng(giftAskController.currentUserPosition.value.latitude, giftAskController.currentUserPosition.value.longitude);
+  late LatLng userPosition = LatLng(
+      giftAskController.currentUserPosition.value.latitude,
+      giftAskController.currentUserPosition.value.longitude);
 
   @override
   void initState() {
@@ -42,12 +42,16 @@ class MapWidgetState extends State<MapWidget> {
           () => GoogleMap(
             onMapCreated: _controller.complete,
             zoomControlsEnabled: false,
-            initialCameraPosition: CameraPosition(target: giftAskController.currentUserPosition.value, zoom: zoom),
+            initialCameraPosition: CameraPosition(
+                target: giftAskController.currentUserPosition.value,
+                zoom: zoom),
             onTap: (LatLng latLng) async {
-              giftAskController.formMarker.value = Marker(markerId: const MarkerId('markerId'), position: latLng);
+              giftAskController.formMarker.value = Marker(
+                  markerId: const MarkerId('markerId'), position: latLng);
               final GoogleMapController controller = await _controller.future;
               await controller.animateCamera(
-                CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: zoom)),
+                CameraUpdate.newCameraPosition(
+                    CameraPosition(target: latLng, zoom: zoom)),
               );
               giftAskController.setLocationFromMapCordinates();
             },
