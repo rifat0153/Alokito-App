@@ -5,6 +5,7 @@ import 'package:alokito_new/core/image/image_service.dart';
 import 'package:alokito_new/di/navigation_key.dart';
 import 'package:alokito_new/models/user/local_user.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
 
@@ -30,8 +31,13 @@ class TeamController extends GetxController {
   Rx<File> coverTeamImage = File('').obs;
   Rx<File> profileTeamImage = File('').obs;
 
-  Rx<Team> newTeam = Team(startDate: DateTime.now(), endDate: DateTime.now().add(const Duration(days: 3))).obs;
+  Rx<Team> newTeam = Team(
+          startDate: DateTime.now(),
+          endDate: DateTime.now().add(const Duration(days: 3)))
+      .obs;
   RxList<Marker> markerList = RxList<Marker>.empty();
+
+  late TextEditingController searchTextController;
 
   @override
   void onInit() {
@@ -39,6 +45,13 @@ class TeamController extends GetxController {
 
     retrieveTeams();
     retrieveTopTeams();
+    searchTextController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    searchTextController.dispose();
+    super.dispose();
   }
 
   Future retrieveTopTeams() async {
@@ -66,7 +79,8 @@ class TeamController extends GetxController {
 
   void handleUiEvent(TeamUiEvent event) {
     event.when(
-      setName: (value) => newTeam.value = newTeam.value.copyWith(teamName: value),
+      setName: (value) =>
+          newTeam.value = newTeam.value.copyWith(teamName: value),
       setLocation: (value) async {
         markerList.value = [
           Marker(markerId: MarkerId(value.toString()), position: value),
@@ -78,13 +92,19 @@ class TeamController extends GetxController {
           geometry: Geometry(coordinates: [value.longitude, value.latitude]),
         );
       },
-      setObjective: (value) => newTeam.value = newTeam.value.copyWith(objective: value),
+      setObjective: (value) =>
+          newTeam.value = newTeam.value.copyWith(objective: value),
       setGoal: (value) => newTeam.value = newTeam.value.copyWith(goal: value),
-      setSummary: (value) => newTeam.value = newTeam.value.copyWith(summary: value),
-      setPreviousGoalAchieved: (value) => newTeam.value = newTeam.value.copyWith(previousGoalAchieved: value),
-      setPreviousGoalSummary: (value) => newTeam.value = newTeam.value.copyWith(previousGoalSummary: value),
-      setStartDate: (value) => newTeam.value = newTeam.value.copyWith(startDate: value),
-      setEndDate: (value) => newTeam.value = newTeam.value.copyWith(endDate: value),
+      setSummary: (value) =>
+          newTeam.value = newTeam.value.copyWith(summary: value),
+      setPreviousGoalAchieved: (value) =>
+          newTeam.value = newTeam.value.copyWith(previousGoalAchieved: value),
+      setPreviousGoalSummary: (value) =>
+          newTeam.value = newTeam.value.copyWith(previousGoalSummary: value),
+      setStartDate: (value) =>
+          newTeam.value = newTeam.value.copyWith(startDate: value),
+      setEndDate: (value) =>
+          newTeam.value = newTeam.value.copyWith(endDate: value),
       create: createTeam,
     );
   }
@@ -95,8 +115,12 @@ class TeamController extends GetxController {
     final navKey = Get.find<NavigationKey>();
 
     try {
-      final coverImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(coverTeamImage.value, 'teams');
-      final profileImageDownloadURL = await ImageService.uploadImageToFirebaseAndGetUrl(profileTeamImage.value, 'teams');
+      final coverImageDownloadURL =
+          await ImageService.uploadImageToFirebaseAndGetUrl(
+              coverTeamImage.value, 'teams');
+      final profileImageDownloadURL =
+          await ImageService.uploadImageToFirebaseAndGetUrl(
+              profileTeamImage.value, 'teams');
 
       final currentUserId = Get.find<AuthController>().getCurrentUserId();
 

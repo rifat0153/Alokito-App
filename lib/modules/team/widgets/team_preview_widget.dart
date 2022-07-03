@@ -23,7 +23,7 @@ class TeamPreviewWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.amber,
+              color: Colors.black,
               borderRadius: BorderRadius.circular(kRadius * 2),
             ),
             padding: const EdgeInsets.all(kSpacing / 2),
@@ -52,7 +52,8 @@ class TeamPreviewWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.favorite),
+                    Icon(Icons.favorite,
+                        size: 22.sp, color: const Color(0xff10CEE6)),
                     const SizedBox(width: kSpacing),
                     MyText(team.location ?? ''),
                   ],

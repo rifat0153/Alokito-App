@@ -13,14 +13,36 @@ class TeamHeaderSection extends StatelessWidget {
     return Container(
       color: const Color(0xff353445),
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          // CustomPaint(
-          //   size: Size(
-          //       150,
-          //       (MediaQuery.of(context).size.width * 0.947075208913649)
-          //           .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-          //   painter: TeamHeaderSectionCustomPainter(),
-          // ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Opacity(
+              opacity: 0.75,
+              child: Stack(
+                children: [
+                  AspectRatio(
+                    aspectRatio: 1,
+                    child: CustomPaint(
+                        size: const Size(150, (150 * 0.8859649122807017)),
+                        painter: LastPainter()),
+                  ),
+                  AspectRatio(
+                    aspectRatio: 1,
+                    child: CustomPaint(
+                        size: const Size(150, (150 * 1.0957095709570956)),
+                        painter: MiddlePainter()),
+                  ),
+                  AspectRatio(
+                    aspectRatio: 1,
+                    child: CustomPaint(
+                        size: const Size(150, (150 * 0.8688046647230321)),
+                        painter: Top1Painter()),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Row(
             children: <Widget>[
               Expanded(
