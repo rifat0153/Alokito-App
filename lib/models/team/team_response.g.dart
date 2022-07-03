@@ -48,6 +48,12 @@ _$_Team _$$_TeamFromJson(Map<String, dynamic> json) => _$_Team(
       endDate: json['endDate'] == null
           ? null
           : DateTime.parse(json['endDate'] as String),
+      teamDetails: json['teamDetails'] as String?,
+      likes:
+          (json['likes'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
+      memberCount: json['members_count'] as int? ?? 0,
+      likesCount: json['likes_count'] as int? ?? 0,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -75,6 +81,10 @@ Map<String, dynamic> _$$_TeamToJson(_$_Team instance) => <String, dynamic>{
       'coverImageUrl': instance.coverImageUrl,
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),
+      'teamDetails': instance.teamDetails,
+      'likes': instance.likes,
+      'members_count': instance.memberCount,
+      'likes_count': instance.likesCount,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'distance': instance.distance,
