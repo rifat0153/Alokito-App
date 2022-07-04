@@ -110,10 +110,10 @@ class GiftAskRequestDetailLocationAndGiftDetailsWidget extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(FontAwesomeIcons.commentAlt,
+                          children: [
+                            const Icon(FontAwesomeIcons.commentAlt,
                                 color: Colors.white),
-                            MyText('Conversation',
+                            const MyText('Conversation',
                                 fontSize: 9, color: Colors.white),
                           ],
                         ),

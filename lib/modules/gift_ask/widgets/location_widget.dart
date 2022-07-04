@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,8 +8,6 @@ import 'map_widget.dart';
 
 class InsertLocationWidget extends StatelessWidget {
   final GiftAskController giftAskController = Get.find<GiftAskController>();
-
-  InsertLocationWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
