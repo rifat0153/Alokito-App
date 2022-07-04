@@ -1,5 +1,6 @@
 import 'package:alokito_new/models/gift_request/gift_request.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GiftCommentWidget extends StatelessWidget {
   const GiftCommentWidget({
@@ -16,9 +17,7 @@ class GiftCommentWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         // height: 100.h,
-        decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(5)),
+        decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(5)),
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: giftRequest!.comment.isNotEmpty

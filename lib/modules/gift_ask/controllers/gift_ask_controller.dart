@@ -22,16 +22,14 @@ class GiftAskController extends GetxController {
   RxMap<MarkerId, Marker> markers = <MarkerId, Marker>{}.obs;
   final RxDouble searchRadius = 50.0.obs;
   Rx<GiftAskListUnion> giftRequestList = const GiftAskListUnion.loading().obs;
-  Rx<GiftAskListUnion> filteredGiftRequestList =
-      const GiftAskListUnion.loading().obs;
+  Rx<GiftAskListUnion> filteredGiftRequestList = const GiftAskListUnion.loading().obs;
 
   // GiftASk Form data control value
   RxBool loading = false.obs;
   RxBool hasError = false.obs;
 
   var giftTypeOptions = ['Food', 'Medicine', 'Others'];
-  var formMarker =
-      Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
+  var formMarker =  Marker(markerId: MarkerId('markerId'), position: LatLng(0, 0)).obs;
   var currentUserPosition = const LatLng(23, 90).obs;
   var location = ''.obs;
   var area = ''.obs;
@@ -55,19 +53,15 @@ class GiftAskController extends GetxController {
         filteredGiftRequestList.value = const GiftAskListUnion.loading();
 
         for (final doc in docList) {
-          if (doc.id != Get.find<AuthController>().currentUser.value.id &&
-              !doc.giftCompleted) {
+          if (doc.id != Get.find<AuthController>().currentUser.value.id && !doc.giftCompleted) {
             final List<GiftAsk> tempFilteredList = [
-              ...filteredGiftRequestList.value
-                  .maybeWhen(data: (data) => data, orElse: () => []),
+              ...filteredGiftRequestList.value.maybeWhen(data: (data) => data, orElse: () => []),
               doc
             ];
-            filteredGiftRequestList.value =
-                GiftAskListUnion.data(tempFilteredList);
+            filteredGiftRequestList.value = GiftAskListUnion.data(tempFilteredList);
           }
         }
-        _updateMarkers(filteredGiftRequestList.value
-            .maybeWhen(data: (data) => data, orElse: () => []));
+        _updateMarkers(filteredGiftRequestList.value.maybeWhen(data: (data) => data, orElse: () => []));
       }, empty: () {
         filteredGiftRequestList.value = const GiftAskListUnion.empty();
         _updateMarkers([]);
@@ -100,7 +94,7 @@ class GiftAskController extends GetxController {
   // * Delete GiftASk
   Future<void> deleteGiftAsk(GiftAsk giftAsk) async {
     try {
-      //  TODO
+    //  TODO
     } catch (e) {
       await MyBottomSheet.showErrorBottomSheet('GiftAsk could not be deleted');
     }
@@ -134,8 +128,7 @@ class GiftAskController extends GetxController {
     // LocationData loc = await Location().getLocation();
     final userLocation = Get.find<AuthController>().currentUserPosition.value;
     currentUserPosition.value = userLocation;
-    formMarker.value = Marker(
-        markerId: const MarkerId('123'), position: currentUserPosition.value);
+    formMarker.value = Marker(markerId: const MarkerId('123'), position: currentUserPosition.value);
 
     setLocationFromMapCordinates();
     print('GiftAskController: ' + currentUserPosition.value.toString());
@@ -154,17 +147,11 @@ class GiftAskController extends GetxController {
     loading.value = true;
 
     final GiftAsk giftAsk = GiftAsk(
-      user: Get.find<AuthController>()
-          .currentUserInfo
-          .value
-          .maybeWhen(data: (user) => user, orElse: () => initialUser),
+      user: Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => initialUser),
       title: giftTitle.value,
       location: location.value,
       area: area.value,
-      geometry: Geometry(coordinates: [
-        formMarker.value.position.longitude,
-        formMarker.value.position.latitude
-      ]),
+      geometry: Geometry(coordinates: [formMarker.value.position.longitude, formMarker.value.position.latitude]),
       requestForNoOfPeople: requestForNoOfPeople,
       giftAskType: getGiftAskType(),
       giftForSmallFamily: _packageSmallFamilty.value,
@@ -182,6 +169,7 @@ class GiftAskController extends GetxController {
     loading.value = false;
   }
 
+
   GiftAskType getGiftAskType() {
     if (selectedGiftType == 'Food') return GiftAskType.food;
     if (selectedGiftType == 'Medicine') return GiftAskType.medicine;
@@ -192,10 +180,8 @@ class GiftAskController extends GetxController {
   void setLocationFromMapCordinates() async {
     // From coordinates
     try {
-      final List<Placemark> placemarks =
-          await GeocodingHelper.getAddressFromPosition(
-              formMarker.value.position.latitude,
-              formMarker.value.position.longitude);
+      final List<Placemark> placemarks = await GeocodingHelper.getAddressFromPosition(
+          formMarker.value.position.latitude, formMarker.value.position.longitude);
 
       location.value = placemarks.first.country ?? 'N/A';
       area.value = placemarks.first.name ?? 'N/A';
@@ -212,22 +198,19 @@ class GiftAskController extends GetxController {
   int get requestForNoOfPeople => _requestForNoOfPeople.value;
 
   void decreseRequestForNoOfPeople() {
-    _requestForNoOfPeople.value =
-        _requestForNoOfPeople.value < 1 ? 0 : _requestForNoOfPeople.value - 1;
+    _requestForNoOfPeople.value = _requestForNoOfPeople.value < 1 ? 0 : _requestForNoOfPeople.value - 1;
   }
 
   void increaseRequestForNoOfPeople() {
-    _requestForNoOfPeople.value = _requestForNoOfPeople.value > 9
-        ? _requestForNoOfPeople.value
-        : _requestForNoOfPeople.value + 1;
+    _requestForNoOfPeople.value =
+        _requestForNoOfPeople.value > 9 ? _requestForNoOfPeople.value : _requestForNoOfPeople.value + 1;
   }
 
   String get selectedGiftType => _selectedGiftType.value;
 
   void setSelectedGiftType(String newValue) {
     showPrescription.value = newValue == 'Medicine';
-    precriptionImageFile.value =
-        (newValue == 'Medicine') ? precriptionImageFile.value : File('');
+    precriptionImageFile.value = (newValue == 'Medicine') ? precriptionImageFile.value : File('');
     _selectedGiftType.value = newValue;
   }
 }
