@@ -33,8 +33,7 @@ class HomeView extends StatelessWidget {
           centerTitle: true,
           title: const Text(
             'User',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
           ),
           actions: [
             IconButton(
@@ -166,9 +165,7 @@ class _BuildBody extends StatelessWidget {
 }
 
 class _UserImageWidget extends StatelessWidget {
-  const _UserImageWidget(
-      {Key? key, required this.authController, required this.localUser})
-      : super(key: key);
+  const _UserImageWidget({Key? key, required this.authController, required this.localUser}) : super(key: key);
 
   final AuthController authController;
   final LocalUser localUser;

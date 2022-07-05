@@ -25,9 +25,7 @@ class TeamDetailsView extends StatelessWidget {
     final controller = Get.find<TeamController>();
 
     return Scaffold(
-      bottomNavigationBar: Container(
-          color: const Color.fromARGB(255, 53, 66, 92),
-          child: MyBottomNavbar()),
+      bottomNavigationBar: Container(color: const Color.fromARGB(255, 53, 66, 92), child: MyBottomNavbar()),
       body: SkeletonWidget(
           titleWidget: const MyText('Back'),
           assetPath: MyAssets.backgroundPeople,
@@ -44,9 +42,7 @@ class TeamDetailsView extends StatelessWidget {
                           image: NetworkImage(team.coverImageUrl ?? ''),
                         ),
                       ),
-                      child: team.coverImageUrl == null
-                          ? Icon(Icons.camera_alt, size: 100.w)
-                          : Container(),
+                      child: team.coverImageUrl == null ? Icon(Icons.camera_alt, size: 100.w) : Container(),
                     )),
                 const Divider(color: Colors.transparent),
                 Row(
@@ -89,19 +85,13 @@ class TeamDetailsView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(Icons.favorite,
-                                size: 16.sp, color: const Color(0xff10CEE6)),
+                            Icon(Icons.favorite, size: 16.sp, color: const Color(0xff10CEE6)),
                             SizedBox(width: 4.w),
-                            Text(team.likesCount.toString(),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 14.sp)),
+                            Text(team.likesCount.toString(), textAlign: TextAlign.center, style: TextStyle(fontSize: 14.sp)),
                             SizedBox(width: 15.w),
-                            Icon(Icons.people,
-                                size: 16.sp, color: const Color(0xff10CEE6)),
+                            Icon(Icons.people, size: 16.sp, color: const Color(0xff10CEE6)),
                             SizedBox(width: 4.w),
-                            Text(team.memberCount.toString() + ' members',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 14.sp))
+                            Text(team.memberCount.toString() + ' members', textAlign: TextAlign.center, style: TextStyle(fontSize: 14.sp))
                           ],
                         ),
                       ],
@@ -114,19 +104,15 @@ class TeamDetailsView extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.5),
                   padding: const EdgeInsets.all(kSpacing),
                   child: Text(team.teamDetails ?? 'No details found'),
-                  // child: Text(
-                  //     'Amet ad non duis est sit dolore. Culpa nisi do Lorem nisi esse irure cillum duis ad ad cupidatat eiusmod. Adipisicing excepteur non ut reprehenderit. Reprehenderit nulla magna dolor cupidatat dolore pariatur. Reprehenderit deserunt mollit consequat amet nisi. Reprehenderit non tempor consectetur excepteur nisi eu amet enim sunt nisi exercitation voluptate occaecat consectetur. Et ipsum velit ad aliqua aliqua reprehenderit ipsum nostrud nisi quis ex id nulla.'),
                 ),
                 const Divider(color: Colors.transparent),
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.w),
+                  padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.w),
                   child: Column(
                     children: [
                       const Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('Previous Goal Achievement',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        child: Text('Previous Goal Achievement', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       SizedBox(height: 8.h),
                       Container(
@@ -134,47 +120,39 @@ class TeamDetailsView extends StatelessWidget {
                             color: const Color(0xff10CEE6),
                             borderRadius: BorderRadius.circular(3.r),
                           ),
-                          child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                  team.previousGoalSummary ??
-                                      'No Achievement found',
-                                  maxLines: 1,
-                                  textAlign: TextAlign.center))),
+                          child: Padding(padding: const EdgeInsets.all(8.0), child: Text(team.previousGoalSummary ?? 'No Achievement found', maxLines: 1, textAlign: TextAlign.center))),
                       SizedBox(height: 15.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          ElevatedButton.icon(
-                            icon: Icon(Icons.favorite, size: 20.w),
-                            onPressed: () {
-                              controller.likeTeam(teamId: team.id!);
-                            },
-                            label: const Text('Love'),
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15.w, vertical: 2.h),
-                              primary: const Color(0xff343344),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.r)),
+                      Obx(
+                        () => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            ElevatedButton.icon(
+                              icon: Icon(Icons.favorite, size: 20.w),
+                              onPressed: () {
+                                controller.toggleLikeTeam(team: team);
+                              },
+                              label: controller.isLikedByUser(team) ? const Text('Dislike') : const Text('Love'),
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h),
+                                primary: const Color(0xff343344),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
+                              ),
                             ),
-                          ),
-                          ElevatedButton.icon(
-                            icon: Icon(Icons.share, size: 20.w),
-                            onPressed: () {},
-                            label: const Text('Share'),
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15.w, vertical: 2.h),
-                              primary: const Color(0xff343344),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.r)),
+                            ElevatedButton.icon(
+                              icon: Icon(Icons.share, size: 20.w),
+                              onPressed: () {},
+                              label: const Text('Share'),
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h),
+                                primary: const Color(0xff343344),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       SizedBox(height: 25.h),
                       ElevatedButton(
@@ -187,8 +165,7 @@ class TeamDetailsView extends StatelessWidget {
                           elevation: 0,
                           fixedSize: Size(200.w, 45.h),
                           primary: const Color(0xff343344),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.r)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
                         ),
                       ),
                     ],

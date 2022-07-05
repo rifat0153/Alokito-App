@@ -1,9 +1,7 @@
-import 'package:alokito_new/modules/team/views/join_team_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 import 'package:alokito_new/shared/widget/my_text.dart';
 
@@ -29,7 +27,7 @@ class MenuTileWidget extends StatelessWidget {
   final double height;
   final double positionTop;
   final double positionLeft;
-  final Callback function;
+  final void Function()  function;
 
   @override
   Widget build(BuildContext context) {

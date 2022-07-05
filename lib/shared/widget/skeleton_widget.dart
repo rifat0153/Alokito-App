@@ -3,13 +3,14 @@ import 'package:get/get.dart';
 
 class SkeletonWidget extends StatelessWidget {
   const SkeletonWidget({
+    Key? key,
     required this.titleWidget,
     required this.assetPath,
     required this.child,
-    this.elevation = 0,
     this.centerTitle = false,
     this.extendBody = false,
-  });
+    this.elevation = 0,
+  }) : super(key: key);
 
   final Widget titleWidget;
   final String assetPath;

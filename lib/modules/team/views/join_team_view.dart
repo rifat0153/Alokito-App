@@ -4,7 +4,6 @@ import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/constants.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:alokito_new/shared/widget/skeleton_widget.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,14 +23,14 @@ class JoinTeamView extends StatelessWidget {
 
     return Scaffold(
       bottomNavigationBar: Container(
-          color: const Color.fromARGB(255, 53, 66, 92),
-          child: MyBottomNavbar()),
+        color: const Color.fromARGB(255, 53, 66, 92),
+        child: MyBottomNavbar(),
+      ),
       body: SkeletonWidget(
         titleWidget: const MyText('Join a team'),
         assetPath: MyAssets.backgroundPeople,
         child: Obx(
           () => SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -43,23 +42,16 @@ class JoinTeamView extends StatelessWidget {
                 ),
                 SizedBox(height: 15.h),
                 Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kSpacing * 2),
+                    padding: const EdgeInsets.symmetric(horizontal: kSpacing * 2),
                     child: Column(children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('Top 5 Teams',
-                              style: TextStyle(
-                                  fontSize: 22.sp,
-                                  fontWeight: FontWeight.w600))),
+                      Align(alignment: Alignment.centerLeft, child: Text('Top 5 Teams', style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600))),
                       SizedBox(height: 8.h),
                       ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.topTeamList.length,
                           itemBuilder: ((context, index) {
-                            return TeamPreviewWidget(
-                                team: controller.topTeamList[index]);
+                            return TeamPreviewWidget(team: controller.topTeamList[index]);
                           }))
                     ])),
                 const Divider(color: Colors.transparent),
@@ -75,8 +67,7 @@ class JoinTeamView extends StatelessWidget {
                           itemCount: controller.searchResultList.length,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
-                            return TeamPreviewWidget(
-                                team: controller.searchResultList[index]);
+                            return TeamPreviewWidget(team: controller.searchResultList[index]);
                           })
                       : const Padding(
                           padding: EdgeInsets.all(8.0),

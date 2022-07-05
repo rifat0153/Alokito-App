@@ -64,14 +64,7 @@ class GeneralSettingsView extends StatelessWidget {
               height: 100.h,
             ),
             Obx(
-              () => buildSettingsItem(
-                  title: 'Name',
-                  value: Get.find<AuthController>()
-                      .currentUserInfo
-                      .value
-                      .maybeWhen(
-                          data: (user) => user.userName, orElse: () => ''),
-                  navFunction: () {}),
+              () => buildSettingsItem(title: 'Name', value: Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => user.userName, orElse: () => ''), navFunction: () {}),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: rowPadding),
@@ -81,13 +74,7 @@ class GeneralSettingsView extends StatelessWidget {
               ),
             ),
             Obx(
-              () => buildSettingsItem(
-                  title: 'Address',
-                  value: Get.find<AuthController>()
-                      .currentUserInfo
-                      .value
-                      .maybeWhen(data: (user) => '1', orElse: () => ''),
-                  navFunction: () {}),
+              () => buildSettingsItem(title: 'Address', value: Get.find<AuthController>().currentUserInfo.value.maybeWhen(data: (user) => '1', orElse: () => ''), navFunction: () {}),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: rowPadding),
@@ -97,10 +84,7 @@ class GeneralSettingsView extends StatelessWidget {
               ),
             ),
             Obx(
-              () => buildSettingsItem(
-                  title: 'Email',
-                  value: Get.find<AuthController>().currentUser.value.email,
-                  navFunction: () {}),
+              () => buildSettingsItem(title: 'Email', value: Get.find<AuthController>().currentUser.value.email, navFunction: () {}),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: rowPadding),
@@ -109,10 +93,7 @@ class GeneralSettingsView extends StatelessWidget {
                 color: settingsBorderColor,
               ),
             ),
-            buildSettingsItem(
-                title: 'Password',
-                value: 'Changed 12 hours ago',
-                navFunction: () {}),
+            buildSettingsItem(title: 'Password', value: 'Changed 12 hours ago', navFunction: () {}),
             Padding(
               padding: EdgeInsets.symmetric(vertical: rowPadding),
               child: const Divider(
@@ -121,13 +102,7 @@ class GeneralSettingsView extends StatelessWidget {
               ),
             ),
             Obx(
-              () => buildSettingsItem(
-                  title: 'Phone',
-                  value:
-                      Get.find<AuthController>().authStream.value!.emailVerified
-                          ? 'Verified'
-                          : 'Not Verified',
-                  navFunction: () {}),
+              () => buildSettingsItem(title: 'Phone', value: Get.find<AuthController>().authStream.value!.emailVerified ? 'Verified' : 'Not Verified', navFunction: () {}),
             ),
           ],
         ),
