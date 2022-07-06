@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../models/team/team_response.dart';
 import '../../../shared/config.dart';
 import '../../../shared/constants.dart';
 import '../../../shared/widget/my_text.dart';
@@ -13,12 +12,12 @@ import '../../home/widgets/my_bottom_nav_bar.dart';
 class TeamDetailsView extends StatelessWidget {
   const TeamDetailsView({
     Key? key,
-    required this.team,
+    required this.teamId,
   }) : super(key: key);
 
   static const route = '/team_details_view';
 
-  final Team team;
+  final String teamId;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,10 @@ class TeamDetailsView extends StatelessWidget {
 
     return Scaffold(
       bottomNavigationBar: Container(color: const Color.fromARGB(255, 53, 66, 92), child: MyBottomNavbar()),
-      body: SkeletonWidget(
+      body: Obx(() {
+        final team = controller.topTeamList.value.firstWhere((t) => t.id == teamId);
+
+        return SkeletonWidget(
           titleWidget: const MyText('Back'),
           assetPath: MyAssets.backgroundPeople,
           child: SingleChildScrollView(
@@ -122,37 +124,35 @@ class TeamDetailsView extends StatelessWidget {
                           ),
                           child: Padding(padding: const EdgeInsets.all(8.0), child: Text(team.previousGoalSummary ?? 'No Achievement found', maxLines: 1, textAlign: TextAlign.center))),
                       SizedBox(height: 15.h),
-                      Obx(
-                        () => Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            ElevatedButton.icon(
-                              icon: Icon(Icons.favorite, size: 20.w),
-                              onPressed: () {
-                                controller.toggleLikeTeam(team: team);
-                              },
-                              label: controller.isLikedByUser(team) ? const Text('Dislike') : const Text('Love'),
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h),
-                                primary: const Color(0xff343344),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
-                              ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          ElevatedButton.icon(
+                            icon: Icon(Icons.favorite, size: 20.w),
+                            onPressed: () {
+                              controller.toggleLikeTeam(team: team);
+                            },
+                            label: controller.isLikedByUser(team) ? const Text('Dislike') : const Text('Love'),
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h),
+                              primary: const Color(0xff343344),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
                             ),
-                            ElevatedButton.icon(
-                              icon: Icon(Icons.share, size: 20.w),
-                              onPressed: () {},
-                              label: const Text('Share'),
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h),
-                                primary: const Color(0xff343344),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
-                              ),
+                          ),
+                          ElevatedButton.icon(
+                            icon: Icon(Icons.share, size: 20.w),
+                            onPressed: () {},
+                            label: const Text('Share'),
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 2.h),
+                              primary: const Color(0xff343344),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: 25.h),
                       ElevatedButton(
@@ -173,7 +173,9 @@ class TeamDetailsView extends StatelessWidget {
                 ),
               ],
             ),
-          )),
+          ),
+        );
+      }),
     );
   }
 }

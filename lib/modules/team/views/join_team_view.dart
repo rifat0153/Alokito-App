@@ -37,7 +37,7 @@ class JoinTeamView extends StatelessWidget {
                 AspectRatio(
                   aspectRatio: 16 / 10.5,
                   child: TeamHeaderSection(
-                    topTeam: controller.topTeamList.first,
+                    topTeam: controller.topTeamList.value.first,
                   ),
                 ),
                 SizedBox(height: 15.h),
@@ -49,9 +49,9 @@ class JoinTeamView extends StatelessWidget {
                       ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: controller.topTeamList.length,
+                          itemCount: controller.topTeamList.value.length,
                           itemBuilder: ((context, index) {
-                            return TeamPreviewWidget(team: controller.topTeamList[index]);
+                            return TeamPreviewWidget(team: controller.topTeamList.value[index]);
                           }))
                     ])),
                 const Divider(color: Colors.transparent),

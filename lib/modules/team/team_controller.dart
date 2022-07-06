@@ -23,11 +23,11 @@ class TeamController extends GetxController {
   RxBool loading = false.obs;
   int page = 1;
 
-  RxList<Team> topTeamList = RxList<Team>();
+  Rx<List<Team>> topTeamList = Rx<List<Team>>([]);
   RxList<Team> teamList = RxList<Team>();
   RxList<Team> searchResultList = RxList<Team>();
 
-  Rx<Team?> get topTeam => topTeamList.firstOrNull.obs;
+  Rx<Team?> get topTeam => topTeamList.value.firstOrNull.obs;
 
   Rx<File> coverTeamImage = File('').obs;
   Rx<File> profileTeamImage = File('').obs;
@@ -67,64 +67,41 @@ class TeamController extends GetxController {
     try {
       final userID = authController.getCurrentUserId();
 
-      print('isLikedByUser: ${isLikedByUser(team)}');
+      final bool isTeamLiked = isLikedByUser(team);
 
-      final bool isLiked = isLikedByUser(team);
-
-      final res = !isLiked
-          ? await service.likeTeam(
+      isTeamLiked
+          ? await service.dislikeTeam(
               teamId: team.id!,
               userId: userID,
             )
-          : await service.dislikeTeam(
+          : await service.likeTeam(
               teamId: team.id!,
               userId: userID,
             );
 
-      // update local list
-      List<Team> newList = [];
+      final teamIndex = topTeamList.value.indexWhere((e) => e.id == team.id);
+      Team teamInList = topTeamList.value[teamIndex];
 
-      for (var t in topTeamList) {
-        if (t.id != team.id) newList.add(t);
+      final List<String> likeList = team.likes.map((e) => e).toList();
 
-        var likeList = t.likes;
-
-        print('\n\n LikeList: isLiked $isLiked');
-        print('LikeList Before: $likeList');
-
-        if (isLiked) {
-          likeList.remove(userID);
-        } else {
-          likeList.add(userID);
-        }
-        print('LikeList After: ${t.likes} \n\n');
-
-        newList.add(t.copyWith(likes: likeList));
+      if (isTeamLiked) {
+        likeList.remove(userID);
+      } else {
+        likeList.add(userID);
       }
 
+      teamInList = teamInList.copyWith(likes: likeList);
+
+      final newList = topTeamList.value
+          .mapIndexed(
+            (i, t) => i == teamIndex ? t.copyWith(likes: likeList) : t,
+          )
+          .toList();
+
       topTeamList.value = newList;
-
-      // teamList.value = teamList.map(
-      //   (e) {
-      //     if (e.id != team.id) return e;
-      //     print('Before: isLiked $isLiked');
-      //     print('Before: ${e.likes}');
-
-      //     if (isLiked) {
-      //       e.likes.remove(userID);
-      //     } else {
-      //       e.likes.add(userID);
-      //     }
-
-      //     print('Before After: ${e.likes}');
-
-      //     return e;
-      //   },
-      // ).toList();
-
-      print('>>>res: $res');
-    } catch (e) {
+    } catch (e, st) {
       print('TeamController: Getting Teams Error $e');
+      print('$st');
     }
   }
 

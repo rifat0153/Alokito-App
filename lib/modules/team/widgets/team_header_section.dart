@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../views/team_deails_view.dart';
+import '../views/team_details_view.dart';
 import 'c_shape.dart';
 
 class TeamHeaderSection extends StatelessWidget {

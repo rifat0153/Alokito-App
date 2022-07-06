@@ -3,7 +3,7 @@ import 'package:alokito_new/modules/team/views/create_team_view.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
 import 'package:alokito_new/modules/team/views/join_team_view.dart';
-import 'package:alokito_new/modules/team/views/team_deails_view.dart';
+import 'package:alokito_new/modules/team/views/team_details_view.dart';
 import 'package:alokito_new/modules/team/views/team_view.dart';
 import 'package:get/get.dart';
 
@@ -81,7 +81,7 @@ class GetPages {
     GetPage(
         name: TeamDetailsView.route,
         page: () => TeamDetailsView(
-              team: Get.arguments['teamData'] as Team,
+              teamId: Get.arguments['teamId'] as String,
             ),
         transition: Transition.fadeIn,
         binding: BindingsBuilder(() {
