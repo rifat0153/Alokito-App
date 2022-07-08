@@ -11,6 +11,8 @@ abstract class ITeamService {
 
   Future<Team> createTeam({required Team team});
 
+  Future<dynamic> joinTeam({required String teamId, required String userId});
+
   Future likeTeam({required String teamId, required String userId});
 
   Future dislikeTeam({required String teamId, required String userId});
@@ -70,10 +72,20 @@ class TeamService extends GetConnect implements ITeamService {
 
     return response.body;
   }
-  
+
   @override
-  Future dislikeTeam({required String teamId, required String userId}) async{
-     final Response response = await post('$baseUrl/team/dislike', {
+  Future dislikeTeam({required String teamId, required String userId}) async {
+    final Response response = await post('$baseUrl/team/dislike', {
+      "teamId": teamId,
+      "userId": userId,
+    }).timeout(const Duration(seconds: myTimeout));
+
+    return response.body;
+  }
+
+  @override
+  Future<dynamic> joinTeam({required String teamId, required String userId}) async {
+    final Response response = await post('$baseUrl/team/add_member', {
       "teamId": teamId,
       "userId": userId,
     }).timeout(const Duration(seconds: myTimeout));

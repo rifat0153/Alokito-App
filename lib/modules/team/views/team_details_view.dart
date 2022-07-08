@@ -1,3 +1,4 @@
+import 'package:alokito_new/models/team/team_response.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/shared/widget/skeleton_widget.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,8 @@ class TeamDetailsView extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: Container(color: const Color.fromARGB(255, 53, 66, 92), child: MyBottomNavbar()),
       body: Obx(() {
-        final team = controller.topTeamList.value.firstWhere((t) => t.id == teamId);
+        final Team team = controller.topTeamList.value.firstWhere((t) => t.id == teamId);
+        final bool isTeamJoined = controller.isTeamJoinedByUser(team);
 
         return SkeletonWidget(
           titleWidget: const MyText('Back'),
@@ -156,9 +158,13 @@ class TeamDetailsView extends StatelessWidget {
                       ),
                       SizedBox(height: 25.h),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          if (isTeamJoined) return;
+
+                          await controller.joinTeam(team);
+                        },
                         child: Text(
-                          'Join Team',
+                          isTeamJoined ? 'Joined' : 'Join Team',
                           style: TextStyle(fontSize: 24.sp),
                         ),
                         style: ElevatedButton.styleFrom(

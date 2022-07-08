@@ -62,7 +62,6 @@ class TeamController extends GetxController {
     return contains;
   }
 
-//!
   Future toggleLikeTeam({required Team team}) async {
     try {
       final userID = authController.getCurrentUserId();
@@ -122,8 +121,6 @@ class TeamController extends GetxController {
       print('TeamController: Getting Teams Error $e');
     }
   }
-
-  //!
 
   Future retrieveTopTeams() async {
     try {
@@ -214,5 +211,39 @@ class TeamController extends GetxController {
     if (imageFile == null) return;
 
     profileTeamImage.value = imageFile;
+  }
+
+  bool isTeamJoinedByUser(Team team) {
+    final userID = authController.getCurrentUserId();
+
+    var contains = team.members.indexWhere((user) => user.id == userID) != -1;
+
+    print('TeamID: ${team.id} is liked by $userID: $contains');
+
+    return contains;
+  }
+
+  Future<void> joinTeam(Team team) async {
+    final userId = authController.getCurrentUserId();
+    final currentUserInfo = authController.currentUserInfo;
+    final currentUser = currentUserInfo.value.maybeWhen(data: (e) => e, orElse: () => null);
+
+    await service.joinTeam(teamId: team.id!, userId: userId);
+
+    topTeamList.value = topTeamList.value.map((e) {
+      if (e.id != team.id) return e;
+
+      final members = e.members;
+
+      if (isTeamJoinedByUser(team)) {
+        members.remove(currentUser);
+      } else {
+        members.add(currentUser!);
+      }
+
+      e = e.copyWith(members: members);
+
+      return e;
+    }).toList();
   }
 }
