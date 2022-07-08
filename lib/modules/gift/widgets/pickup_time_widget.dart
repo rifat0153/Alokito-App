@@ -6,7 +6,10 @@ import '../../../shared/config.dart';
 import '../controllers/gift_add_form_controller.dart';
 
 class PickUpTimeWidget extends StatelessWidget {
+   PickUpTimeWidget({Key? key}) : super(key: key);
+  
   final GiftAddFormController controller = Get.find();
+
 
   @override
   Widget build(BuildContext context) {

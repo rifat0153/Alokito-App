@@ -12,17 +12,14 @@ import '../widgets/gift_location_widget.dart';
 import '../widgets/image_input_widget.dart';
 import '../widgets/listing_date_widget.dart';
 import '../widgets/location_search_widget.dart';
-import '../widgets/pickup_time_wdiget.dart';
+import '../widgets/pickup_time_widget.dart';
 
 class GiftAddView extends StatelessWidget {
   GiftAddView({Key? key}) : super(key: key);
-  
-  static const route = '/giftaddview';
+  static const route = '/gift_add_view';
+
   final GiftAddFormController controller = Get.find();
   final GiftController giftController = Get.find();
-
-
-  // String giftType = Get.arguments.toString();
 
   @override
   Widget build(BuildContext context) {

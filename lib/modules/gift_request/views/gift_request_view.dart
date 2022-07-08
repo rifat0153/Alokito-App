@@ -10,7 +10,8 @@ import '../../gift_ask/views/gift_ask_view.dart';
 import 'gif_request_list_view.dart';
 
 class GiftRequestView extends StatelessWidget {
-  static const route = '/giftreceiverview';
+  GiftRequestView({Key? key}) : super(key: key);
+  static const route = '/gift_receiver_view';
 
   final AuthController authController = Get.find();
 
@@ -39,10 +40,7 @@ class GiftRequestView extends StatelessWidget {
             Row(
               children: [
                 Obx(() => Badge(
-                      badgeContent: authController.currentUserInfo.value
-                              .maybeWhen(data: (user) => user.hasNotifications, orElse: () => false)
-                          ? const Text('!')
-                          : const Text(''),
+                      badgeContent: authController.currentUserInfo.value.maybeWhen(data: (user) => user.hasNotifications, orElse: () => false) ? const Text('!') : const Text(''),
                       badgeColor: Colors.white,
                       child: const Icon(Icons.notifications, color: Colors.white),
                     )),
@@ -63,10 +61,9 @@ class GiftRequestView extends StatelessWidget {
               width: Get.size.width,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    // image: AssetImage(
-                    //     'assets/images/gift_receiver_background.png'),
-                    image: AssetImage('assets/images/rsz_1gift_receiver.png'),
-                    fit: BoxFit.fill),
+                  image: AssetImage('assets/images/rsz_1gift_receiver.png'),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             Positioned(

@@ -27,7 +27,7 @@ class MenuTileWidget extends StatelessWidget {
   final double height;
   final double positionTop;
   final double positionLeft;
-  final void Function()  function;
+  final void Function() function;
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,7 @@ final List<MenuTileWidget> menuListTile = [
     positionTop: 0.08.sh / 2 - 0.08.sh * 0.37,
     positionLeft: 0.7.sw / 2 - 12.w,
     function: () {
-      Get.toNamed(GiftRequestView.route);
+      Get.toNamed(TeamView.route);
     },
   ),
 ];

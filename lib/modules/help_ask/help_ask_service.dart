@@ -36,9 +36,6 @@ class HelpAskService extends GetConnect implements IHelpAskService {
       decoder: (data) => HelpAskResponse.fromJson(data),
     ).timeout(const Duration(seconds: myTimeout));
 
-    print('HelpAsk: service fethc called');
-    print(response.body!.helpAsks);
-
     return response.body!.helpAsks;
   }
 }

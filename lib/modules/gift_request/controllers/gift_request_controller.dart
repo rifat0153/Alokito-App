@@ -26,7 +26,7 @@ class GiftRequestController extends GetxController {
   RxBool requestExists = RxBool(false);
 
 // * load gift by location or with filtering
-  Rx<GiftLoadingOption> giftRetriveOption = const GiftLoadingOption.byLocation().obs;
+  Rx<GiftLoadingOption> giftRetrieveOption = const GiftLoadingOption.byLocation().obs;
 
   Rx<int> page = 1.obs;
   Rx<int> limit = 4.obs;
@@ -55,7 +55,7 @@ class GiftRequestController extends GetxController {
         allGiftsFetched.value = false;
 
         //* if search string exists get gift by search, otherwise get gift by location
-        giftRetriveOption.value = searchString.value.isNotEmpty
+        giftRetrieveOption.value = searchString.value.isNotEmpty
             ? const GiftLoadingOption.bySearch()
             : const GiftLoadingOption.byLocation();
 
@@ -120,7 +120,7 @@ class GiftRequestController extends GetxController {
 
     try {
       // Load Gift Data
-      if (giftRetriveOption.value == const GiftLoadingOption.bySearch()) {
+      if (giftRetrieveOption.value == const GiftLoadingOption.bySearch()) {
         print('Loading by search');
         newGiftDto = await giftRequesterService.getGiftByFilterDB(
           searchString.value,

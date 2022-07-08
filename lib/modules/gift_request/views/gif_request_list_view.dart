@@ -12,7 +12,8 @@ import '../widgets/gift_list_tile_widget.dart';
 import '../widgets/search_widget.dart';
 
 class GiftRequestListView extends StatelessWidget {
-  static const route = '/giftoffer';
+  GiftRequestListView({Key? key}) : super(key: key);
+  static const route = '/gift_offer';
 
   final GiftRequestController controller = Get.find();
 
@@ -80,8 +81,7 @@ class _BuildBody extends StatelessWidget {
                     itemCount: controller.allGiftsFetched.value
                         // * Show Loading Indicator if More gifts needs to be loaded
                         ? controller.giftList.value.maybeWhen(data: (giftList) => giftList.length, orElse: () => 0)
-                        : controller.giftList.value
-                            .maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
+                        : controller.giftList.value.maybeWhen(data: (giftList) => giftList.length + 1, orElse: () => 0),
                     itemBuilder: (_, index) {
                       // Conditionally Return Loading Indicator at bottom during more data load
                       if (index ==
