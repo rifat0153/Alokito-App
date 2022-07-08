@@ -25,10 +25,6 @@ _$_Team _$$_TeamFromJson(Map<String, dynamic> json) => _$_Team(
       id: json['id'] as String?,
       creatorId: json['creatorId'] as String?,
       creator: json['creator'] as String?,
-      members: (json['members'] as List<dynamic>?)
-              ?.map((e) => LocalUser.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
       teamName: json['teamName'] as String?,
       summary: json['summary'] as String?,
       objective: json['objective'] as String?,
@@ -49,6 +45,10 @@ _$_Team _$$_TeamFromJson(Map<String, dynamic> json) => _$_Team(
           ? null
           : DateTime.parse(json['endDate'] as String),
       teamDetails: json['teamDetails'] as String?,
+      members: (json['members'] as List<dynamic>?)
+              ?.map((e) => LocalUser.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       likes:
           (json['likes'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               const [],
@@ -67,7 +67,6 @@ Map<String, dynamic> _$$_TeamToJson(_$_Team instance) => <String, dynamic>{
       'id': instance.id,
       'creatorId': instance.creatorId,
       'creator': instance.creator,
-      'members': instance.members.map((e) => e.toJson()).toList(),
       'teamName': instance.teamName,
       'summary': instance.summary,
       'objective': instance.objective,
@@ -82,6 +81,7 @@ Map<String, dynamic> _$$_TeamToJson(_$_Team instance) => <String, dynamic>{
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),
       'teamDetails': instance.teamDetails,
+      'members': instance.members.map((e) => e.toJson()).toList(),
       'likes': instance.likes,
       'members_count': instance.memberCount,
       'likes_count': instance.likesCount,

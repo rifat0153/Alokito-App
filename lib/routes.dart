@@ -1,4 +1,6 @@
-import 'package:alokito_new/models/team/team_response.dart';
+import 'package:alokito_new/modules/help_ask/help_ask_controller.dart';
+import 'package:alokito_new/modules/help_ask/help_ask_service.dart';
+import 'package:alokito_new/modules/help_ask/help_ask_view.dart';
 import 'package:alokito_new/modules/team/views/create_team_view.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
@@ -63,6 +65,15 @@ class GetPages {
         page: () => const LoginRegFormView(),
         binding: BindingsBuilder(() {
           Get.lazyPut(() => LoginController());
+        })),
+
+    //* HelpASk Routes
+    GetPage(
+        name: HelpAskView.route,
+        page: () => HelpAskView(),
+        transition: Transition.fadeIn,
+        binding: BindingsBuilder(() {
+          Get.lazyPut(() => HelpAskController(service: HelpAskService()));
         })),
 
     //* Team Routes

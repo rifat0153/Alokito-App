@@ -1,3 +1,4 @@
+import 'package:alokito_new/modules/help_ask/help_ask_view.dart';
 import 'package:alokito_new/modules/team/views/team_view.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class MyBottomNavbar extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Get.to(MyDrawer());
+              Get.to(const MyDrawer());
             },
             child: SvgPicture.asset(
               'assets/svgs/person_icon.svg',
@@ -66,7 +67,8 @@ class MyBottomNavbar extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.toNamed(TeamView.route);
+              Get.toNamed(HelpAskView.route);
+              // Get.toNamed(TeamView.route);
             },
             child: SvgPicture.asset(
               'assets/svgs/red_button_icon.svg',

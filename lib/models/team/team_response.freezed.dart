@@ -200,7 +200,6 @@ class _$TeamTearOff {
       {String? id,
       String? creatorId,
       String? creator,
-      List<LocalUser> members = const [],
       String? teamName,
       String? summary,
       String? objective,
@@ -215,6 +214,7 @@ class _$TeamTearOff {
       DateTime? startDate,
       DateTime? endDate,
       String? teamDetails,
+      List<LocalUser> members = const [],
       List<String> likes = const [],
       @JsonKey(name: 'members_count') int memberCount = 0,
       @JsonKey(name: 'likes_count') int likesCount = 0,
@@ -225,7 +225,6 @@ class _$TeamTearOff {
       id: id,
       creatorId: creatorId,
       creator: creator,
-      members: members,
       teamName: teamName,
       summary: summary,
       objective: objective,
@@ -240,6 +239,7 @@ class _$TeamTearOff {
       startDate: startDate,
       endDate: endDate,
       teamDetails: teamDetails,
+      members: members,
       likes: likes,
       memberCount: memberCount,
       likesCount: likesCount,
@@ -262,7 +262,6 @@ mixin _$Team {
   String? get id => throw _privateConstructorUsedError;
   String? get creatorId => throw _privateConstructorUsedError;
   String? get creator => throw _privateConstructorUsedError;
-  List<LocalUser> get members => throw _privateConstructorUsedError;
   String? get teamName => throw _privateConstructorUsedError;
   String? get summary => throw _privateConstructorUsedError;
   String? get objective => throw _privateConstructorUsedError;
@@ -277,6 +276,7 @@ mixin _$Team {
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
   String? get teamDetails => throw _privateConstructorUsedError;
+  List<LocalUser> get members => throw _privateConstructorUsedError;
   List<String> get likes => throw _privateConstructorUsedError;
   @JsonKey(name: 'members_count')
   int get memberCount => throw _privateConstructorUsedError;
@@ -299,7 +299,6 @@ abstract class $TeamCopyWith<$Res> {
       {String? id,
       String? creatorId,
       String? creator,
-      List<LocalUser> members,
       String? teamName,
       String? summary,
       String? objective,
@@ -314,6 +313,7 @@ abstract class $TeamCopyWith<$Res> {
       DateTime? startDate,
       DateTime? endDate,
       String? teamDetails,
+      List<LocalUser> members,
       List<String> likes,
       @JsonKey(name: 'members_count') int memberCount,
       @JsonKey(name: 'likes_count') int likesCount,
@@ -337,7 +337,6 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
     Object? id = freezed,
     Object? creatorId = freezed,
     Object? creator = freezed,
-    Object? members = freezed,
     Object? teamName = freezed,
     Object? summary = freezed,
     Object? objective = freezed,
@@ -352,6 +351,7 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? teamDetails = freezed,
+    Object? members = freezed,
     Object? likes = freezed,
     Object? memberCount = freezed,
     Object? likesCount = freezed,
@@ -372,10 +372,6 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
               as String?,
-      members: members == freezed
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<LocalUser>,
       teamName: teamName == freezed
           ? _value.teamName
           : teamName // ignore: cast_nullable_to_non_nullable
@@ -432,6 +428,10 @@ class _$TeamCopyWithImpl<$Res> implements $TeamCopyWith<$Res> {
           ? _value.teamDetails
           : teamDetails // ignore: cast_nullable_to_non_nullable
               as String?,
+      members: members == freezed
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<LocalUser>,
       likes: likes == freezed
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
@@ -480,7 +480,6 @@ abstract class _$TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
       {String? id,
       String? creatorId,
       String? creator,
-      List<LocalUser> members,
       String? teamName,
       String? summary,
       String? objective,
@@ -495,6 +494,7 @@ abstract class _$TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
       DateTime? startDate,
       DateTime? endDate,
       String? teamDetails,
+      List<LocalUser> members,
       List<String> likes,
       @JsonKey(name: 'members_count') int memberCount,
       @JsonKey(name: 'likes_count') int likesCount,
@@ -520,7 +520,6 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
     Object? id = freezed,
     Object? creatorId = freezed,
     Object? creator = freezed,
-    Object? members = freezed,
     Object? teamName = freezed,
     Object? summary = freezed,
     Object? objective = freezed,
@@ -535,6 +534,7 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? teamDetails = freezed,
+    Object? members = freezed,
     Object? likes = freezed,
     Object? memberCount = freezed,
     Object? likesCount = freezed,
@@ -555,10 +555,6 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
               as String?,
-      members: members == freezed
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<LocalUser>,
       teamName: teamName == freezed
           ? _value.teamName
           : teamName // ignore: cast_nullable_to_non_nullable
@@ -615,6 +611,10 @@ class __$TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res>
           ? _value.teamDetails
           : teamDetails // ignore: cast_nullable_to_non_nullable
               as String?,
+      members: members == freezed
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<LocalUser>,
       likes: likes == freezed
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
@@ -651,7 +651,6 @@ class _$_Team implements _Team {
       {this.id,
       this.creatorId,
       this.creator,
-      this.members = const [],
       this.teamName,
       this.summary,
       this.objective,
@@ -666,6 +665,7 @@ class _$_Team implements _Team {
       this.startDate,
       this.endDate,
       this.teamDetails,
+      this.members = const [],
       this.likes = const [],
       @JsonKey(name: 'members_count') this.memberCount = 0,
       @JsonKey(name: 'likes_count') this.likesCount = 0,
@@ -681,9 +681,6 @@ class _$_Team implements _Team {
   final String? creatorId;
   @override
   final String? creator;
-  @JsonKey()
-  @override
-  final List<LocalUser> members;
   @override
   final String? teamName;
   @override
@@ -715,6 +712,9 @@ class _$_Team implements _Team {
   final String? teamDetails;
   @JsonKey()
   @override
+  final List<LocalUser> members;
+  @JsonKey()
+  @override
   final List<String> likes;
   @override
   @JsonKey(name: 'members_count')
@@ -731,7 +731,7 @@ class _$_Team implements _Team {
 
   @override
   String toString() {
-    return 'Team(id: $id, creatorId: $creatorId, creator: $creator, members: $members, teamName: $teamName, summary: $summary, objective: $objective, goal: $goal, previousGoalSummary: $previousGoalSummary, previousGoalAchieved: $previousGoalAchieved, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, coverImageUrl: $coverImageUrl, startDate: $startDate, endDate: $endDate, teamDetails: $teamDetails, likes: $likes, memberCount: $memberCount, likesCount: $likesCount, createdAt: $createdAt, updatedAt: $updatedAt, distance: $distance)';
+    return 'Team(id: $id, creatorId: $creatorId, creator: $creator, teamName: $teamName, summary: $summary, objective: $objective, goal: $goal, previousGoalSummary: $previousGoalSummary, previousGoalAchieved: $previousGoalAchieved, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, coverImageUrl: $coverImageUrl, startDate: $startDate, endDate: $endDate, teamDetails: $teamDetails, members: $members, likes: $likes, memberCount: $memberCount, likesCount: $likesCount, createdAt: $createdAt, updatedAt: $updatedAt, distance: $distance)';
   }
 
   @override
@@ -742,7 +742,6 @@ class _$_Team implements _Team {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.creatorId, creatorId) &&
             const DeepCollectionEquality().equals(other.creator, creator) &&
-            const DeepCollectionEquality().equals(other.members, members) &&
             const DeepCollectionEquality().equals(other.teamName, teamName) &&
             const DeepCollectionEquality().equals(other.summary, summary) &&
             const DeepCollectionEquality().equals(other.objective, objective) &&
@@ -761,6 +760,7 @@ class _$_Team implements _Team {
             const DeepCollectionEquality().equals(other.endDate, endDate) &&
             const DeepCollectionEquality()
                 .equals(other.teamDetails, teamDetails) &&
+            const DeepCollectionEquality().equals(other.members, members) &&
             const DeepCollectionEquality().equals(other.likes, likes) &&
             const DeepCollectionEquality()
                 .equals(other.memberCount, memberCount) &&
@@ -777,7 +777,6 @@ class _$_Team implements _Team {
         const DeepCollectionEquality().hash(id),
         const DeepCollectionEquality().hash(creatorId),
         const DeepCollectionEquality().hash(creator),
-        const DeepCollectionEquality().hash(members),
         const DeepCollectionEquality().hash(teamName),
         const DeepCollectionEquality().hash(summary),
         const DeepCollectionEquality().hash(objective),
@@ -792,6 +791,7 @@ class _$_Team implements _Team {
         const DeepCollectionEquality().hash(startDate),
         const DeepCollectionEquality().hash(endDate),
         const DeepCollectionEquality().hash(teamDetails),
+        const DeepCollectionEquality().hash(members),
         const DeepCollectionEquality().hash(likes),
         const DeepCollectionEquality().hash(memberCount),
         const DeepCollectionEquality().hash(likesCount),
@@ -816,7 +816,6 @@ abstract class _Team implements Team {
       {String? id,
       String? creatorId,
       String? creator,
-      List<LocalUser> members,
       String? teamName,
       String? summary,
       String? objective,
@@ -831,6 +830,7 @@ abstract class _Team implements Team {
       DateTime? startDate,
       DateTime? endDate,
       String? teamDetails,
+      List<LocalUser> members,
       List<String> likes,
       @JsonKey(name: 'members_count') int memberCount,
       @JsonKey(name: 'likes_count') int likesCount,
@@ -846,8 +846,6 @@ abstract class _Team implements Team {
   String? get creatorId;
   @override
   String? get creator;
-  @override
-  List<LocalUser> get members;
   @override
   String? get teamName;
   @override
@@ -876,6 +874,8 @@ abstract class _Team implements Team {
   DateTime? get endDate;
   @override
   String? get teamDetails;
+  @override
+  List<LocalUser> get members;
   @override
   List<String> get likes;
   @override
