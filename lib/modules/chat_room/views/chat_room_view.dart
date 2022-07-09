@@ -12,24 +12,22 @@ import '../widgets/chat_room_chat_tile_widget.dart';
 
 class ChatRoomView extends StatelessWidget {
   ChatRoomView({Key? key}) : super(key: key);
-
   static const route = '/chat_room';
-  final controller = Get.find<ChatRoomController>();
+
+  final ChatRoomController controller = Get.find<ChatRoomController>();
   final AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
     final userId = authController.getCurrentUserId();
 
-    print('ChatRoomView: curentUserId $userId');
+    print('ChatRoomView: currentUserId $userId');
 
     final query = FirebaseFirestore.instance
         .collection('chat_rooms')
         .where('users', arrayContains: userId)
         .orderBy('createdAt', descending: true)
-        .withConverter<ChatRoom>(
-            fromFirestore: (snapshot, _) => ChatRoom.fromJson(snapshot.data()!),
-            toFirestore: (chatRoom, _) => chatRoom.toJson());
+        .withConverter<ChatRoom>(fromFirestore: (snapshot, _) => ChatRoom.fromJson(snapshot.data()!), toFirestore: (chatRoom, _) => chatRoom.toJson());
 
     return MyScaffold(
       assetPath: MyAssets.settingsBgImage,

@@ -12,12 +12,8 @@ import 'package:alokito_new/shared/widget/my_scaffold.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutterfire_ui/firestore.dart';
 import 'package:get/get.dart';
-import 'dart:math' as math;
-
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class ChatViewParams {}
 

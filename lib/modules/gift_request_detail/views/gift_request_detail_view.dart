@@ -43,7 +43,7 @@ class GiftRequestDetailView extends StatelessWidget {
                     child: GiftRequesterDetailWidget(giftRequest: giftRequest),
                   ),
                   GiftCommentWidget(giftRequest: giftRequest),
-                  GiftRequesteLocationAndGiftDetailsWidget(
+                  GiftRequestLocationAndGiftDetailsWidget(
                     giftRequest: giftRequest!,
                     chatRoomController: chatRoomController,
                   ),

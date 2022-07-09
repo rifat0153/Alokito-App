@@ -20,7 +20,7 @@ class ChatRoomController extends GetxController {
 
   @override
   void onReady() {
-    retriveChatRoomsByUserId();
+    retrieveChatRoomsByUserId();
     super.onReady();
   }
 
@@ -55,7 +55,7 @@ class ChatRoomController extends GetxController {
     }
   }
 
-  Future<void> retriveChatRoomsByUserId() async {
+  Future<void> retrieveChatRoomsByUserId() async {
     final userId = Get.find<AuthController>().getCurrentUserId();
     currentUserId.value = userId;
 
@@ -75,7 +75,6 @@ class ChatRoomController extends GetxController {
     return imageUrl;
   }
 
-  // Helper Functions
   String getUserNameToShowInTile({required ChatRoom chatRoom}) {
     String name = '';
 

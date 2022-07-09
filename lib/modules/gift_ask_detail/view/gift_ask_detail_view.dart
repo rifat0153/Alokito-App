@@ -20,7 +20,7 @@ import '../widgets/request_for_date_widget.dart';
 class GiftAskDetailView extends StatelessWidget {
   GiftAskDetailView({Key? key, required this.giftAsk}) : super(key: key);
 
-  static const route = '/giftaskdetailview';
+  static const route = '/gift_ask_detail_view';
 
   // initialize controller
   final GiftAskDetailController controller = Get.put(GiftAskDetailController(GiftAskDetailService()));

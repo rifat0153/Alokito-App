@@ -1,5 +1,6 @@
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
 import 'package:alokito_new/modules/help_ask/help_ask_controller.dart';
+import 'package:alokito_new/modules/help_ask/widgets/help_ask_tile_widget.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/widget/map_with_markers.dart';
 import 'package:alokito_new/shared/widget/my_text.dart';
@@ -34,12 +35,13 @@ class HelpAskView extends StatelessWidget {
                       zoom: 9,
                     ),
                   ),
-                  Container(
-                    child: MyText(
-                      controller.helpAsks.value.length.toString(),
-                      fontSize: 40,
-                    ),
-                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.helpAsks.value.length,
+                    itemBuilder: ((_, i) => HelpAskTileWidget(
+                          helpAsk: controller.helpAsks.value[i],
+                        )),
+                  )
                 ],
               ),
       ),

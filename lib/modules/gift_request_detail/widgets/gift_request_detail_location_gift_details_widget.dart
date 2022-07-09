@@ -1,17 +1,15 @@
 import 'package:alokito_new/modules/chat_room/controllers/chat_room_controller.dart';
-import 'package:alokito_new/modules/chat_room/views/chat_room_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 
 import '../../../models/gift_request/gift_request.dart';
 import '../../../shared/config.dart';
 import '../../../shared/styles.dart';
 import '../../../shared/widget/my_text.dart';
 
-class GiftRequesteLocationAndGiftDetailsWidget extends StatelessWidget {
-  const GiftRequesteLocationAndGiftDetailsWidget({
+class GiftRequestLocationAndGiftDetailsWidget extends StatelessWidget {
+  const GiftRequestLocationAndGiftDetailsWidget({
     Key? key,
     required this.giftRequest,
     required this.chatRoomController,
@@ -74,9 +72,9 @@ class GiftRequesteLocationAndGiftDetailsWidget extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(FontAwesomeIcons.phone, color: Colors.white),
-                          const MyText('Voice Call', fontSize: 9, color: Colors.white),
+                        children: const [
+                          Icon(FontAwesomeIcons.phone, color: Colors.white),
+                          MyText('Voice Call', fontSize: 9, color: Colors.white),
                         ],
                       ),
                     ),
@@ -92,7 +90,7 @@ class GiftRequesteLocationAndGiftDetailsWidget extends StatelessWidget {
                       onTap: () async {
                         // create chat_room for GIftRequest and Navigate to chat_room_view
                         await chatRoomController.createChatRoom(
-                            relatedDocId:  giftRequest.id!,
+                            relatedDocId: giftRequest.id!,
                             user1: giftRequest.requester.id!,
                             user1Image: giftRequest.requester.imageUrl,
                             user1Name: giftRequest.requester.userName,
@@ -100,8 +98,6 @@ class GiftRequesteLocationAndGiftDetailsWidget extends StatelessWidget {
                             user2Image: giftRequest.gift.user!.imageUrl,
                             user2Name: giftRequest.gift.user!.userName,
                             roomType: 'giftRequest');
-
-                      
                       },
                       child: Padding(
                         padding: EdgeInsets.zero,
