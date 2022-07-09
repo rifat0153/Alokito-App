@@ -12,8 +12,8 @@ import '../../home/widgets/my_bottom_nav_bar.dart';
 import '../widgets/team_header_section.dart';
 import '../widgets/team_search_section.dart';
 
-class JoinTeamView extends StatelessWidget {
-  const JoinTeamView({Key? key}) : super(key: key);
+class TeamJoinView extends StatelessWidget {
+  const TeamJoinView({Key? key}) : super(key: key);
 
   static const route = '/join_team_view';
 

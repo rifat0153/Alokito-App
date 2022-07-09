@@ -1,7 +1,6 @@
-import 'package:alokito_new/modules/team/team_service.dart';
-import 'package:alokito_new/modules/team/views/create_team_view.dart';
+import 'package:alokito_new/modules/team/views/team_create_view.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
-import 'package:alokito_new/modules/team/views/join_team_view.dart';
+import 'package:alokito_new/modules/team/views/team_join_view.dart';
 import 'package:alokito_new/shared/config.dart';
 import 'package:alokito_new/shared/constants.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,7 @@ class TeamView extends StatelessWidget {
               SvgPicture.asset(MyAssets.teamPeopleIcon),
               InkWell(
                 onTap: () {
-                  Get.toNamed(JoinTeamView.route);
+                  Get.toNamed(TeamJoinView.route);
                 },
                 child: SvgPicture.asset(MyAssets.joinTeamIcon),
               ),
@@ -37,7 +36,7 @@ class TeamView extends StatelessWidget {
                 height: kSpacing * 2,
               ),
               InkWell(
-                onTap: () => Get.toNamed(CreateTeamView.route),
+                onTap: () => Get.toNamed(TeamCreateView.route),
                 child: SvgPicture.asset(MyAssets.createTeamIcon),
               ),
             ],

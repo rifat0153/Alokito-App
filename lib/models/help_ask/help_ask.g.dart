@@ -27,6 +27,7 @@ _$_HelpAsk _$$_HelpAskFromJson(Map<String, dynamic> json) => _$_HelpAsk(
       creator: json['creator'] == null
           ? null
           : LocalUser.fromJson(json['creator'] as Map<String, dynamic>),
+      helpAskDetails: json['helpAskDetails'] as String?,
       geometry: json['geometry'] == null
           ? null
           : Geometry.fromJson(json['geometry'] as Map<String, dynamic>),
@@ -47,6 +48,7 @@ Map<String, dynamic> _$$_HelpAskToJson(_$_HelpAsk instance) =>
       'id': instance.id,
       'creatorId': instance.creatorId,
       'creator': instance.creator?.toJson(),
+      'helpAskDetails': instance.helpAskDetails,
       'geometry': instance.geometry?.toJson(),
       'area': instance.area,
       'location': instance.location,

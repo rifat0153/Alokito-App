@@ -1,10 +1,13 @@
 import 'package:alokito_new/modules/help_ask/help_ask_controller.dart';
+import 'package:alokito_new/modules/help_ask/help_ask_create_controller.dart';
+import 'package:alokito_new/modules/help_ask/help_ask_create_view.dart';
 import 'package:alokito_new/modules/help_ask/help_ask_service.dart';
+import 'package:alokito_new/modules/help_ask/help_ask_list_view.dart';
 import 'package:alokito_new/modules/help_ask/help_ask_view.dart';
-import 'package:alokito_new/modules/team/views/create_team_view.dart';
+import 'package:alokito_new/modules/team/views/team_create_view.dart';
 import 'package:alokito_new/modules/team/team_controller.dart';
 import 'package:alokito_new/modules/team/team_service.dart';
-import 'package:alokito_new/modules/team/views/join_team_view.dart';
+import 'package:alokito_new/modules/team/views/team_join_view.dart';
 import 'package:alokito_new/modules/team/views/team_details_view.dart';
 import 'package:alokito_new/modules/team/views/team_view.dart';
 import 'package:get/get.dart';
@@ -76,6 +79,20 @@ class GetPages {
           Get.lazyPut(() => HelpAskController(service: HelpAskService()));
         })),
 
+    GetPage(
+        name: HelpAskCreateView.route,
+        page: () => HelpAskCreateView(),
+        transition: Transition.fadeIn,
+        binding: BindingsBuilder(() {
+          Get.lazyPut(() => HelpAskCreateController(service: HelpAskService()));
+        })),
+
+    GetPage(
+      name: HelpAskListView.route,
+      page: () => HelpAskListView(),
+      transition: Transition.fadeIn,
+    ),
+
     //* Team Routes
     GetPage(
         name: TeamView.route,
@@ -100,8 +117,8 @@ class GetPages {
         })),
 
     GetPage(
-      name: JoinTeamView.route,
-      page: () => const JoinTeamView(),
+      name: TeamJoinView.route,
+      page: () => const TeamJoinView(),
       transition: Transition.noTransition,
       binding: BindingsBuilder(() {
         Get.lazyPut(
@@ -110,8 +127,8 @@ class GetPages {
       }),
     ),
     GetPage(
-      name: CreateTeamView.route,
-      page: () => CreateTeamView(),
+      name: TeamCreateView.route,
+      page: () => TeamCreateView(),
       transition: Transition.fadeIn,
     ),
 

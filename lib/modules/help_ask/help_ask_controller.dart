@@ -1,14 +1,9 @@
-import 'dart:typed_data';
-
 import 'package:alokito_new/core/extensions/geometry_extension.dart';
 import 'package:alokito_new/core/location/location_helper.dart';
 import 'package:alokito_new/models/help_ask/help_ask.dart';
 import 'package:alokito_new/modules/auth/controllers/auth_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'dart:ui' as ui;
 
 import 'help_ask_service.dart';
 
@@ -56,7 +51,6 @@ class HelpAskController extends GetxController {
 
   void _updateMarkers(List<HelpAsk> helpAsks) async {
     markers.value = <MarkerId, Marker>{};
-
     final geometryList = helpAsks.map((e) => e.geometry!).toList();
 
     markers.value = await geometryList.toMarkerMap();

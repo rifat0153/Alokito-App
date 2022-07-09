@@ -202,6 +202,7 @@ class _$HelpAskTearOff {
       {String? id,
       String? creatorId,
       LocalUser? creator,
+      String? helpAskDetails,
       Geometry? geometry,
       String? area,
       String? location,
@@ -213,6 +214,7 @@ class _$HelpAskTearOff {
       id: id,
       creatorId: creatorId,
       creator: creator,
+      helpAskDetails: helpAskDetails,
       geometry: geometry,
       area: area,
       location: location,
@@ -236,6 +238,7 @@ mixin _$HelpAsk {
   String? get id => throw _privateConstructorUsedError;
   String? get creatorId => throw _privateConstructorUsedError;
   LocalUser? get creator => throw _privateConstructorUsedError;
+  String? get helpAskDetails => throw _privateConstructorUsedError;
   Geometry? get geometry => throw _privateConstructorUsedError;
   String? get area => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
@@ -257,6 +260,7 @@ abstract class $HelpAskCopyWith<$Res> {
       {String? id,
       String? creatorId,
       LocalUser? creator,
+      String? helpAskDetails,
       Geometry? geometry,
       String? area,
       String? location,
@@ -282,6 +286,7 @@ class _$HelpAskCopyWithImpl<$Res> implements $HelpAskCopyWith<$Res> {
     Object? id = freezed,
     Object? creatorId = freezed,
     Object? creator = freezed,
+    Object? helpAskDetails = freezed,
     Object? geometry = freezed,
     Object? area = freezed,
     Object? location = freezed,
@@ -303,6 +308,10 @@ class _$HelpAskCopyWithImpl<$Res> implements $HelpAskCopyWith<$Res> {
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
               as LocalUser?,
+      helpAskDetails: helpAskDetails == freezed
+          ? _value.helpAskDetails
+          : helpAskDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
       geometry: geometry == freezed
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
@@ -366,6 +375,7 @@ abstract class _$HelpAskCopyWith<$Res> implements $HelpAskCopyWith<$Res> {
       {String? id,
       String? creatorId,
       LocalUser? creator,
+      String? helpAskDetails,
       Geometry? geometry,
       String? area,
       String? location,
@@ -394,6 +404,7 @@ class __$HelpAskCopyWithImpl<$Res> extends _$HelpAskCopyWithImpl<$Res>
     Object? id = freezed,
     Object? creatorId = freezed,
     Object? creator = freezed,
+    Object? helpAskDetails = freezed,
     Object? geometry = freezed,
     Object? area = freezed,
     Object? location = freezed,
@@ -415,6 +426,10 @@ class __$HelpAskCopyWithImpl<$Res> extends _$HelpAskCopyWithImpl<$Res>
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
               as LocalUser?,
+      helpAskDetails: helpAskDetails == freezed
+          ? _value.helpAskDetails
+          : helpAskDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
       geometry: geometry == freezed
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
@@ -455,6 +470,7 @@ class _$_HelpAsk implements _HelpAsk {
       {this.id,
       this.creatorId,
       this.creator,
+      this.helpAskDetails,
       this.geometry,
       this.area,
       this.location,
@@ -473,6 +489,8 @@ class _$_HelpAsk implements _HelpAsk {
   @override
   final LocalUser? creator;
   @override
+  final String? helpAskDetails;
+  @override
   final Geometry? geometry;
   @override
   final String? area;
@@ -489,7 +507,7 @@ class _$_HelpAsk implements _HelpAsk {
 
   @override
   String toString() {
-    return 'HelpAsk(id: $id, creatorId: $creatorId, creator: $creator, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, createdAt: $createdAt, updatedAt: $updatedAt, distance: $distance)';
+    return 'HelpAsk(id: $id, creatorId: $creatorId, creator: $creator, helpAskDetails: $helpAskDetails, geometry: $geometry, area: $area, location: $location, imageUrl: $imageUrl, createdAt: $createdAt, updatedAt: $updatedAt, distance: $distance)';
   }
 
   @override
@@ -500,6 +518,8 @@ class _$_HelpAsk implements _HelpAsk {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.creatorId, creatorId) &&
             const DeepCollectionEquality().equals(other.creator, creator) &&
+            const DeepCollectionEquality()
+                .equals(other.helpAskDetails, helpAskDetails) &&
             const DeepCollectionEquality().equals(other.geometry, geometry) &&
             const DeepCollectionEquality().equals(other.area, area) &&
             const DeepCollectionEquality().equals(other.location, location) &&
@@ -515,6 +535,7 @@ class _$_HelpAsk implements _HelpAsk {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(creatorId),
       const DeepCollectionEquality().hash(creator),
+      const DeepCollectionEquality().hash(helpAskDetails),
       const DeepCollectionEquality().hash(geometry),
       const DeepCollectionEquality().hash(area),
       const DeepCollectionEquality().hash(location),
@@ -539,6 +560,7 @@ abstract class _HelpAsk implements HelpAsk {
       {String? id,
       String? creatorId,
       LocalUser? creator,
+      String? helpAskDetails,
       Geometry? geometry,
       String? area,
       String? location,
@@ -555,6 +577,8 @@ abstract class _HelpAsk implements HelpAsk {
   String? get creatorId;
   @override
   LocalUser? get creator;
+  @override
+  String? get helpAskDetails;
   @override
   Geometry? get geometry;
   @override

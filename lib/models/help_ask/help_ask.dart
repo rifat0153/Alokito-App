@@ -26,6 +26,7 @@ abstract class HelpAsk with _$HelpAsk {
     String? id,
     String? creatorId,
     LocalUser? creator,
+    String? helpAskDetails,
     Geometry? geometry,
     String? area,
     String? location,

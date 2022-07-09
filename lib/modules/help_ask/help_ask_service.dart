@@ -17,9 +17,13 @@ abstract class IHelpAskService {
 
 class HelpAskService extends GetConnect implements IHelpAskService {
   @override
-  Future<void> addHelpAsk(HelpAsk helpAsk) {
-    // TODO: implement addHelpAsk
-    throw UnimplementedError();
+  Future<void> addHelpAsk(HelpAsk helpAsk) async {
+    final Response response = await post(
+      '$baseUrl/help_ask/store',
+      helpAsk.toJson(),
+    ).timeout(const Duration(seconds: myTimeout));
+
+    return response.body!;
   }
 
   @override

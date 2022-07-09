@@ -12,10 +12,10 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../team_ui_event.dart';
 
-class CreateTeamView extends StatelessWidget {
-  CreateTeamView({Key? key}) : super(key: key);
+class TeamCreateView extends StatelessWidget {
+  TeamCreateView({Key? key}) : super(key: key);
 
-  static const route = '/create_team_view';
+  static const route = '/team_create_view';
 
   final TeamController controller = Get.find<TeamController>();
 
