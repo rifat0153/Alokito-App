@@ -38,8 +38,11 @@ class HelpAskListView extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     itemCount: controller.helpAsks.value.length,
-                    itemBuilder: ((_, i) => HelpAskTileWidget(
-                          helpAsk: controller.helpAsks.value[i],
+                    itemBuilder: ((_, i) => GestureDetector(
+                          onTap: () => controller.createChat(controller.helpAsks.value[i]),
+                          child: HelpAskTileWidget(
+                            helpAsk: controller.helpAsks.value[i],
+                          ),
                         )),
                   )
                 ],

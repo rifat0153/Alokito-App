@@ -1,3 +1,5 @@
+import 'package:alokito_new/modules/chat/chat_controller.dart';
+import 'package:alokito_new/modules/chat/chat_service.dart';
 import 'package:alokito_new/modules/help_ask/help_ask_controller.dart';
 import 'package:alokito_new/modules/help_ask/help_ask_create_controller.dart';
 import 'package:alokito_new/modules/help_ask/help_ask_create_view.dart';
@@ -10,6 +12,7 @@ import 'package:alokito_new/modules/team/team_service.dart';
 import 'package:alokito_new/modules/team/views/team_join_view.dart';
 import 'package:alokito_new/modules/team/views/team_details_view.dart';
 import 'package:alokito_new/modules/team/views/team_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
 import 'core/language/language_controller.dart';
@@ -91,6 +94,9 @@ class GetPages {
       name: HelpAskListView.route,
       page: () => HelpAskListView(),
       transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => ChatRoomController(chatRoomService: ChatRoomService(firestore: FirebaseDI().firestore)));
+      }),
     ),
 
     //* Team Routes

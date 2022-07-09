@@ -57,13 +57,11 @@ class AuthController extends GetxController {
   }
 
   void bindNewNotificationStream() {
-    newNotifications.bindStream(authService.streamNewNotificationNumber(
-        currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as')));
+    newNotifications.bindStream(authService.streamNewNotificationNumber(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as')));
   }
 
   Future<void> resetNotificationCount() async {
-    await authService
-        .resetNewNotificationCount(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as'));
+    await authService.resetNewNotificationCount(currentUserInfo.value.maybeWhen(data: (user) => user.uid!, orElse: () => 'as'));
   }
 
   Future signOut() async {
@@ -103,8 +101,7 @@ class AuthController extends GetxController {
     currentUserInfo.value = const LocalUserInfo.loading();
 
     try {
-      final LocalUserInfo userInfo =
-          await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
+      final LocalUserInfo userInfo = await authService.getLocalUserDB(FirebaseAuth.instance.currentUser?.uid ?? '');
 
       currentUserInfo.value = userInfo;
 
@@ -134,12 +131,15 @@ class AuthController extends GetxController {
 
       print('AuthController: ' + currentUserPosition.value.toString());
     } catch (e) {
-      await MyBottomSheet.showErrorBottomSheet(
-          'Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters properly');
+      await MyBottomSheet.showErrorBottomSheet('Location services are disabled.\nAalokito needs location service to locate nearby gift givers and requesters properly');
     }
   }
 
   String getCurrentUserId() {
     return currentUserInfo.value.maybeWhen(data: (data) => data.id!, orElse: () => '');
+  }
+
+  LocalUser? getCurrentUser() {
+    return currentUserInfo.value.maybeWhen(data: (user) => user, orElse: () => null);
   }
 }
