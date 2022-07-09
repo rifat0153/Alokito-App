@@ -17,7 +17,7 @@ class HelpAskTileWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(kRadius * 2),
         child: Container(
-          color: Colors.amber,
+          // color: Colors.amber,
           child: Row(
             children: [
               Image.network(
@@ -32,8 +32,8 @@ class HelpAskTileWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      MyText(helpAsk.helpAskDetails ?? ''),
                       MyText(helpAsk.creator?.firstName ?? ''),
-                      MyText(helpAsk.distance.toString()),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [

@@ -29,9 +29,9 @@ class HelpAskListView extends StatelessWidget {
                   MapWithMarkersWidget(
                     markers: controller.markers,
                     initialCameraPosition: CameraPosition(
-                      // target: authController.currentUserPosition.value,
-                      // TODO: use actual position
-                      target: LatLng(23, 90),
+                      target: authController.currentUserPosition.value,
+                      // // TODO: use actual position
+                      // target: LatLng(23, 90),
                       zoom: 9,
                     ),
                   ),
@@ -40,8 +40,11 @@ class HelpAskListView extends StatelessWidget {
                     itemCount: controller.helpAsks.value.length,
                     itemBuilder: ((_, i) => GestureDetector(
                           onTap: () => controller.createChat(controller.helpAsks.value[i]),
-                          child: HelpAskTileWidget(
-                            helpAsk: controller.helpAsks.value[i],
+                          child: Container(
+                            color: Colors.transparent,
+                            child: HelpAskTileWidget(
+                              helpAsk: controller.helpAsks.value[i],
+                            ),
                           ),
                         )),
                   )
