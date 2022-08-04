@@ -1,3 +1,5 @@
+import 'package:alokito_new/modules/auth/views/verify_view.dart';
+
 import 'controllers/auth_controller.dart';
 import 'widgets/login_reg_form.dart';
 import '../home/views/home_view.dart';
@@ -18,6 +20,8 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   Widget build(BuildContext context) {
     return Obx(() {
       // * Check if user is verified
+    
+      // TODO: fix verification
       // if (authController.authStream.value != null) {
       //   if (!authController.authStream.value!.emailVerified) {
       //     return VerifyScreen();

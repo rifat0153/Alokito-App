@@ -14,7 +14,7 @@ class LoginController extends GetxController {
   RxString lastName = 'a'.obs;
   RxString password = '123456'.obs;
   RxString confirmPassword = '123456'.obs;
-  RxString email = 'test@gmail.com'.obs;
+  RxString email = 'rifat0153@gmail.com'.obs;
   RxString userName = 'rifat'.obs;
   Rx<File> imageFile = File('').obs;
   RxBool aggreedToTermsAndCondition = true.obs;
@@ -24,9 +24,11 @@ class LoginController extends GetxController {
 
     final AuthController authController = Get.find();
 
+    bool errorFound = false;
+
     if (firstName.value.isEmpty) {
       Get.snackbar('Reg Error', 'First Name cant be empty', backgroundColor: registrationErrorColor);
-      return;
+      errorFound = true;
     }
     // if (imageFile.value.path.isEmpty) {
     //   Get.snackbar('Reg Error', 'Image is needed', backgroundColor: registrationErrorColor);
@@ -34,29 +36,29 @@ class LoginController extends GetxController {
     // }
     if (!email.value.isEmail) {
       Get.snackbar('Reg Error', 'Invalid Email', backgroundColor: registrationErrorColor);
-      return;
+      errorFound = true;
     }
 
     if (password.value.isEmpty) {
       Get.snackbar('Reg Error', "Password can't be  empty", backgroundColor: registrationErrorColor);
-      return;
+      errorFound = true;
     }
     if (password.value != confirmPassword.value) {
       Get.snackbar('Reg Error', 'Password did not match', backgroundColor: registrationErrorColor);
-      return;
+      errorFound = true;
     }
     if (!aggreedToTermsAndCondition.value) {
       Get.snackbar('Reg Error', 'TERMS AND CONDITONS NEEDS TO BE AGGRED UPON', backgroundColor: registrationErrorColor);
+      errorFound = true;
+    }
+
+    if (errorFound) {
+      regStatus.value = const RegStatus.notRegistered();
       return;
     }
 
-    await authController.authService.signUp(
-        firstName: firstName.value,
-        lastName: lastName.value,
-        email: email.value.trim(),
-        password: password.value,
-        userName: userName.value,
-        localImageFile: imageFile.value);
+    await authController.authService
+        .signUp(firstName: firstName.value, lastName: lastName.value, email: email.value.trim(), password: password.value, userName: userName.value, localImageFile: imageFile.value);
 
     regStatus.value = const RegStatus.registered();
 
